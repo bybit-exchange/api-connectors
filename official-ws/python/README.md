@@ -23,7 +23,7 @@ Then subscribe the message topic you are interest in.
 
 ## Subscribe Topic & Get the response
 
-For all subscribed topics, there is a method that starts with "subscribe" in BybitWebsocket, and you can get results based on the topic field in the response message. You could get more infomation in [the documention of websocket-api](https://github.com/bybit-exchange/bybit-official-api-docs/blob/master/en/websocket.md)
+For all subscribed topics, there is a method that starts with "subscribe" in BybitWebsocket, and you can get results based on the topic field in the response message. You can get more infomation in [the documention of websocket-api](https://github.com/bybit-exchange/bybit-official-api-docs/blob/master/en/websocket.md)
 
 ```
 ws.subscribe_orderBookL2("BTCUSD")
@@ -45,3 +45,4 @@ while(1):
     sleep(1)
 ```
 
+See full example in [main.py](https://github.com/bybit-exchange/api-connectors/blob/master/official-ws/python/main.py) 
