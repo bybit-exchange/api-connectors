@@ -1,0 +1,2117 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Bybit API",
+        "termsOfService": "https://www.bybit.com/app/login",
+        "description": "## REST API for the Bybit Exchange.\n",
+        "contact": {
+            "email": "support@bybit.com"
+        },
+        "version": "1.0.0"
+    },
+    "basePath": "/",
+    "paths": {
+        "/v2/public/time": {
+            "get": {
+                "tags": [
+                    "Common"
+                ],
+                "summary": "Get bybit server time.",
+                "operationId": "Common.get",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/ServerTime"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": []
+            }
+        },
+        "/v2/public/symbols": {
+            "get": {
+                "tags": [
+                    "Symbol"
+                ],
+                "summary": "Query Symbols.",
+                "operationId": "Symbol.get",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/Symbols"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": []
+            }
+        },
+        "/user/leverage": {
+            "get": {
+                "tags": [
+                    "Positions"
+                ],
+                "summary": "Get user leverage setting.",
+                "operationId": "Positions.userLeverage",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/Leverage"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": []
+            }
+        },
+        "/user/leverage/save": {
+            "post": {
+                "tags": [
+                    "Positions"
+                ],
+                "summary": "Change user leverage.",
+                "operationId": "Positions.saveLeverage",
+                "parameters": [{
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "A symbol which you want change its leverage",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "leverage",
+                        "in": "query",
+                        "description": "New leverage you want set",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/ServerTime"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": []
+            }
+        },
+        "/position/list": {
+            "get": {
+                "tags": [
+                    "Positions"
+                ],
+                "summary": "Get my position list.",
+                "operationId": "Positions.myPosition",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/Position"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": []
+            }
+        },
+        "/position/change-position-margin": {
+            "post": {
+                "tags": [
+                    "Positions"
+                ],
+                "summary": "Update margin.",
+                "operationId": "Positions.changeMargin",
+                "parameters": [{
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type which you want update its margin",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "margin",
+                        "in": "query",
+                        "description": "New margin you want set",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/ServerTime"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": []
+            }
+        },
+        "/open-api/position/trading-stop": {
+            "post": {
+                "tags": [
+                    "Positions"
+                ],
+                "summary": "Set Trading-Stop Condition.",
+                "operationId": "Positions.tradingStop",
+                "parameters": [{
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "take_profit",
+                        "in": "query",
+                        "description": "Not less than 0, 0 means cancel TP",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "stop_loss",
+                        "in": "query",
+                        "description": "Not less than 0, 0 means cancel SL",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "trailing_stop",
+                        "in": "query",
+                        "description": "Not less than 0, 0 means cancel TS",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/TradingStopBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": []
+            }
+        },
+        "/open-api/wallet/fund/records": {
+            "get": {
+                "tags": [
+                    "Wallet"
+                ],
+                "summary": "Get wallet fund records",
+                "operationId": "Wallet.getRecords",
+                "parameters": [{
+                        "name": "start_date",
+                        "in": "query",
+                        "description": "Start point for result",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "end_date",
+                        "in": "query",
+                        "description": "End point for result",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "currency",
+                        "in": "query",
+                        "description": "Currency type",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "wallet_fund_type",
+                        "in": "query",
+                        "description": "wallet fund type",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page. Default getting first page data",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/Position"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": []
+            }
+        },
+        "/open-api/order/create": {
+            "post": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Place active order",
+                "operationId": "Order.new",
+                "parameters": [{
+                        "name": "side",
+                        "in": "query",
+                        "description": "Side",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    }, {
+                        "name": "order_type",
+                        "in": "query",
+                        "description": "Active order type",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "qty",
+                        "in": "query",
+                        "description": "",
+                        "required": true,
+                        "type": "number",
+                        "format": "int32"
+                    }, {
+                        "name": "price",
+                        "in": "query",
+                        "description": "Order price.",
+                        "required": true,
+                        "type": "number",
+                        "format": "double"
+                    },
+                    {
+                        "name": "time_in_force",
+                        "in": "query",
+                        "description": "Time in force",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "take_profit",
+                        "in": "query",
+                        "description": "take profit price",
+                        "required": false,
+                        "type": "number",
+                        "format": "double"
+                    },
+                    {
+                        "name": "stop_loss",
+                        "in": "query",
+                        "description": "stop loss price",
+                        "required": false,
+                        "type": "number",
+                        "format": "double"
+                    },
+                    {
+                        "name": "reduce_only",
+                        "in": "query",
+                        "description": "reduce only",
+                        "required": false,
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "close_on_trigger",
+                        "in": "query",
+                        "description": "close on trigger",
+                        "required": false,
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "order_link_id",
+                        "in": "query",
+                        "description": "TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/OrderResBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": []
+            }
+        },
+        "/open-api/order/list": {
+            "get": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Get my active order list.",
+                "operationId": "Order.getOrders",
+                "parameters": [{
+                        "name": "order_id",
+                        "in": "query",
+                        "description": "Order ID",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "order_link_id",
+                        "in": "query",
+                        "description": "Customized order ID.",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type. Default BTCUSD",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "order",
+                        "in": "query",
+                        "description": "Sort orders by creation date",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page. Default getting first page data",
+                        "required": false,
+                        "type": "number",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "TLimit for data size per page, max size is 50. Default as showing 20 pieces of data per page",
+                        "required": false,
+                        "type": "number",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "order_status",
+                        "in": "query",
+                        "description": "Query your orders for all statuses if 'order_status' is empty. If you want to query orders with specific statuses , you can pass the order_status split by",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/OrderListBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": []
+            }
+        },
+        "/open-api/order/cancel": {
+            "post": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Get my active order list.",
+                "operationId": "Order.cancel",
+                "parameters": [{
+                        "name": "order_id",
+                        "in": "query",
+                        "description": "Order ID",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/OrderCancelBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": []
+            }
+        },
+        "/open-api/stop-order/create": {
+            "post": {
+                "tags": [
+                    "Conditional"
+                ],
+                "summary": "Place a new conditional order.",
+                "operationId": "Conditional.new",
+                "parameters": [{
+                        "name": "side",
+                        "in": "query",
+                        "description": "Side.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    }, {
+                        "name": "order_type",
+                        "in": "query",
+                        "description": "Conditional order type.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "qty",
+                        "in": "query",
+                        "description": "Order quantity.",
+                        "required": true,
+                        "type": "number",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "price",
+                        "in": "query",
+                        "description": "Execution price for conditional order",
+                        "required": true,
+                        "type": "number",
+                        "format": "double"
+                    },
+                    {
+                        "name": "base_price",
+                        "in": "query",
+                        "description": "Send current market price. It will be used to compare with the value of 'stop_px', to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order..",
+                        "required": true,
+                        "type": "number",
+                        "format": "double"
+                    },
+                    {
+                        "name": "stop_px",
+                        "in": "query",
+                        "description": "Trigger price.",
+                        "required": true,
+                        "type": "number",
+                        "format": "double"
+                    },
+                    {
+                        "name": "time_in_force",
+                        "in": "query",
+                        "description": "Time in force.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "close_on_trigger",
+                        "in": "query",
+                        "description": "close on trigger.",
+                        "required": false,
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "order_link_id",
+                        "in": "query",
+                        "description": "Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique..",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/ConditionalBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": []
+            }
+        },
+        "/open-api/stop-order/list": {
+            "get": {
+                "tags": [
+                    "Conditional"
+                ],
+                "summary": "Get my conditional order list.",
+                "operationId": "Conditional.getOrders",
+                "parameters": [{
+                        "name": "stop_order_id",
+                        "in": "query",
+                        "description": "Order ID of conditional order.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "order_link_id",
+                        "in": "query",
+                        "description": "Agency customized order ID.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type. Default BTCUSD.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "order",
+                        "in": "query",
+                        "description": "Sort orders by creation date",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page. Default getting first page data",
+                        "required": false,
+                        "type": "number",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page.",
+                        "required": false,
+                        "type": "number",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/ConditionalOrdersResBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": []
+            }
+        },
+        "/open-api/stop-order/cancel": {
+            "post": {
+                "tags": [
+                    "Conditional"
+                ],
+                "summary": "Cancel conditional order.",
+                "operationId": "Conditional.cancel",
+                "parameters": [{
+                    "name": "stop_order_id",
+                    "in": "query",
+                    "description": "Order ID of conditional order.",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/ConditionalBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": []
+            }
+        },
+        "/open-api/funding/prev-funding-rate": {
+            "get": {
+                "tags": [
+                    "Funding"
+                ],
+                "summary": "Get predicted funding rate and funding fee.",
+                "operationId": "Funding.predictedRate",
+                "parameters": [{
+                    "name": "symbol",
+                    "in": "query",
+                    "description": "Contract type.",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/FundingRateBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": []
+            }
+        },
+        "/open-api/funding/prev-funding": {
+            "get": {
+                "tags": [
+                    "Funding"
+                ],
+                "summary": "Funding settlement occurs every 8 hours at 00:00 UTC, 08:00 UTC and 16:00 UTC. The current interval's fund fee settlement is based on the previous interval's fund rate. For example, at 16:00, the settlement is based on the fund rate generated at 8:00. The fund rate generated at 16:00 will be used at 0:00 on the next day.",
+                "operationId": "Funding.getRate",
+                "parameters": [{
+                    "name": "symbol",
+                    "in": "query",
+                    "description": "Contract type.",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/FundingFeeBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": []
+            }
+        },
+        "/open-api/funding/predicted-funding": {
+            "get": {
+                "tags": [
+                    "Funding"
+                ],
+                "summary": "Get predicted funding rate and funding fee.",
+                "operationId": "Funding.predicted",
+                "parameters": [{
+                    "name": "symbol",
+                    "in": "query",
+                    "description": "Contract type.",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/FundingPredictedBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": []
+            }
+        },
+        "/v2/private/execution/list": {
+            "get": {
+                "tags": [
+                    "Execution"
+                ],
+                "summary": "Get the trade records of a order.",
+                "operationId": "Execution.getTrades",
+                "parameters": [{
+                    "name": "order_id",
+                    "in": "query",
+                    "description": "orderID.",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/TradeRecordsBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": []
+            }
+        },
+        "/v2/public/orderBook/L2": {
+            "get": {
+                "tags": [
+                    "Market"
+                ],
+                "summary": "Get the orderbook.",
+                "operationId": "Market.orderbook",
+                "parameters": [{
+                    "name": "symbol",
+                    "in": "query",
+                    "description": "Contract type.",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/OrderBookBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": []
+            }
+        },
+        "/v2/public/tickers": {
+            "get": {
+                "tags": [
+                    "Market"
+                ],
+                "summary": "Get the latest information for symbol.",
+                "operationId": "Market.symbolInfo",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/SymbolInfoBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": []
+            }
+        },
+        "/v2/public/kline/list": {
+            "get": {
+                "tags": [
+                    "Kline"
+                ],
+                "summary": "Query historical kline.",
+                "operationId": "Kline.get",
+                "parameters": [{
+                    "name": "symbol",
+                    "in": "query",
+                    "description": "Contract type.",
+                    "required": true,
+                    "type": "string"
+                }, {
+                    "name": "interval",
+                    "in": "query",
+                    "description": "Kline interval.",
+                    "required": true,
+                    "type": "string"
+                }, {
+                    "name": "from",
+                    "in": "query",
+                    "description": "from timestamp.",
+                    "required": true,
+                    "type": "number",
+                    "format": "int64"
+                }, {
+                    "name": "limit",
+                    "in": "query",
+                    "description": "Contract type.",
+                    "required": false,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/KlineBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": []
+            }
+        }
+    },
+    "definitions": {
+        "ServerTime": {
+            "description": "Get bybit server time.",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Leverage": {
+            "description": "Get user leverage.",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "items": {
+                        "$ref": "#/definitions/LeverageResult"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                },
+                "rate_limit_status": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "LeverageResult": {
+            "properties": {
+                "BTCUSD": {
+                    "items": {
+                        "$ref": "#/definitions/LeverageInfo"
+                    }
+                },
+                "EOSUSD": {
+                    "items": {
+                        "$ref": "#/definitions/LeverageInfo"
+                    }
+                },
+                "ETHUSD": {
+                    "items": {
+                        "$ref": "#/definitions/LeverageInfo"
+                    }
+                },
+                "XRPUSD": {
+                    "items": {
+                        "$ref": "#/definitions/LeverageInfo"
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "LeverageInfo": {
+            "type": "object",
+            "properties": {
+                "leverage": {
+                    "type": "number"
+                }
+            }
+        },
+        "Symbols": {
+            "description": "Get symbol information.",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/SymbolInfo"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "SymbolInfo": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "base_currency": {
+                    "type": "string"
+                },
+                "quote_currency": {
+                    "type": "string"
+                },
+                "price_scale": {
+                    "type": "number"
+                },
+                "price_filter": {
+                    "items": {
+                        "$ref": "#/definitions/price_filter"
+                    }
+                },
+                "lot_size_filter": {
+                    "items": {
+                        "$ref": "#/definitions/lot_size_filter"
+                    }
+                }
+            }
+        },
+        "price_filter": {
+            "type": "object",
+            "properties": {
+                "min_price": {
+                    "type": "string"
+                },
+                "max_price": {
+                    "type": "string"
+                },
+                "tick_size": {
+                    "type": "string"
+                }
+            }
+        },
+        "lot_size_filter": {
+            "type": "object",
+            "properties": {
+                "min_trading_qty": {
+                    "type": "object"
+                },
+                "max_trading_qty": {
+                    "type": "object"
+                },
+                "qty_step": {
+                    "type": "object"
+                }
+            }
+        },
+        "Position": {
+            "description": "Get my position list.",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "items": {
+                        "$ref": "#/definitions/PositionInfo"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "PositionInfo": {
+            "description": "PositionInfo.",
+            "properties": {
+                "id": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "user_id": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "risk_id": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "symbol": {
+                    "type": "string"
+                },
+                "side": {
+                    "type": "string"
+                },
+                "size": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "position_value": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "entry_price": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "leverage": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "auto_add_margin": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "position_margin": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "liq_price": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "bust_price": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "occ_closing_fee": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "occ_funding_fee": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "take_profit": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "stop_loss": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "trailing_stop": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "position_status": {
+                    "type": "string"
+                },
+                "deleverage_indicator": {
+                    "type": "string"
+                },
+                "oc_calc_data": {
+                    "type": "string",
+                    "format": "JSON"
+                },
+                "order_margin": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "wallet_balance": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "unrealised_pnl": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "realised_pnl": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "cum_realised_pnl": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "cum_commission": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "cross_seq": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "position_seq": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "OrderResBase": {
+            "description": "Place new order response",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "items": {
+                        "$ref": "#/definitions/OrderRes"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "OrderRes": {
+            "description": "Place new order response",
+            "properties": {
+                "order_id": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "number"
+                },
+                "symbol": {
+                    "type": "string"
+                },
+                "side": {
+                    "type": "string"
+                },
+                "order_type": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "qty": {
+                    "type": "string",
+                    "format": "int32"
+                },
+                "time_in_force": {
+                    "type": "string"
+                },
+                "order_status": {
+                    "type": "string"
+                },
+                "last_exec_time": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "last_exec_price": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "leaves_qty": {
+                    "type": "number",
+                    "format": "int32"
+                },
+                "cum_exec_qty": {
+                    "type": "number",
+                    "format": "int32"
+                },
+                "cum_exec_value": {
+                    "type": "number",
+                    "format": "int32"
+                },
+                "cum_exec_fee": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "reject_reason": {
+                    "type": "string"
+                },
+                "order_link_id": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "OrderListBase": {
+            "description": "Get order list response",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "items": {
+                        "$ref": "#/definitions/OrderListData"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "OrderListData": {
+            "description": "Get order list response",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/OrderRes"
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "OrderCancelBase": {
+            "description": "cancel order response",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "items": {
+                        "$ref": "#/definitions/OrderRes"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "ConditionalBase": {
+            "description": "Place new conditional order response",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "items": {
+                        "$ref": "#/definitions/ConditionalRes"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "ConditionalRes": {
+            "description": "Place new conditional order response",
+            "properties": {
+                "stop_order_id": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "number",
+                    "format": "int32"
+                },
+                "stop_order_status": {
+                    "type": "string"
+                },
+                "symbol": {
+                    "type": "string"
+                },
+                "side": {
+                    "type": "string"
+                },
+                "order_type": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "qty": {
+                    "type": "number",
+                    "format": "int32"
+                },
+                "time_in_force": {
+                    "type": "string"
+                },
+                "stop_order_type": {
+                    "type": "string"
+                },
+                "base_price": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "stop_px": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "order_link_id": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "ConditionalOrdersResBase": {
+            "description": "Get conditional order list",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ConditionalOrdersRes"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "ConditionalOrdersRes": {
+            "description": "Get order list response",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ConditionalRes"
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "FundingRateBase": {
+            "description": "Get the last funding Rate",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "items": {
+                        "$ref": "#/definitions/FundingRate"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "FundingRate": {
+            "description": "Get the last funding Rate",
+            "properties": {
+                "symbol": {
+                    "type": "string"
+                },
+                "funding_rate": {
+                    "type": "string"
+                },
+                "funding_rate_timestamp": {
+                    "type": "number",
+                    "format": "int32"
+                }
+            },
+            "type": "object"
+        },
+        "FundingFeeBase": {
+            "description": "Get the last funding fee",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "items": {
+                        "$ref": "#/definitions/FundingFeeRes"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "FundingFeeRes": {
+            "description": "Get the last funding fee",
+            "properties": {
+                "symbol": {
+                    "type": "string"
+                },
+                "side": {
+                    "type": "string"
+                },
+                "size": {
+                    "type": "number",
+                    "format": "int32"
+                },
+                "funding_rate": {
+                    "type": "string"
+                },
+                "exec_fee": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "exec_timestamp": {
+                    "type": "number",
+                    "format": "int64"
+                }
+            },
+            "type": "object"
+        },
+        "FundingPredictedBase": {
+            "description": "Get the last funding fee",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "items": {
+                        "$ref": "#/definitions/FundingPredicted"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "FundingPredicted": {
+            "description": "Get the last funding fee",
+            "properties": {
+                "predicted_funding_rate": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "predicted_funding_fee": {
+                    "type": "number",
+                    "format": "double"
+                }
+            },
+            "type": "object"
+        },
+        "TradeRecordsBase": {
+            "description": "Get the trade records of a order response",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TradeRecords"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "TradeRecords": {
+            "description": "Get the trade records of a order response",
+            "properties": {
+                "order_id": {
+                    "type": "string"
+                },
+                "trade_list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TradeRecordsInfo"
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "TradeRecordsInfo": {
+            "description": "Get the trade records of a order response",
+            "properties": {
+                "closed_size": {
+                    "type": "number",
+                    "format": "int32"
+                },
+                "cross_seq": {
+                    "type": "number",
+                    "format": "int32"
+                },
+                "exec_fee": {
+                    "type": "string"
+                },
+                "exec_id": {
+                    "type": "string"
+                },
+                "exec_price": {
+                    "type": "string"
+                },
+                "exec_qty": {
+                    "type": "number",
+                    "format": "int32"
+                },
+                "exec_time": {
+                    "type": "string"
+                },
+                "exec_type": {
+                    "type": "string"
+                },
+                "exec_value": {
+                    "type": "string"
+                },
+                "fee_rate": {
+                    "type": "string"
+                },
+                "last_liquidity_ind": {
+                    "type": "string"
+                },
+                "leaves_qty": {
+                    "type": "number",
+                    "format": "int32"
+                },
+                "nth_fill": {
+                    "type": "number",
+                    "format": "int32"
+                },
+                "order_id": {
+                    "type": "string"
+                },
+                "order_price": {
+                    "type": "string"
+                },
+                "order_qty": {
+                    "type": "number",
+                    "format": "int32"
+                },
+                "order_type": {
+                    "type": "string"
+                },
+                "side": {
+                    "type": "string"
+                },
+                "symbol": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "number",
+                    "format": "int32"
+                }
+            },
+            "type": "object"
+        },
+        "OrderBookBase": {
+            "description": "Get the orderbook response",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/OderBookRes"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "OderBookRes": {
+            "description": "Get the orderbook response",
+            "properties": {
+                "symbol": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "string"
+                },
+                "size": {
+                    "type": "number",
+                    "format": "int32"
+                },
+                "side": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "SymbolInfoBase": {
+            "description": "Get the orderbook response",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/SymbolTickInfo"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "SymbolTickInfo": {
+            "description": "Get the orderbook response",
+            "properties": {
+                "symbol": {
+                    "type": "string"
+                },
+                "bid_price": {
+                    "type": "string"
+                },
+                "ask_price": {
+                    "type": "string"
+                },
+                "last_price": {
+                    "type": "string"
+                },
+                "last_tick_direction": {
+                    "type": "string"
+                },
+                "prev_price_24h": {
+                    "type": "string"
+                },
+                "price_24h_pcnt": {
+                    "type": "string"
+                },
+                "high_price_24h": {
+                    "type": "string"
+                },
+                "low_price_24h": {
+                    "type": "string"
+                },
+                "prev_price_1h": {
+                    "type": "string"
+                },
+                "price_1h_pcnt": {
+                    "type": "string"
+                },
+                "mark_price": {
+                    "type": "string"
+                },
+                "index_price": {
+                    "type": "string"
+                },
+                "open_interest": {
+                    "type": "number",
+                    "format": "int32"
+                },
+                "open_value": {
+                    "type": "string"
+                },
+                "total_turnover": {
+                    "type": "string"
+                },
+                "turnover_24h": {
+                    "type": "string"
+                },
+                "total_volume": {
+                    "type": "number",
+                    "format": "int64"
+                },
+                "volume_24h": {
+                    "type": "number",
+                    "format": "int64"
+                },
+                "funding_rate": {
+                    "type": "string"
+                },
+                "predicted_funding_rate": {
+                    "type": "string"
+                },
+                "next_funding_time": {
+                    "type": "string"
+                },
+                "countdown_hour": {
+                    "type": "number",
+                    "format": "int32"
+                }
+            },
+            "type": "object"
+        },
+        "KlineBase": {
+            "description": "Get the orderbook response",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/KlineRes"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "KlineRes": {
+            "description": "Get the orderbook response",
+            "properties": {
+                "symbol": {
+                    "type": "string"
+                },
+                "interval": {
+                    "type": "string"
+                },
+                "open_time": {
+                    "type": "number",
+                    "format": "int64"
+                },
+                "open": {
+                    "type": "string"
+                },
+                "high": {
+                    "type": "string"
+                },
+                "low": {
+                    "type": "string"
+                },
+                "close": {
+                    "type": "string"
+                },
+                "volume": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "TradingStopBase": {
+            "description": "Set Trading-Stop Condition response",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "items": {
+                        "$ref": "#/definitions/TradingStopRes"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "TradingStopRes": {
+            "description": "Set Trading-Stop Condition response",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "format": "int32"
+                },
+                "user_id": {
+                    "type": "number",
+                    "format": "int32"
+                },
+                "symbol": {
+                    "type": "string"
+                },
+                "side": {
+                    "type": "string"
+                },
+                "size": {
+                    "type": "number",
+                    "format": "int32"
+                },
+                "position_value": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "entry_price": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "risk_id": {
+                    "type": "number",
+                    "format": "int32"
+                },
+                "auto_add_margin": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "leverage": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "position_margin": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "liq_price": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "bust_price": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "occ_closing_fee": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "occ_funding_fee": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "take_profit": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "stop_loss": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "trailing_stop": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "position_status": {
+                    "type": "string"
+                },
+                "deleverage_indicator": {
+                    "type": "number",
+                    "format": "int32"
+                },
+                "oc_calc_data": {
+                    "type": "string"
+                },
+                "order_margin": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "wallet_balance": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "realised_pnl": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "cum_realised_pnl": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "cum_commission": {
+                    "type": "number",
+                    "format": "int32"
+                },
+                "cross_seq": {
+                    "type": "number",
+                    "format": "int32"
+                },
+                "position_seq": {
+                    "type": "number",
+                    "format": "int32"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}
