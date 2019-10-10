@@ -1,0 +1,1514 @@
+---
+swagger: "2.0"
+info:
+  description: "## REST API for the Bybit Exchange.\n"
+  version: "1.0.0"
+  title: "Bybit API"
+  termsOfService: "https://www.bybit.com/app/login"
+  contact:
+    email: "support@bybit.com"
+basePath: "/"
+paths:
+  /v2/public/time:
+    get:
+      tags:
+      - "Common"
+      summary: "Get bybit server time."
+      operationId: "Common.get"
+      parameters: []
+      responses:
+        200:
+          description: "Request was successful"
+          schema: {}
+      security: []
+      deprecated: false
+  /v2/public/symbols:
+    get:
+      tags:
+      - "Symbol"
+      summary: "Query Symbols."
+      operationId: "Symbol.get"
+      parameters: []
+      responses:
+        200:
+          description: "Request was successful"
+          schema: {}
+      security: []
+      deprecated: false
+  /user/leverage:
+    get:
+      tags:
+      - "Positions"
+      summary: "Get user leverage setting."
+      operationId: "Positions.userLeverage"
+      parameters: []
+      responses:
+        200:
+          description: "Request was successful"
+          schema: {}
+      security: []
+      deprecated: false
+  /user/leverage/save:
+    post:
+      tags:
+      - "Positions"
+      summary: "Change user leverage."
+      operationId: "Positions.saveLeverage"
+      parameters:
+      - name: "symbol"
+        in: "query"
+        description: "A symbol which you want change its leverage"
+        required: true
+        type: "string"
+        x-exportParamName: "Symbol"
+      - name: "leverage"
+        in: "query"
+        description: "New leverage you want set"
+        required: true
+        type: "string"
+        x-exportParamName: "Leverage"
+      responses:
+        200:
+          description: "Request was successful"
+          schema: {}
+      security: []
+      deprecated: false
+  /position/list:
+    get:
+      tags:
+      - "Positions"
+      summary: "Get my position list."
+      operationId: "Positions.myPosition"
+      parameters: []
+      responses:
+        200:
+          description: "Request was successful"
+          schema: {}
+      security: []
+      deprecated: false
+  /position/change-position-margin:
+    post:
+      tags:
+      - "Positions"
+      summary: "Update margin."
+      operationId: "Positions.changeMargin"
+      parameters:
+      - name: "symbol"
+        in: "query"
+        description: "Contract type which you want update its margin"
+        required: true
+        type: "string"
+        x-exportParamName: "Symbol"
+      - name: "margin"
+        in: "query"
+        description: "New margin you want set"
+        required: true
+        type: "string"
+        x-exportParamName: "Margin"
+      responses:
+        200:
+          description: "Request was successful"
+          schema: {}
+      security: []
+      deprecated: false
+  /open-api/position/trading-stop:
+    post:
+      tags:
+      - "Positions"
+      summary: "Set Trading-Stop Condition."
+      operationId: "Positions.tradingStop"
+      parameters:
+      - name: "symbol"
+        in: "query"
+        description: "Contract type"
+        required: true
+        type: "string"
+        x-exportParamName: "Symbol"
+      - name: "take_profit"
+        in: "query"
+        description: "Not less than 0, 0 means cancel TP"
+        required: false
+        type: "string"
+        x-exportParamName: "TakeProfit"
+        x-optionalDataType: "String"
+      - name: "stop_loss"
+        in: "query"
+        description: "Not less than 0, 0 means cancel SL"
+        required: false
+        type: "string"
+        x-exportParamName: "StopLoss"
+        x-optionalDataType: "String"
+      - name: "trailing_stop"
+        in: "query"
+        description: "Not less than 0, 0 means cancel TS"
+        required: false
+        type: "string"
+        x-exportParamName: "TrailingStop"
+        x-optionalDataType: "String"
+      responses:
+        200:
+          description: "Request was successful"
+          schema: {}
+      security: []
+      deprecated: false
+  /open-api/wallet/fund/records:
+    get:
+      tags:
+      - "Wallet"
+      summary: "Get wallet fund records"
+      operationId: "Wallet.getRecords"
+      parameters:
+      - name: "start_date"
+        in: "query"
+        description: "Start point for result"
+        required: false
+        type: "string"
+        x-exportParamName: "StartDate"
+        x-optionalDataType: "String"
+      - name: "end_date"
+        in: "query"
+        description: "End point for result"
+        required: false
+        type: "string"
+        x-exportParamName: "EndDate"
+        x-optionalDataType: "String"
+      - name: "currency"
+        in: "query"
+        description: "Currency type"
+        required: false
+        type: "string"
+        x-exportParamName: "Currency"
+        x-optionalDataType: "String"
+      - name: "wallet_fund_type"
+        in: "query"
+        description: "wallet fund type"
+        required: false
+        type: "string"
+        x-exportParamName: "WalletFundType"
+        x-optionalDataType: "String"
+      - name: "page"
+        in: "query"
+        description: "Page. Default getting first page data"
+        required: false
+        type: "string"
+        x-exportParamName: "Page"
+        x-optionalDataType: "String"
+      - name: "limit"
+        in: "query"
+        description: "Limit for data size per page, max size is 50. Default as showing\
+          \ 20 pieces of data per page"
+        required: false
+        type: "string"
+        x-exportParamName: "Limit"
+        x-optionalDataType: "String"
+      responses:
+        200:
+          description: "Request was successful"
+          schema: {}
+      security: []
+      deprecated: false
+  /open-api/order/create:
+    post:
+      tags:
+      - "Order"
+      summary: "Place active order"
+      operationId: "Order.new"
+      parameters:
+      - name: "side"
+        in: "query"
+        description: "Side"
+        required: true
+        type: "string"
+        x-exportParamName: "Side"
+      - name: "symbol"
+        in: "query"
+        description: "Contract type."
+        required: true
+        type: "string"
+        x-exportParamName: "Symbol"
+      - name: "order_type"
+        in: "query"
+        description: "Active order type"
+        required: true
+        type: "string"
+        x-exportParamName: "OrderType"
+      - name: "qty"
+        in: "query"
+        description: ""
+        required: true
+        type: "number"
+        format: "int32"
+        x-exportParamName: "Qty"
+      - name: "price"
+        in: "query"
+        description: "Order price."
+        required: true
+        type: "number"
+        format: "double"
+        x-exportParamName: "Price"
+      - name: "time_in_force"
+        in: "query"
+        description: "Time in force"
+        required: true
+        type: "string"
+        x-exportParamName: "TimeInForce"
+      - name: "take_profit"
+        in: "query"
+        description: "take profit price"
+        required: false
+        type: "number"
+        format: "double"
+        x-exportParamName: "TakeProfit"
+        x-optionalDataType: "Float64"
+      - name: "stop_loss"
+        in: "query"
+        description: "stop loss price"
+        required: false
+        type: "number"
+        format: "double"
+        x-exportParamName: "StopLoss"
+        x-optionalDataType: "Float64"
+      - name: "reduce_only"
+        in: "query"
+        description: "reduce only"
+        required: false
+        type: "boolean"
+        x-exportParamName: "ReduceOnly"
+        x-optionalDataType: "Bool"
+      - name: "close_on_trigger"
+        in: "query"
+        description: "close on trigger"
+        required: false
+        type: "boolean"
+        x-exportParamName: "CloseOnTrigger"
+        x-optionalDataType: "Bool"
+      - name: "order_link_id"
+        in: "query"
+        description: "TCustomized order ID, maximum length at 36 characters, and order\
+          \ ID under the same agency has to be unique."
+        required: false
+        type: "string"
+        x-exportParamName: "OrderLinkId"
+        x-optionalDataType: "String"
+      responses:
+        200:
+          description: "Request was successful"
+          schema: {}
+      security: []
+      deprecated: false
+  /open-api/order/list:
+    get:
+      tags:
+      - "Order"
+      summary: "Get my active order list."
+      operationId: "Order.getOrders"
+      parameters:
+      - name: "order_id"
+        in: "query"
+        description: "Order ID"
+        required: false
+        type: "string"
+        x-exportParamName: "OrderId"
+        x-optionalDataType: "String"
+      - name: "order_link_id"
+        in: "query"
+        description: "Customized order ID."
+        required: false
+        type: "string"
+        x-exportParamName: "OrderLinkId"
+        x-optionalDataType: "String"
+      - name: "symbol"
+        in: "query"
+        description: "Contract type. Default BTCUSD"
+        required: false
+        type: "string"
+        x-exportParamName: "Symbol"
+        x-optionalDataType: "String"
+      - name: "order"
+        in: "query"
+        description: "Sort orders by creation date"
+        required: false
+        type: "string"
+        x-exportParamName: "Order"
+        x-optionalDataType: "String"
+      - name: "page"
+        in: "query"
+        description: "Page. Default getting first page data"
+        required: false
+        type: "number"
+        format: "int32"
+        x-exportParamName: "Page"
+        x-optionalDataType: "Float32"
+      - name: "limit"
+        in: "query"
+        description: "TLimit for data size per page, max size is 50. Default as showing\
+          \ 20 pieces of data per page"
+        required: false
+        type: "number"
+        format: "int32"
+        x-exportParamName: "Limit"
+        x-optionalDataType: "Float32"
+      - name: "order_status"
+        in: "query"
+        description: "Query your orders for all statuses if 'order_status' is empty.\
+          \ If you want to query orders with specific statuses , you can pass the\
+          \ order_status split by"
+        required: false
+        type: "string"
+        x-exportParamName: "OrderStatus"
+        x-optionalDataType: "String"
+      responses:
+        200:
+          description: "Request was successful"
+          schema: {}
+      security: []
+      deprecated: false
+  /open-api/order/cancel:
+    post:
+      tags:
+      - "Order"
+      summary: "Get my active order list."
+      operationId: "Order.cancel"
+      parameters:
+      - name: "order_id"
+        in: "query"
+        description: "Order ID"
+        required: true
+        type: "string"
+        x-exportParamName: "OrderId"
+      - name: "symbol"
+        in: "query"
+        description: "Contract type."
+        required: false
+        type: "string"
+        x-exportParamName: "Symbol"
+        x-optionalDataType: "String"
+      responses:
+        200:
+          description: "Request was successful"
+          schema: {}
+      security: []
+      deprecated: false
+  /open-api/stop-order/create:
+    post:
+      tags:
+      - "Conditional"
+      summary: "Place a new conditional order."
+      operationId: "Conditional.new"
+      parameters:
+      - name: "side"
+        in: "query"
+        description: "Side."
+        required: true
+        type: "string"
+        x-exportParamName: "Side"
+      - name: "symbol"
+        in: "query"
+        description: "Contract type."
+        required: true
+        type: "string"
+        x-exportParamName: "Symbol"
+      - name: "order_type"
+        in: "query"
+        description: "Conditional order type."
+        required: true
+        type: "string"
+        x-exportParamName: "OrderType"
+      - name: "qty"
+        in: "query"
+        description: "Order quantity."
+        required: true
+        type: "number"
+        format: "int32"
+        x-exportParamName: "Qty"
+      - name: "price"
+        in: "query"
+        description: "Execution price for conditional order"
+        required: true
+        type: "number"
+        format: "double"
+        x-exportParamName: "Price"
+      - name: "base_price"
+        in: "query"
+        description: "Send current market price. It will be used to compare with the\
+          \ value of 'stop_px', to decide whether your conditional order will be triggered\
+          \ by crossing trigger price from upper side or lower side. Mainly used to\
+          \ identify the expected direction of the current conditional order.."
+        required: true
+        type: "number"
+        format: "double"
+        x-exportParamName: "BasePrice"
+      - name: "stop_px"
+        in: "query"
+        description: "Trigger price."
+        required: true
+        type: "number"
+        format: "double"
+        x-exportParamName: "StopPx"
+      - name: "time_in_force"
+        in: "query"
+        description: "Time in force."
+        required: true
+        type: "string"
+        x-exportParamName: "TimeInForce"
+      - name: "close_on_trigger"
+        in: "query"
+        description: "close on trigger."
+        required: false
+        type: "boolean"
+        x-exportParamName: "CloseOnTrigger"
+        x-optionalDataType: "Bool"
+      - name: "order_link_id"
+        in: "query"
+        description: "Customized order ID, maximum length at 36 characters, and order\
+          \ ID under the same agency has to be unique.."
+        required: false
+        type: "string"
+        x-exportParamName: "OrderLinkId"
+        x-optionalDataType: "String"
+      responses:
+        200:
+          description: "Request was successful"
+          schema: {}
+      security: []
+      deprecated: false
+  /open-api/stop-order/list:
+    get:
+      tags:
+      - "Conditional"
+      summary: "Get my conditional order list."
+      operationId: "Conditional.getOrders"
+      parameters:
+      - name: "stop_order_id"
+        in: "query"
+        description: "Order ID of conditional order."
+        required: false
+        type: "string"
+        x-exportParamName: "StopOrderId"
+        x-optionalDataType: "String"
+      - name: "order_link_id"
+        in: "query"
+        description: "Agency customized order ID."
+        required: false
+        type: "string"
+        x-exportParamName: "OrderLinkId"
+        x-optionalDataType: "String"
+      - name: "symbol"
+        in: "query"
+        description: "Contract type. Default BTCUSD."
+        required: false
+        type: "string"
+        x-exportParamName: "Symbol"
+        x-optionalDataType: "String"
+      - name: "order"
+        in: "query"
+        description: "Sort orders by creation date"
+        required: false
+        type: "string"
+        x-exportParamName: "Order"
+        x-optionalDataType: "String"
+      - name: "page"
+        in: "query"
+        description: "Page. Default getting first page data"
+        required: false
+        type: "number"
+        format: "int32"
+        x-exportParamName: "Page"
+        x-optionalDataType: "Float32"
+      - name: "limit"
+        in: "query"
+        description: "Limit for data size per page, max size is 50. Default as showing\
+          \ 20 pieces of data per page."
+        required: false
+        type: "number"
+        format: "int32"
+        x-exportParamName: "Limit"
+        x-optionalDataType: "Float32"
+      responses:
+        200:
+          description: "Request was successful"
+          schema: {}
+      security: []
+      deprecated: false
+  /open-api/stop-order/cancel:
+    post:
+      tags:
+      - "Conditional"
+      summary: "Cancel conditional order."
+      operationId: "Conditional.cancel"
+      parameters:
+      - name: "stop_order_id"
+        in: "query"
+        description: "Order ID of conditional order."
+        required: true
+        type: "string"
+        x-exportParamName: "StopOrderId"
+      responses:
+        200:
+          description: "Request was successful"
+          schema: {}
+      security: []
+      deprecated: false
+  /open-api/funding/prev-funding-rate:
+    get:
+      tags:
+      - "Funding"
+      summary: "Get predicted funding rate and funding fee."
+      operationId: "Funding.predictedRate"
+      parameters:
+      - name: "symbol"
+        in: "query"
+        description: "Contract type."
+        required: true
+        type: "string"
+        x-exportParamName: "Symbol"
+      responses:
+        200:
+          description: "Request was successful"
+          schema: {}
+      security: []
+      deprecated: false
+  /open-api/funding/prev-funding:
+    get:
+      tags:
+      - "Funding"
+      summary: "Funding settlement occurs every 8 hours at 00:00 UTC, 08:00 UTC and\
+        \ 16:00 UTC. The current interval's fund fee settlement is based on the previous\
+        \ interval's fund rate. For example, at 16:00, the settlement is based on\
+        \ the fund rate generated at 8:00. The fund rate generated at 16:00 will be\
+        \ used at 0:00 on the next day."
+      operationId: "Funding.getRate"
+      parameters:
+      - name: "symbol"
+        in: "query"
+        description: "Contract type."
+        required: true
+        type: "string"
+        x-exportParamName: "Symbol"
+      responses:
+        200:
+          description: "Request was successful"
+          schema: {}
+      security: []
+      deprecated: false
+  /open-api/funding/predicted-funding:
+    get:
+      tags:
+      - "Funding"
+      summary: "Get predicted funding rate and funding fee."
+      operationId: "Funding.predicted"
+      parameters:
+      - name: "symbol"
+        in: "query"
+        description: "Contract type."
+        required: true
+        type: "string"
+        x-exportParamName: "Symbol"
+      responses:
+        200:
+          description: "Request was successful"
+          schema: {}
+      security: []
+      deprecated: false
+  /v2/private/execution/list:
+    get:
+      tags:
+      - "Execution"
+      summary: "Get the trade records of a order."
+      operationId: "Execution.getTrades"
+      parameters:
+      - name: "order_id"
+        in: "query"
+        description: "orderID."
+        required: true
+        type: "string"
+        x-exportParamName: "OrderId"
+      responses:
+        200:
+          description: "Request was successful"
+          schema: {}
+      security: []
+      deprecated: false
+  /v2/public/orderBook/L2:
+    get:
+      tags:
+      - "Market"
+      summary: "Get the orderbook."
+      operationId: "Market.orderbook"
+      parameters:
+      - name: "symbol"
+        in: "query"
+        description: "Contract type."
+        required: true
+        type: "string"
+        x-exportParamName: "Symbol"
+      responses:
+        200:
+          description: "Request was successful"
+          schema: {}
+      security: []
+      deprecated: false
+  /v2/public/tickers:
+    get:
+      tags:
+      - "Market"
+      summary: "Get the latest information for symbol."
+      operationId: "Market.symbolInfo"
+      parameters: []
+      responses:
+        200:
+          description: "Request was successful"
+          schema: {}
+      security: []
+      deprecated: false
+  /v2/public/kline/list:
+    get:
+      tags:
+      - "Kline"
+      summary: "Query historical kline."
+      operationId: "Kline.get"
+      parameters:
+      - name: "symbol"
+        in: "query"
+        description: "Contract type."
+        required: true
+        type: "string"
+        x-exportParamName: "Symbol"
+      - name: "interval"
+        in: "query"
+        description: "Kline interval."
+        required: true
+        type: "string"
+        x-exportParamName: "Interval"
+      - name: "from"
+        in: "query"
+        description: "from timestamp."
+        required: true
+        type: "number"
+        format: "int64"
+        x-exportParamName: "From"
+      - name: "limit"
+        in: "query"
+        description: "Contract type."
+        required: false
+        type: "string"
+        x-exportParamName: "Limit"
+        x-optionalDataType: "String"
+      responses:
+        200:
+          description: "Request was successful"
+          schema: {}
+      security: []
+      deprecated: false
+definitions:
+  ServerTime:
+    type: "object"
+    properties:
+      ret_code:
+        type: "number"
+        format: "int32"
+      ret_msg:
+        type: "string"
+      ext_code:
+        type: "string"
+      ext_info:
+        type: "string"
+      result: {}
+      time_now:
+        type: "string"
+    description: "Get bybit server time."
+  Leverage:
+    type: "object"
+    properties:
+      ret_code:
+        type: "number"
+        format: "int32"
+      ret_msg:
+        type: "string"
+      ext_code:
+        type: "string"
+      ext_info:
+        type: "string"
+      result: {}
+      time_now:
+        type: "string"
+      rate_limit_status:
+        type: "number"
+    description: "Get user leverage."
+  LeverageResult:
+    type: "object"
+    properties:
+      BTCUSD: {}
+      EOSUSD: {}
+      ETHUSD: {}
+      XRPUSD: {}
+  LeverageInfo:
+    type: "object"
+    properties:
+      leverage:
+        type: "number"
+  Symbols:
+    type: "object"
+    properties:
+      ret_code:
+        type: "number"
+        format: "int32"
+      ret_msg:
+        type: "string"
+      ext_code:
+        type: "string"
+      ext_info:
+        type: "string"
+      result:
+        type: "array"
+        items:
+          $ref: "#/definitions/SymbolInfo"
+      time_now:
+        type: "string"
+    description: "Get symbol information."
+  SymbolInfo:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      base_currency:
+        type: "string"
+      quote_currency:
+        type: "string"
+      price_scale:
+        type: "number"
+      price_filter: {}
+      lot_size_filter: {}
+  price_filter:
+    type: "object"
+    properties:
+      min_price:
+        type: "string"
+      max_price:
+        type: "string"
+      tick_size:
+        type: "string"
+  lot_size_filter:
+    type: "object"
+    properties:
+      min_trading_qty:
+        type: "object"
+        properties: {}
+      max_trading_qty:
+        type: "object"
+        properties: {}
+      qty_step:
+        type: "object"
+        properties: {}
+  Position:
+    type: "object"
+    properties:
+      ret_code:
+        type: "number"
+        format: "int32"
+      ret_msg:
+        type: "string"
+      ext_code:
+        type: "string"
+      ext_info:
+        type: "string"
+      result: {}
+      time_now:
+        type: "string"
+    description: "Get my position list."
+  PositionInfo:
+    type: "object"
+    properties:
+      id:
+        type: "number"
+        format: "int32"
+      user_id:
+        type: "number"
+        format: "int32"
+      risk_id:
+        type: "number"
+        format: "int32"
+      symbol:
+        type: "string"
+      side:
+        type: "string"
+      size:
+        type: "number"
+        format: "int32"
+      position_value:
+        type: "number"
+        format: "int32"
+      entry_price:
+        type: "number"
+        format: "int32"
+      leverage:
+        type: "number"
+        format: "int32"
+      auto_add_margin:
+        type: "number"
+        format: "int32"
+      position_margin:
+        type: "number"
+        format: "int32"
+      liq_price:
+        type: "number"
+        format: "int32"
+      bust_price:
+        type: "number"
+        format: "int32"
+      occ_closing_fee:
+        type: "number"
+        format: "int32"
+      occ_funding_fee:
+        type: "number"
+        format: "int32"
+      take_profit:
+        type: "number"
+        format: "int32"
+      stop_loss:
+        type: "number"
+        format: "int32"
+      trailing_stop:
+        type: "number"
+        format: "int32"
+      position_status:
+        type: "string"
+      deleverage_indicator:
+        type: "string"
+      oc_calc_data:
+        type: "string"
+        format: "JSON"
+      order_margin:
+        type: "number"
+        format: "int32"
+      wallet_balance:
+        type: "number"
+        format: "int32"
+      unrealised_pnl:
+        type: "number"
+        format: "int32"
+      realised_pnl:
+        type: "number"
+        format: "int32"
+      cum_realised_pnl:
+        type: "number"
+        format: "int32"
+      cum_commission:
+        type: "number"
+        format: "int32"
+      cross_seq:
+        type: "number"
+        format: "int32"
+      position_seq:
+        type: "number"
+        format: "int32"
+      created_at:
+        type: "string"
+      updated_at:
+        type: "string"
+    description: "PositionInfo."
+  OrderResBase:
+    type: "object"
+    properties:
+      ret_code:
+        type: "number"
+        format: "int32"
+      ret_msg:
+        type: "string"
+      ext_code:
+        type: "string"
+      ext_info:
+        type: "string"
+      result: {}
+      time_now:
+        type: "string"
+    description: "Place new order response"
+  OrderRes:
+    type: "object"
+    properties:
+      order_id:
+        type: "string"
+      user_id:
+        type: "number"
+      symbol:
+        type: "string"
+      side:
+        type: "string"
+      order_type:
+        type: "string"
+      price:
+        type: "number"
+        format: "double"
+      qty:
+        type: "string"
+        format: "int32"
+      time_in_force:
+        type: "string"
+      order_status:
+        type: "string"
+      last_exec_time:
+        type: "number"
+        format: "double"
+      last_exec_price:
+        type: "number"
+        format: "double"
+      leaves_qty:
+        type: "number"
+        format: "int32"
+      cum_exec_qty:
+        type: "number"
+        format: "int32"
+      cum_exec_value:
+        type: "number"
+        format: "int32"
+      cum_exec_fee:
+        type: "number"
+        format: "double"
+      reject_reason:
+        type: "string"
+      order_link_id:
+        type: "string"
+      created_at:
+        type: "string"
+      updated_at:
+        type: "string"
+    description: "Place new order response"
+  OrderListBase:
+    type: "object"
+    properties:
+      ret_code:
+        type: "number"
+        format: "int32"
+      ret_msg:
+        type: "string"
+      ext_code:
+        type: "string"
+      ext_info:
+        type: "string"
+      result: {}
+      time_now:
+        type: "string"
+    description: "Get order list response"
+  OrderListData:
+    type: "object"
+    properties:
+      data:
+        type: "array"
+        items:
+          $ref: "#/definitions/OrderRes"
+    description: "Get order list response"
+  OrderCancelBase:
+    type: "object"
+    properties:
+      ret_code:
+        type: "number"
+        format: "int32"
+      ret_msg:
+        type: "string"
+      ext_code:
+        type: "string"
+      ext_info:
+        type: "string"
+      result: {}
+      time_now:
+        type: "string"
+    description: "cancel order response"
+  ConditionalBase:
+    type: "object"
+    properties:
+      ret_code:
+        type: "number"
+        format: "int32"
+      ret_msg:
+        type: "string"
+      ext_code:
+        type: "string"
+      ext_info:
+        type: "string"
+      result: {}
+      time_now:
+        type: "string"
+    description: "Place new conditional order response"
+  ConditionalRes:
+    type: "object"
+    properties:
+      stop_order_id:
+        type: "string"
+      user_id:
+        type: "number"
+        format: "int32"
+      stop_order_status:
+        type: "string"
+      symbol:
+        type: "string"
+      side:
+        type: "string"
+      order_type:
+        type: "string"
+      price:
+        type: "number"
+        format: "double"
+      qty:
+        type: "number"
+        format: "int32"
+      time_in_force:
+        type: "string"
+      stop_order_type:
+        type: "string"
+      base_price:
+        type: "number"
+        format: "double"
+      stop_px:
+        type: "number"
+        format: "double"
+      order_link_id:
+        type: "string"
+      created_at:
+        type: "string"
+      updated_at:
+        type: "string"
+    description: "Place new conditional order response"
+  ConditionalOrdersResBase:
+    type: "object"
+    properties:
+      ret_code:
+        type: "number"
+        format: "int32"
+      ret_msg:
+        type: "string"
+      ext_code:
+        type: "string"
+      ext_info:
+        type: "string"
+      result:
+        type: "array"
+        items:
+          $ref: "#/definitions/ConditionalOrdersRes"
+      time_now:
+        type: "string"
+    description: "Get conditional order list"
+  ConditionalOrdersRes:
+    type: "object"
+    properties:
+      data:
+        type: "array"
+        items:
+          $ref: "#/definitions/ConditionalRes"
+    description: "Get order list response"
+  FundingRateBase:
+    type: "object"
+    properties:
+      ret_code:
+        type: "number"
+        format: "int32"
+      ret_msg:
+        type: "string"
+      ext_code:
+        type: "string"
+      ext_info:
+        type: "string"
+      result: {}
+      time_now:
+        type: "string"
+    description: "Get the last funding Rate"
+  FundingRate:
+    type: "object"
+    properties:
+      symbol:
+        type: "string"
+      funding_rate:
+        type: "string"
+      funding_rate_timestamp:
+        type: "number"
+        format: "int32"
+    description: "Get the last funding Rate"
+  FundingFeeBase:
+    type: "object"
+    properties:
+      ret_code:
+        type: "number"
+        format: "int32"
+      ret_msg:
+        type: "string"
+      ext_code:
+        type: "string"
+      ext_info:
+        type: "string"
+      result: {}
+      time_now:
+        type: "string"
+    description: "Get the last funding fee"
+  FundingFeeRes:
+    type: "object"
+    properties:
+      symbol:
+        type: "string"
+      side:
+        type: "string"
+      size:
+        type: "number"
+        format: "int32"
+      funding_rate:
+        type: "string"
+      exec_fee:
+        type: "number"
+        format: "double"
+      exec_timestamp:
+        type: "number"
+        format: "int64"
+    description: "Get the last funding fee"
+  FundingPredictedBase:
+    type: "object"
+    properties:
+      ret_code:
+        type: "number"
+        format: "int32"
+      ret_msg:
+        type: "string"
+      ext_code:
+        type: "string"
+      ext_info:
+        type: "string"
+      result: {}
+      time_now:
+        type: "string"
+    description: "Get the last funding fee"
+  FundingPredicted:
+    type: "object"
+    properties:
+      predicted_funding_rate:
+        type: "number"
+        format: "double"
+      predicted_funding_fee:
+        type: "number"
+        format: "double"
+    description: "Get the last funding fee"
+  TradeRecordsBase:
+    type: "object"
+    properties:
+      ret_code:
+        type: "number"
+        format: "int32"
+      ret_msg:
+        type: "string"
+      ext_code:
+        type: "string"
+      ext_info:
+        type: "string"
+      result:
+        type: "array"
+        items:
+          $ref: "#/definitions/TradeRecords"
+      time_now:
+        type: "string"
+    description: "Get the trade records of a order response"
+  TradeRecords:
+    type: "object"
+    properties:
+      order_id:
+        type: "string"
+      trade_list:
+        type: "array"
+        items:
+          $ref: "#/definitions/TradeRecordsInfo"
+    description: "Get the trade records of a order response"
+  TradeRecordsInfo:
+    type: "object"
+    properties:
+      closed_size:
+        type: "number"
+        format: "int32"
+      cross_seq:
+        type: "number"
+        format: "int32"
+      exec_fee:
+        type: "string"
+      exec_id:
+        type: "string"
+      exec_price:
+        type: "string"
+      exec_qty:
+        type: "number"
+        format: "int32"
+      exec_time:
+        type: "string"
+      exec_type:
+        type: "string"
+      exec_value:
+        type: "string"
+      fee_rate:
+        type: "string"
+      last_liquidity_ind:
+        type: "string"
+      leaves_qty:
+        type: "number"
+        format: "int32"
+      nth_fill:
+        type: "number"
+        format: "int32"
+      order_id:
+        type: "string"
+      order_price:
+        type: "string"
+      order_qty:
+        type: "number"
+        format: "int32"
+      order_type:
+        type: "string"
+      side:
+        type: "string"
+      symbol:
+        type: "string"
+      user_id:
+        type: "number"
+        format: "int32"
+    description: "Get the trade records of a order response"
+  OrderBookBase:
+    type: "object"
+    properties:
+      ret_code:
+        type: "number"
+        format: "int32"
+      ret_msg:
+        type: "string"
+      ext_code:
+        type: "string"
+      ext_info:
+        type: "string"
+      result:
+        type: "array"
+        items:
+          $ref: "#/definitions/OderBookRes"
+      time_now:
+        type: "string"
+    description: "Get the orderbook response"
+  OderBookRes:
+    type: "object"
+    properties:
+      symbol:
+        type: "string"
+      price:
+        type: "string"
+      size:
+        type: "number"
+        format: "int32"
+      side:
+        type: "string"
+    description: "Get the orderbook response"
+  SymbolInfoBase:
+    type: "object"
+    properties:
+      ret_code:
+        type: "number"
+        format: "int32"
+      ret_msg:
+        type: "string"
+      ext_code:
+        type: "string"
+      ext_info:
+        type: "string"
+      result:
+        type: "array"
+        items:
+          $ref: "#/definitions/SymbolTickInfo"
+      time_now:
+        type: "string"
+    description: "Get the orderbook response"
+  SymbolTickInfo:
+    type: "object"
+    properties:
+      symbol:
+        type: "string"
+      bid_price:
+        type: "string"
+      ask_price:
+        type: "string"
+      last_price:
+        type: "string"
+      last_tick_direction:
+        type: "string"
+      prev_price_24h:
+        type: "string"
+      price_24h_pcnt:
+        type: "string"
+      high_price_24h:
+        type: "string"
+      low_price_24h:
+        type: "string"
+      prev_price_1h:
+        type: "string"
+      price_1h_pcnt:
+        type: "string"
+      mark_price:
+        type: "string"
+      index_price:
+        type: "string"
+      open_interest:
+        type: "number"
+        format: "int32"
+      open_value:
+        type: "string"
+      total_turnover:
+        type: "string"
+      turnover_24h:
+        type: "string"
+      total_volume:
+        type: "number"
+        format: "int64"
+      volume_24h:
+        type: "number"
+        format: "int64"
+      funding_rate:
+        type: "string"
+      predicted_funding_rate:
+        type: "string"
+      next_funding_time:
+        type: "string"
+      countdown_hour:
+        type: "number"
+        format: "int32"
+    description: "Get the orderbook response"
+  KlineBase:
+    type: "object"
+    properties:
+      ret_code:
+        type: "number"
+        format: "int32"
+      ret_msg:
+        type: "string"
+      ext_code:
+        type: "string"
+      ext_info:
+        type: "string"
+      result:
+        type: "array"
+        items:
+          $ref: "#/definitions/KlineRes"
+      time_now:
+        type: "string"
+    description: "Get the orderbook response"
+  KlineRes:
+    type: "object"
+    properties:
+      symbol:
+        type: "string"
+      interval:
+        type: "string"
+      open_time:
+        type: "number"
+        format: "int64"
+      open:
+        type: "string"
+      high:
+        type: "string"
+      low:
+        type: "string"
+      close:
+        type: "string"
+      volume:
+        type: "string"
+    description: "Get the orderbook response"
+  TradingStopBase:
+    type: "object"
+    properties:
+      ret_code:
+        type: "number"
+        format: "int32"
+      ret_msg:
+        type: "string"
+      ext_code:
+        type: "string"
+      ext_info:
+        type: "string"
+      result: {}
+      time_now:
+        type: "string"
+    description: "Set Trading-Stop Condition response"
+  TradingStopRes:
+    type: "object"
+    properties:
+      id:
+        type: "number"
+        format: "int32"
+      user_id:
+        type: "number"
+        format: "int32"
+      symbol:
+        type: "string"
+      side:
+        type: "string"
+      size:
+        type: "number"
+        format: "int32"
+      position_value:
+        type: "number"
+        format: "double"
+      entry_price:
+        type: "number"
+        format: "double"
+      risk_id:
+        type: "number"
+        format: "int32"
+      auto_add_margin:
+        type: "number"
+        format: "double"
+      leverage:
+        type: "number"
+        format: "double"
+      position_margin:
+        type: "number"
+        format: "double"
+      liq_price:
+        type: "number"
+        format: "double"
+      bust_price:
+        type: "number"
+        format: "double"
+      occ_closing_fee:
+        type: "number"
+        format: "double"
+      occ_funding_fee:
+        type: "number"
+        format: "double"
+      take_profit:
+        type: "number"
+        format: "double"
+      stop_loss:
+        type: "number"
+        format: "double"
+      trailing_stop:
+        type: "number"
+        format: "double"
+      position_status:
+        type: "string"
+      deleverage_indicator:
+        type: "number"
+        format: "int32"
+      oc_calc_data:
+        type: "string"
+      order_margin:
+        type: "number"
+        format: "double"
+      wallet_balance:
+        type: "number"
+        format: "double"
+      realised_pnl:
+        type: "number"
+        format: "double"
+      cum_realised_pnl:
+        type: "number"
+        format: "double"
+      cum_commission:
+        type: "number"
+        format: "int32"
+      cross_seq:
+        type: "number"
+        format: "int32"
+      position_seq:
+        type: "number"
+        format: "int32"
+      created_at:
+        type: "string"
+      updated_at:
+        type: "string"
+    description: "Set Trading-Stop Condition response"

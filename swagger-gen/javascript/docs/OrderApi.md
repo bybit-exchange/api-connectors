@@ -1,0 +1,187 @@
+# BybitApi.OrderApi
+
+All URIs are relative to *https://localhost*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**orderCancel**](OrderApi.md#orderCancel) | **POST** /open-api/order/cancel | Get my active order list.
+[**orderGetOrders**](OrderApi.md#orderGetOrders) | **GET** /open-api/order/list | Get my active order list.
+[**orderNew**](OrderApi.md#orderNew) | **POST** /open-api/order/create | Place active order
+
+
+<a name="orderCancel"></a>
+# **orderCancel**
+> Object orderCancel(orderId, opts)
+
+Get my active order list.
+
+### Example
+```javascript
+var BybitApi = require('bybit_api');
+
+var apiInstance = new BybitApi.OrderApi();
+
+var orderId = "orderId_example"; // String | Order ID
+
+var opts = { 
+  'symbol': "symbol_example" // String | Contract type.
+};
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.orderCancel(orderId, opts, callback);
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderId** | **String**| Order ID | 
+ **symbol** | **String**| Contract type. | [optional] 
+
+### Return type
+
+**Object**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+<a name="orderGetOrders"></a>
+# **orderGetOrders**
+> Object orderGetOrders(opts)
+
+Get my active order list.
+
+### Example
+```javascript
+var BybitApi = require('bybit_api');
+
+var apiInstance = new BybitApi.OrderApi();
+
+var opts = { 
+  'orderId': "orderId_example", // String | Order ID
+  'orderLinkId': "orderLinkId_example", // String | Customized order ID.
+  'symbol': "symbol_example", // String | Contract type. Default BTCUSD
+  'order': "order_example", // String | Sort orders by creation date
+  'page': 8.14, // Number | Page. Default getting first page data
+  'limit': 8.14, // Number | TLimit for data size per page, max size is 50. Default as showing 20 pieces of data per page
+  'orderStatus': "orderStatus_example" // String | Query your orders for all statuses if 'order_status' is empty. If you want to query orders with specific statuses , you can pass the order_status split by
+};
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.orderGetOrders(opts, callback);
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderId** | **String**| Order ID | [optional] 
+ **orderLinkId** | **String**| Customized order ID. | [optional] 
+ **symbol** | **String**| Contract type. Default BTCUSD | [optional] 
+ **order** | **String**| Sort orders by creation date | [optional] 
+ **page** | **Number**| Page. Default getting first page data | [optional] 
+ **limit** | **Number**| TLimit for data size per page, max size is 50. Default as showing 20 pieces of data per page | [optional] 
+ **orderStatus** | **String**| Query your orders for all statuses if &#39;order_status&#39; is empty. If you want to query orders with specific statuses , you can pass the order_status split by | [optional] 
+
+### Return type
+
+**Object**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+<a name="orderNew"></a>
+# **orderNew**
+> Object orderNew(side, symbol, orderType, qty, price, timeInForce, opts)
+
+Place active order
+
+### Example
+```javascript
+var BybitApi = require('bybit_api');
+
+var apiInstance = new BybitApi.OrderApi();
+
+var side = "side_example"; // String | Side
+
+var symbol = "symbol_example"; // String | Contract type.
+
+var orderType = "orderType_example"; // String | Active order type
+
+var qty = 8.14; // Number | 
+
+var price = 1.2; // Number | Order price.
+
+var timeInForce = "timeInForce_example"; // String | Time in force
+
+var opts = { 
+  'takeProfit': 1.2, // Number | take profit price
+  'stopLoss': 1.2, // Number | stop loss price
+  'reduceOnly': true, // Boolean | reduce only
+  'closeOnTrigger': true, // Boolean | close on trigger
+  'orderLinkId': "orderLinkId_example" // String | TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.
+};
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.orderNew(side, symbol, orderType, qty, price, timeInForce, opts, callback);
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **side** | **String**| Side | 
+ **symbol** | **String**| Contract type. | 
+ **orderType** | **String**| Active order type | 
+ **qty** | **Number**|  | 
+ **price** | **Number**| Order price. | 
+ **timeInForce** | **String**| Time in force | 
+ **takeProfit** | **Number**| take profit price | [optional] 
+ **stopLoss** | **Number**| stop loss price | [optional] 
+ **reduceOnly** | **Boolean**| reduce only | [optional] 
+ **closeOnTrigger** | **Boolean**| close on trigger | [optional] 
+ **orderLinkId** | **String**| TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. | [optional] 
+
+### Return type
+
+**Object**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
