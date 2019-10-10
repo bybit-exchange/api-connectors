@@ -2,21 +2,46 @@
 
 This is a simple adapters for connecting to Bybit's websocket API.
 
-### 示例
+## Installation
 
 ```
-```
-
-
-### 使用方式
-
-```
+pip install bybit-ws
 ```
 
 
-### 安装
+## Quickstart
+
+We have implemented all realtime api in BybitWebsocket, instantiation it to use.
 
 ```
-$ pip install bybit-ws
+from BybitWebsocket import BybitWebsocket
+ws = BybitWebsocket(wsURL="wss://stream-testnet.bybit.com/realtime", 
+                         api_key=None, api_secret=None)
+```
+If you wanna subscribe private topic, you should fill in the "api_key" and "api_secret".    
+Then subscribe the message topic you are interest in.
+
+## Subscribe Topic & Get the response
+
+For all subscribed topics, there is a method that starts with "subscribe" in BybitWebsocket, and you can get results based on the topic field in the response message. You could get more infomation in [the documention of websocket-api](https://github.com/bybit-exchange/bybit-official-api-docs/blob/master/en/websocket.md)
+
+```
+ws.subscribe_orderBookL2("BTCUSD")
+ws.subscribe_kline("BTCUSD", '1m')
+ws.subscribe_order()
+ws.subscribe_execution()
+ws.subscribe_position()
+ws.subscribe_instrument_info('BTCUSD')
+ws.subscribe_insurance()
+while(1):
+    logger.info(ws.get_data("orderBookL2_25.BTCUSD"))
+    logger.info(ws.get_data('kline.BTCUSD.1m'))
+    logger.info(ws.get_data('order'))
+    logger.info(ws.get_data("execution"))
+    logger.info(ws.get_data("position"))
+    logger.info(ws.get_data("instrument_info.100ms.BTCUSD"))
+    logger.info(ws.get_data('insurance.BTC'))
+    logger.info(ws.get_data('insurance.EOS'))
+    sleep(1)
 ```
 
