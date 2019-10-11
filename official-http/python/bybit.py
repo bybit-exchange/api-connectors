@@ -11,7 +11,7 @@ def bybit(test=True, config=None, api_key=None, api_secret=None):
     if test:
         host = 'https://api-testnet.bybit.com'
     else:
-        host = ' https://api.bybit.com'
+        host = 'https://api.bybit.com'
 
     if config is None:
         # See full config options at http://bravado.readthedocs.io/en/latest/configuration.html
@@ -25,19 +25,10 @@ def bybit(test=True, config=None, api_key=None, api_secret=None):
             "host":host
         }
 
-    if test:
-        host = 'https://api-testnet.bybit.com'
-    else:
-        host = ' https://api.bybit.com'
-
     api_key = api_key
     api_secret = api_secret
 
-    spec_uri = host + "/api-connectors/master/swagger.json"
-
-    with open("swagger.json", "rb") as f:
-        d = json.loads(f.read())
-        f.close()
+    spec_uri = host + "/doc/swagger.txt"
 
     if api_key and api_secret:
         request_client = RequestsClient()
@@ -47,4 +38,4 @@ def bybit(test=True, config=None, api_key=None, api_secret=None):
 
     else:
         
-        return SwaggerClient.from_spec(d, origin_url=host, config=config)
+        return SwaggerClient.from_url(spec_uri, config=config)
