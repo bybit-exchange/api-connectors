@@ -31,12 +31,14 @@ You can call the public endpoints like this:
 ### Get server time
 
 ```
-client.Common.Common_get().result()[0]
+>>> client.Common.Common_get().result()[0]
+{'ret_code': 0, 'ret_msg': 'OK', 'ext_code': '', 'ext_info': '', 'result': {}, 'time_now': '1570798047.589798'}
 ```
 ### Get Symbol lists
 
 ```
-print(client.Symbol.Symbol_get().result()[0]["result"][0])
+>>> client.Symbol.Symbol_get().result()[0]["result"][0]
+{'name': 'BTCUSD', 'base_currency': 'BTC', 'quote_currency': 'USD', 'price_scale': 2, 'price_filter': {'min_price': '0.5', 'max_price': '999999.5', 'tick_size': '0.5'}, 'lot_size_filter': {'max_trading_qty': 1000000, 'min_trading_qty': 1, 'qty_step': 1}}
 ```
     
 ## Authentication
