@@ -11,6 +11,8 @@ Libraries for connecting to the Bybit API. https://github.com/bybit-exchange/byb
 #### Websockets
 
 * [Python](/official-ws/python)
+* [Java](/official-ws/Java)
+* [go](/official-ws/go)
 
 # Auto-Generated Languages
 
