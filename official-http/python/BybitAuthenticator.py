@@ -28,11 +28,12 @@ class APIKeyAuthenticator(Authenticator):
         #add user-agent
         r.headers["User-Agent"] = "Official-SKDs"
         #add auth info
-        expires = str(int(round(time.time())+1))+"000"
+        expires = str(int(round(time.time())-1))+"000"
         r.params['timestamp'] = expires
         r.params['api_key'] = self.api_key
         # print(json.dumps(r.data,  separators=(',',':')))
         r.params['sign'] = self.generate_signature(r)
+        print(r.params)
         return r
 
     def generate_signature(self, req):
