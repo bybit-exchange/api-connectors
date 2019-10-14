@@ -484,7 +484,7 @@
                 "security": []
             }
         },
-        "/order/replace": {
+        "/open-api/order/replace": {
             "post": {
                 "tags": [
                     "Order"
@@ -717,7 +717,7 @@
                 "deprecated": false
             }
         },
-        "/stop-order/replace": {
+        "/open-api/stop-order/replace": {
             "post": {
                 "tags": [
                     "Conditional"
