@@ -556,7 +556,7 @@ public class ConditionalApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/stop-order/replace";
+        String localVarPath = "/open-api/stop-order/replace";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();

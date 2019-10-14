@@ -459,7 +459,7 @@ func (a *ConditionalApiService) ConditionalReplace(ctx context.Context, orderId 
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/stop-order/replace"
+	localVarPath := a.client.cfg.BasePath + "/open-api/stop-order/replace"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

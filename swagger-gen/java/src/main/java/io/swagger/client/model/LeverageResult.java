@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * LeverageResult
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-14T19:28:07.787+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-14T19:41:42.836+08:00")
 public class LeverageResult {
   @SerializedName("BTCUSD")
   private Object BTCUSD = null;

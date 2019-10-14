@@ -506,7 +506,7 @@ class ConditionalApi(object):
         auth_settings = ['apiKey', 'apiSignature']  # noqa: E501
 
         return self.api_client.call_api(
-            '/stop-order/replace', 'POST',
+            '/open-api/stop-order/replace', 'POST',
             path_params,
             query_params,
             header_params,

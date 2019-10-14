@@ -76,7 +76,7 @@ Class | Method | HTTP request | Description
 *SwaggerClient::ConditionalApi* | [**conditional_cancel**](docs/ConditionalApi.md#conditional_cancel) | **POST** /open-api/stop-order/cancel | Cancel conditional order.
 *SwaggerClient::ConditionalApi* | [**conditional_get_orders**](docs/ConditionalApi.md#conditional_get_orders) | **GET** /open-api/stop-order/list | Get my conditional order list.
 *SwaggerClient::ConditionalApi* | [**conditional_new**](docs/ConditionalApi.md#conditional_new) | **POST** /open-api/stop-order/create | Place a new conditional order.
-*SwaggerClient::ConditionalApi* | [**conditional_replace**](docs/ConditionalApi.md#conditional_replace) | **POST** /stop-order/replace | Replace conditional order. Only incomplete orders can be modified. 
+*SwaggerClient::ConditionalApi* | [**conditional_replace**](docs/ConditionalApi.md#conditional_replace) | **POST** /open-api/stop-order/replace | Replace conditional order. Only incomplete orders can be modified. 
 *SwaggerClient::ExecutionApi* | [**execution_get_trades**](docs/ExecutionApi.md#execution_get_trades) | **GET** /v2/private/execution/list | Get the trade records of a order.
 *SwaggerClient::FundingApi* | [**funding_get_rate**](docs/FundingApi.md#funding_get_rate) | **GET** /open-api/funding/prev-funding | Funding settlement occurs every 8 hours at 00:00 UTC, 08:00 UTC and 16:00 UTC. The current interval's fund fee settlement is based on the previous interval's fund rate. For example, at 16:00, the settlement is based on the fund rate generated at 8:00. The fund rate generated at 16:00 will be used at 0:00 on the next day.
 *SwaggerClient::FundingApi* | [**funding_predicted**](docs/FundingApi.md#funding_predicted) | **GET** /open-api/funding/predicted-funding | Get predicted funding rate and funding fee.
@@ -87,7 +87,7 @@ Class | Method | HTTP request | Description
 *SwaggerClient::OrderApi* | [**order_cancel**](docs/OrderApi.md#order_cancel) | **POST** /open-api/order/cancel | Get my active order list.
 *SwaggerClient::OrderApi* | [**order_get_orders**](docs/OrderApi.md#order_get_orders) | **GET** /open-api/order/list | Get my active order list.
 *SwaggerClient::OrderApi* | [**order_new**](docs/OrderApi.md#order_new) | **POST** /open-api/order/create | Place active order
-*SwaggerClient::OrderApi* | [**order_replace**](docs/OrderApi.md#order_replace) | **POST** /order/replace | Replace active order. Only incomplete orders can be modified. 
+*SwaggerClient::OrderApi* | [**order_replace**](docs/OrderApi.md#order_replace) | **POST** /open-api/order/replace | Replace active order. Only incomplete orders can be modified. 
 *SwaggerClient::PositionsApi* | [**positions_change_margin**](docs/PositionsApi.md#positions_change_margin) | **POST** /position/change-position-margin | Update margin.
 *SwaggerClient::PositionsApi* | [**positions_my_position**](docs/PositionsApi.md#positions_my_position) | **GET** /position/list | Get my position list.
 *SwaggerClient::PositionsApi* | [**positions_save_leverage**](docs/PositionsApi.md#positions_save_leverage) | **POST** /user/leverage/save | Change user leverage.

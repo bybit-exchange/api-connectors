@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**OrderCancel**](OrderApi.md#OrderCancel) | **Post** /open-api/order/cancel | Get my active order list.
 [**OrderGetOrders**](OrderApi.md#OrderGetOrders) | **Get** /open-api/order/list | Get my active order list.
 [**OrderNew**](OrderApi.md#OrderNew) | **Post** /open-api/order/create | Place active order
-[**OrderReplace**](OrderApi.md#OrderReplace) | **Post** /order/replace | Replace active order. Only incomplete orders can be modified. 
+[**OrderReplace**](OrderApi.md#OrderReplace) | **Post** /open-api/order/replace | Replace active order. Only incomplete orders can be modified. 
 
 
 # **OrderCancel**

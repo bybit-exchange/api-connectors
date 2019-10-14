@@ -99,7 +99,7 @@ Class | Method | HTTP request | Description
 *ConditionalApi* | [**ConditionalCancel**](docs/ConditionalApi.md#conditionalcancel) | **POST** /open-api/stop-order/cancel | Cancel conditional order.
 *ConditionalApi* | [**ConditionalGetOrders**](docs/ConditionalApi.md#conditionalgetorders) | **GET** /open-api/stop-order/list | Get my conditional order list.
 *ConditionalApi* | [**ConditionalNew**](docs/ConditionalApi.md#conditionalnew) | **POST** /open-api/stop-order/create | Place a new conditional order.
-*ConditionalApi* | [**ConditionalReplace**](docs/ConditionalApi.md#conditionalreplace) | **POST** /stop-order/replace | Replace conditional order. Only incomplete orders can be modified. 
+*ConditionalApi* | [**ConditionalReplace**](docs/ConditionalApi.md#conditionalreplace) | **POST** /open-api/stop-order/replace | Replace conditional order. Only incomplete orders can be modified. 
 *ExecutionApi* | [**ExecutionGetTrades**](docs/ExecutionApi.md#executiongettrades) | **GET** /v2/private/execution/list | Get the trade records of a order.
 *FundingApi* | [**FundingGetRate**](docs/FundingApi.md#fundinggetrate) | **GET** /open-api/funding/prev-funding | Funding settlement occurs every 8 hours at 00:00 UTC, 08:00 UTC and 16:00 UTC. The current interval's fund fee settlement is based on the previous interval's fund rate. For example, at 16:00, the settlement is based on the fund rate generated at 8:00. The fund rate generated at 16:00 will be used at 0:00 on the next day.
 *FundingApi* | [**FundingPredicted**](docs/FundingApi.md#fundingpredicted) | **GET** /open-api/funding/predicted-funding | Get predicted funding rate and funding fee.
@@ -110,7 +110,7 @@ Class | Method | HTTP request | Description
 *OrderApi* | [**OrderCancel**](docs/OrderApi.md#ordercancel) | **POST** /open-api/order/cancel | Get my active order list.
 *OrderApi* | [**OrderGetOrders**](docs/OrderApi.md#ordergetorders) | **GET** /open-api/order/list | Get my active order list.
 *OrderApi* | [**OrderNew**](docs/OrderApi.md#ordernew) | **POST** /open-api/order/create | Place active order
-*OrderApi* | [**OrderReplace**](docs/OrderApi.md#orderreplace) | **POST** /order/replace | Replace active order. Only incomplete orders can be modified. 
+*OrderApi* | [**OrderReplace**](docs/OrderApi.md#orderreplace) | **POST** /open-api/order/replace | Replace active order. Only incomplete orders can be modified. 
 *PositionsApi* | [**PositionsChangeMargin**](docs/PositionsApi.md#positionschangemargin) | **POST** /position/change-position-margin | Update margin.
 *PositionsApi* | [**PositionsMyPosition**](docs/PositionsApi.md#positionsmyposition) | **GET** /position/list | Get my position list.
 *PositionsApi* | [**PositionsSaveLeverage**](docs/PositionsApi.md#positionssaveleverage) | **POST** /user/leverage/save | Change user leverage.

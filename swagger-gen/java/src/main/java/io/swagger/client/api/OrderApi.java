@@ -563,7 +563,7 @@ public class OrderApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/order/replace";
+        String localVarPath = "/open-api/order/replace";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();

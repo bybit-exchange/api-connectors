@@ -303,7 +303,7 @@
       var returnType = Object;
 
       return this.apiClient.callApi(
-        '/order/replace', 'POST',
+        '/open-api/order/replace', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

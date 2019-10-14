@@ -1260,7 +1260,7 @@ class ConditionalApi
             );
         }
 
-        $resourcePath = '/stop-order/replace';
+        $resourcePath = '/open-api/stop-order/replace';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

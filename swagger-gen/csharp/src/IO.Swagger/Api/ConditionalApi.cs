@@ -991,7 +991,7 @@ namespace IO.Swagger.Api
             if (symbol == null)
                 throw new ApiException(400, "Missing required parameter 'symbol' when calling ConditionalApi->ConditionalReplace");
 
-            var localVarPath = "/stop-order/replace";
+            var localVarPath = "/open-api/stop-order/replace";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -1085,7 +1085,7 @@ namespace IO.Swagger.Api
             if (symbol == null)
                 throw new ApiException(400, "Missing required parameter 'symbol' when calling ConditionalApi->ConditionalReplace");
 
-            var localVarPath = "/stop-order/replace";
+            var localVarPath = "/open-api/stop-order/replace";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);

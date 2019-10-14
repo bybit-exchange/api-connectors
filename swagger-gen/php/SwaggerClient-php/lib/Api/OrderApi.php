@@ -1240,7 +1240,7 @@ class OrderApi
             );
         }
 
-        $resourcePath = '/order/replace';
+        $resourcePath = '/open-api/order/replace';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

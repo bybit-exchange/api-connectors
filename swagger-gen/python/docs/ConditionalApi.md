@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**conditional_cancel**](ConditionalApi.md#conditional_cancel) | **POST** /open-api/stop-order/cancel | Cancel conditional order.
 [**conditional_get_orders**](ConditionalApi.md#conditional_get_orders) | **GET** /open-api/stop-order/list | Get my conditional order list.
 [**conditional_new**](ConditionalApi.md#conditional_new) | **POST** /open-api/stop-order/create | Place a new conditional order.
-[**conditional_replace**](ConditionalApi.md#conditional_replace) | **POST** /stop-order/replace | Replace conditional order. Only incomplete orders can be modified. 
+[**conditional_replace**](ConditionalApi.md#conditional_replace) | **POST** /open-api/stop-order/replace | Replace conditional order. Only incomplete orders can be modified. 
 
 
 # **conditional_cancel**

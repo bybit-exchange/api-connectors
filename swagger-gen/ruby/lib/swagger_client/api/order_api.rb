@@ -277,7 +277,7 @@ module SwaggerClient
         fail ArgumentError, "Missing the required parameter 'symbol' when calling OrderApi.order_replace"
       end
       # resource path
-      local_var_path = '/order/replace'
+      local_var_path = '/open-api/order/replace'
 
       # query parameters
       query_params = {}

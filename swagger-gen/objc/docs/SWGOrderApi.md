@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**orderCancel**](SWGOrderApi.md#ordercancel) | **POST** /open-api/order/cancel | Get my active order list.
 [**orderGetOrders**](SWGOrderApi.md#ordergetorders) | **GET** /open-api/order/list | Get my active order list.
 [**orderNew**](SWGOrderApi.md#ordernew) | **POST** /open-api/order/create | Place active order
-[**orderReplace**](SWGOrderApi.md#orderreplace) | **POST** /order/replace | Replace active order. Only incomplete orders can be modified. 
+[**orderReplace**](SWGOrderApi.md#orderreplace) | **POST** /open-api/order/replace | Replace active order. Only incomplete orders can be modified. 
 
 
 # **orderCancel**

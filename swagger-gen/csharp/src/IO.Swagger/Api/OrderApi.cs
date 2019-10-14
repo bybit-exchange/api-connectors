@@ -943,7 +943,7 @@ namespace IO.Swagger.Api
             if (symbol == null)
                 throw new ApiException(400, "Missing required parameter 'symbol' when calling OrderApi->OrderReplace");
 
-            var localVarPath = "/order/replace";
+            var localVarPath = "/open-api/order/replace";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -1034,7 +1034,7 @@ namespace IO.Swagger.Api
             if (symbol == null)
                 throw new ApiException(400, "Missing required parameter 'symbol' when calling OrderApi->OrderReplace");
 
-            var localVarPath = "/order/replace";
+            var localVarPath = "/open-api/order/replace";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);

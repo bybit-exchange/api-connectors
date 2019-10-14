@@ -64,7 +64,7 @@
   ([order-id symbol ] (conditional-replace-with-http-info order-id symbol nil))
   ([order-id symbol {:keys [p-r-qty p-r-price p-r-trigger-price ]}]
    (check-required-params order-id symbol)
-   (call-api "/stop-order/replace" :post
+   (call-api "/open-api/stop-order/replace" :post
              {:path-params   {}
               :header-params {}
               :query-params  {"order_id" order-id "symbol" symbol "p_r_qty" p-r-qty "p_r_price" p-r-price "p_r_trigger_price" p-r-trigger-price }

@@ -574,7 +574,7 @@ public class ConditionalApi {
     }
 
     // create path and map variables
-    String path = "/stop-order/replace";
+    String path = "/open-api/stop-order/replace";
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -648,7 +648,7 @@ public class ConditionalApi {
     }
 
     // create path and map variables
-    String path = "/stop-order/replace".replaceAll("\\{format\\}","json");
+    String path = "/open-api/stop-order/replace".replaceAll("\\{format\\}","json");
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();

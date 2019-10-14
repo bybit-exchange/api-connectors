@@ -278,7 +278,7 @@ module SwaggerClient
         fail ArgumentError, "Missing the required parameter 'symbol' when calling ConditionalApi.conditional_replace"
       end
       # resource path
-      local_var_path = '/stop-order/replace'
+      local_var_path = '/open-api/stop-order/replace'
 
       # query parameters
       query_params = {}

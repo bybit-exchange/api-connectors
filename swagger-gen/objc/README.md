@@ -130,7 +130,7 @@ Class | Method | HTTP request | Description
 *SWGConditionalApi* | [**conditionalCancel**](docs/SWGConditionalApi.md#conditionalcancel) | **POST** /open-api/stop-order/cancel | Cancel conditional order.
 *SWGConditionalApi* | [**conditionalGetOrders**](docs/SWGConditionalApi.md#conditionalgetorders) | **GET** /open-api/stop-order/list | Get my conditional order list.
 *SWGConditionalApi* | [**conditionalNew**](docs/SWGConditionalApi.md#conditionalnew) | **POST** /open-api/stop-order/create | Place a new conditional order.
-*SWGConditionalApi* | [**conditionalReplace**](docs/SWGConditionalApi.md#conditionalreplace) | **POST** /stop-order/replace | Replace conditional order. Only incomplete orders can be modified. 
+*SWGConditionalApi* | [**conditionalReplace**](docs/SWGConditionalApi.md#conditionalreplace) | **POST** /open-api/stop-order/replace | Replace conditional order. Only incomplete orders can be modified. 
 *SWGExecutionApi* | [**executionGetTrades**](docs/SWGExecutionApi.md#executiongettrades) | **GET** /v2/private/execution/list | Get the trade records of a order.
 *SWGFundingApi* | [**fundingGetRate**](docs/SWGFundingApi.md#fundinggetrate) | **GET** /open-api/funding/prev-funding | Funding settlement occurs every 8 hours at 00:00 UTC, 08:00 UTC and 16:00 UTC. The current interval&#39;s fund fee settlement is based on the previous interval&#39;s fund rate. For example, at 16:00, the settlement is based on the fund rate generated at 8:00. The fund rate generated at 16:00 will be used at 0:00 on the next day.
 *SWGFundingApi* | [**fundingPredicted**](docs/SWGFundingApi.md#fundingpredicted) | **GET** /open-api/funding/predicted-funding | Get predicted funding rate and funding fee.
@@ -141,7 +141,7 @@ Class | Method | HTTP request | Description
 *SWGOrderApi* | [**orderCancel**](docs/SWGOrderApi.md#ordercancel) | **POST** /open-api/order/cancel | Get my active order list.
 *SWGOrderApi* | [**orderGetOrders**](docs/SWGOrderApi.md#ordergetorders) | **GET** /open-api/order/list | Get my active order list.
 *SWGOrderApi* | [**orderNew**](docs/SWGOrderApi.md#ordernew) | **POST** /open-api/order/create | Place active order
-*SWGOrderApi* | [**orderReplace**](docs/SWGOrderApi.md#orderreplace) | **POST** /order/replace | Replace active order. Only incomplete orders can be modified. 
+*SWGOrderApi* | [**orderReplace**](docs/SWGOrderApi.md#orderreplace) | **POST** /open-api/order/replace | Replace active order. Only incomplete orders can be modified. 
 *SWGPositionsApi* | [**positionsChangeMargin**](docs/SWGPositionsApi.md#positionschangemargin) | **POST** /position/change-position-margin | Update margin.
 *SWGPositionsApi* | [**positionsMyPosition**](docs/SWGPositionsApi.md#positionsmyposition) | **GET** /position/list | Get my position list.
 *SWGPositionsApi* | [**positionsSaveLeverage**](docs/SWGPositionsApi.md#positionssaveleverage) | **POST** /user/leverage/save | Change user leverage.

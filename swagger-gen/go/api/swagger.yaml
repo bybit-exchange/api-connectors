@@ -413,7 +413,7 @@ paths:
           schema: {}
       security: []
       deprecated: false
-  /order/replace:
+  /open-api/order/replace:
     post:
       tags:
       - "Order"
@@ -610,7 +610,7 @@ paths:
           description: "Request was successful"
           schema: {}
       deprecated: false
-  /stop-order/replace:
+  /open-api/stop-order/replace:
     post:
       tags:
       - "Conditional"

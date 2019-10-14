@@ -201,7 +201,7 @@ open class ConditionalAPI {
 
     /**
      Replace conditional order. Only incomplete orders can be modified. 
-     - POST /stop-order/replace
+     - POST /open-api/stop-order/replace
      - API Key:
        - type: apiKey api-key 
        - name: apiKey
@@ -219,7 +219,7 @@ open class ConditionalAPI {
      - returns: RequestBuilder<Any> 
      */
     open class func conditionalReplaceWithRequestBuilder(orderId: String, symbol: String, pRQty: Double? = nil, pRPrice: Double? = nil, pRTriggerPrice: Double? = nil) -> RequestBuilder<Any> {
-        let path = "/stop-order/replace"
+        let path = "/open-api/stop-order/replace"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         

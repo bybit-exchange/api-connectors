@@ -367,7 +367,7 @@ class OrderApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extend
     pRPrice: Option[Double] = None
     )(implicit reader: ClientResponseReader[Any]): Future[Any] = {
     // create path and map variables
-    val path = (addFmt("/order/replace"))
+    val path = (addFmt("/open-api/order/replace"))
 
     // query params
     val queryParams = new mutable.HashMap[String, String]

@@ -29,7 +29,7 @@ import java.math.BigDecimal;
  * Get the last funding fee
  */
 @ApiModel(description = "Get the last funding fee")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-14T19:28:07.787+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-14T19:41:42.836+08:00")
 public class FundingPredictedBase {
   @SerializedName("ret_code")
   private BigDecimal retCode = null;

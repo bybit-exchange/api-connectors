@@ -41,7 +41,7 @@ pplx::task<std::shared_ptr<Object>> OrderApi::order_Replace(utility::string_t or
 
 
     std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t path = utility::conversions::to_string_t("/order/replace");
+    utility::string_t path = utility::conversions::to_string_t("/open-api/order/replace");
     
     std::map<utility::string_t, utility::string_t> queryParams;
     std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );

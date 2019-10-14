@@ -445,7 +445,7 @@ NSInteger kSWGConditionalApiMissingParamErrorCode = 234513;
         return nil;
     }
 
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/stop-order/replace"];
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/open-api/stop-order/replace"];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 

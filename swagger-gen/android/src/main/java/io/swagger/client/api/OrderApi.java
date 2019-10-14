@@ -562,7 +562,7 @@ public class OrderApi {
     }
 
     // create path and map variables
-    String path = "/order/replace";
+    String path = "/open-api/order/replace";
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -635,7 +635,7 @@ public class OrderApi {
     }
 
     // create path and map variables
-    String path = "/order/replace".replaceAll("\\{format\\}","json");
+    String path = "/open-api/order/replace".replaceAll("\\{format\\}","json");
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();

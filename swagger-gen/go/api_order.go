@@ -405,7 +405,7 @@ func (a *OrderApiService) OrderReplace(ctx context.Context, orderId string, symb
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/order/replace"
+	localVarPath := a.client.cfg.BasePath + "/open-api/order/replace"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

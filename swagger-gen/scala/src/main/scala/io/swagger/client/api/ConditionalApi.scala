@@ -342,7 +342,7 @@ class ConditionalApiAsyncHelper(client: TransportClient, config: SwaggerConfig) 
     pRTriggerPrice: Option[Double] = None
     )(implicit reader: ClientResponseReader[Any]): Future[Any] = {
     // create path and map variables
-    val path = (addFmt("/stop-order/replace"))
+    val path = (addFmt("/open-api/stop-order/replace"))
 
     // query params
     val queryParams = new mutable.HashMap[String, String]
