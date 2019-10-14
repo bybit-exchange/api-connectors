@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**ConditionalCancel**](ConditionalApi.md#conditionalcancel) | **POST** /open-api/stop-order/cancel | Cancel conditional order.
 [**ConditionalGetOrders**](ConditionalApi.md#conditionalgetorders) | **GET** /open-api/stop-order/list | Get my conditional order list.
 [**ConditionalNew**](ConditionalApi.md#conditionalnew) | **POST** /open-api/stop-order/create | Place a new conditional order.
+[**ConditionalReplace**](ConditionalApi.md#conditionalreplace) | **POST** /stop-order/replace | Replace conditional order. Only incomplete orders can be modified. 
 
 
 <a name="conditionalcancel"></a>
@@ -29,6 +30,15 @@ namespace Example
     {
         public void main()
         {
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
             var apiInstance = new ConditionalApi();
             var stopOrderId = stopOrderId_example;  // string | Order ID of conditional order.
 
@@ -59,12 +69,12 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -88,6 +98,15 @@ namespace Example
     {
         public void main()
         {
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
             var apiInstance = new ConditionalApi();
             var stopOrderId = stopOrderId_example;  // string | Order ID of conditional order. (optional) 
             var orderLinkId = orderLinkId_example;  // string | Agency customized order ID. (optional) 
@@ -128,12 +147,12 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -157,6 +176,15 @@ namespace Example
     {
         public void main()
         {
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
             var apiInstance = new ConditionalApi();
             var side = side_example;  // string | Side.
             var symbol = symbol_example;  // string | Contract type.
@@ -205,12 +233,88 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="conditionalreplace"></a>
+# **ConditionalReplace**
+> Object ConditionalReplace (string orderId, string symbol, decimal? pRQty = null, double? pRPrice = null, double? pRTriggerPrice = null)
+
+Replace conditional order. Only incomplete orders can be modified. 
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class ConditionalReplaceExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
+            var apiInstance = new ConditionalApi();
+            var orderId = orderId_example;  // string | Order ID.
+            var symbol = symbol_example;  // string | Contract type.
+            var pRQty = 8.14;  // decimal? | Order quantity. (optional) 
+            var pRPrice = 1.2;  // double? | Order price. (optional) 
+            var pRTriggerPrice = 1.2;  // double? | Trigger price. (optional) 
+
+            try
+            {
+                // Replace conditional order. Only incomplete orders can be modified. 
+                Object result = apiInstance.ConditionalReplace(orderId, symbol, pRQty, pRPrice, pRTriggerPrice);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling ConditionalApi.ConditionalReplace: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderId** | **string**| Order ID. | 
+ **symbol** | **string**| Contract type. | 
+ **pRQty** | **decimal?**| Order quantity. | [optional] 
+ **pRPrice** | **double?**| Order price. | [optional] 
+ **pRTriggerPrice** | **double?**| Trigger price. | [optional] 
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

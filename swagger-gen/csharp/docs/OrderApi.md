@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**OrderCancel**](OrderApi.md#ordercancel) | **POST** /open-api/order/cancel | Get my active order list.
 [**OrderGetOrders**](OrderApi.md#ordergetorders) | **GET** /open-api/order/list | Get my active order list.
 [**OrderNew**](OrderApi.md#ordernew) | **POST** /open-api/order/create | Place active order
+[**OrderReplace**](OrderApi.md#orderreplace) | **POST** /order/replace | Replace active order. Only incomplete orders can be modified. 
 
 
 <a name="ordercancel"></a>
@@ -65,8 +66,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -136,8 +137,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -215,8 +216,82 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="orderreplace"></a>
+# **OrderReplace**
+> Object OrderReplace (string orderId, string symbol, decimal? pRQty = null, double? pRPrice = null)
+
+Replace active order. Only incomplete orders can be modified. 
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class OrderReplaceExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
+            var apiInstance = new OrderApi();
+            var orderId = orderId_example;  // string | Order ID.
+            var symbol = symbol_example;  // string | Contract type.
+            var pRQty = 8.14;  // decimal? | Order quantity. (optional) 
+            var pRPrice = 1.2;  // double? | Order price. (optional) 
+
+            try
+            {
+                // Replace active order. Only incomplete orders can be modified. 
+                Object result = apiInstance.OrderReplace(orderId, symbol, pRQty, pRPrice);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling OrderApi.OrderReplace: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderId** | **string**| Order ID. | 
+ **symbol** | **string**| Contract type. | 
+ **pRQty** | **decimal?**| Order quantity. | [optional] 
+ **pRPrice** | **double?**| Order price. | [optional] 
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
