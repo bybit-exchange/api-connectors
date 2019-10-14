@@ -717,7 +717,7 @@
                 "deprecated": false
             }
         },
-        "stop-order/replace": {
+        "/stop-order/replace": {
             "post": {
                 "tags": [
                     "Conditional"
