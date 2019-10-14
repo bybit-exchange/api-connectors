@@ -191,6 +191,38 @@ class OrderApi(
       helper.orderNew(side, symbol, orderType, qty, price, timeInForce, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId)
   }
 
+  /**
+   * Replace active order. Only incomplete orders can be modified. 
+   * 
+   *
+   * @param orderId Order ID. 
+   * @param symbol Contract type. 
+   * @param pRQty Order quantity. (optional)
+   * @param pRPrice Order price. (optional)
+   * @return Any
+   */
+  def orderReplace(orderId: String, symbol: String, pRQty: Option[Number] = None, pRPrice: Option[Double] = None): Option[Any] = {
+    val await = Try(Await.result(orderReplaceAsync(orderId, symbol, pRQty, pRPrice), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
+    }
+  }
+
+  /**
+   * Replace active order. Only incomplete orders can be modified.  asynchronously
+   * 
+   *
+   * @param orderId Order ID. 
+   * @param symbol Contract type. 
+   * @param pRQty Order quantity. (optional)
+   * @param pRPrice Order price. (optional)
+   * @return Future(Any)
+   */
+  def orderReplaceAsync(orderId: String, symbol: String, pRQty: Option[Number] = None, pRPrice: Option[Double] = None): Future[Any] = {
+      helper.orderReplace(orderId, symbol, pRQty, pRPrice)
+  }
+
 }
 
 class OrderApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
@@ -320,6 +352,39 @@ class OrderApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extend
     }
     orderLinkId match {
       case Some(param) => queryParams += "order_link_id" -> param.toString
+      case _ => queryParams
+    }
+
+    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def orderReplace(orderId: String,
+    symbol: String,
+    pRQty: Option[Number] = None,
+    pRPrice: Option[Double] = None
+    )(implicit reader: ClientResponseReader[Any]): Future[Any] = {
+    // create path and map variables
+    val path = (addFmt("/order/replace"))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    if (orderId == null) throw new Exception("Missing required parameter 'orderId' when calling OrderApi->orderReplace")
+
+    if (symbol == null) throw new Exception("Missing required parameter 'symbol' when calling OrderApi->orderReplace")
+
+    queryParams += "order_id" -> orderId.toString
+    queryParams += "symbol" -> symbol.toString
+    pRQty match {
+      case Some(param) => queryParams += "p_r_qty" -> param.toString
+      case _ => queryParams
+    }
+    pRPrice match {
+      case Some(param) => queryParams += "p_r_price" -> param.toString
       case _ => queryParams
     }
 

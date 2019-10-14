@@ -79,6 +79,8 @@ public class FundingApi {
     Map<String, String> formParams = new HashMap<String, String>();
     queryParams.addAll(ApiInvoker.parameterToPairs("", "symbol", symbol));
     String[] contentTypes = {
+      "application/json",
+      "application/x-www-form-urlencoded"
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
@@ -91,7 +93,7 @@ public class FundingApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "apiKey", "apiSignature" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -145,7 +147,7 @@ public class FundingApi {
 
 
     String[] contentTypes = {
-      
+      "application/json","application/x-www-form-urlencoded"
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
@@ -160,7 +162,7 @@ public class FundingApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "apiKey", "apiSignature" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -208,6 +210,8 @@ public class FundingApi {
     Map<String, String> formParams = new HashMap<String, String>();
     queryParams.addAll(ApiInvoker.parameterToPairs("", "symbol", symbol));
     String[] contentTypes = {
+      "application/json",
+      "application/x-www-form-urlencoded"
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
@@ -220,7 +224,7 @@ public class FundingApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "apiKey", "apiSignature" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -274,7 +278,7 @@ public class FundingApi {
 
 
     String[] contentTypes = {
-      
+      "application/json","application/x-www-form-urlencoded"
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
@@ -289,7 +293,7 @@ public class FundingApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "apiKey", "apiSignature" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -337,6 +341,8 @@ public class FundingApi {
     Map<String, String> formParams = new HashMap<String, String>();
     queryParams.addAll(ApiInvoker.parameterToPairs("", "symbol", symbol));
     String[] contentTypes = {
+      "application/json",
+      "application/x-www-form-urlencoded"
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
@@ -349,7 +355,7 @@ public class FundingApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "apiKey", "apiSignature" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -403,7 +409,7 @@ public class FundingApi {
 
 
     String[] contentTypes = {
-      
+      "application/json","application/x-www-form-urlencoded"
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
@@ -418,7 +424,7 @@ public class FundingApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "apiKey", "apiSignature" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,

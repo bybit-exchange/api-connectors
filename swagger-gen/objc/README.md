@@ -67,6 +67,8 @@ Import the following:
 #import <SwaggerClient/SWGPosition.h>
 #import <SwaggerClient/SWGPositionInfo.h>
 #import <SwaggerClient/SWGPriceFilter.h>
+#import <SwaggerClient/SWGReplaceConditionalBase.h>
+#import <SwaggerClient/SWGReplaceOrderBase.h>
 #import <SwaggerClient/SWGServerTime.h>
 #import <SwaggerClient/SWGSymbolInfo.h>
 #import <SwaggerClient/SWGSymbolInfoBase.h>
@@ -128,6 +130,7 @@ Class | Method | HTTP request | Description
 *SWGConditionalApi* | [**conditionalCancel**](docs/SWGConditionalApi.md#conditionalcancel) | **POST** /open-api/stop-order/cancel | Cancel conditional order.
 *SWGConditionalApi* | [**conditionalGetOrders**](docs/SWGConditionalApi.md#conditionalgetorders) | **GET** /open-api/stop-order/list | Get my conditional order list.
 *SWGConditionalApi* | [**conditionalNew**](docs/SWGConditionalApi.md#conditionalnew) | **POST** /open-api/stop-order/create | Place a new conditional order.
+*SWGConditionalApi* | [**conditionalReplace**](docs/SWGConditionalApi.md#conditionalreplace) | **POST** /stop-order/replace | Replace conditional order. Only incomplete orders can be modified. 
 *SWGExecutionApi* | [**executionGetTrades**](docs/SWGExecutionApi.md#executiongettrades) | **GET** /v2/private/execution/list | Get the trade records of a order.
 *SWGFundingApi* | [**fundingGetRate**](docs/SWGFundingApi.md#fundinggetrate) | **GET** /open-api/funding/prev-funding | Funding settlement occurs every 8 hours at 00:00 UTC, 08:00 UTC and 16:00 UTC. The current interval&#39;s fund fee settlement is based on the previous interval&#39;s fund rate. For example, at 16:00, the settlement is based on the fund rate generated at 8:00. The fund rate generated at 16:00 will be used at 0:00 on the next day.
 *SWGFundingApi* | [**fundingPredicted**](docs/SWGFundingApi.md#fundingpredicted) | **GET** /open-api/funding/predicted-funding | Get predicted funding rate and funding fee.
@@ -138,6 +141,7 @@ Class | Method | HTTP request | Description
 *SWGOrderApi* | [**orderCancel**](docs/SWGOrderApi.md#ordercancel) | **POST** /open-api/order/cancel | Get my active order list.
 *SWGOrderApi* | [**orderGetOrders**](docs/SWGOrderApi.md#ordergetorders) | **GET** /open-api/order/list | Get my active order list.
 *SWGOrderApi* | [**orderNew**](docs/SWGOrderApi.md#ordernew) | **POST** /open-api/order/create | Place active order
+*SWGOrderApi* | [**orderReplace**](docs/SWGOrderApi.md#orderreplace) | **POST** /order/replace | Replace active order. Only incomplete orders can be modified. 
 *SWGPositionsApi* | [**positionsChangeMargin**](docs/SWGPositionsApi.md#positionschangemargin) | **POST** /position/change-position-margin | Update margin.
 *SWGPositionsApi* | [**positionsMyPosition**](docs/SWGPositionsApi.md#positionsmyposition) | **GET** /position/list | Get my position list.
 *SWGPositionsApi* | [**positionsSaveLeverage**](docs/SWGPositionsApi.md#positionssaveleverage) | **POST** /user/leverage/save | Change user leverage.
@@ -175,6 +179,8 @@ Class | Method | HTTP request | Description
  - [SWGPosition](docs/SWGPosition.md)
  - [SWGPositionInfo](docs/SWGPositionInfo.md)
  - [SWGPriceFilter](docs/SWGPriceFilter.md)
+ - [SWGReplaceConditionalBase](docs/SWGReplaceConditionalBase.md)
+ - [SWGReplaceOrderBase](docs/SWGReplaceOrderBase.md)
  - [SWGServerTime](docs/SWGServerTime.md)
  - [SWGSymbolInfo](docs/SWGSymbolInfo.md)
  - [SWGSymbolInfoBase](docs/SWGSymbolInfoBase.md)
@@ -189,7 +195,18 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Authorization
 
- All endpoints do not require authorization.
+
+## apiKey
+
+- **Type**: API key
+- **API key parameter name**: api-key
+- **Location**: HTTP header
+
+## apiSignature
+
+- **Type**: API key
+- **API key parameter name**: api-signature
+- **Location**: HTTP header
 
 
 ## Author

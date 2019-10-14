@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**conditionalCancel**](SWGConditionalApi.md#conditionalcancel) | **POST** /open-api/stop-order/cancel | Cancel conditional order.
 [**conditionalGetOrders**](SWGConditionalApi.md#conditionalgetorders) | **GET** /open-api/stop-order/list | Get my conditional order list.
 [**conditionalNew**](SWGConditionalApi.md#conditionalnew) | **POST** /open-api/stop-order/create | Place a new conditional order.
+[**conditionalReplace**](SWGConditionalApi.md#conditionalreplace) | **POST** /stop-order/replace | Replace conditional order. Only incomplete orders can be modified. 
 
 
 # **conditionalCancel**
@@ -19,6 +20,18 @@ Cancel conditional order.
 
 ### Example 
 ```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: apiKey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
+
+// Configure API key authorization: (authentication scheme: apiSignature)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
+
 
 NSString* stopOrderId = @"stopOrderId_example"; // Order ID of conditional order.
 
@@ -48,12 +61,12 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -72,6 +85,18 @@ Get my conditional order list.
 
 ### Example 
 ```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: apiKey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
+
+// Configure API key authorization: (authentication scheme: apiSignature)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
+
 
 NSString* stopOrderId = @"stopOrderId_example"; // Order ID of conditional order. (optional)
 NSString* orderLinkId = @"orderLinkId_example"; // Agency customized order ID. (optional)
@@ -116,12 +141,12 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -144,6 +169,18 @@ Place a new conditional order.
 
 ### Example 
 ```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: apiKey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
+
+// Configure API key authorization: (authentication scheme: apiSignature)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
+
 
 NSString* side = @"side_example"; // Side.
 NSString* symbol = @"symbol_example"; // Contract type.
@@ -200,12 +237,88 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **conditionalReplace**
+```objc
+-(NSURLSessionTask*) conditionalReplaceWithOrderId: (NSString*) orderId
+    symbol: (NSString*) symbol
+    pRQty: (NSNumber*) pRQty
+    pRPrice: (NSNumber*) pRPrice
+    pRTriggerPrice: (NSNumber*) pRTriggerPrice
+        completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+```
+
+Replace conditional order. Only incomplete orders can be modified. 
+
+### Example 
+```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: apiKey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
+
+// Configure API key authorization: (authentication scheme: apiSignature)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
+
+
+NSString* orderId = @"orderId_example"; // Order ID.
+NSString* symbol = @"symbol_example"; // Contract type.
+NSNumber* pRQty = @8.14; // Order quantity. (optional)
+NSNumber* pRPrice = @1.2; // Order price. (optional)
+NSNumber* pRTriggerPrice = @1.2; // Trigger price. (optional)
+
+SWGConditionalApi*apiInstance = [[SWGConditionalApi alloc] init];
+
+// Replace conditional order. Only incomplete orders can be modified. 
+[apiInstance conditionalReplaceWithOrderId:orderId
+              symbol:symbol
+              pRQty:pRQty
+              pRPrice:pRPrice
+              pRTriggerPrice:pRTriggerPrice
+          completionHandler: ^(NSObject* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling SWGConditionalApi->conditionalReplace: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderId** | **NSString***| Order ID. | 
+ **symbol** | **NSString***| Contract type. | 
+ **pRQty** | **NSNumber***| Order quantity. | [optional] 
+ **pRPrice** | **NSNumber***| Order price. | [optional] 
+ **pRTriggerPrice** | **NSNumber***| Trigger price. | [optional] 
+
+### Return type
+
+**NSObject***
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

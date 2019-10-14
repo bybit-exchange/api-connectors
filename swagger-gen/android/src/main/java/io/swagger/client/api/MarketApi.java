@@ -79,6 +79,8 @@ public class MarketApi {
     Map<String, String> formParams = new HashMap<String, String>();
     queryParams.addAll(ApiInvoker.parameterToPairs("", "symbol", symbol));
     String[] contentTypes = {
+      "application/json",
+      "application/x-www-form-urlencoded"
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
@@ -145,7 +147,7 @@ public class MarketApi {
 
 
     String[] contentTypes = {
-      
+      "application/json","application/x-www-form-urlencoded"
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
@@ -201,6 +203,8 @@ public class MarketApi {
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
     String[] contentTypes = {
+      "application/json",
+      "application/x-www-form-urlencoded"
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
@@ -261,7 +265,7 @@ public class MarketApi {
 
 
     String[] contentTypes = {
-      
+      "application/json","application/x-www-form-urlencoded"
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 

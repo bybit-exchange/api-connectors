@@ -96,6 +96,8 @@ public class KlineApi {
     queryParams.addAll(ApiInvoker.parameterToPairs("", "from", from));
     queryParams.addAll(ApiInvoker.parameterToPairs("", "limit", limit));
     String[] contentTypes = {
+      "application/json",
+      "application/x-www-form-urlencoded"
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
@@ -175,7 +177,7 @@ public class KlineApi {
 
 
     String[] contentTypes = {
-      
+      "application/json","application/x-www-form-urlencoded"
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 

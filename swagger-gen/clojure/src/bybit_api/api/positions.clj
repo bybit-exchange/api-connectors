@@ -11,9 +11,9 @@
              :header-params {}
              :query-params  {"symbol" symbol "margin" margin }
              :form-params   {}
-             :content-types []
-             :accepts       []
-             :auth-names    []}))
+             :content-types ["application/json" "application/x-www-form-urlencoded"]
+             :accepts       ["application/json"]
+             :auth-names    ["apiKey" "apiSignature"]}))
 
 (defn positions-change-margin
   "Update margin."
@@ -28,9 +28,9 @@
              :header-params {}
              :query-params  {}
              :form-params   {}
-             :content-types []
-             :accepts       []
-             :auth-names    []}))
+             :content-types ["application/json" "application/x-www-form-urlencoded"]
+             :accepts       ["application/json"]
+             :auth-names    ["apiKey" "apiSignature"]}))
 
 (defn positions-my-position
   "Get my position list."
@@ -46,9 +46,9 @@
              :header-params {}
              :query-params  {"symbol" symbol "leverage" leverage }
              :form-params   {}
-             :content-types []
-             :accepts       []
-             :auth-names    []}))
+             :content-types ["application/json" "application/x-www-form-urlencoded"]
+             :accepts       ["application/json"]
+             :auth-names    ["apiKey" "apiSignature"]}))
 
 (defn positions-save-leverage
   "Change user leverage."
@@ -65,9 +65,9 @@
               :header-params {}
               :query-params  {"symbol" symbol "take_profit" take-profit "stop_loss" stop-loss "trailing_stop" trailing-stop }
               :form-params   {}
-              :content-types []
-              :accepts       []
-              :auth-names    []})))
+              :content-types ["application/json" "application/x-www-form-urlencoded"]
+              :accepts       ["application/json"]
+              :auth-names    ["apiKey" "apiSignature"]})))
 
 (defn positions-trading-stop
   "Set Trading-Stop Condition."
@@ -83,9 +83,9 @@
              :header-params {}
              :query-params  {}
              :form-params   {}
-             :content-types []
-             :accepts       []
-             :auth-names    []}))
+             :content-types ["application/json" "application/x-www-form-urlencoded"]
+             :accepts       ["application/json"]
+             :auth-names    ["apiKey" "apiSignature"]}))
 
 (defn positions-user-leverage
   "Get user leverage setting."

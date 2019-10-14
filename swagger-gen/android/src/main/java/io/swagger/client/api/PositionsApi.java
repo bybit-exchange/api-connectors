@@ -86,6 +86,8 @@ public class PositionsApi {
     queryParams.addAll(ApiInvoker.parameterToPairs("", "symbol", symbol));
     queryParams.addAll(ApiInvoker.parameterToPairs("", "margin", margin));
     String[] contentTypes = {
+      "application/json",
+      "application/x-www-form-urlencoded"
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
@@ -98,7 +100,7 @@ public class PositionsApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "apiKey", "apiSignature" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -158,7 +160,7 @@ public class PositionsApi {
 
 
     String[] contentTypes = {
-      
+      "application/json","application/x-www-form-urlencoded"
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
@@ -173,7 +175,7 @@ public class PositionsApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "apiKey", "apiSignature" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -214,6 +216,8 @@ public class PositionsApi {
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
     String[] contentTypes = {
+      "application/json",
+      "application/x-www-form-urlencoded"
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
@@ -226,7 +230,7 @@ public class PositionsApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "apiKey", "apiSignature" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -274,7 +278,7 @@ public class PositionsApi {
 
 
     String[] contentTypes = {
-      
+      "application/json","application/x-www-form-urlencoded"
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
@@ -289,7 +293,7 @@ public class PositionsApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "apiKey", "apiSignature" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -344,6 +348,8 @@ public class PositionsApi {
     queryParams.addAll(ApiInvoker.parameterToPairs("", "symbol", symbol));
     queryParams.addAll(ApiInvoker.parameterToPairs("", "leverage", leverage));
     String[] contentTypes = {
+      "application/json",
+      "application/x-www-form-urlencoded"
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
@@ -356,7 +362,7 @@ public class PositionsApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "apiKey", "apiSignature" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -416,7 +422,7 @@ public class PositionsApi {
 
 
     String[] contentTypes = {
-      
+      "application/json","application/x-www-form-urlencoded"
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
@@ -431,7 +437,7 @@ public class PositionsApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "apiKey", "apiSignature" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -485,6 +491,8 @@ public class PositionsApi {
     queryParams.addAll(ApiInvoker.parameterToPairs("", "stop_loss", stopLoss));
     queryParams.addAll(ApiInvoker.parameterToPairs("", "trailing_stop", trailingStop));
     String[] contentTypes = {
+      "application/json",
+      "application/x-www-form-urlencoded"
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
@@ -497,7 +505,7 @@ public class PositionsApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "apiKey", "apiSignature" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -554,7 +562,7 @@ public class PositionsApi {
 
 
     String[] contentTypes = {
-      
+      "application/json","application/x-www-form-urlencoded"
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
@@ -569,7 +577,7 @@ public class PositionsApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "apiKey", "apiSignature" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -610,6 +618,8 @@ public class PositionsApi {
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
     String[] contentTypes = {
+      "application/json",
+      "application/x-www-form-urlencoded"
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
@@ -622,7 +632,7 @@ public class PositionsApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "apiKey", "apiSignature" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -670,7 +680,7 @@ public class PositionsApi {
 
 
     String[] contentTypes = {
-      
+      "application/json","application/x-www-form-urlencoded"
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
@@ -685,7 +695,7 @@ public class PositionsApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "apiKey", "apiSignature" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,

@@ -12,8 +12,8 @@
               :header-params {}
               :query-params  {"symbol" symbol "interval" interval "from" from "limit" limit }
               :form-params   {}
-              :content-types []
-              :accepts       []
+              :content-types ["application/json" "application/x-www-form-urlencoded"]
+              :accepts       ["application/json"]
               :auth-names    []})))
 
 (defn kline-get

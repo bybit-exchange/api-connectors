@@ -173,4 +173,56 @@ open class OrderAPI {
         return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
 
+    /**
+     Replace active order. Only incomplete orders can be modified. 
+     
+     - parameter orderId: (query) Order ID. 
+     - parameter symbol: (query) Contract type. 
+     - parameter pRQty: (query) Order quantity. (optional)
+     - parameter pRPrice: (query) Order price. (optional)
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func orderReplace(orderId: String, symbol: String, pRQty: Double? = nil, pRPrice: Double? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
+        orderReplaceWithRequestBuilder(orderId: orderId, symbol: symbol, pRQty: pRQty, pRPrice: pRPrice).execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Replace active order. Only incomplete orders can be modified. 
+     - POST /order/replace
+     - API Key:
+       - type: apiKey api-key 
+       - name: apiKey
+     - API Key:
+       - type: apiKey api-signature 
+       - name: apiSignature
+     - examples: [{contentType=application/json, example=""}]
+     
+     - parameter orderId: (query) Order ID. 
+     - parameter symbol: (query) Contract type. 
+     - parameter pRQty: (query) Order quantity. (optional)
+     - parameter pRPrice: (query) Order price. (optional)
+
+     - returns: RequestBuilder<Any> 
+     */
+    open class func orderReplaceWithRequestBuilder(orderId: String, symbol: String, pRQty: Double? = nil, pRPrice: Double? = nil) -> RequestBuilder<Any> {
+        let path = "/order/replace"
+        let URLString = SwaggerClientAPI.basePath + path
+        let parameters: [String:Any]? = nil
+        
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "order_id": orderId, 
+            "symbol": symbol, 
+            "p_r_qty": pRQty, 
+            "p_r_price": pRPrice
+        ])
+
+        let requestBuilder: RequestBuilder<Any>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+    }
+
 }

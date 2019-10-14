@@ -88,8 +88,8 @@
       };
 
       var authNames = [];
-      var contentTypes = [];
-      var accepts = [];
+      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      var accepts = ['application/json'];
       var returnType = Object;
 
       return this.apiClient.callApi(
@@ -144,8 +144,8 @@
       };
 
       var authNames = [];
-      var contentTypes = [];
-      var accepts = [];
+      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      var accepts = ['application/json'];
       var returnType = Object;
 
       return this.apiClient.callApi(
@@ -238,12 +238,72 @@
       };
 
       var authNames = [];
-      var contentTypes = [];
-      var accepts = [];
+      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      var accepts = ['application/json'];
       var returnType = Object;
 
       return this.apiClient.callApi(
         '/open-api/order/create', 'POST',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the orderReplace operation.
+     * @callback module:api/OrderApi~orderReplaceCallback
+     * @param {String} error Error message, if any.
+     * @param {Object} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Replace active order. Only incomplete orders can be modified. 
+     * @param {String} orderId Order ID.
+     * @param {String} symbol Contract type.
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.pRQty Order quantity.
+     * @param {Number} opts.pRPrice Order price.
+     * @param {module:api/OrderApi~orderReplaceCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link Object}
+     */
+    this.orderReplace = function(orderId, symbol, opts, callback) {
+      opts = opts || {};
+      var postBody = null;
+
+      // verify the required parameter 'orderId' is set
+      if (orderId === undefined || orderId === null) {
+        throw new Error("Missing the required parameter 'orderId' when calling orderReplace");
+      }
+
+      // verify the required parameter 'symbol' is set
+      if (symbol === undefined || symbol === null) {
+        throw new Error("Missing the required parameter 'symbol' when calling orderReplace");
+      }
+
+
+      var pathParams = {
+      };
+      var queryParams = {
+        'order_id': orderId,
+        'symbol': symbol,
+        'p_r_qty': opts['pRQty'],
+        'p_r_price': opts['pRPrice'],
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = ['apiKey', 'apiSignature'];
+      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      var accepts = ['application/json'];
+      var returnType = Object;
+
+      return this.apiClient.callApi(
+        '/order/replace', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

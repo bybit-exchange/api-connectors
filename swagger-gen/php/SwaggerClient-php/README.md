@@ -82,6 +82,7 @@ Class | Method | HTTP request | Description
 *ConditionalApi* | [**conditionalCancel**](docs/Api/ConditionalApi.md#conditionalcancel) | **POST** /open-api/stop-order/cancel | Cancel conditional order.
 *ConditionalApi* | [**conditionalGetOrders**](docs/Api/ConditionalApi.md#conditionalgetorders) | **GET** /open-api/stop-order/list | Get my conditional order list.
 *ConditionalApi* | [**conditionalNew**](docs/Api/ConditionalApi.md#conditionalnew) | **POST** /open-api/stop-order/create | Place a new conditional order.
+*ConditionalApi* | [**conditionalReplace**](docs/Api/ConditionalApi.md#conditionalreplace) | **POST** /stop-order/replace | Replace conditional order. Only incomplete orders can be modified.
 *ExecutionApi* | [**executionGetTrades**](docs/Api/ExecutionApi.md#executiongettrades) | **GET** /v2/private/execution/list | Get the trade records of a order.
 *FundingApi* | [**fundingGetRate**](docs/Api/FundingApi.md#fundinggetrate) | **GET** /open-api/funding/prev-funding | Funding settlement occurs every 8 hours at 00:00 UTC, 08:00 UTC and 16:00 UTC. The current interval&#39;s fund fee settlement is based on the previous interval&#39;s fund rate. For example, at 16:00, the settlement is based on the fund rate generated at 8:00. The fund rate generated at 16:00 will be used at 0:00 on the next day.
 *FundingApi* | [**fundingPredicted**](docs/Api/FundingApi.md#fundingpredicted) | **GET** /open-api/funding/predicted-funding | Get predicted funding rate and funding fee.
@@ -92,6 +93,7 @@ Class | Method | HTTP request | Description
 *OrderApi* | [**orderCancel**](docs/Api/OrderApi.md#ordercancel) | **POST** /open-api/order/cancel | Get my active order list.
 *OrderApi* | [**orderGetOrders**](docs/Api/OrderApi.md#ordergetorders) | **GET** /open-api/order/list | Get my active order list.
 *OrderApi* | [**orderNew**](docs/Api/OrderApi.md#ordernew) | **POST** /open-api/order/create | Place active order
+*OrderApi* | [**orderReplace**](docs/Api/OrderApi.md#orderreplace) | **POST** /order/replace | Replace active order. Only incomplete orders can be modified.
 *PositionsApi* | [**positionsChangeMargin**](docs/Api/PositionsApi.md#positionschangemargin) | **POST** /position/change-position-margin | Update margin.
 *PositionsApi* | [**positionsMyPosition**](docs/Api/PositionsApi.md#positionsmyposition) | **GET** /position/list | Get my position list.
 *PositionsApi* | [**positionsSaveLeverage**](docs/Api/PositionsApi.md#positionssaveleverage) | **POST** /user/leverage/save | Change user leverage.
@@ -129,6 +131,8 @@ Class | Method | HTTP request | Description
  - [Position](docs/Model/Position.md)
  - [PositionInfo](docs/Model/PositionInfo.md)
  - [PriceFilter](docs/Model/PriceFilter.md)
+ - [ReplaceConditionalBase](docs/Model/ReplaceConditionalBase.md)
+ - [ReplaceOrderBase](docs/Model/ReplaceOrderBase.md)
  - [ServerTime](docs/Model/ServerTime.md)
  - [SymbolInfo](docs/Model/SymbolInfo.md)
  - [SymbolInfoBase](docs/Model/SymbolInfoBase.md)
@@ -143,7 +147,18 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Authorization
 
- All endpoints do not require authorization.
+
+## apiKey
+
+- **Type**: API key
+- **API key parameter name**: api-key
+- **Location**: HTTP header
+
+## apiSignature
+
+- **Type**: API key
+- **API key parameter name**: api-signature
+- **Location**: HTTP header
 
 
 ## Author

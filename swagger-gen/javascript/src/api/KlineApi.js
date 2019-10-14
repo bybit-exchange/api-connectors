@@ -102,8 +102,8 @@
       };
 
       var authNames = [];
-      var contentTypes = [];
-      var accepts = [];
+      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      var accepts = ['application/json'];
       var returnType = Object;
 
       return this.apiClient.callApi(

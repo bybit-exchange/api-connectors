@@ -271,12 +271,12 @@ class SymbolApi
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
-                []
+                ['application/json']
             );
         } else {
             $headers = $this->headerSelector->selectHeaders(
-                [],
-                []
+                ['application/json'],
+                ['application/json', 'application/x-www-form-urlencoded']
             );
         }
 

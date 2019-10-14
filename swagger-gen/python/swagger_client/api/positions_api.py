@@ -111,8 +111,16 @@ class PositionsApi(object):
         local_var_files = {}
 
         body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json', 'application/x-www-form-urlencoded'])  # noqa: E501
+
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKey', 'apiSignature']  # noqa: E501
 
         return self.api_client.call_api(
             '/position/change-position-margin', 'POST',
@@ -192,8 +200,16 @@ class PositionsApi(object):
         local_var_files = {}
 
         body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json', 'application/x-www-form-urlencoded'])  # noqa: E501
+
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKey', 'apiSignature']  # noqa: E501
 
         return self.api_client.call_api(
             '/position/list', 'GET',
@@ -289,8 +305,16 @@ class PositionsApi(object):
         local_var_files = {}
 
         body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json', 'application/x-www-form-urlencoded'])  # noqa: E501
+
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKey', 'apiSignature']  # noqa: E501
 
         return self.api_client.call_api(
             '/user/leverage/save', 'POST',
@@ -390,8 +414,16 @@ class PositionsApi(object):
         local_var_files = {}
 
         body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json', 'application/x-www-form-urlencoded'])  # noqa: E501
+
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKey', 'apiSignature']  # noqa: E501
 
         return self.api_client.call_api(
             '/open-api/position/trading-stop', 'POST',
@@ -471,8 +503,16 @@ class PositionsApi(object):
         local_var_files = {}
 
         body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json', 'application/x-www-form-urlencoded'])  # noqa: E501
+
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKey', 'apiSignature']  # noqa: E501
 
         return self.api_client.call_api(
             '/user/leverage', 'GET',

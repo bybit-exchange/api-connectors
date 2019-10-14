@@ -40,6 +40,22 @@ public:
     OrderApi( std::shared_ptr<ApiClient> apiClient );
     virtual ~OrderApi();
     /// <summary>
+    /// Replace active order. Only incomplete orders can be modified. 
+    /// </summary>
+    /// <remarks>
+    /// 
+    /// </remarks>
+    /// <param name="orderId">Order ID.</param>
+    /// <param name="symbol">Contract type.</param>
+    /// <param name="pRQty">Order quantity. (optional)</param>
+    /// <param name="pRPrice">Order price. (optional)</param>
+    pplx::task<std::shared_ptr<Object>> order_Replace(
+        utility::string_t orderId,
+        utility::string_t symbol,
+        boost::optional<double> pRQty,
+        boost::optional<double> pRPrice
+    );
+    /// <summary>
     /// Get my active order list.
     /// </summary>
     /// <remarks>

@@ -161,6 +161,14 @@ public class JsonUtil {
       return new TypeToken<List<PriceFilter>>(){}.getType();
     }
     
+    if ("ReplaceConditionalBase".equalsIgnoreCase(className)) {
+      return new TypeToken<List<ReplaceConditionalBase>>(){}.getType();
+    }
+    
+    if ("ReplaceOrderBase".equalsIgnoreCase(className)) {
+      return new TypeToken<List<ReplaceOrderBase>>(){}.getType();
+    }
+    
     if ("ServerTime".equalsIgnoreCase(className)) {
       return new TypeToken<List<ServerTime>>(){}.getType();
     }
@@ -309,6 +317,14 @@ public class JsonUtil {
     
     if ("PriceFilter".equalsIgnoreCase(className)) {
       return new TypeToken<PriceFilter>(){}.getType();
+    }
+    
+    if ("ReplaceConditionalBase".equalsIgnoreCase(className)) {
+      return new TypeToken<ReplaceConditionalBase>(){}.getType();
+    }
+    
+    if ("ReplaceOrderBase".equalsIgnoreCase(className)) {
+      return new TypeToken<ReplaceOrderBase>(){}.getType();
     }
     
     if ("ServerTime".equalsIgnoreCase(className)) {

@@ -11,8 +11,8 @@
              :header-params {}
              :query-params  {"order_id" order-id }
              :form-params   {}
-             :content-types []
-             :accepts       []
+             :content-types ["application/json" "application/x-www-form-urlencoded"]
+             :accepts       ["application/json"]
              :auth-names    []}))
 
 (defn execution-get-trades

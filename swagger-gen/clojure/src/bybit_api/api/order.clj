@@ -12,8 +12,8 @@
               :header-params {}
               :query-params  {"order_id" order-id "symbol" symbol }
               :form-params   {}
-              :content-types []
-              :accepts       []
+              :content-types ["application/json" "application/x-www-form-urlencoded"]
+              :accepts       ["application/json"]
               :auth-names    []})))
 
 (defn order-cancel
@@ -31,8 +31,8 @@
               :header-params {}
               :query-params  {"order_id" order-id "order_link_id" order-link-id "symbol" symbol "order" order "page" page "limit" limit "order_status" order-status }
               :form-params   {}
-              :content-types []
-              :accepts       []
+              :content-types ["application/json" "application/x-www-form-urlencoded"]
+              :accepts       ["application/json"]
               :auth-names    []})))
 
 (defn order-get-orders
@@ -51,8 +51,8 @@
               :header-params {}
               :query-params  {"side" side "symbol" symbol "order_type" order-type "qty" qty "price" price "time_in_force" time-in-force "take_profit" take-profit "stop_loss" stop-loss "reduce_only" reduce-only "close_on_trigger" close-on-trigger "order_link_id" order-link-id }
               :form-params   {}
-              :content-types []
-              :accepts       []
+              :content-types ["application/json" "application/x-www-form-urlencoded"]
+              :accepts       ["application/json"]
               :auth-names    []})))
 
 (defn order-new
@@ -60,4 +60,24 @@
   ([side symbol order-type qty price time-in-force ] (order-new side symbol order-type qty price time-in-force nil))
   ([side symbol order-type qty price time-in-force optional-params]
    (:data (order-new-with-http-info side symbol order-type qty price time-in-force optional-params))))
+
+(defn order-replace-with-http-info
+  "Replace active order. Only incomplete orders can be modified."
+  ([order-id symbol ] (order-replace-with-http-info order-id symbol nil))
+  ([order-id symbol {:keys [p-r-qty p-r-price ]}]
+   (check-required-params order-id symbol)
+   (call-api "/order/replace" :post
+             {:path-params   {}
+              :header-params {}
+              :query-params  {"order_id" order-id "symbol" symbol "p_r_qty" p-r-qty "p_r_price" p-r-price }
+              :form-params   {}
+              :content-types ["application/json" "application/x-www-form-urlencoded"]
+              :accepts       ["application/json"]
+              :auth-names    ["apiKey" "apiSignature"]})))
+
+(defn order-replace
+  "Replace active order. Only incomplete orders can be modified."
+  ([order-id symbol ] (order-replace order-id symbol nil))
+  ([order-id symbol optional-params]
+   (:data (order-replace-with-http-info order-id symbol optional-params))))
 

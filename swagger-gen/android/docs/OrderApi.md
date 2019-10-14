@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**orderCancel**](OrderApi.md#orderCancel) | **POST** /open-api/order/cancel | Get my active order list.
 [**orderGetOrders**](OrderApi.md#orderGetOrders) | **GET** /open-api/order/list | Get my active order list.
 [**orderNew**](OrderApi.md#orderNew) | **POST** /open-api/order/create | Place active order
+[**orderReplace**](OrderApi.md#orderReplace) | **POST** /order/replace | Replace active order. Only incomplete orders can be modified. 
 
 
 <a name="orderCancel"></a>
@@ -49,8 +50,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
 
 <a name="orderGetOrders"></a>
 # **orderGetOrders**
@@ -102,8 +103,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
 
 <a name="orderNew"></a>
 # **orderNew**
@@ -163,6 +164,53 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+<a name="orderReplace"></a>
+# **orderReplace**
+> Object orderReplace(orderId, symbol, pRQty, pRPrice)
+
+Replace active order. Only incomplete orders can be modified. 
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.api.OrderApi;
+
+OrderApi apiInstance = new OrderApi();
+String orderId = "orderId_example"; // String | Order ID.
+String symbol = "symbol_example"; // String | Contract type.
+BigDecimal pRQty = new BigDecimal(); // BigDecimal | Order quantity.
+Double pRPrice = 3.4D; // Double | Order price.
+try {
+    Object result = apiInstance.orderReplace(orderId, symbol, pRQty, pRPrice);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling OrderApi#orderReplace");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderId** | **String**| Order ID. |
+ **symbol** | **String**| Contract type. |
+ **pRQty** | **BigDecimal**| Order quantity. | [optional]
+ **pRPrice** | **Double**| Order price. | [optional]
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
 

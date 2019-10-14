@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**order_cancel**](OrderApi.md#order_cancel) | **POST** /open-api/order/cancel | Get my active order list.
 [**order_get_orders**](OrderApi.md#order_get_orders) | **GET** /open-api/order/list | Get my active order list.
 [**order_new**](OrderApi.md#order_new) | **POST** /open-api/order/create | Place active order
+[**order_replace**](OrderApi.md#order_replace) | **POST** /order/replace | Replace active order. Only incomplete orders can be modified. 
 
 
 # **order_cancel**
@@ -53,8 +54,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
 
 
 
@@ -111,8 +112,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
 
 
 
@@ -183,8 +184,74 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+
+
+# **order_replace**
+> Object order_replace(order_id, symbol, opts)
+
+Replace active order. Only incomplete orders can be modified. 
+
+### Example
+```ruby
+# load the gem
+require 'swagger_client'
+# setup authorization
+SwaggerClient.configure do |config|
+  # Configure API key authorization: apiKey
+  config.api_key['api-key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-key'] = 'Bearer'
+
+  # Configure API key authorization: apiSignature
+  config.api_key['api-signature'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-signature'] = 'Bearer'
+end
+
+api_instance = SwaggerClient::OrderApi.new
+
+order_id = 'order_id_example' # String | Order ID.
+
+symbol = 'symbol_example' # String | Contract type.
+
+opts = { 
+  p_r_qty: 8.14, # Float | Order quantity.
+  p_r_price: 1.2 # Float | Order price.
+}
+
+begin
+  #Replace active order. Only incomplete orders can be modified. 
+  result = api_instance.order_replace(order_id, symbol, opts)
+  p result
+rescue SwaggerClient::ApiError => e
+  puts "Exception when calling OrderApi->order_replace: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **order_id** | **String**| Order ID. | 
+ **symbol** | **String**| Contract type. | 
+ **p_r_qty** | **Float**| Order quantity. | [optional] 
+ **p_r_price** | **Float**| Order price. | [optional] 
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
 
 
 

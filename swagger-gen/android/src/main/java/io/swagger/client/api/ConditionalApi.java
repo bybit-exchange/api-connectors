@@ -80,6 +80,8 @@ public class ConditionalApi {
     Map<String, String> formParams = new HashMap<String, String>();
     queryParams.addAll(ApiInvoker.parameterToPairs("", "stop_order_id", stopOrderId));
     String[] contentTypes = {
+      "application/json",
+      "application/x-www-form-urlencoded"
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
@@ -92,7 +94,7 @@ public class ConditionalApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "apiKey", "apiSignature" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -146,7 +148,7 @@ public class ConditionalApi {
 
 
     String[] contentTypes = {
-      
+      "application/json","application/x-www-form-urlencoded"
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
@@ -161,7 +163,7 @@ public class ConditionalApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "apiKey", "apiSignature" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -214,6 +216,8 @@ public class ConditionalApi {
     queryParams.addAll(ApiInvoker.parameterToPairs("", "page", page));
     queryParams.addAll(ApiInvoker.parameterToPairs("", "limit", limit));
     String[] contentTypes = {
+      "application/json",
+      "application/x-www-form-urlencoded"
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
@@ -226,7 +230,7 @@ public class ConditionalApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "apiKey", "apiSignature" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -280,7 +284,7 @@ public class ConditionalApi {
 
 
     String[] contentTypes = {
-      
+      "application/json","application/x-www-form-urlencoded"
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
@@ -295,7 +299,7 @@ public class ConditionalApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "apiKey", "apiSignature" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -396,6 +400,8 @@ public class ConditionalApi {
     queryParams.addAll(ApiInvoker.parameterToPairs("", "close_on_trigger", closeOnTrigger));
     queryParams.addAll(ApiInvoker.parameterToPairs("", "order_link_id", orderLinkId));
     String[] contentTypes = {
+      "application/json",
+      "application/x-www-form-urlencoded"
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
@@ -408,7 +414,7 @@ public class ConditionalApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "apiKey", "apiSignature" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -506,7 +512,7 @@ public class ConditionalApi {
 
 
     String[] contentTypes = {
-      
+      "application/json","application/x-www-form-urlencoded"
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
@@ -521,7 +527,160 @@ public class ConditionalApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "apiKey", "apiSignature" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((Object) ApiInvoker.deserialize(localVarResponse,  "", Object.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * Replace conditional order. Only incomplete orders can be modified. 
+  * 
+   * @param orderId Order ID.
+   * @param symbol Contract type.
+   * @param pRQty Order quantity.
+   * @param pRPrice Order price.
+   * @param pRTriggerPrice Trigger price.
+   * @return Object
+  */
+  public Object conditionalReplace (String orderId, String symbol, BigDecimal pRQty, Double pRPrice, Double pRTriggerPrice) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'orderId' is set
+    if (orderId == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'orderId' when calling conditionalReplace",
+        new ApiException(400, "Missing the required parameter 'orderId' when calling conditionalReplace"));
+    }
+    // verify the required parameter 'symbol' is set
+    if (symbol == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'symbol' when calling conditionalReplace",
+        new ApiException(400, "Missing the required parameter 'symbol' when calling conditionalReplace"));
+    }
+
+    // create path and map variables
+    String path = "/stop-order/replace";
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "order_id", orderId));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "symbol", symbol));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "p_r_qty", pRQty));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "p_r_price", pRPrice));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "p_r_trigger_price", pRTriggerPrice));
+    String[] contentTypes = {
+      "application/json",
+      "application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "apiKey", "apiSignature" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (Object) ApiInvoker.deserialize(localVarResponse, "", Object.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * Replace conditional order. Only incomplete orders can be modified. 
+   * 
+   * @param orderId Order ID.   * @param symbol Contract type.   * @param pRQty Order quantity.   * @param pRPrice Order price.   * @param pRTriggerPrice Trigger price.
+  */
+  public void conditionalReplace (String orderId, String symbol, BigDecimal pRQty, Double pRPrice, Double pRTriggerPrice, final Response.Listener<Object> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+    // verify the required parameter 'orderId' is set
+    if (orderId == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'orderId' when calling conditionalReplace",
+        new ApiException(400, "Missing the required parameter 'orderId' when calling conditionalReplace"));
+    }
+    // verify the required parameter 'symbol' is set
+    if (symbol == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'symbol' when calling conditionalReplace",
+        new ApiException(400, "Missing the required parameter 'symbol' when calling conditionalReplace"));
+    }
+
+    // create path and map variables
+    String path = "/stop-order/replace".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "order_id", orderId));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "symbol", symbol));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "p_r_qty", pRQty));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "p_r_price", pRPrice));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "p_r_trigger_price", pRTriggerPrice));
+
+
+    String[] contentTypes = {
+      "application/json","application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+    String[] authNames = new String[] { "apiKey", "apiSignature" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,

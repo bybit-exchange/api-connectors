@@ -29,7 +29,7 @@ import java.math.BigDecimal;
  * Get the orderbook response
  */
 @ApiModel(description = "Get the orderbook response")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-10T14:10:24.237+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-14T19:28:07.787+08:00")
 public class KlineRes {
   @SerializedName("symbol")
   private String symbol = null;

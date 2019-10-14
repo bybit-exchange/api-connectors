@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**OrderCancel**](OrderApi.md#OrderCancel) | **Post** /open-api/order/cancel | Get my active order list.
 [**OrderGetOrders**](OrderApi.md#OrderGetOrders) | **Get** /open-api/order/list | Get my active order list.
 [**OrderNew**](OrderApi.md#OrderNew) | **Post** /open-api/order/create | Place active order
+[**OrderReplace**](OrderApi.md#OrderReplace) | **Post** /order/replace | Replace active order. Only incomplete orders can be modified. 
 
 
 # **OrderCancel**
@@ -39,8 +40,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -78,8 +79,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -127,8 +128,46 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **OrderReplace**
+> interface{} OrderReplace(ctx, orderId, symbol, optional)
+Replace active order. Only incomplete orders can be modified. 
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **orderId** | **string**| Order ID. | 
+  **symbol** | **string**| Contract type. | 
+ **optional** | ***OrderReplaceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a OrderReplaceOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **pRQty** | **optional.Float32**| Order quantity. | 
+ **pRPrice** | **optional.Float64**| Order price. | 
+
+### Return type
+
+[**interface{}**](interface{}.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

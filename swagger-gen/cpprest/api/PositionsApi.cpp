@@ -49,6 +49,7 @@ pplx::task<std::shared_ptr<Object>> PositionsApi::positions_changeMargin(utility
     std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
 
     std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t responseHttpContentType;
 
@@ -75,6 +76,8 @@ pplx::task<std::shared_ptr<Object>> PositionsApi::positions_changeMargin(utility
     headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/x-www-form-urlencoded") );
 
     {
         queryParams[utility::conversions::to_string_t("symbol")] = ApiClient::parameterToString(symbol);
@@ -101,6 +104,22 @@ pplx::task<std::shared_ptr<Object>> PositionsApi::positions_changeMargin(utility
         throw ApiException(415, utility::conversions::to_string_t("PositionsApi->positions_changeMargin does not consume any supported media type"));
     }
 
+    // authentication (apiKey) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api-key"));
+        if ( apiKey.size() > 0 )
+        {
+            headerParams[utility::conversions::to_string_t("api-key")] = apiKey;
+        }
+    }
+    // authentication (apiSignature) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api-signature"));
+        if ( apiKey.size() > 0 )
+        {
+            headerParams[utility::conversions::to_string_t("api-signature")] = apiKey;
+        }
+    }
 
     return m_ApiClient->callApi(path, utility::conversions::to_string_t("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -167,6 +186,7 @@ pplx::task<std::shared_ptr<Object>> PositionsApi::positions_myPosition()
     std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
 
     std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t responseHttpContentType;
 
@@ -193,6 +213,8 @@ pplx::task<std::shared_ptr<Object>> PositionsApi::positions_myPosition()
     headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/x-www-form-urlencoded") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -213,6 +235,22 @@ pplx::task<std::shared_ptr<Object>> PositionsApi::positions_myPosition()
         throw ApiException(415, utility::conversions::to_string_t("PositionsApi->positions_myPosition does not consume any supported media type"));
     }
 
+    // authentication (apiKey) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api-key"));
+        if ( apiKey.size() > 0 )
+        {
+            headerParams[utility::conversions::to_string_t("api-key")] = apiKey;
+        }
+    }
+    // authentication (apiSignature) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api-signature"));
+        if ( apiKey.size() > 0 )
+        {
+            headerParams[utility::conversions::to_string_t("api-signature")] = apiKey;
+        }
+    }
 
     return m_ApiClient->callApi(path, utility::conversions::to_string_t("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -279,6 +317,7 @@ pplx::task<std::shared_ptr<Object>> PositionsApi::positions_saveLeverage(utility
     std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
 
     std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t responseHttpContentType;
 
@@ -305,6 +344,8 @@ pplx::task<std::shared_ptr<Object>> PositionsApi::positions_saveLeverage(utility
     headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/x-www-form-urlencoded") );
 
     {
         queryParams[utility::conversions::to_string_t("symbol")] = ApiClient::parameterToString(symbol);
@@ -331,6 +372,22 @@ pplx::task<std::shared_ptr<Object>> PositionsApi::positions_saveLeverage(utility
         throw ApiException(415, utility::conversions::to_string_t("PositionsApi->positions_saveLeverage does not consume any supported media type"));
     }
 
+    // authentication (apiKey) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api-key"));
+        if ( apiKey.size() > 0 )
+        {
+            headerParams[utility::conversions::to_string_t("api-key")] = apiKey;
+        }
+    }
+    // authentication (apiSignature) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api-signature"));
+        if ( apiKey.size() > 0 )
+        {
+            headerParams[utility::conversions::to_string_t("api-signature")] = apiKey;
+        }
+    }
 
     return m_ApiClient->callApi(path, utility::conversions::to_string_t("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -397,6 +454,7 @@ pplx::task<std::shared_ptr<Object>> PositionsApi::positions_tradingStop(utility:
     std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
 
     std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t responseHttpContentType;
 
@@ -423,6 +481,8 @@ pplx::task<std::shared_ptr<Object>> PositionsApi::positions_tradingStop(utility:
     headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/x-www-form-urlencoded") );
 
     {
         queryParams[utility::conversions::to_string_t("symbol")] = ApiClient::parameterToString(symbol);
@@ -458,6 +518,22 @@ pplx::task<std::shared_ptr<Object>> PositionsApi::positions_tradingStop(utility:
         throw ApiException(415, utility::conversions::to_string_t("PositionsApi->positions_tradingStop does not consume any supported media type"));
     }
 
+    // authentication (apiKey) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api-key"));
+        if ( apiKey.size() > 0 )
+        {
+            headerParams[utility::conversions::to_string_t("api-key")] = apiKey;
+        }
+    }
+    // authentication (apiSignature) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api-signature"));
+        if ( apiKey.size() > 0 )
+        {
+            headerParams[utility::conversions::to_string_t("api-signature")] = apiKey;
+        }
+    }
 
     return m_ApiClient->callApi(path, utility::conversions::to_string_t("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -524,6 +600,7 @@ pplx::task<std::shared_ptr<Object>> PositionsApi::positions_userLeverage()
     std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
 
     std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t responseHttpContentType;
 
@@ -550,6 +627,8 @@ pplx::task<std::shared_ptr<Object>> PositionsApi::positions_userLeverage()
     headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/x-www-form-urlencoded") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -570,6 +649,22 @@ pplx::task<std::shared_ptr<Object>> PositionsApi::positions_userLeverage()
         throw ApiException(415, utility::conversions::to_string_t("PositionsApi->positions_userLeverage does not consume any supported media type"));
     }
 
+    // authentication (apiKey) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api-key"));
+        if ( apiKey.size() > 0 )
+        {
+            headerParams[utility::conversions::to_string_t("api-key")] = apiKey;
+        }
+    }
+    // authentication (apiSignature) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api-signature"));
+        if ( apiKey.size() > 0 )
+        {
+            headerParams[utility::conversions::to_string_t("api-signature")] = apiKey;
+        }
+    }
 
     return m_ApiClient->callApi(path, utility::conversions::to_string_t("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)

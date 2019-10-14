@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**orderCancel**](OrderApi.md#orderCancel) | **POST** /open-api/order/cancel | Get my active order list.
 [**orderGetOrders**](OrderApi.md#orderGetOrders) | **GET** /open-api/order/list | Get my active order list.
 [**orderNew**](OrderApi.md#orderNew) | **POST** /open-api/order/create | Place active order
+[**orderReplace**](OrderApi.md#orderReplace) | **POST** /order/replace | Replace active order. Only incomplete orders can be modified. 
 
 
 <a name="orderCancel"></a>
@@ -54,8 +55,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
 
 <a name="orderGetOrders"></a>
 # **orderGetOrders**
@@ -111,8 +112,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
 
 <a name="orderNew"></a>
 # **orderNew**
@@ -182,6 +183,72 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+<a name="orderReplace"></a>
+# **orderReplace**
+> Object orderReplace(orderId, symbol, opts)
+
+Replace active order. Only incomplete orders can be modified. 
+
+### Example
+```javascript
+var BybitApi = require('bybit_api');
+var defaultClient = BybitApi.ApiClient.instance;
+
+// Configure API key authorization: apiKey
+var apiKey = defaultClient.authentications['apiKey'];
+apiKey.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiKey.apiKeyPrefix = 'Token';
+
+// Configure API key authorization: apiSignature
+var apiSignature = defaultClient.authentications['apiSignature'];
+apiSignature.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiSignature.apiKeyPrefix = 'Token';
+
+var apiInstance = new BybitApi.OrderApi();
+
+var orderId = "orderId_example"; // String | Order ID.
+
+var symbol = "symbol_example"; // String | Contract type.
+
+var opts = { 
+  'pRQty': 8.14, // Number | Order quantity.
+  'pRPrice': 1.2 // Number | Order price.
+};
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.orderReplace(orderId, symbol, opts, callback);
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderId** | **String**| Order ID. | 
+ **symbol** | **String**| Contract type. | 
+ **pRQty** | **Number**| Order quantity. | [optional] 
+ **pRPrice** | **Number**| Order price. | [optional] 
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
 

@@ -86,5 +86,25 @@ extern NSInteger kSWGConditionalApiMissingParamErrorCode;
     completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
 
 
+/// Replace conditional order. Only incomplete orders can be modified. 
+/// 
+///
+/// @param orderId Order ID.
+/// @param symbol Contract type.
+/// @param pRQty Order quantity. (optional)
+/// @param pRPrice Order price. (optional)
+/// @param pRTriggerPrice Trigger price. (optional)
+/// 
+///  code:200 message:"Request was successful"
+///
+/// @return NSObject*
+-(NSURLSessionTask*) conditionalReplaceWithOrderId: (NSString*) orderId
+    symbol: (NSString*) symbol
+    pRQty: (NSNumber*) pRQty
+    pRPrice: (NSNumber*) pRPrice
+    pRTriggerPrice: (NSNumber*) pRTriggerPrice
+    completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+
+
 
 @end

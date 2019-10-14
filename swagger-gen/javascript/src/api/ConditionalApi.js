@@ -83,9 +83,9 @@
       var formParams = {
       };
 
-      var authNames = [];
-      var contentTypes = [];
-      var accepts = [];
+      var authNames = ['apiKey', 'apiSignature'];
+      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      var accepts = ['application/json'];
       var returnType = Object;
 
       return this.apiClient.callApi(
@@ -137,9 +137,9 @@
       var formParams = {
       };
 
-      var authNames = [];
-      var contentTypes = [];
-      var accepts = [];
+      var authNames = ['apiKey', 'apiSignature'];
+      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      var accepts = ['application/json'];
       var returnType = Object;
 
       return this.apiClient.callApi(
@@ -239,13 +239,75 @@
       var formParams = {
       };
 
-      var authNames = [];
-      var contentTypes = [];
-      var accepts = [];
+      var authNames = ['apiKey', 'apiSignature'];
+      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      var accepts = ['application/json'];
       var returnType = Object;
 
       return this.apiClient.callApi(
         '/open-api/stop-order/create', 'POST',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the conditionalReplace operation.
+     * @callback module:api/ConditionalApi~conditionalReplaceCallback
+     * @param {String} error Error message, if any.
+     * @param {Object} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Replace conditional order. Only incomplete orders can be modified. 
+     * @param {String} orderId Order ID.
+     * @param {String} symbol Contract type.
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.pRQty Order quantity.
+     * @param {Number} opts.pRPrice Order price.
+     * @param {Number} opts.pRTriggerPrice Trigger price.
+     * @param {module:api/ConditionalApi~conditionalReplaceCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link Object}
+     */
+    this.conditionalReplace = function(orderId, symbol, opts, callback) {
+      opts = opts || {};
+      var postBody = null;
+
+      // verify the required parameter 'orderId' is set
+      if (orderId === undefined || orderId === null) {
+        throw new Error("Missing the required parameter 'orderId' when calling conditionalReplace");
+      }
+
+      // verify the required parameter 'symbol' is set
+      if (symbol === undefined || symbol === null) {
+        throw new Error("Missing the required parameter 'symbol' when calling conditionalReplace");
+      }
+
+
+      var pathParams = {
+      };
+      var queryParams = {
+        'order_id': orderId,
+        'symbol': symbol,
+        'p_r_qty': opts['pRQty'],
+        'p_r_price': opts['pRPrice'],
+        'p_r_trigger_price': opts['pRTriggerPrice'],
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = ['apiKey', 'apiSignature'];
+      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      var accepts = ['application/json'];
+      var returnType = Object;
+
+      return this.apiClient.callApi(
+        '/stop-order/replace', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

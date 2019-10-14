@@ -11,8 +11,8 @@
              :header-params {}
              :query-params  {"symbol" symbol }
              :form-params   {}
-             :content-types []
-             :accepts       []
+             :content-types ["application/json" "application/x-www-form-urlencoded"]
+             :accepts       ["application/json"]
              :auth-names    []}))
 
 (defn market-orderbook
@@ -28,8 +28,8 @@
              :header-params {}
              :query-params  {}
              :form-params   {}
-             :content-types []
-             :accepts       []
+             :content-types ["application/json" "application/x-www-form-urlencoded"]
+             :accepts       ["application/json"]
              :auth-names    []}))
 
 (defn market-symbol-info

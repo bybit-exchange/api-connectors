@@ -28,6 +28,12 @@ open class PositionsAPI {
     /**
      Update margin.
      - POST /position/change-position-margin
+     - API Key:
+       - type: apiKey api-key 
+       - name: apiKey
+     - API Key:
+       - type: apiKey api-signature 
+       - name: apiSignature
      - examples: [{contentType=application/json, example=""}]
      
      - parameter symbol: (query) Contract type which you want update its margin 
@@ -66,6 +72,12 @@ open class PositionsAPI {
     /**
      Get my position list.
      - GET /position/list
+     - API Key:
+       - type: apiKey api-key 
+       - name: apiKey
+     - API Key:
+       - type: apiKey api-signature 
+       - name: apiSignature
      - examples: [{contentType=application/json, example=""}]
 
      - returns: RequestBuilder<Any> 
@@ -99,6 +111,12 @@ open class PositionsAPI {
     /**
      Change user leverage.
      - POST /user/leverage/save
+     - API Key:
+       - type: apiKey api-key 
+       - name: apiKey
+     - API Key:
+       - type: apiKey api-signature 
+       - name: apiSignature
      - examples: [{contentType=application/json, example=""}]
      
      - parameter symbol: (query) A symbol which you want change its leverage 
@@ -141,6 +159,12 @@ open class PositionsAPI {
     /**
      Set Trading-Stop Condition.
      - POST /open-api/position/trading-stop
+     - API Key:
+       - type: apiKey api-key 
+       - name: apiKey
+     - API Key:
+       - type: apiKey api-signature 
+       - name: apiSignature
      - examples: [{contentType=application/json, example=""}]
      
      - parameter symbol: (query) Contract type 
@@ -183,6 +207,12 @@ open class PositionsAPI {
     /**
      Get user leverage setting.
      - GET /user/leverage
+     - API Key:
+       - type: apiKey api-key 
+       - name: apiKey
+     - API Key:
+       - type: apiKey api-signature 
+       - name: apiSignature
      - examples: [{contentType=application/json, example=""}]
 
      - returns: RequestBuilder<Any> 

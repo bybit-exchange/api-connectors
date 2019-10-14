@@ -56,6 +56,8 @@
      * @type {Array.<String>}
      */
     this.authentications = {
+      'apiKey': {type: 'apiKey', 'in': 'header', name: 'api-key'},
+      'apiSignature': {type: 'apiKey', 'in': 'header', name: 'api-signature'}
     };
     /**
      * The default HTTP headers to be included for all API calls.

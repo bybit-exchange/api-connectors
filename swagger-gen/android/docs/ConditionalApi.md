@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**conditionalCancel**](ConditionalApi.md#conditionalCancel) | **POST** /open-api/stop-order/cancel | Cancel conditional order.
 [**conditionalGetOrders**](ConditionalApi.md#conditionalGetOrders) | **GET** /open-api/stop-order/list | Get my conditional order list.
 [**conditionalNew**](ConditionalApi.md#conditionalNew) | **POST** /open-api/stop-order/create | Place a new conditional order.
+[**conditionalReplace**](ConditionalApi.md#conditionalReplace) | **POST** /stop-order/replace | Replace conditional order. Only incomplete orders can be modified. 
 
 
 <a name="conditionalCancel"></a>
@@ -43,12 +44,12 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
 
 <a name="conditionalGetOrders"></a>
 # **conditionalGetOrders**
@@ -94,12 +95,12 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
 
 <a name="conditionalNew"></a>
 # **conditionalNew**
@@ -153,10 +154,59 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+<a name="conditionalReplace"></a>
+# **conditionalReplace**
+> Object conditionalReplace(orderId, symbol, pRQty, pRPrice, pRTriggerPrice)
+
+Replace conditional order. Only incomplete orders can be modified. 
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.api.ConditionalApi;
+
+ConditionalApi apiInstance = new ConditionalApi();
+String orderId = "orderId_example"; // String | Order ID.
+String symbol = "symbol_example"; // String | Contract type.
+BigDecimal pRQty = new BigDecimal(); // BigDecimal | Order quantity.
+Double pRPrice = 3.4D; // Double | Order price.
+Double pRTriggerPrice = 3.4D; // Double | Trigger price.
+try {
+    Object result = apiInstance.conditionalReplace(orderId, symbol, pRQty, pRPrice, pRTriggerPrice);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ConditionalApi#conditionalReplace");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderId** | **String**| Order ID. |
+ **symbol** | **String**| Contract type. |
+ **pRQty** | **BigDecimal**| Order quantity. | [optional]
+ **pRPrice** | **Double**| Order price. | [optional]
+ **pRTriggerPrice** | **Double**| Trigger price. | [optional]
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
 

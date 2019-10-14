@@ -8,6 +8,36 @@ info:
   contact:
     email: "support@bybit.com"
 basePath: "/"
+tags:
+- name: "Common"
+  description: "Common interface"
+- name: "Order"
+  description: "Place new order, cancel, replace and get order list"
+- name: "Conditional"
+  description: "Place, cancel and replace conditional order, get conditional order\
+    \ list"
+- name: "Positions"
+  description: "Get account position info"
+- name: "Wallet"
+  description: "Get wallet fund records"
+- name: "Funding"
+  description: "Get fundng rate, get my funding fee, get predicted funding fee"
+- name: "Execution"
+  description: "Get the trade records of a order"
+- name: "Market"
+  description: "Get the orderbook and latest information for symbol"
+- name: "Kline"
+  description: "Query historical kline"
+- name: "Symbol"
+  description: "Query Symbols"
+consumes:
+- "application/json"
+- "application/x-www-form-urlencoded"
+produces:
+- "application/json"
+security:
+- apiKey: []
+  apiSignature: []
 paths:
   /v2/public/time:
     get:
@@ -46,7 +76,6 @@ paths:
         200:
           description: "Request was successful"
           schema: {}
-      security: []
       deprecated: false
   /user/leverage/save:
     post:
@@ -71,7 +100,6 @@ paths:
         200:
           description: "Request was successful"
           schema: {}
-      security: []
       deprecated: false
   /position/list:
     get:
@@ -84,7 +112,6 @@ paths:
         200:
           description: "Request was successful"
           schema: {}
-      security: []
       deprecated: false
   /position/change-position-margin:
     post:
@@ -109,7 +136,6 @@ paths:
         200:
           description: "Request was successful"
           schema: {}
-      security: []
       deprecated: false
   /open-api/position/trading-stop:
     post:
@@ -149,7 +175,6 @@ paths:
         200:
           description: "Request was successful"
           schema: {}
-      security: []
       deprecated: false
   /open-api/wallet/fund/records:
     get:
@@ -205,7 +230,6 @@ paths:
         200:
           description: "Request was successful"
           schema: {}
-      security: []
       deprecated: false
   /open-api/order/create:
     post:
@@ -389,6 +413,46 @@ paths:
           schema: {}
       security: []
       deprecated: false
+  /order/replace:
+    post:
+      tags:
+      - "Order"
+      summary: "Replace active order. Only incomplete orders can be modified. "
+      operationId: "Order.Replace"
+      parameters:
+      - name: "order_id"
+        in: "query"
+        description: "Order ID."
+        required: true
+        type: "string"
+        x-exportParamName: "OrderId"
+      - name: "symbol"
+        in: "query"
+        description: "Contract type."
+        required: true
+        type: "string"
+        x-exportParamName: "Symbol"
+      - name: "p_r_qty"
+        in: "query"
+        description: "Order quantity."
+        required: false
+        type: "number"
+        format: "int64"
+        x-exportParamName: "PRQty"
+        x-optionalDataType: "Float32"
+      - name: "p_r_price"
+        in: "query"
+        description: "Order price."
+        required: false
+        type: "number"
+        format: "double"
+        x-exportParamName: "PRPrice"
+        x-optionalDataType: "Float64"
+      responses:
+        200:
+          description: "Request was successful"
+          schema: {}
+      deprecated: false
   /open-api/stop-order/create:
     post:
       tags:
@@ -470,7 +534,6 @@ paths:
         200:
           description: "Request was successful"
           schema: {}
-      security: []
       deprecated: false
   /open-api/stop-order/list:
     get:
@@ -528,7 +591,6 @@ paths:
         200:
           description: "Request was successful"
           schema: {}
-      security: []
       deprecated: false
   /open-api/stop-order/cancel:
     post:
@@ -547,7 +609,54 @@ paths:
         200:
           description: "Request was successful"
           schema: {}
-      security: []
+      deprecated: false
+  /stop-order/replace:
+    post:
+      tags:
+      - "Conditional"
+      summary: "Replace conditional order. Only incomplete orders can be modified. "
+      operationId: "Conditional.Replace"
+      parameters:
+      - name: "order_id"
+        in: "query"
+        description: "Order ID."
+        required: true
+        type: "string"
+        x-exportParamName: "OrderId"
+      - name: "symbol"
+        in: "query"
+        description: "Contract type."
+        required: true
+        type: "string"
+        x-exportParamName: "Symbol"
+      - name: "p_r_qty"
+        in: "query"
+        description: "Order quantity."
+        required: false
+        type: "number"
+        format: "int64"
+        x-exportParamName: "PRQty"
+        x-optionalDataType: "Float32"
+      - name: "p_r_price"
+        in: "query"
+        description: "Order price."
+        required: false
+        type: "number"
+        format: "double"
+        x-exportParamName: "PRPrice"
+        x-optionalDataType: "Float64"
+      - name: "p_r_trigger_price"
+        in: "query"
+        description: "Trigger price."
+        required: false
+        type: "number"
+        format: "double"
+        x-exportParamName: "PRTriggerPrice"
+        x-optionalDataType: "Float64"
+      responses:
+        200:
+          description: "Request was successful"
+          schema: {}
       deprecated: false
   /open-api/funding/prev-funding-rate:
     get:
@@ -566,7 +675,6 @@ paths:
         200:
           description: "Request was successful"
           schema: {}
-      security: []
       deprecated: false
   /open-api/funding/prev-funding:
     get:
@@ -589,7 +697,6 @@ paths:
         200:
           description: "Request was successful"
           schema: {}
-      security: []
       deprecated: false
   /open-api/funding/predicted-funding:
     get:
@@ -608,7 +715,6 @@ paths:
         200:
           description: "Request was successful"
           schema: {}
-      security: []
       deprecated: false
   /v2/private/execution/list:
     get:
@@ -700,6 +806,15 @@ paths:
           schema: {}
       security: []
       deprecated: false
+securityDefinitions:
+  apiKey:
+    type: "apiKey"
+    name: "api-key"
+    in: "header"
+  apiSignature:
+    type: "apiKey"
+    name: "api-signature"
+    in: "header"
 definitions:
   ServerTime:
     type: "object"
@@ -1013,6 +1128,23 @@ definitions:
       time_now:
         type: "string"
     description: "cancel order response"
+  ReplaceOrderBase:
+    type: "object"
+    properties:
+      ret_code:
+        type: "number"
+        format: "int32"
+      ret_msg:
+        type: "string"
+      ext_code:
+        type: "string"
+      ext_info:
+        type: "string"
+      result:
+        type: "string"
+      time_now:
+        type: "string"
+    description: "Replace active order response"
   ConditionalBase:
     type: "object"
     properties:
@@ -1095,6 +1227,23 @@ definitions:
         items:
           $ref: "#/definitions/ConditionalRes"
     description: "Get order list response"
+  ReplaceConditionalBase:
+    type: "object"
+    properties:
+      ret_code:
+        type: "number"
+        format: "int32"
+      ret_msg:
+        type: "string"
+      ext_code:
+        type: "string"
+      ext_info:
+        type: "string"
+      result:
+        type: "string"
+      time_now:
+        type: "string"
+    description: "Replace conditional order response"
   FundingRateBase:
     type: "object"
     properties:

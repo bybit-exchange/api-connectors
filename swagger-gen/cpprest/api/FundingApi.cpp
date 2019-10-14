@@ -49,6 +49,7 @@ pplx::task<std::shared_ptr<Object>> FundingApi::funding_getRate(utility::string_
     std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
 
     std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t responseHttpContentType;
 
@@ -75,6 +76,8 @@ pplx::task<std::shared_ptr<Object>> FundingApi::funding_getRate(utility::string_
     headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/x-www-form-urlencoded") );
 
     {
         queryParams[utility::conversions::to_string_t("symbol")] = ApiClient::parameterToString(symbol);
@@ -98,6 +101,22 @@ pplx::task<std::shared_ptr<Object>> FundingApi::funding_getRate(utility::string_
         throw ApiException(415, utility::conversions::to_string_t("FundingApi->funding_getRate does not consume any supported media type"));
     }
 
+    // authentication (apiKey) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api-key"));
+        if ( apiKey.size() > 0 )
+        {
+            headerParams[utility::conversions::to_string_t("api-key")] = apiKey;
+        }
+    }
+    // authentication (apiSignature) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api-signature"));
+        if ( apiKey.size() > 0 )
+        {
+            headerParams[utility::conversions::to_string_t("api-signature")] = apiKey;
+        }
+    }
 
     return m_ApiClient->callApi(path, utility::conversions::to_string_t("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -164,6 +183,7 @@ pplx::task<std::shared_ptr<Object>> FundingApi::funding_predicted(utility::strin
     std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
 
     std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t responseHttpContentType;
 
@@ -190,6 +210,8 @@ pplx::task<std::shared_ptr<Object>> FundingApi::funding_predicted(utility::strin
     headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/x-www-form-urlencoded") );
 
     {
         queryParams[utility::conversions::to_string_t("symbol")] = ApiClient::parameterToString(symbol);
@@ -213,6 +235,22 @@ pplx::task<std::shared_ptr<Object>> FundingApi::funding_predicted(utility::strin
         throw ApiException(415, utility::conversions::to_string_t("FundingApi->funding_predicted does not consume any supported media type"));
     }
 
+    // authentication (apiKey) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api-key"));
+        if ( apiKey.size() > 0 )
+        {
+            headerParams[utility::conversions::to_string_t("api-key")] = apiKey;
+        }
+    }
+    // authentication (apiSignature) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api-signature"));
+        if ( apiKey.size() > 0 )
+        {
+            headerParams[utility::conversions::to_string_t("api-signature")] = apiKey;
+        }
+    }
 
     return m_ApiClient->callApi(path, utility::conversions::to_string_t("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -279,6 +317,7 @@ pplx::task<std::shared_ptr<Object>> FundingApi::funding_predictedRate(utility::s
     std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
 
     std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t responseHttpContentType;
 
@@ -305,6 +344,8 @@ pplx::task<std::shared_ptr<Object>> FundingApi::funding_predictedRate(utility::s
     headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/x-www-form-urlencoded") );
 
     {
         queryParams[utility::conversions::to_string_t("symbol")] = ApiClient::parameterToString(symbol);
@@ -328,6 +369,22 @@ pplx::task<std::shared_ptr<Object>> FundingApi::funding_predictedRate(utility::s
         throw ApiException(415, utility::conversions::to_string_t("FundingApi->funding_predictedRate does not consume any supported media type"));
     }
 
+    // authentication (apiKey) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api-key"));
+        if ( apiKey.size() > 0 )
+        {
+            headerParams[utility::conversions::to_string_t("api-key")] = apiKey;
+        }
+    }
+    // authentication (apiSignature) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api-signature"));
+        if ( apiKey.size() > 0 )
+        {
+            headerParams[utility::conversions::to_string_t("api-signature")] = apiKey;
+        }
+    }
 
     return m_ApiClient->callApi(path, utility::conversions::to_string_t("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)

@@ -25,6 +25,7 @@ Class | Method | HTTP request | Description
 *ConditionalApi* | [**ConditionalCancel**](docs/ConditionalApi.md#conditionalcancel) | **Post** /open-api/stop-order/cancel | Cancel conditional order.
 *ConditionalApi* | [**ConditionalGetOrders**](docs/ConditionalApi.md#conditionalgetorders) | **Get** /open-api/stop-order/list | Get my conditional order list.
 *ConditionalApi* | [**ConditionalNew**](docs/ConditionalApi.md#conditionalnew) | **Post** /open-api/stop-order/create | Place a new conditional order.
+*ConditionalApi* | [**ConditionalReplace**](docs/ConditionalApi.md#conditionalreplace) | **Post** /stop-order/replace | Replace conditional order. Only incomplete orders can be modified. 
 *ExecutionApi* | [**ExecutionGetTrades**](docs/ExecutionApi.md#executiongettrades) | **Get** /v2/private/execution/list | Get the trade records of a order.
 *FundingApi* | [**FundingGetRate**](docs/FundingApi.md#fundinggetrate) | **Get** /open-api/funding/prev-funding | Funding settlement occurs every 8 hours at 00:00 UTC, 08:00 UTC and 16:00 UTC. The current interval&#39;s fund fee settlement is based on the previous interval&#39;s fund rate. For example, at 16:00, the settlement is based on the fund rate generated at 8:00. The fund rate generated at 16:00 will be used at 0:00 on the next day.
 *FundingApi* | [**FundingPredicted**](docs/FundingApi.md#fundingpredicted) | **Get** /open-api/funding/predicted-funding | Get predicted funding rate and funding fee.
@@ -35,6 +36,7 @@ Class | Method | HTTP request | Description
 *OrderApi* | [**OrderCancel**](docs/OrderApi.md#ordercancel) | **Post** /open-api/order/cancel | Get my active order list.
 *OrderApi* | [**OrderGetOrders**](docs/OrderApi.md#ordergetorders) | **Get** /open-api/order/list | Get my active order list.
 *OrderApi* | [**OrderNew**](docs/OrderApi.md#ordernew) | **Post** /open-api/order/create | Place active order
+*OrderApi* | [**OrderReplace**](docs/OrderApi.md#orderreplace) | **Post** /order/replace | Replace active order. Only incomplete orders can be modified. 
 *PositionsApi* | [**PositionsChangeMargin**](docs/PositionsApi.md#positionschangemargin) | **Post** /position/change-position-margin | Update margin.
 *PositionsApi* | [**PositionsMyPosition**](docs/PositionsApi.md#positionsmyposition) | **Get** /position/list | Get my position list.
 *PositionsApi* | [**PositionsSaveLeverage**](docs/PositionsApi.md#positionssaveleverage) | **Post** /user/leverage/save | Change user leverage.
@@ -72,6 +74,8 @@ Class | Method | HTTP request | Description
  - [Position](docs/Position.md)
  - [PositionInfo](docs/PositionInfo.md)
  - [PriceFilter](docs/PriceFilter.md)
+ - [ReplaceConditionalBase](docs/ReplaceConditionalBase.md)
+ - [ReplaceOrderBase](docs/ReplaceOrderBase.md)
  - [ServerTime](docs/ServerTime.md)
  - [SymbolInfo](docs/SymbolInfo.md)
  - [SymbolInfoBase](docs/SymbolInfoBase.md)
@@ -85,8 +89,29 @@ Class | Method | HTTP request | Description
 
 
 ## Documentation For Authorization
- Endpoints do not require authorization.
 
+## apiKey
+- **Type**: API key 
+
+Example
+```golang
+auth := context.WithValue(context.Background(), sw.ContextAPIKey, sw.APIKey{
+	Key: "APIKEY",
+	Prefix: "Bearer", // Omit if not necessary.
+})
+r, err := client.Service.Operation(auth, args)
+```
+## apiSignature
+- **Type**: API key 
+
+Example
+```golang
+auth := context.WithValue(context.Background(), sw.ContextAPIKey, sw.APIKey{
+	Key: "APIKEY",
+	Prefix: "Bearer", // Omit if not necessary.
+})
+r, err := client.Service.Operation(auth, args)
+```
 
 ## Author
 

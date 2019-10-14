@@ -50,7 +50,7 @@ func (a *ExecutionApiService) ExecutionGetTrades(ctx context.Context, orderId st
 
 	localVarQueryParams.Add("order_id", parameterToString(orderId, ""))
 	// to determine the Content-Type header
-	localVarHttpContentTypes := []string{}
+	localVarHttpContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
 
 	// set Content-Type header
 	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
@@ -59,7 +59,7 @@ func (a *ExecutionApiService) ExecutionGetTrades(ctx context.Context, orderId st
 	}
 
 	// to determine the Accept header
-	localVarHttpHeaderAccepts := []string{}
+	localVarHttpHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)

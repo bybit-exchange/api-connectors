@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**orderCancel**](SWGOrderApi.md#ordercancel) | **POST** /open-api/order/cancel | Get my active order list.
 [**orderGetOrders**](SWGOrderApi.md#ordergetorders) | **GET** /open-api/order/list | Get my active order list.
 [**orderNew**](SWGOrderApi.md#ordernew) | **POST** /open-api/order/create | Place active order
+[**orderReplace**](SWGOrderApi.md#orderreplace) | **POST** /order/replace | Replace active order. Only incomplete orders can be modified. 
 
 
 # **orderCancel**
@@ -56,8 +57,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -128,8 +129,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -216,8 +217,80 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **orderReplace**
+```objc
+-(NSURLSessionTask*) orderReplaceWithOrderId: (NSString*) orderId
+    symbol: (NSString*) symbol
+    pRQty: (NSNumber*) pRQty
+    pRPrice: (NSNumber*) pRPrice
+        completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+```
+
+Replace active order. Only incomplete orders can be modified. 
+
+### Example 
+```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: apiKey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
+
+// Configure API key authorization: (authentication scheme: apiSignature)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
+
+
+NSString* orderId = @"orderId_example"; // Order ID.
+NSString* symbol = @"symbol_example"; // Contract type.
+NSNumber* pRQty = @8.14; // Order quantity. (optional)
+NSNumber* pRPrice = @1.2; // Order price. (optional)
+
+SWGOrderApi*apiInstance = [[SWGOrderApi alloc] init];
+
+// Replace active order. Only incomplete orders can be modified. 
+[apiInstance orderReplaceWithOrderId:orderId
+              symbol:symbol
+              pRQty:pRQty
+              pRPrice:pRPrice
+          completionHandler: ^(NSObject* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling SWGOrderApi->orderReplace: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderId** | **NSString***| Order ID. | 
+ **symbol** | **NSString***| Contract type. | 
+ **pRQty** | **NSNumber***| Order quantity. | [optional] 
+ **pRPrice** | **NSNumber***| Order price. | [optional] 
+
+### Return type
+
+**NSObject***
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -49,13 +49,17 @@ module SwaggerClient
 
       # header parameters
       header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json', 'application/x-www-form-urlencoded'])
 
       # form parameters
       form_params = {}
 
       # http body (model)
       post_body = nil
-      auth_names = []
+      auth_names = ['apiKey', 'apiSignature']
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
         :query_params => query_params,
@@ -109,13 +113,17 @@ module SwaggerClient
 
       # header parameters
       header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json', 'application/x-www-form-urlencoded'])
 
       # form parameters
       form_params = {}
 
       # http body (model)
       post_body = nil
-      auth_names = []
+      auth_names = ['apiKey', 'apiSignature']
       data, status_code, headers = @api_client.call_api(:GET, local_var_path,
         :header_params => header_params,
         :query_params => query_params,
@@ -213,13 +221,17 @@ module SwaggerClient
 
       # header parameters
       header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json', 'application/x-www-form-urlencoded'])
 
       # form parameters
       form_params = {}
 
       # http body (model)
       post_body = nil
-      auth_names = []
+      auth_names = ['apiKey', 'apiSignature']
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
         :query_params => query_params,
@@ -229,6 +241,75 @@ module SwaggerClient
         :return_type => 'Object')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: ConditionalApi#conditional_new\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+    # Replace conditional order. Only incomplete orders can be modified. 
+    # @param order_id Order ID.
+    # @param symbol Contract type.
+    # @param [Hash] opts the optional parameters
+    # @option opts [Float] :p_r_qty Order quantity.
+    # @option opts [Float] :p_r_price Order price.
+    # @option opts [Float] :p_r_trigger_price Trigger price.
+    # @return [Object]
+    def conditional_replace(order_id, symbol, opts = {})
+      data, _status_code, _headers = conditional_replace_with_http_info(order_id, symbol, opts)
+      data
+    end
+
+    # Replace conditional order. Only incomplete orders can be modified. 
+    # @param order_id Order ID.
+    # @param symbol Contract type.
+    # @param [Hash] opts the optional parameters
+    # @option opts [Float] :p_r_qty Order quantity.
+    # @option opts [Float] :p_r_price Order price.
+    # @option opts [Float] :p_r_trigger_price Trigger price.
+    # @return [Array<(Object, Fixnum, Hash)>] Object data, response status code and response headers
+    def conditional_replace_with_http_info(order_id, symbol, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: ConditionalApi.conditional_replace ...'
+      end
+      # verify the required parameter 'order_id' is set
+      if @api_client.config.client_side_validation && order_id.nil?
+        fail ArgumentError, "Missing the required parameter 'order_id' when calling ConditionalApi.conditional_replace"
+      end
+      # verify the required parameter 'symbol' is set
+      if @api_client.config.client_side_validation && symbol.nil?
+        fail ArgumentError, "Missing the required parameter 'symbol' when calling ConditionalApi.conditional_replace"
+      end
+      # resource path
+      local_var_path = '/stop-order/replace'
+
+      # query parameters
+      query_params = {}
+      query_params[:'order_id'] = order_id
+      query_params[:'symbol'] = symbol
+      query_params[:'p_r_qty'] = opts[:'p_r_qty'] if !opts[:'p_r_qty'].nil?
+      query_params[:'p_r_price'] = opts[:'p_r_price'] if !opts[:'p_r_price'].nil?
+      query_params[:'p_r_trigger_price'] = opts[:'p_r_trigger_price'] if !opts[:'p_r_trigger_price'].nil?
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json', 'application/x-www-form-urlencoded'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = nil
+      auth_names = ['apiKey', 'apiSignature']
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'Object')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: ConditionalApi#conditional_replace\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

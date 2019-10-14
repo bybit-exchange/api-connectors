@@ -11,9 +11,9 @@
               :header-params {}
               :query-params  {"start_date" start-date "end_date" end-date "currency" currency "wallet_fund_type" wallet-fund-type "page" page "limit" limit }
               :form-params   {}
-              :content-types []
-              :accepts       []
-              :auth-names    []})))
+              :content-types ["application/json" "application/x-www-form-urlencoded"]
+              :accepts       ["application/json"]
+              :auth-names    ["apiKey" "apiSignature"]})))
 
 (defn wallet-get-records
   "Get wallet fund records"

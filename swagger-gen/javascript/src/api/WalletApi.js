@@ -90,9 +90,9 @@
       var formParams = {
       };
 
-      var authNames = [];
-      var contentTypes = [];
-      var accepts = [];
+      var authNames = ['apiKey', 'apiSignature'];
+      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      var accepts = ['application/json'];
       var returnType = Object;
 
       return this.apiClient.callApi(

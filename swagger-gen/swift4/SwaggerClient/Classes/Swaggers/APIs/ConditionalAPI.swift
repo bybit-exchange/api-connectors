@@ -27,6 +27,12 @@ open class ConditionalAPI {
     /**
      Cancel conditional order.
      - POST /open-api/stop-order/cancel
+     - API Key:
+       - type: apiKey api-key 
+       - name: apiKey
+     - API Key:
+       - type: apiKey api-signature 
+       - name: apiSignature
      - examples: [{contentType=application/json, example=""}]
      
      - parameter stopOrderId: (query) Order ID of conditional order. 
@@ -69,6 +75,12 @@ open class ConditionalAPI {
     /**
      Get my conditional order list.
      - GET /open-api/stop-order/list
+     - API Key:
+       - type: apiKey api-key 
+       - name: apiKey
+     - API Key:
+       - type: apiKey api-signature 
+       - name: apiSignature
      - examples: [{contentType=application/json, example=""}]
      
      - parameter stopOrderId: (query) Order ID of conditional order. (optional)
@@ -125,6 +137,12 @@ open class ConditionalAPI {
     /**
      Place a new conditional order.
      - POST /open-api/stop-order/create
+     - API Key:
+       - type: apiKey api-key 
+       - name: apiKey
+     - API Key:
+       - type: apiKey api-signature 
+       - name: apiSignature
      - examples: [{contentType=application/json, example=""}]
      
      - parameter side: (query) Side. 
@@ -157,6 +175,61 @@ open class ConditionalAPI {
             "time_in_force": timeInForce, 
             "close_on_trigger": closeOnTrigger, 
             "order_link_id": orderLinkId
+        ])
+
+        let requestBuilder: RequestBuilder<Any>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+    }
+
+    /**
+     Replace conditional order. Only incomplete orders can be modified. 
+     
+     - parameter orderId: (query) Order ID. 
+     - parameter symbol: (query) Contract type. 
+     - parameter pRQty: (query) Order quantity. (optional)
+     - parameter pRPrice: (query) Order price. (optional)
+     - parameter pRTriggerPrice: (query) Trigger price. (optional)
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func conditionalReplace(orderId: String, symbol: String, pRQty: Double? = nil, pRPrice: Double? = nil, pRTriggerPrice: Double? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
+        conditionalReplaceWithRequestBuilder(orderId: orderId, symbol: symbol, pRQty: pRQty, pRPrice: pRPrice, pRTriggerPrice: pRTriggerPrice).execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Replace conditional order. Only incomplete orders can be modified. 
+     - POST /stop-order/replace
+     - API Key:
+       - type: apiKey api-key 
+       - name: apiKey
+     - API Key:
+       - type: apiKey api-signature 
+       - name: apiSignature
+     - examples: [{contentType=application/json, example=""}]
+     
+     - parameter orderId: (query) Order ID. 
+     - parameter symbol: (query) Contract type. 
+     - parameter pRQty: (query) Order quantity. (optional)
+     - parameter pRPrice: (query) Order price. (optional)
+     - parameter pRTriggerPrice: (query) Trigger price. (optional)
+
+     - returns: RequestBuilder<Any> 
+     */
+    open class func conditionalReplaceWithRequestBuilder(orderId: String, symbol: String, pRQty: Double? = nil, pRPrice: Double? = nil, pRTriggerPrice: Double? = nil) -> RequestBuilder<Any> {
+        let path = "/stop-order/replace"
+        let URLString = SwaggerClientAPI.basePath + path
+        let parameters: [String:Any]? = nil
+        
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "order_id": orderId, 
+            "symbol": symbol, 
+            "p_r_qty": pRQty, 
+            "p_r_price": pRPrice, 
+            "p_r_trigger_price": pRTriggerPrice
         ])
 
         let requestBuilder: RequestBuilder<Any>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()

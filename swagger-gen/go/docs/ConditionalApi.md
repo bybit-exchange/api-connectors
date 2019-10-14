@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**ConditionalCancel**](ConditionalApi.md#ConditionalCancel) | **Post** /open-api/stop-order/cancel | Cancel conditional order.
 [**ConditionalGetOrders**](ConditionalApi.md#ConditionalGetOrders) | **Get** /open-api/stop-order/list | Get my conditional order list.
 [**ConditionalNew**](ConditionalApi.md#ConditionalNew) | **Post** /open-api/stop-order/create | Place a new conditional order.
+[**ConditionalReplace**](ConditionalApi.md#ConditionalReplace) | **Post** /stop-order/replace | Replace conditional order. Only incomplete orders can be modified. 
 
 
 # **ConditionalCancel**
@@ -26,12 +27,12 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -64,12 +65,12 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -114,12 +115,51 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ConditionalReplace**
+> interface{} ConditionalReplace(ctx, orderId, symbol, optional)
+Replace conditional order. Only incomplete orders can be modified. 
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **orderId** | **string**| Order ID. | 
+  **symbol** | **string**| Contract type. | 
+ **optional** | ***ConditionalReplaceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a ConditionalReplaceOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **pRQty** | **optional.Float32**| Order quantity. | 
+ **pRPrice** | **optional.Float64**| Order price. | 
+ **pRTriggerPrice** | **optional.Float64**| Trigger price. | 
+
+### Return type
+
+[**interface{}**](interface{}.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

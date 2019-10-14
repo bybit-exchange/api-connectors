@@ -32,6 +32,12 @@ open class WalletAPI {
     /**
      Get wallet fund records
      - GET /open-api/wallet/fund/records
+     - API Key:
+       - type: apiKey api-key 
+       - name: apiKey
+     - API Key:
+       - type: apiKey api-signature 
+       - name: apiSignature
      - examples: [{contentType=application/json, example=""}]
      
      - parameter startDate: (query) Start point for result (optional)

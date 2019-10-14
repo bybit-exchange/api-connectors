@@ -78,13 +78,13 @@ public class ConditionalApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            
+            "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            
+            "application/json", "application/x-www-form-urlencoded"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -101,7 +101,7 @@ public class ConditionalApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[] { "apiKey", "apiSignature" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -217,13 +217,13 @@ public class ConditionalApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            
+            "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            
+            "application/json", "application/x-www-form-urlencoded"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -240,7 +240,7 @@ public class ConditionalApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[] { "apiKey", "apiSignature" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -378,13 +378,13 @@ public class ConditionalApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            
+            "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            
+            "application/json", "application/x-www-form-urlencoded"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -401,7 +401,7 @@ public class ConditionalApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[] { "apiKey", "apiSignature" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -536,6 +536,159 @@ public class ConditionalApi {
         }
 
         com.squareup.okhttp.Call call = conditionalNewValidateBeforeCall(side, symbol, orderType, qty, price, basePrice, stopPx, timeInForce, closeOnTrigger, orderLinkId, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<Object>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for conditionalReplace
+     * @param orderId Order ID. (required)
+     * @param symbol Contract type. (required)
+     * @param pRQty Order quantity. (optional)
+     * @param pRPrice Order price. (optional)
+     * @param pRTriggerPrice Trigger price. (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call conditionalReplaceCall(String orderId, String symbol, BigDecimal pRQty, Double pRPrice, Double pRTriggerPrice, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/stop-order/replace";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (orderId != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("order_id", orderId));
+        if (symbol != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("symbol", symbol));
+        if (pRQty != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("p_r_qty", pRQty));
+        if (pRPrice != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("p_r_price", pRPrice));
+        if (pRTriggerPrice != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("p_r_trigger_price", pRTriggerPrice));
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json", "application/x-www-form-urlencoded"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "apiKey", "apiSignature" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call conditionalReplaceValidateBeforeCall(String orderId, String symbol, BigDecimal pRQty, Double pRPrice, Double pRTriggerPrice, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'orderId' is set
+        if (orderId == null) {
+            throw new ApiException("Missing the required parameter 'orderId' when calling conditionalReplace(Async)");
+        }
+        
+        // verify the required parameter 'symbol' is set
+        if (symbol == null) {
+            throw new ApiException("Missing the required parameter 'symbol' when calling conditionalReplace(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = conditionalReplaceCall(orderId, symbol, pRQty, pRPrice, pRTriggerPrice, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Replace conditional order. Only incomplete orders can be modified. 
+     * 
+     * @param orderId Order ID. (required)
+     * @param symbol Contract type. (required)
+     * @param pRQty Order quantity. (optional)
+     * @param pRPrice Order price. (optional)
+     * @param pRTriggerPrice Trigger price. (optional)
+     * @return Object
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public Object conditionalReplace(String orderId, String symbol, BigDecimal pRQty, Double pRPrice, Double pRTriggerPrice) throws ApiException {
+        ApiResponse<Object> resp = conditionalReplaceWithHttpInfo(orderId, symbol, pRQty, pRPrice, pRTriggerPrice);
+        return resp.getData();
+    }
+
+    /**
+     * Replace conditional order. Only incomplete orders can be modified. 
+     * 
+     * @param orderId Order ID. (required)
+     * @param symbol Contract type. (required)
+     * @param pRQty Order quantity. (optional)
+     * @param pRPrice Order price. (optional)
+     * @param pRTriggerPrice Trigger price. (optional)
+     * @return ApiResponse&lt;Object&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Object> conditionalReplaceWithHttpInfo(String orderId, String symbol, BigDecimal pRQty, Double pRPrice, Double pRTriggerPrice) throws ApiException {
+        com.squareup.okhttp.Call call = conditionalReplaceValidateBeforeCall(orderId, symbol, pRQty, pRPrice, pRTriggerPrice, null, null);
+        Type localVarReturnType = new TypeToken<Object>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Replace conditional order. Only incomplete orders can be modified.  (asynchronously)
+     * 
+     * @param orderId Order ID. (required)
+     * @param symbol Contract type. (required)
+     * @param pRQty Order quantity. (optional)
+     * @param pRPrice Order price. (optional)
+     * @param pRTriggerPrice Trigger price. (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call conditionalReplaceAsync(String orderId, String symbol, BigDecimal pRQty, Double pRPrice, Double pRTriggerPrice, final ApiCallback<Object> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = conditionalReplaceValidateBeforeCall(orderId, symbol, pRQty, pRPrice, pRTriggerPrice, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

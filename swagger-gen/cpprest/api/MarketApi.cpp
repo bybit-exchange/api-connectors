@@ -49,6 +49,7 @@ pplx::task<std::shared_ptr<Object>> MarketApi::market_orderbook(utility::string_
     std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
 
     std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t responseHttpContentType;
 
@@ -75,6 +76,8 @@ pplx::task<std::shared_ptr<Object>> MarketApi::market_orderbook(utility::string_
     headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/x-www-form-urlencoded") );
 
     {
         queryParams[utility::conversions::to_string_t("symbol")] = ApiClient::parameterToString(symbol);
@@ -164,6 +167,7 @@ pplx::task<std::shared_ptr<Object>> MarketApi::market_symbolInfo()
     std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
 
     std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t responseHttpContentType;
 
@@ -190,6 +194,8 @@ pplx::task<std::shared_ptr<Object>> MarketApi::market_symbolInfo()
     headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/x-www-form-urlencoded") );
 
 
     std::shared_ptr<IHttpBody> httpBody;

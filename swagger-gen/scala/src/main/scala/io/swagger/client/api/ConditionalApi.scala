@@ -185,6 +185,40 @@ class ConditionalApi(
       helper.conditionalNew(side, symbol, orderType, qty, price, basePrice, stopPx, timeInForce, closeOnTrigger, orderLinkId)
   }
 
+  /**
+   * Replace conditional order. Only incomplete orders can be modified. 
+   * 
+   *
+   * @param orderId Order ID. 
+   * @param symbol Contract type. 
+   * @param pRQty Order quantity. (optional)
+   * @param pRPrice Order price. (optional)
+   * @param pRTriggerPrice Trigger price. (optional)
+   * @return Any
+   */
+  def conditionalReplace(orderId: String, symbol: String, pRQty: Option[Number] = None, pRPrice: Option[Double] = None, pRTriggerPrice: Option[Double] = None): Option[Any] = {
+    val await = Try(Await.result(conditionalReplaceAsync(orderId, symbol, pRQty, pRPrice, pRTriggerPrice), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
+    }
+  }
+
+  /**
+   * Replace conditional order. Only incomplete orders can be modified.  asynchronously
+   * 
+   *
+   * @param orderId Order ID. 
+   * @param symbol Contract type. 
+   * @param pRQty Order quantity. (optional)
+   * @param pRPrice Order price. (optional)
+   * @param pRTriggerPrice Trigger price. (optional)
+   * @return Future(Any)
+   */
+  def conditionalReplaceAsync(orderId: String, symbol: String, pRQty: Option[Number] = None, pRPrice: Option[Double] = None, pRTriggerPrice: Option[Double] = None): Future[Any] = {
+      helper.conditionalReplace(orderId, symbol, pRQty, pRPrice, pRTriggerPrice)
+  }
+
 }
 
 class ConditionalApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
@@ -292,6 +326,44 @@ class ConditionalApiAsyncHelper(client: TransportClient, config: SwaggerConfig) 
     }
     orderLinkId match {
       case Some(param) => queryParams += "order_link_id" -> param.toString
+      case _ => queryParams
+    }
+
+    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def conditionalReplace(orderId: String,
+    symbol: String,
+    pRQty: Option[Number] = None,
+    pRPrice: Option[Double] = None,
+    pRTriggerPrice: Option[Double] = None
+    )(implicit reader: ClientResponseReader[Any]): Future[Any] = {
+    // create path and map variables
+    val path = (addFmt("/stop-order/replace"))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    if (orderId == null) throw new Exception("Missing required parameter 'orderId' when calling ConditionalApi->conditionalReplace")
+
+    if (symbol == null) throw new Exception("Missing required parameter 'symbol' when calling ConditionalApi->conditionalReplace")
+
+    queryParams += "order_id" -> orderId.toString
+    queryParams += "symbol" -> symbol.toString
+    pRQty match {
+      case Some(param) => queryParams += "p_r_qty" -> param.toString
+      case _ => queryParams
+    }
+    pRPrice match {
+      case Some(param) => queryParams += "p_r_price" -> param.toString
+      case _ => queryParams
+    }
+    pRTriggerPrice match {
+      case Some(param) => queryParams += "p_r_trigger_price" -> param.toString
       case _ => queryParams
     }
 

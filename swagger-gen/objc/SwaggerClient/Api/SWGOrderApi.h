@@ -92,5 +92,23 @@ extern NSInteger kSWGOrderApiMissingParamErrorCode;
     completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
 
 
+/// Replace active order. Only incomplete orders can be modified. 
+/// 
+///
+/// @param orderId Order ID.
+/// @param symbol Contract type.
+/// @param pRQty Order quantity. (optional)
+/// @param pRPrice Order price. (optional)
+/// 
+///  code:200 message:"Request was successful"
+///
+/// @return NSObject*
+-(NSURLSessionTask*) orderReplaceWithOrderId: (NSString*) orderId
+    symbol: (NSString*) symbol
+    pRQty: (NSNumber*) pRQty
+    pRPrice: (NSNumber*) pRPrice
+    completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+
+
 
 @end

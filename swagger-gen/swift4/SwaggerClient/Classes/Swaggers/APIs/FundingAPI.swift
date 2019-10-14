@@ -27,6 +27,12 @@ open class FundingAPI {
     /**
      Funding settlement occurs every 8 hours at 00:00 UTC, 08:00 UTC and 16:00 UTC. The current interval's fund fee settlement is based on the previous interval's fund rate. For example, at 16:00, the settlement is based on the fund rate generated at 8:00. The fund rate generated at 16:00 will be used at 0:00 on the next day.
      - GET /open-api/funding/prev-funding
+     - API Key:
+       - type: apiKey api-key 
+       - name: apiKey
+     - API Key:
+       - type: apiKey api-signature 
+       - name: apiSignature
      - examples: [{contentType=application/json, example=""}]
      
      - parameter symbol: (query) Contract type. 
@@ -64,6 +70,12 @@ open class FundingAPI {
     /**
      Get predicted funding rate and funding fee.
      - GET /open-api/funding/predicted-funding
+     - API Key:
+       - type: apiKey api-key 
+       - name: apiKey
+     - API Key:
+       - type: apiKey api-signature 
+       - name: apiSignature
      - examples: [{contentType=application/json, example=""}]
      
      - parameter symbol: (query) Contract type. 
@@ -101,6 +113,12 @@ open class FundingAPI {
     /**
      Get predicted funding rate and funding fee.
      - GET /open-api/funding/prev-funding-rate
+     - API Key:
+       - type: apiKey api-key 
+       - name: apiKey
+     - API Key:
+       - type: apiKey api-signature 
+       - name: apiSignature
      - examples: [{contentType=application/json, example=""}]
      
      - parameter symbol: (query) Contract type. 

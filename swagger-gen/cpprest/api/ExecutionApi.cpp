@@ -49,6 +49,7 @@ pplx::task<std::shared_ptr<Object>> ExecutionApi::execution_getTrades(utility::s
     std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
 
     std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t responseHttpContentType;
 
@@ -75,6 +76,8 @@ pplx::task<std::shared_ptr<Object>> ExecutionApi::execution_getTrades(utility::s
     headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/x-www-form-urlencoded") );
 
     {
         queryParams[utility::conversions::to_string_t("order_id")] = ApiClient::parameterToString(orderId);

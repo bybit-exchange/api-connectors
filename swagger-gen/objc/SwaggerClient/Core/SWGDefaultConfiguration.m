@@ -104,6 +104,20 @@
 
 - (NSDictionary *) authSettings {
     return @{
+               @"apiKey":
+                   @{
+                       @"type": @"api_key",
+                       @"in": @"header",
+                       @"key": @"api-key",
+                       @"value": [self getApiKeyWithPrefix:@"api-key"]
+                   },
+               @"apiSignature":
+                   @{
+                       @"type": @"api_key",
+                       @"in": @"header",
+                       @"key": @"api-signature",
+                       @"value": [self getApiKeyWithPrefix:@"api-signature"]
+                   },
                };
 }
 

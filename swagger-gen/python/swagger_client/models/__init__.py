@@ -41,6 +41,8 @@ from swagger_client.models.order_res_base import OrderResBase
 from swagger_client.models.position import Position
 from swagger_client.models.position_info import PositionInfo
 from swagger_client.models.price_filter import PriceFilter
+from swagger_client.models.replace_conditional_base import ReplaceConditionalBase
+from swagger_client.models.replace_order_base import ReplaceOrderBase
 from swagger_client.models.server_time import ServerTime
 from swagger_client.models.symbol_info import SymbolInfo
 from swagger_client.models.symbol_info_base import SymbolInfoBase

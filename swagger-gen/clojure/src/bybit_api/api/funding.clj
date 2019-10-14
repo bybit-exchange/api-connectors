@@ -11,9 +11,9 @@
              :header-params {}
              :query-params  {"symbol" symbol }
              :form-params   {}
-             :content-types []
-             :accepts       []
-             :auth-names    []}))
+             :content-types ["application/json" "application/x-www-form-urlencoded"]
+             :accepts       ["application/json"]
+             :auth-names    ["apiKey" "apiSignature"]}))
 
 (defn funding-get-rate
   "Funding settlement occurs every 8 hours at 00:00 UTC, 08:00 UTC and 16:00 UTC. The current interval's fund fee settlement is based on the previous interval's fund rate. For example, at 16:00, the settlement is based on the fund rate generated at 8:00. The fund rate generated at 16:00 will be used at 0:00 on the next day."
@@ -29,9 +29,9 @@
              :header-params {}
              :query-params  {"symbol" symbol }
              :form-params   {}
-             :content-types []
-             :accepts       []
-             :auth-names    []}))
+             :content-types ["application/json" "application/x-www-form-urlencoded"]
+             :accepts       ["application/json"]
+             :auth-names    ["apiKey" "apiSignature"]}))
 
 (defn funding-predicted
   "Get predicted funding rate and funding fee."
@@ -47,9 +47,9 @@
              :header-params {}
              :query-params  {"symbol" symbol }
              :form-params   {}
-             :content-types []
-             :accepts       []
-             :auth-names    []}))
+             :content-types ["application/json" "application/x-www-form-urlencoded"]
+             :accepts       ["application/json"]
+             :auth-names    ["apiKey" "apiSignature"]}))
 
 (defn funding-predicted-rate
   "Get predicted funding rate and funding fee."

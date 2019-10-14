@@ -31,7 +31,7 @@ import java.util.List;
  * Get the trade records of a order response
  */
 @ApiModel(description = "Get the trade records of a order response")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-10T14:10:24.237+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-14T19:28:07.787+08:00")
 public class TradeRecords {
   @SerializedName("order_id")
   private String orderId = null;

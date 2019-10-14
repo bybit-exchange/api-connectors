@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**order_cancel**](OrderApi.md#order_cancel) | **POST** /open-api/order/cancel | Get my active order list.
 [**order_get_orders**](OrderApi.md#order_get_orders) | **GET** /open-api/order/list | Get my active order list.
 [**order_new**](OrderApi.md#order_new) | **POST** /open-api/order/create | Place active order
+[**order_replace**](OrderApi.md#order_replace) | **POST** /order/replace | Replace active order. Only incomplete orders can be modified. 
 
 
 # **order_cancel**
@@ -52,8 +53,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -110,8 +111,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -176,8 +177,71 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **order_replace**
+> object order_replace(order_id, symbol, p_r_qty=p_r_qty, p_r_price=p_r_price)
+
+Replace active order. Only incomplete orders can be modified. 
+
+### Example
+```python
+from __future__ import print_function
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = swagger_client.OrderApi(swagger_client.ApiClient(configuration))
+order_id = 'order_id_example' # str | Order ID.
+symbol = 'symbol_example' # str | Contract type.
+p_r_qty = 8.14 # float | Order quantity. (optional)
+p_r_price = 1.2 # float | Order price. (optional)
+
+try:
+    # Replace active order. Only incomplete orders can be modified. 
+    api_response = api_instance.order_replace(order_id, symbol, p_r_qty=p_r_qty, p_r_price=p_r_price)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling OrderApi->order_replace: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **order_id** | **str**| Order ID. | 
+ **symbol** | **str**| Contract type. | 
+ **p_r_qty** | **float**| Order quantity. | [optional] 
+ **p_r_price** | **float**| Order price. | [optional] 
+
+### Return type
+
+**object**
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

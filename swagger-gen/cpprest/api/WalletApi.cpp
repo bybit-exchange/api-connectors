@@ -49,6 +49,7 @@ pplx::task<std::shared_ptr<Object>> WalletApi::wallet_getRecords(boost::optional
     std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
 
     std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t responseHttpContentType;
 
@@ -75,6 +76,8 @@ pplx::task<std::shared_ptr<Object>> WalletApi::wallet_getRecords(boost::optional
     headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/x-www-form-urlencoded") );
 
     if (startDate)
     {
@@ -119,6 +122,22 @@ pplx::task<std::shared_ptr<Object>> WalletApi::wallet_getRecords(boost::optional
         throw ApiException(415, utility::conversions::to_string_t("WalletApi->wallet_getRecords does not consume any supported media type"));
     }
 
+    // authentication (apiKey) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api-key"));
+        if ( apiKey.size() > 0 )
+        {
+            headerParams[utility::conversions::to_string_t("api-key")] = apiKey;
+        }
+    }
+    // authentication (apiSignature) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api-signature"));
+        if ( apiKey.size() > 0 )
+        {
+            headerParams[utility::conversions::to_string_t("api-signature")] = apiKey;
+        }
+    }
 
     return m_ApiClient->callApi(path, utility::conversions::to_string_t("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
