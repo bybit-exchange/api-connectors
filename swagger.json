@@ -73,8 +73,7 @@
                         }
                     }
                 },
-                "deprecated": false,
-                "security": []
+                "deprecated": false
             }
         },
         "/user/leverage/save": {
@@ -109,8 +108,7 @@
                         }
                     }
                 },
-                "deprecated": false,
-                "security": []
+                "deprecated": false
             }
         },
         "/position/list": {
@@ -131,8 +129,7 @@
                         }
                     }
                 },
-                "deprecated": false,
-                "security": []
+                "deprecated": false
             }
         },
         "/position/change-position-margin": {
@@ -167,8 +164,7 @@
                         }
                     }
                 },
-                "deprecated": false,
-                "security": []
+                "deprecated": false
             }
         },
         "/open-api/position/trading-stop": {
@@ -216,8 +212,7 @@
                         }
                     }
                 },
-                "deprecated": false,
-                "security": []
+                "deprecated": false
             }
         },
         "/open-api/wallet/fund/records": {
@@ -278,8 +273,7 @@
                         }
                     }
                 },
-                "deprecated": false,
-                "security": []
+                "deprecated": false
             }
         },
         "/open-api/order/create": {
@@ -490,6 +484,53 @@
                 "security": []
             }
         },
+        "/order/replace": {
+            "post": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Replace active order. Only incomplete orders can be modified. ",
+                "operationId": "Order.Replace",
+                "parameters": [{
+                    "name": "order_id",
+                    "in": "query",
+                    "description": "Order ID.",
+                    "required": true,
+                    "type": "string"
+                }, {
+                    "name": "symbol",
+                    "in": "query",
+                    "description": "Contract type.",
+                    "required": true,
+                    "type": "string"
+                }, {
+                    "name": "p_r_qty",
+                    "in": "query",
+                    "description": "Order quantity.",
+                    "required": false,
+                    "type": "number",
+                    "format": "int64"
+                }, {
+                    "name": "p_r_price",
+                    "in": "query",
+                    "description": "Order price.",
+                    "required": false,
+                    "type": "number",
+                    "format": "double"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/ReplaceOrderBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
         "/open-api/stop-order/create": {
             "post": {
                 "tags": [
@@ -581,8 +622,7 @@
                         }
                     }
                 },
-                "deprecated": false,
-                "security": []
+                "deprecated": false
             }
         },
         "/open-api/stop-order/list": {
@@ -647,8 +687,7 @@
                         }
                     }
                 },
-                "deprecated": false,
-                "security": []
+                "deprecated": false
             }
         },
         "/open-api/stop-order/cancel": {
@@ -675,8 +714,61 @@
                         }
                     }
                 },
-                "deprecated": false,
-                "security": []
+                "deprecated": false
+            }
+        },
+        "stop-order/replace": {
+            "post": {
+                "tags": [
+                    "Conditional"
+                ],
+                "summary": "Replace conditional order. Only incomplete orders can be modified. ",
+                "operationId": "Conditional.Replace",
+                "parameters": [{
+                    "name": "order_id",
+                    "in": "query",
+                    "description": "Order ID.",
+                    "required": true,
+                    "type": "string"
+                }, {
+                    "name": "symbol",
+                    "in": "query",
+                    "description": "Contract type.",
+                    "required": true,
+                    "type": "string"
+                }, {
+                    "name": "p_r_qty",
+                    "in": "query",
+                    "description": "Order quantity.",
+                    "required": false,
+                    "type": "number",
+                    "format": "int64"
+                }, {
+                    "name": "p_r_price",
+                    "in": "query",
+                    "description": "Order price.",
+                    "required": false,
+                    "type": "number",
+                    "format": "double"
+                }, {
+                    "name": "p_r_trigger_price",
+                    "in": "query",
+                    "description": "Trigger price.",
+                    "required": false,
+                    "type": "number",
+                    "format": "double"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/ReplaceConditionalBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
             }
         },
         "/open-api/funding/prev-funding-rate": {
@@ -703,8 +795,7 @@
                         }
                     }
                 },
-                "deprecated": false,
-                "security": []
+                "deprecated": false
             }
         },
         "/open-api/funding/prev-funding": {
@@ -731,8 +822,7 @@
                         }
                     }
                 },
-                "deprecated": false,
-                "security": []
+                "deprecated": false
             }
         },
         "/open-api/funding/predicted-funding": {
@@ -759,8 +849,7 @@
                         }
                     }
                 },
-                "deprecated": false,
-                "security": []
+                "deprecated": false
             }
         },
         "/v2/private/execution/list": {
@@ -1376,6 +1465,31 @@
             },
             "type": "object"
         },
+        "ReplaceOrderBase": {
+            "description": "Replace active order response",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "type": "string"
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
         "ConditionalBase": {
             "description": "Place new conditional order response",
             "properties": {
@@ -1495,6 +1609,31 @@
                     "items": {
                         "$ref": "#/definitions/ConditionalRes"
                     }
+                }
+            },
+            "type": "object"
+        },
+        "ReplaceConditionalBase": {
+            "description": "Replace conditional order response",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "type": "string"
+                },
+                "time_now": {
+                    "type": "string"
                 }
             },
             "type": "object"
@@ -2113,5 +2252,59 @@
             },
             "type": "object"
         }
-    }
+    },
+    "tags": [{
+        "name": "Common",
+        "description": "Common interface"
+    }, {
+        "name": "Order",
+        "description": "Place new order, cancel, replace and get order list"
+    }, {
+        "name": "Conditional",
+        "description": "Place, cancel and replace conditional order, get conditional order list"
+    }, {
+        "name": "Positions",
+        "description": "Get account position info"
+    }, {
+        "name": "Wallet",
+        "description": "Get wallet fund records"
+    }, {
+        "name": "Funding",
+        "description": "Get fundng rate, get my funding fee, get predicted funding fee"
+    }, {
+        "name": "Execution",
+        "description": "Get the trade records of a order"
+    }, {
+        "name": "Market",
+        "description": "Get the orderbook and latest information for symbol"
+    }, {
+        "name": "Kline",
+        "description": "Query historical kline"
+    }, {
+        "name": "Symbol",
+        "description": "Query Symbols"
+    }],
+    "consumes": [
+        "application/json",
+        "application/x-www-form-urlencoded"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "securityDefinitions": {
+        "apiKey": {
+            "type": "apiKey",
+            "in": "header",
+            "name": "api-key"
+        },
+        "apiSignature": {
+            "type": "apiKey",
+            "in": "header",
+            "name": "api-signature"
+        }
+    },
+    "security": [{
+        "apiKey": [],
+        "apiSignature": []
+    }]
 }
