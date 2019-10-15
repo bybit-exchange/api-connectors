@@ -36,7 +36,7 @@
         _mutableApiKey = [NSMutableDictionary dictionary];
         _mutableApiKeyPrefix = [NSMutableDictionary dictionary];
         _mutableDefaultHeaders = [NSMutableDictionary dictionary];
-        
+        _mutableDefaultHeaders[@"User-Agent"] = @"SDKs objc";
         _logger = [SWGLogger sharedLogger];
     }
     return self;

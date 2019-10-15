@@ -114,7 +114,7 @@ namespace IO.Swagger.Client
         /// </summary>
         public Configuration()
         {
-            UserAgent = "Swagger-Codegen/1.0.0/csharp";
+            UserAgent = "SDKs csharp";
             BasePath = "https://api-testnet.bybit.com";
             DefaultHeader = new ConcurrentDictionary<string, string>();
             ApiKey = new ConcurrentDictionary<string, string>();
@@ -187,7 +187,7 @@ namespace IO.Swagger.Client
             string tempFolderPath = null,
             string dateTimeFormat = null,
             int timeout = 100000,
-            string userAgent = "Swagger-Codegen/1.0.0/csharp"
+            string userAgent = "SDKs csharp"
             // ReSharper restore UnusedParameter.Local
             )
         {

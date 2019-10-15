@@ -12,7 +12,7 @@ Contact: support@bybit.com
     
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{34416271-A6D7-47BC-80CB-2C58A0B67621}</ProjectGuid>
+    <ProjectGuid>{27160034-1694-46F0-8AAD-DC4392467383}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>IO.Swagger</RootNamespace>
