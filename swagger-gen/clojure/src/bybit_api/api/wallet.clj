@@ -13,7 +13,7 @@
               :form-params   {}
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json"]
-              :auth-names    ["apiKey" "apiSignature"]})))
+              :auth-names    ["apiKey" "apiSignature" "timestamp"]})))
 
 (defn wallet-get-records
   "Get wallet fund records"

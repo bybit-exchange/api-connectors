@@ -1,6 +1,6 @@
 # IO.Swagger.Api.PositionsApi
 
-All URIs are relative to *https://localhost*
+All URIs are relative to *https://api-testnet.bybit.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -32,13 +32,17 @@ namespace Example
         public void main()
         {
             // Configure API key authorization: apiKey
-            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api_key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api_key", "Bearer");
             // Configure API key authorization: apiSignature
-            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("sign", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("sign", "Bearer");
+            // Configure API key authorization: timestamp
+            Configuration.Default.AddApiKey("timestamp", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("timestamp", "Bearer");
 
             var apiInstance = new PositionsApi();
             var symbol = symbol_example;  // string | Contract type which you want update its margin
@@ -72,7 +76,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
 
 ### HTTP request headers
 
@@ -102,13 +106,17 @@ namespace Example
         public void main()
         {
             // Configure API key authorization: apiKey
-            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api_key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api_key", "Bearer");
             // Configure API key authorization: apiSignature
-            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("sign", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("sign", "Bearer");
+            // Configure API key authorization: timestamp
+            Configuration.Default.AddApiKey("timestamp", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("timestamp", "Bearer");
 
             var apiInstance = new PositionsApi();
 
@@ -136,7 +144,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
 
 ### HTTP request headers
 
@@ -166,13 +174,17 @@ namespace Example
         public void main()
         {
             // Configure API key authorization: apiKey
-            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api_key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api_key", "Bearer");
             // Configure API key authorization: apiSignature
-            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("sign", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("sign", "Bearer");
+            // Configure API key authorization: timestamp
+            Configuration.Default.AddApiKey("timestamp", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("timestamp", "Bearer");
 
             var apiInstance = new PositionsApi();
             var symbol = symbol_example;  // string | A symbol which you want change its leverage
@@ -206,7 +218,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
 
 ### HTTP request headers
 
@@ -236,13 +248,17 @@ namespace Example
         public void main()
         {
             // Configure API key authorization: apiKey
-            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api_key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api_key", "Bearer");
             // Configure API key authorization: apiSignature
-            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("sign", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("sign", "Bearer");
+            // Configure API key authorization: timestamp
+            Configuration.Default.AddApiKey("timestamp", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("timestamp", "Bearer");
 
             var apiInstance = new PositionsApi();
             var symbol = symbol_example;  // string | Contract type
@@ -280,7 +296,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
 
 ### HTTP request headers
 
@@ -310,13 +326,17 @@ namespace Example
         public void main()
         {
             // Configure API key authorization: apiKey
-            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api_key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api_key", "Bearer");
             // Configure API key authorization: apiSignature
-            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("sign", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("sign", "Bearer");
+            // Configure API key authorization: timestamp
+            Configuration.Default.AddApiKey("timestamp", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("timestamp", "Bearer");
 
             var apiInstance = new PositionsApi();
 
@@ -344,7 +364,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
 
 ### HTTP request headers
 

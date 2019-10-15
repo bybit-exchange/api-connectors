@@ -13,7 +13,7 @@
              :form-params   {}
              :content-types ["application/json" "application/x-www-form-urlencoded"]
              :accepts       ["application/json"]
-             :auth-names    []}))
+             :auth-names    ["apiKey" "apiSignature" "timestamp"]}))
 
 (defn execution-get-trades
   "Get the trade records of a order."

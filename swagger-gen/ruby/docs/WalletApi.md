@@ -1,6 +1,6 @@
 # SwaggerClient::WalletApi
 
-All URIs are relative to *https://localhost*
+All URIs are relative to *https://api-testnet.bybit.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -19,14 +19,19 @@ require 'swagger_client'
 # setup authorization
 SwaggerClient.configure do |config|
   # Configure API key authorization: apiKey
-  config.api_key['api-key'] = 'YOUR API KEY'
+  config.api_key['api_key'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['api-key'] = 'Bearer'
+  #config.api_key_prefix['api_key'] = 'Bearer'
 
   # Configure API key authorization: apiSignature
-  config.api_key['api-signature'] = 'YOUR API KEY'
+  config.api_key['sign'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['api-signature'] = 'Bearer'
+  #config.api_key_prefix['sign'] = 'Bearer'
+
+  # Configure API key authorization: timestamp
+  config.api_key['timestamp'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['timestamp'] = 'Bearer'
 end
 
 api_instance = SwaggerClient::WalletApi.new
@@ -66,7 +71,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
 
 ### HTTP request headers
 

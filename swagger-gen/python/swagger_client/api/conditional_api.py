@@ -112,7 +112,7 @@ class ConditionalApi(object):
             ['application/json', 'application/x-www-form-urlencoded'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['apiKey', 'apiSignature']  # noqa: E501
+        auth_settings = ['apiKey', 'apiSignature', 'timestamp']  # noqa: E501
 
         return self.api_client.call_api(
             '/open-api/stop-order/cancel', 'POST',
@@ -225,7 +225,7 @@ class ConditionalApi(object):
             ['application/json', 'application/x-www-form-urlencoded'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['apiKey', 'apiSignature']  # noqa: E501
+        auth_settings = ['apiKey', 'apiSignature', 'timestamp']  # noqa: E501
 
         return self.api_client.call_api(
             '/open-api/stop-order/list', 'GET',
@@ -386,7 +386,7 @@ class ConditionalApi(object):
             ['application/json', 'application/x-www-form-urlencoded'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['apiKey', 'apiSignature']  # noqa: E501
+        auth_settings = ['apiKey', 'apiSignature', 'timestamp']  # noqa: E501
 
         return self.api_client.call_api(
             '/open-api/stop-order/create', 'POST',
@@ -503,7 +503,7 @@ class ConditionalApi(object):
             ['application/json', 'application/x-www-form-urlencoded'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['apiKey', 'apiSignature']  # noqa: E501
+        auth_settings = ['apiKey', 'apiSignature', 'timestamp']  # noqa: E501
 
         return self.api_client.call_api(
             '/open-api/stop-order/replace', 'POST',

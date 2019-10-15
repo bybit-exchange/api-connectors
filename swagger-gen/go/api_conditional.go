@@ -76,8 +76,8 @@ func (a *ConditionalApiService) ConditionalCancel(ctx context.Context, stopOrder
 			} else {
 				key = auth.Key
 			}
-			localVarHeaderParams["api-key"] = key
 			
+			localVarQueryParams.Add("api_key", key)
 		}
 	}
 	if ctx != nil {
@@ -89,8 +89,21 @@ func (a *ConditionalApiService) ConditionalCancel(ctx context.Context, stopOrder
 			} else {
 				key = auth.Key
 			}
-			localVarHeaderParams["api-signature"] = key
 			
+			localVarQueryParams.Add("sign", key)
+		}
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			
+			localVarQueryParams.Add("timestamp", key)
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -223,8 +236,8 @@ func (a *ConditionalApiService) ConditionalGetOrders(ctx context.Context, localV
 			} else {
 				key = auth.Key
 			}
-			localVarHeaderParams["api-key"] = key
 			
+			localVarQueryParams.Add("api_key", key)
 		}
 	}
 	if ctx != nil {
@@ -236,8 +249,21 @@ func (a *ConditionalApiService) ConditionalGetOrders(ctx context.Context, localV
 			} else {
 				key = auth.Key
 			}
-			localVarHeaderParams["api-signature"] = key
 			
+			localVarQueryParams.Add("sign", key)
+		}
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			
+			localVarQueryParams.Add("timestamp", key)
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -366,8 +392,8 @@ func (a *ConditionalApiService) ConditionalNew(ctx context.Context, side string,
 			} else {
 				key = auth.Key
 			}
-			localVarHeaderParams["api-key"] = key
 			
+			localVarQueryParams.Add("api_key", key)
 		}
 	}
 	if ctx != nil {
@@ -379,8 +405,21 @@ func (a *ConditionalApiService) ConditionalNew(ctx context.Context, side string,
 			} else {
 				key = auth.Key
 			}
-			localVarHeaderParams["api-signature"] = key
 			
+			localVarQueryParams.Add("sign", key)
+		}
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			
+			localVarQueryParams.Add("timestamp", key)
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -502,8 +541,8 @@ func (a *ConditionalApiService) ConditionalReplace(ctx context.Context, orderId 
 			} else {
 				key = auth.Key
 			}
-			localVarHeaderParams["api-key"] = key
 			
+			localVarQueryParams.Add("api_key", key)
 		}
 	}
 	if ctx != nil {
@@ -515,8 +554,21 @@ func (a *ConditionalApiService) ConditionalReplace(ctx context.Context, orderId 
 			} else {
 				key = auth.Key
 			}
-			localVarHeaderParams["api-signature"] = key
 			
+			localVarQueryParams.Add("sign", key)
+		}
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			
+			localVarQueryParams.Add("timestamp", key)
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)

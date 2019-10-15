@@ -1,6 +1,6 @@
 # WalletApi
 
-All URIs are relative to *https://localhost*
+All URIs are relative to *https://api-testnet.bybit.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -51,7 +51,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
 
 ### HTTP request headers
 

@@ -118,18 +118,26 @@ pplx::task<std::shared_ptr<Object>> ConditionalApi::conditional_Replace(utility:
 
     // authentication (apiKey) required
     {
-        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api-key"));
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api_key"));
         if ( apiKey.size() > 0 )
         {
-            headerParams[utility::conversions::to_string_t("api-key")] = apiKey;
+            queryParams[utility::conversions::to_string_t("api_key")] = apiKey;
         }
     }
     // authentication (apiSignature) required
     {
-        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api-signature"));
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("sign"));
         if ( apiKey.size() > 0 )
         {
-            headerParams[utility::conversions::to_string_t("api-signature")] = apiKey;
+            queryParams[utility::conversions::to_string_t("sign")] = apiKey;
+        }
+    }
+    // authentication (timestamp) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("timestamp"));
+        if ( apiKey.size() > 0 )
+        {
+            queryParams[utility::conversions::to_string_t("timestamp")] = apiKey;
         }
     }
 
@@ -252,18 +260,26 @@ pplx::task<std::shared_ptr<Object>> ConditionalApi::conditional_cancel(utility::
 
     // authentication (apiKey) required
     {
-        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api-key"));
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api_key"));
         if ( apiKey.size() > 0 )
         {
-            headerParams[utility::conversions::to_string_t("api-key")] = apiKey;
+            queryParams[utility::conversions::to_string_t("api_key")] = apiKey;
         }
     }
     // authentication (apiSignature) required
     {
-        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api-signature"));
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("sign"));
         if ( apiKey.size() > 0 )
         {
-            headerParams[utility::conversions::to_string_t("api-signature")] = apiKey;
+            queryParams[utility::conversions::to_string_t("sign")] = apiKey;
+        }
+    }
+    // authentication (timestamp) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("timestamp"));
+        if ( apiKey.size() > 0 )
+        {
+            queryParams[utility::conversions::to_string_t("timestamp")] = apiKey;
         }
     }
 
@@ -407,18 +423,26 @@ pplx::task<std::shared_ptr<Object>> ConditionalApi::conditional_getOrders(boost:
 
     // authentication (apiKey) required
     {
-        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api-key"));
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api_key"));
         if ( apiKey.size() > 0 )
         {
-            headerParams[utility::conversions::to_string_t("api-key")] = apiKey;
+            queryParams[utility::conversions::to_string_t("api_key")] = apiKey;
         }
     }
     // authentication (apiSignature) required
     {
-        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api-signature"));
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("sign"));
         if ( apiKey.size() > 0 )
         {
-            headerParams[utility::conversions::to_string_t("api-signature")] = apiKey;
+            queryParams[utility::conversions::to_string_t("sign")] = apiKey;
+        }
+    }
+    // authentication (timestamp) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("timestamp"));
+        if ( apiKey.size() > 0 )
+        {
+            queryParams[utility::conversions::to_string_t("timestamp")] = apiKey;
         }
     }
 
@@ -570,18 +594,26 @@ pplx::task<std::shared_ptr<Object>> ConditionalApi::conditional_new(utility::str
 
     // authentication (apiKey) required
     {
-        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api-key"));
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api_key"));
         if ( apiKey.size() > 0 )
         {
-            headerParams[utility::conversions::to_string_t("api-key")] = apiKey;
+            queryParams[utility::conversions::to_string_t("api_key")] = apiKey;
         }
     }
     // authentication (apiSignature) required
     {
-        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api-signature"));
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("sign"));
         if ( apiKey.size() > 0 )
         {
-            headerParams[utility::conversions::to_string_t("api-signature")] = apiKey;
+            queryParams[utility::conversions::to_string_t("sign")] = apiKey;
+        }
+    }
+    // authentication (timestamp) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("timestamp"));
+        if ( apiKey.size() > 0 )
+        {
+            queryParams[utility::conversions::to_string_t("timestamp")] = apiKey;
         }
     }
 

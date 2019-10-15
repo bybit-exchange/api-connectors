@@ -13,7 +13,7 @@
              :form-params   {}
              :content-types ["application/json" "application/x-www-form-urlencoded"]
              :accepts       ["application/json"]
-             :auth-names    ["apiKey" "apiSignature"]}))
+             :auth-names    ["apiKey" "apiSignature" "timestamp"]}))
 
 (defn conditional-cancel
   "Cancel conditional order."
@@ -31,7 +31,7 @@
               :form-params   {}
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json"]
-              :auth-names    ["apiKey" "apiSignature"]})))
+              :auth-names    ["apiKey" "apiSignature" "timestamp"]})))
 
 (defn conditional-get-orders
   "Get my conditional order list."
@@ -51,7 +51,7 @@
               :form-params   {}
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json"]
-              :auth-names    ["apiKey" "apiSignature"]})))
+              :auth-names    ["apiKey" "apiSignature" "timestamp"]})))
 
 (defn conditional-new
   "Place a new conditional order."
@@ -71,7 +71,7 @@
               :form-params   {}
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json"]
-              :auth-names    ["apiKey" "apiSignature"]})))
+              :auth-names    ["apiKey" "apiSignature" "timestamp"]})))
 
 (defn conditional-replace
   "Replace conditional order. Only incomplete orders can be modified."

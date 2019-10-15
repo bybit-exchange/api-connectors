@@ -7,7 +7,7 @@
 import Foundation
 
 open class SwaggerClientAPI {
-    open static var basePath = "https://localhost"
+    open static var basePath = "https://api-testnet.bybit.com"
     open static var credential: URLCredential?
     open static var customHeaders: [String:String] = [:]
     open static var requestBuilderFactory: RequestBuilderFactory = AlamofireRequestBuilderFactory()

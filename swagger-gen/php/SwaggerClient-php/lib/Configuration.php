@@ -81,7 +81,7 @@ class Configuration
      *
      * @var string
      */
-    protected $host = 'https://localhost';
+    protected $host = 'https://api-testnet.bybit.com';
 
     /**
      * User agent of the HTTP request, set to "PHP-Swagger" by default

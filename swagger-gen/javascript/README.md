@@ -110,7 +110,7 @@ api.commonGet(callback);
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://localhost*
+All URIs are relative to *https://api-testnet.bybit.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -187,12 +187,18 @@ Class | Method | HTTP request | Description
 ### apiKey
 
 - **Type**: API key
-- **API key parameter name**: api-key
-- **Location**: HTTP header
+- **API key parameter name**: api_key
+- **Location**: URL query string
 
 ### apiSignature
 
 - **Type**: API key
-- **API key parameter name**: api-signature
-- **Location**: HTTP header
+- **API key parameter name**: sign
+- **Location**: URL query string
+
+### timestamp
+
+- **Type**: API key
+- **API key parameter name**: timestamp
+- **Location**: URL query string
 

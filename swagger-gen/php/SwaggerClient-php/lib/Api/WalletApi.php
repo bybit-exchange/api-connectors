@@ -364,14 +364,19 @@ class WalletApi
         }
 
         // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('api-key');
+        $apiKey = $this->config->getApiKeyWithPrefix('api_key');
         if ($apiKey !== null) {
-            $headers['api-key'] = $apiKey;
+            $queryParams['api_key'] = $apiKey;
         }
         // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('api-signature');
+        $apiKey = $this->config->getApiKeyWithPrefix('sign');
         if ($apiKey !== null) {
-            $headers['api-signature'] = $apiKey;
+            $queryParams['sign'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('timestamp');
+        if ($apiKey !== null) {
+            $queryParams['timestamp'] = $apiKey;
         }
 
         $defaultHeaders = [];

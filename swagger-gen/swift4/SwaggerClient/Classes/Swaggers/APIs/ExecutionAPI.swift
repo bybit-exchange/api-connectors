@@ -27,6 +27,15 @@ open class ExecutionAPI {
     /**
      Get the trade records of a order.
      - GET /v2/private/execution/list
+     - API Key:
+       - type: apiKey api_key (QUERY)
+       - name: apiKey
+     - API Key:
+       - type: apiKey sign (QUERY)
+       - name: apiSignature
+     - API Key:
+       - type: apiKey timestamp (QUERY)
+       - name: timestamp
      - examples: [{contentType=application/json, example=""}]
      
      - parameter orderId: (query) orderID. 

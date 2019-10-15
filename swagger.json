@@ -9,6 +9,16 @@
         },
         "version": "1.0.0"
     },
+    "host": "api-testnet.bybit.com",
+    "servers": [{
+            "url": "https://api.bybit.com",
+            "description": "Main server"
+        },
+        {
+            "url": "https://api-testnet.bybit.com",
+            "description": "server for testing"
+        }
+    ],
     "basePath": "/",
     "paths": {
         "/v2/public/time": {
@@ -373,8 +383,7 @@
                         }
                     }
                 },
-                "deprecated": false,
-                "security": []
+                "deprecated": false
             }
         },
         "/open-api/order/list": {
@@ -444,8 +453,7 @@
                         }
                     }
                 },
-                "deprecated": false,
-                "security": []
+                "deprecated": false
             }
         },
         "/open-api/order/cancel": {
@@ -480,8 +488,7 @@
                         }
                     }
                 },
-                "deprecated": false,
-                "security": []
+                "deprecated": false
             }
         },
         "/open-api/order/replace": {
@@ -876,8 +883,7 @@
                         }
                     }
                 },
-                "deprecated": false,
-                "security": []
+                "deprecated": false
             }
         },
         "/v2/public/orderBook/L2": {
@@ -2294,17 +2300,23 @@
     "securityDefinitions": {
         "apiKey": {
             "type": "apiKey",
-            "in": "header",
-            "name": "api-key"
+            "in": "query",
+            "name": "api_key"
+        },
+        "timestamp": {
+            "type": "apiKey",
+            "in": "query",
+            "name": "timestamp"
         },
         "apiSignature": {
             "type": "apiKey",
-            "in": "header",
-            "name": "api-signature"
+            "in": "query",
+            "name": "sign"
         }
     },
     "security": [{
         "apiKey": [],
+        "timestamp": [],
         "apiSignature": []
     }]
 }

@@ -101,6 +101,30 @@ pplx::task<std::shared_ptr<Object>> ExecutionApi::execution_getTrades(utility::s
         throw ApiException(415, utility::conversions::to_string_t("ExecutionApi->execution_getTrades does not consume any supported media type"));
     }
 
+    // authentication (apiKey) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api_key"));
+        if ( apiKey.size() > 0 )
+        {
+            queryParams[utility::conversions::to_string_t("api_key")] = apiKey;
+        }
+    }
+    // authentication (apiSignature) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("sign"));
+        if ( apiKey.size() > 0 )
+        {
+            queryParams[utility::conversions::to_string_t("sign")] = apiKey;
+        }
+    }
+    // authentication (timestamp) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("timestamp"));
+        if ( apiKey.size() > 0 )
+        {
+            queryParams[utility::conversions::to_string_t("timestamp")] = apiKey;
+        }
+    }
 
     return m_ApiClient->callApi(path, utility::conversions::to_string_t("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)

@@ -28,11 +28,14 @@ open class ConditionalAPI {
      Cancel conditional order.
      - POST /open-api/stop-order/cancel
      - API Key:
-       - type: apiKey api-key 
+       - type: apiKey api_key (QUERY)
        - name: apiKey
      - API Key:
-       - type: apiKey api-signature 
+       - type: apiKey sign (QUERY)
        - name: apiSignature
+     - API Key:
+       - type: apiKey timestamp (QUERY)
+       - name: timestamp
      - examples: [{contentType=application/json, example=""}]
      
      - parameter stopOrderId: (query) Order ID of conditional order. 
@@ -76,11 +79,14 @@ open class ConditionalAPI {
      Get my conditional order list.
      - GET /open-api/stop-order/list
      - API Key:
-       - type: apiKey api-key 
+       - type: apiKey api_key (QUERY)
        - name: apiKey
      - API Key:
-       - type: apiKey api-signature 
+       - type: apiKey sign (QUERY)
        - name: apiSignature
+     - API Key:
+       - type: apiKey timestamp (QUERY)
+       - name: timestamp
      - examples: [{contentType=application/json, example=""}]
      
      - parameter stopOrderId: (query) Order ID of conditional order. (optional)
@@ -138,11 +144,14 @@ open class ConditionalAPI {
      Place a new conditional order.
      - POST /open-api/stop-order/create
      - API Key:
-       - type: apiKey api-key 
+       - type: apiKey api_key (QUERY)
        - name: apiKey
      - API Key:
-       - type: apiKey api-signature 
+       - type: apiKey sign (QUERY)
        - name: apiSignature
+     - API Key:
+       - type: apiKey timestamp (QUERY)
+       - name: timestamp
      - examples: [{contentType=application/json, example=""}]
      
      - parameter side: (query) Side. 
@@ -203,11 +212,14 @@ open class ConditionalAPI {
      Replace conditional order. Only incomplete orders can be modified. 
      - POST /open-api/stop-order/replace
      - API Key:
-       - type: apiKey api-key 
+       - type: apiKey api_key (QUERY)
        - name: apiKey
      - API Key:
-       - type: apiKey api-signature 
+       - type: apiKey sign (QUERY)
        - name: apiSignature
+     - API Key:
+       - type: apiKey timestamp (QUERY)
+       - name: timestamp
      - examples: [{contentType=application/json, example=""}]
      
      - parameter orderId: (query) Order ID. 

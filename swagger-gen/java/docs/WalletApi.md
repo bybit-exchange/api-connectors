@@ -1,6 +1,6 @@
 # WalletApi
 
-All URIs are relative to *https://localhost*
+All URIs are relative to *https://api-testnet.bybit.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -36,6 +36,12 @@ apiSignature.setApiKey("YOUR API KEY");
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.setApiKeyPrefix("Token");
 
+// Configure API key authorization: timestamp
+ApiKeyAuth timestamp = (ApiKeyAuth) defaultClient.getAuthentication("timestamp");
+timestamp.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//timestamp.setApiKeyPrefix("Token");
+
 WalletApi apiInstance = new WalletApi();
 String startDate = "startDate_example"; // String | Start point for result
 String endDate = "endDate_example"; // String | End point for result
@@ -69,7 +75,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
 
 ### HTTP request headers
 

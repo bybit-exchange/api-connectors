@@ -47,17 +47,18 @@
     /**
      * The base URL against which to resolve every API call's (relative) path.
      * @type {String}
-     * @default https://localhost
+     * @default https://api-testnet.bybit.com
      */
-    this.basePath = 'https://localhost'.replace(/\/+$/, '');
+    this.basePath = 'https://api-testnet.bybit.com'.replace(/\/+$/, '');
 
     /**
      * The authentication methods to be included for all API calls.
      * @type {Array.<String>}
      */
     this.authentications = {
-      'apiKey': {type: 'apiKey', 'in': 'header', name: 'api-key'},
-      'apiSignature': {type: 'apiKey', 'in': 'header', name: 'api-signature'}
+      'apiKey': {type: 'apiKey', 'in': 'query', name: 'api_key'},
+      'apiSignature': {type: 'apiKey', 'in': 'query', name: 'sign'},
+      'timestamp': {type: 'apiKey', 'in': 'query', name: 'timestamp'}
     };
     /**
      * The default HTTP headers to be included for all API calls.

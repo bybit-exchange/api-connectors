@@ -128,7 +128,7 @@ class WalletApi(object):
             ['application/json', 'application/x-www-form-urlencoded'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['apiKey', 'apiSignature']  # noqa: E501
+        auth_settings = ['apiKey', 'apiSignature', 'timestamp']  # noqa: E501
 
         return self.api_client.call_api(
             '/open-api/wallet/fund/records', 'GET',

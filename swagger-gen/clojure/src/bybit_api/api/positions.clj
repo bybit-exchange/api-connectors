@@ -13,7 +13,7 @@
              :form-params   {}
              :content-types ["application/json" "application/x-www-form-urlencoded"]
              :accepts       ["application/json"]
-             :auth-names    ["apiKey" "apiSignature"]}))
+             :auth-names    ["apiKey" "apiSignature" "timestamp"]}))
 
 (defn positions-change-margin
   "Update margin."
@@ -30,7 +30,7 @@
              :form-params   {}
              :content-types ["application/json" "application/x-www-form-urlencoded"]
              :accepts       ["application/json"]
-             :auth-names    ["apiKey" "apiSignature"]}))
+             :auth-names    ["apiKey" "apiSignature" "timestamp"]}))
 
 (defn positions-my-position
   "Get my position list."
@@ -48,7 +48,7 @@
              :form-params   {}
              :content-types ["application/json" "application/x-www-form-urlencoded"]
              :accepts       ["application/json"]
-             :auth-names    ["apiKey" "apiSignature"]}))
+             :auth-names    ["apiKey" "apiSignature" "timestamp"]}))
 
 (defn positions-save-leverage
   "Change user leverage."
@@ -67,7 +67,7 @@
               :form-params   {}
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json"]
-              :auth-names    ["apiKey" "apiSignature"]})))
+              :auth-names    ["apiKey" "apiSignature" "timestamp"]})))
 
 (defn positions-trading-stop
   "Set Trading-Stop Condition."
@@ -85,7 +85,7 @@
              :form-params   {}
              :content-types ["application/json" "application/x-www-form-urlencoded"]
              :accepts       ["application/json"]
-             :auth-names    ["apiKey" "apiSignature"]}))
+             :auth-names    ["apiKey" "apiSignature" "timestamp"]}))
 
 (defn positions-user-leverage
   "Get user leverage setting."
