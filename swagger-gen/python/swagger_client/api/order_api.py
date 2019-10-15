@@ -116,7 +116,7 @@ class OrderApi(object):
             ['application/json', 'application/x-www-form-urlencoded'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKey', 'apiSignature', 'timestamp']  # noqa: E501
 
         return self.api_client.call_api(
             '/open-api/order/cancel', 'POST',
@@ -233,7 +233,7 @@ class OrderApi(object):
             ['application/json', 'application/x-www-form-urlencoded'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKey', 'apiSignature', 'timestamp']  # noqa: E501
 
         return self.api_client.call_api(
             '/open-api/order/list', 'GET',
@@ -390,7 +390,7 @@ class OrderApi(object):
             ['application/json', 'application/x-www-form-urlencoded'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKey', 'apiSignature', 'timestamp']  # noqa: E501
 
         return self.api_client.call_api(
             '/open-api/order/create', 'POST',
@@ -503,7 +503,7 @@ class OrderApi(object):
             ['application/json', 'application/x-www-form-urlencoded'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['apiKey', 'apiSignature']  # noqa: E501
+        auth_settings = ['apiKey', 'apiSignature', 'timestamp']  # noqa: E501
 
         return self.api_client.call_api(
             '/open-api/order/replace', 'POST',

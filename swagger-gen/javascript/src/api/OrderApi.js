@@ -87,7 +87,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['apiKey', 'apiSignature', 'timestamp'];
       var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
       var accepts = ['application/json'];
       var returnType = Object;
@@ -143,7 +143,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['apiKey', 'apiSignature', 'timestamp'];
       var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
       var accepts = ['application/json'];
       var returnType = Object;
@@ -237,7 +237,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['apiKey', 'apiSignature', 'timestamp'];
       var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
       var accepts = ['application/json'];
       var returnType = Object;
@@ -297,7 +297,7 @@
       var formParams = {
       };
 
-      var authNames = ['apiKey', 'apiSignature'];
+      var authNames = ['apiKey', 'apiSignature', 'timestamp'];
       var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
       var accepts = ['application/json'];
       var returnType = Object;

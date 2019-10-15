@@ -35,7 +35,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
 
 public class FundingApi {
-  String basePath = "https://localhost";
+  String basePath = "https://api-testnet.bybit.com";
   ApiInvoker apiInvoker = ApiInvoker.getInstance();
 
   public void addHeader(String key, String value) {
@@ -93,7 +93,7 @@ public class FundingApi {
       // normal form params
     }
 
-    String[] authNames = new String[] { "apiKey", "apiSignature" };
+    String[] authNames = new String[] { "apiKey", "apiSignature", "timestamp" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -162,7 +162,7 @@ public class FundingApi {
       // normal form params
           }
 
-    String[] authNames = new String[] { "apiKey", "apiSignature" };
+    String[] authNames = new String[] { "apiKey", "apiSignature", "timestamp" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -224,7 +224,7 @@ public class FundingApi {
       // normal form params
     }
 
-    String[] authNames = new String[] { "apiKey", "apiSignature" };
+    String[] authNames = new String[] { "apiKey", "apiSignature", "timestamp" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -293,7 +293,7 @@ public class FundingApi {
       // normal form params
           }
 
-    String[] authNames = new String[] { "apiKey", "apiSignature" };
+    String[] authNames = new String[] { "apiKey", "apiSignature", "timestamp" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -355,7 +355,7 @@ public class FundingApi {
       // normal form params
     }
 
-    String[] authNames = new String[] { "apiKey", "apiSignature" };
+    String[] authNames = new String[] { "apiKey", "apiSignature", "timestamp" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -424,7 +424,7 @@ public class FundingApi {
       // normal form params
           }
 
-    String[] authNames = new String[] { "apiKey", "apiSignature" };
+    String[] authNames = new String[] { "apiKey", "apiSignature", "timestamp" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,

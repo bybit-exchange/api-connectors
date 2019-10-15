@@ -1,6 +1,6 @@
 # swagger_client.FundingApi
 
-All URIs are relative to *https://localhost*
+All URIs are relative to *https://api-testnet.bybit.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -24,14 +24,19 @@ from pprint import pprint
 
 # Configure API key authorization: apiKey
 configuration = swagger_client.Configuration()
-configuration.api_key['api-key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api-key'] = 'Bearer'
+# configuration.api_key_prefix['api_key'] = 'Bearer'
 # Configure API key authorization: apiSignature
 configuration = swagger_client.Configuration()
-configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+configuration.api_key['sign'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api-signature'] = 'Bearer'
+# configuration.api_key_prefix['sign'] = 'Bearer'
+# Configure API key authorization: timestamp
+configuration = swagger_client.Configuration()
+configuration.api_key['timestamp'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['timestamp'] = 'Bearer'
 
 # create an instance of the API class
 api_instance = swagger_client.FundingApi(swagger_client.ApiClient(configuration))
@@ -57,7 +62,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
 
 ### HTTP request headers
 
@@ -81,14 +86,19 @@ from pprint import pprint
 
 # Configure API key authorization: apiKey
 configuration = swagger_client.Configuration()
-configuration.api_key['api-key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api-key'] = 'Bearer'
+# configuration.api_key_prefix['api_key'] = 'Bearer'
 # Configure API key authorization: apiSignature
 configuration = swagger_client.Configuration()
-configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+configuration.api_key['sign'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api-signature'] = 'Bearer'
+# configuration.api_key_prefix['sign'] = 'Bearer'
+# Configure API key authorization: timestamp
+configuration = swagger_client.Configuration()
+configuration.api_key['timestamp'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['timestamp'] = 'Bearer'
 
 # create an instance of the API class
 api_instance = swagger_client.FundingApi(swagger_client.ApiClient(configuration))
@@ -114,7 +124,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
 
 ### HTTP request headers
 
@@ -138,14 +148,19 @@ from pprint import pprint
 
 # Configure API key authorization: apiKey
 configuration = swagger_client.Configuration()
-configuration.api_key['api-key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api-key'] = 'Bearer'
+# configuration.api_key_prefix['api_key'] = 'Bearer'
 # Configure API key authorization: apiSignature
 configuration = swagger_client.Configuration()
-configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+configuration.api_key['sign'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api-signature'] = 'Bearer'
+# configuration.api_key_prefix['sign'] = 'Bearer'
+# Configure API key authorization: timestamp
+configuration = swagger_client.Configuration()
+configuration.api_key['timestamp'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['timestamp'] = 'Bearer'
 
 # create an instance of the API class
 api_instance = swagger_client.FundingApi(swagger_client.ApiClient(configuration))
@@ -171,7 +186,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
 
 ### HTTP request headers
 

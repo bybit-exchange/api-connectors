@@ -78,8 +78,8 @@ func (a *PositionsApiService) PositionsChangeMargin(ctx context.Context, symbol 
 			} else {
 				key = auth.Key
 			}
-			localVarHeaderParams["api-key"] = key
 			
+			localVarQueryParams.Add("api_key", key)
 		}
 	}
 	if ctx != nil {
@@ -91,8 +91,21 @@ func (a *PositionsApiService) PositionsChangeMargin(ctx context.Context, symbol 
 			} else {
 				key = auth.Key
 			}
-			localVarHeaderParams["api-signature"] = key
 			
+			localVarQueryParams.Add("sign", key)
+		}
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			
+			localVarQueryParams.Add("timestamp", key)
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -190,8 +203,8 @@ func (a *PositionsApiService) PositionsMyPosition(ctx context.Context) (interfac
 			} else {
 				key = auth.Key
 			}
-			localVarHeaderParams["api-key"] = key
 			
+			localVarQueryParams.Add("api_key", key)
 		}
 	}
 	if ctx != nil {
@@ -203,8 +216,21 @@ func (a *PositionsApiService) PositionsMyPosition(ctx context.Context) (interfac
 			} else {
 				key = auth.Key
 			}
-			localVarHeaderParams["api-signature"] = key
 			
+			localVarQueryParams.Add("sign", key)
+		}
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			
+			localVarQueryParams.Add("timestamp", key)
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -306,8 +332,8 @@ func (a *PositionsApiService) PositionsSaveLeverage(ctx context.Context, symbol 
 			} else {
 				key = auth.Key
 			}
-			localVarHeaderParams["api-key"] = key
 			
+			localVarQueryParams.Add("api_key", key)
 		}
 	}
 	if ctx != nil {
@@ -319,8 +345,21 @@ func (a *PositionsApiService) PositionsSaveLeverage(ctx context.Context, symbol 
 			} else {
 				key = auth.Key
 			}
-			localVarHeaderParams["api-signature"] = key
 			
+			localVarQueryParams.Add("sign", key)
+		}
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			
+			localVarQueryParams.Add("timestamp", key)
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -440,8 +479,8 @@ func (a *PositionsApiService) PositionsTradingStop(ctx context.Context, symbol s
 			} else {
 				key = auth.Key
 			}
-			localVarHeaderParams["api-key"] = key
 			
+			localVarQueryParams.Add("api_key", key)
 		}
 	}
 	if ctx != nil {
@@ -453,8 +492,21 @@ func (a *PositionsApiService) PositionsTradingStop(ctx context.Context, symbol s
 			} else {
 				key = auth.Key
 			}
-			localVarHeaderParams["api-signature"] = key
 			
+			localVarQueryParams.Add("sign", key)
+		}
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			
+			localVarQueryParams.Add("timestamp", key)
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -552,8 +604,8 @@ func (a *PositionsApiService) PositionsUserLeverage(ctx context.Context) (interf
 			} else {
 				key = auth.Key
 			}
-			localVarHeaderParams["api-key"] = key
 			
+			localVarQueryParams.Add("api_key", key)
 		}
 	}
 	if ctx != nil {
@@ -565,8 +617,21 @@ func (a *PositionsApiService) PositionsUserLeverage(ctx context.Context) (interf
 			} else {
 				key = auth.Key
 			}
-			localVarHeaderParams["api-signature"] = key
 			
+			localVarQueryParams.Add("sign", key)
+		}
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			
+			localVarQueryParams.Add("timestamp", key)
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)

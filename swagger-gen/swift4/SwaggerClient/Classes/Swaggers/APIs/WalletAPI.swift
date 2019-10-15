@@ -33,11 +33,14 @@ open class WalletAPI {
      Get wallet fund records
      - GET /open-api/wallet/fund/records
      - API Key:
-       - type: apiKey api-key 
+       - type: apiKey api_key (QUERY)
        - name: apiKey
      - API Key:
-       - type: apiKey api-signature 
+       - type: apiKey sign (QUERY)
        - name: apiSignature
+     - API Key:
+       - type: apiKey timestamp (QUERY)
+       - name: timestamp
      - examples: [{contentType=application/json, example=""}]
      
      - parameter startDate: (query) Start point for result (optional)

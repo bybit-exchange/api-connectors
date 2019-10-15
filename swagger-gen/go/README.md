@@ -17,7 +17,7 @@ import "./swagger"
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://localhost*
+All URIs are relative to *https://api-testnet.bybit.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -102,6 +102,17 @@ auth := context.WithValue(context.Background(), sw.ContextAPIKey, sw.APIKey{
 r, err := client.Service.Operation(auth, args)
 ```
 ## apiSignature
+- **Type**: API key 
+
+Example
+```golang
+auth := context.WithValue(context.Background(), sw.ContextAPIKey, sw.APIKey{
+	Key: "APIKEY",
+	Prefix: "Bearer", // Omit if not necessary.
+})
+r, err := client.Service.Operation(auth, args)
+```
+## timestamp
 - **Type**: API key 
 
 Example

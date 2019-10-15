@@ -7,6 +7,7 @@ info:
   termsOfService: "https://www.bybit.com/app/login"
   contact:
     email: "support@bybit.com"
+host: "api-testnet.bybit.com"
 basePath: "/"
 tags:
 - name: "Common"
@@ -37,6 +38,7 @@ produces:
 - "application/json"
 security:
 - apiKey: []
+  timestamp: []
   apiSignature: []
 paths:
   /v2/public/time:
@@ -318,7 +320,6 @@ paths:
         200:
           description: "Request was successful"
           schema: {}
-      security: []
       deprecated: false
   /open-api/order/list:
     get:
@@ -385,7 +386,6 @@ paths:
         200:
           description: "Request was successful"
           schema: {}
-      security: []
       deprecated: false
   /open-api/order/cancel:
     post:
@@ -411,7 +411,6 @@ paths:
         200:
           description: "Request was successful"
           schema: {}
-      security: []
       deprecated: false
   /open-api/order/replace:
     post:
@@ -733,7 +732,6 @@ paths:
         200:
           description: "Request was successful"
           schema: {}
-      security: []
       deprecated: false
   /v2/public/orderBook/L2:
     get:
@@ -809,12 +807,16 @@ paths:
 securityDefinitions:
   apiKey:
     type: "apiKey"
-    name: "api-key"
-    in: "header"
+    name: "api_key"
+    in: "query"
+  timestamp:
+    type: "apiKey"
+    name: "timestamp"
+    in: "query"
   apiSignature:
     type: "apiKey"
-    name: "api-signature"
-    in: "header"
+    name: "sign"
+    in: "query"
 definitions:
   ServerTime:
     type: "object"

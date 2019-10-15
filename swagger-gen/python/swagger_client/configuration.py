@@ -40,7 +40,7 @@ class Configuration(object):
             return
 
         # Default Base url
-        self.host = "https://localhost"
+        self.host = "https://api-testnet.bybit.com"
         # Temp file folder for downloading files
         self.temp_folder_path = None
 
@@ -224,16 +224,23 @@ class Configuration(object):
             'apiKey':
                 {
                     'type': 'api_key',
-                    'in': 'header',
-                    'key': 'api-key',
-                    'value': self.get_api_key_with_prefix('api-key')
+                    'in': 'query',
+                    'key': 'api_key',
+                    'value': self.get_api_key_with_prefix('api_key')
                 },
             'apiSignature':
                 {
                     'type': 'api_key',
-                    'in': 'header',
-                    'key': 'api-signature',
-                    'value': self.get_api_key_with_prefix('api-signature')
+                    'in': 'query',
+                    'key': 'sign',
+                    'value': self.get_api_key_with_prefix('sign')
+                },
+            'timestamp':
+                {
+                    'type': 'api_key',
+                    'in': 'query',
+                    'key': 'timestamp',
+                    'value': self.get_api_key_with_prefix('timestamp')
                 },
 
         }

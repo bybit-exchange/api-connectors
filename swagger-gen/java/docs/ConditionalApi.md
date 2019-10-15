@@ -1,6 +1,6 @@
 # ConditionalApi
 
-All URIs are relative to *https://localhost*
+All URIs are relative to *https://api-testnet.bybit.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -39,6 +39,12 @@ apiSignature.setApiKey("YOUR API KEY");
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.setApiKeyPrefix("Token");
 
+// Configure API key authorization: timestamp
+ApiKeyAuth timestamp = (ApiKeyAuth) defaultClient.getAuthentication("timestamp");
+timestamp.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//timestamp.setApiKeyPrefix("Token");
+
 ConditionalApi apiInstance = new ConditionalApi();
 String stopOrderId = "stopOrderId_example"; // String | Order ID of conditional order.
 try {
@@ -62,7 +68,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
 
 ### HTTP request headers
 
@@ -98,6 +104,12 @@ apiSignature.setApiKey("YOUR API KEY");
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.setApiKeyPrefix("Token");
 
+// Configure API key authorization: timestamp
+ApiKeyAuth timestamp = (ApiKeyAuth) defaultClient.getAuthentication("timestamp");
+timestamp.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//timestamp.setApiKeyPrefix("Token");
+
 ConditionalApi apiInstance = new ConditionalApi();
 String stopOrderId = "stopOrderId_example"; // String | Order ID of conditional order.
 String orderLinkId = "orderLinkId_example"; // String | Agency customized order ID.
@@ -131,7 +143,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
 
 ### HTTP request headers
 
@@ -166,6 +178,12 @@ ApiKeyAuth apiSignature = (ApiKeyAuth) defaultClient.getAuthentication("apiSigna
 apiSignature.setApiKey("YOUR API KEY");
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.setApiKeyPrefix("Token");
+
+// Configure API key authorization: timestamp
+ApiKeyAuth timestamp = (ApiKeyAuth) defaultClient.getAuthentication("timestamp");
+timestamp.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//timestamp.setApiKeyPrefix("Token");
 
 ConditionalApi apiInstance = new ConditionalApi();
 String side = "side_example"; // String | Side.
@@ -208,7 +226,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
 
 ### HTTP request headers
 
@@ -244,6 +262,12 @@ apiSignature.setApiKey("YOUR API KEY");
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.setApiKeyPrefix("Token");
 
+// Configure API key authorization: timestamp
+ApiKeyAuth timestamp = (ApiKeyAuth) defaultClient.getAuthentication("timestamp");
+timestamp.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//timestamp.setApiKeyPrefix("Token");
+
 ConditionalApi apiInstance = new ConditionalApi();
 String orderId = "orderId_example"; // String | Order ID.
 String symbol = "symbol_example"; // String | Contract type.
@@ -275,7 +299,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
 
 ### HTTP request headers
 

@@ -1,6 +1,6 @@
 # FundingApi
 
-All URIs are relative to *https://localhost*
+All URIs are relative to *https://api-testnet.bybit.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -38,6 +38,12 @@ apiSignature.setApiKey("YOUR API KEY");
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.setApiKeyPrefix("Token");
 
+// Configure API key authorization: timestamp
+ApiKeyAuth timestamp = (ApiKeyAuth) defaultClient.getAuthentication("timestamp");
+timestamp.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//timestamp.setApiKeyPrefix("Token");
+
 FundingApi apiInstance = new FundingApi();
 String symbol = "symbol_example"; // String | Contract type.
 try {
@@ -61,7 +67,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
 
 ### HTTP request headers
 
@@ -97,6 +103,12 @@ apiSignature.setApiKey("YOUR API KEY");
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.setApiKeyPrefix("Token");
 
+// Configure API key authorization: timestamp
+ApiKeyAuth timestamp = (ApiKeyAuth) defaultClient.getAuthentication("timestamp");
+timestamp.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//timestamp.setApiKeyPrefix("Token");
+
 FundingApi apiInstance = new FundingApi();
 String symbol = "symbol_example"; // String | Contract type.
 try {
@@ -120,7 +132,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
 
 ### HTTP request headers
 
@@ -156,6 +168,12 @@ apiSignature.setApiKey("YOUR API KEY");
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.setApiKeyPrefix("Token");
 
+// Configure API key authorization: timestamp
+ApiKeyAuth timestamp = (ApiKeyAuth) defaultClient.getAuthentication("timestamp");
+timestamp.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//timestamp.setApiKeyPrefix("Token");
+
 FundingApi apiInstance = new FundingApi();
 String symbol = "symbol_example"; // String | Contract type.
 try {
@@ -179,7 +197,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
 
 ### HTTP request headers
 

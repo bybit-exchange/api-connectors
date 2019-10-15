@@ -28,7 +28,7 @@
 - (instancetype) init {
     self = [super init];
     if (self) {
-        _host = @"https://localhost";
+        _host = @"https://api-testnet.bybit.com";
         _username = @"";
         _password = @"";
         _accessToken= @"";
@@ -107,16 +107,23 @@
                @"apiKey":
                    @{
                        @"type": @"api_key",
-                       @"in": @"header",
-                       @"key": @"api-key",
-                       @"value": [self getApiKeyWithPrefix:@"api-key"]
+                       @"in": @"query",
+                       @"key": @"api_key",
+                       @"value": [self getApiKeyWithPrefix:@"api_key"]
                    },
                @"apiSignature":
                    @{
                        @"type": @"api_key",
-                       @"in": @"header",
-                       @"key": @"api-signature",
-                       @"value": [self getApiKeyWithPrefix:@"api-signature"]
+                       @"in": @"query",
+                       @"key": @"sign",
+                       @"value": [self getApiKeyWithPrefix:@"sign"]
+                   },
+               @"timestamp":
+                   @{
+                       @"type": @"api_key",
+                       @"in": @"query",
+                       @"key": @"timestamp",
+                       @"value": [self getApiKeyWithPrefix:@"timestamp"]
                    },
                };
 }

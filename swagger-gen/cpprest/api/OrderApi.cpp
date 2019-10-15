@@ -114,18 +114,26 @@ pplx::task<std::shared_ptr<Object>> OrderApi::order_Replace(utility::string_t or
 
     // authentication (apiKey) required
     {
-        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api-key"));
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api_key"));
         if ( apiKey.size() > 0 )
         {
-            headerParams[utility::conversions::to_string_t("api-key")] = apiKey;
+            queryParams[utility::conversions::to_string_t("api_key")] = apiKey;
         }
     }
     // authentication (apiSignature) required
     {
-        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api-signature"));
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("sign"));
         if ( apiKey.size() > 0 )
         {
-            headerParams[utility::conversions::to_string_t("api-signature")] = apiKey;
+            queryParams[utility::conversions::to_string_t("sign")] = apiKey;
+        }
+    }
+    // authentication (timestamp) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("timestamp"));
+        if ( apiKey.size() > 0 )
+        {
+            queryParams[utility::conversions::to_string_t("timestamp")] = apiKey;
         }
     }
 
@@ -250,6 +258,30 @@ pplx::task<std::shared_ptr<Object>> OrderApi::order_cancel(utility::string_t ord
         throw ApiException(415, utility::conversions::to_string_t("OrderApi->order_cancel does not consume any supported media type"));
     }
 
+    // authentication (apiKey) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api_key"));
+        if ( apiKey.size() > 0 )
+        {
+            queryParams[utility::conversions::to_string_t("api_key")] = apiKey;
+        }
+    }
+    // authentication (apiSignature) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("sign"));
+        if ( apiKey.size() > 0 )
+        {
+            queryParams[utility::conversions::to_string_t("sign")] = apiKey;
+        }
+    }
+    // authentication (timestamp) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("timestamp"));
+        if ( apiKey.size() > 0 )
+        {
+            queryParams[utility::conversions::to_string_t("timestamp")] = apiKey;
+        }
+    }
 
     return m_ApiClient->callApi(path, utility::conversions::to_string_t("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -393,6 +425,30 @@ pplx::task<std::shared_ptr<Object>> OrderApi::order_getOrders(boost::optional<ut
         throw ApiException(415, utility::conversions::to_string_t("OrderApi->order_getOrders does not consume any supported media type"));
     }
 
+    // authentication (apiKey) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api_key"));
+        if ( apiKey.size() > 0 )
+        {
+            queryParams[utility::conversions::to_string_t("api_key")] = apiKey;
+        }
+    }
+    // authentication (apiSignature) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("sign"));
+        if ( apiKey.size() > 0 )
+        {
+            queryParams[utility::conversions::to_string_t("sign")] = apiKey;
+        }
+    }
+    // authentication (timestamp) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("timestamp"));
+        if ( apiKey.size() > 0 )
+        {
+            queryParams[utility::conversions::to_string_t("timestamp")] = apiKey;
+        }
+    }
 
     return m_ApiClient->callApi(path, utility::conversions::to_string_t("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -546,6 +602,30 @@ pplx::task<std::shared_ptr<Object>> OrderApi::order_new(utility::string_t side, 
         throw ApiException(415, utility::conversions::to_string_t("OrderApi->order_new does not consume any supported media type"));
     }
 
+    // authentication (apiKey) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api_key"));
+        if ( apiKey.size() > 0 )
+        {
+            queryParams[utility::conversions::to_string_t("api_key")] = apiKey;
+        }
+    }
+    // authentication (apiSignature) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("sign"));
+        if ( apiKey.size() > 0 )
+        {
+            queryParams[utility::conversions::to_string_t("sign")] = apiKey;
+        }
+    }
+    // authentication (timestamp) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("timestamp"));
+        if ( apiKey.size() > 0 )
+        {
+            queryParams[utility::conversions::to_string_t("timestamp")] = apiKey;
+        }
+    }
 
     return m_ApiClient->callApi(path, utility::conversions::to_string_t("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)

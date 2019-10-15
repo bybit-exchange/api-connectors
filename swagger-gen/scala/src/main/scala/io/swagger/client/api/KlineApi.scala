@@ -45,7 +45,7 @@ import scala.util.{Failure, Success, Try}
 import org.json4s._
 
 class KlineApi(
-  val defBasePath: String = "https://localhost",
+  val defBasePath: String = "https://api-testnet.bybit.com",
   defApiInvoker: ApiInvoker = ApiInvoker
 ) {
   private lazy val dateTimeFormatter = {

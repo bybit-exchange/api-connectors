@@ -129,7 +129,7 @@ module SwaggerClient
 
     def initialize
       @scheme = 'https'
-      @host = ''
+      @host = 'api-testnet.bybit.com'
       @base_path = '/'
       @api_key = {}
       @api_key_prefix = {}
@@ -199,16 +199,23 @@ module SwaggerClient
         'apiKey' =>
           {
             type: 'api_key',
-            in: 'header',
-            key: 'api-key',
-            value: api_key_with_prefix('api-key')
+            in: 'query',
+            key: 'api_key',
+            value: api_key_with_prefix('api_key')
           },
         'apiSignature' =>
           {
             type: 'api_key',
-            in: 'header',
-            key: 'api-signature',
-            value: api_key_with_prefix('api-signature')
+            in: 'query',
+            key: 'sign',
+            value: api_key_with_prefix('sign')
+          },
+        'timestamp' =>
+          {
+            type: 'api_key',
+            in: 'query',
+            key: 'timestamp',
+            value: api_key_with_prefix('timestamp')
           },
       }
     end

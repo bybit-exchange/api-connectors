@@ -14,7 +14,7 @@
               :form-params   {}
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json"]
-              :auth-names    []})))
+              :auth-names    ["apiKey" "apiSignature" "timestamp"]})))
 
 (defn order-cancel
   "Get my active order list."
@@ -33,7 +33,7 @@
               :form-params   {}
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json"]
-              :auth-names    []})))
+              :auth-names    ["apiKey" "apiSignature" "timestamp"]})))
 
 (defn order-get-orders
   "Get my active order list."
@@ -53,7 +53,7 @@
               :form-params   {}
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json"]
-              :auth-names    []})))
+              :auth-names    ["apiKey" "apiSignature" "timestamp"]})))
 
 (defn order-new
   "Place active order"
@@ -73,7 +73,7 @@
               :form-params   {}
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json"]
-              :auth-names    ["apiKey" "apiSignature"]})))
+              :auth-names    ["apiKey" "apiSignature" "timestamp"]})))
 
 (defn order-replace
   "Replace active order. Only incomplete orders can be modified."

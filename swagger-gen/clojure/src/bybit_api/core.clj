@@ -8,17 +8,19 @@
            (java.text SimpleDateFormat)))
 
 (def auth-definitions
-  {"apiKey" {:type :api-key :in :header :param-name "api-key"}
-   "apiSignature" {:type :api-key :in :header :param-name "api-signature"}})
+  {"apiKey" {:type :api-key :in :query :param-name "api_key"}
+   "apiSignature" {:type :api-key :in :query :param-name "sign"}
+   "timestamp" {:type :api-key :in :query :param-name "timestamp"}})
 
 (def default-api-context
   "Default API context."
-  {:base-url        "https://localhost"
+  {:base-url        "https://api-testnet.bybit.com"
    :date-format     "yyyy-MM-dd"
    :datetime-format "yyyy-MM-dd'T'HH:mm:ss.SSSXXX"
    :debug           false
    :auths           {"apiKey" nil
-                     "apiSignature" nil}})
+                     "apiSignature" nil
+                     "timestamp" nil}})
 
 (def ^:dynamic *api-context*
   "Dynamic API context to be applied in API calls."

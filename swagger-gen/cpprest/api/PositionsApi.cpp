@@ -106,18 +106,26 @@ pplx::task<std::shared_ptr<Object>> PositionsApi::positions_changeMargin(utility
 
     // authentication (apiKey) required
     {
-        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api-key"));
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api_key"));
         if ( apiKey.size() > 0 )
         {
-            headerParams[utility::conversions::to_string_t("api-key")] = apiKey;
+            queryParams[utility::conversions::to_string_t("api_key")] = apiKey;
         }
     }
     // authentication (apiSignature) required
     {
-        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api-signature"));
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("sign"));
         if ( apiKey.size() > 0 )
         {
-            headerParams[utility::conversions::to_string_t("api-signature")] = apiKey;
+            queryParams[utility::conversions::to_string_t("sign")] = apiKey;
+        }
+    }
+    // authentication (timestamp) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("timestamp"));
+        if ( apiKey.size() > 0 )
+        {
+            queryParams[utility::conversions::to_string_t("timestamp")] = apiKey;
         }
     }
 
@@ -237,18 +245,26 @@ pplx::task<std::shared_ptr<Object>> PositionsApi::positions_myPosition()
 
     // authentication (apiKey) required
     {
-        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api-key"));
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api_key"));
         if ( apiKey.size() > 0 )
         {
-            headerParams[utility::conversions::to_string_t("api-key")] = apiKey;
+            queryParams[utility::conversions::to_string_t("api_key")] = apiKey;
         }
     }
     // authentication (apiSignature) required
     {
-        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api-signature"));
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("sign"));
         if ( apiKey.size() > 0 )
         {
-            headerParams[utility::conversions::to_string_t("api-signature")] = apiKey;
+            queryParams[utility::conversions::to_string_t("sign")] = apiKey;
+        }
+    }
+    // authentication (timestamp) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("timestamp"));
+        if ( apiKey.size() > 0 )
+        {
+            queryParams[utility::conversions::to_string_t("timestamp")] = apiKey;
         }
     }
 
@@ -374,18 +390,26 @@ pplx::task<std::shared_ptr<Object>> PositionsApi::positions_saveLeverage(utility
 
     // authentication (apiKey) required
     {
-        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api-key"));
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api_key"));
         if ( apiKey.size() > 0 )
         {
-            headerParams[utility::conversions::to_string_t("api-key")] = apiKey;
+            queryParams[utility::conversions::to_string_t("api_key")] = apiKey;
         }
     }
     // authentication (apiSignature) required
     {
-        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api-signature"));
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("sign"));
         if ( apiKey.size() > 0 )
         {
-            headerParams[utility::conversions::to_string_t("api-signature")] = apiKey;
+            queryParams[utility::conversions::to_string_t("sign")] = apiKey;
+        }
+    }
+    // authentication (timestamp) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("timestamp"));
+        if ( apiKey.size() > 0 )
+        {
+            queryParams[utility::conversions::to_string_t("timestamp")] = apiKey;
         }
     }
 
@@ -520,18 +544,26 @@ pplx::task<std::shared_ptr<Object>> PositionsApi::positions_tradingStop(utility:
 
     // authentication (apiKey) required
     {
-        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api-key"));
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api_key"));
         if ( apiKey.size() > 0 )
         {
-            headerParams[utility::conversions::to_string_t("api-key")] = apiKey;
+            queryParams[utility::conversions::to_string_t("api_key")] = apiKey;
         }
     }
     // authentication (apiSignature) required
     {
-        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api-signature"));
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("sign"));
         if ( apiKey.size() > 0 )
         {
-            headerParams[utility::conversions::to_string_t("api-signature")] = apiKey;
+            queryParams[utility::conversions::to_string_t("sign")] = apiKey;
+        }
+    }
+    // authentication (timestamp) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("timestamp"));
+        if ( apiKey.size() > 0 )
+        {
+            queryParams[utility::conversions::to_string_t("timestamp")] = apiKey;
         }
     }
 
@@ -651,18 +683,26 @@ pplx::task<std::shared_ptr<Object>> PositionsApi::positions_userLeverage()
 
     // authentication (apiKey) required
     {
-        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api-key"));
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api_key"));
         if ( apiKey.size() > 0 )
         {
-            headerParams[utility::conversions::to_string_t("api-key")] = apiKey;
+            queryParams[utility::conversions::to_string_t("api_key")] = apiKey;
         }
     }
     // authentication (apiSignature) required
     {
-        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("api-signature"));
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("sign"));
         if ( apiKey.size() > 0 )
         {
-            headerParams[utility::conversions::to_string_t("api-signature")] = apiKey;
+            queryParams[utility::conversions::to_string_t("sign")] = apiKey;
+        }
+    }
+    // authentication (timestamp) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("timestamp"));
+        if ( apiKey.size() > 0 )
+        {
+            queryParams[utility::conversions::to_string_t("timestamp")] = apiKey;
         }
     }
 

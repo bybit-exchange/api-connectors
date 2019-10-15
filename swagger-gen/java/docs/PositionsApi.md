@@ -1,6 +1,6 @@
 # PositionsApi
 
-All URIs are relative to *https://localhost*
+All URIs are relative to *https://api-testnet.bybit.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -40,6 +40,12 @@ apiSignature.setApiKey("YOUR API KEY");
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.setApiKeyPrefix("Token");
 
+// Configure API key authorization: timestamp
+ApiKeyAuth timestamp = (ApiKeyAuth) defaultClient.getAuthentication("timestamp");
+timestamp.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//timestamp.setApiKeyPrefix("Token");
+
 PositionsApi apiInstance = new PositionsApi();
 String symbol = "symbol_example"; // String | Contract type which you want update its margin
 String margin = "margin_example"; // String | New margin you want set
@@ -65,7 +71,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
 
 ### HTTP request headers
 
@@ -101,6 +107,12 @@ apiSignature.setApiKey("YOUR API KEY");
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.setApiKeyPrefix("Token");
 
+// Configure API key authorization: timestamp
+ApiKeyAuth timestamp = (ApiKeyAuth) defaultClient.getAuthentication("timestamp");
+timestamp.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//timestamp.setApiKeyPrefix("Token");
+
 PositionsApi apiInstance = new PositionsApi();
 try {
     Object result = apiInstance.positionsMyPosition();
@@ -120,7 +132,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
 
 ### HTTP request headers
 
@@ -156,6 +168,12 @@ apiSignature.setApiKey("YOUR API KEY");
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.setApiKeyPrefix("Token");
 
+// Configure API key authorization: timestamp
+ApiKeyAuth timestamp = (ApiKeyAuth) defaultClient.getAuthentication("timestamp");
+timestamp.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//timestamp.setApiKeyPrefix("Token");
+
 PositionsApi apiInstance = new PositionsApi();
 String symbol = "symbol_example"; // String | A symbol which you want change its leverage
 String leverage = "leverage_example"; // String | New leverage you want set
@@ -181,7 +199,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
 
 ### HTTP request headers
 
@@ -217,6 +235,12 @@ apiSignature.setApiKey("YOUR API KEY");
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.setApiKeyPrefix("Token");
 
+// Configure API key authorization: timestamp
+ApiKeyAuth timestamp = (ApiKeyAuth) defaultClient.getAuthentication("timestamp");
+timestamp.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//timestamp.setApiKeyPrefix("Token");
+
 PositionsApi apiInstance = new PositionsApi();
 String symbol = "symbol_example"; // String | Contract type
 String takeProfit = "takeProfit_example"; // String | Not less than 0, 0 means cancel TP
@@ -246,7 +270,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
 
 ### HTTP request headers
 
@@ -282,6 +306,12 @@ apiSignature.setApiKey("YOUR API KEY");
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.setApiKeyPrefix("Token");
 
+// Configure API key authorization: timestamp
+ApiKeyAuth timestamp = (ApiKeyAuth) defaultClient.getAuthentication("timestamp");
+timestamp.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//timestamp.setApiKeyPrefix("Token");
+
 PositionsApi apiInstance = new PositionsApi();
 try {
     Object result = apiInstance.positionsUserLeverage();
@@ -301,7 +331,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
 
 ### HTTP request headers
 

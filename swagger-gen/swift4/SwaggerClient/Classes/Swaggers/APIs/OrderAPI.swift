@@ -28,6 +28,15 @@ open class OrderAPI {
     /**
      Get my active order list.
      - POST /open-api/order/cancel
+     - API Key:
+       - type: apiKey api_key (QUERY)
+       - name: apiKey
+     - API Key:
+       - type: apiKey sign (QUERY)
+       - name: apiSignature
+     - API Key:
+       - type: apiKey timestamp (QUERY)
+       - name: timestamp
      - examples: [{contentType=application/json, example=""}]
      
      - parameter orderId: (query) Order ID 
@@ -73,6 +82,15 @@ open class OrderAPI {
     /**
      Get my active order list.
      - GET /open-api/order/list
+     - API Key:
+       - type: apiKey api_key (QUERY)
+       - name: apiKey
+     - API Key:
+       - type: apiKey sign (QUERY)
+       - name: apiSignature
+     - API Key:
+       - type: apiKey timestamp (QUERY)
+       - name: timestamp
      - examples: [{contentType=application/json, example=""}]
      
      - parameter orderId: (query) Order ID (optional)
@@ -132,6 +150,15 @@ open class OrderAPI {
     /**
      Place active order
      - POST /open-api/order/create
+     - API Key:
+       - type: apiKey api_key (QUERY)
+       - name: apiKey
+     - API Key:
+       - type: apiKey sign (QUERY)
+       - name: apiSignature
+     - API Key:
+       - type: apiKey timestamp (QUERY)
+       - name: timestamp
      - examples: [{contentType=application/json, example=""}]
      
      - parameter side: (query) Side 
@@ -193,11 +220,14 @@ open class OrderAPI {
      Replace active order. Only incomplete orders can be modified. 
      - POST /open-api/order/replace
      - API Key:
-       - type: apiKey api-key 
+       - type: apiKey api_key (QUERY)
        - name: apiKey
      - API Key:
-       - type: apiKey api-signature 
+       - type: apiKey sign (QUERY)
        - name: apiSignature
+     - API Key:
+       - type: apiKey timestamp (QUERY)
+       - name: timestamp
      - examples: [{contentType=application/json, example=""}]
      
      - parameter orderId: (query) Order ID. 

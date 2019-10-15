@@ -109,8 +109,8 @@ func (a *WalletApiService) WalletGetRecords(ctx context.Context, localVarOptiona
 			} else {
 				key = auth.Key
 			}
-			localVarHeaderParams["api-key"] = key
 			
+			localVarQueryParams.Add("api_key", key)
 		}
 	}
 	if ctx != nil {
@@ -122,8 +122,21 @@ func (a *WalletApiService) WalletGetRecords(ctx context.Context, localVarOptiona
 			} else {
 				key = auth.Key
 			}
-			localVarHeaderParams["api-signature"] = key
 			
+			localVarQueryParams.Add("sign", key)
+		}
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			
+			localVarQueryParams.Add("timestamp", key)
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
