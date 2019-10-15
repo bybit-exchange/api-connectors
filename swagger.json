@@ -10,15 +10,6 @@
         "version": "1.0.0"
     },
     "host": "api-testnet.bybit.com",
-    "servers": [{
-            "url": "https://api.bybit.com",
-            "description": "Main server"
-        },
-        {
-            "url": "https://api-testnet.bybit.com",
-            "description": "server for testing"
-        }
-    ],
     "basePath": "/",
     "paths": {
         "/v2/public/time": {
