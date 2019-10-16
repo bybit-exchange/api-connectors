@@ -57,24 +57,29 @@
      */
 
     /**
-     * Get the trade records of a order.
-     * @param {String} orderId orderID.
+     * Get user’s trade records.
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.orderId OrderID. If not provided, will return user’s trading records.
+     * @param {String} opts.symbol Contract type. If order_id not provided, symbol is required.
+     * @param {String} opts.startTime Start timestamp point for result.
+     * @param {String} opts.page Page. Default getting first page data.
+     * @param {String} opts.limit Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page.
      * @param {module:api/ExecutionApi~executionGetTradesCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link Object}
      */
-    this.executionGetTrades = function(orderId, callback) {
+    this.executionGetTrades = function(opts, callback) {
+      opts = opts || {};
       var postBody = null;
-
-      // verify the required parameter 'orderId' is set
-      if (orderId === undefined || orderId === null) {
-        throw new Error("Missing the required parameter 'orderId' when calling executionGetTrades");
-      }
 
 
       var pathParams = {
       };
       var queryParams = {
-        'order_id': orderId,
+        'order_id': opts['orderId'],
+        'symbol': opts['symbol'],
+        'start_time': opts['startTime'],
+        'page': opts['page'],
+        'limit': opts['limit'],
       };
       var collectionQueryParams = {
       };

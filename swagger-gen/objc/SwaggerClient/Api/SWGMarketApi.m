@@ -119,15 +119,20 @@ NSInteger kSWGMarketApiMissingParamErrorCode = 234513;
 ///
 /// Get the latest information for symbol.
 /// 
+///  @param symbol Contract type. (optional)
+///
 ///  @returns NSObject*
 ///
--(NSURLSessionTask*) marketSymbolInfoWithCompletionHandler: 
-    (void (^)(NSObject* output, NSError* error)) handler {
+-(NSURLSessionTask*) marketSymbolInfoWithSymbol: (NSString*) symbol
+    completionHandler: (void (^)(NSObject* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/v2/public/tickers"];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    if (symbol != nil) {
+        queryParams[@"symbol"] = symbol;
+    }
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
     // HTTP header `Accept`

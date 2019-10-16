@@ -46,6 +46,8 @@ type APIClient struct {
 
 	// API Services
 
+	APIkeyApi *APIkeyApiService
+
 	CommonApi *CommonApiService
 
 	ConditionalApi *ConditionalApiService
@@ -83,6 +85,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
+	c.APIkeyApi = (*APIkeyApiService)(&c.common)
 	c.CommonApi = (*CommonApiService)(&c.common)
 	c.ConditionalApi = (*ConditionalApiService)(&c.common)
 	c.ExecutionApi = (*ExecutionApiService)(&c.common)

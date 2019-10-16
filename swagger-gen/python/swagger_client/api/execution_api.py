@@ -33,43 +33,51 @@ class ExecutionApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def execution_get_trades(self, order_id, **kwargs):  # noqa: E501
-        """Get the trade records of a order.  # noqa: E501
+    def execution_get_trades(self, **kwargs):  # noqa: E501
+        """Get user’s trade records.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.execution_get_trades(order_id, async_req=True)
+        >>> thread = api.execution_get_trades(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param str order_id: orderID. (required)
+        :param str order_id: OrderID. If not provided, will return user’s trading records.
+        :param str symbol: Contract type. If order_id not provided, symbol is required.
+        :param str start_time: Start timestamp point for result.
+        :param str page: Page. Default getting first page data.
+        :param str limit: Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page.
         :return: object
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.execution_get_trades_with_http_info(order_id, **kwargs)  # noqa: E501
+            return self.execution_get_trades_with_http_info(**kwargs)  # noqa: E501
         else:
-            (data) = self.execution_get_trades_with_http_info(order_id, **kwargs)  # noqa: E501
+            (data) = self.execution_get_trades_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def execution_get_trades_with_http_info(self, order_id, **kwargs):  # noqa: E501
-        """Get the trade records of a order.  # noqa: E501
+    def execution_get_trades_with_http_info(self, **kwargs):  # noqa: E501
+        """Get user’s trade records.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.execution_get_trades_with_http_info(order_id, async_req=True)
+        >>> thread = api.execution_get_trades_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param str order_id: orderID. (required)
+        :param str order_id: OrderID. If not provided, will return user’s trading records.
+        :param str symbol: Contract type. If order_id not provided, symbol is required.
+        :param str start_time: Start timestamp point for result.
+        :param str page: Page. Default getting first page data.
+        :param str limit: Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page.
         :return: object
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['order_id']  # noqa: E501
+        all_params = ['order_id', 'symbol', 'start_time', 'page', 'limit']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -84,10 +92,6 @@ class ExecutionApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'order_id' is set
-        if ('order_id' not in params or
-                params['order_id'] is None):
-            raise ValueError("Missing the required parameter `order_id` when calling `execution_get_trades`")  # noqa: E501
 
         collection_formats = {}
 
@@ -96,6 +100,14 @@ class ExecutionApi(object):
         query_params = []
         if 'order_id' in params:
             query_params.append(('order_id', params['order_id']))  # noqa: E501
+        if 'symbol' in params:
+            query_params.append(('symbol', params['symbol']))  # noqa: E501
+        if 'start_time' in params:
+            query_params.append(('start_time', params['start_time']))  # noqa: E501
+        if 'page' in params:
+            query_params.append(('page', params['page']))  # noqa: E501
+        if 'limit' in params:
+            query_params.append(('limit', params['limit']))  # noqa: E501
 
         header_params = {}
 

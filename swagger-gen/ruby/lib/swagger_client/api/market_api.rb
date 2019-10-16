@@ -74,6 +74,7 @@ module SwaggerClient
     end
     # Get the latest information for symbol.
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :symbol Contract type.
     # @return [Object]
     def market_symbol_info(opts = {})
       data, _status_code, _headers = market_symbol_info_with_http_info(opts)
@@ -82,6 +83,7 @@ module SwaggerClient
 
     # Get the latest information for symbol.
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :symbol Contract type.
     # @return [Array<(Object, Fixnum, Hash)>] Object data, response status code and response headers
     def market_symbol_info_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -92,6 +94,7 @@ module SwaggerClient
 
       # query parameters
       query_params = {}
+      query_params[:'symbol'] = opts[:'symbol'] if !opts[:'symbol'].nil?
 
       # header parameters
       header_params = {}

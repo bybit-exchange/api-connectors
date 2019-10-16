@@ -21,3 +21,22 @@
   ([optional-params]
    (:data (wallet-get-records-with-http-info optional-params))))
 
+(defn wallet-withdraw-with-http-info
+  "Get wallet fund records"
+  ([] (wallet-withdraw-with-http-info nil))
+  ([{:keys [start-date end-date coin status page limit ]}]
+   (call-api "/open-api/wallet/withdraw/list" :get
+             {:path-params   {}
+              :header-params {}
+              :query-params  {"start_date" start-date "end_date" end-date "coin" coin "status" status "page" page "limit" limit }
+              :form-params   {}
+              :content-types ["application/json" "application/x-www-form-urlencoded"]
+              :accepts       ["application/json"]
+              :auth-names    ["apiKey" "apiSignature" "timestamp"]})))
+
+(defn wallet-withdraw
+  "Get wallet fund records"
+  ([] (wallet-withdraw nil))
+  ([optional-params]
+   (:data (wallet-withdraw-with-http-info optional-params))))
+

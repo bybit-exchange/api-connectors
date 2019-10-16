@@ -152,7 +152,7 @@ Name | Type | Description  | Notes
 
 <a name="conditionalNew"></a>
 # **conditionalNew**
-> Object conditionalNew(side, symbol, orderType, qty, price, basePrice, stopPx, timeInForce, closeOnTrigger, orderLinkId)
+> Object conditionalNew(side, symbol, orderType, qty, price, basePrice, stopPx, timeInForce, triggerBy, closeOnTrigger, orderLinkId)
 
 Place a new conditional order.
 
@@ -194,10 +194,11 @@ Double price = 3.4D; // Double | Execution price for conditional order
 Double basePrice = 3.4D; // Double | Send current market price. It will be used to compare with the value of 'stop_px', to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order..
 Double stopPx = 3.4D; // Double | Trigger price.
 String timeInForce = "timeInForce_example"; // String | Time in force.
+String triggerBy = "triggerBy_example"; // String | Trigger price type. Default LastPrice.
 Boolean closeOnTrigger = true; // Boolean | close on trigger.
 String orderLinkId = "orderLinkId_example"; // String | Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique..
 try {
-    Object result = apiInstance.conditionalNew(side, symbol, orderType, qty, price, basePrice, stopPx, timeInForce, closeOnTrigger, orderLinkId);
+    Object result = apiInstance.conditionalNew(side, symbol, orderType, qty, price, basePrice, stopPx, timeInForce, triggerBy, closeOnTrigger, orderLinkId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ConditionalApi#conditionalNew");
@@ -217,6 +218,7 @@ Name | Type | Description  | Notes
  **basePrice** | **Double**| Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order.. |
  **stopPx** | **Double**| Trigger price. |
  **timeInForce** | **String**| Time in force. |
+ **triggerBy** | **String**| Trigger price type. Default LastPrice. | [optional]
  **closeOnTrigger** | **Boolean**| close on trigger. | [optional]
  **orderLinkId** | **String**| Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. | [optional]
 

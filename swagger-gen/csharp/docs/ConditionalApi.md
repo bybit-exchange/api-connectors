@@ -166,7 +166,7 @@ Name | Type | Description  | Notes
 
 <a name="conditionalnew"></a>
 # **ConditionalNew**
-> Object ConditionalNew (string side, string symbol, string orderType, decimal? qty, double? price, double? basePrice, double? stopPx, string timeInForce, bool? closeOnTrigger = null, string orderLinkId = null)
+> Object ConditionalNew (string side, string symbol, string orderType, decimal? qty, double? price, double? basePrice, double? stopPx, string timeInForce, string triggerBy = null, bool? closeOnTrigger = null, string orderLinkId = null)
 
 Place a new conditional order.
 
@@ -206,13 +206,14 @@ namespace Example
             var basePrice = 1.2;  // double? | Send current market price. It will be used to compare with the value of 'stop_px', to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order..
             var stopPx = 1.2;  // double? | Trigger price.
             var timeInForce = timeInForce_example;  // string | Time in force.
+            var triggerBy = triggerBy_example;  // string | Trigger price type. Default LastPrice. (optional) 
             var closeOnTrigger = true;  // bool? | close on trigger. (optional) 
             var orderLinkId = orderLinkId_example;  // string | Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. (optional) 
 
             try
             {
                 // Place a new conditional order.
-                Object result = apiInstance.ConditionalNew(side, symbol, orderType, qty, price, basePrice, stopPx, timeInForce, closeOnTrigger, orderLinkId);
+                Object result = apiInstance.ConditionalNew(side, symbol, orderType, qty, price, basePrice, stopPx, timeInForce, triggerBy, closeOnTrigger, orderLinkId);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -236,6 +237,7 @@ Name | Type | Description  | Notes
  **basePrice** | **double?**| Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order.. | 
  **stopPx** | **double?**| Trigger price. | 
  **timeInForce** | **string**| Time in force. | 
+ **triggerBy** | **string**| Trigger price type. Default LastPrice. | [optional] 
  **closeOnTrigger** | **bool?**| close on trigger. | [optional] 
  **orderLinkId** | **string**| Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. | [optional] 
 

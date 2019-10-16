@@ -55,7 +55,9 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
+    /// <param name="symbol">Contract type. (optional)</param>
     pplx::task<std::shared_ptr<Object>> market_symbolInfo(
+        boost::optional<utility::string_t> symbol
     );
 
 protected:

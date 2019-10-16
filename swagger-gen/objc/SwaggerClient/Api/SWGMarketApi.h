@@ -37,12 +37,13 @@ extern NSInteger kSWGMarketApiMissingParamErrorCode;
 /// Get the latest information for symbol.
 /// 
 ///
+/// @param symbol Contract type. (optional)
 /// 
 ///  code:200 message:"Request was successful"
 ///
 /// @return NSObject*
--(NSURLSessionTask*) marketSymbolInfoWithCompletionHandler: 
-    (void (^)(NSObject* output, NSError* error)) handler;
+-(NSURLSessionTask*) marketSymbolInfoWithSymbol: (NSString*) symbol
+    completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
 
 
 

@@ -154,7 +154,7 @@ pplx::task<std::shared_ptr<Object>> MarketApi::market_orderbook(utility::string_
         return result;
     });
 }
-pplx::task<std::shared_ptr<Object>> MarketApi::market_symbolInfo()
+pplx::task<std::shared_ptr<Object>> MarketApi::market_symbolInfo(boost::optional<utility::string_t> symbol)
 {
 
 
@@ -197,6 +197,10 @@ pplx::task<std::shared_ptr<Object>> MarketApi::market_symbolInfo()
     consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
     consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/x-www-form-urlencoded") );
 
+    if (symbol)
+    {
+        queryParams[utility::conversions::to_string_t("symbol")] = ApiClient::parameterToString(*symbol);
+    }
 
     std::shared_ptr<IHttpBody> httpBody;
     utility::string_t requestHttpContentType;

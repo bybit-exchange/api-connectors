@@ -55,18 +55,17 @@ public class ExecutionApi {
   }
 
   /**
-  * Get the trade records of a order.
+  * Get user’s trade records.
   * 
-   * @param orderId orderID.
+   * @param orderId OrderID. If not provided, will return user’s trading records.
+   * @param symbol Contract type. If order_id not provided, symbol is required.
+   * @param startTime Start timestamp point for result.
+   * @param page Page. Default getting first page data.
+   * @param limit Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page.
    * @return Object
   */
-  public Object executionGetTrades (String orderId) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public Object executionGetTrades (String orderId, String symbol, String startTime, String page, String limit) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
-    // verify the required parameter 'orderId' is set
-    if (orderId == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'orderId' when calling executionGetTrades",
-        new ApiException(400, "Missing the required parameter 'orderId' when calling executionGetTrades"));
-    }
 
     // create path and map variables
     String path = "/v2/private/execution/list";
@@ -78,6 +77,10 @@ public class ExecutionApi {
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
     queryParams.addAll(ApiInvoker.parameterToPairs("", "order_id", orderId));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "symbol", symbol));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "start_time", startTime));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "page", page));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "limit", limit));
     String[] contentTypes = {
       "application/json",
       "application/x-www-form-urlencoded"
@@ -120,18 +123,13 @@ public class ExecutionApi {
   }
 
       /**
-   * Get the trade records of a order.
+   * Get user’s trade records.
    * 
-   * @param orderId orderID.
+   * @param orderId OrderID. If not provided, will return user’s trading records.   * @param symbol Contract type. If order_id not provided, symbol is required.   * @param startTime Start timestamp point for result.   * @param page Page. Default getting first page data.   * @param limit Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page.
   */
-  public void executionGetTrades (String orderId, final Response.Listener<Object> responseListener, final Response.ErrorListener errorListener) {
+  public void executionGetTrades (String orderId, String symbol, String startTime, String page, String limit, final Response.Listener<Object> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-    // verify the required parameter 'orderId' is set
-    if (orderId == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'orderId' when calling executionGetTrades",
-        new ApiException(400, "Missing the required parameter 'orderId' when calling executionGetTrades"));
-    }
 
     // create path and map variables
     String path = "/v2/private/execution/list".replaceAll("\\{format\\}","json");
@@ -144,6 +142,10 @@ public class ExecutionApi {
     Map<String, String> formParams = new HashMap<String, String>();
 
     queryParams.addAll(ApiInvoker.parameterToPairs("", "order_id", orderId));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "symbol", symbol));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "start_time", startTime));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "page", page));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "limit", limit));
 
 
     String[] contentTypes = {

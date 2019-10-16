@@ -56,17 +56,31 @@ Please follow the [installation procedure](#installation--usage) and then run th
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new Swagger\Client\Api\CommonApi(
+// Configure API key authorization: apiKey
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api_key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api_key', 'Bearer');
+// Configure API key authorization: apiSignature
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('sign', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('sign', 'Bearer');
+// Configure API key authorization: timestamp
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('timestamp', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('timestamp', 'Bearer');
+
+$apiInstance = new Swagger\Client\Api\APIkeyApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 
 try {
-    $result = $apiInstance->commonGet();
+    $result = $apiInstance->aPIkeyInfo();
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling CommonApi->commonGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling APIkeyApi->aPIkeyInfo: ', $e->getMessage(), PHP_EOL;
 }
 
 ?>
@@ -78,12 +92,13 @@ All URIs are relative to *https://api-testnet.bybit.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*APIkeyApi* | [**aPIkeyInfo**](docs/Api/APIkeyApi.md#apikeyinfo) | **GET** /open-api/api-key | Get account api-key information.
 *CommonApi* | [**commonGet**](docs/Api/CommonApi.md#commonget) | **GET** /v2/public/time | Get bybit server time.
 *ConditionalApi* | [**conditionalCancel**](docs/Api/ConditionalApi.md#conditionalcancel) | **POST** /open-api/stop-order/cancel | Cancel conditional order.
 *ConditionalApi* | [**conditionalGetOrders**](docs/Api/ConditionalApi.md#conditionalgetorders) | **GET** /open-api/stop-order/list | Get my conditional order list.
 *ConditionalApi* | [**conditionalNew**](docs/Api/ConditionalApi.md#conditionalnew) | **POST** /open-api/stop-order/create | Place a new conditional order.
 *ConditionalApi* | [**conditionalReplace**](docs/Api/ConditionalApi.md#conditionalreplace) | **POST** /open-api/stop-order/replace | Replace conditional order. Only incomplete orders can be modified.
-*ExecutionApi* | [**executionGetTrades**](docs/Api/ExecutionApi.md#executiongettrades) | **GET** /v2/private/execution/list | Get the trade records of a order.
+*ExecutionApi* | [**executionGetTrades**](docs/Api/ExecutionApi.md#executiongettrades) | **GET** /v2/private/execution/list | Get user’s trade records.
 *FundingApi* | [**fundingGetRate**](docs/Api/FundingApi.md#fundinggetrate) | **GET** /open-api/funding/prev-funding | Funding settlement occurs every 8 hours at 00:00 UTC, 08:00 UTC and 16:00 UTC. The current interval&#39;s fund fee settlement is based on the previous interval&#39;s fund rate. For example, at 16:00, the settlement is based on the fund rate generated at 8:00. The fund rate generated at 16:00 will be used at 0:00 on the next day.
 *FundingApi* | [**fundingPredicted**](docs/Api/FundingApi.md#fundingpredicted) | **GET** /open-api/funding/predicted-funding | Get predicted funding rate and funding fee.
 *FundingApi* | [**fundingPredictedRate**](docs/Api/FundingApi.md#fundingpredictedrate) | **GET** /open-api/funding/prev-funding-rate | Get predicted funding rate and funding fee.
@@ -101,20 +116,25 @@ Class | Method | HTTP request | Description
 *PositionsApi* | [**positionsUserLeverage**](docs/Api/PositionsApi.md#positionsuserleverage) | **GET** /user/leverage | Get user leverage setting.
 *SymbolApi* | [**symbolGet**](docs/Api/SymbolApi.md#symbolget) | **GET** /v2/public/symbols | Query Symbols.
 *WalletApi* | [**walletGetRecords**](docs/Api/WalletApi.md#walletgetrecords) | **GET** /open-api/wallet/fund/records | Get wallet fund records
+*WalletApi* | [**walletWithdraw**](docs/Api/WalletApi.md#walletwithdraw) | **GET** /open-api/wallet/withdraw/list | Get wallet fund records
 
 
 ## Documentation For Models
 
+ - [APIKeyBase](docs/Model/APIKeyBase.md)
+ - [APIKeyInfo](docs/Model/APIKeyInfo.md)
  - [ConditionalBase](docs/Model/ConditionalBase.md)
  - [ConditionalOrdersRes](docs/Model/ConditionalOrdersRes.md)
  - [ConditionalOrdersResBase](docs/Model/ConditionalOrdersResBase.md)
  - [ConditionalRes](docs/Model/ConditionalRes.md)
+ - [FundRecordBase](docs/Model/FundRecordBase.md)
  - [FundingFeeBase](docs/Model/FundingFeeBase.md)
  - [FundingFeeRes](docs/Model/FundingFeeRes.md)
  - [FundingPredicted](docs/Model/FundingPredicted.md)
  - [FundingPredictedBase](docs/Model/FundingPredictedBase.md)
  - [FundingRate](docs/Model/FundingRate.md)
  - [FundingRateBase](docs/Model/FundingRateBase.md)
+ - [FundingRecords](docs/Model/FundingRecords.md)
  - [KlineBase](docs/Model/KlineBase.md)
  - [KlineRes](docs/Model/KlineRes.md)
  - [Leverage](docs/Model/Leverage.md)
@@ -143,6 +163,8 @@ Class | Method | HTTP request | Description
  - [TradeRecordsInfo](docs/Model/TradeRecordsInfo.md)
  - [TradingStopBase](docs/Model/TradingStopBase.md)
  - [TradingStopRes](docs/Model/TradingStopRes.md)
+ - [WithdrawRecords](docs/Model/WithdrawRecords.md)
+ - [WithdrawResBase](docs/Model/WithdrawResBase.md)
 
 
 ## Documentation For Authorization

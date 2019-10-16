@@ -67,6 +67,7 @@ extern NSInteger kSWGConditionalApiMissingParamErrorCode;
 /// @param basePrice Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order..
 /// @param stopPx Trigger price.
 /// @param timeInForce Time in force.
+/// @param triggerBy Trigger price type. Default LastPrice. (optional)
 /// @param closeOnTrigger close on trigger. (optional)
 /// @param orderLinkId Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. (optional)
 /// 
@@ -81,6 +82,7 @@ extern NSInteger kSWGConditionalApiMissingParamErrorCode;
     basePrice: (NSNumber*) basePrice
     stopPx: (NSNumber*) stopPx
     timeInForce: (NSString*) timeInForce
+    triggerBy: (NSString*) triggerBy
     closeOnTrigger: (NSNumber*) closeOnTrigger
     orderLinkId: (NSString*) orderLinkId
     completionHandler: (void (^)(NSObject* output, NSError* error)) handler;

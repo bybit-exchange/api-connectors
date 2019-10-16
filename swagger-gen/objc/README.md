@@ -41,16 +41,20 @@ Import the following:
 #import <SwaggerClient/SWGApiClient.h>
 #import <SwaggerClient/SWGDefaultConfiguration.h>
 // load models
+#import <SwaggerClient/SWGAPIKeyBase.h>
+#import <SwaggerClient/SWGAPIKeyInfo.h>
 #import <SwaggerClient/SWGConditionalBase.h>
 #import <SwaggerClient/SWGConditionalOrdersRes.h>
 #import <SwaggerClient/SWGConditionalOrdersResBase.h>
 #import <SwaggerClient/SWGConditionalRes.h>
+#import <SwaggerClient/SWGFundRecordBase.h>
 #import <SwaggerClient/SWGFundingFeeBase.h>
 #import <SwaggerClient/SWGFundingFeeRes.h>
 #import <SwaggerClient/SWGFundingPredicted.h>
 #import <SwaggerClient/SWGFundingPredictedBase.h>
 #import <SwaggerClient/SWGFundingRate.h>
 #import <SwaggerClient/SWGFundingRateBase.h>
+#import <SwaggerClient/SWGFundingRecords.h>
 #import <SwaggerClient/SWGKlineBase.h>
 #import <SwaggerClient/SWGKlineRes.h>
 #import <SwaggerClient/SWGLeverage.h>
@@ -79,7 +83,10 @@ Import the following:
 #import <SwaggerClient/SWGTradeRecordsInfo.h>
 #import <SwaggerClient/SWGTradingStopBase.h>
 #import <SwaggerClient/SWGTradingStopRes.h>
+#import <SwaggerClient/SWGWithdrawRecords.h>
+#import <SwaggerClient/SWGWithdrawResBase.h>
 // load API classes for accessing endpoints
+#import <SwaggerClient/SWGAPIkeyApi.h>
 #import <SwaggerClient/SWGCommonApi.h>
 #import <SwaggerClient/SWGConditionalApi.h>
 #import <SwaggerClient/SWGExecutionApi.h>
@@ -103,12 +110,29 @@ Please follow the [installation procedure](#installation--usage) and then run th
 
 ```objc
 
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: apiKey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api_key"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api_key"];
+
+// Configure API key authorization: (authentication scheme: apiSignature)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"sign"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"sign"];
+
+// Configure API key authorization: (authentication scheme: timestamp)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"timestamp"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"timestamp"];
 
 
-SWGCommonApi *apiInstance = [[SWGCommonApi alloc] init];
 
-// Get bybit server time.
-[apiInstance commonGetWithCompletionHandler: 
+SWGAPIkeyApi *apiInstance = [[SWGAPIkeyApi alloc] init];
+
+// Get account api-key information.
+[apiInstance aPIkeyInfoWithCompletionHandler: 
               ^(NSObject* output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
@@ -126,12 +150,13 @@ All URIs are relative to *https://api-testnet.bybit.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*SWGAPIkeyApi* | [**aPIkeyInfo**](docs/SWGAPIkeyApi.md#apikeyinfo) | **GET** /open-api/api-key | Get account api-key information.
 *SWGCommonApi* | [**commonGet**](docs/SWGCommonApi.md#commonget) | **GET** /v2/public/time | Get bybit server time.
 *SWGConditionalApi* | [**conditionalCancel**](docs/SWGConditionalApi.md#conditionalcancel) | **POST** /open-api/stop-order/cancel | Cancel conditional order.
 *SWGConditionalApi* | [**conditionalGetOrders**](docs/SWGConditionalApi.md#conditionalgetorders) | **GET** /open-api/stop-order/list | Get my conditional order list.
 *SWGConditionalApi* | [**conditionalNew**](docs/SWGConditionalApi.md#conditionalnew) | **POST** /open-api/stop-order/create | Place a new conditional order.
 *SWGConditionalApi* | [**conditionalReplace**](docs/SWGConditionalApi.md#conditionalreplace) | **POST** /open-api/stop-order/replace | Replace conditional order. Only incomplete orders can be modified. 
-*SWGExecutionApi* | [**executionGetTrades**](docs/SWGExecutionApi.md#executiongettrades) | **GET** /v2/private/execution/list | Get the trade records of a order.
+*SWGExecutionApi* | [**executionGetTrades**](docs/SWGExecutionApi.md#executiongettrades) | **GET** /v2/private/execution/list | Get user’s trade records.
 *SWGFundingApi* | [**fundingGetRate**](docs/SWGFundingApi.md#fundinggetrate) | **GET** /open-api/funding/prev-funding | Funding settlement occurs every 8 hours at 00:00 UTC, 08:00 UTC and 16:00 UTC. The current interval&#39;s fund fee settlement is based on the previous interval&#39;s fund rate. For example, at 16:00, the settlement is based on the fund rate generated at 8:00. The fund rate generated at 16:00 will be used at 0:00 on the next day.
 *SWGFundingApi* | [**fundingPredicted**](docs/SWGFundingApi.md#fundingpredicted) | **GET** /open-api/funding/predicted-funding | Get predicted funding rate and funding fee.
 *SWGFundingApi* | [**fundingPredictedRate**](docs/SWGFundingApi.md#fundingpredictedrate) | **GET** /open-api/funding/prev-funding-rate | Get predicted funding rate and funding fee.
@@ -149,20 +174,25 @@ Class | Method | HTTP request | Description
 *SWGPositionsApi* | [**positionsUserLeverage**](docs/SWGPositionsApi.md#positionsuserleverage) | **GET** /user/leverage | Get user leverage setting.
 *SWGSymbolApi* | [**symbolGet**](docs/SWGSymbolApi.md#symbolget) | **GET** /v2/public/symbols | Query Symbols.
 *SWGWalletApi* | [**walletGetRecords**](docs/SWGWalletApi.md#walletgetrecords) | **GET** /open-api/wallet/fund/records | Get wallet fund records
+*SWGWalletApi* | [**walletWithdraw**](docs/SWGWalletApi.md#walletwithdraw) | **GET** /open-api/wallet/withdraw/list | Get wallet fund records
 
 
 ## Documentation For Models
 
+ - [SWGAPIKeyBase](docs/SWGAPIKeyBase.md)
+ - [SWGAPIKeyInfo](docs/SWGAPIKeyInfo.md)
  - [SWGConditionalBase](docs/SWGConditionalBase.md)
  - [SWGConditionalOrdersRes](docs/SWGConditionalOrdersRes.md)
  - [SWGConditionalOrdersResBase](docs/SWGConditionalOrdersResBase.md)
  - [SWGConditionalRes](docs/SWGConditionalRes.md)
+ - [SWGFundRecordBase](docs/SWGFundRecordBase.md)
  - [SWGFundingFeeBase](docs/SWGFundingFeeBase.md)
  - [SWGFundingFeeRes](docs/SWGFundingFeeRes.md)
  - [SWGFundingPredicted](docs/SWGFundingPredicted.md)
  - [SWGFundingPredictedBase](docs/SWGFundingPredictedBase.md)
  - [SWGFundingRate](docs/SWGFundingRate.md)
  - [SWGFundingRateBase](docs/SWGFundingRateBase.md)
+ - [SWGFundingRecords](docs/SWGFundingRecords.md)
  - [SWGKlineBase](docs/SWGKlineBase.md)
  - [SWGKlineRes](docs/SWGKlineRes.md)
  - [SWGLeverage](docs/SWGLeverage.md)
@@ -191,6 +221,8 @@ Class | Method | HTTP request | Description
  - [SWGTradeRecordsInfo](docs/SWGTradeRecordsInfo.md)
  - [SWGTradingStopBase](docs/SWGTradingStopBase.md)
  - [SWGTradingStopRes](docs/SWGTradingStopRes.md)
+ - [SWGWithdrawRecords](docs/SWGWithdrawRecords.md)
+ - [SWGWithdrawResBase](docs/SWGWithdrawResBase.md)
 
 
 ## Documentation For Authorization

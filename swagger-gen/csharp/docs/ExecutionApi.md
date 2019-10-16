@@ -4,14 +4,14 @@ All URIs are relative to *https://api-testnet.bybit.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ExecutionGetTrades**](ExecutionApi.md#executiongettrades) | **GET** /v2/private/execution/list | Get the trade records of a order.
+[**ExecutionGetTrades**](ExecutionApi.md#executiongettrades) | **GET** /v2/private/execution/list | Get user’s trade records.
 
 
 <a name="executiongettrades"></a>
 # **ExecutionGetTrades**
-> Object ExecutionGetTrades (string orderId)
+> Object ExecutionGetTrades (string orderId = null, string symbol = null, string startTime = null, string page = null, string limit = null)
 
-Get the trade records of a order.
+Get user’s trade records.
 
 ### Example
 ```csharp
@@ -41,12 +41,16 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("timestamp", "Bearer");
 
             var apiInstance = new ExecutionApi();
-            var orderId = orderId_example;  // string | orderID.
+            var orderId = orderId_example;  // string | OrderID. If not provided, will return user’s trading records. (optional) 
+            var symbol = symbol_example;  // string | Contract type. If order_id not provided, symbol is required. (optional) 
+            var startTime = startTime_example;  // string | Start timestamp point for result. (optional) 
+            var page = page_example;  // string | Page. Default getting first page data. (optional) 
+            var limit = limit_example;  // string | Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. (optional) 
 
             try
             {
-                // Get the trade records of a order.
-                Object result = apiInstance.ExecutionGetTrades(orderId);
+                // Get user’s trade records.
+                Object result = apiInstance.ExecutionGetTrades(orderId, symbol, startTime, page, limit);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -62,7 +66,11 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **orderId** | **string**| orderID. | 
+ **orderId** | **string**| OrderID. If not provided, will return user’s trading records. | [optional] 
+ **symbol** | **string**| Contract type. If order_id not provided, symbol is required. | [optional] 
+ **startTime** | **string**| Start timestamp point for result. | [optional] 
+ **page** | **string**| Page. Default getting first page data. | [optional] 
+ **limit** | **string**| Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. | [optional] 
 
 ### Return type
 

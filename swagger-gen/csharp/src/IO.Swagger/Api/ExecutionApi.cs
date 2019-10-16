@@ -24,49 +24,65 @@ namespace IO.Swagger.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// Get the trade records of a order.
+        /// Get user’s trade records.
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="orderId">orderID.</param>
+        /// <param name="orderId">OrderID. If not provided, will return user’s trading records. (optional)</param>
+        /// <param name="symbol">Contract type. If order_id not provided, symbol is required. (optional)</param>
+        /// <param name="startTime">Start timestamp point for result. (optional)</param>
+        /// <param name="page">Page. Default getting first page data. (optional)</param>
+        /// <param name="limit">Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. (optional)</param>
         /// <returns>Object</returns>
-        Object ExecutionGetTrades (string orderId);
+        Object ExecutionGetTrades (string orderId = null, string symbol = null, string startTime = null, string page = null, string limit = null);
 
         /// <summary>
-        /// Get the trade records of a order.
+        /// Get user’s trade records.
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="orderId">orderID.</param>
+        /// <param name="orderId">OrderID. If not provided, will return user’s trading records. (optional)</param>
+        /// <param name="symbol">Contract type. If order_id not provided, symbol is required. (optional)</param>
+        /// <param name="startTime">Start timestamp point for result. (optional)</param>
+        /// <param name="page">Page. Default getting first page data. (optional)</param>
+        /// <param name="limit">Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. (optional)</param>
         /// <returns>ApiResponse of Object</returns>
-        ApiResponse<Object> ExecutionGetTradesWithHttpInfo (string orderId);
+        ApiResponse<Object> ExecutionGetTradesWithHttpInfo (string orderId = null, string symbol = null, string startTime = null, string page = null, string limit = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
-        /// Get the trade records of a order.
+        /// Get user’s trade records.
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="orderId">orderID.</param>
+        /// <param name="orderId">OrderID. If not provided, will return user’s trading records. (optional)</param>
+        /// <param name="symbol">Contract type. If order_id not provided, symbol is required. (optional)</param>
+        /// <param name="startTime">Start timestamp point for result. (optional)</param>
+        /// <param name="page">Page. Default getting first page data. (optional)</param>
+        /// <param name="limit">Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. (optional)</param>
         /// <returns>Task of Object</returns>
-        System.Threading.Tasks.Task<Object> ExecutionGetTradesAsync (string orderId);
+        System.Threading.Tasks.Task<Object> ExecutionGetTradesAsync (string orderId = null, string symbol = null, string startTime = null, string page = null, string limit = null);
 
         /// <summary>
-        /// Get the trade records of a order.
+        /// Get user’s trade records.
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="orderId">orderID.</param>
+        /// <param name="orderId">OrderID. If not provided, will return user’s trading records. (optional)</param>
+        /// <param name="symbol">Contract type. If order_id not provided, symbol is required. (optional)</param>
+        /// <param name="startTime">Start timestamp point for result. (optional)</param>
+        /// <param name="page">Page. Default getting first page data. (optional)</param>
+        /// <param name="limit">Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. (optional)</param>
         /// <returns>Task of ApiResponse (Object)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ExecutionGetTradesAsyncWithHttpInfo (string orderId);
+        System.Threading.Tasks.Task<ApiResponse<Object>> ExecutionGetTradesAsyncWithHttpInfo (string orderId = null, string symbol = null, string startTime = null, string page = null, string limit = null);
         #endregion Asynchronous Operations
     }
 
@@ -168,28 +184,33 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Get the trade records of a order. 
+        /// Get user’s trade records. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="orderId">orderID.</param>
+        /// <param name="orderId">OrderID. If not provided, will return user’s trading records. (optional)</param>
+        /// <param name="symbol">Contract type. If order_id not provided, symbol is required. (optional)</param>
+        /// <param name="startTime">Start timestamp point for result. (optional)</param>
+        /// <param name="page">Page. Default getting first page data. (optional)</param>
+        /// <param name="limit">Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. (optional)</param>
         /// <returns>Object</returns>
-        public Object ExecutionGetTrades (string orderId)
+        public Object ExecutionGetTrades (string orderId = null, string symbol = null, string startTime = null, string page = null, string limit = null)
         {
-             ApiResponse<Object> localVarResponse = ExecutionGetTradesWithHttpInfo(orderId);
+             ApiResponse<Object> localVarResponse = ExecutionGetTradesWithHttpInfo(orderId, symbol, startTime, page, limit);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Get the trade records of a order. 
+        /// Get user’s trade records. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="orderId">orderID.</param>
+        /// <param name="orderId">OrderID. If not provided, will return user’s trading records. (optional)</param>
+        /// <param name="symbol">Contract type. If order_id not provided, symbol is required. (optional)</param>
+        /// <param name="startTime">Start timestamp point for result. (optional)</param>
+        /// <param name="page">Page. Default getting first page data. (optional)</param>
+        /// <param name="limit">Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. (optional)</param>
         /// <returns>ApiResponse of Object</returns>
-        public ApiResponse< Object > ExecutionGetTradesWithHttpInfo (string orderId)
+        public ApiResponse< Object > ExecutionGetTradesWithHttpInfo (string orderId = null, string symbol = null, string startTime = null, string page = null, string limit = null)
         {
-            // verify the required parameter 'orderId' is set
-            if (orderId == null)
-                throw new ApiException(400, "Missing required parameter 'orderId' when calling ExecutionApi->ExecutionGetTrades");
 
             var localVarPath = "/v2/private/execution/list";
             var localVarPathParams = new Dictionary<String, String>();
@@ -215,6 +236,10 @@ namespace IO.Swagger.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (orderId != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "order_id", orderId)); // query parameter
+            if (symbol != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "symbol", symbol)); // query parameter
+            if (startTime != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "start_time", startTime)); // query parameter
+            if (page != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "page", page)); // query parameter
+            if (limit != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "limit", limit)); // query parameter
 
             // authentication (apiKey) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api_key")))
@@ -251,29 +276,34 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Get the trade records of a order. 
+        /// Get user’s trade records. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="orderId">orderID.</param>
+        /// <param name="orderId">OrderID. If not provided, will return user’s trading records. (optional)</param>
+        /// <param name="symbol">Contract type. If order_id not provided, symbol is required. (optional)</param>
+        /// <param name="startTime">Start timestamp point for result. (optional)</param>
+        /// <param name="page">Page. Default getting first page data. (optional)</param>
+        /// <param name="limit">Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. (optional)</param>
         /// <returns>Task of Object</returns>
-        public async System.Threading.Tasks.Task<Object> ExecutionGetTradesAsync (string orderId)
+        public async System.Threading.Tasks.Task<Object> ExecutionGetTradesAsync (string orderId = null, string symbol = null, string startTime = null, string page = null, string limit = null)
         {
-             ApiResponse<Object> localVarResponse = await ExecutionGetTradesAsyncWithHttpInfo(orderId);
+             ApiResponse<Object> localVarResponse = await ExecutionGetTradesAsyncWithHttpInfo(orderId, symbol, startTime, page, limit);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        /// Get the trade records of a order. 
+        /// Get user’s trade records. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="orderId">orderID.</param>
+        /// <param name="orderId">OrderID. If not provided, will return user’s trading records. (optional)</param>
+        /// <param name="symbol">Contract type. If order_id not provided, symbol is required. (optional)</param>
+        /// <param name="startTime">Start timestamp point for result. (optional)</param>
+        /// <param name="page">Page. Default getting first page data. (optional)</param>
+        /// <param name="limit">Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. (optional)</param>
         /// <returns>Task of ApiResponse (Object)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> ExecutionGetTradesAsyncWithHttpInfo (string orderId)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> ExecutionGetTradesAsyncWithHttpInfo (string orderId = null, string symbol = null, string startTime = null, string page = null, string limit = null)
         {
-            // verify the required parameter 'orderId' is set
-            if (orderId == null)
-                throw new ApiException(400, "Missing required parameter 'orderId' when calling ExecutionApi->ExecutionGetTrades");
 
             var localVarPath = "/v2/private/execution/list";
             var localVarPathParams = new Dictionary<String, String>();
@@ -299,6 +329,10 @@ namespace IO.Swagger.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (orderId != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "order_id", orderId)); // query parameter
+            if (symbol != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "symbol", symbol)); // query parameter
+            if (startTime != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "start_time", startTime)); // query parameter
+            if (page != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "page", page)); // query parameter
+            if (limit != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "limit", limit)); // query parameter
 
             // authentication (apiKey) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api_key")))

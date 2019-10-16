@@ -49,25 +49,26 @@ NSInteger kSWGExecutionApiMissingParamErrorCode = 234513;
 #pragma mark - Api Methods
 
 ///
-/// Get the trade records of a order.
+/// Get user’s trade records.
 /// 
-///  @param orderId orderID. 
+///  @param orderId OrderID. If not provided, will return user’s trading records. (optional)
+///
+///  @param symbol Contract type. If order_id not provided, symbol is required. (optional)
+///
+///  @param startTime Start timestamp point for result. (optional)
+///
+///  @param page Page. Default getting first page data. (optional)
+///
+///  @param limit Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. (optional)
 ///
 ///  @returns NSObject*
 ///
 -(NSURLSessionTask*) executionGetTradesWithOrderId: (NSString*) orderId
+    symbol: (NSString*) symbol
+    startTime: (NSString*) startTime
+    page: (NSString*) page
+    limit: (NSString*) limit
     completionHandler: (void (^)(NSObject* output, NSError* error)) handler {
-    // verify the required parameter 'orderId' is set
-    if (orderId == nil) {
-        NSParameterAssert(orderId);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"orderId"] };
-            NSError* error = [NSError errorWithDomain:kSWGExecutionApiErrorDomain code:kSWGExecutionApiMissingParamErrorCode userInfo:userInfo];
-            handler(nil, error);
-        }
-        return nil;
-    }
-
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/v2/private/execution/list"];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
@@ -75,6 +76,18 @@ NSInteger kSWGExecutionApiMissingParamErrorCode = 234513;
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
     if (orderId != nil) {
         queryParams[@"order_id"] = orderId;
+    }
+    if (symbol != nil) {
+        queryParams[@"symbol"] = symbol;
+    }
+    if (startTime != nil) {
+        queryParams[@"start_time"] = startTime;
+    }
+    if (page != nil) {
+        queryParams[@"page"] = page;
+    }
+    if (limit != nil) {
+        queryParams[@"limit"] = limit;
     }
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];

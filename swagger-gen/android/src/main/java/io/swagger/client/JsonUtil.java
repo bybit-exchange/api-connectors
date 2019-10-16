@@ -57,6 +57,14 @@ public class JsonUtil {
   public static Type getListTypeForDeserialization(Class cls) {
     String className = cls.getSimpleName();
     
+    if ("APIKeyBase".equalsIgnoreCase(className)) {
+      return new TypeToken<List<APIKeyBase>>(){}.getType();
+    }
+    
+    if ("APIKeyInfo".equalsIgnoreCase(className)) {
+      return new TypeToken<List<APIKeyInfo>>(){}.getType();
+    }
+    
     if ("ConditionalBase".equalsIgnoreCase(className)) {
       return new TypeToken<List<ConditionalBase>>(){}.getType();
     }
@@ -71,6 +79,10 @@ public class JsonUtil {
     
     if ("ConditionalRes".equalsIgnoreCase(className)) {
       return new TypeToken<List<ConditionalRes>>(){}.getType();
+    }
+    
+    if ("FundRecordBase".equalsIgnoreCase(className)) {
+      return new TypeToken<List<FundRecordBase>>(){}.getType();
     }
     
     if ("FundingFeeBase".equalsIgnoreCase(className)) {
@@ -95,6 +107,10 @@ public class JsonUtil {
     
     if ("FundingRateBase".equalsIgnoreCase(className)) {
       return new TypeToken<List<FundingRateBase>>(){}.getType();
+    }
+    
+    if ("FundingRecords".equalsIgnoreCase(className)) {
+      return new TypeToken<List<FundingRecords>>(){}.getType();
     }
     
     if ("KlineBase".equalsIgnoreCase(className)) {
@@ -209,11 +225,27 @@ public class JsonUtil {
       return new TypeToken<List<TradingStopRes>>(){}.getType();
     }
     
+    if ("WithdrawRecords".equalsIgnoreCase(className)) {
+      return new TypeToken<List<WithdrawRecords>>(){}.getType();
+    }
+    
+    if ("WithdrawResBase".equalsIgnoreCase(className)) {
+      return new TypeToken<List<WithdrawResBase>>(){}.getType();
+    }
+    
     return new TypeToken<List<Object>>(){}.getType();
   }
 
   public static Type getTypeForDeserialization(Class cls) {
     String className = cls.getSimpleName();
+    
+    if ("APIKeyBase".equalsIgnoreCase(className)) {
+      return new TypeToken<APIKeyBase>(){}.getType();
+    }
+    
+    if ("APIKeyInfo".equalsIgnoreCase(className)) {
+      return new TypeToken<APIKeyInfo>(){}.getType();
+    }
     
     if ("ConditionalBase".equalsIgnoreCase(className)) {
       return new TypeToken<ConditionalBase>(){}.getType();
@@ -229,6 +261,10 @@ public class JsonUtil {
     
     if ("ConditionalRes".equalsIgnoreCase(className)) {
       return new TypeToken<ConditionalRes>(){}.getType();
+    }
+    
+    if ("FundRecordBase".equalsIgnoreCase(className)) {
+      return new TypeToken<FundRecordBase>(){}.getType();
     }
     
     if ("FundingFeeBase".equalsIgnoreCase(className)) {
@@ -253,6 +289,10 @@ public class JsonUtil {
     
     if ("FundingRateBase".equalsIgnoreCase(className)) {
       return new TypeToken<FundingRateBase>(){}.getType();
+    }
+    
+    if ("FundingRecords".equalsIgnoreCase(className)) {
+      return new TypeToken<FundingRecords>(){}.getType();
     }
     
     if ("KlineBase".equalsIgnoreCase(className)) {
@@ -365,6 +405,14 @@ public class JsonUtil {
     
     if ("TradingStopRes".equalsIgnoreCase(className)) {
       return new TypeToken<TradingStopRes>(){}.getType();
+    }
+    
+    if ("WithdrawRecords".equalsIgnoreCase(className)) {
+      return new TypeToken<WithdrawRecords>(){}.getType();
+    }
+    
+    if ("WithdrawResBase".equalsIgnoreCase(className)) {
+      return new TypeToken<WithdrawResBase>(){}.getType();
     }
     
     return new TypeToken<Object>(){}.getType();

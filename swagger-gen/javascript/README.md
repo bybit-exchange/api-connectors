@@ -95,7 +95,27 @@ Please follow the [installation](#installation) instruction and execute the foll
 ```javascript
 var BybitApi = require('bybit_api');
 
-var api = new BybitApi.CommonApi()
+var defaultClient = BybitApi.ApiClient.instance;
+
+// Configure API key authorization: apiKey
+var apiKey = defaultClient.authentications['apiKey'];
+apiKey.apiKey = "YOUR API KEY"
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiKey.apiKeyPrefix['api_key'] = "Token"
+
+// Configure API key authorization: apiSignature
+var apiSignature = defaultClient.authentications['apiSignature'];
+apiSignature.apiKey = "YOUR API KEY"
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiSignature.apiKeyPrefix['sign'] = "Token"
+
+// Configure API key authorization: timestamp
+var timestamp = defaultClient.authentications['timestamp'];
+timestamp.apiKey = "YOUR API KEY"
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//timestamp.apiKeyPrefix['timestamp'] = "Token"
+
+var api = new BybitApi.APIkeyApi()
 
 var callback = function(error, data, response) {
   if (error) {
@@ -104,7 +124,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.commonGet(callback);
+api.aPIkeyInfo(callback);
 
 ```
 
@@ -114,12 +134,13 @@ All URIs are relative to *https://api-testnet.bybit.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*BybitApi.APIkeyApi* | [**aPIkeyInfo**](docs/APIkeyApi.md#aPIkeyInfo) | **GET** /open-api/api-key | Get account api-key information.
 *BybitApi.CommonApi* | [**commonGet**](docs/CommonApi.md#commonGet) | **GET** /v2/public/time | Get bybit server time.
 *BybitApi.ConditionalApi* | [**conditionalCancel**](docs/ConditionalApi.md#conditionalCancel) | **POST** /open-api/stop-order/cancel | Cancel conditional order.
 *BybitApi.ConditionalApi* | [**conditionalGetOrders**](docs/ConditionalApi.md#conditionalGetOrders) | **GET** /open-api/stop-order/list | Get my conditional order list.
 *BybitApi.ConditionalApi* | [**conditionalNew**](docs/ConditionalApi.md#conditionalNew) | **POST** /open-api/stop-order/create | Place a new conditional order.
 *BybitApi.ConditionalApi* | [**conditionalReplace**](docs/ConditionalApi.md#conditionalReplace) | **POST** /open-api/stop-order/replace | Replace conditional order. Only incomplete orders can be modified. 
-*BybitApi.ExecutionApi* | [**executionGetTrades**](docs/ExecutionApi.md#executionGetTrades) | **GET** /v2/private/execution/list | Get the trade records of a order.
+*BybitApi.ExecutionApi* | [**executionGetTrades**](docs/ExecutionApi.md#executionGetTrades) | **GET** /v2/private/execution/list | Get user’s trade records.
 *BybitApi.FundingApi* | [**fundingGetRate**](docs/FundingApi.md#fundingGetRate) | **GET** /open-api/funding/prev-funding | Funding settlement occurs every 8 hours at 00:00 UTC, 08:00 UTC and 16:00 UTC. The current interval&#39;s fund fee settlement is based on the previous interval&#39;s fund rate. For example, at 16:00, the settlement is based on the fund rate generated at 8:00. The fund rate generated at 16:00 will be used at 0:00 on the next day.
 *BybitApi.FundingApi* | [**fundingPredicted**](docs/FundingApi.md#fundingPredicted) | **GET** /open-api/funding/predicted-funding | Get predicted funding rate and funding fee.
 *BybitApi.FundingApi* | [**fundingPredictedRate**](docs/FundingApi.md#fundingPredictedRate) | **GET** /open-api/funding/prev-funding-rate | Get predicted funding rate and funding fee.
@@ -137,20 +158,25 @@ Class | Method | HTTP request | Description
 *BybitApi.PositionsApi* | [**positionsUserLeverage**](docs/PositionsApi.md#positionsUserLeverage) | **GET** /user/leverage | Get user leverage setting.
 *BybitApi.SymbolApi* | [**symbolGet**](docs/SymbolApi.md#symbolGet) | **GET** /v2/public/symbols | Query Symbols.
 *BybitApi.WalletApi* | [**walletGetRecords**](docs/WalletApi.md#walletGetRecords) | **GET** /open-api/wallet/fund/records | Get wallet fund records
+*BybitApi.WalletApi* | [**walletWithdraw**](docs/WalletApi.md#walletWithdraw) | **GET** /open-api/wallet/withdraw/list | Get wallet fund records
 
 
 ## Documentation for Models
 
+ - [BybitApi.APIKeyBase](docs/APIKeyBase.md)
+ - [BybitApi.APIKeyInfo](docs/APIKeyInfo.md)
  - [BybitApi.ConditionalBase](docs/ConditionalBase.md)
  - [BybitApi.ConditionalOrdersRes](docs/ConditionalOrdersRes.md)
  - [BybitApi.ConditionalOrdersResBase](docs/ConditionalOrdersResBase.md)
  - [BybitApi.ConditionalRes](docs/ConditionalRes.md)
+ - [BybitApi.FundRecordBase](docs/FundRecordBase.md)
  - [BybitApi.FundingFeeBase](docs/FundingFeeBase.md)
  - [BybitApi.FundingFeeRes](docs/FundingFeeRes.md)
  - [BybitApi.FundingPredicted](docs/FundingPredicted.md)
  - [BybitApi.FundingPredictedBase](docs/FundingPredictedBase.md)
  - [BybitApi.FundingRate](docs/FundingRate.md)
  - [BybitApi.FundingRateBase](docs/FundingRateBase.md)
+ - [BybitApi.FundingRecords](docs/FundingRecords.md)
  - [BybitApi.KlineBase](docs/KlineBase.md)
  - [BybitApi.KlineRes](docs/KlineRes.md)
  - [BybitApi.Leverage](docs/Leverage.md)
@@ -179,6 +205,8 @@ Class | Method | HTTP request | Description
  - [BybitApi.TradeRecordsInfo](docs/TradeRecordsInfo.md)
  - [BybitApi.TradingStopBase](docs/TradingStopBase.md)
  - [BybitApi.TradingStopRes](docs/TradingStopRes.md)
+ - [BybitApi.WithdrawRecords](docs/WithdrawRecords.md)
+ - [BybitApi.WithdrawResBase](docs/WithdrawResBase.md)
 
 
 ## Documentation for Authorization

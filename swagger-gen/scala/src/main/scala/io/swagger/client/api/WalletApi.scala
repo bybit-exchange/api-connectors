@@ -114,6 +114,42 @@ class WalletApi(
       helper.walletGetRecords(startDate, endDate, currency, walletFundType, page, limit)
   }
 
+  /**
+   * Get wallet fund records
+   * 
+   *
+   * @param startDate Start point for result (optional)
+   * @param endDate End point for result (optional)
+   * @param coin Currency (optional)
+   * @param status Withdraw status (optional)
+   * @param page Page. Default getting first page data (optional)
+   * @param limit Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page (optional)
+   * @return Any
+   */
+  def walletWithdraw(startDate: Option[String] = None, endDate: Option[String] = None, coin: Option[String] = None, status: Option[String] = None, page: Option[String] = None, limit: Option[String] = None): Option[Any] = {
+    val await = Try(Await.result(walletWithdrawAsync(startDate, endDate, coin, status, page, limit), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
+    }
+  }
+
+  /**
+   * Get wallet fund records asynchronously
+   * 
+   *
+   * @param startDate Start point for result (optional)
+   * @param endDate End point for result (optional)
+   * @param coin Currency (optional)
+   * @param status Withdraw status (optional)
+   * @param page Page. Default getting first page data (optional)
+   * @param limit Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page (optional)
+   * @return Future(Any)
+   */
+  def walletWithdrawAsync(startDate: Option[String] = None, endDate: Option[String] = None, coin: Option[String] = None, status: Option[String] = None, page: Option[String] = None, limit: Option[String] = None): Future[Any] = {
+      helper.walletWithdraw(startDate, endDate, coin, status, page, limit)
+  }
+
 }
 
 class WalletApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
@@ -146,6 +182,51 @@ class WalletApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exten
     }
     walletFundType match {
       case Some(param) => queryParams += "wallet_fund_type" -> param.toString
+      case _ => queryParams
+    }
+    page match {
+      case Some(param) => queryParams += "page" -> param.toString
+      case _ => queryParams
+    }
+    limit match {
+      case Some(param) => queryParams += "limit" -> param.toString
+      case _ => queryParams
+    }
+
+    val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def walletWithdraw(startDate: Option[String] = None,
+    endDate: Option[String] = None,
+    coin: Option[String] = None,
+    status: Option[String] = None,
+    page: Option[String] = None,
+    limit: Option[String] = None
+    )(implicit reader: ClientResponseReader[Any]): Future[Any] = {
+    // create path and map variables
+    val path = (addFmt("/open-api/wallet/withdraw/list"))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    startDate match {
+      case Some(param) => queryParams += "start_date" -> param.toString
+      case _ => queryParams
+    }
+    endDate match {
+      case Some(param) => queryParams += "end_date" -> param.toString
+      case _ => queryParams
+    }
+    coin match {
+      case Some(param) => queryParams += "coin" -> param.toString
+      case _ => queryParams
+    }
+    status match {
+      case Some(param) => queryParams += "status" -> param.toString
       case _ => queryParams
     }
     page match {

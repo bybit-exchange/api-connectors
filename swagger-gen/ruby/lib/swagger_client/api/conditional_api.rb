@@ -146,6 +146,7 @@ module SwaggerClient
     # @param stop_px Trigger price.
     # @param time_in_force Time in force.
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :trigger_by Trigger price type. Default LastPrice.
     # @option opts [BOOLEAN] :close_on_trigger close on trigger.
     # @option opts [String] :order_link_id Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique..
     # @return [Object]
@@ -164,6 +165,7 @@ module SwaggerClient
     # @param stop_px Trigger price.
     # @param time_in_force Time in force.
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :trigger_by Trigger price type. Default LastPrice.
     # @option opts [BOOLEAN] :close_on_trigger close on trigger.
     # @option opts [String] :order_link_id Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique..
     # @return [Array<(Object, Fixnum, Hash)>] Object data, response status code and response headers
@@ -216,6 +218,7 @@ module SwaggerClient
       query_params[:'base_price'] = base_price
       query_params[:'stop_px'] = stop_px
       query_params[:'time_in_force'] = time_in_force
+      query_params[:'trigger_by'] = opts[:'trigger_by'] if !opts[:'trigger_by'].nil?
       query_params[:'close_on_trigger'] = opts[:'close_on_trigger'] if !opts[:'close_on_trigger'].nil?
       query_params[:'order_link_id'] = opts[:'order_link_id'] if !opts[:'order_link_id'].nil?
 

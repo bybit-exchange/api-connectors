@@ -191,6 +191,7 @@ stop_px = 1.2 # Float | Trigger price.
 time_in_force = 'time_in_force_example' # String | Time in force.
 
 opts = { 
+  trigger_by: 'trigger_by_example', # String | Trigger price type. Default LastPrice.
   close_on_trigger: true, # BOOLEAN | close on trigger.
   order_link_id: 'order_link_id_example' # String | Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique..
 }
@@ -216,6 +217,7 @@ Name | Type | Description  | Notes
  **base_price** | **Float**| Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order.. | 
  **stop_px** | **Float**| Trigger price. | 
  **time_in_force** | **String**| Time in force. | 
+ **trigger_by** | **String**| Trigger price type. Default LastPrice. | [optional] 
  **close_on_trigger** | **BOOLEAN**| close on trigger. | [optional] 
  **order_link_id** | **String**| Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. | [optional] 
 

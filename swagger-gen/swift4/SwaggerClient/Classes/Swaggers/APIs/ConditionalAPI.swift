@@ -129,12 +129,13 @@ open class ConditionalAPI {
      - parameter basePrice: (query) Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order.. 
      - parameter stopPx: (query) Trigger price. 
      - parameter timeInForce: (query) Time in force. 
+     - parameter triggerBy: (query) Trigger price type. Default LastPrice. (optional)
      - parameter closeOnTrigger: (query) close on trigger. (optional)
      - parameter orderLinkId: (query) Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func conditionalNew(side: String, symbol: String, orderType: String, qty: Double, price: Double, basePrice: Double, stopPx: Double, timeInForce: String, closeOnTrigger: Bool? = nil, orderLinkId: String? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
-        conditionalNewWithRequestBuilder(side: side, symbol: symbol, orderType: orderType, qty: qty, price: price, basePrice: basePrice, stopPx: stopPx, timeInForce: timeInForce, closeOnTrigger: closeOnTrigger, orderLinkId: orderLinkId).execute { (response, error) -> Void in
+    open class func conditionalNew(side: String, symbol: String, orderType: String, qty: Double, price: Double, basePrice: Double, stopPx: Double, timeInForce: String, triggerBy: String? = nil, closeOnTrigger: Bool? = nil, orderLinkId: String? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
+        conditionalNewWithRequestBuilder(side: side, symbol: symbol, orderType: orderType, qty: qty, price: price, basePrice: basePrice, stopPx: stopPx, timeInForce: timeInForce, triggerBy: triggerBy, closeOnTrigger: closeOnTrigger, orderLinkId: orderLinkId).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -162,12 +163,13 @@ open class ConditionalAPI {
      - parameter basePrice: (query) Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order.. 
      - parameter stopPx: (query) Trigger price. 
      - parameter timeInForce: (query) Time in force. 
+     - parameter triggerBy: (query) Trigger price type. Default LastPrice. (optional)
      - parameter closeOnTrigger: (query) close on trigger. (optional)
      - parameter orderLinkId: (query) Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. (optional)
 
      - returns: RequestBuilder<Any> 
      */
-    open class func conditionalNewWithRequestBuilder(side: String, symbol: String, orderType: String, qty: Double, price: Double, basePrice: Double, stopPx: Double, timeInForce: String, closeOnTrigger: Bool? = nil, orderLinkId: String? = nil) -> RequestBuilder<Any> {
+    open class func conditionalNewWithRequestBuilder(side: String, symbol: String, orderType: String, qty: Double, price: Double, basePrice: Double, stopPx: Double, timeInForce: String, triggerBy: String? = nil, closeOnTrigger: Bool? = nil, orderLinkId: String? = nil) -> RequestBuilder<Any> {
         let path = "/open-api/stop-order/create"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
@@ -182,6 +184,7 @@ open class ConditionalAPI {
             "base_price": basePrice, 
             "stop_px": stopPx, 
             "time_in_force": timeInForce, 
+            "trigger_by": triggerBy, 
             "close_on_trigger": closeOnTrigger, 
             "order_link_id": orderLinkId
         ])

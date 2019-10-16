@@ -108,10 +108,11 @@ class MarketApi(
    * Get the latest information for symbol.
    * 
    *
+   * @param symbol Contract type. (optional)
    * @return Any
    */
-  def marketSymbolInfo(): Option[Any] = {
-    val await = Try(Await.result(marketSymbolInfoAsync(), Duration.Inf))
+  def marketSymbolInfo(symbol: Option[String] = None): Option[Any] = {
+    val await = Try(Await.result(marketSymbolInfoAsync(symbol), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -122,10 +123,11 @@ class MarketApi(
    * Get the latest information for symbol. asynchronously
    * 
    *
+   * @param symbol Contract type. (optional)
    * @return Future(Any)
    */
-  def marketSymbolInfoAsync(): Future[Any] = {
-      helper.marketSymbolInfo()
+  def marketSymbolInfoAsync(symbol: Option[String] = None): Future[Any] = {
+      helper.marketSymbolInfo(symbol)
   }
 
 }
@@ -150,7 +152,8 @@ class MarketApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exten
     }
   }
 
-  def marketSymbolInfo()(implicit reader: ClientResponseReader[Any]): Future[Any] = {
+  def marketSymbolInfo(symbol: Option[String] = None
+    )(implicit reader: ClientResponseReader[Any]): Future[Any] = {
     // create path and map variables
     val path = (addFmt("/v2/public/tickers"))
 
@@ -158,6 +161,10 @@ class MarketApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exten
     val queryParams = new mutable.HashMap[String, String]
     val headerParams = new mutable.HashMap[String, String]
 
+    symbol match {
+      case Some(param) => queryParams += "symbol" -> param.toString
+      case _ => queryParams
+    }
 
     val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
     resFuture flatMap { resp =>

@@ -350,14 +350,15 @@ class MarketApi
      *
      * Get the latest information for symbol.
      *
+     * @param  string $symbol Contract type. (optional)
      *
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return object
      */
-    public function marketSymbolInfo()
+    public function marketSymbolInfo($symbol = null)
     {
-        list($response) = $this->marketSymbolInfoWithHttpInfo();
+        list($response) = $this->marketSymbolInfoWithHttpInfo($symbol);
         return $response;
     }
 
@@ -366,15 +367,16 @@ class MarketApi
      *
      * Get the latest information for symbol.
      *
+     * @param  string $symbol Contract type. (optional)
      *
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of object, HTTP status code, HTTP response headers (array of strings)
      */
-    public function marketSymbolInfoWithHttpInfo()
+    public function marketSymbolInfoWithHttpInfo($symbol = null)
     {
         $returnType = 'object';
-        $request = $this->marketSymbolInfoRequest();
+        $request = $this->marketSymbolInfoRequest($symbol);
 
         try {
             $options = $this->createHttpClientOption();
@@ -440,13 +442,14 @@ class MarketApi
      *
      * Get the latest information for symbol.
      *
+     * @param  string $symbol Contract type. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function marketSymbolInfoAsync()
+    public function marketSymbolInfoAsync($symbol = null)
     {
-        return $this->marketSymbolInfoAsyncWithHttpInfo()
+        return $this->marketSymbolInfoAsyncWithHttpInfo($symbol)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -459,14 +462,15 @@ class MarketApi
      *
      * Get the latest information for symbol.
      *
+     * @param  string $symbol Contract type. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function marketSymbolInfoAsyncWithHttpInfo()
+    public function marketSymbolInfoAsyncWithHttpInfo($symbol = null)
     {
         $returnType = 'object';
-        $request = $this->marketSymbolInfoRequest();
+        $request = $this->marketSymbolInfoRequest($symbol);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -508,11 +512,12 @@ class MarketApi
     /**
      * Create request for operation 'marketSymbolInfo'
      *
+     * @param  string $symbol Contract type. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function marketSymbolInfoRequest()
+    protected function marketSymbolInfoRequest($symbol = null)
     {
 
         $resourcePath = '/v2/public/tickers';
@@ -522,6 +527,10 @@ class MarketApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        if ($symbol !== null) {
+            $queryParams['symbol'] = ObjectSerializer::toQueryValue($symbol);
+        }
 
 
         // body params

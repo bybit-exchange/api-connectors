@@ -498,7 +498,7 @@ pplx::task<std::shared_ptr<Object>> ConditionalApi::conditional_getOrders(boost:
         return result;
     });
 }
-pplx::task<std::shared_ptr<Object>> ConditionalApi::conditional_new(utility::string_t side, utility::string_t symbol, utility::string_t orderType, double qty, double price, double basePrice, double stopPx, utility::string_t timeInForce, boost::optional<bool> closeOnTrigger, boost::optional<utility::string_t> orderLinkId)
+pplx::task<std::shared_ptr<Object>> ConditionalApi::conditional_new(utility::string_t side, utility::string_t symbol, utility::string_t orderType, double qty, double price, double basePrice, double stopPx, utility::string_t timeInForce, boost::optional<utility::string_t> triggerBy, boost::optional<bool> closeOnTrigger, boost::optional<utility::string_t> orderLinkId)
 {
 
 
@@ -564,6 +564,10 @@ pplx::task<std::shared_ptr<Object>> ConditionalApi::conditional_new(utility::str
     }
     {
         queryParams[utility::conversions::to_string_t("time_in_force")] = ApiClient::parameterToString(timeInForce);
+    }
+    if (triggerBy)
+    {
+        queryParams[utility::conversions::to_string_t("trigger_by")] = ApiClient::parameterToString(*triggerBy);
     }
     if (closeOnTrigger)
     {

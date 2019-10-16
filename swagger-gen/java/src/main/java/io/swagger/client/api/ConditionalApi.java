@@ -337,6 +337,7 @@ public class ConditionalApi {
      * @param basePrice Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order.. (required)
      * @param stopPx Trigger price. (required)
      * @param timeInForce Time in force. (required)
+     * @param triggerBy Trigger price type. Default LastPrice. (optional)
      * @param closeOnTrigger close on trigger. (optional)
      * @param orderLinkId Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. (optional)
      * @param progressListener Progress listener
@@ -344,7 +345,7 @@ public class ConditionalApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call conditionalNewCall(String side, String symbol, String orderType, BigDecimal qty, Double price, Double basePrice, Double stopPx, String timeInForce, Boolean closeOnTrigger, String orderLinkId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call conditionalNewCall(String side, String symbol, String orderType, BigDecimal qty, Double price, Double basePrice, Double stopPx, String timeInForce, String triggerBy, Boolean closeOnTrigger, String orderLinkId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -368,6 +369,8 @@ public class ConditionalApi {
         localVarQueryParams.addAll(apiClient.parameterToPair("stop_px", stopPx));
         if (timeInForce != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("time_in_force", timeInForce));
+        if (triggerBy != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("trigger_by", triggerBy));
         if (closeOnTrigger != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("close_on_trigger", closeOnTrigger));
         if (orderLinkId != null)
@@ -406,7 +409,7 @@ public class ConditionalApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call conditionalNewValidateBeforeCall(String side, String symbol, String orderType, BigDecimal qty, Double price, Double basePrice, Double stopPx, String timeInForce, Boolean closeOnTrigger, String orderLinkId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call conditionalNewValidateBeforeCall(String side, String symbol, String orderType, BigDecimal qty, Double price, Double basePrice, Double stopPx, String timeInForce, String triggerBy, Boolean closeOnTrigger, String orderLinkId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'side' is set
         if (side == null) {
@@ -449,7 +452,7 @@ public class ConditionalApi {
         }
         
 
-        com.squareup.okhttp.Call call = conditionalNewCall(side, symbol, orderType, qty, price, basePrice, stopPx, timeInForce, closeOnTrigger, orderLinkId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = conditionalNewCall(side, symbol, orderType, qty, price, basePrice, stopPx, timeInForce, triggerBy, closeOnTrigger, orderLinkId, progressListener, progressRequestListener);
         return call;
 
     }
@@ -465,13 +468,14 @@ public class ConditionalApi {
      * @param basePrice Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order.. (required)
      * @param stopPx Trigger price. (required)
      * @param timeInForce Time in force. (required)
+     * @param triggerBy Trigger price type. Default LastPrice. (optional)
      * @param closeOnTrigger close on trigger. (optional)
      * @param orderLinkId Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. (optional)
      * @return Object
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Object conditionalNew(String side, String symbol, String orderType, BigDecimal qty, Double price, Double basePrice, Double stopPx, String timeInForce, Boolean closeOnTrigger, String orderLinkId) throws ApiException {
-        ApiResponse<Object> resp = conditionalNewWithHttpInfo(side, symbol, orderType, qty, price, basePrice, stopPx, timeInForce, closeOnTrigger, orderLinkId);
+    public Object conditionalNew(String side, String symbol, String orderType, BigDecimal qty, Double price, Double basePrice, Double stopPx, String timeInForce, String triggerBy, Boolean closeOnTrigger, String orderLinkId) throws ApiException {
+        ApiResponse<Object> resp = conditionalNewWithHttpInfo(side, symbol, orderType, qty, price, basePrice, stopPx, timeInForce, triggerBy, closeOnTrigger, orderLinkId);
         return resp.getData();
     }
 
@@ -486,13 +490,14 @@ public class ConditionalApi {
      * @param basePrice Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order.. (required)
      * @param stopPx Trigger price. (required)
      * @param timeInForce Time in force. (required)
+     * @param triggerBy Trigger price type. Default LastPrice. (optional)
      * @param closeOnTrigger close on trigger. (optional)
      * @param orderLinkId Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. (optional)
      * @return ApiResponse&lt;Object&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Object> conditionalNewWithHttpInfo(String side, String symbol, String orderType, BigDecimal qty, Double price, Double basePrice, Double stopPx, String timeInForce, Boolean closeOnTrigger, String orderLinkId) throws ApiException {
-        com.squareup.okhttp.Call call = conditionalNewValidateBeforeCall(side, symbol, orderType, qty, price, basePrice, stopPx, timeInForce, closeOnTrigger, orderLinkId, null, null);
+    public ApiResponse<Object> conditionalNewWithHttpInfo(String side, String symbol, String orderType, BigDecimal qty, Double price, Double basePrice, Double stopPx, String timeInForce, String triggerBy, Boolean closeOnTrigger, String orderLinkId) throws ApiException {
+        com.squareup.okhttp.Call call = conditionalNewValidateBeforeCall(side, symbol, orderType, qty, price, basePrice, stopPx, timeInForce, triggerBy, closeOnTrigger, orderLinkId, null, null);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -508,13 +513,14 @@ public class ConditionalApi {
      * @param basePrice Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order.. (required)
      * @param stopPx Trigger price. (required)
      * @param timeInForce Time in force. (required)
+     * @param triggerBy Trigger price type. Default LastPrice. (optional)
      * @param closeOnTrigger close on trigger. (optional)
      * @param orderLinkId Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call conditionalNewAsync(String side, String symbol, String orderType, BigDecimal qty, Double price, Double basePrice, Double stopPx, String timeInForce, Boolean closeOnTrigger, String orderLinkId, final ApiCallback<Object> callback) throws ApiException {
+    public com.squareup.okhttp.Call conditionalNewAsync(String side, String symbol, String orderType, BigDecimal qty, Double price, Double basePrice, Double stopPx, String timeInForce, String triggerBy, Boolean closeOnTrigger, String orderLinkId, final ApiCallback<Object> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -535,7 +541,7 @@ public class ConditionalApi {
             };
         }
 
-        com.squareup.okhttp.Call call = conditionalNewValidateBeforeCall(side, symbol, orderType, qty, price, basePrice, stopPx, timeInForce, closeOnTrigger, orderLinkId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = conditionalNewValidateBeforeCall(side, symbol, orderType, qty, price, basePrice, stopPx, timeInForce, triggerBy, closeOnTrigger, orderLinkId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

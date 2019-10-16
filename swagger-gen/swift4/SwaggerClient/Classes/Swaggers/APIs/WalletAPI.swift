@@ -72,4 +72,65 @@ open class WalletAPI {
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
 
+    /**
+     Get wallet fund records
+     
+     - parameter startDate: (query) Start point for result (optional)
+     - parameter endDate: (query) End point for result (optional)
+     - parameter coin: (query) Currency (optional)
+     - parameter status: (query) Withdraw status (optional)
+     - parameter page: (query) Page. Default getting first page data (optional)
+     - parameter limit: (query) Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page (optional)
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func walletWithdraw(startDate: String? = nil, endDate: String? = nil, coin: String? = nil, status: String? = nil, page: String? = nil, limit: String? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
+        walletWithdrawWithRequestBuilder(startDate: startDate, endDate: endDate, coin: coin, status: status, page: page, limit: limit).execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Get wallet fund records
+     - GET /open-api/wallet/withdraw/list
+     - API Key:
+       - type: apiKey api_key (QUERY)
+       - name: apiKey
+     - API Key:
+       - type: apiKey sign (QUERY)
+       - name: apiSignature
+     - API Key:
+       - type: apiKey timestamp (QUERY)
+       - name: timestamp
+     - examples: [{contentType=application/json, example=""}]
+     
+     - parameter startDate: (query) Start point for result (optional)
+     - parameter endDate: (query) End point for result (optional)
+     - parameter coin: (query) Currency (optional)
+     - parameter status: (query) Withdraw status (optional)
+     - parameter page: (query) Page. Default getting first page data (optional)
+     - parameter limit: (query) Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page (optional)
+
+     - returns: RequestBuilder<Any> 
+     */
+    open class func walletWithdrawWithRequestBuilder(startDate: String? = nil, endDate: String? = nil, coin: String? = nil, status: String? = nil, page: String? = nil, limit: String? = nil) -> RequestBuilder<Any> {
+        let path = "/open-api/wallet/withdraw/list"
+        let URLString = SwaggerClientAPI.basePath + path
+        let parameters: [String:Any]? = nil
+        
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "start_date": startDate, 
+            "end_date": endDate, 
+            "coin": coin, 
+            "status": status, 
+            "page": page, 
+            "limit": limit
+        ])
+
+        let requestBuilder: RequestBuilder<Any>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+    }
+
 }

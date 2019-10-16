@@ -40,14 +40,22 @@ public:
     ExecutionApi( std::shared_ptr<ApiClient> apiClient );
     virtual ~ExecutionApi();
     /// <summary>
-    /// Get the trade records of a order.
+    /// Get user’s trade records.
     /// </summary>
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="orderId">orderID.</param>
+    /// <param name="orderId">OrderID. If not provided, will return user’s trading records. (optional)</param>
+    /// <param name="symbol">Contract type. If order_id not provided, symbol is required. (optional)</param>
+    /// <param name="startTime">Start timestamp point for result. (optional)</param>
+    /// <param name="page">Page. Default getting first page data. (optional)</param>
+    /// <param name="limit">Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. (optional)</param>
     pplx::task<std::shared_ptr<Object>> execution_getTrades(
-        utility::string_t orderId
+        boost::optional<utility::string_t> orderId,
+        boost::optional<utility::string_t> symbol,
+        boost::optional<utility::string_t> startTime,
+        boost::optional<utility::string_t> page,
+        boost::optional<utility::string_t> limit
     );
 
 protected:

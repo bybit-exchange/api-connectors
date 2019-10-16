@@ -195,6 +195,7 @@ var stopPx = 1.2; // Number | Trigger price.
 var timeInForce = "timeInForce_example"; // String | Time in force.
 
 var opts = { 
+  'triggerBy': "triggerBy_example", // String | Trigger price type. Default LastPrice.
   'closeOnTrigger': true, // Boolean | close on trigger.
   'orderLinkId': "orderLinkId_example" // String | Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique..
 };
@@ -221,6 +222,7 @@ Name | Type | Description  | Notes
  **basePrice** | **Number**| Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order.. | 
  **stopPx** | **Number**| Trigger price. | 
  **timeInForce** | **String**| Time in force. | 
+ **triggerBy** | **String**| Trigger price type. Default LastPrice. | [optional] 
  **closeOnTrigger** | **Boolean**| close on trigger. | [optional] 
  **orderLinkId** | **String**| Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. | [optional] 
 

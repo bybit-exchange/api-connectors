@@ -21,12 +21,13 @@ All URIs are relative to *https://api-testnet.bybit.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*APIkeyApi* | [**APIkeyInfo**](docs/APIkeyApi.md#apikeyinfo) | **Get** /open-api/api-key | Get account api-key information.
 *CommonApi* | [**CommonGet**](docs/CommonApi.md#commonget) | **Get** /v2/public/time | Get bybit server time.
 *ConditionalApi* | [**ConditionalCancel**](docs/ConditionalApi.md#conditionalcancel) | **Post** /open-api/stop-order/cancel | Cancel conditional order.
 *ConditionalApi* | [**ConditionalGetOrders**](docs/ConditionalApi.md#conditionalgetorders) | **Get** /open-api/stop-order/list | Get my conditional order list.
 *ConditionalApi* | [**ConditionalNew**](docs/ConditionalApi.md#conditionalnew) | **Post** /open-api/stop-order/create | Place a new conditional order.
 *ConditionalApi* | [**ConditionalReplace**](docs/ConditionalApi.md#conditionalreplace) | **Post** /open-api/stop-order/replace | Replace conditional order. Only incomplete orders can be modified. 
-*ExecutionApi* | [**ExecutionGetTrades**](docs/ExecutionApi.md#executiongettrades) | **Get** /v2/private/execution/list | Get the trade records of a order.
+*ExecutionApi* | [**ExecutionGetTrades**](docs/ExecutionApi.md#executiongettrades) | **Get** /v2/private/execution/list | Get user’s trade records.
 *FundingApi* | [**FundingGetRate**](docs/FundingApi.md#fundinggetrate) | **Get** /open-api/funding/prev-funding | Funding settlement occurs every 8 hours at 00:00 UTC, 08:00 UTC and 16:00 UTC. The current interval&#39;s fund fee settlement is based on the previous interval&#39;s fund rate. For example, at 16:00, the settlement is based on the fund rate generated at 8:00. The fund rate generated at 16:00 will be used at 0:00 on the next day.
 *FundingApi* | [**FundingPredicted**](docs/FundingApi.md#fundingpredicted) | **Get** /open-api/funding/predicted-funding | Get predicted funding rate and funding fee.
 *FundingApi* | [**FundingPredictedRate**](docs/FundingApi.md#fundingpredictedrate) | **Get** /open-api/funding/prev-funding-rate | Get predicted funding rate and funding fee.
@@ -44,20 +45,25 @@ Class | Method | HTTP request | Description
 *PositionsApi* | [**PositionsUserLeverage**](docs/PositionsApi.md#positionsuserleverage) | **Get** /user/leverage | Get user leverage setting.
 *SymbolApi* | [**SymbolGet**](docs/SymbolApi.md#symbolget) | **Get** /v2/public/symbols | Query Symbols.
 *WalletApi* | [**WalletGetRecords**](docs/WalletApi.md#walletgetrecords) | **Get** /open-api/wallet/fund/records | Get wallet fund records
+*WalletApi* | [**WalletWithdraw**](docs/WalletApi.md#walletwithdraw) | **Get** /open-api/wallet/withdraw/list | Get wallet fund records
 
 
 ## Documentation For Models
 
+ - [ApiKeyBase](docs/ApiKeyBase.md)
+ - [ApiKeyInfo](docs/ApiKeyInfo.md)
  - [ConditionalBase](docs/ConditionalBase.md)
  - [ConditionalOrdersRes](docs/ConditionalOrdersRes.md)
  - [ConditionalOrdersResBase](docs/ConditionalOrdersResBase.md)
  - [ConditionalRes](docs/ConditionalRes.md)
+ - [FundRecordBase](docs/FundRecordBase.md)
  - [FundingFeeBase](docs/FundingFeeBase.md)
  - [FundingFeeRes](docs/FundingFeeRes.md)
  - [FundingPredicted](docs/FundingPredicted.md)
  - [FundingPredictedBase](docs/FundingPredictedBase.md)
  - [FundingRate](docs/FundingRate.md)
  - [FundingRateBase](docs/FundingRateBase.md)
+ - [FundingRecords](docs/FundingRecords.md)
  - [KlineBase](docs/KlineBase.md)
  - [KlineRes](docs/KlineRes.md)
  - [Leverage](docs/Leverage.md)
@@ -86,6 +92,8 @@ Class | Method | HTTP request | Description
  - [TradeRecordsInfo](docs/TradeRecordsInfo.md)
  - [TradingStopBase](docs/TradingStopBase.md)
  - [TradingStopRes](docs/TradingStopRes.md)
+ - [WithdrawRecords](docs/WithdrawRecords.md)
+ - [WithdrawResBase](docs/WithdrawResBase.md)
 
 
 ## Documentation For Authorization

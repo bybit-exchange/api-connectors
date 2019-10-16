@@ -54,7 +54,7 @@ No authorization required
 
 
 # **market_symbol_info**
-> Object market_symbol_info
+> Object market_symbol_info(opts)
 
 Get the latest information for symbol.
 
@@ -65,9 +65,13 @@ require 'swagger_client'
 
 api_instance = SwaggerClient::MarketApi.new
 
+opts = { 
+  symbol: 'symbol_example' # String | Contract type.
+}
+
 begin
   #Get the latest information for symbol.
-  result = api_instance.market_symbol_info
+  result = api_instance.market_symbol_info(opts)
   p result
 rescue SwaggerClient::ApiError => e
   puts "Exception when calling MarketApi->market_symbol_info: #{e}"
@@ -75,7 +79,10 @@ end
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **String**| Contract type. | [optional] 
 
 ### Return type
 

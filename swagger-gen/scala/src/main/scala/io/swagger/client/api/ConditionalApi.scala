@@ -153,12 +153,13 @@ class ConditionalApi(
    * @param basePrice Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order.. 
    * @param stopPx Trigger price. 
    * @param timeInForce Time in force. 
+   * @param triggerBy Trigger price type. Default LastPrice. (optional)
    * @param closeOnTrigger close on trigger. (optional)
    * @param orderLinkId Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. (optional)
    * @return Any
    */
-  def conditionalNew(side: String, symbol: String, orderType: String, qty: Number, price: Double, basePrice: Double, stopPx: Double, timeInForce: String, closeOnTrigger: Option[Boolean] = None, orderLinkId: Option[String] = None): Option[Any] = {
-    val await = Try(Await.result(conditionalNewAsync(side, symbol, orderType, qty, price, basePrice, stopPx, timeInForce, closeOnTrigger, orderLinkId), Duration.Inf))
+  def conditionalNew(side: String, symbol: String, orderType: String, qty: Number, price: Double, basePrice: Double, stopPx: Double, timeInForce: String, triggerBy: Option[String] = None, closeOnTrigger: Option[Boolean] = None, orderLinkId: Option[String] = None): Option[Any] = {
+    val await = Try(Await.result(conditionalNewAsync(side, symbol, orderType, qty, price, basePrice, stopPx, timeInForce, triggerBy, closeOnTrigger, orderLinkId), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -177,12 +178,13 @@ class ConditionalApi(
    * @param basePrice Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order.. 
    * @param stopPx Trigger price. 
    * @param timeInForce Time in force. 
+   * @param triggerBy Trigger price type. Default LastPrice. (optional)
    * @param closeOnTrigger close on trigger. (optional)
    * @param orderLinkId Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. (optional)
    * @return Future(Any)
    */
-  def conditionalNewAsync(side: String, symbol: String, orderType: String, qty: Number, price: Double, basePrice: Double, stopPx: Double, timeInForce: String, closeOnTrigger: Option[Boolean] = None, orderLinkId: Option[String] = None): Future[Any] = {
-      helper.conditionalNew(side, symbol, orderType, qty, price, basePrice, stopPx, timeInForce, closeOnTrigger, orderLinkId)
+  def conditionalNewAsync(side: String, symbol: String, orderType: String, qty: Number, price: Double, basePrice: Double, stopPx: Double, timeInForce: String, triggerBy: Option[String] = None, closeOnTrigger: Option[Boolean] = None, orderLinkId: Option[String] = None): Future[Any] = {
+      helper.conditionalNew(side, symbol, orderType, qty, price, basePrice, stopPx, timeInForce, triggerBy, closeOnTrigger, orderLinkId)
   }
 
   /**
@@ -294,6 +296,7 @@ class ConditionalApiAsyncHelper(client: TransportClient, config: SwaggerConfig) 
     basePrice: Double,
     stopPx: Double,
     timeInForce: String,
+    triggerBy: Option[String] = None,
     closeOnTrigger: Option[Boolean] = None,
     orderLinkId: Option[String] = None
     )(implicit reader: ClientResponseReader[Any]): Future[Any] = {
@@ -320,6 +323,10 @@ class ConditionalApiAsyncHelper(client: TransportClient, config: SwaggerConfig) 
     queryParams += "base_price" -> basePrice.toString
     queryParams += "stop_px" -> stopPx.toString
     queryParams += "time_in_force" -> timeInForce.toString
+    triggerBy match {
+      case Some(param) => queryParams += "trigger_by" -> param.toString
+      case _ => queryParams
+    }
     closeOnTrigger match {
       case Some(param) => queryParams += "close_on_trigger" -> param.toString
       case _ => queryParams

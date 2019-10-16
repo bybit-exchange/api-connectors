@@ -145,7 +145,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **conditional_new**
-> object conditional_new(side, symbol, order_type, qty, price, base_price, stop_px, time_in_force, close_on_trigger=close_on_trigger, order_link_id=order_link_id)
+> object conditional_new(side, symbol, order_type, qty, price, base_price, stop_px, time_in_force, trigger_by=trigger_by, close_on_trigger=close_on_trigger, order_link_id=order_link_id)
 
 Place a new conditional order.
 
@@ -183,12 +183,13 @@ price = 1.2 # float | Execution price for conditional order
 base_price = 1.2 # float | Send current market price. It will be used to compare with the value of 'stop_px', to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order..
 stop_px = 1.2 # float | Trigger price.
 time_in_force = 'time_in_force_example' # str | Time in force.
+trigger_by = 'trigger_by_example' # str | Trigger price type. Default LastPrice. (optional)
 close_on_trigger = true # bool | close on trigger. (optional)
 order_link_id = 'order_link_id_example' # str | Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. (optional)
 
 try:
     # Place a new conditional order.
-    api_response = api_instance.conditional_new(side, symbol, order_type, qty, price, base_price, stop_px, time_in_force, close_on_trigger=close_on_trigger, order_link_id=order_link_id)
+    api_response = api_instance.conditional_new(side, symbol, order_type, qty, price, base_price, stop_px, time_in_force, trigger_by=trigger_by, close_on_trigger=close_on_trigger, order_link_id=order_link_id)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ConditionalApi->conditional_new: %s\n" % e)
@@ -206,6 +207,7 @@ Name | Type | Description  | Notes
  **base_price** | **float**| Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order.. | 
  **stop_px** | **float**| Trigger price. | 
  **time_in_force** | **str**| Time in force. | 
+ **trigger_by** | **str**| Trigger price type. Default LastPrice. | [optional] 
  **close_on_trigger** | **bool**| close on trigger. | [optional] 
  **order_link_id** | **str**| Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. | [optional] 
 

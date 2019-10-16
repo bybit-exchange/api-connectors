@@ -42,12 +42,12 @@
 (defn conditional-new-with-http-info
   "Place a new conditional order."
   ([side symbol order-type qty price base-price stop-px time-in-force ] (conditional-new-with-http-info side symbol order-type qty price base-price stop-px time-in-force nil))
-  ([side symbol order-type qty price base-price stop-px time-in-force {:keys [close-on-trigger order-link-id ]}]
+  ([side symbol order-type qty price base-price stop-px time-in-force {:keys [trigger-by close-on-trigger order-link-id ]}]
    (check-required-params side symbol order-type qty price base-price stop-px time-in-force)
    (call-api "/open-api/stop-order/create" :post
              {:path-params   {}
               :header-params {}
-              :query-params  {"side" side "symbol" symbol "order_type" order-type "qty" qty "price" price "base_price" base-price "stop_px" stop-px "time_in_force" time-in-force "close_on_trigger" close-on-trigger "order_link_id" order-link-id }
+              :query-params  {"side" side "symbol" symbol "order_type" order-type "qty" qty "price" price "base_price" base-price "stop_px" stop-px "time_in_force" time-in-force "trigger_by" trigger-by "close_on_trigger" close-on-trigger "order_link_id" order-link-id }
               :form-params   {}
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json"]

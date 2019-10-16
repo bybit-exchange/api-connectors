@@ -53,7 +53,7 @@ No authorization required
 
 <a name="marketSymbolInfo"></a>
 # **marketSymbolInfo**
-> Object marketSymbolInfo()
+> Object marketSymbolInfo(symbol)
 
 Get the latest information for symbol.
 
@@ -65,8 +65,9 @@ Get the latest information for symbol.
 
 
 MarketApi apiInstance = new MarketApi();
+String symbol = "symbol_example"; // String | Contract type.
 try {
-    Object result = apiInstance.marketSymbolInfo();
+    Object result = apiInstance.marketSymbolInfo(symbol);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling MarketApi#marketSymbolInfo");
@@ -75,7 +76,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **String**| Contract type. | [optional]
 
 ### Return type
 

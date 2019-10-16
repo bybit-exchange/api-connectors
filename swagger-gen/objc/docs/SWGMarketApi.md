@@ -58,8 +58,8 @@ No authorization required
 
 # **marketSymbolInfo**
 ```objc
--(NSURLSessionTask*) marketSymbolInfoWithCompletionHandler: 
-        (void (^)(NSObject* output, NSError* error)) handler;
+-(NSURLSessionTask*) marketSymbolInfoWithSymbol: (NSString*) symbol
+        completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
 ```
 
 Get the latest information for symbol.
@@ -67,12 +67,13 @@ Get the latest information for symbol.
 ### Example 
 ```objc
 
+NSString* symbol = @"symbol_example"; // Contract type. (optional)
 
 SWGMarketApi*apiInstance = [[SWGMarketApi alloc] init];
 
 // Get the latest information for symbol.
-[apiInstance marketSymbolInfoWithCompletionHandler: 
-          ^(NSObject* output, NSError* error) {
+[apiInstance marketSymbolInfoWithSymbol:symbol
+          completionHandler: ^(NSObject* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -83,7 +84,10 @@ SWGMarketApi*apiInstance = [[SWGMarketApi alloc] init];
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **NSString***| Contract type. | [optional] 
 
 ### Return type
 

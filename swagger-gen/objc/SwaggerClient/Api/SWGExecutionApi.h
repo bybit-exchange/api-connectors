@@ -22,15 +22,23 @@ extern NSInteger kSWGExecutionApiMissingParamErrorCode;
 
 -(instancetype) initWithApiClient:(SWGApiClient *)apiClient NS_DESIGNATED_INITIALIZER;
 
-/// Get the trade records of a order.
+/// Get user’s trade records.
 /// 
 ///
-/// @param orderId orderID.
+/// @param orderId OrderID. If not provided, will return user’s trading records. (optional)
+/// @param symbol Contract type. If order_id not provided, symbol is required. (optional)
+/// @param startTime Start timestamp point for result. (optional)
+/// @param page Page. Default getting first page data. (optional)
+/// @param limit Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. (optional)
 /// 
 ///  code:200 message:"Request was successful"
 ///
 /// @return NSObject*
 -(NSURLSessionTask*) executionGetTradesWithOrderId: (NSString*) orderId
+    symbol: (NSString*) symbol
+    startTime: (NSString*) startTime
+    page: (NSString*) page
+    limit: (NSString*) limit
     completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
 
 
