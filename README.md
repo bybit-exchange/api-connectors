@@ -6,7 +6,7 @@ Libraries for connecting to the Bybit API. https://github.com/bybit-exchange/byb
 #### HTTP
 
 * [Python](/official-http/python)
-
+* [Cpp](/official-http/cpp)
 
 #### Websockets
 
