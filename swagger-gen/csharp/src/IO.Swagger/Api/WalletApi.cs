@@ -54,6 +54,37 @@ namespace IO.Swagger.Api
         /// <param name="limit">Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page (optional)</param>
         /// <returns>ApiResponse of Object</returns>
         ApiResponse<Object> WalletGetRecordsWithHttpInfo (string startDate = null, string endDate = null, string currency = null, string walletFundType = null, string page = null, string limit = null);
+        /// <summary>
+        /// Get wallet fund records
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="startDate">Start point for result (optional)</param>
+        /// <param name="endDate">End point for result (optional)</param>
+        /// <param name="coin">Currency (optional)</param>
+        /// <param name="status">Withdraw status (optional)</param>
+        /// <param name="page">Page. Default getting first page data (optional)</param>
+        /// <param name="limit">Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page (optional)</param>
+        /// <returns>Object</returns>
+        Object WalletWithdraw (string startDate = null, string endDate = null, string coin = null, string status = null, string page = null, string limit = null);
+
+        /// <summary>
+        /// Get wallet fund records
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="startDate">Start point for result (optional)</param>
+        /// <param name="endDate">End point for result (optional)</param>
+        /// <param name="coin">Currency (optional)</param>
+        /// <param name="status">Withdraw status (optional)</param>
+        /// <param name="page">Page. Default getting first page data (optional)</param>
+        /// <param name="limit">Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page (optional)</param>
+        /// <returns>ApiResponse of Object</returns>
+        ApiResponse<Object> WalletWithdrawWithHttpInfo (string startDate = null, string endDate = null, string coin = null, string status = null, string page = null, string limit = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -87,6 +118,37 @@ namespace IO.Swagger.Api
         /// <param name="limit">Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page (optional)</param>
         /// <returns>Task of ApiResponse (Object)</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> WalletGetRecordsAsyncWithHttpInfo (string startDate = null, string endDate = null, string currency = null, string walletFundType = null, string page = null, string limit = null);
+        /// <summary>
+        /// Get wallet fund records
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="startDate">Start point for result (optional)</param>
+        /// <param name="endDate">End point for result (optional)</param>
+        /// <param name="coin">Currency (optional)</param>
+        /// <param name="status">Withdraw status (optional)</param>
+        /// <param name="page">Page. Default getting first page data (optional)</param>
+        /// <param name="limit">Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page (optional)</param>
+        /// <returns>Task of Object</returns>
+        System.Threading.Tasks.Task<Object> WalletWithdrawAsync (string startDate = null, string endDate = null, string coin = null, string status = null, string page = null, string limit = null);
+
+        /// <summary>
+        /// Get wallet fund records
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="startDate">Start point for result (optional)</param>
+        /// <param name="endDate">End point for result (optional)</param>
+        /// <param name="coin">Currency (optional)</param>
+        /// <param name="status">Withdraw status (optional)</param>
+        /// <param name="page">Page. Default getting first page data (optional)</param>
+        /// <param name="limit">Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page (optional)</param>
+        /// <returns>Task of ApiResponse (Object)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> WalletWithdrawAsyncWithHttpInfo (string startDate = null, string endDate = null, string coin = null, string status = null, string page = null, string limit = null);
         #endregion Asynchronous Operations
     }
 
@@ -370,6 +432,197 @@ namespace IO.Swagger.Api
             if (ExceptionFactory != null)
             {
                 Exception exception = ExceptionFactory("WalletGetRecords", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Object) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Object)));
+        }
+
+        /// <summary>
+        /// Get wallet fund records 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="startDate">Start point for result (optional)</param>
+        /// <param name="endDate">End point for result (optional)</param>
+        /// <param name="coin">Currency (optional)</param>
+        /// <param name="status">Withdraw status (optional)</param>
+        /// <param name="page">Page. Default getting first page data (optional)</param>
+        /// <param name="limit">Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page (optional)</param>
+        /// <returns>Object</returns>
+        public Object WalletWithdraw (string startDate = null, string endDate = null, string coin = null, string status = null, string page = null, string limit = null)
+        {
+             ApiResponse<Object> localVarResponse = WalletWithdrawWithHttpInfo(startDate, endDate, coin, status, page, limit);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get wallet fund records 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="startDate">Start point for result (optional)</param>
+        /// <param name="endDate">End point for result (optional)</param>
+        /// <param name="coin">Currency (optional)</param>
+        /// <param name="status">Withdraw status (optional)</param>
+        /// <param name="page">Page. Default getting first page data (optional)</param>
+        /// <param name="limit">Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page (optional)</param>
+        /// <returns>ApiResponse of Object</returns>
+        public ApiResponse< Object > WalletWithdrawWithHttpInfo (string startDate = null, string endDate = null, string coin = null, string status = null, string page = null, string limit = null)
+        {
+
+            var localVarPath = "/open-api/wallet/withdraw/list";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (startDate != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "start_date", startDate)); // query parameter
+            if (endDate != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "end_date", endDate)); // query parameter
+            if (coin != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "coin", coin)); // query parameter
+            if (status != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "status", status)); // query parameter
+            if (page != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "page", page)); // query parameter
+            if (limit != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "limit", limit)); // query parameter
+
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api_key")))
+            {
+                localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "api_key", this.Configuration.GetApiKeyWithPrefix("api_key")));
+            }
+            // authentication (apiSignature) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("sign")))
+            {
+                localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "sign", this.Configuration.GetApiKeyWithPrefix("sign")));
+            }
+            // authentication (timestamp) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("timestamp")))
+            {
+                localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "timestamp", this.Configuration.GetApiKeyWithPrefix("timestamp")));
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("WalletWithdraw", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Object) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Object)));
+        }
+
+        /// <summary>
+        /// Get wallet fund records 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="startDate">Start point for result (optional)</param>
+        /// <param name="endDate">End point for result (optional)</param>
+        /// <param name="coin">Currency (optional)</param>
+        /// <param name="status">Withdraw status (optional)</param>
+        /// <param name="page">Page. Default getting first page data (optional)</param>
+        /// <param name="limit">Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page (optional)</param>
+        /// <returns>Task of Object</returns>
+        public async System.Threading.Tasks.Task<Object> WalletWithdrawAsync (string startDate = null, string endDate = null, string coin = null, string status = null, string page = null, string limit = null)
+        {
+             ApiResponse<Object> localVarResponse = await WalletWithdrawAsyncWithHttpInfo(startDate, endDate, coin, status, page, limit);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get wallet fund records 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="startDate">Start point for result (optional)</param>
+        /// <param name="endDate">End point for result (optional)</param>
+        /// <param name="coin">Currency (optional)</param>
+        /// <param name="status">Withdraw status (optional)</param>
+        /// <param name="page">Page. Default getting first page data (optional)</param>
+        /// <param name="limit">Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page (optional)</param>
+        /// <returns>Task of ApiResponse (Object)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> WalletWithdrawAsyncWithHttpInfo (string startDate = null, string endDate = null, string coin = null, string status = null, string page = null, string limit = null)
+        {
+
+            var localVarPath = "/open-api/wallet/withdraw/list";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (startDate != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "start_date", startDate)); // query parameter
+            if (endDate != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "end_date", endDate)); // query parameter
+            if (coin != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "coin", coin)); // query parameter
+            if (status != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "status", status)); // query parameter
+            if (page != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "page", page)); // query parameter
+            if (limit != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "limit", limit)); // query parameter
+
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api_key")))
+            {
+                localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "api_key", this.Configuration.GetApiKeyWithPrefix("api_key")));
+            }
+            // authentication (apiSignature) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("sign")))
+            {
+                localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "sign", this.Configuration.GetApiKeyWithPrefix("sign")));
+            }
+            // authentication (timestamp) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("timestamp")))
+            {
+                localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "timestamp", this.Configuration.GetApiKeyWithPrefix("timestamp")));
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("WalletWithdraw", localVarResponse);
                 if (exception != null) throw exception;
             }
 

@@ -44,5 +44,27 @@ extern NSInteger kSWGWalletApiMissingParamErrorCode;
     completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
 
 
+/// Get wallet fund records
+/// 
+///
+/// @param startDate Start point for result (optional)
+/// @param endDate End point for result (optional)
+/// @param coin Currency (optional)
+/// @param status Withdraw status (optional)
+/// @param page Page. Default getting first page data (optional)
+/// @param limit Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page (optional)
+/// 
+///  code:200 message:"Request was successful"
+///
+/// @return NSObject*
+-(NSURLSessionTask*) walletWithdrawWithStartDate: (NSString*) startDate
+    endDate: (NSString*) endDate
+    coin: (NSString*) coin
+    status: (NSString*) status
+    page: (NSString*) page
+    limit: (NSString*) limit
+    completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+
+
 
 @end

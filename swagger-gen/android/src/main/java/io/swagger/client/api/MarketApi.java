@@ -188,9 +188,10 @@ public class MarketApi {
   /**
   * Get the latest information for symbol.
   * 
+   * @param symbol Contract type.
    * @return Object
   */
-  public Object marketSymbolInfo () throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public Object marketSymbolInfo (String symbol) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
 
     // create path and map variables
@@ -202,6 +203,7 @@ public class MarketApi {
     Map<String, String> headerParams = new HashMap<String, String>();
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "symbol", symbol));
     String[] contentTypes = {
       "application/json",
       "application/x-www-form-urlencoded"
@@ -246,9 +248,9 @@ public class MarketApi {
       /**
    * Get the latest information for symbol.
    * 
-
+   * @param symbol Contract type.
   */
-  public void marketSymbolInfo (final Response.Listener<Object> responseListener, final Response.ErrorListener errorListener) {
+  public void marketSymbolInfo (String symbol, final Response.Listener<Object> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
 
@@ -262,6 +264,7 @@ public class MarketApi {
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
 
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "symbol", symbol));
 
 
     String[] contentTypes = {

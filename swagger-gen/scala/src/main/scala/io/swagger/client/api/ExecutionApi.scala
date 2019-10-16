@@ -79,14 +79,18 @@ class ExecutionApi(
   val helper = new ExecutionApiAsyncHelper(client, config)
 
   /**
-   * Get the trade records of a order.
+   * Get user’s trade records.
    * 
    *
-   * @param orderId orderID. 
+   * @param orderId OrderID. If not provided, will return user’s trading records. (optional)
+   * @param symbol Contract type. If order_id not provided, symbol is required. (optional)
+   * @param startTime Start timestamp point for result. (optional)
+   * @param page Page. Default getting first page data. (optional)
+   * @param limit Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. (optional)
    * @return Any
    */
-  def executionGetTrades(orderId: String): Option[Any] = {
-    val await = Try(Await.result(executionGetTradesAsync(orderId), Duration.Inf))
+  def executionGetTrades(orderId: Option[String] = None, symbol: Option[String] = None, startTime: Option[String] = None, page: Option[String] = None, limit: Option[String] = None): Option[Any] = {
+    val await = Try(Await.result(executionGetTradesAsync(orderId, symbol, startTime, page, limit), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -94,21 +98,30 @@ class ExecutionApi(
   }
 
   /**
-   * Get the trade records of a order. asynchronously
+   * Get user’s trade records. asynchronously
    * 
    *
-   * @param orderId orderID. 
+   * @param orderId OrderID. If not provided, will return user’s trading records. (optional)
+   * @param symbol Contract type. If order_id not provided, symbol is required. (optional)
+   * @param startTime Start timestamp point for result. (optional)
+   * @param page Page. Default getting first page data. (optional)
+   * @param limit Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. (optional)
    * @return Future(Any)
    */
-  def executionGetTradesAsync(orderId: String): Future[Any] = {
-      helper.executionGetTrades(orderId)
+  def executionGetTradesAsync(orderId: Option[String] = None, symbol: Option[String] = None, startTime: Option[String] = None, page: Option[String] = None, limit: Option[String] = None): Future[Any] = {
+      helper.executionGetTrades(orderId, symbol, startTime, page, limit)
   }
 
 }
 
 class ExecutionApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
 
-  def executionGetTrades(orderId: String)(implicit reader: ClientResponseReader[Any]): Future[Any] = {
+  def executionGetTrades(orderId: Option[String] = None,
+    symbol: Option[String] = None,
+    startTime: Option[String] = None,
+    page: Option[String] = None,
+    limit: Option[String] = None
+    )(implicit reader: ClientResponseReader[Any]): Future[Any] = {
     // create path and map variables
     val path = (addFmt("/v2/private/execution/list"))
 
@@ -116,9 +129,26 @@ class ExecutionApiAsyncHelper(client: TransportClient, config: SwaggerConfig) ex
     val queryParams = new mutable.HashMap[String, String]
     val headerParams = new mutable.HashMap[String, String]
 
-    if (orderId == null) throw new Exception("Missing required parameter 'orderId' when calling ExecutionApi->executionGetTrades")
-
-    queryParams += "order_id" -> orderId.toString
+    orderId match {
+      case Some(param) => queryParams += "order_id" -> param.toString
+      case _ => queryParams
+    }
+    symbol match {
+      case Some(param) => queryParams += "symbol" -> param.toString
+      case _ => queryParams
+    }
+    startTime match {
+      case Some(param) => queryParams += "start_time" -> param.toString
+      case _ => queryParams
+    }
+    page match {
+      case Some(param) => queryParams += "page" -> param.toString
+      case _ => queryParams
+    }
+    limit match {
+      case Some(param) => queryParams += "limit" -> param.toString
+      case _ => queryParams
+    }
 
     val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
     resFuture flatMap { resp =>

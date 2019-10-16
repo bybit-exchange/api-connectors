@@ -12,6 +12,8 @@ basePath: "/"
 tags:
 - name: "Common"
   description: "Common interface"
+- name: "APIKey"
+  description: "Get account api-key information"
 - name: "Order"
   description: "Place new order, cancel, replace and get order list"
 - name: "Conditional"
@@ -20,7 +22,7 @@ tags:
 - name: "Positions"
   description: "Get account position info"
 - name: "Wallet"
-  description: "Get wallet fund records"
+  description: "Get wallet funding records, get withdraw records"
 - name: "Funding"
   description: "Get fundng rate, get my funding fee, get predicted funding fee"
 - name: "Execution"
@@ -53,6 +55,18 @@ paths:
           description: "Request was successful"
           schema: {}
       security: []
+      deprecated: false
+  /open-api/api-key:
+    get:
+      tags:
+      - "APIkey"
+      summary: "Get account api-key information."
+      operationId: "APIkey.info"
+      parameters: []
+      responses:
+        200:
+          description: "Request was successful"
+          schema: {}
       deprecated: false
   /v2/public/symbols:
     get:
@@ -212,6 +226,61 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "WalletFundType"
+        x-optionalDataType: "String"
+      - name: "page"
+        in: "query"
+        description: "Page. Default getting first page data"
+        required: false
+        type: "string"
+        x-exportParamName: "Page"
+        x-optionalDataType: "String"
+      - name: "limit"
+        in: "query"
+        description: "Limit for data size per page, max size is 50. Default as showing\
+          \ 20 pieces of data per page"
+        required: false
+        type: "string"
+        x-exportParamName: "Limit"
+        x-optionalDataType: "String"
+      responses:
+        200:
+          description: "Request was successful"
+          schema: {}
+      deprecated: false
+  /open-api/wallet/withdraw/list:
+    get:
+      tags:
+      - "Wallet"
+      summary: "Get wallet fund records"
+      operationId: "Wallet.withdraw"
+      parameters:
+      - name: "start_date"
+        in: "query"
+        description: "Start point for result"
+        required: false
+        type: "string"
+        x-exportParamName: "StartDate"
+        x-optionalDataType: "String"
+      - name: "end_date"
+        in: "query"
+        description: "End point for result"
+        required: false
+        type: "string"
+        x-exportParamName: "EndDate"
+        x-optionalDataType: "String"
+      - name: "coin"
+        in: "query"
+        description: "Currency"
+        required: false
+        type: "string"
+        x-exportParamName: "Coin"
+        x-optionalDataType: "String"
+      - name: "status"
+        in: "query"
+        description: "Withdraw status"
+        required: false
+        type: "string"
+        x-exportParamName: "Status"
         x-optionalDataType: "String"
       - name: "page"
         in: "query"
@@ -514,6 +583,13 @@ paths:
         required: true
         type: "string"
         x-exportParamName: "TimeInForce"
+      - name: "trigger_by"
+        in: "query"
+        description: "Trigger price type. Default LastPrice."
+        required: false
+        type: "string"
+        x-exportParamName: "TriggerBy"
+        x-optionalDataType: "String"
       - name: "close_on_trigger"
         in: "query"
         description: "close on trigger."
@@ -719,15 +795,45 @@ paths:
     get:
       tags:
       - "Execution"
-      summary: "Get the trade records of a order."
+      summary: "Get user’s trade records."
       operationId: "Execution.getTrades"
       parameters:
       - name: "order_id"
         in: "query"
-        description: "orderID."
-        required: true
+        description: "OrderID. If not provided, will return user’s trading records."
+        required: false
         type: "string"
         x-exportParamName: "OrderId"
+        x-optionalDataType: "String"
+      - name: "symbol"
+        in: "query"
+        description: "Contract type. If order_id not provided, symbol is required."
+        required: false
+        type: "string"
+        x-exportParamName: "Symbol"
+        x-optionalDataType: "String"
+      - name: "start_time"
+        in: "query"
+        description: "Start timestamp point for result."
+        required: false
+        type: "string"
+        x-exportParamName: "StartTime"
+        x-optionalDataType: "String"
+      - name: "page"
+        in: "query"
+        description: "Page. Default getting first page data."
+        required: false
+        type: "string"
+        x-exportParamName: "Page"
+        x-optionalDataType: "String"
+      - name: "limit"
+        in: "query"
+        description: "Limit for data size per page, max size is 50. Default as showing\
+          \ 20 pieces of data per page."
+        required: false
+        type: "string"
+        x-exportParamName: "Limit"
+        x-optionalDataType: "String"
       responses:
         200:
           description: "Request was successful"
@@ -758,7 +864,14 @@ paths:
       - "Market"
       summary: "Get the latest information for symbol."
       operationId: "Market.symbolInfo"
-      parameters: []
+      parameters:
+      - name: "symbol"
+        in: "query"
+        description: "Contract type."
+        required: false
+        type: "string"
+        x-exportParamName: "Symbol"
+        x-optionalDataType: "String"
       responses:
         200:
           description: "Request was successful"
@@ -833,6 +946,48 @@ definitions:
       result: {}
       time_now:
         type: "string"
+    description: "Get bybit server time."
+  APIKeyBase:
+    type: "object"
+    properties:
+      ret_code:
+        type: "number"
+        format: "int32"
+      ret_msg:
+        type: "string"
+      ext_code:
+        type: "string"
+      ext_info:
+        type: "string"
+      result:
+        type: "array"
+        items:
+          $ref: "#/definitions/APIKeyInfo"
+      time_now:
+        type: "string"
+    description: "Get bybit server time."
+  APIKeyInfo:
+    type: "object"
+    properties:
+      api_key:
+        type: "string"
+      user_id:
+        type: "number"
+        format: "int32"
+      ips:
+        type: "array"
+        items:
+          type: "string"
+      note:
+        type: "string"
+      permissions:
+        type: "array"
+        items:
+          type: "string"
+      created_at:
+        type: "string"
+      read_only:
+        type: "boolean"
     description: "Get bybit server time."
   Leverage:
     type: "object"
@@ -1559,6 +1714,100 @@ definitions:
       volume:
         type: "string"
     description: "Get the orderbook response"
+  FundRecordBase:
+    type: "object"
+    properties:
+      ret_code:
+        type: "number"
+        format: "int32"
+      ret_msg:
+        type: "string"
+      ext_code:
+        type: "string"
+      ext_info:
+        type: "string"
+      result:
+        type: "array"
+        items:
+          $ref: "#/definitions/FundingRecords"
+      time_now:
+        type: "string"
+    description: "Get funding record response"
+  FundingRecords:
+    type: "object"
+    properties:
+      id:
+        type: "number"
+        format: "int32"
+      user_id:
+        type: "number"
+        format: "int32"
+      coin:
+        type: "string"
+      wallet_id:
+        type: "number"
+        format: "int32"
+      type:
+        type: "string"
+      amount:
+        type: "string"
+      tx_id:
+        type: "string"
+      address:
+        type: "string"
+      wallet_balance:
+        type: "string"
+      exec_time:
+        type: "string"
+      cross_seq:
+        type: "number"
+        format: "int64"
+    description: "Get funding record response"
+  WithdrawResBase:
+    type: "object"
+    properties:
+      ret_code:
+        type: "number"
+        format: "int32"
+      ret_msg:
+        type: "string"
+      ext_code:
+        type: "string"
+      ext_info:
+        type: "string"
+      result:
+        type: "array"
+        items:
+          $ref: "#/definitions/WithdrawRecords"
+      time_now:
+        type: "string"
+    description: "Get account withdraw records response"
+  WithdrawRecords:
+    type: "object"
+    properties:
+      id:
+        type: "number"
+        format: "int32"
+      user_id:
+        type: "number"
+        format: "int32"
+      coin:
+        type: "string"
+      status:
+        type: "string"
+      amount:
+        type: "string"
+      fee:
+        type: "string"
+      address:
+        type: "string"
+      tx_id:
+        type: "string"
+      submited_at:
+        type: "string"
+      updated_at:
+        type: "string"
+    description: "Get withdraw records response"
   TradingStopBase:
     type: "object"
     properties:

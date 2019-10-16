@@ -105,16 +105,20 @@
 
     /**
      * Get the latest information for symbol.
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.symbol Contract type.
      * @param {module:api/MarketApi~marketSymbolInfoCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link Object}
      */
-    this.marketSymbolInfo = function(callback) {
+    this.marketSymbolInfo = function(opts, callback) {
+      opts = opts || {};
       var postBody = null;
 
 
       var pathParams = {
       };
       var queryParams = {
+        'symbol': opts['symbol'],
       };
       var collectionQueryParams = {
       };

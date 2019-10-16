@@ -4,16 +4,20 @@ All URIs are relative to *https://api-testnet.bybit.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**executionGetTrades**](SWGExecutionApi.md#executiongettrades) | **GET** /v2/private/execution/list | Get the trade records of a order.
+[**executionGetTrades**](SWGExecutionApi.md#executiongettrades) | **GET** /v2/private/execution/list | Get user’s trade records.
 
 
 # **executionGetTrades**
 ```objc
 -(NSURLSessionTask*) executionGetTradesWithOrderId: (NSString*) orderId
+    symbol: (NSString*) symbol
+    startTime: (NSString*) startTime
+    page: (NSString*) page
+    limit: (NSString*) limit
         completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
 ```
 
-Get the trade records of a order.
+Get user’s trade records.
 
 ### Example 
 ```objc
@@ -35,12 +39,20 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"timestamp"];
 
 
-NSString* orderId = @"orderId_example"; // orderID.
+NSString* orderId = @"orderId_example"; // OrderID. If not provided, will return user’s trading records. (optional)
+NSString* symbol = @"symbol_example"; // Contract type. If order_id not provided, symbol is required. (optional)
+NSString* startTime = @"startTime_example"; // Start timestamp point for result. (optional)
+NSString* page = @"page_example"; // Page. Default getting first page data. (optional)
+NSString* limit = @"limit_example"; // Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. (optional)
 
 SWGExecutionApi*apiInstance = [[SWGExecutionApi alloc] init];
 
-// Get the trade records of a order.
+// Get user’s trade records.
 [apiInstance executionGetTradesWithOrderId:orderId
+              symbol:symbol
+              startTime:startTime
+              page:page
+              limit:limit
           completionHandler: ^(NSObject* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
@@ -55,7 +67,11 @@ SWGExecutionApi*apiInstance = [[SWGExecutionApi alloc] init];
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **orderId** | **NSString***| orderID. | 
+ **orderId** | **NSString***| OrderID. If not provided, will return user’s trading records. | [optional] 
+ **symbol** | **NSString***| Contract type. If order_id not provided, symbol is required. | [optional] 
+ **startTime** | **NSString***| Start timestamp point for result. | [optional] 
+ **page** | **NSString***| Page. Default getting first page data. | [optional] 
+ **limit** | **NSString***| Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. | [optional] 
 
 ### Return type
 

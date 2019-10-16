@@ -83,5 +83,69 @@ module SwaggerClient
       end
       return data, status_code, headers
     end
+    # Get wallet fund records
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :start_date Start point for result
+    # @option opts [String] :end_date End point for result
+    # @option opts [String] :coin Currency
+    # @option opts [String] :status Withdraw status
+    # @option opts [String] :page Page. Default getting first page data
+    # @option opts [String] :limit Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page
+    # @return [Object]
+    def wallet_withdraw(opts = {})
+      data, _status_code, _headers = wallet_withdraw_with_http_info(opts)
+      data
+    end
+
+    # Get wallet fund records
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :start_date Start point for result
+    # @option opts [String] :end_date End point for result
+    # @option opts [String] :coin Currency
+    # @option opts [String] :status Withdraw status
+    # @option opts [String] :page Page. Default getting first page data
+    # @option opts [String] :limit Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page
+    # @return [Array<(Object, Fixnum, Hash)>] Object data, response status code and response headers
+    def wallet_withdraw_with_http_info(opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: WalletApi.wallet_withdraw ...'
+      end
+      # resource path
+      local_var_path = '/open-api/wallet/withdraw/list'
+
+      # query parameters
+      query_params = {}
+      query_params[:'start_date'] = opts[:'start_date'] if !opts[:'start_date'].nil?
+      query_params[:'end_date'] = opts[:'end_date'] if !opts[:'end_date'].nil?
+      query_params[:'coin'] = opts[:'coin'] if !opts[:'coin'].nil?
+      query_params[:'status'] = opts[:'status'] if !opts[:'status'].nil?
+      query_params[:'page'] = opts[:'page'] if !opts[:'page'].nil?
+      query_params[:'limit'] = opts[:'limit'] if !opts[:'limit'].nil?
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json', 'application/x-www-form-urlencoded'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = nil
+      auth_names = ['apiKey', 'apiSignature', 'timestamp']
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'Object')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: WalletApi#wallet_withdraw\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
   end
 end

@@ -34,6 +34,27 @@
                 "security": []
             }
         },
+        "/open-api/api-key": {
+            "get": {
+                "tags": [
+                    "APIkey"
+                ],
+                "summary": "Get account api-key information.",
+                "operationId": "APIkey.info",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/APIKeyBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
         "/v2/public/symbols": {
             "get": {
                 "tags": [
@@ -269,7 +290,68 @@
                         "description": "Request was successful",
                         "schema": {
                             "items": {
-                                "$ref": "#/definitions/Position"
+                                "$ref": "#/definitions/FundRecordBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/open-api/wallet/withdraw/list": {
+            "get": {
+                "tags": [
+                    "Wallet"
+                ],
+                "summary": "Get wallet fund records",
+                "operationId": "Wallet.withdraw",
+                "parameters": [{
+                        "name": "start_date",
+                        "in": "query",
+                        "description": "Start point for result",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "end_date",
+                        "in": "query",
+                        "description": "End point for result",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "coin",
+                        "in": "query",
+                        "description": "Currency",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "Withdraw status",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page. Default getting first page data",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/WithdrawResBase"
                             }
                         }
                     }
@@ -596,6 +678,13 @@
                         "type": "string"
                     },
                     {
+                        "name": "trigger_by",
+                        "in": "query",
+                        "description": "Trigger price type. Default LastPrice.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
                         "name": "close_on_trigger",
                         "in": "query",
                         "description": "close on trigger.",
@@ -855,13 +944,37 @@
                 "tags": [
                     "Execution"
                 ],
-                "summary": "Get the trade records of a order.",
+                "summary": "Get user’s trade records.",
                 "operationId": "Execution.getTrades",
                 "parameters": [{
                     "name": "order_id",
                     "in": "query",
-                    "description": "orderID.",
-                    "required": true,
+                    "description": "OrderID. If not provided, will return user’s trading records.",
+                    "required": false,
+                    "type": "string"
+                }, {
+                    "name": "symbol",
+                    "in": "query",
+                    "description": "Contract type. If order_id not provided, symbol is required.",
+                    "required": false,
+                    "type": "string"
+                }, {
+                    "name": "start_time",
+                    "in": "query",
+                    "description": "Start timestamp point for result.",
+                    "required": false,
+                    "type": "string"
+                }, {
+                    "name": "page",
+                    "in": "query",
+                    "description": "Page. Default getting first page data.",
+                    "required": false,
+                    "type": "string"
+                }, {
+                    "name": "limit",
+                    "in": "query",
+                    "description": "Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page.",
+                    "required": false,
                     "type": "string"
                 }],
                 "responses": {
@@ -912,7 +1025,13 @@
                 ],
                 "summary": "Get the latest information for symbol.",
                 "operationId": "Market.symbolInfo",
-                "parameters": [],
+                "parameters": [{
+                    "name": "symbol",
+                    "in": "query",
+                    "description": "Contract type.",
+                    "required": false,
+                    "type": "string"
+                }],
                 "responses": {
                     "200": {
                         "description": "Request was successful",
@@ -997,6 +1116,68 @@
                 },
                 "time_now": {
                     "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "APIKeyBase": {
+            "description": "Get bybit server time.",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/APIKeyInfo"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "APIKeyInfo": {
+            "description": "Get bybit server time.",
+            "properties": {
+                "api_key": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ips": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "note": {
+                    "type": "string"
+                },
+                "permissions": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "read_only": {
+                    "type": "boolean"
                 }
             },
             "type": "object"
@@ -2102,6 +2283,143 @@
             },
             "type": "object"
         },
+        "FundRecordBase": {
+            "description": "Get funding record response",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/FundingRecords"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "FundingRecords": {
+            "description": "Get funding record response",
+            "properties": {
+                "id": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "user_id": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "coin": {
+                    "type": "string"
+                },
+                "wallet_id": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "amount": {
+                    "type": "string"
+                },
+                "tx_id": {
+                    "type": "string"
+                },
+                "address": {
+                    "type": "string"
+                },
+                "wallet_balance": {
+                    "type": "string"
+                },
+                "exec_time": {
+                    "type": "string"
+                },
+                "cross_seq": {
+                    "format": "int64",
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "WithdrawResBase": {
+            "description": "Get account withdraw records response",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/WithdrawRecords"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "WithdrawRecords": {
+            "description": "Get withdraw records response",
+            "properties": {
+                "id": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "user_id": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "coin": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "amount": {
+                    "type": "string"
+                },
+                "fee": {
+                    "type": "string"
+                },
+                "address": {
+                    "type": "string"
+                },
+                "tx_id": {
+                    "type": "string"
+                },
+                "submited_at": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
         "TradingStopBase": {
             "description": "Set Trading-Stop Condition response",
             "properties": {
@@ -2254,6 +2572,9 @@
         "name": "Common",
         "description": "Common interface"
     }, {
+        "name": "APIKey",
+        "description": "Get account api-key information"
+    }, {
         "name": "Order",
         "description": "Place new order, cancel, replace and get order list"
     }, {
@@ -2264,7 +2585,7 @@
         "description": "Get account position info"
     }, {
         "name": "Wallet",
-        "description": "Get wallet fund records"
+        "description": "Get wallet funding records, get withdraw records"
     }, {
         "name": "Funding",
         "description": "Get fundng rate, get my funding fee, get predicted funding fee"

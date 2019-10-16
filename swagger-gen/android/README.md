@@ -58,17 +58,17 @@ Please follow the [installation](#installation) instruction and execute the foll
 
 ```java
 
-import io.swagger.client.api.CommonApi;
+import io.swagger.client.api.APIkeyApi;
 
-public class CommonApiExample {
+public class APIkeyApiExample {
 
     public static void main(String[] args) {
-        CommonApi apiInstance = new CommonApi();
+        APIkeyApi apiInstance = new APIkeyApi();
         try {
-            Object result = apiInstance.commonGet();
+            Object result = apiInstance.aPIkeyInfo();
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling CommonApi#commonGet");
+            System.err.println("Exception when calling APIkeyApi#aPIkeyInfo");
             e.printStackTrace();
         }
     }
@@ -82,12 +82,13 @@ All URIs are relative to *https://api-testnet.bybit.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*APIkeyApi* | [**aPIkeyInfo**](docs/APIkeyApi.md#aPIkeyInfo) | **GET** /open-api/api-key | Get account api-key information.
 *CommonApi* | [**commonGet**](docs/CommonApi.md#commonGet) | **GET** /v2/public/time | Get bybit server time.
 *ConditionalApi* | [**conditionalCancel**](docs/ConditionalApi.md#conditionalCancel) | **POST** /open-api/stop-order/cancel | Cancel conditional order.
 *ConditionalApi* | [**conditionalGetOrders**](docs/ConditionalApi.md#conditionalGetOrders) | **GET** /open-api/stop-order/list | Get my conditional order list.
 *ConditionalApi* | [**conditionalNew**](docs/ConditionalApi.md#conditionalNew) | **POST** /open-api/stop-order/create | Place a new conditional order.
 *ConditionalApi* | [**conditionalReplace**](docs/ConditionalApi.md#conditionalReplace) | **POST** /open-api/stop-order/replace | Replace conditional order. Only incomplete orders can be modified. 
-*ExecutionApi* | [**executionGetTrades**](docs/ExecutionApi.md#executionGetTrades) | **GET** /v2/private/execution/list | Get the trade records of a order.
+*ExecutionApi* | [**executionGetTrades**](docs/ExecutionApi.md#executionGetTrades) | **GET** /v2/private/execution/list | Get user’s trade records.
 *FundingApi* | [**fundingGetRate**](docs/FundingApi.md#fundingGetRate) | **GET** /open-api/funding/prev-funding | Funding settlement occurs every 8 hours at 00:00 UTC, 08:00 UTC and 16:00 UTC. The current interval&#39;s fund fee settlement is based on the previous interval&#39;s fund rate. For example, at 16:00, the settlement is based on the fund rate generated at 8:00. The fund rate generated at 16:00 will be used at 0:00 on the next day.
 *FundingApi* | [**fundingPredicted**](docs/FundingApi.md#fundingPredicted) | **GET** /open-api/funding/predicted-funding | Get predicted funding rate and funding fee.
 *FundingApi* | [**fundingPredictedRate**](docs/FundingApi.md#fundingPredictedRate) | **GET** /open-api/funding/prev-funding-rate | Get predicted funding rate and funding fee.
@@ -105,20 +106,25 @@ Class | Method | HTTP request | Description
 *PositionsApi* | [**positionsUserLeverage**](docs/PositionsApi.md#positionsUserLeverage) | **GET** /user/leverage | Get user leverage setting.
 *SymbolApi* | [**symbolGet**](docs/SymbolApi.md#symbolGet) | **GET** /v2/public/symbols | Query Symbols.
 *WalletApi* | [**walletGetRecords**](docs/WalletApi.md#walletGetRecords) | **GET** /open-api/wallet/fund/records | Get wallet fund records
+*WalletApi* | [**walletWithdraw**](docs/WalletApi.md#walletWithdraw) | **GET** /open-api/wallet/withdraw/list | Get wallet fund records
 
 
 ## Documentation for Models
 
+ - [APIKeyBase](docs/APIKeyBase.md)
+ - [APIKeyInfo](docs/APIKeyInfo.md)
  - [ConditionalBase](docs/ConditionalBase.md)
  - [ConditionalOrdersRes](docs/ConditionalOrdersRes.md)
  - [ConditionalOrdersResBase](docs/ConditionalOrdersResBase.md)
  - [ConditionalRes](docs/ConditionalRes.md)
+ - [FundRecordBase](docs/FundRecordBase.md)
  - [FundingFeeBase](docs/FundingFeeBase.md)
  - [FundingFeeRes](docs/FundingFeeRes.md)
  - [FundingPredicted](docs/FundingPredicted.md)
  - [FundingPredictedBase](docs/FundingPredictedBase.md)
  - [FundingRate](docs/FundingRate.md)
  - [FundingRateBase](docs/FundingRateBase.md)
+ - [FundingRecords](docs/FundingRecords.md)
  - [KlineBase](docs/KlineBase.md)
  - [KlineRes](docs/KlineRes.md)
  - [Leverage](docs/Leverage.md)
@@ -147,6 +153,8 @@ Class | Method | HTTP request | Description
  - [TradeRecordsInfo](docs/TradeRecordsInfo.md)
  - [TradingStopBase](docs/TradingStopBase.md)
  - [TradingStopRes](docs/TradingStopRes.md)
+ - [WithdrawRecords](docs/WithdrawRecords.md)
+ - [WithdrawResBase](docs/WithdrawResBase.md)
 
 
 ## Documentation for Authorization

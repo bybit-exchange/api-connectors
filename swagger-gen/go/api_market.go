@@ -16,6 +16,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"github.com/antihax/optional"
 )
 
 // Linger please
@@ -116,10 +117,17 @@ func (a *MarketApiService) MarketOrderbook(ctx context.Context, symbol string) (
 /* 
 MarketApiService Get the latest information for symbol.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param optional nil or *MarketSymbolInfoOpts - Optional Parameters:
+     * @param "Symbol" (optional.String) -  Contract type.
 
 @return interface{}
 */
-func (a *MarketApiService) MarketSymbolInfo(ctx context.Context) (interface{}, *http.Response, error) {
+
+type MarketSymbolInfoOpts struct { 
+	Symbol optional.String
+}
+
+func (a *MarketApiService) MarketSymbolInfo(ctx context.Context, localVarOptionals *MarketSymbolInfoOpts) (interface{}, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -135,6 +143,9 @@ func (a *MarketApiService) MarketSymbolInfo(ctx context.Context) (interface{}, *
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.Symbol.IsSet() {
+		localVarQueryParams.Add("symbol", parameterToString(localVarOptionals.Symbol.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
 

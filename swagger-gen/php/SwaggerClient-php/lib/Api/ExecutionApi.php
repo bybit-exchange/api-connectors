@@ -90,35 +90,43 @@ class ExecutionApi
     /**
      * Operation executionGetTrades
      *
-     * Get the trade records of a order.
+     * Get user’s trade records.
      *
-     * @param  string $order_id orderID. (required)
+     * @param  string $order_id OrderID. If not provided, will return user’s trading records. (optional)
+     * @param  string $symbol Contract type. If order_id not provided, symbol is required. (optional)
+     * @param  string $start_time Start timestamp point for result. (optional)
+     * @param  string $page Page. Default getting first page data. (optional)
+     * @param  string $limit Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. (optional)
      *
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return object
      */
-    public function executionGetTrades($order_id)
+    public function executionGetTrades($order_id = null, $symbol = null, $start_time = null, $page = null, $limit = null)
     {
-        list($response) = $this->executionGetTradesWithHttpInfo($order_id);
+        list($response) = $this->executionGetTradesWithHttpInfo($order_id, $symbol, $start_time, $page, $limit);
         return $response;
     }
 
     /**
      * Operation executionGetTradesWithHttpInfo
      *
-     * Get the trade records of a order.
+     * Get user’s trade records.
      *
-     * @param  string $order_id orderID. (required)
+     * @param  string $order_id OrderID. If not provided, will return user’s trading records. (optional)
+     * @param  string $symbol Contract type. If order_id not provided, symbol is required. (optional)
+     * @param  string $start_time Start timestamp point for result. (optional)
+     * @param  string $page Page. Default getting first page data. (optional)
+     * @param  string $limit Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. (optional)
      *
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of object, HTTP status code, HTTP response headers (array of strings)
      */
-    public function executionGetTradesWithHttpInfo($order_id)
+    public function executionGetTradesWithHttpInfo($order_id = null, $symbol = null, $start_time = null, $page = null, $limit = null)
     {
         $returnType = 'object';
-        $request = $this->executionGetTradesRequest($order_id);
+        $request = $this->executionGetTradesRequest($order_id, $symbol, $start_time, $page, $limit);
 
         try {
             $options = $this->createHttpClientOption();
@@ -182,16 +190,20 @@ class ExecutionApi
     /**
      * Operation executionGetTradesAsync
      *
-     * Get the trade records of a order.
+     * Get user’s trade records.
      *
-     * @param  string $order_id orderID. (required)
+     * @param  string $order_id OrderID. If not provided, will return user’s trading records. (optional)
+     * @param  string $symbol Contract type. If order_id not provided, symbol is required. (optional)
+     * @param  string $start_time Start timestamp point for result. (optional)
+     * @param  string $page Page. Default getting first page data. (optional)
+     * @param  string $limit Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function executionGetTradesAsync($order_id)
+    public function executionGetTradesAsync($order_id = null, $symbol = null, $start_time = null, $page = null, $limit = null)
     {
-        return $this->executionGetTradesAsyncWithHttpInfo($order_id)
+        return $this->executionGetTradesAsyncWithHttpInfo($order_id, $symbol, $start_time, $page, $limit)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -202,17 +214,21 @@ class ExecutionApi
     /**
      * Operation executionGetTradesAsyncWithHttpInfo
      *
-     * Get the trade records of a order.
+     * Get user’s trade records.
      *
-     * @param  string $order_id orderID. (required)
+     * @param  string $order_id OrderID. If not provided, will return user’s trading records. (optional)
+     * @param  string $symbol Contract type. If order_id not provided, symbol is required. (optional)
+     * @param  string $start_time Start timestamp point for result. (optional)
+     * @param  string $page Page. Default getting first page data. (optional)
+     * @param  string $limit Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function executionGetTradesAsyncWithHttpInfo($order_id)
+    public function executionGetTradesAsyncWithHttpInfo($order_id = null, $symbol = null, $start_time = null, $page = null, $limit = null)
     {
         $returnType = 'object';
-        $request = $this->executionGetTradesRequest($order_id);
+        $request = $this->executionGetTradesRequest($order_id, $symbol, $start_time, $page, $limit);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -254,19 +270,17 @@ class ExecutionApi
     /**
      * Create request for operation 'executionGetTrades'
      *
-     * @param  string $order_id orderID. (required)
+     * @param  string $order_id OrderID. If not provided, will return user’s trading records. (optional)
+     * @param  string $symbol Contract type. If order_id not provided, symbol is required. (optional)
+     * @param  string $start_time Start timestamp point for result. (optional)
+     * @param  string $page Page. Default getting first page data. (optional)
+     * @param  string $limit Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function executionGetTradesRequest($order_id)
+    protected function executionGetTradesRequest($order_id = null, $symbol = null, $start_time = null, $page = null, $limit = null)
     {
-        // verify the required parameter 'order_id' is set
-        if ($order_id === null || (is_array($order_id) && count($order_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $order_id when calling executionGetTrades'
-            );
-        }
 
         $resourcePath = '/v2/private/execution/list';
         $formParams = [];
@@ -278,6 +292,22 @@ class ExecutionApi
         // query params
         if ($order_id !== null) {
             $queryParams['order_id'] = ObjectSerializer::toQueryValue($order_id);
+        }
+        // query params
+        if ($symbol !== null) {
+            $queryParams['symbol'] = ObjectSerializer::toQueryValue($symbol);
+        }
+        // query params
+        if ($start_time !== null) {
+            $queryParams['start_time'] = ObjectSerializer::toQueryValue($start_time);
+        }
+        // query params
+        if ($page !== null) {
+            $queryParams['page'] = ObjectSerializer::toQueryValue($page);
+        }
+        // query params
+        if ($limit !== null) {
+            $queryParams['limit'] = ObjectSerializer::toQueryValue($limit);
         }
 
 

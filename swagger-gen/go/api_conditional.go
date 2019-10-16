@@ -325,6 +325,7 @@ ConditionalApiService Place a new conditional order.
  * @param stopPx Trigger price.
  * @param timeInForce Time in force.
  * @param optional nil or *ConditionalNewOpts - Optional Parameters:
+     * @param "TriggerBy" (optional.String) -  Trigger price type. Default LastPrice.
      * @param "CloseOnTrigger" (optional.Bool) -  close on trigger.
      * @param "OrderLinkId" (optional.String) -  Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique..
 
@@ -332,6 +333,7 @@ ConditionalApiService Place a new conditional order.
 */
 
 type ConditionalNewOpts struct { 
+	TriggerBy optional.String
 	CloseOnTrigger optional.Bool
 	OrderLinkId optional.String
 }
@@ -360,6 +362,9 @@ func (a *ConditionalApiService) ConditionalNew(ctx context.Context, side string,
 	localVarQueryParams.Add("base_price", parameterToString(basePrice, ""))
 	localVarQueryParams.Add("stop_px", parameterToString(stopPx, ""))
 	localVarQueryParams.Add("time_in_force", parameterToString(timeInForce, ""))
+	if localVarOptionals != nil && localVarOptionals.TriggerBy.IsSet() {
+		localVarQueryParams.Add("trigger_by", parameterToString(localVarOptionals.TriggerBy.Value(), ""))
+	}
 	if localVarOptionals != nil && localVarOptionals.CloseOnTrigger.IsSet() {
 		localVarQueryParams.Add("close_on_trigger", parameterToString(localVarOptionals.CloseOnTrigger.Value(), ""))
 	}

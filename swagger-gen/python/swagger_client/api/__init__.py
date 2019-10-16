@@ -3,6 +3,7 @@ from __future__ import absolute_import
 # flake8: noqa
 
 # import apis into api package
+from swagger_client.api.ap_ikey_api import APIkeyApi
 from swagger_client.api.common_api import CommonApi
 from swagger_client.api.conditional_api import ConditionalApi
 from swagger_client.api.execution_api import ExecutionApi

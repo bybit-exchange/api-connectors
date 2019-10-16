@@ -260,6 +260,7 @@ class ConditionalApi(object):
         :param float base_price: Send current market price. It will be used to compare with the value of 'stop_px', to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order.. (required)
         :param float stop_px: Trigger price. (required)
         :param str time_in_force: Time in force. (required)
+        :param str trigger_by: Trigger price type. Default LastPrice.
         :param bool close_on_trigger: close on trigger.
         :param str order_link_id: Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique..
         :return: object
@@ -290,6 +291,7 @@ class ConditionalApi(object):
         :param float base_price: Send current market price. It will be used to compare with the value of 'stop_px', to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order.. (required)
         :param float stop_px: Trigger price. (required)
         :param str time_in_force: Time in force. (required)
+        :param str trigger_by: Trigger price type. Default LastPrice.
         :param bool close_on_trigger: close on trigger.
         :param str order_link_id: Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique..
         :return: object
@@ -297,7 +299,7 @@ class ConditionalApi(object):
                  returns the request thread.
         """
 
-        all_params = ['side', 'symbol', 'order_type', 'qty', 'price', 'base_price', 'stop_px', 'time_in_force', 'close_on_trigger', 'order_link_id']  # noqa: E501
+        all_params = ['side', 'symbol', 'order_type', 'qty', 'price', 'base_price', 'stop_px', 'time_in_force', 'trigger_by', 'close_on_trigger', 'order_link_id']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -366,6 +368,8 @@ class ConditionalApi(object):
             query_params.append(('stop_px', params['stop_px']))  # noqa: E501
         if 'time_in_force' in params:
             query_params.append(('time_in_force', params['time_in_force']))  # noqa: E501
+        if 'trigger_by' in params:
+            query_params.append(('trigger_by', params['trigger_by']))  # noqa: E501
         if 'close_on_trigger' in params:
             query_params.append(('close_on_trigger', params['close_on_trigger']))  # noqa: E501
         if 'order_link_id' in params:

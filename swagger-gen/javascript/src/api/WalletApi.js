@@ -101,6 +101,60 @@
         authNames, contentTypes, accepts, returnType, callback
       );
     }
+
+    /**
+     * Callback function to receive the result of the walletWithdraw operation.
+     * @callback module:api/WalletApi~walletWithdrawCallback
+     * @param {String} error Error message, if any.
+     * @param {Object} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Get wallet fund records
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.startDate Start point for result
+     * @param {String} opts.endDate End point for result
+     * @param {String} opts.coin Currency
+     * @param {String} opts.status Withdraw status
+     * @param {String} opts.page Page. Default getting first page data
+     * @param {String} opts.limit Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page
+     * @param {module:api/WalletApi~walletWithdrawCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link Object}
+     */
+    this.walletWithdraw = function(opts, callback) {
+      opts = opts || {};
+      var postBody = null;
+
+
+      var pathParams = {
+      };
+      var queryParams = {
+        'start_date': opts['startDate'],
+        'end_date': opts['endDate'],
+        'coin': opts['coin'],
+        'status': opts['status'],
+        'page': opts['page'],
+        'limit': opts['limit'],
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = ['apiKey', 'apiSignature', 'timestamp'];
+      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      var accepts = ['application/json'];
+      var returnType = Object;
+
+      return this.apiClient.callApi(
+        '/open-api/wallet/withdraw/list', 'GET',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
   };
 
   return exports;

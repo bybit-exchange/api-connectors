@@ -19,33 +19,41 @@ module SwaggerClient
     def initialize(api_client = ApiClient.default)
       @api_client = api_client
     end
-    # Get the trade records of a order.
-    # @param order_id orderID.
+    # Get user’s trade records.
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :order_id OrderID. If not provided, will return user’s trading records.
+    # @option opts [String] :symbol Contract type. If order_id not provided, symbol is required.
+    # @option opts [String] :start_time Start timestamp point for result.
+    # @option opts [String] :page Page. Default getting first page data.
+    # @option opts [String] :limit Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page.
     # @return [Object]
-    def execution_get_trades(order_id, opts = {})
-      data, _status_code, _headers = execution_get_trades_with_http_info(order_id, opts)
+    def execution_get_trades(opts = {})
+      data, _status_code, _headers = execution_get_trades_with_http_info(opts)
       data
     end
 
-    # Get the trade records of a order.
-    # @param order_id orderID.
+    # Get user’s trade records.
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :order_id OrderID. If not provided, will return user’s trading records.
+    # @option opts [String] :symbol Contract type. If order_id not provided, symbol is required.
+    # @option opts [String] :start_time Start timestamp point for result.
+    # @option opts [String] :page Page. Default getting first page data.
+    # @option opts [String] :limit Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page.
     # @return [Array<(Object, Fixnum, Hash)>] Object data, response status code and response headers
-    def execution_get_trades_with_http_info(order_id, opts = {})
+    def execution_get_trades_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: ExecutionApi.execution_get_trades ...'
-      end
-      # verify the required parameter 'order_id' is set
-      if @api_client.config.client_side_validation && order_id.nil?
-        fail ArgumentError, "Missing the required parameter 'order_id' when calling ExecutionApi.execution_get_trades"
       end
       # resource path
       local_var_path = '/v2/private/execution/list'
 
       # query parameters
       query_params = {}
-      query_params[:'order_id'] = order_id
+      query_params[:'order_id'] = opts[:'order_id'] if !opts[:'order_id'].nil?
+      query_params[:'symbol'] = opts[:'symbol'] if !opts[:'symbol'].nil?
+      query_params[:'start_time'] = opts[:'start_time'] if !opts[:'start_time'].nil?
+      query_params[:'page'] = opts[:'page'] if !opts[:'page'].nil?
+      query_params[:'limit'] = opts[:'limit'] if !opts[:'limit'].nil?
 
       # header parameters
       header_params = {}

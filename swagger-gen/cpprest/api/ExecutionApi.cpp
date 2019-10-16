@@ -36,7 +36,7 @@ ExecutionApi::~ExecutionApi()
 {
 }
 
-pplx::task<std::shared_ptr<Object>> ExecutionApi::execution_getTrades(utility::string_t orderId)
+pplx::task<std::shared_ptr<Object>> ExecutionApi::execution_getTrades(boost::optional<utility::string_t> orderId, boost::optional<utility::string_t> symbol, boost::optional<utility::string_t> startTime, boost::optional<utility::string_t> page, boost::optional<utility::string_t> limit)
 {
 
 
@@ -79,8 +79,25 @@ pplx::task<std::shared_ptr<Object>> ExecutionApi::execution_getTrades(utility::s
     consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
     consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/x-www-form-urlencoded") );
 
+    if (orderId)
     {
-        queryParams[utility::conversions::to_string_t("order_id")] = ApiClient::parameterToString(orderId);
+        queryParams[utility::conversions::to_string_t("order_id")] = ApiClient::parameterToString(*orderId);
+    }
+    if (symbol)
+    {
+        queryParams[utility::conversions::to_string_t("symbol")] = ApiClient::parameterToString(*symbol);
+    }
+    if (startTime)
+    {
+        queryParams[utility::conversions::to_string_t("start_time")] = ApiClient::parameterToString(*startTime);
+    }
+    if (page)
+    {
+        queryParams[utility::conversions::to_string_t("page")] = ApiClient::parameterToString(*page);
+    }
+    if (limit)
+    {
+        queryParams[utility::conversions::to_string_t("limit")] = ApiClient::parameterToString(*limit);
     }
 
     std::shared_ptr<IHttpBody> httpBody;

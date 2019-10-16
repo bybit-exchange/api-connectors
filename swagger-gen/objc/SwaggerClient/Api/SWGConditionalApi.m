@@ -222,6 +222,8 @@ NSInteger kSWGConditionalApiMissingParamErrorCode = 234513;
 ///
 ///  @param timeInForce Time in force. 
 ///
+///  @param triggerBy Trigger price type. Default LastPrice. (optional)
+///
 ///  @param closeOnTrigger close on trigger. (optional)
 ///
 ///  @param orderLinkId Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. (optional)
@@ -236,6 +238,7 @@ NSInteger kSWGConditionalApiMissingParamErrorCode = 234513;
     basePrice: (NSNumber*) basePrice
     stopPx: (NSNumber*) stopPx
     timeInForce: (NSString*) timeInForce
+    triggerBy: (NSString*) triggerBy
     closeOnTrigger: (NSNumber*) closeOnTrigger
     orderLinkId: (NSString*) orderLinkId
     completionHandler: (void (^)(NSObject* output, NSError* error)) handler {
@@ -355,6 +358,9 @@ NSInteger kSWGConditionalApiMissingParamErrorCode = 234513;
     }
     if (timeInForce != nil) {
         queryParams[@"time_in_force"] = timeInForce;
+    }
+    if (triggerBy != nil) {
+        queryParams[@"trigger_by"] = triggerBy;
     }
     if (closeOnTrigger != nil) {
         queryParams[@"close_on_trigger"] = [closeOnTrigger isEqual:@(YES)] ? @"true" : @"false";

@@ -4,13 +4,13 @@ All URIs are relative to *https://api-testnet.bybit.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**execution_get_trades**](ExecutionApi.md#execution_get_trades) | **GET** /v2/private/execution/list | Get the trade records of a order.
+[**execution_get_trades**](ExecutionApi.md#execution_get_trades) | **GET** /v2/private/execution/list | Get user’s trade records.
 
 
 # **execution_get_trades**
-> object execution_get_trades(order_id)
+> object execution_get_trades(order_id=order_id, symbol=symbol, start_time=start_time, page=page, limit=limit)
 
-Get the trade records of a order.
+Get user’s trade records.
 
 ### Example
 ```python
@@ -38,11 +38,15 @@ configuration.api_key['timestamp'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = swagger_client.ExecutionApi(swagger_client.ApiClient(configuration))
-order_id = 'order_id_example' # str | orderID.
+order_id = 'order_id_example' # str | OrderID. If not provided, will return user’s trading records. (optional)
+symbol = 'symbol_example' # str | Contract type. If order_id not provided, symbol is required. (optional)
+start_time = 'start_time_example' # str | Start timestamp point for result. (optional)
+page = 'page_example' # str | Page. Default getting first page data. (optional)
+limit = 'limit_example' # str | Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. (optional)
 
 try:
-    # Get the trade records of a order.
-    api_response = api_instance.execution_get_trades(order_id)
+    # Get user’s trade records.
+    api_response = api_instance.execution_get_trades(order_id=order_id, symbol=symbol, start_time=start_time, page=page, limit=limit)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExecutionApi->execution_get_trades: %s\n" % e)
@@ -52,7 +56,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **order_id** | **str**| orderID. | 
+ **order_id** | **str**| OrderID. If not provided, will return user’s trading records. | [optional] 
+ **symbol** | **str**| Contract type. If order_id not provided, symbol is required. | [optional] 
+ **start_time** | **str**| Start timestamp point for result. | [optional] 
+ **page** | **str**| Page. Default getting first page data. | [optional] 
+ **limit** | **str**| Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. | [optional] 
 
 ### Return type
 

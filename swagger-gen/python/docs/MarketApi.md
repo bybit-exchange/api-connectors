@@ -55,7 +55,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **market_symbol_info**
-> object market_symbol_info()
+> object market_symbol_info(symbol=symbol)
 
 Get the latest information for symbol.
 
@@ -69,17 +69,21 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = swagger_client.MarketApi()
+symbol = 'symbol_example' # str | Contract type. (optional)
 
 try:
     # Get the latest information for symbol.
-    api_response = api_instance.market_symbol_info()
+    api_response = api_instance.market_symbol_info(symbol=symbol)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling MarketApi->market_symbol_info: %s\n" % e)
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **str**| Contract type. | [optional] 
 
 ### Return type
 

@@ -56,7 +56,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **marketSymbolInfo**
-> object marketSymbolInfo()
+> object marketSymbolInfo($symbol)
 
 Get the latest information for symbol.
 
@@ -70,9 +70,10 @@ $apiInstance = new Swagger\Client\Api\MarketApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
+$symbol = "symbol_example"; // string | Contract type.
 
 try {
-    $result = $apiInstance->marketSymbolInfo();
+    $result = $apiInstance->marketSymbolInfo($symbol);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling MarketApi->marketSymbolInfo: ', $e->getMessage(), PHP_EOL;
@@ -81,7 +82,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string**| Contract type. | [optional]
 
 ### Return type
 

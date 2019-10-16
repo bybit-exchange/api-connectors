@@ -54,7 +54,7 @@ No authorization required
 
 <a name="marketSymbolInfo"></a>
 # **marketSymbolInfo**
-> Object marketSymbolInfo()
+> Object marketSymbolInfo(opts)
 
 Get the latest information for symbol.
 
@@ -64,6 +64,10 @@ var BybitApi = require('bybit_api');
 
 var apiInstance = new BybitApi.MarketApi();
 
+var opts = { 
+  'symbol': "symbol_example" // String | Contract type.
+};
+
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -71,11 +75,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.marketSymbolInfo(callback);
+apiInstance.marketSymbolInfo(opts, callback);
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **String**| Contract type. | [optional] 
 
 ### Return type
 

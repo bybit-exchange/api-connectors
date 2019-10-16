@@ -70,17 +70,30 @@ namespace Example
         public void main()
         {
 
-            var apiInstance = new CommonApi();
+            // Configure API key authorization: apiKey
+            Configuration.Default.ApiKey.Add("api_key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.ApiKeyPrefix.Add("api_key", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.ApiKey.Add("sign", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.ApiKeyPrefix.Add("sign", "Bearer");
+            // Configure API key authorization: timestamp
+            Configuration.Default.ApiKey.Add("timestamp", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.ApiKeyPrefix.Add("timestamp", "Bearer");
+
+            var apiInstance = new APIkeyApi();
 
             try
             {
-                // Get bybit server time.
-                Object result = apiInstance.CommonGet();
+                // Get account api-key information.
+                Object result = apiInstance.APIkeyInfo();
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling CommonApi.CommonGet: " + e.Message );
+                Debug.Print("Exception when calling APIkeyApi.APIkeyInfo: " + e.Message );
             }
 
         }
@@ -95,12 +108,13 @@ All URIs are relative to *https://api-testnet.bybit.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*APIkeyApi* | [**APIkeyInfo**](docs/APIkeyApi.md#apikeyinfo) | **GET** /open-api/api-key | Get account api-key information.
 *CommonApi* | [**CommonGet**](docs/CommonApi.md#commonget) | **GET** /v2/public/time | Get bybit server time.
 *ConditionalApi* | [**ConditionalCancel**](docs/ConditionalApi.md#conditionalcancel) | **POST** /open-api/stop-order/cancel | Cancel conditional order.
 *ConditionalApi* | [**ConditionalGetOrders**](docs/ConditionalApi.md#conditionalgetorders) | **GET** /open-api/stop-order/list | Get my conditional order list.
 *ConditionalApi* | [**ConditionalNew**](docs/ConditionalApi.md#conditionalnew) | **POST** /open-api/stop-order/create | Place a new conditional order.
 *ConditionalApi* | [**ConditionalReplace**](docs/ConditionalApi.md#conditionalreplace) | **POST** /open-api/stop-order/replace | Replace conditional order. Only incomplete orders can be modified. 
-*ExecutionApi* | [**ExecutionGetTrades**](docs/ExecutionApi.md#executiongettrades) | **GET** /v2/private/execution/list | Get the trade records of a order.
+*ExecutionApi* | [**ExecutionGetTrades**](docs/ExecutionApi.md#executiongettrades) | **GET** /v2/private/execution/list | Get user’s trade records.
 *FundingApi* | [**FundingGetRate**](docs/FundingApi.md#fundinggetrate) | **GET** /open-api/funding/prev-funding | Funding settlement occurs every 8 hours at 00:00 UTC, 08:00 UTC and 16:00 UTC. The current interval's fund fee settlement is based on the previous interval's fund rate. For example, at 16:00, the settlement is based on the fund rate generated at 8:00. The fund rate generated at 16:00 will be used at 0:00 on the next day.
 *FundingApi* | [**FundingPredicted**](docs/FundingApi.md#fundingpredicted) | **GET** /open-api/funding/predicted-funding | Get predicted funding rate and funding fee.
 *FundingApi* | [**FundingPredictedRate**](docs/FundingApi.md#fundingpredictedrate) | **GET** /open-api/funding/prev-funding-rate | Get predicted funding rate and funding fee.
@@ -118,21 +132,26 @@ Class | Method | HTTP request | Description
 *PositionsApi* | [**PositionsUserLeverage**](docs/PositionsApi.md#positionsuserleverage) | **GET** /user/leverage | Get user leverage setting.
 *SymbolApi* | [**SymbolGet**](docs/SymbolApi.md#symbolget) | **GET** /v2/public/symbols | Query Symbols.
 *WalletApi* | [**WalletGetRecords**](docs/WalletApi.md#walletgetrecords) | **GET** /open-api/wallet/fund/records | Get wallet fund records
+*WalletApi* | [**WalletWithdraw**](docs/WalletApi.md#walletwithdraw) | **GET** /open-api/wallet/withdraw/list | Get wallet fund records
 
 
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
+ - [Model.APIKeyBase](docs/APIKeyBase.md)
+ - [Model.APIKeyInfo](docs/APIKeyInfo.md)
  - [Model.ConditionalBase](docs/ConditionalBase.md)
  - [Model.ConditionalOrdersRes](docs/ConditionalOrdersRes.md)
  - [Model.ConditionalOrdersResBase](docs/ConditionalOrdersResBase.md)
  - [Model.ConditionalRes](docs/ConditionalRes.md)
+ - [Model.FundRecordBase](docs/FundRecordBase.md)
  - [Model.FundingFeeBase](docs/FundingFeeBase.md)
  - [Model.FundingFeeRes](docs/FundingFeeRes.md)
  - [Model.FundingPredicted](docs/FundingPredicted.md)
  - [Model.FundingPredictedBase](docs/FundingPredictedBase.md)
  - [Model.FundingRate](docs/FundingRate.md)
  - [Model.FundingRateBase](docs/FundingRateBase.md)
+ - [Model.FundingRecords](docs/FundingRecords.md)
  - [Model.KlineBase](docs/KlineBase.md)
  - [Model.KlineRes](docs/KlineRes.md)
  - [Model.Leverage](docs/Leverage.md)
@@ -161,6 +180,8 @@ Class | Method | HTTP request | Description
  - [Model.TradeRecordsInfo](docs/TradeRecordsInfo.md)
  - [Model.TradingStopBase](docs/TradingStopBase.md)
  - [Model.TradingStopRes](docs/TradingStopRes.md)
+ - [Model.WithdrawRecords](docs/WithdrawRecords.md)
+ - [Model.WithdrawResBase](docs/WithdrawResBase.md)
 
 
 <a name="documentation-for-authorization"></a>

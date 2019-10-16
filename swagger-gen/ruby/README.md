@@ -54,14 +54,32 @@ Please follow the [installation](#installation) procedure and then run the follo
 # Load the gem
 require 'swagger_client'
 
-api_instance = SwaggerClient::CommonApi.new
+# Setup authorization
+SwaggerClient.configure do |config|
+  # Configure API key authorization: apiKey
+  config.api_key['api_key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api_key'] = 'Bearer'
+
+  # Configure API key authorization: apiSignature
+  config.api_key['sign'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['sign'] = 'Bearer'
+
+  # Configure API key authorization: timestamp
+  config.api_key['timestamp'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['timestamp'] = 'Bearer'
+end
+
+api_instance = SwaggerClient::APIkeyApi.new
 
 begin
-  #Get bybit server time.
-  result = api_instance.common_get
+  #Get account api-key information.
+  result = api_instance.a_p_ikey_info
   p result
 rescue SwaggerClient::ApiError => e
-  puts "Exception when calling CommonApi->common_get: #{e}"
+  puts "Exception when calling APIkeyApi->a_p_ikey_info: #{e}"
 end
 
 ```
@@ -72,12 +90,13 @@ All URIs are relative to *https://api-testnet.bybit.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*SwaggerClient::APIkeyApi* | [**a_p_ikey_info**](docs/APIkeyApi.md#a_p_ikey_info) | **GET** /open-api/api-key | Get account api-key information.
 *SwaggerClient::CommonApi* | [**common_get**](docs/CommonApi.md#common_get) | **GET** /v2/public/time | Get bybit server time.
 *SwaggerClient::ConditionalApi* | [**conditional_cancel**](docs/ConditionalApi.md#conditional_cancel) | **POST** /open-api/stop-order/cancel | Cancel conditional order.
 *SwaggerClient::ConditionalApi* | [**conditional_get_orders**](docs/ConditionalApi.md#conditional_get_orders) | **GET** /open-api/stop-order/list | Get my conditional order list.
 *SwaggerClient::ConditionalApi* | [**conditional_new**](docs/ConditionalApi.md#conditional_new) | **POST** /open-api/stop-order/create | Place a new conditional order.
 *SwaggerClient::ConditionalApi* | [**conditional_replace**](docs/ConditionalApi.md#conditional_replace) | **POST** /open-api/stop-order/replace | Replace conditional order. Only incomplete orders can be modified. 
-*SwaggerClient::ExecutionApi* | [**execution_get_trades**](docs/ExecutionApi.md#execution_get_trades) | **GET** /v2/private/execution/list | Get the trade records of a order.
+*SwaggerClient::ExecutionApi* | [**execution_get_trades**](docs/ExecutionApi.md#execution_get_trades) | **GET** /v2/private/execution/list | Get user’s trade records.
 *SwaggerClient::FundingApi* | [**funding_get_rate**](docs/FundingApi.md#funding_get_rate) | **GET** /open-api/funding/prev-funding | Funding settlement occurs every 8 hours at 00:00 UTC, 08:00 UTC and 16:00 UTC. The current interval's fund fee settlement is based on the previous interval's fund rate. For example, at 16:00, the settlement is based on the fund rate generated at 8:00. The fund rate generated at 16:00 will be used at 0:00 on the next day.
 *SwaggerClient::FundingApi* | [**funding_predicted**](docs/FundingApi.md#funding_predicted) | **GET** /open-api/funding/predicted-funding | Get predicted funding rate and funding fee.
 *SwaggerClient::FundingApi* | [**funding_predicted_rate**](docs/FundingApi.md#funding_predicted_rate) | **GET** /open-api/funding/prev-funding-rate | Get predicted funding rate and funding fee.
@@ -95,20 +114,25 @@ Class | Method | HTTP request | Description
 *SwaggerClient::PositionsApi* | [**positions_user_leverage**](docs/PositionsApi.md#positions_user_leverage) | **GET** /user/leverage | Get user leverage setting.
 *SwaggerClient::SymbolApi* | [**symbol_get**](docs/SymbolApi.md#symbol_get) | **GET** /v2/public/symbols | Query Symbols.
 *SwaggerClient::WalletApi* | [**wallet_get_records**](docs/WalletApi.md#wallet_get_records) | **GET** /open-api/wallet/fund/records | Get wallet fund records
+*SwaggerClient::WalletApi* | [**wallet_withdraw**](docs/WalletApi.md#wallet_withdraw) | **GET** /open-api/wallet/withdraw/list | Get wallet fund records
 
 
 ## Documentation for Models
 
+ - [SwaggerClient::APIKeyBase](docs/APIKeyBase.md)
+ - [SwaggerClient::APIKeyInfo](docs/APIKeyInfo.md)
  - [SwaggerClient::ConditionalBase](docs/ConditionalBase.md)
  - [SwaggerClient::ConditionalOrdersRes](docs/ConditionalOrdersRes.md)
  - [SwaggerClient::ConditionalOrdersResBase](docs/ConditionalOrdersResBase.md)
  - [SwaggerClient::ConditionalRes](docs/ConditionalRes.md)
+ - [SwaggerClient::FundRecordBase](docs/FundRecordBase.md)
  - [SwaggerClient::FundingFeeBase](docs/FundingFeeBase.md)
  - [SwaggerClient::FundingFeeRes](docs/FundingFeeRes.md)
  - [SwaggerClient::FundingPredicted](docs/FundingPredicted.md)
  - [SwaggerClient::FundingPredictedBase](docs/FundingPredictedBase.md)
  - [SwaggerClient::FundingRate](docs/FundingRate.md)
  - [SwaggerClient::FundingRateBase](docs/FundingRateBase.md)
+ - [SwaggerClient::FundingRecords](docs/FundingRecords.md)
  - [SwaggerClient::KlineBase](docs/KlineBase.md)
  - [SwaggerClient::KlineRes](docs/KlineRes.md)
  - [SwaggerClient::Leverage](docs/Leverage.md)
@@ -137,6 +161,8 @@ Class | Method | HTTP request | Description
  - [SwaggerClient::TradeRecordsInfo](docs/TradeRecordsInfo.md)
  - [SwaggerClient::TradingStopBase](docs/TradingStopBase.md)
  - [SwaggerClient::TradingStopRes](docs/TradingStopRes.md)
+ - [SwaggerClient::WithdrawRecords](docs/WithdrawRecords.md)
+ - [SwaggerClient::WithdrawResBase](docs/WithdrawResBase.md)
 
 
 ## Documentation for Authorization

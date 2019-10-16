@@ -5,6 +5,7 @@ All URIs are relative to *https://api-testnet.bybit.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**walletGetRecords**](WalletApi.md#walletGetRecords) | **GET** /open-api/wallet/fund/records | Get wallet fund records
+[**walletWithdraw**](WalletApi.md#walletWithdraw) | **GET** /open-api/wallet/withdraw/list | Get wallet fund records
 
 
 <a name="walletGetRecords"></a>
@@ -42,6 +43,57 @@ Name | Type | Description  | Notes
  **endDate** | **String**| End point for result | [optional]
  **currency** | **String**| Currency type | [optional]
  **walletFundType** | **String**| wallet fund type | [optional]
+ **page** | **String**| Page. Default getting first page data | [optional]
+ **limit** | **String**| Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page | [optional]
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+<a name="walletWithdraw"></a>
+# **walletWithdraw**
+> Object walletWithdraw(startDate, endDate, coin, status, page, limit)
+
+Get wallet fund records
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.api.WalletApi;
+
+WalletApi apiInstance = new WalletApi();
+String startDate = "startDate_example"; // String | Start point for result
+String endDate = "endDate_example"; // String | End point for result
+String coin = "coin_example"; // String | Currency
+String status = "status_example"; // String | Withdraw status
+String page = "page_example"; // String | Page. Default getting first page data
+String limit = "limit_example"; // String | Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page
+try {
+    Object result = apiInstance.walletWithdraw(startDate, endDate, coin, status, page, limit);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling WalletApi#walletWithdraw");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **startDate** | **String**| Start point for result | [optional]
+ **endDate** | **String**| End point for result | [optional]
+ **coin** | **String**| Currency | [optional]
+ **status** | **String**| Withdraw status | [optional]
  **page** | **String**| Page. Default getting first page data | [optional]
  **limit** | **String**| Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page | [optional]
 

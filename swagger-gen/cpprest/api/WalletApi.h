@@ -59,6 +59,26 @@ public:
         boost::optional<utility::string_t> page,
         boost::optional<utility::string_t> limit
     );
+    /// <summary>
+    /// Get wallet fund records
+    /// </summary>
+    /// <remarks>
+    /// 
+    /// </remarks>
+    /// <param name="startDate">Start point for result (optional)</param>
+    /// <param name="endDate">End point for result (optional)</param>
+    /// <param name="coin">Currency (optional)</param>
+    /// <param name="status">Withdraw status (optional)</param>
+    /// <param name="page">Page. Default getting first page data (optional)</param>
+    /// <param name="limit">Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page (optional)</param>
+    pplx::task<std::shared_ptr<Object>> wallet_withdraw(
+        boost::optional<utility::string_t> startDate,
+        boost::optional<utility::string_t> endDate,
+        boost::optional<utility::string_t> coin,
+        boost::optional<utility::string_t> status,
+        boost::optional<utility::string_t> page,
+        boost::optional<utility::string_t> limit
+    );
 
 protected:
     std::shared_ptr<ApiClient> m_ApiClient;

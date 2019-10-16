@@ -29,7 +29,7 @@ import java.math.BigDecimal;
  * Place new order response
  */
 @ApiModel(description = "Place new order response")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T15:11:34.350+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-16T11:45:28.109+08:00")
 public class OrderResBase {
   @SerializedName("ret_code")
   private BigDecimal retCode = null;

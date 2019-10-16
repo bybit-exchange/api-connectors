@@ -17,12 +17,12 @@
 (function(factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/ConditionalBase', 'model/ConditionalOrdersRes', 'model/ConditionalOrdersResBase', 'model/ConditionalRes', 'model/FundingFeeBase', 'model/FundingFeeRes', 'model/FundingPredicted', 'model/FundingPredictedBase', 'model/FundingRate', 'model/FundingRateBase', 'model/KlineBase', 'model/KlineRes', 'model/Leverage', 'model/LeverageInfo', 'model/LeverageResult', 'model/LotSizeFilter', 'model/OderBookRes', 'model/OrderBookBase', 'model/OrderCancelBase', 'model/OrderListBase', 'model/OrderListData', 'model/OrderRes', 'model/OrderResBase', 'model/Position', 'model/PositionInfo', 'model/PriceFilter', 'model/ReplaceConditionalBase', 'model/ReplaceOrderBase', 'model/ServerTime', 'model/SymbolInfo', 'model/SymbolInfoBase', 'model/SymbolTickInfo', 'model/Symbols', 'model/TradeRecords', 'model/TradeRecordsBase', 'model/TradeRecordsInfo', 'model/TradingStopBase', 'model/TradingStopRes', 'api/CommonApi', 'api/ConditionalApi', 'api/ExecutionApi', 'api/FundingApi', 'api/KlineApi', 'api/MarketApi', 'api/OrderApi', 'api/PositionsApi', 'api/SymbolApi', 'api/WalletApi'], factory);
+    define(['ApiClient', 'model/APIKeyBase', 'model/APIKeyInfo', 'model/ConditionalBase', 'model/ConditionalOrdersRes', 'model/ConditionalOrdersResBase', 'model/ConditionalRes', 'model/FundRecordBase', 'model/FundingFeeBase', 'model/FundingFeeRes', 'model/FundingPredicted', 'model/FundingPredictedBase', 'model/FundingRate', 'model/FundingRateBase', 'model/FundingRecords', 'model/KlineBase', 'model/KlineRes', 'model/Leverage', 'model/LeverageInfo', 'model/LeverageResult', 'model/LotSizeFilter', 'model/OderBookRes', 'model/OrderBookBase', 'model/OrderCancelBase', 'model/OrderListBase', 'model/OrderListData', 'model/OrderRes', 'model/OrderResBase', 'model/Position', 'model/PositionInfo', 'model/PriceFilter', 'model/ReplaceConditionalBase', 'model/ReplaceOrderBase', 'model/ServerTime', 'model/SymbolInfo', 'model/SymbolInfoBase', 'model/SymbolTickInfo', 'model/Symbols', 'model/TradeRecords', 'model/TradeRecordsBase', 'model/TradeRecordsInfo', 'model/TradingStopBase', 'model/TradingStopRes', 'model/WithdrawRecords', 'model/WithdrawResBase', 'api/APIkeyApi', 'api/CommonApi', 'api/ConditionalApi', 'api/ExecutionApi', 'api/FundingApi', 'api/KlineApi', 'api/MarketApi', 'api/OrderApi', 'api/PositionsApi', 'api/SymbolApi', 'api/WalletApi'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('./ApiClient'), require('./model/ConditionalBase'), require('./model/ConditionalOrdersRes'), require('./model/ConditionalOrdersResBase'), require('./model/ConditionalRes'), require('./model/FundingFeeBase'), require('./model/FundingFeeRes'), require('./model/FundingPredicted'), require('./model/FundingPredictedBase'), require('./model/FundingRate'), require('./model/FundingRateBase'), require('./model/KlineBase'), require('./model/KlineRes'), require('./model/Leverage'), require('./model/LeverageInfo'), require('./model/LeverageResult'), require('./model/LotSizeFilter'), require('./model/OderBookRes'), require('./model/OrderBookBase'), require('./model/OrderCancelBase'), require('./model/OrderListBase'), require('./model/OrderListData'), require('./model/OrderRes'), require('./model/OrderResBase'), require('./model/Position'), require('./model/PositionInfo'), require('./model/PriceFilter'), require('./model/ReplaceConditionalBase'), require('./model/ReplaceOrderBase'), require('./model/ServerTime'), require('./model/SymbolInfo'), require('./model/SymbolInfoBase'), require('./model/SymbolTickInfo'), require('./model/Symbols'), require('./model/TradeRecords'), require('./model/TradeRecordsBase'), require('./model/TradeRecordsInfo'), require('./model/TradingStopBase'), require('./model/TradingStopRes'), require('./api/CommonApi'), require('./api/ConditionalApi'), require('./api/ExecutionApi'), require('./api/FundingApi'), require('./api/KlineApi'), require('./api/MarketApi'), require('./api/OrderApi'), require('./api/PositionsApi'), require('./api/SymbolApi'), require('./api/WalletApi'));
+    module.exports = factory(require('./ApiClient'), require('./model/APIKeyBase'), require('./model/APIKeyInfo'), require('./model/ConditionalBase'), require('./model/ConditionalOrdersRes'), require('./model/ConditionalOrdersResBase'), require('./model/ConditionalRes'), require('./model/FundRecordBase'), require('./model/FundingFeeBase'), require('./model/FundingFeeRes'), require('./model/FundingPredicted'), require('./model/FundingPredictedBase'), require('./model/FundingRate'), require('./model/FundingRateBase'), require('./model/FundingRecords'), require('./model/KlineBase'), require('./model/KlineRes'), require('./model/Leverage'), require('./model/LeverageInfo'), require('./model/LeverageResult'), require('./model/LotSizeFilter'), require('./model/OderBookRes'), require('./model/OrderBookBase'), require('./model/OrderCancelBase'), require('./model/OrderListBase'), require('./model/OrderListData'), require('./model/OrderRes'), require('./model/OrderResBase'), require('./model/Position'), require('./model/PositionInfo'), require('./model/PriceFilter'), require('./model/ReplaceConditionalBase'), require('./model/ReplaceOrderBase'), require('./model/ServerTime'), require('./model/SymbolInfo'), require('./model/SymbolInfoBase'), require('./model/SymbolTickInfo'), require('./model/Symbols'), require('./model/TradeRecords'), require('./model/TradeRecordsBase'), require('./model/TradeRecordsInfo'), require('./model/TradingStopBase'), require('./model/TradingStopRes'), require('./model/WithdrawRecords'), require('./model/WithdrawResBase'), require('./api/APIkeyApi'), require('./api/CommonApi'), require('./api/ConditionalApi'), require('./api/ExecutionApi'), require('./api/FundingApi'), require('./api/KlineApi'), require('./api/MarketApi'), require('./api/OrderApi'), require('./api/PositionsApi'), require('./api/SymbolApi'), require('./api/WalletApi'));
   }
-}(function(ApiClient, ConditionalBase, ConditionalOrdersRes, ConditionalOrdersResBase, ConditionalRes, FundingFeeBase, FundingFeeRes, FundingPredicted, FundingPredictedBase, FundingRate, FundingRateBase, KlineBase, KlineRes, Leverage, LeverageInfo, LeverageResult, LotSizeFilter, OderBookRes, OrderBookBase, OrderCancelBase, OrderListBase, OrderListData, OrderRes, OrderResBase, Position, PositionInfo, PriceFilter, ReplaceConditionalBase, ReplaceOrderBase, ServerTime, SymbolInfo, SymbolInfoBase, SymbolTickInfo, Symbols, TradeRecords, TradeRecordsBase, TradeRecordsInfo, TradingStopBase, TradingStopRes, CommonApi, ConditionalApi, ExecutionApi, FundingApi, KlineApi, MarketApi, OrderApi, PositionsApi, SymbolApi, WalletApi) {
+}(function(ApiClient, APIKeyBase, APIKeyInfo, ConditionalBase, ConditionalOrdersRes, ConditionalOrdersResBase, ConditionalRes, FundRecordBase, FundingFeeBase, FundingFeeRes, FundingPredicted, FundingPredictedBase, FundingRate, FundingRateBase, FundingRecords, KlineBase, KlineRes, Leverage, LeverageInfo, LeverageResult, LotSizeFilter, OderBookRes, OrderBookBase, OrderCancelBase, OrderListBase, OrderListData, OrderRes, OrderResBase, Position, PositionInfo, PriceFilter, ReplaceConditionalBase, ReplaceOrderBase, ServerTime, SymbolInfo, SymbolInfoBase, SymbolTickInfo, Symbols, TradeRecords, TradeRecordsBase, TradeRecordsInfo, TradingStopBase, TradingStopRes, WithdrawRecords, WithdrawResBase, APIkeyApi, CommonApi, ConditionalApi, ExecutionApi, FundingApi, KlineApi, MarketApi, OrderApi, PositionsApi, SymbolApi, WalletApi) {
   'use strict';
 
   /**
@@ -63,6 +63,16 @@
      */
     ApiClient: ApiClient,
     /**
+     * The APIKeyBase model constructor.
+     * @property {module:model/APIKeyBase}
+     */
+    APIKeyBase: APIKeyBase,
+    /**
+     * The APIKeyInfo model constructor.
+     * @property {module:model/APIKeyInfo}
+     */
+    APIKeyInfo: APIKeyInfo,
+    /**
      * The ConditionalBase model constructor.
      * @property {module:model/ConditionalBase}
      */
@@ -82,6 +92,11 @@
      * @property {module:model/ConditionalRes}
      */
     ConditionalRes: ConditionalRes,
+    /**
+     * The FundRecordBase model constructor.
+     * @property {module:model/FundRecordBase}
+     */
+    FundRecordBase: FundRecordBase,
     /**
      * The FundingFeeBase model constructor.
      * @property {module:model/FundingFeeBase}
@@ -112,6 +127,11 @@
      * @property {module:model/FundingRateBase}
      */
     FundingRateBase: FundingRateBase,
+    /**
+     * The FundingRecords model constructor.
+     * @property {module:model/FundingRecords}
+     */
+    FundingRecords: FundingRecords,
     /**
      * The KlineBase model constructor.
      * @property {module:model/KlineBase}
@@ -252,6 +272,21 @@
      * @property {module:model/TradingStopRes}
      */
     TradingStopRes: TradingStopRes,
+    /**
+     * The WithdrawRecords model constructor.
+     * @property {module:model/WithdrawRecords}
+     */
+    WithdrawRecords: WithdrawRecords,
+    /**
+     * The WithdrawResBase model constructor.
+     * @property {module:model/WithdrawResBase}
+     */
+    WithdrawResBase: WithdrawResBase,
+    /**
+     * The APIkeyApi service constructor.
+     * @property {module:api/APIkeyApi}
+     */
+    APIkeyApi: APIkeyApi,
     /**
      * The CommonApi service constructor.
      * @property {module:api/CommonApi}

@@ -29,7 +29,7 @@ import java.math.BigDecimal;
  * Get the trade records of a order response
  */
 @ApiModel(description = "Get the trade records of a order response")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T15:11:34.350+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-16T11:45:28.109+08:00")
 public class TradeRecordsInfo {
   @SerializedName("closed_size")
   private BigDecimal closedSize = null;

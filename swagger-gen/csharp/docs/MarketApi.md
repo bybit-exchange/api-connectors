@@ -69,7 +69,7 @@ No authorization required
 
 <a name="marketsymbolinfo"></a>
 # **MarketSymbolInfo**
-> Object MarketSymbolInfo ()
+> Object MarketSymbolInfo (string symbol = null)
 
 Get the latest information for symbol.
 
@@ -88,11 +88,12 @@ namespace Example
         public void main()
         {
             var apiInstance = new MarketApi();
+            var symbol = symbol_example;  // string | Contract type. (optional) 
 
             try
             {
                 // Get the latest information for symbol.
-                Object result = apiInstance.MarketSymbolInfo();
+                Object result = apiInstance.MarketSymbolInfo(symbol);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -105,7 +106,10 @@ namespace Example
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string**| Contract type. | [optional] 
 
 ### Return type
 

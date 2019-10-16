@@ -168,6 +168,7 @@
      * @param {Number} stopPx Trigger price.
      * @param {String} timeInForce Time in force.
      * @param {Object} opts Optional parameters
+     * @param {String} opts.triggerBy Trigger price type. Default LastPrice.
      * @param {Boolean} opts.closeOnTrigger close on trigger.
      * @param {String} opts.orderLinkId Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique..
      * @param {module:api/ConditionalApi~conditionalNewCallback} callback The callback function, accepting three arguments: error, data, response
@@ -229,6 +230,7 @@
         'base_price': basePrice,
         'stop_px': stopPx,
         'time_in_force': timeInForce,
+        'trigger_by': opts['triggerBy'],
         'close_on_trigger': opts['closeOnTrigger'],
         'order_link_id': opts['orderLinkId'],
       };

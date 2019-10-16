@@ -51,8 +51,9 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="symbol">Contract type. (optional)</param>
         /// <returns>Object</returns>
-        Object MarketSymbolInfo ();
+        Object MarketSymbolInfo (string symbol = null);
 
         /// <summary>
         /// Get the latest information for symbol.
@@ -61,8 +62,9 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="symbol">Contract type. (optional)</param>
         /// <returns>ApiResponse of Object</returns>
-        ApiResponse<Object> MarketSymbolInfoWithHttpInfo ();
+        ApiResponse<Object> MarketSymbolInfoWithHttpInfo (string symbol = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -93,8 +95,9 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="symbol">Contract type. (optional)</param>
         /// <returns>Task of Object</returns>
-        System.Threading.Tasks.Task<Object> MarketSymbolInfoAsync ();
+        System.Threading.Tasks.Task<Object> MarketSymbolInfoAsync (string symbol = null);
 
         /// <summary>
         /// Get the latest information for symbol.
@@ -103,8 +106,9 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="symbol">Contract type. (optional)</param>
         /// <returns>Task of ApiResponse (Object)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> MarketSymbolInfoAsyncWithHttpInfo ();
+        System.Threading.Tasks.Task<ApiResponse<Object>> MarketSymbolInfoAsyncWithHttpInfo (string symbol = null);
         #endregion Asynchronous Operations
     }
 
@@ -346,10 +350,11 @@ namespace IO.Swagger.Api
         /// Get the latest information for symbol. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="symbol">Contract type. (optional)</param>
         /// <returns>Object</returns>
-        public Object MarketSymbolInfo ()
+        public Object MarketSymbolInfo (string symbol = null)
         {
-             ApiResponse<Object> localVarResponse = MarketSymbolInfoWithHttpInfo();
+             ApiResponse<Object> localVarResponse = MarketSymbolInfoWithHttpInfo(symbol);
              return localVarResponse.Data;
         }
 
@@ -357,8 +362,9 @@ namespace IO.Swagger.Api
         /// Get the latest information for symbol. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="symbol">Contract type. (optional)</param>
         /// <returns>ApiResponse of Object</returns>
-        public ApiResponse< Object > MarketSymbolInfoWithHttpInfo ()
+        public ApiResponse< Object > MarketSymbolInfoWithHttpInfo (string symbol = null)
         {
 
             var localVarPath = "/v2/public/tickers";
@@ -384,6 +390,7 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            if (symbol != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "symbol", symbol)); // query parameter
 
 
             // make the HTTP request
@@ -408,10 +415,11 @@ namespace IO.Swagger.Api
         /// Get the latest information for symbol. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="symbol">Contract type. (optional)</param>
         /// <returns>Task of Object</returns>
-        public async System.Threading.Tasks.Task<Object> MarketSymbolInfoAsync ()
+        public async System.Threading.Tasks.Task<Object> MarketSymbolInfoAsync (string symbol = null)
         {
-             ApiResponse<Object> localVarResponse = await MarketSymbolInfoAsyncWithHttpInfo();
+             ApiResponse<Object> localVarResponse = await MarketSymbolInfoAsyncWithHttpInfo(symbol);
              return localVarResponse.Data;
 
         }
@@ -420,8 +428,9 @@ namespace IO.Swagger.Api
         /// Get the latest information for symbol. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="symbol">Contract type. (optional)</param>
         /// <returns>Task of ApiResponse (Object)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> MarketSymbolInfoAsyncWithHttpInfo ()
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> MarketSymbolInfoAsyncWithHttpInfo (string symbol = null)
         {
 
             var localVarPath = "/v2/public/tickers";
@@ -447,6 +456,7 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            if (symbol != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "symbol", symbol)); // query parameter
 
 
             // make the HTTP request

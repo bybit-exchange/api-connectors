@@ -51,10 +51,11 @@ open class MarketAPI {
     /**
      Get the latest information for symbol.
      
+     - parameter symbol: (query) Contract type. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func marketSymbolInfo(completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
-        marketSymbolInfoWithRequestBuilder().execute { (response, error) -> Void in
+    open class func marketSymbolInfo(symbol: String? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
+        marketSymbolInfoWithRequestBuilder(symbol: symbol).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -64,15 +65,20 @@ open class MarketAPI {
      Get the latest information for symbol.
      - GET /v2/public/tickers
      - examples: [{contentType=application/json, example=""}]
+     
+     - parameter symbol: (query) Contract type. (optional)
 
      - returns: RequestBuilder<Any> 
      */
-    open class func marketSymbolInfoWithRequestBuilder() -> RequestBuilder<Any> {
+    open class func marketSymbolInfoWithRequestBuilder(symbol: String? = nil) -> RequestBuilder<Any> {
         let path = "/v2/public/tickers"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         
-        let url = URLComponents(string: URLString)
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "symbol": symbol
+        ])
 
         let requestBuilder: RequestBuilder<Any>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 

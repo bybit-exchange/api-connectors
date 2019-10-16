@@ -135,6 +135,93 @@ NSInteger kSWGWalletApiMissingParamErrorCode = 234513;
                             }];
 }
 
+///
+/// Get wallet fund records
+/// 
+///  @param startDate Start point for result (optional)
+///
+///  @param endDate End point for result (optional)
+///
+///  @param coin Currency (optional)
+///
+///  @param status Withdraw status (optional)
+///
+///  @param page Page. Default getting first page data (optional)
+///
+///  @param limit Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page (optional)
+///
+///  @returns NSObject*
+///
+-(NSURLSessionTask*) walletWithdrawWithStartDate: (NSString*) startDate
+    endDate: (NSString*) endDate
+    coin: (NSString*) coin
+    status: (NSString*) status
+    page: (NSString*) page
+    limit: (NSString*) limit
+    completionHandler: (void (^)(NSObject* output, NSError* error)) handler {
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/open-api/wallet/withdraw/list"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    if (startDate != nil) {
+        queryParams[@"start_date"] = startDate;
+    }
+    if (endDate != nil) {
+        queryParams[@"end_date"] = endDate;
+    }
+    if (coin != nil) {
+        queryParams[@"coin"] = coin;
+    }
+    if (status != nil) {
+        queryParams[@"status"] = status;
+    }
+    if (page != nil) {
+        queryParams[@"page"] = page;
+    }
+    if (limit != nil) {
+        queryParams[@"limit"] = limit;
+    }
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"apiKey", @"apiSignature", @"timestamp"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"GET"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: @"NSObject*"
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler((NSObject*)data, error);
+                                }
+                            }];
+}
+
 
 
 @end

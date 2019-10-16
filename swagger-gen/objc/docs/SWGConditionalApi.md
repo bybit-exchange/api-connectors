@@ -170,6 +170,7 @@ Name | Type | Description  | Notes
     basePrice: (NSNumber*) basePrice
     stopPx: (NSNumber*) stopPx
     timeInForce: (NSString*) timeInForce
+    triggerBy: (NSString*) triggerBy
     closeOnTrigger: (NSNumber*) closeOnTrigger
     orderLinkId: (NSString*) orderLinkId
         completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
@@ -205,6 +206,7 @@ NSNumber* price = @1.2; // Execution price for conditional order
 NSNumber* basePrice = @1.2; // Send current market price. It will be used to compare with the value of 'stop_px', to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order..
 NSNumber* stopPx = @1.2; // Trigger price.
 NSString* timeInForce = @"timeInForce_example"; // Time in force.
+NSString* triggerBy = @"triggerBy_example"; // Trigger price type. Default LastPrice. (optional)
 NSNumber* closeOnTrigger = @true; // close on trigger. (optional)
 NSString* orderLinkId = @"orderLinkId_example"; // Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. (optional)
 
@@ -219,6 +221,7 @@ SWGConditionalApi*apiInstance = [[SWGConditionalApi alloc] init];
               basePrice:basePrice
               stopPx:stopPx
               timeInForce:timeInForce
+              triggerBy:triggerBy
               closeOnTrigger:closeOnTrigger
               orderLinkId:orderLinkId
           completionHandler: ^(NSObject* output, NSError* error) {
@@ -243,6 +246,7 @@ Name | Type | Description  | Notes
  **basePrice** | **NSNumber***| Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order.. | 
  **stopPx** | **NSNumber***| Trigger price. | 
  **timeInForce** | **NSString***| Time in force. | 
+ **triggerBy** | **NSString***| Trigger price type. Default LastPrice. | [optional] 
  **closeOnTrigger** | **NSNumber***| close on trigger. | [optional] 
  **orderLinkId** | **NSString***| Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. | [optional] 
 

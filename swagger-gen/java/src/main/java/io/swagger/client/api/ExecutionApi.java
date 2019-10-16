@@ -55,13 +55,17 @@ public class ExecutionApi {
 
     /**
      * Build call for executionGetTrades
-     * @param orderId orderID. (required)
+     * @param orderId OrderID. If not provided, will return user’s trading records. (optional)
+     * @param symbol Contract type. If order_id not provided, symbol is required. (optional)
+     * @param startTime Start timestamp point for result. (optional)
+     * @param page Page. Default getting first page data. (optional)
+     * @param limit Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call executionGetTradesCall(String orderId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call executionGetTradesCall(String orderId, String symbol, String startTime, String page, String limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -71,6 +75,14 @@ public class ExecutionApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         if (orderId != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("order_id", orderId));
+        if (symbol != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("symbol", symbol));
+        if (startTime != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("start_time", startTime));
+        if (page != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("page", page));
+        if (limit != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("limit", limit));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -105,53 +117,60 @@ public class ExecutionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call executionGetTradesValidateBeforeCall(String orderId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
-        // verify the required parameter 'orderId' is set
-        if (orderId == null) {
-            throw new ApiException("Missing the required parameter 'orderId' when calling executionGetTrades(Async)");
-        }
+    private com.squareup.okhttp.Call executionGetTradesValidateBeforeCall(String orderId, String symbol, String startTime, String page, String limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = executionGetTradesCall(orderId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = executionGetTradesCall(orderId, symbol, startTime, page, limit, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * Get the trade records of a order.
+     * Get user’s trade records.
      * 
-     * @param orderId orderID. (required)
+     * @param orderId OrderID. If not provided, will return user’s trading records. (optional)
+     * @param symbol Contract type. If order_id not provided, symbol is required. (optional)
+     * @param startTime Start timestamp point for result. (optional)
+     * @param page Page. Default getting first page data. (optional)
+     * @param limit Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. (optional)
      * @return Object
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Object executionGetTrades(String orderId) throws ApiException {
-        ApiResponse<Object> resp = executionGetTradesWithHttpInfo(orderId);
+    public Object executionGetTrades(String orderId, String symbol, String startTime, String page, String limit) throws ApiException {
+        ApiResponse<Object> resp = executionGetTradesWithHttpInfo(orderId, symbol, startTime, page, limit);
         return resp.getData();
     }
 
     /**
-     * Get the trade records of a order.
+     * Get user’s trade records.
      * 
-     * @param orderId orderID. (required)
+     * @param orderId OrderID. If not provided, will return user’s trading records. (optional)
+     * @param symbol Contract type. If order_id not provided, symbol is required. (optional)
+     * @param startTime Start timestamp point for result. (optional)
+     * @param page Page. Default getting first page data. (optional)
+     * @param limit Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. (optional)
      * @return ApiResponse&lt;Object&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Object> executionGetTradesWithHttpInfo(String orderId) throws ApiException {
-        com.squareup.okhttp.Call call = executionGetTradesValidateBeforeCall(orderId, null, null);
+    public ApiResponse<Object> executionGetTradesWithHttpInfo(String orderId, String symbol, String startTime, String page, String limit) throws ApiException {
+        com.squareup.okhttp.Call call = executionGetTradesValidateBeforeCall(orderId, symbol, startTime, page, limit, null, null);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * Get the trade records of a order. (asynchronously)
+     * Get user’s trade records. (asynchronously)
      * 
-     * @param orderId orderID. (required)
+     * @param orderId OrderID. If not provided, will return user’s trading records. (optional)
+     * @param symbol Contract type. If order_id not provided, symbol is required. (optional)
+     * @param startTime Start timestamp point for result. (optional)
+     * @param page Page. Default getting first page data. (optional)
+     * @param limit Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call executionGetTradesAsync(String orderId, final ApiCallback<Object> callback) throws ApiException {
+    public com.squareup.okhttp.Call executionGetTradesAsync(String orderId, String symbol, String startTime, String page, String limit, final ApiCallback<Object> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -172,7 +191,7 @@ public class ExecutionApi {
             };
         }
 
-        com.squareup.okhttp.Call call = executionGetTradesValidateBeforeCall(orderId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = executionGetTradesValidateBeforeCall(orderId, symbol, startTime, page, limit, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

@@ -15,16 +15,20 @@
 from __future__ import absolute_import
 
 # import models into model package
+from swagger_client.models.api_key_base import APIKeyBase
+from swagger_client.models.api_key_info import APIKeyInfo
 from swagger_client.models.conditional_base import ConditionalBase
 from swagger_client.models.conditional_orders_res import ConditionalOrdersRes
 from swagger_client.models.conditional_orders_res_base import ConditionalOrdersResBase
 from swagger_client.models.conditional_res import ConditionalRes
+from swagger_client.models.fund_record_base import FundRecordBase
 from swagger_client.models.funding_fee_base import FundingFeeBase
 from swagger_client.models.funding_fee_res import FundingFeeRes
 from swagger_client.models.funding_predicted import FundingPredicted
 from swagger_client.models.funding_predicted_base import FundingPredictedBase
 from swagger_client.models.funding_rate import FundingRate
 from swagger_client.models.funding_rate_base import FundingRateBase
+from swagger_client.models.funding_records import FundingRecords
 from swagger_client.models.kline_base import KlineBase
 from swagger_client.models.kline_res import KlineRes
 from swagger_client.models.leverage import Leverage
@@ -53,3 +57,5 @@ from swagger_client.models.trade_records_base import TradeRecordsBase
 from swagger_client.models.trade_records_info import TradeRecordsInfo
 from swagger_client.models.trading_stop_base import TradingStopBase
 from swagger_client.models.trading_stop_res import TradingStopRes
+from swagger_client.models.withdraw_records import WithdrawRecords
+from swagger_client.models.withdraw_res_base import WithdrawResBase

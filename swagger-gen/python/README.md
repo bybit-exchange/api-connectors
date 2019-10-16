@@ -51,15 +51,31 @@ import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api_key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api_key'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['sign'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['sign'] = 'Bearer'
+# Configure API key authorization: timestamp
+configuration = swagger_client.Configuration()
+configuration.api_key['timestamp'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['timestamp'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.CommonApi(swagger_client.ApiClient(configuration))
+api_instance = swagger_client.APIkeyApi(swagger_client.ApiClient(configuration))
 
 try:
-    # Get bybit server time.
-    api_response = api_instance.common_get()
+    # Get account api-key information.
+    api_response = api_instance.a_p_ikey_info()
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling CommonApi->common_get: %s\n" % e)
+    print("Exception when calling APIkeyApi->a_p_ikey_info: %s\n" % e)
 
 ```
 
@@ -69,12 +85,13 @@ All URIs are relative to *https://api-testnet.bybit.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*APIkeyApi* | [**a_p_ikey_info**](docs/APIkeyApi.md#a_p_ikey_info) | **GET** /open-api/api-key | Get account api-key information.
 *CommonApi* | [**common_get**](docs/CommonApi.md#common_get) | **GET** /v2/public/time | Get bybit server time.
 *ConditionalApi* | [**conditional_cancel**](docs/ConditionalApi.md#conditional_cancel) | **POST** /open-api/stop-order/cancel | Cancel conditional order.
 *ConditionalApi* | [**conditional_get_orders**](docs/ConditionalApi.md#conditional_get_orders) | **GET** /open-api/stop-order/list | Get my conditional order list.
 *ConditionalApi* | [**conditional_new**](docs/ConditionalApi.md#conditional_new) | **POST** /open-api/stop-order/create | Place a new conditional order.
 *ConditionalApi* | [**conditional_replace**](docs/ConditionalApi.md#conditional_replace) | **POST** /open-api/stop-order/replace | Replace conditional order. Only incomplete orders can be modified. 
-*ExecutionApi* | [**execution_get_trades**](docs/ExecutionApi.md#execution_get_trades) | **GET** /v2/private/execution/list | Get the trade records of a order.
+*ExecutionApi* | [**execution_get_trades**](docs/ExecutionApi.md#execution_get_trades) | **GET** /v2/private/execution/list | Get user’s trade records.
 *FundingApi* | [**funding_get_rate**](docs/FundingApi.md#funding_get_rate) | **GET** /open-api/funding/prev-funding | Funding settlement occurs every 8 hours at 00:00 UTC, 08:00 UTC and 16:00 UTC. The current interval&#39;s fund fee settlement is based on the previous interval&#39;s fund rate. For example, at 16:00, the settlement is based on the fund rate generated at 8:00. The fund rate generated at 16:00 will be used at 0:00 on the next day.
 *FundingApi* | [**funding_predicted**](docs/FundingApi.md#funding_predicted) | **GET** /open-api/funding/predicted-funding | Get predicted funding rate and funding fee.
 *FundingApi* | [**funding_predicted_rate**](docs/FundingApi.md#funding_predicted_rate) | **GET** /open-api/funding/prev-funding-rate | Get predicted funding rate and funding fee.
@@ -92,20 +109,25 @@ Class | Method | HTTP request | Description
 *PositionsApi* | [**positions_user_leverage**](docs/PositionsApi.md#positions_user_leverage) | **GET** /user/leverage | Get user leverage setting.
 *SymbolApi* | [**symbol_get**](docs/SymbolApi.md#symbol_get) | **GET** /v2/public/symbols | Query Symbols.
 *WalletApi* | [**wallet_get_records**](docs/WalletApi.md#wallet_get_records) | **GET** /open-api/wallet/fund/records | Get wallet fund records
+*WalletApi* | [**wallet_withdraw**](docs/WalletApi.md#wallet_withdraw) | **GET** /open-api/wallet/withdraw/list | Get wallet fund records
 
 
 ## Documentation For Models
 
+ - [APIKeyBase](docs/APIKeyBase.md)
+ - [APIKeyInfo](docs/APIKeyInfo.md)
  - [ConditionalBase](docs/ConditionalBase.md)
  - [ConditionalOrdersRes](docs/ConditionalOrdersRes.md)
  - [ConditionalOrdersResBase](docs/ConditionalOrdersResBase.md)
  - [ConditionalRes](docs/ConditionalRes.md)
+ - [FundRecordBase](docs/FundRecordBase.md)
  - [FundingFeeBase](docs/FundingFeeBase.md)
  - [FundingFeeRes](docs/FundingFeeRes.md)
  - [FundingPredicted](docs/FundingPredicted.md)
  - [FundingPredictedBase](docs/FundingPredictedBase.md)
  - [FundingRate](docs/FundingRate.md)
  - [FundingRateBase](docs/FundingRateBase.md)
+ - [FundingRecords](docs/FundingRecords.md)
  - [KlineBase](docs/KlineBase.md)
  - [KlineRes](docs/KlineRes.md)
  - [Leverage](docs/Leverage.md)
@@ -134,6 +156,8 @@ Class | Method | HTTP request | Description
  - [TradeRecordsInfo](docs/TradeRecordsInfo.md)
  - [TradingStopBase](docs/TradingStopBase.md)
  - [TradingStopRes](docs/TradingStopRes.md)
+ - [WithdrawRecords](docs/WithdrawRecords.md)
+ - [WithdrawResBase](docs/WithdrawResBase.md)
 
 
 ## Documentation For Authorization

@@ -16,6 +16,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"github.com/antihax/optional"
 )
 
 // Linger please
@@ -26,13 +27,27 @@ var (
 type ExecutionApiService service
 
 /* 
-ExecutionApiService Get the trade records of a order.
+ExecutionApiService Get user’s trade records.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param orderId orderID.
+ * @param optional nil or *ExecutionGetTradesOpts - Optional Parameters:
+     * @param "OrderId" (optional.String) -  OrderID. If not provided, will return user’s trading records.
+     * @param "Symbol" (optional.String) -  Contract type. If order_id not provided, symbol is required.
+     * @param "StartTime" (optional.String) -  Start timestamp point for result.
+     * @param "Page" (optional.String) -  Page. Default getting first page data.
+     * @param "Limit" (optional.String) -  Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page.
 
 @return interface{}
 */
-func (a *ExecutionApiService) ExecutionGetTrades(ctx context.Context, orderId string) (interface{}, *http.Response, error) {
+
+type ExecutionGetTradesOpts struct { 
+	OrderId optional.String
+	Symbol optional.String
+	StartTime optional.String
+	Page optional.String
+	Limit optional.String
+}
+
+func (a *ExecutionApiService) ExecutionGetTrades(ctx context.Context, localVarOptionals *ExecutionGetTradesOpts) (interface{}, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -48,7 +63,21 @@ func (a *ExecutionApiService) ExecutionGetTrades(ctx context.Context, orderId st
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	localVarQueryParams.Add("order_id", parameterToString(orderId, ""))
+	if localVarOptionals != nil && localVarOptionals.OrderId.IsSet() {
+		localVarQueryParams.Add("order_id", parameterToString(localVarOptionals.OrderId.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Symbol.IsSet() {
+		localVarQueryParams.Add("symbol", parameterToString(localVarOptionals.Symbol.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.StartTime.IsSet() {
+		localVarQueryParams.Add("start_time", parameterToString(localVarOptionals.StartTime.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Page.IsSet() {
+		localVarQueryParams.Add("page", parameterToString(localVarOptionals.Page.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Limit.IsSet() {
+		localVarQueryParams.Add("limit", parameterToString(localVarOptionals.Limit.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
 

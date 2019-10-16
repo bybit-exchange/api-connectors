@@ -106,6 +106,7 @@ Name | Type | Description  | Notes
 
 
 
+ **triggerBy** | **optional.String**| Trigger price type. Default LastPrice. | 
  **closeOnTrigger** | **optional.Bool**| close on trigger. | 
  **orderLinkId** | **optional.String**| Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. | 
 

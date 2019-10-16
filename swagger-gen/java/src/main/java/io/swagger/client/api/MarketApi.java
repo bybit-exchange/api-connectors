@@ -179,12 +179,13 @@ public class MarketApi {
     }
     /**
      * Build call for marketSymbolInfo
+     * @param symbol Contract type. (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call marketSymbolInfoCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call marketSymbolInfoCall(String symbol, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -192,6 +193,8 @@ public class MarketApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (symbol != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("symbol", symbol));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -226,10 +229,10 @@ public class MarketApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call marketSymbolInfoValidateBeforeCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call marketSymbolInfoValidateBeforeCall(String symbol, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = marketSymbolInfoCall(progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = marketSymbolInfoCall(symbol, progressListener, progressRequestListener);
         return call;
 
     }
@@ -237,22 +240,24 @@ public class MarketApi {
     /**
      * Get the latest information for symbol.
      * 
+     * @param symbol Contract type. (optional)
      * @return Object
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Object marketSymbolInfo() throws ApiException {
-        ApiResponse<Object> resp = marketSymbolInfoWithHttpInfo();
+    public Object marketSymbolInfo(String symbol) throws ApiException {
+        ApiResponse<Object> resp = marketSymbolInfoWithHttpInfo(symbol);
         return resp.getData();
     }
 
     /**
      * Get the latest information for symbol.
      * 
+     * @param symbol Contract type. (optional)
      * @return ApiResponse&lt;Object&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Object> marketSymbolInfoWithHttpInfo() throws ApiException {
-        com.squareup.okhttp.Call call = marketSymbolInfoValidateBeforeCall(null, null);
+    public ApiResponse<Object> marketSymbolInfoWithHttpInfo(String symbol) throws ApiException {
+        com.squareup.okhttp.Call call = marketSymbolInfoValidateBeforeCall(symbol, null, null);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -260,11 +265,12 @@ public class MarketApi {
     /**
      * Get the latest information for symbol. (asynchronously)
      * 
+     * @param symbol Contract type. (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call marketSymbolInfoAsync(final ApiCallback<Object> callback) throws ApiException {
+    public com.squareup.okhttp.Call marketSymbolInfoAsync(String symbol, final ApiCallback<Object> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -285,7 +291,7 @@ public class MarketApi {
             };
         }
 
-        com.squareup.okhttp.Call call = marketSymbolInfoValidateBeforeCall(progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = marketSymbolInfoValidateBeforeCall(symbol, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

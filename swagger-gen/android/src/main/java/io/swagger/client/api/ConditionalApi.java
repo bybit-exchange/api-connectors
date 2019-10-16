@@ -333,11 +333,12 @@ public class ConditionalApi {
    * @param basePrice Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order..
    * @param stopPx Trigger price.
    * @param timeInForce Time in force.
+   * @param triggerBy Trigger price type. Default LastPrice.
    * @param closeOnTrigger close on trigger.
    * @param orderLinkId Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique..
    * @return Object
   */
-  public Object conditionalNew (String side, String symbol, String orderType, BigDecimal qty, Double price, Double basePrice, Double stopPx, String timeInForce, Boolean closeOnTrigger, String orderLinkId) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public Object conditionalNew (String side, String symbol, String orderType, BigDecimal qty, Double price, Double basePrice, Double stopPx, String timeInForce, String triggerBy, Boolean closeOnTrigger, String orderLinkId) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
     // verify the required parameter 'side' is set
     if (side == null) {
@@ -397,6 +398,7 @@ public class ConditionalApi {
     queryParams.addAll(ApiInvoker.parameterToPairs("", "base_price", basePrice));
     queryParams.addAll(ApiInvoker.parameterToPairs("", "stop_px", stopPx));
     queryParams.addAll(ApiInvoker.parameterToPairs("", "time_in_force", timeInForce));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "trigger_by", triggerBy));
     queryParams.addAll(ApiInvoker.parameterToPairs("", "close_on_trigger", closeOnTrigger));
     queryParams.addAll(ApiInvoker.parameterToPairs("", "order_link_id", orderLinkId));
     String[] contentTypes = {
@@ -443,9 +445,9 @@ public class ConditionalApi {
       /**
    * Place a new conditional order.
    * 
-   * @param side Side.   * @param symbol Contract type.   * @param orderType Conditional order type.   * @param qty Order quantity.   * @param price Execution price for conditional order   * @param basePrice Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order..   * @param stopPx Trigger price.   * @param timeInForce Time in force.   * @param closeOnTrigger close on trigger.   * @param orderLinkId Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique..
+   * @param side Side.   * @param symbol Contract type.   * @param orderType Conditional order type.   * @param qty Order quantity.   * @param price Execution price for conditional order   * @param basePrice Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order..   * @param stopPx Trigger price.   * @param timeInForce Time in force.   * @param triggerBy Trigger price type. Default LastPrice.   * @param closeOnTrigger close on trigger.   * @param orderLinkId Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique..
   */
-  public void conditionalNew (String side, String symbol, String orderType, BigDecimal qty, Double price, Double basePrice, Double stopPx, String timeInForce, Boolean closeOnTrigger, String orderLinkId, final Response.Listener<Object> responseListener, final Response.ErrorListener errorListener) {
+  public void conditionalNew (String side, String symbol, String orderType, BigDecimal qty, Double price, Double basePrice, Double stopPx, String timeInForce, String triggerBy, Boolean closeOnTrigger, String orderLinkId, final Response.Listener<Object> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
     // verify the required parameter 'side' is set
@@ -507,6 +509,7 @@ public class ConditionalApi {
     queryParams.addAll(ApiInvoker.parameterToPairs("", "base_price", basePrice));
     queryParams.addAll(ApiInvoker.parameterToPairs("", "stop_px", stopPx));
     queryParams.addAll(ApiInvoker.parameterToPairs("", "time_in_force", timeInForce));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "trigger_by", triggerBy));
     queryParams.addAll(ApiInvoker.parameterToPairs("", "close_on_trigger", closeOnTrigger));
     queryParams.addAll(ApiInvoker.parameterToPairs("", "order_link_id", orderLinkId));
 

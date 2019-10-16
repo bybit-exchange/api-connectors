@@ -139,6 +139,7 @@ class MarketApi(object):
         >>> result = thread.get()
 
         :param async_req bool
+        :param str symbol: Contract type.
         :return: object
                  If the method is called asynchronously,
                  returns the request thread.
@@ -159,12 +160,13 @@ class MarketApi(object):
         >>> result = thread.get()
 
         :param async_req bool
+        :param str symbol: Contract type.
         :return: object
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = []  # noqa: E501
+        all_params = ['symbol']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -185,6 +187,8 @@ class MarketApi(object):
         path_params = {}
 
         query_params = []
+        if 'symbol' in params:
+            query_params.append(('symbol', params['symbol']))  # noqa: E501
 
         header_params = {}
 
