@@ -7,7 +7,7 @@ A Cpp client to interact with [Bybit's](https://www.bybit.com) Restful API.
 Download the source code and compile 
 
 ```
-$ cd ~/sourceCodrDir/
+$ cd ~/sourceCodeDir/
 $ cmake .
 $ make
 ```
