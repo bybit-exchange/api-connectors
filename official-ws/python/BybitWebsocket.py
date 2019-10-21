@@ -97,14 +97,12 @@ class BybitWebsocket:
     def __on_message(self, message):
         '''Handler for parsing WS messages.'''
         message = json.loads(message)
-        if 'success' in message and message['success']:   
-            if "topic" in message :
-                self.data[message["topic"]].append(message["data"])
-                if len(self.data[message["topic"]]) > BybitWebsocket.MAX_DATA_CAPACITY:
-                    self.data[message["topic"]] = self.data[message["topic"]][BybitWebsocket.MAX_DATA_CAPACITY//2:]
-            if "request" in message and message['request']['op'] == "auth":
+        if 'success' in message and message["success"]:   
+            if 'request' in message and message["request"]["op"] == 'auth':
                 self.auth = True
                 self.logger.info("Authentication success.")
+            if 'ret_msg' in message and message["ret_msg"] == 'pong':
+                self.data["pong"].append("PING success")
 
         if 'topic' in message:
             self.data[message["topic"]].append(message["data"])
@@ -124,6 +122,11 @@ class BybitWebsocket:
     def __on_close(self):
         '''Called on websocket close.'''
         self.logger.info('Websocket Closed')
+
+    def ping(self):
+        self.ws.send('{"op":"ping"}')
+        if 'pong' not in self.data:
+            self.data['pong'] = []
 
     def subscribe_kline(self, symbol:str, interval:str):
         param = {}
@@ -189,7 +192,7 @@ class BybitWebsocket:
             return []
         else:
             if len(self.data[topic]) == 0:
-                self.logger.info(" The topic %s is empty." % topic)
+                # self.logger.info(" The topic %s is empty." % topic)
                 return []
             # while len(self.data[topic]) == 0 :
             #     sleep(0.1)

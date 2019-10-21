@@ -25,6 +25,8 @@ Then subscribe the message topic you are interest in.
 
 For all subscribed topics, there is a method that starts with "subscribe" in BybitWebsocket, and you can get results based on the topic field in the response message. You can get more infomation in [the documention of websocket-api](https://github.com/bybit-exchange/bybit-official-api-docs/blob/master/en/websocket.md)
 
+Notice that if you get an empty list when you try to get data with `get_data` method, it means the ws-client has not yet receive the data of the topic you want from the server.
+
 ```
 ws.subscribe_orderBookL2("BTCUSD")
 ws.subscribe_kline("BTCUSD", '1m')
