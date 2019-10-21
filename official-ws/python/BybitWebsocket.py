@@ -15,11 +15,12 @@ import hmac
 # Private methods are only available after authorization, but public methods do not.
 # If you have any questions during use, please contact us vim the e-mail "support@bybit.com".
 
+
 class BybitWebsocket:
 
     #User can ues MAX_DATA_CAPACITY to control memory usage.
     MAX_DATA_CAPACITY = 200
-
+    PRIVATE_TOPIC = ['position', 'execution', 'order']
     def __init__(self, wsURL, api_key, api_secret):
         '''Initialize'''
         self.logger = logging.getLogger(__name__)
@@ -35,12 +36,11 @@ class BybitWebsocket:
 
         self.data = {}
         self.exited = False
-
+        self.auth = False
         # We can subscribe right in the connection querystring, so let's build that.
         # Subscribe to all pertinent endpoints
         self.logger.info("Connecting to %s" % wsURL)
         self.__connect(wsURL)
-
 
     def exit(self):
         '''Call this to exit - will close websocket.'''
@@ -93,17 +93,21 @@ class BybitWebsocket:
         args = json.dumps(auth)
 
         self.ws.send(args)
-        self.logger.info("AuthenticationOk.")
-
 
     def __on_message(self, message):
         '''Handler for parsing WS messages.'''
         message = json.loads(message)
-        if "topic" in message :
-            self.data[message["topic"]].append(message["data"])
-            if len(self.data[message["topic"]]) > BybitWebsocket.MAX_DATA_CAPACITY:
-                self.data[message["topic"]] = self.data[message["topic"]][BybitWebsocket.MAX_DATA_CAPACITY//2:]
-
+        self.logger.info(message)
+        if message['success']:   
+            if "topic" in message :
+                self.data[message["topic"]].append(message["data"])
+                if len(self.data[message["topic"]]) > BybitWebsocket.MAX_DATA_CAPACITY:
+                    self.data[message["topic"]] = self.data[message["topic"]][BybitWebsocket.MAX_DATA_CAPACITY//2:]
+            if "request" in message and message['request']['op'] == "auth":
+                self.auth = True
+                self.logger.info("Authentication success.")
+        else:
+            self.logger.error("Error : %s" % message)
 
     def __on_error(self, error):
         '''Called on fatal websocket errors. We exit on these.'''
@@ -177,6 +181,9 @@ class BybitWebsocket:
     def get_data(self, topic):
         if topic not in self.data:
             self.logger.info(" The topic %s is not subscribed." % topic)
+            return []
+        if topic.split('.')[0] in BybitWebsocket.PRIVATE_TOPIC and not self.auth:
+            self.logger.info("Authentication failed. Please check your api_key and api_secret. Topic: %s" % topic)
             return []
         else:
             if len(self.data[topic]) == 0:
