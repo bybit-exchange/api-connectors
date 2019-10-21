@@ -97,7 +97,7 @@ class BybitWebsocket:
     def __on_message(self, message):
         '''Handler for parsing WS messages.'''
         message = json.loads(message)
-        if message['success']:   
+        if 'success' in message and message['success']:   
             if "topic" in message :
                 self.data[message["topic"]].append(message["data"])
                 if len(self.data[message["topic"]]) > BybitWebsocket.MAX_DATA_CAPACITY:
@@ -105,8 +105,11 @@ class BybitWebsocket:
             if "request" in message and message['request']['op'] == "auth":
                 self.auth = True
                 self.logger.info("Authentication success.")
-        else:
-            self.logger.error("Error : %s" % message)
+
+        if 'topic' in message:
+            self.data[message["topic"]].append(message["data"])
+            if len(self.data[message["topic"]]) > BybitWebsocket.MAX_DATA_CAPACITY:
+                self.data[message["topic"]] = self.data[message["topic"]][BybitWebsocket.MAX_DATA_CAPACITY//2:]
 
     def __on_error(self, error):
         '''Called on fatal websocket errors. We exit on these.'''
