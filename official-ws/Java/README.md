@@ -1,6 +1,6 @@
 # JAVA Adapter for Bybit Websocket API
 
-This is a sample adapter for receiving realtime data from the Bybit API. You can get more infomation in [the documention of websocket-api](https://github.com/bybit-exchange/bybit-official-api-docs/blob/master/en/websocket.md)
+This is a sample adapter for receiving real-time data from the Bybit websocket API. You can get more information in [the documentation of the websocket API](https://github.com/bybit-exchange/bybit-official-api-docs/blob/master/en/websocket.md).
 
 # Marvn dependency requirement
 
