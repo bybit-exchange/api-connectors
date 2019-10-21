@@ -28,7 +28,7 @@ Using the `ws` object we can subscribe to websocket topics.
 
 All topics have a "subscribe" method. Find out more about the different topics and their responses in [the documentation of the websocket API](https://github.com/bybit-exchange/bybit-official-api-docs/blob/master/en/websocket.md).
 
-Notice that if you get an empty list when you try to get data with `get_data` method, it means the ws-client has not yet receive the data of the topic you want from the server.
+Notice that if you get an empty list when you try to get data with `get_data` method, it means the websocket client has not yet receive the data of the topic you want from the server.
 
 ```
 # subscribe to topics
