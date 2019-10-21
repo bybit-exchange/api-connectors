@@ -97,7 +97,6 @@ class BybitWebsocket:
     def __on_message(self, message):
         '''Handler for parsing WS messages.'''
         message = json.loads(message)
-        self.logger.info(message)
         if message['success']:   
             if "topic" in message :
                 self.data[message["topic"]].append(message["data"])
