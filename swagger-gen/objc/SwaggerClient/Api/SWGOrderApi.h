@@ -92,6 +92,20 @@ extern NSInteger kSWGOrderApiMissingParamErrorCode;
     completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
 
 
+/// Get my active order list.
+/// 
+///
+/// @param orderId Order ID (optional)
+/// @param symbol Contract type. Default BTCUSD (optional)
+/// 
+///  code:200 message:"Request was successful"
+///
+/// @return NSObject*
+-(NSURLSessionTask*) orderQueryWithOrderId: (NSString*) orderId
+    symbol: (NSString*) symbol
+    completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+
+
 /// Replace active order. Only incomplete orders can be modified. 
 /// 
 ///

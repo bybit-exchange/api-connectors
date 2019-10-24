@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**orderCancel**](OrderApi.md#orderCancel) | **POST** /open-api/order/cancel | Get my active order list.
 [**orderGetOrders**](OrderApi.md#orderGetOrders) | **GET** /open-api/order/list | Get my active order list.
 [**orderNew**](OrderApi.md#orderNew) | **POST** /open-api/order/create | Place active order
+[**orderQuery**](OrderApi.md#orderQuery) | **GET** /v2/private/order | Get my active order list.
 [**orderReplace**](OrderApi.md#orderReplace) | **POST** /open-api/order/replace | Replace active order. Only incomplete orders can be modified. 
 
 
@@ -153,6 +154,49 @@ Name | Type | Description  | Notes
  **reduceOnly** | **Boolean**| reduce only | [optional]
  **closeOnTrigger** | **Boolean**| close on trigger | [optional]
  **orderLinkId** | **String**| TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. | [optional]
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+<a name="orderQuery"></a>
+# **orderQuery**
+> Object orderQuery(orderId, symbol)
+
+Get my active order list.
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.api.OrderApi;
+
+OrderApi apiInstance = new OrderApi();
+String orderId = "orderId_example"; // String | Order ID
+String symbol = "symbol_example"; // String | Contract type. Default BTCUSD
+try {
+    Object result = apiInstance.orderQuery(orderId, symbol);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling OrderApi#orderQuery");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderId** | **String**| Order ID | [optional]
+ **symbol** | **String**| Contract type. Default BTCUSD | [optional]
 
 ### Return type
 

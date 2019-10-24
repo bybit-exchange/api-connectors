@@ -31,7 +31,7 @@ import java.util.List;
  * Get order list response
  */
 @ApiModel(description = "Get order list response")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-16T11:45:28.109+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-24T19:54:52.777+08:00")
 public class ConditionalOrdersRes {
   @SerializedName("data")
   private List<ConditionalRes> data = null;

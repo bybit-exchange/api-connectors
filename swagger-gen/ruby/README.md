@@ -106,6 +106,7 @@ Class | Method | HTTP request | Description
 *SwaggerClient::OrderApi* | [**order_cancel**](docs/OrderApi.md#order_cancel) | **POST** /open-api/order/cancel | Get my active order list.
 *SwaggerClient::OrderApi* | [**order_get_orders**](docs/OrderApi.md#order_get_orders) | **GET** /open-api/order/list | Get my active order list.
 *SwaggerClient::OrderApi* | [**order_new**](docs/OrderApi.md#order_new) | **POST** /open-api/order/create | Place active order
+*SwaggerClient::OrderApi* | [**order_query**](docs/OrderApi.md#order_query) | **GET** /v2/private/order | Get my active order list.
 *SwaggerClient::OrderApi* | [**order_replace**](docs/OrderApi.md#order_replace) | **POST** /open-api/order/replace | Replace active order. Only incomplete orders can be modified. 
 *SwaggerClient::PositionsApi* | [**positions_change_margin**](docs/PositionsApi.md#positions_change_margin) | **POST** /position/change-position-margin | Update margin.
 *SwaggerClient::PositionsApi* | [**positions_my_position**](docs/PositionsApi.md#positions_my_position) | **GET** /position/list | Get my position list.
@@ -125,6 +126,7 @@ Class | Method | HTTP request | Description
  - [SwaggerClient::ConditionalOrdersRes](docs/ConditionalOrdersRes.md)
  - [SwaggerClient::ConditionalOrdersResBase](docs/ConditionalOrdersResBase.md)
  - [SwaggerClient::ConditionalRes](docs/ConditionalRes.md)
+ - [SwaggerClient::ExtFields](docs/ExtFields.md)
  - [SwaggerClient::FundRecordBase](docs/FundRecordBase.md)
  - [SwaggerClient::FundingFeeBase](docs/FundingFeeBase.md)
  - [SwaggerClient::FundingFeeRes](docs/FundingFeeRes.md)
@@ -149,6 +151,8 @@ Class | Method | HTTP request | Description
  - [SwaggerClient::Position](docs/Position.md)
  - [SwaggerClient::PositionInfo](docs/PositionInfo.md)
  - [SwaggerClient::PriceFilter](docs/PriceFilter.md)
+ - [SwaggerClient::QueryOrderBase](docs/QueryOrderBase.md)
+ - [SwaggerClient::QueryOrderRes](docs/QueryOrderRes.md)
  - [SwaggerClient::ReplaceConditionalBase](docs/ReplaceConditionalBase.md)
  - [SwaggerClient::ReplaceOrderBase](docs/ReplaceOrderBase.md)
  - [SwaggerClient::ServerTime](docs/ServerTime.md)

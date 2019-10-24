@@ -121,6 +121,29 @@ namespace IO.Swagger.Api
         /// <returns>ApiResponse of Object</returns>
         ApiResponse<Object> OrderNewWithHttpInfo (string side, string symbol, string orderType, decimal? qty, double? price, string timeInForce, double? takeProfit = null, double? stopLoss = null, bool? reduceOnly = null, bool? closeOnTrigger = null, string orderLinkId = null);
         /// <summary>
+        /// Get my active order list.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderId">Order ID (optional)</param>
+        /// <param name="symbol">Contract type. Default BTCUSD (optional)</param>
+        /// <returns>Object</returns>
+        Object OrderQuery (string orderId = null, string symbol = null);
+
+        /// <summary>
+        /// Get my active order list.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderId">Order ID (optional)</param>
+        /// <param name="symbol">Contract type. Default BTCUSD (optional)</param>
+        /// <returns>ApiResponse of Object</returns>
+        ApiResponse<Object> OrderQueryWithHttpInfo (string orderId = null, string symbol = null);
+        /// <summary>
         /// Replace active order. Only incomplete orders can be modified. 
         /// </summary>
         /// <remarks>
@@ -246,6 +269,29 @@ namespace IO.Swagger.Api
         /// <param name="orderLinkId">TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. (optional)</param>
         /// <returns>Task of ApiResponse (Object)</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> OrderNewAsyncWithHttpInfo (string side, string symbol, string orderType, decimal? qty, double? price, string timeInForce, double? takeProfit = null, double? stopLoss = null, bool? reduceOnly = null, bool? closeOnTrigger = null, string orderLinkId = null);
+        /// <summary>
+        /// Get my active order list.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderId">Order ID (optional)</param>
+        /// <param name="symbol">Contract type. Default BTCUSD (optional)</param>
+        /// <returns>Task of Object</returns>
+        System.Threading.Tasks.Task<Object> OrderQueryAsync (string orderId = null, string symbol = null);
+
+        /// <summary>
+        /// Get my active order list.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderId">Order ID (optional)</param>
+        /// <param name="symbol">Contract type. Default BTCUSD (optional)</param>
+        /// <returns>Task of ApiResponse (Object)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> OrderQueryAsyncWithHttpInfo (string orderId = null, string symbol = null);
         /// <summary>
         /// Replace active order. Only incomplete orders can be modified. 
         /// </summary>
@@ -992,6 +1038,173 @@ namespace IO.Swagger.Api
             if (ExceptionFactory != null)
             {
                 Exception exception = ExceptionFactory("OrderNew", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Object) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Object)));
+        }
+
+        /// <summary>
+        /// Get my active order list. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderId">Order ID (optional)</param>
+        /// <param name="symbol">Contract type. Default BTCUSD (optional)</param>
+        /// <returns>Object</returns>
+        public Object OrderQuery (string orderId = null, string symbol = null)
+        {
+             ApiResponse<Object> localVarResponse = OrderQueryWithHttpInfo(orderId, symbol);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get my active order list. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderId">Order ID (optional)</param>
+        /// <param name="symbol">Contract type. Default BTCUSD (optional)</param>
+        /// <returns>ApiResponse of Object</returns>
+        public ApiResponse< Object > OrderQueryWithHttpInfo (string orderId = null, string symbol = null)
+        {
+
+            var localVarPath = "/v2/private/order";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (orderId != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "order_id", orderId)); // query parameter
+            if (symbol != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "symbol", symbol)); // query parameter
+
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api_key")))
+            {
+                localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "api_key", this.Configuration.GetApiKeyWithPrefix("api_key")));
+            }
+            // authentication (apiSignature) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("sign")))
+            {
+                localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "sign", this.Configuration.GetApiKeyWithPrefix("sign")));
+            }
+            // authentication (timestamp) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("timestamp")))
+            {
+                localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "timestamp", this.Configuration.GetApiKeyWithPrefix("timestamp")));
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("OrderQuery", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Object) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Object)));
+        }
+
+        /// <summary>
+        /// Get my active order list. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderId">Order ID (optional)</param>
+        /// <param name="symbol">Contract type. Default BTCUSD (optional)</param>
+        /// <returns>Task of Object</returns>
+        public async System.Threading.Tasks.Task<Object> OrderQueryAsync (string orderId = null, string symbol = null)
+        {
+             ApiResponse<Object> localVarResponse = await OrderQueryAsyncWithHttpInfo(orderId, symbol);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get my active order list. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderId">Order ID (optional)</param>
+        /// <param name="symbol">Contract type. Default BTCUSD (optional)</param>
+        /// <returns>Task of ApiResponse (Object)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> OrderQueryAsyncWithHttpInfo (string orderId = null, string symbol = null)
+        {
+
+            var localVarPath = "/v2/private/order";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (orderId != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "order_id", orderId)); // query parameter
+            if (symbol != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "symbol", symbol)); // query parameter
+
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api_key")))
+            {
+                localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "api_key", this.Configuration.GetApiKeyWithPrefix("api_key")));
+            }
+            // authentication (apiSignature) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("sign")))
+            {
+                localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "sign", this.Configuration.GetApiKeyWithPrefix("sign")));
+            }
+            // authentication (timestamp) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("timestamp")))
+            {
+                localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "timestamp", this.Configuration.GetApiKeyWithPrefix("timestamp")));
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("OrderQuery", localVarResponse);
                 if (exception != null) throw exception;
             }
 

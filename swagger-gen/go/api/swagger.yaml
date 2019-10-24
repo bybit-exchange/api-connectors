@@ -521,6 +521,32 @@ paths:
           description: "Request was successful"
           schema: {}
       deprecated: false
+  /v2/private/order:
+    get:
+      tags:
+      - "Order"
+      summary: "Get my active order list."
+      operationId: "Order.query"
+      parameters:
+      - name: "order_id"
+        in: "query"
+        description: "Order ID"
+        required: false
+        type: "string"
+        x-exportParamName: "OrderId"
+        x-optionalDataType: "String"
+      - name: "symbol"
+        in: "query"
+        description: "Contract type. Default BTCUSD"
+        required: false
+        type: "string"
+        x-exportParamName: "Symbol"
+        x-optionalDataType: "String"
+      responses:
+        200:
+          description: "Request was successful"
+          schema: {}
+      deprecated: false
   /open-api/stop-order/create:
     post:
       tags:
@@ -1302,6 +1328,76 @@ definitions:
       time_now:
         type: "string"
     description: "Replace active order response"
+  QueryOrderBase:
+    type: "object"
+    properties:
+      ret_code:
+        type: "number"
+        format: "int32"
+      ret_msg:
+        type: "string"
+      ext_code:
+        type: "string"
+      ext_info:
+        type: "string"
+      result: {}
+      time_now:
+        type: "string"
+    description: "Query real-time active order information response"
+  QueryOrderRes:
+    type: "object"
+    properties:
+      order_id:
+        type: "string"
+      user_id:
+        type: "number"
+      symbol:
+        type: "string"
+      side:
+        type: "string"
+      order_type:
+        type: "string"
+      price:
+        type: "number"
+        format: "double"
+      qty:
+        type: "string"
+        format: "int32"
+      time_in_force:
+        type: "string"
+      order_status:
+        type: "string"
+      ext_fields: {}
+      leaves_qty:
+        type: "number"
+        format: "int32"
+      leaves_value:
+        type: "number"
+        format: "int32"
+      cum_exec_qty:
+        type: "number"
+        format: "int32"
+      reject_reason:
+        type: "string"
+      order_link_id:
+        type: "string"
+      created_at:
+        type: "string"
+      updated_at:
+        type: "string"
+    description: "Query real-time active order information response"
+  extFields:
+    type: "object"
+    properties:
+      o_req_num:
+        type: "number"
+        format: "int32"
+      xreq_type:
+        type: "string"
+      xreq_offset:
+        type: "number"
+        format: "int32"
+    description: "extra fields"
   ConditionalBase:
     type: "object"
     properties:

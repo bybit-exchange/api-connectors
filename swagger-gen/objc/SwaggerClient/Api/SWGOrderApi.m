@@ -399,6 +399,69 @@ NSInteger kSWGOrderApiMissingParamErrorCode = 234513;
 }
 
 ///
+/// Get my active order list.
+/// 
+///  @param orderId Order ID (optional)
+///
+///  @param symbol Contract type. Default BTCUSD (optional)
+///
+///  @returns NSObject*
+///
+-(NSURLSessionTask*) orderQueryWithOrderId: (NSString*) orderId
+    symbol: (NSString*) symbol
+    completionHandler: (void (^)(NSObject* output, NSError* error)) handler {
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/v2/private/order"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    if (orderId != nil) {
+        queryParams[@"order_id"] = orderId;
+    }
+    if (symbol != nil) {
+        queryParams[@"symbol"] = symbol;
+    }
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"apiKey", @"apiSignature", @"timestamp"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"GET"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: @"NSObject*"
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler((NSObject*)data, error);
+                                }
+                            }];
+}
+
+///
 /// Replace active order. Only incomplete orders can be modified. 
 /// 
 ///  @param orderId Order ID. 

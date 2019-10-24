@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**order_cancel**](OrderApi.md#order_cancel) | **POST** /open-api/order/cancel | Get my active order list.
 [**order_get_orders**](OrderApi.md#order_get_orders) | **GET** /open-api/order/list | Get my active order list.
 [**order_new**](OrderApi.md#order_new) | **POST** /open-api/order/create | Place active order
+[**order_query**](OrderApi.md#order_query) | **GET** /v2/private/order | Get my active order list.
 [**order_replace**](OrderApi.md#order_replace) | **POST** /open-api/order/replace | Replace active order. Only incomplete orders can be modified. 
 
 
@@ -224,6 +225,71 @@ Name | Type | Description  | Notes
  **reduce_only** | **BOOLEAN**| reduce only | [optional] 
  **close_on_trigger** | **BOOLEAN**| close on trigger | [optional] 
  **order_link_id** | **String**| TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. | [optional] 
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+
+
+# **order_query**
+> Object order_query(opts)
+
+Get my active order list.
+
+### Example
+```ruby
+# load the gem
+require 'swagger_client'
+# setup authorization
+SwaggerClient.configure do |config|
+  # Configure API key authorization: apiKey
+  config.api_key['api_key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api_key'] = 'Bearer'
+
+  # Configure API key authorization: apiSignature
+  config.api_key['sign'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['sign'] = 'Bearer'
+
+  # Configure API key authorization: timestamp
+  config.api_key['timestamp'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['timestamp'] = 'Bearer'
+end
+
+api_instance = SwaggerClient::OrderApi.new
+
+opts = { 
+  order_id: 'order_id_example', # String | Order ID
+  symbol: 'symbol_example' # String | Contract type. Default BTCUSD
+}
+
+begin
+  #Get my active order list.
+  result = api_instance.order_query(opts)
+  p result
+rescue SwaggerClient::ApiError => e
+  puts "Exception when calling OrderApi->order_query: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **order_id** | **String**| Order ID | [optional] 
+ **symbol** | **String**| Contract type. Default BTCUSD | [optional] 
 
 ### Return type
 

@@ -28,7 +28,7 @@ import java.math.BigDecimal;
 /**
  * LeverageInfo
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-16T11:45:28.109+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-24T19:54:52.777+08:00")
 public class LeverageInfo {
   @SerializedName("leverage")
   private BigDecimal leverage = null;

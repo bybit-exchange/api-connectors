@@ -192,6 +192,34 @@ class OrderApi(
   }
 
   /**
+   * Get my active order list.
+   * 
+   *
+   * @param orderId Order ID (optional)
+   * @param symbol Contract type. Default BTCUSD (optional)
+   * @return Any
+   */
+  def orderQuery(orderId: Option[String] = None, symbol: Option[String] = None): Option[Any] = {
+    val await = Try(Await.result(orderQueryAsync(orderId, symbol), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
+    }
+  }
+
+  /**
+   * Get my active order list. asynchronously
+   * 
+   *
+   * @param orderId Order ID (optional)
+   * @param symbol Contract type. Default BTCUSD (optional)
+   * @return Future(Any)
+   */
+  def orderQueryAsync(orderId: Option[String] = None, symbol: Option[String] = None): Future[Any] = {
+      helper.orderQuery(orderId, symbol)
+  }
+
+  /**
    * Replace active order. Only incomplete orders can be modified. 
    * 
    *
@@ -356,6 +384,31 @@ class OrderApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extend
     }
 
     val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def orderQuery(orderId: Option[String] = None,
+    symbol: Option[String] = None
+    )(implicit reader: ClientResponseReader[Any]): Future[Any] = {
+    // create path and map variables
+    val path = (addFmt("/v2/private/order"))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    orderId match {
+      case Some(param) => queryParams += "order_id" -> param.toString
+      case _ => queryParams
+    }
+    symbol match {
+      case Some(param) => queryParams += "symbol" -> param.toString
+      case _ => queryParams
+    }
+
+    val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
     resFuture flatMap { resp =>
       process(reader.read(resp))
     }

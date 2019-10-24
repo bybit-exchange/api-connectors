@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**OrderCancel**](OrderApi.md#ordercancel) | **POST** /open-api/order/cancel | Get my active order list.
 [**OrderGetOrders**](OrderApi.md#ordergetorders) | **GET** /open-api/order/list | Get my active order list.
 [**OrderNew**](OrderApi.md#ordernew) | **POST** /open-api/order/create | Place active order
+[**OrderQuery**](OrderApi.md#orderquery) | **GET** /v2/private/order | Get my active order list.
 [**OrderReplace**](OrderApi.md#orderreplace) | **POST** /open-api/order/replace | Replace active order. Only incomplete orders can be modified. 
 
 
@@ -244,6 +245,80 @@ Name | Type | Description  | Notes
  **reduceOnly** | **bool?**| reduce only | [optional] 
  **closeOnTrigger** | **bool?**| close on trigger | [optional] 
  **orderLinkId** | **string**| TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. | [optional] 
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="orderquery"></a>
+# **OrderQuery**
+> Object OrderQuery (string orderId = null, string symbol = null)
+
+Get my active order list.
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class OrderQueryExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api_key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api_key", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("sign", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("sign", "Bearer");
+            // Configure API key authorization: timestamp
+            Configuration.Default.AddApiKey("timestamp", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("timestamp", "Bearer");
+
+            var apiInstance = new OrderApi();
+            var orderId = orderId_example;  // string | Order ID (optional) 
+            var symbol = symbol_example;  // string | Contract type. Default BTCUSD (optional) 
+
+            try
+            {
+                // Get my active order list.
+                Object result = apiInstance.OrderQuery(orderId, symbol);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling OrderApi.OrderQuery: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderId** | **string**| Order ID | [optional] 
+ **symbol** | **string**| Contract type. Default BTCUSD | [optional] 
 
 ### Return type
 

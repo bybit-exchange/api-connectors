@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**order_cancel**](OrderApi.md#order_cancel) | **POST** /open-api/order/cancel | Get my active order list.
 [**order_get_orders**](OrderApi.md#order_get_orders) | **GET** /open-api/order/list | Get my active order list.
 [**order_new**](OrderApi.md#order_new) | **POST** /open-api/order/create | Place active order
+[**order_query**](OrderApi.md#order_query) | **GET** /v2/private/order | Get my active order list.
 [**order_replace**](OrderApi.md#order_replace) | **POST** /open-api/order/replace | Replace active order. Only incomplete orders can be modified. 
 
 
@@ -214,6 +215,70 @@ Name | Type | Description  | Notes
  **reduce_only** | **bool**| reduce only | [optional] 
  **close_on_trigger** | **bool**| close on trigger | [optional] 
  **order_link_id** | **str**| TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. | [optional] 
+
+### Return type
+
+**object**
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **order_query**
+> object order_query(order_id=order_id, symbol=symbol)
+
+Get my active order list.
+
+### Example
+```python
+from __future__ import print_function
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api_key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api_key'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['sign'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['sign'] = 'Bearer'
+# Configure API key authorization: timestamp
+configuration = swagger_client.Configuration()
+configuration.api_key['timestamp'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['timestamp'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = swagger_client.OrderApi(swagger_client.ApiClient(configuration))
+order_id = 'order_id_example' # str | Order ID (optional)
+symbol = 'symbol_example' # str | Contract type. Default BTCUSD (optional)
+
+try:
+    # Get my active order list.
+    api_response = api_instance.order_query(order_id=order_id, symbol=symbol)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling OrderApi->order_query: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **order_id** | **str**| Order ID | [optional] 
+ **symbol** | **str**| Contract type. Default BTCUSD | [optional] 
 
 ### Return type
 
