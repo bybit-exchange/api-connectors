@@ -250,6 +250,52 @@
     }
 
     /**
+     * Callback function to receive the result of the orderQuery operation.
+     * @callback module:api/OrderApi~orderQueryCallback
+     * @param {String} error Error message, if any.
+     * @param {Object} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Get my active order list.
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.orderId Order ID
+     * @param {String} opts.symbol Contract type. Default BTCUSD
+     * @param {module:api/OrderApi~orderQueryCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link Object}
+     */
+    this.orderQuery = function(opts, callback) {
+      opts = opts || {};
+      var postBody = null;
+
+
+      var pathParams = {
+      };
+      var queryParams = {
+        'order_id': opts['orderId'],
+        'symbol': opts['symbol'],
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = ['apiKey', 'apiSignature', 'timestamp'];
+      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      var accepts = ['application/json'];
+      var returnType = Object;
+
+      return this.apiClient.callApi(
+        '/v2/private/order', 'GET',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
      * Callback function to receive the result of the orderReplace operation.
      * @callback module:api/OrderApi~orderReplaceCallback
      * @param {String} error Error message, if any.

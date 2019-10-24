@@ -21,6 +21,7 @@ from swagger_client.models.conditional_base import ConditionalBase
 from swagger_client.models.conditional_orders_res import ConditionalOrdersRes
 from swagger_client.models.conditional_orders_res_base import ConditionalOrdersResBase
 from swagger_client.models.conditional_res import ConditionalRes
+from swagger_client.models.ext_fields import ExtFields
 from swagger_client.models.fund_record_base import FundRecordBase
 from swagger_client.models.funding_fee_base import FundingFeeBase
 from swagger_client.models.funding_fee_res import FundingFeeRes
@@ -45,6 +46,8 @@ from swagger_client.models.order_res_base import OrderResBase
 from swagger_client.models.position import Position
 from swagger_client.models.position_info import PositionInfo
 from swagger_client.models.price_filter import PriceFilter
+from swagger_client.models.query_order_base import QueryOrderBase
+from swagger_client.models.query_order_res import QueryOrderRes
 from swagger_client.models.replace_conditional_base import ReplaceConditionalBase
 from swagger_client.models.replace_order_base import ReplaceOrderBase
 from swagger_client.models.server_time import ServerTime

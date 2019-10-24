@@ -47,6 +47,7 @@ Import the following:
 #import <SwaggerClient/SWGConditionalOrdersRes.h>
 #import <SwaggerClient/SWGConditionalOrdersResBase.h>
 #import <SwaggerClient/SWGConditionalRes.h>
+#import <SwaggerClient/SWGExtFields.h>
 #import <SwaggerClient/SWGFundRecordBase.h>
 #import <SwaggerClient/SWGFundingFeeBase.h>
 #import <SwaggerClient/SWGFundingFeeRes.h>
@@ -71,6 +72,8 @@ Import the following:
 #import <SwaggerClient/SWGPosition.h>
 #import <SwaggerClient/SWGPositionInfo.h>
 #import <SwaggerClient/SWGPriceFilter.h>
+#import <SwaggerClient/SWGQueryOrderBase.h>
+#import <SwaggerClient/SWGQueryOrderRes.h>
 #import <SwaggerClient/SWGReplaceConditionalBase.h>
 #import <SwaggerClient/SWGReplaceOrderBase.h>
 #import <SwaggerClient/SWGServerTime.h>
@@ -166,6 +169,7 @@ Class | Method | HTTP request | Description
 *SWGOrderApi* | [**orderCancel**](docs/SWGOrderApi.md#ordercancel) | **POST** /open-api/order/cancel | Get my active order list.
 *SWGOrderApi* | [**orderGetOrders**](docs/SWGOrderApi.md#ordergetorders) | **GET** /open-api/order/list | Get my active order list.
 *SWGOrderApi* | [**orderNew**](docs/SWGOrderApi.md#ordernew) | **POST** /open-api/order/create | Place active order
+*SWGOrderApi* | [**orderQuery**](docs/SWGOrderApi.md#orderquery) | **GET** /v2/private/order | Get my active order list.
 *SWGOrderApi* | [**orderReplace**](docs/SWGOrderApi.md#orderreplace) | **POST** /open-api/order/replace | Replace active order. Only incomplete orders can be modified. 
 *SWGPositionsApi* | [**positionsChangeMargin**](docs/SWGPositionsApi.md#positionschangemargin) | **POST** /position/change-position-margin | Update margin.
 *SWGPositionsApi* | [**positionsMyPosition**](docs/SWGPositionsApi.md#positionsmyposition) | **GET** /position/list | Get my position list.
@@ -185,6 +189,7 @@ Class | Method | HTTP request | Description
  - [SWGConditionalOrdersRes](docs/SWGConditionalOrdersRes.md)
  - [SWGConditionalOrdersResBase](docs/SWGConditionalOrdersResBase.md)
  - [SWGConditionalRes](docs/SWGConditionalRes.md)
+ - [SWGExtFields](docs/SWGExtFields.md)
  - [SWGFundRecordBase](docs/SWGFundRecordBase.md)
  - [SWGFundingFeeBase](docs/SWGFundingFeeBase.md)
  - [SWGFundingFeeRes](docs/SWGFundingFeeRes.md)
@@ -209,6 +214,8 @@ Class | Method | HTTP request | Description
  - [SWGPosition](docs/SWGPosition.md)
  - [SWGPositionInfo](docs/SWGPositionInfo.md)
  - [SWGPriceFilter](docs/SWGPriceFilter.md)
+ - [SWGQueryOrderBase](docs/SWGQueryOrderBase.md)
+ - [SWGQueryOrderRes](docs/SWGQueryOrderRes.md)
  - [SWGReplaceConditionalBase](docs/SWGReplaceConditionalBase.md)
  - [SWGReplaceOrderBase](docs/SWGReplaceOrderBase.md)
  - [SWGServerTime](docs/SWGServerTime.md)

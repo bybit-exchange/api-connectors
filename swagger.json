@@ -611,6 +611,41 @@
                 "deprecated": false
             }
         },
+        "/v2/private/order": {
+            "get": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Get my active order list.",
+                "operationId": "Order.query",
+                "parameters": [{
+                        "name": "order_id",
+                        "in": "query",
+                        "description": "Order ID",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type. Default BTCUSD",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/QueryOrderBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
         "/open-api/stop-order/create": {
             "post": {
                 "tags": [
@@ -1664,6 +1699,114 @@
                 },
                 "time_now": {
                     "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "QueryOrderBase": {
+            "description": "Query real-time active order information response",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "items": {
+                        "$ref": "#/definitions/QueryOrderRes"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "QueryOrderRes": {
+            "description": "Query real-time active order information response",
+            "properties": {
+                "order_id": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "number"
+                },
+                "symbol": {
+                    "type": "string"
+                },
+                "side": {
+                    "type": "string"
+                },
+                "order_type": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "qty": {
+                    "type": "string",
+                    "format": "int32"
+                },
+                "time_in_force": {
+                    "type": "string"
+                },
+                "order_status": {
+                    "type": "string"
+                },
+                "ext_fields": {
+                    "items": {
+                        "$ref": "#/definitions/extFields"
+                    }
+                },
+                "leaves_qty": {
+                    "type": "number",
+                    "format": "int32"
+                },
+                "leaves_value": {
+                    "type": "number",
+                    "format": "int32"
+                },
+                "cum_exec_qty": {
+                    "type": "number",
+                    "format": "int32"
+                },
+                "reject_reason": {
+                    "type": "string"
+                },
+                "order_link_id": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "extFields": {
+            "description": "extra fields",
+            "properties": {
+                "o_req_num": {
+                    "type": "number",
+                    "format": "int32"
+                },
+                "xreq_type": {
+                    "type": "string"
+                },
+                "xreq_offset": {
+                    "type": "number",
+                    "format": "int32"
                 }
             },
             "type": "object"

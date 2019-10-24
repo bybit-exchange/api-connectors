@@ -119,6 +119,18 @@ public:
         boost::optional<bool> closeOnTrigger,
         boost::optional<utility::string_t> orderLinkId
     );
+    /// <summary>
+    /// Get my active order list.
+    /// </summary>
+    /// <remarks>
+    /// 
+    /// </remarks>
+    /// <param name="orderId">Order ID (optional)</param>
+    /// <param name="symbol">Contract type. Default BTCUSD (optional)</param>
+    pplx::task<std::shared_ptr<Object>> order_query(
+        boost::optional<utility::string_t> orderId,
+        boost::optional<utility::string_t> symbol
+    );
 
 protected:
     std::shared_ptr<ApiClient> m_ApiClient;

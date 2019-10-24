@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**orderCancel**](OrderApi.md#orderCancel) | **POST** /open-api/order/cancel | Get my active order list.
 [**orderGetOrders**](OrderApi.md#orderGetOrders) | **GET** /open-api/order/list | Get my active order list.
 [**orderNew**](OrderApi.md#orderNew) | **POST** /open-api/order/create | Place active order
+[**orderQuery**](OrderApi.md#orderQuery) | **GET** /v2/private/order | Get my active order list.
 [**orderReplace**](OrderApi.md#orderReplace) | **POST** /open-api/order/replace | Replace active order. Only incomplete orders can be modified. 
 
 
@@ -229,6 +230,72 @@ Name | Type | Description  | Notes
  **reduceOnly** | **Boolean**| reduce only | [optional] 
  **closeOnTrigger** | **Boolean**| close on trigger | [optional] 
  **orderLinkId** | **String**| TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. | [optional] 
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+<a name="orderQuery"></a>
+# **orderQuery**
+> Object orderQuery(opts)
+
+Get my active order list.
+
+### Example
+```javascript
+var BybitApi = require('bybit_api');
+var defaultClient = BybitApi.ApiClient.instance;
+
+// Configure API key authorization: apiKey
+var apiKey = defaultClient.authentications['apiKey'];
+apiKey.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiKey.apiKeyPrefix = 'Token';
+
+// Configure API key authorization: apiSignature
+var apiSignature = defaultClient.authentications['apiSignature'];
+apiSignature.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiSignature.apiKeyPrefix = 'Token';
+
+// Configure API key authorization: timestamp
+var timestamp = defaultClient.authentications['timestamp'];
+timestamp.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//timestamp.apiKeyPrefix = 'Token';
+
+var apiInstance = new BybitApi.OrderApi();
+
+var opts = { 
+  'orderId': "orderId_example", // String | Order ID
+  'symbol': "symbol_example" // String | Contract type. Default BTCUSD
+};
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.orderQuery(opts, callback);
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderId** | **String**| Order ID | [optional] 
+ **symbol** | **String**| Contract type. Default BTCUSD | [optional] 
 
 ### Return type
 

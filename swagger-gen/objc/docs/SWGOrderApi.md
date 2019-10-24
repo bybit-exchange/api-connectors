@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**orderCancel**](SWGOrderApi.md#ordercancel) | **POST** /open-api/order/cancel | Get my active order list.
 [**orderGetOrders**](SWGOrderApi.md#ordergetorders) | **GET** /open-api/order/list | Get my active order list.
 [**orderNew**](SWGOrderApi.md#ordernew) | **POST** /open-api/order/create | Place active order
+[**orderQuery**](SWGOrderApi.md#orderquery) | **GET** /v2/private/order | Get my active order list.
 [**orderReplace**](SWGOrderApi.md#orderreplace) | **POST** /open-api/order/replace | Replace active order. Only incomplete orders can be modified. 
 
 
@@ -257,6 +258,75 @@ Name | Type | Description  | Notes
  **reduceOnly** | **NSNumber***| reduce only | [optional] 
  **closeOnTrigger** | **NSNumber***| close on trigger | [optional] 
  **orderLinkId** | **NSString***| TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. | [optional] 
+
+### Return type
+
+**NSObject***
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **orderQuery**
+```objc
+-(NSURLSessionTask*) orderQueryWithOrderId: (NSString*) orderId
+    symbol: (NSString*) symbol
+        completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+```
+
+Get my active order list.
+
+### Example 
+```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: apiKey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api_key"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api_key"];
+
+// Configure API key authorization: (authentication scheme: apiSignature)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"sign"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"sign"];
+
+// Configure API key authorization: (authentication scheme: timestamp)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"timestamp"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"timestamp"];
+
+
+NSString* orderId = @"orderId_example"; // Order ID (optional)
+NSString* symbol = @"symbol_example"; // Contract type. Default BTCUSD (optional)
+
+SWGOrderApi*apiInstance = [[SWGOrderApi alloc] init];
+
+// Get my active order list.
+[apiInstance orderQueryWithOrderId:orderId
+              symbol:symbol
+          completionHandler: ^(NSObject* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling SWGOrderApi->orderQuery: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderId** | **NSString***| Order ID | [optional] 
+ **symbol** | **NSString***| Contract type. Default BTCUSD | [optional] 
 
 ### Return type
 

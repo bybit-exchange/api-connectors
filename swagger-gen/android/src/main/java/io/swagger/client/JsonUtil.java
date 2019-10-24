@@ -81,6 +81,10 @@ public class JsonUtil {
       return new TypeToken<List<ConditionalRes>>(){}.getType();
     }
     
+    if ("ExtFields".equalsIgnoreCase(className)) {
+      return new TypeToken<List<ExtFields>>(){}.getType();
+    }
+    
     if ("FundRecordBase".equalsIgnoreCase(className)) {
       return new TypeToken<List<FundRecordBase>>(){}.getType();
     }
@@ -177,6 +181,14 @@ public class JsonUtil {
       return new TypeToken<List<PriceFilter>>(){}.getType();
     }
     
+    if ("QueryOrderBase".equalsIgnoreCase(className)) {
+      return new TypeToken<List<QueryOrderBase>>(){}.getType();
+    }
+    
+    if ("QueryOrderRes".equalsIgnoreCase(className)) {
+      return new TypeToken<List<QueryOrderRes>>(){}.getType();
+    }
+    
     if ("ReplaceConditionalBase".equalsIgnoreCase(className)) {
       return new TypeToken<List<ReplaceConditionalBase>>(){}.getType();
     }
@@ -261,6 +273,10 @@ public class JsonUtil {
     
     if ("ConditionalRes".equalsIgnoreCase(className)) {
       return new TypeToken<ConditionalRes>(){}.getType();
+    }
+    
+    if ("ExtFields".equalsIgnoreCase(className)) {
+      return new TypeToken<ExtFields>(){}.getType();
     }
     
     if ("FundRecordBase".equalsIgnoreCase(className)) {
@@ -357,6 +373,14 @@ public class JsonUtil {
     
     if ("PriceFilter".equalsIgnoreCase(className)) {
       return new TypeToken<PriceFilter>(){}.getType();
+    }
+    
+    if ("QueryOrderBase".equalsIgnoreCase(className)) {
+      return new TypeToken<QueryOrderBase>(){}.getType();
+    }
+    
+    if ("QueryOrderRes".equalsIgnoreCase(className)) {
+      return new TypeToken<QueryOrderRes>(){}.getType();
     }
     
     if ("ReplaceConditionalBase".equalsIgnoreCase(className)) {

@@ -61,6 +61,25 @@
   ([side symbol order-type qty price time-in-force optional-params]
    (:data (order-new-with-http-info side symbol order-type qty price time-in-force optional-params))))
 
+(defn order-query-with-http-info
+  "Get my active order list."
+  ([] (order-query-with-http-info nil))
+  ([{:keys [order-id symbol ]}]
+   (call-api "/v2/private/order" :get
+             {:path-params   {}
+              :header-params {}
+              :query-params  {"order_id" order-id "symbol" symbol }
+              :form-params   {}
+              :content-types ["application/json" "application/x-www-form-urlencoded"]
+              :accepts       ["application/json"]
+              :auth-names    ["apiKey" "apiSignature" "timestamp"]})))
+
+(defn order-query
+  "Get my active order list."
+  ([] (order-query nil))
+  ([optional-params]
+   (:data (order-query-with-http-info optional-params))))
+
 (defn order-replace-with-http-info
   "Replace active order. Only incomplete orders can be modified."
   ([order-id symbol ] (order-replace-with-http-info order-id symbol nil))

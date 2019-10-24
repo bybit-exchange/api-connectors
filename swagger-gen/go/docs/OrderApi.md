@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**OrderCancel**](OrderApi.md#OrderCancel) | **Post** /open-api/order/cancel | Get my active order list.
 [**OrderGetOrders**](OrderApi.md#OrderGetOrders) | **Get** /open-api/order/list | Get my active order list.
 [**OrderNew**](OrderApi.md#OrderNew) | **Post** /open-api/order/create | Place active order
+[**OrderQuery**](OrderApi.md#OrderQuery) | **Get** /v2/private/order | Get my active order list.
 [**OrderReplace**](OrderApi.md#OrderReplace) | **Post** /open-api/order/replace | Replace active order. Only incomplete orders can be modified. 
 
 
@@ -117,6 +118,40 @@ Name | Type | Description  | Notes
  **reduceOnly** | **optional.Bool**| reduce only | 
  **closeOnTrigger** | **optional.Bool**| close on trigger | 
  **orderLinkId** | **optional.String**| TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. | 
+
+### Return type
+
+[**interface{}**](interface{}.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **OrderQuery**
+> interface{} OrderQuery(ctx, optional)
+Get my active order list.
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***OrderQueryOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a OrderQueryOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderId** | **optional.String**| Order ID | 
+ **symbol** | **optional.String**| Contract type. Default BTCUSD | 
 
 ### Return type
 

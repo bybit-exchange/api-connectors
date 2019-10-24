@@ -37,6 +37,7 @@ Class | Method | HTTP request | Description
 *OrderApi* | [**OrderCancel**](docs/OrderApi.md#ordercancel) | **Post** /open-api/order/cancel | Get my active order list.
 *OrderApi* | [**OrderGetOrders**](docs/OrderApi.md#ordergetorders) | **Get** /open-api/order/list | Get my active order list.
 *OrderApi* | [**OrderNew**](docs/OrderApi.md#ordernew) | **Post** /open-api/order/create | Place active order
+*OrderApi* | [**OrderQuery**](docs/OrderApi.md#orderquery) | **Get** /v2/private/order | Get my active order list.
 *OrderApi* | [**OrderReplace**](docs/OrderApi.md#orderreplace) | **Post** /open-api/order/replace | Replace active order. Only incomplete orders can be modified. 
 *PositionsApi* | [**PositionsChangeMargin**](docs/PositionsApi.md#positionschangemargin) | **Post** /position/change-position-margin | Update margin.
 *PositionsApi* | [**PositionsMyPosition**](docs/PositionsApi.md#positionsmyposition) | **Get** /position/list | Get my position list.
@@ -56,6 +57,7 @@ Class | Method | HTTP request | Description
  - [ConditionalOrdersRes](docs/ConditionalOrdersRes.md)
  - [ConditionalOrdersResBase](docs/ConditionalOrdersResBase.md)
  - [ConditionalRes](docs/ConditionalRes.md)
+ - [ExtFields](docs/ExtFields.md)
  - [FundRecordBase](docs/FundRecordBase.md)
  - [FundingFeeBase](docs/FundingFeeBase.md)
  - [FundingFeeRes](docs/FundingFeeRes.md)
@@ -80,6 +82,8 @@ Class | Method | HTTP request | Description
  - [Position](docs/Position.md)
  - [PositionInfo](docs/PositionInfo.md)
  - [PriceFilter](docs/PriceFilter.md)
+ - [QueryOrderBase](docs/QueryOrderBase.md)
+ - [QueryOrderRes](docs/QueryOrderRes.md)
  - [ReplaceConditionalBase](docs/ReplaceConditionalBase.md)
  - [ReplaceOrderBase](docs/ReplaceOrderBase.md)
  - [ServerTime](docs/ServerTime.md)

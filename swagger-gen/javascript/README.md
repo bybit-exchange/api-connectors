@@ -150,6 +150,7 @@ Class | Method | HTTP request | Description
 *BybitApi.OrderApi* | [**orderCancel**](docs/OrderApi.md#orderCancel) | **POST** /open-api/order/cancel | Get my active order list.
 *BybitApi.OrderApi* | [**orderGetOrders**](docs/OrderApi.md#orderGetOrders) | **GET** /open-api/order/list | Get my active order list.
 *BybitApi.OrderApi* | [**orderNew**](docs/OrderApi.md#orderNew) | **POST** /open-api/order/create | Place active order
+*BybitApi.OrderApi* | [**orderQuery**](docs/OrderApi.md#orderQuery) | **GET** /v2/private/order | Get my active order list.
 *BybitApi.OrderApi* | [**orderReplace**](docs/OrderApi.md#orderReplace) | **POST** /open-api/order/replace | Replace active order. Only incomplete orders can be modified. 
 *BybitApi.PositionsApi* | [**positionsChangeMargin**](docs/PositionsApi.md#positionsChangeMargin) | **POST** /position/change-position-margin | Update margin.
 *BybitApi.PositionsApi* | [**positionsMyPosition**](docs/PositionsApi.md#positionsMyPosition) | **GET** /position/list | Get my position list.
@@ -169,6 +170,7 @@ Class | Method | HTTP request | Description
  - [BybitApi.ConditionalOrdersRes](docs/ConditionalOrdersRes.md)
  - [BybitApi.ConditionalOrdersResBase](docs/ConditionalOrdersResBase.md)
  - [BybitApi.ConditionalRes](docs/ConditionalRes.md)
+ - [BybitApi.ExtFields](docs/ExtFields.md)
  - [BybitApi.FundRecordBase](docs/FundRecordBase.md)
  - [BybitApi.FundingFeeBase](docs/FundingFeeBase.md)
  - [BybitApi.FundingFeeRes](docs/FundingFeeRes.md)
@@ -193,6 +195,8 @@ Class | Method | HTTP request | Description
  - [BybitApi.Position](docs/Position.md)
  - [BybitApi.PositionInfo](docs/PositionInfo.md)
  - [BybitApi.PriceFilter](docs/PriceFilter.md)
+ - [BybitApi.QueryOrderBase](docs/QueryOrderBase.md)
+ - [BybitApi.QueryOrderRes](docs/QueryOrderRes.md)
  - [BybitApi.ReplaceConditionalBase](docs/ReplaceConditionalBase.md)
  - [BybitApi.ReplaceOrderBase](docs/ReplaceOrderBase.md)
  - [BybitApi.ServerTime](docs/ServerTime.md)

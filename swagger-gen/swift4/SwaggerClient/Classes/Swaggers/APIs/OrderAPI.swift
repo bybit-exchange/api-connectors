@@ -201,6 +201,55 @@ open class OrderAPI {
     }
 
     /**
+     Get my active order list.
+     
+     - parameter orderId: (query) Order ID (optional)
+     - parameter symbol: (query) Contract type. Default BTCUSD (optional)
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func orderQuery(orderId: String? = nil, symbol: String? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
+        orderQueryWithRequestBuilder(orderId: orderId, symbol: symbol).execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Get my active order list.
+     - GET /v2/private/order
+     - API Key:
+       - type: apiKey api_key (QUERY)
+       - name: apiKey
+     - API Key:
+       - type: apiKey sign (QUERY)
+       - name: apiSignature
+     - API Key:
+       - type: apiKey timestamp (QUERY)
+       - name: timestamp
+     - examples: [{contentType=application/json, example=""}]
+     
+     - parameter orderId: (query) Order ID (optional)
+     - parameter symbol: (query) Contract type. Default BTCUSD (optional)
+
+     - returns: RequestBuilder<Any> 
+     */
+    open class func orderQueryWithRequestBuilder(orderId: String? = nil, symbol: String? = nil) -> RequestBuilder<Any> {
+        let path = "/v2/private/order"
+        let URLString = SwaggerClientAPI.basePath + path
+        let parameters: [String:Any]? = nil
+        
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "order_id": orderId, 
+            "symbol": symbol
+        ])
+
+        let requestBuilder: RequestBuilder<Any>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+    }
+
+    /**
      Replace active order. Only incomplete orders can be modified. 
      
      - parameter orderId: (query) Order ID. 
