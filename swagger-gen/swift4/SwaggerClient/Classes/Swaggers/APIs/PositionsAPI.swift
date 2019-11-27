@@ -14,8 +14,8 @@ open class PositionsAPI {
     /**
      Update margin.
      
-     - parameter symbol: (query) Contract type which you want update its margin 
-     - parameter margin: (query) New margin you want set 
+     - parameter symbol: (form) Contract type which you want update its margin 
+     - parameter margin: (form) New margin you want set 
      - parameter completion: completion handler to receive the data and the error objects
      */
     open class func positionsChangeMargin(symbol: String, margin: String, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
@@ -39,20 +39,24 @@ open class PositionsAPI {
        - name: timestamp
      - examples: [{contentType=application/json, example=""}]
      
-     - parameter symbol: (query) Contract type which you want update its margin 
-     - parameter margin: (query) New margin you want set 
+     - parameter symbol: (form) Contract type which you want update its margin 
+     - parameter margin: (form) New margin you want set 
 
      - returns: RequestBuilder<Any> 
      */
     open class func positionsChangeMarginWithRequestBuilder(symbol: String, margin: String) -> RequestBuilder<Any> {
         let path = "/position/change-position-margin"
         let URLString = SwaggerClientAPI.basePath + path
-        let parameters: [String:Any]? = nil
+        let formParams: [String:Any?] = [
+            "symbol": symbol,
+            "margin": margin
+        ]
+
+        let nonNullParameters = APIHelper.rejectNil(formParams)
+        let parameters = APIHelper.convertBoolToString(nonNullParameters)
         
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "symbol": symbol, 
-            "margin": margin
         ])
 
         let requestBuilder: RequestBuilder<Any>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
@@ -105,8 +109,8 @@ open class PositionsAPI {
     /**
      Change user leverage.
      
-     - parameter symbol: (query) A symbol which you want change its leverage 
-     - parameter leverage: (query) New leverage you want set 
+     - parameter symbol: (form) A symbol which you want change its leverage 
+     - parameter leverage: (form) New leverage you want set 
      - parameter completion: completion handler to receive the data and the error objects
      */
     open class func positionsSaveLeverage(symbol: String, leverage: String, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
@@ -130,20 +134,24 @@ open class PositionsAPI {
        - name: timestamp
      - examples: [{contentType=application/json, example=""}]
      
-     - parameter symbol: (query) A symbol which you want change its leverage 
-     - parameter leverage: (query) New leverage you want set 
+     - parameter symbol: (form) A symbol which you want change its leverage 
+     - parameter leverage: (form) New leverage you want set 
 
      - returns: RequestBuilder<Any> 
      */
     open class func positionsSaveLeverageWithRequestBuilder(symbol: String, leverage: String) -> RequestBuilder<Any> {
         let path = "/user/leverage/save"
         let URLString = SwaggerClientAPI.basePath + path
-        let parameters: [String:Any]? = nil
+        let formParams: [String:Any?] = [
+            "symbol": symbol,
+            "leverage": leverage
+        ]
+
+        let nonNullParameters = APIHelper.rejectNil(formParams)
+        let parameters = APIHelper.convertBoolToString(nonNullParameters)
         
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "symbol": symbol, 
-            "leverage": leverage
         ])
 
         let requestBuilder: RequestBuilder<Any>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
@@ -154,10 +162,10 @@ open class PositionsAPI {
     /**
      Set Trading-Stop Condition.
      
-     - parameter symbol: (query) Contract type 
-     - parameter takeProfit: (query) Not less than 0, 0 means cancel TP (optional)
-     - parameter stopLoss: (query) Not less than 0, 0 means cancel SL (optional)
-     - parameter trailingStop: (query) Not less than 0, 0 means cancel TS (optional)
+     - parameter symbol: (form) Contract type 
+     - parameter takeProfit: (form) Not less than 0, 0 means cancel TP (optional)
+     - parameter stopLoss: (form) Not less than 0, 0 means cancel SL (optional)
+     - parameter trailingStop: (form) Not less than 0, 0 means cancel TS (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
     open class func positionsTradingStop(symbol: String, takeProfit: String? = nil, stopLoss: String? = nil, trailingStop: String? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
@@ -181,24 +189,28 @@ open class PositionsAPI {
        - name: timestamp
      - examples: [{contentType=application/json, example=""}]
      
-     - parameter symbol: (query) Contract type 
-     - parameter takeProfit: (query) Not less than 0, 0 means cancel TP (optional)
-     - parameter stopLoss: (query) Not less than 0, 0 means cancel SL (optional)
-     - parameter trailingStop: (query) Not less than 0, 0 means cancel TS (optional)
+     - parameter symbol: (form) Contract type 
+     - parameter takeProfit: (form) Not less than 0, 0 means cancel TP (optional)
+     - parameter stopLoss: (form) Not less than 0, 0 means cancel SL (optional)
+     - parameter trailingStop: (form) Not less than 0, 0 means cancel TS (optional)
 
      - returns: RequestBuilder<Any> 
      */
     open class func positionsTradingStopWithRequestBuilder(symbol: String, takeProfit: String? = nil, stopLoss: String? = nil, trailingStop: String? = nil) -> RequestBuilder<Any> {
         let path = "/open-api/position/trading-stop"
         let URLString = SwaggerClientAPI.basePath + path
-        let parameters: [String:Any]? = nil
+        let formParams: [String:Any?] = [
+            "symbol": symbol,
+            "take_profit": takeProfit,
+            "stop_loss": stopLoss,
+            "trailing_stop": trailingStop
+        ]
+
+        let nonNullParameters = APIHelper.rejectNil(formParams)
+        let parameters = APIHelper.convertBoolToString(nonNullParameters)
         
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "symbol": symbol, 
-            "take_profit": takeProfit, 
-            "stop_loss": stopLoss, 
-            "trailing_stop": trailingStop
         ])
 
         let requestBuilder: RequestBuilder<Any>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()

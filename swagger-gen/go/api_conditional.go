@@ -49,7 +49,6 @@ func (a *ConditionalApiService) ConditionalCancel(ctx context.Context, stopOrder
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	localVarQueryParams.Add("stop_order_id", parameterToString(stopOrderId, ""))
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
 
@@ -67,6 +66,7 @@ func (a *ConditionalApiService) ConditionalCancel(ctx context.Context, stopOrder
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
+	localVarFormParams.Add("stop_order_id", parameterToString(stopOrderId, ""))
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -354,23 +354,6 @@ func (a *ConditionalApiService) ConditionalNew(ctx context.Context, side string,
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	localVarQueryParams.Add("side", parameterToString(side, ""))
-	localVarQueryParams.Add("symbol", parameterToString(symbol, ""))
-	localVarQueryParams.Add("order_type", parameterToString(orderType, ""))
-	localVarQueryParams.Add("qty", parameterToString(qty, ""))
-	localVarQueryParams.Add("price", parameterToString(price, ""))
-	localVarQueryParams.Add("base_price", parameterToString(basePrice, ""))
-	localVarQueryParams.Add("stop_px", parameterToString(stopPx, ""))
-	localVarQueryParams.Add("time_in_force", parameterToString(timeInForce, ""))
-	if localVarOptionals != nil && localVarOptionals.TriggerBy.IsSet() {
-		localVarQueryParams.Add("trigger_by", parameterToString(localVarOptionals.TriggerBy.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.CloseOnTrigger.IsSet() {
-		localVarQueryParams.Add("close_on_trigger", parameterToString(localVarOptionals.CloseOnTrigger.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.OrderLinkId.IsSet() {
-		localVarQueryParams.Add("order_link_id", parameterToString(localVarOptionals.OrderLinkId.Value(), ""))
-	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
 
@@ -387,6 +370,23 @@ func (a *ConditionalApiService) ConditionalNew(ctx context.Context, side string,
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	localVarFormParams.Add("side", parameterToString(side, ""))
+	localVarFormParams.Add("symbol", parameterToString(symbol, ""))
+	localVarFormParams.Add("order_type", parameterToString(orderType, ""))
+	localVarFormParams.Add("qty", parameterToString(qty, ""))
+	localVarFormParams.Add("price", parameterToString(price, ""))
+	localVarFormParams.Add("base_price", parameterToString(basePrice, ""))
+	localVarFormParams.Add("stop_px", parameterToString(stopPx, ""))
+	localVarFormParams.Add("time_in_force", parameterToString(timeInForce, ""))
+	if localVarOptionals != nil && localVarOptionals.TriggerBy.IsSet() {
+		localVarFormParams.Add("trigger_by", parameterToString(localVarOptionals.TriggerBy.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.CloseOnTrigger.IsSet() {
+		localVarFormParams.Add("close_on_trigger", parameterToString(localVarOptionals.CloseOnTrigger.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.OrderLinkId.IsSet() {
+		localVarFormParams.Add("order_link_id", parameterToString(localVarOptionals.OrderLinkId.Value(), ""))
 	}
 	if ctx != nil {
 		// API Key Authentication
@@ -509,17 +509,6 @@ func (a *ConditionalApiService) ConditionalReplace(ctx context.Context, orderId 
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	localVarQueryParams.Add("order_id", parameterToString(orderId, ""))
-	localVarQueryParams.Add("symbol", parameterToString(symbol, ""))
-	if localVarOptionals != nil && localVarOptionals.PRQty.IsSet() {
-		localVarQueryParams.Add("p_r_qty", parameterToString(localVarOptionals.PRQty.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.PRPrice.IsSet() {
-		localVarQueryParams.Add("p_r_price", parameterToString(localVarOptionals.PRPrice.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.PRTriggerPrice.IsSet() {
-		localVarQueryParams.Add("p_r_trigger_price", parameterToString(localVarOptionals.PRTriggerPrice.Value(), ""))
-	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
 
@@ -536,6 +525,17 @@ func (a *ConditionalApiService) ConditionalReplace(ctx context.Context, orderId 
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	localVarFormParams.Add("order_id", parameterToString(orderId, ""))
+	localVarFormParams.Add("symbol", parameterToString(symbol, ""))
+	if localVarOptionals != nil && localVarOptionals.PRQty.IsSet() {
+		localVarFormParams.Add("p_r_qty", parameterToString(localVarOptionals.PRQty.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.PRPrice.IsSet() {
+		localVarFormParams.Add("p_r_price", parameterToString(localVarOptionals.PRPrice.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.PRTriggerPrice.IsSet() {
+		localVarFormParams.Add("p_r_trigger_price", parameterToString(localVarOptionals.PRTriggerPrice.Value(), ""))
 	}
 	if ctx != nil {
 		// API Key Authentication

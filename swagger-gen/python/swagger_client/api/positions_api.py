@@ -100,15 +100,15 @@ class PositionsApi(object):
         path_params = {}
 
         query_params = []
-        if 'symbol' in params:
-            query_params.append(('symbol', params['symbol']))  # noqa: E501
-        if 'margin' in params:
-            query_params.append(('margin', params['margin']))  # noqa: E501
 
         header_params = {}
 
         form_params = []
         local_var_files = {}
+        if 'symbol' in params:
+            form_params.append(('symbol', params['symbol']))  # noqa: E501
+        if 'margin' in params:
+            form_params.append(('margin', params['margin']))  # noqa: E501
 
         body_params = None
         # HTTP header `Accept`
@@ -294,15 +294,15 @@ class PositionsApi(object):
         path_params = {}
 
         query_params = []
-        if 'symbol' in params:
-            query_params.append(('symbol', params['symbol']))  # noqa: E501
-        if 'leverage' in params:
-            query_params.append(('leverage', params['leverage']))  # noqa: E501
 
         header_params = {}
 
         form_params = []
         local_var_files = {}
+        if 'symbol' in params:
+            form_params.append(('symbol', params['symbol']))  # noqa: E501
+        if 'leverage' in params:
+            form_params.append(('leverage', params['leverage']))  # noqa: E501
 
         body_params = None
         # HTTP header `Accept`
@@ -399,19 +399,19 @@ class PositionsApi(object):
         path_params = {}
 
         query_params = []
-        if 'symbol' in params:
-            query_params.append(('symbol', params['symbol']))  # noqa: E501
-        if 'take_profit' in params:
-            query_params.append(('take_profit', params['take_profit']))  # noqa: E501
-        if 'stop_loss' in params:
-            query_params.append(('stop_loss', params['stop_loss']))  # noqa: E501
-        if 'trailing_stop' in params:
-            query_params.append(('trailing_stop', params['trailing_stop']))  # noqa: E501
 
         header_params = {}
 
         form_params = []
         local_var_files = {}
+        if 'symbol' in params:
+            form_params.append(('symbol', params['symbol']))  # noqa: E501
+        if 'take_profit' in params:
+            form_params.append(('take_profit', params['take_profit']))  # noqa: E501
+        if 'stop_loss' in params:
+            form_params.append(('stop_loss', params['stop_loss']))  # noqa: E501
+        if 'trailing_stop' in params:
+            form_params.append(('trailing_stop', params['trailing_stop']))  # noqa: E501
 
         body_params = None
         # HTTP header `Accept`

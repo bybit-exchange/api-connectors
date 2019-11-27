@@ -80,22 +80,22 @@ pplx::task<std::shared_ptr<Object>> ConditionalApi::conditional_Replace(utility:
     consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/x-www-form-urlencoded") );
 
     {
-        queryParams[utility::conversions::to_string_t("order_id")] = ApiClient::parameterToString(orderId);
+        formParams[ utility::conversions::to_string_t("order_id") ] = ApiClient::parameterToString(orderId);
     }
     {
-        queryParams[utility::conversions::to_string_t("symbol")] = ApiClient::parameterToString(symbol);
+        formParams[ utility::conversions::to_string_t("symbol") ] = ApiClient::parameterToString(symbol);
     }
     if (pRQty)
     {
-        queryParams[utility::conversions::to_string_t("p_r_qty")] = ApiClient::parameterToString(*pRQty);
+        formParams[ utility::conversions::to_string_t("p_r_qty") ] = ApiClient::parameterToString(*pRQty);
     }
     if (pRPrice)
     {
-        queryParams[utility::conversions::to_string_t("p_r_price")] = ApiClient::parameterToString(*pRPrice);
+        formParams[ utility::conversions::to_string_t("p_r_price") ] = ApiClient::parameterToString(*pRPrice);
     }
     if (pRTriggerPrice)
     {
-        queryParams[utility::conversions::to_string_t("p_r_trigger_price")] = ApiClient::parameterToString(*pRTriggerPrice);
+        formParams[ utility::conversions::to_string_t("p_r_trigger_price") ] = ApiClient::parameterToString(*pRTriggerPrice);
     }
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -237,7 +237,7 @@ pplx::task<std::shared_ptr<Object>> ConditionalApi::conditional_cancel(utility::
     consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/x-www-form-urlencoded") );
 
     {
-        queryParams[utility::conversions::to_string_t("stop_order_id")] = ApiClient::parameterToString(stopOrderId);
+        formParams[ utility::conversions::to_string_t("stop_order_id") ] = ApiClient::parameterToString(stopOrderId);
     }
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -542,40 +542,40 @@ pplx::task<std::shared_ptr<Object>> ConditionalApi::conditional_new(utility::str
     consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/x-www-form-urlencoded") );
 
     {
-        queryParams[utility::conversions::to_string_t("side")] = ApiClient::parameterToString(side);
+        formParams[ utility::conversions::to_string_t("side") ] = ApiClient::parameterToString(side);
     }
     {
-        queryParams[utility::conversions::to_string_t("symbol")] = ApiClient::parameterToString(symbol);
+        formParams[ utility::conversions::to_string_t("symbol") ] = ApiClient::parameterToString(symbol);
     }
     {
-        queryParams[utility::conversions::to_string_t("order_type")] = ApiClient::parameterToString(orderType);
+        formParams[ utility::conversions::to_string_t("order_type") ] = ApiClient::parameterToString(orderType);
     }
     {
-        queryParams[utility::conversions::to_string_t("qty")] = ApiClient::parameterToString(qty);
+        formParams[ utility::conversions::to_string_t("qty") ] = ApiClient::parameterToString(qty);
     }
     {
-        queryParams[utility::conversions::to_string_t("price")] = ApiClient::parameterToString(price);
+        formParams[ utility::conversions::to_string_t("price") ] = ApiClient::parameterToString(price);
     }
     {
-        queryParams[utility::conversions::to_string_t("base_price")] = ApiClient::parameterToString(basePrice);
+        formParams[ utility::conversions::to_string_t("base_price") ] = ApiClient::parameterToString(basePrice);
     }
     {
-        queryParams[utility::conversions::to_string_t("stop_px")] = ApiClient::parameterToString(stopPx);
+        formParams[ utility::conversions::to_string_t("stop_px") ] = ApiClient::parameterToString(stopPx);
     }
     {
-        queryParams[utility::conversions::to_string_t("time_in_force")] = ApiClient::parameterToString(timeInForce);
+        formParams[ utility::conversions::to_string_t("time_in_force") ] = ApiClient::parameterToString(timeInForce);
     }
     if (triggerBy)
     {
-        queryParams[utility::conversions::to_string_t("trigger_by")] = ApiClient::parameterToString(*triggerBy);
+        formParams[ utility::conversions::to_string_t("trigger_by") ] = ApiClient::parameterToString(*triggerBy);
     }
     if (closeOnTrigger)
     {
-        queryParams[utility::conversions::to_string_t("close_on_trigger")] = ApiClient::parameterToString(*closeOnTrigger);
+        formParams[ utility::conversions::to_string_t("close_on_trigger") ] = ApiClient::parameterToString(*closeOnTrigger);
     }
     if (orderLinkId)
     {
-        queryParams[utility::conversions::to_string_t("order_link_id")] = ApiClient::parameterToString(*orderLinkId);
+        formParams[ utility::conversions::to_string_t("order_link_id") ] = ApiClient::parameterToString(*orderLinkId);
     }
 
     std::shared_ptr<IHttpBody> httpBody;

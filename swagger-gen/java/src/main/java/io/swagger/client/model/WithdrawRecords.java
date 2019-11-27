@@ -29,7 +29,7 @@ import java.math.BigDecimal;
  * Get withdraw records response
  */
 @ApiModel(description = "Get withdraw records response")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-24T19:54:52.777+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-11-27T16:42:38.839+08:00")
 public class WithdrawRecords {
   @SerializedName("id")
   private BigDecimal id = null;

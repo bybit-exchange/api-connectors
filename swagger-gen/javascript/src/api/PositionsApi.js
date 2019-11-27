@@ -80,14 +80,14 @@
       var pathParams = {
       };
       var queryParams = {
-        'symbol': symbol,
-        'margin': margin,
       };
       var collectionQueryParams = {
       };
       var headerParams = {
       };
       var formParams = {
+        'symbol': symbol,
+        'margin': margin
       };
 
       var authNames = ['apiKey', 'apiSignature', 'timestamp'];
@@ -174,14 +174,14 @@
       var pathParams = {
       };
       var queryParams = {
-        'symbol': symbol,
-        'leverage': leverage,
       };
       var collectionQueryParams = {
       };
       var headerParams = {
       };
       var formParams = {
+        'symbol': symbol,
+        'leverage': leverage
       };
 
       var authNames = ['apiKey', 'apiSignature', 'timestamp'];
@@ -227,16 +227,16 @@
       var pathParams = {
       };
       var queryParams = {
-        'symbol': symbol,
-        'take_profit': opts['takeProfit'],
-        'stop_loss': opts['stopLoss'],
-        'trailing_stop': opts['trailingStop'],
       };
       var collectionQueryParams = {
       };
       var headerParams = {
       };
       var formParams = {
+        'symbol': symbol,
+        'take_profit': opts['takeProfit'],
+        'stop_loss': opts['stopLoss'],
+        'trailing_stop': opts['trailingStop']
       };
 
       var authNames = ['apiKey', 'apiSignature', 'timestamp'];

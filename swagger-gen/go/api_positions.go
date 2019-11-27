@@ -50,8 +50,6 @@ func (a *PositionsApiService) PositionsChangeMargin(ctx context.Context, symbol 
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	localVarQueryParams.Add("symbol", parameterToString(symbol, ""))
-	localVarQueryParams.Add("margin", parameterToString(margin, ""))
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
 
@@ -69,6 +67,8 @@ func (a *PositionsApiService) PositionsChangeMargin(ctx context.Context, symbol 
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
+	localVarFormParams.Add("symbol", parameterToString(symbol, ""))
+	localVarFormParams.Add("margin", parameterToString(margin, ""))
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -304,8 +304,6 @@ func (a *PositionsApiService) PositionsSaveLeverage(ctx context.Context, symbol 
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	localVarQueryParams.Add("symbol", parameterToString(symbol, ""))
-	localVarQueryParams.Add("leverage", parameterToString(leverage, ""))
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
 
@@ -323,6 +321,8 @@ func (a *PositionsApiService) PositionsSaveLeverage(ctx context.Context, symbol 
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
+	localVarFormParams.Add("symbol", parameterToString(symbol, ""))
+	localVarFormParams.Add("leverage", parameterToString(leverage, ""))
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -443,16 +443,6 @@ func (a *PositionsApiService) PositionsTradingStop(ctx context.Context, symbol s
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	localVarQueryParams.Add("symbol", parameterToString(symbol, ""))
-	if localVarOptionals != nil && localVarOptionals.TakeProfit.IsSet() {
-		localVarQueryParams.Add("take_profit", parameterToString(localVarOptionals.TakeProfit.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.StopLoss.IsSet() {
-		localVarQueryParams.Add("stop_loss", parameterToString(localVarOptionals.StopLoss.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.TrailingStop.IsSet() {
-		localVarQueryParams.Add("trailing_stop", parameterToString(localVarOptionals.TrailingStop.Value(), ""))
-	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
 
@@ -469,6 +459,16 @@ func (a *PositionsApiService) PositionsTradingStop(ctx context.Context, symbol s
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	localVarFormParams.Add("symbol", parameterToString(symbol, ""))
+	if localVarOptionals != nil && localVarOptionals.TakeProfit.IsSet() {
+		localVarFormParams.Add("take_profit", parameterToString(localVarOptionals.TakeProfit.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.StopLoss.IsSet() {
+		localVarFormParams.Add("stop_loss", parameterToString(localVarOptionals.StopLoss.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.TrailingStop.IsSet() {
+		localVarFormParams.Add("trailing_stop", parameterToString(localVarOptionals.TrailingStop.Value(), ""))
 	}
 	if ctx != nil {
 		// API Key Authentication

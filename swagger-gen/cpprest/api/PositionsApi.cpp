@@ -80,10 +80,10 @@ pplx::task<std::shared_ptr<Object>> PositionsApi::positions_changeMargin(utility
     consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/x-www-form-urlencoded") );
 
     {
-        queryParams[utility::conversions::to_string_t("symbol")] = ApiClient::parameterToString(symbol);
+        formParams[ utility::conversions::to_string_t("symbol") ] = ApiClient::parameterToString(symbol);
     }
     {
-        queryParams[utility::conversions::to_string_t("margin")] = ApiClient::parameterToString(margin);
+        formParams[ utility::conversions::to_string_t("margin") ] = ApiClient::parameterToString(margin);
     }
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -364,10 +364,10 @@ pplx::task<std::shared_ptr<Object>> PositionsApi::positions_saveLeverage(utility
     consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/x-www-form-urlencoded") );
 
     {
-        queryParams[utility::conversions::to_string_t("symbol")] = ApiClient::parameterToString(symbol);
+        formParams[ utility::conversions::to_string_t("symbol") ] = ApiClient::parameterToString(symbol);
     }
     {
-        queryParams[utility::conversions::to_string_t("leverage")] = ApiClient::parameterToString(leverage);
+        formParams[ utility::conversions::to_string_t("leverage") ] = ApiClient::parameterToString(leverage);
     }
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -509,19 +509,19 @@ pplx::task<std::shared_ptr<Object>> PositionsApi::positions_tradingStop(utility:
     consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/x-www-form-urlencoded") );
 
     {
-        queryParams[utility::conversions::to_string_t("symbol")] = ApiClient::parameterToString(symbol);
+        formParams[ utility::conversions::to_string_t("symbol") ] = ApiClient::parameterToString(symbol);
     }
     if (takeProfit)
     {
-        queryParams[utility::conversions::to_string_t("take_profit")] = ApiClient::parameterToString(*takeProfit);
+        formParams[ utility::conversions::to_string_t("take_profit") ] = ApiClient::parameterToString(*takeProfit);
     }
     if (stopLoss)
     {
-        queryParams[utility::conversions::to_string_t("stop_loss")] = ApiClient::parameterToString(*stopLoss);
+        formParams[ utility::conversions::to_string_t("stop_loss") ] = ApiClient::parameterToString(*stopLoss);
     }
     if (trailingStop)
     {
-        queryParams[utility::conversions::to_string_t("trailing_stop")] = ApiClient::parameterToString(*trailingStop);
+        formParams[ utility::conversions::to_string_t("trailing_stop") ] = ApiClient::parameterToString(*trailingStop);
     }
 
     std::shared_ptr<IHttpBody> httpBody;

@@ -14,8 +14,8 @@ open class OrderAPI {
     /**
      Get my active order list.
      
-     - parameter orderId: (query) Order ID 
-     - parameter symbol: (query) Contract type. (optional)
+     - parameter orderId: (form) Order ID 
+     - parameter symbol: (form) Contract type. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
     open class func orderCancel(orderId: String, symbol: String? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
@@ -39,20 +39,24 @@ open class OrderAPI {
        - name: timestamp
      - examples: [{contentType=application/json, example=""}]
      
-     - parameter orderId: (query) Order ID 
-     - parameter symbol: (query) Contract type. (optional)
+     - parameter orderId: (form) Order ID 
+     - parameter symbol: (form) Contract type. (optional)
 
      - returns: RequestBuilder<Any> 
      */
     open class func orderCancelWithRequestBuilder(orderId: String, symbol: String? = nil) -> RequestBuilder<Any> {
         let path = "/open-api/order/cancel"
         let URLString = SwaggerClientAPI.basePath + path
-        let parameters: [String:Any]? = nil
+        let formParams: [String:Any?] = [
+            "order_id": orderId,
+            "symbol": symbol
+        ]
+
+        let nonNullParameters = APIHelper.rejectNil(formParams)
+        let parameters = APIHelper.convertBoolToString(nonNullParameters)
         
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "order_id": orderId, 
-            "symbol": symbol
         ])
 
         let requestBuilder: RequestBuilder<Any>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
@@ -127,17 +131,17 @@ open class OrderAPI {
     /**
      Place active order
      
-     - parameter side: (query) Side 
-     - parameter symbol: (query) Contract type. 
-     - parameter orderType: (query) Active order type 
-     - parameter qty: (query)  
+     - parameter side: (form) Side 
+     - parameter symbol: (form) Contract type. 
+     - parameter orderType: (form) Active order type 
+     - parameter qty: (form)  
      - parameter price: (query) Order price. 
-     - parameter timeInForce: (query) Time in force 
+     - parameter timeInForce: (form) Time in force 
      - parameter takeProfit: (query) take profit price (optional)
-     - parameter stopLoss: (query) stop loss price (optional)
-     - parameter reduceOnly: (query) reduce only (optional)
-     - parameter closeOnTrigger: (query) close on trigger (optional)
-     - parameter orderLinkId: (query) TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. (optional)
+     - parameter stopLoss: (form) stop loss price (optional)
+     - parameter reduceOnly: (form) reduce only (optional)
+     - parameter closeOnTrigger: (form) close on trigger (optional)
+     - parameter orderLinkId: (form) TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
     open class func orderNew(side: String, symbol: String, orderType: String, qty: Double, price: Double, timeInForce: String, takeProfit: Double? = nil, stopLoss: Double? = nil, reduceOnly: Bool? = nil, closeOnTrigger: Bool? = nil, orderLinkId: String? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
@@ -161,38 +165,42 @@ open class OrderAPI {
        - name: timestamp
      - examples: [{contentType=application/json, example=""}]
      
-     - parameter side: (query) Side 
-     - parameter symbol: (query) Contract type. 
-     - parameter orderType: (query) Active order type 
-     - parameter qty: (query)  
+     - parameter side: (form) Side 
+     - parameter symbol: (form) Contract type. 
+     - parameter orderType: (form) Active order type 
+     - parameter qty: (form)  
      - parameter price: (query) Order price. 
-     - parameter timeInForce: (query) Time in force 
+     - parameter timeInForce: (form) Time in force 
      - parameter takeProfit: (query) take profit price (optional)
-     - parameter stopLoss: (query) stop loss price (optional)
-     - parameter reduceOnly: (query) reduce only (optional)
-     - parameter closeOnTrigger: (query) close on trigger (optional)
-     - parameter orderLinkId: (query) TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. (optional)
+     - parameter stopLoss: (form) stop loss price (optional)
+     - parameter reduceOnly: (form) reduce only (optional)
+     - parameter closeOnTrigger: (form) close on trigger (optional)
+     - parameter orderLinkId: (form) TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. (optional)
 
      - returns: RequestBuilder<Any> 
      */
     open class func orderNewWithRequestBuilder(side: String, symbol: String, orderType: String, qty: Double, price: Double, timeInForce: String, takeProfit: Double? = nil, stopLoss: Double? = nil, reduceOnly: Bool? = nil, closeOnTrigger: Bool? = nil, orderLinkId: String? = nil) -> RequestBuilder<Any> {
         let path = "/open-api/order/create"
         let URLString = SwaggerClientAPI.basePath + path
-        let parameters: [String:Any]? = nil
+        let formParams: [String:Any?] = [
+            "side": side,
+            "symbol": symbol,
+            "order_type": orderType,
+            "qty": qty,
+            "time_in_force": timeInForce,
+            "stop_loss": stopLoss,
+            "reduce_only": reduceOnly,
+            "close_on_trigger": closeOnTrigger,
+            "order_link_id": orderLinkId
+        ]
+
+        let nonNullParameters = APIHelper.rejectNil(formParams)
+        let parameters = APIHelper.convertBoolToString(nonNullParameters)
         
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "side": side, 
-            "symbol": symbol, 
-            "order_type": orderType, 
-            "qty": qty, 
             "price": price, 
-            "time_in_force": timeInForce, 
-            "take_profit": takeProfit, 
-            "stop_loss": stopLoss, 
-            "reduce_only": reduceOnly, 
-            "close_on_trigger": closeOnTrigger, 
-            "order_link_id": orderLinkId
+            "take_profit": takeProfit
         ])
 
         let requestBuilder: RequestBuilder<Any>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
@@ -252,10 +260,10 @@ open class OrderAPI {
     /**
      Replace active order. Only incomplete orders can be modified. 
      
-     - parameter orderId: (query) Order ID. 
-     - parameter symbol: (query) Contract type. 
-     - parameter pRQty: (query) Order quantity. (optional)
-     - parameter pRPrice: (query) Order price. (optional)
+     - parameter orderId: (form) Order ID. 
+     - parameter symbol: (form) Contract type. 
+     - parameter pRQty: (form) Order quantity. (optional)
+     - parameter pRPrice: (form) Order price. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
     open class func orderReplace(orderId: String, symbol: String, pRQty: Double? = nil, pRPrice: Double? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
@@ -279,24 +287,28 @@ open class OrderAPI {
        - name: timestamp
      - examples: [{contentType=application/json, example=""}]
      
-     - parameter orderId: (query) Order ID. 
-     - parameter symbol: (query) Contract type. 
-     - parameter pRQty: (query) Order quantity. (optional)
-     - parameter pRPrice: (query) Order price. (optional)
+     - parameter orderId: (form) Order ID. 
+     - parameter symbol: (form) Contract type. 
+     - parameter pRQty: (form) Order quantity. (optional)
+     - parameter pRPrice: (form) Order price. (optional)
 
      - returns: RequestBuilder<Any> 
      */
     open class func orderReplaceWithRequestBuilder(orderId: String, symbol: String, pRQty: Double? = nil, pRPrice: Double? = nil) -> RequestBuilder<Any> {
         let path = "/open-api/order/replace"
         let URLString = SwaggerClientAPI.basePath + path
-        let parameters: [String:Any]? = nil
+        let formParams: [String:Any?] = [
+            "order_id": orderId,
+            "symbol": symbol,
+            "p_r_qty": pRQty,
+            "p_r_price": pRPrice
+        ]
+
+        let nonNullParameters = APIHelper.rejectNil(formParams)
+        let parameters = APIHelper.convertBoolToString(nonNullParameters)
         
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "order_id": orderId, 
-            "symbol": symbol, 
-            "p_r_qty": pRQty, 
-            "p_r_price": pRPrice
         ])
 
         let requestBuilder: RequestBuilder<Any>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()

@@ -87,12 +87,6 @@ NSInteger kSWGPositionsApiMissingParamErrorCode = 234513;
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    if (symbol != nil) {
-        queryParams[@"symbol"] = symbol;
-    }
-    if (margin != nil) {
-        queryParams[@"margin"] = margin;
-    }
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
     // HTTP header `Accept`
@@ -113,6 +107,12 @@ NSInteger kSWGPositionsApiMissingParamErrorCode = 234513;
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
     NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+    if (symbol) {
+        formParams[@"symbol"] = symbol;
+    }
+    if (margin) {
+        formParams[@"margin"] = margin;
+    }
 
     return [self.apiClient requestWithPath: resourcePath
                                     method: @"POST"
@@ -224,12 +224,6 @@ NSInteger kSWGPositionsApiMissingParamErrorCode = 234513;
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    if (symbol != nil) {
-        queryParams[@"symbol"] = symbol;
-    }
-    if (leverage != nil) {
-        queryParams[@"leverage"] = leverage;
-    }
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
     // HTTP header `Accept`
@@ -250,6 +244,12 @@ NSInteger kSWGPositionsApiMissingParamErrorCode = 234513;
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
     NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+    if (symbol) {
+        formParams[@"symbol"] = symbol;
+    }
+    if (leverage) {
+        formParams[@"leverage"] = leverage;
+    }
 
     return [self.apiClient requestWithPath: resourcePath
                                     method: @"POST"
@@ -304,18 +304,6 @@ NSInteger kSWGPositionsApiMissingParamErrorCode = 234513;
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    if (symbol != nil) {
-        queryParams[@"symbol"] = symbol;
-    }
-    if (takeProfit != nil) {
-        queryParams[@"take_profit"] = takeProfit;
-    }
-    if (stopLoss != nil) {
-        queryParams[@"stop_loss"] = stopLoss;
-    }
-    if (trailingStop != nil) {
-        queryParams[@"trailing_stop"] = trailingStop;
-    }
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
     // HTTP header `Accept`
@@ -336,6 +324,18 @@ NSInteger kSWGPositionsApiMissingParamErrorCode = 234513;
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
     NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+    if (symbol) {
+        formParams[@"symbol"] = symbol;
+    }
+    if (takeProfit) {
+        formParams[@"take_profit"] = takeProfit;
+    }
+    if (stopLoss) {
+        formParams[@"stop_loss"] = stopLoss;
+    }
+    if (trailingStop) {
+        formParams[@"trailing_stop"] = trailingStop;
+    }
 
     return [self.apiClient requestWithPath: resourcePath
                                     method: @"POST"

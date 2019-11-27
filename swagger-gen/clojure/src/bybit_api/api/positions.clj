@@ -9,8 +9,8 @@
   (call-api "/position/change-position-margin" :post
             {:path-params   {}
              :header-params {}
-             :query-params  {"symbol" symbol "margin" margin }
-             :form-params   {}
+             :query-params  {}
+             :form-params   {"symbol" symbol "margin" margin }
              :content-types ["application/json" "application/x-www-form-urlencoded"]
              :accepts       ["application/json"]
              :auth-names    ["apiKey" "apiSignature" "timestamp"]}))
@@ -44,8 +44,8 @@
   (call-api "/user/leverage/save" :post
             {:path-params   {}
              :header-params {}
-             :query-params  {"symbol" symbol "leverage" leverage }
-             :form-params   {}
+             :query-params  {}
+             :form-params   {"symbol" symbol "leverage" leverage }
              :content-types ["application/json" "application/x-www-form-urlencoded"]
              :accepts       ["application/json"]
              :auth-names    ["apiKey" "apiSignature" "timestamp"]}))
@@ -63,8 +63,8 @@
    (call-api "/open-api/position/trading-stop" :post
              {:path-params   {}
               :header-params {}
-              :query-params  {"symbol" symbol "take_profit" take-profit "stop_loss" stop-loss "trailing_stop" trailing-stop }
-              :form-params   {}
+              :query-params  {}
+              :form-params   {"symbol" symbol "take_profit" take-profit "stop_loss" stop-loss "trailing_stop" trailing-stop }
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json"]
               :auth-names    ["apiKey" "apiSignature" "timestamp"]})))

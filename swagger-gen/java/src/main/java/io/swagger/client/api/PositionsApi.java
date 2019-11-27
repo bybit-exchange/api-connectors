@@ -70,14 +70,14 @@ public class PositionsApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        if (symbol != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("symbol", symbol));
-        if (margin != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("margin", margin));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        if (symbol != null)
+        localVarFormParams.put("symbol", symbol);
+        if (margin != null)
+        localVarFormParams.put("margin", margin);
 
         final String[] localVarAccepts = {
             "application/json"
@@ -318,14 +318,14 @@ public class PositionsApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        if (symbol != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("symbol", symbol));
-        if (leverage != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("leverage", leverage));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        if (symbol != null)
+        localVarFormParams.put("symbol", symbol);
+        if (leverage != null)
+        localVarFormParams.put("leverage", leverage);
 
         final String[] localVarAccepts = {
             "application/json"
@@ -455,18 +455,18 @@ public class PositionsApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        if (symbol != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("symbol", symbol));
-        if (takeProfit != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("take_profit", takeProfit));
-        if (stopLoss != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("stop_loss", stopLoss));
-        if (trailingStop != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("trailing_stop", trailingStop));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        if (symbol != null)
+        localVarFormParams.put("symbol", symbol);
+        if (takeProfit != null)
+        localVarFormParams.put("take_profit", takeProfit);
+        if (stopLoss != null)
+        localVarFormParams.put("stop_loss", stopLoss);
+        if (trailingStop != null)
+        localVarFormParams.put("trailing_stop", trailingStop);
 
         final String[] localVarAccepts = {
             "application/json"

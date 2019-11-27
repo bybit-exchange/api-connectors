@@ -51,8 +51,6 @@ module SwaggerClient
 
       # query parameters
       query_params = {}
-      query_params[:'symbol'] = symbol
-      query_params[:'margin'] = margin
 
       # header parameters
       header_params = {}
@@ -63,6 +61,8 @@ module SwaggerClient
 
       # form parameters
       form_params = {}
+      form_params['symbol'] = symbol
+      form_params['margin'] = margin
 
       # http body (model)
       post_body = nil
@@ -157,8 +157,6 @@ module SwaggerClient
 
       # query parameters
       query_params = {}
-      query_params[:'symbol'] = symbol
-      query_params[:'leverage'] = leverage
 
       # header parameters
       header_params = {}
@@ -169,6 +167,8 @@ module SwaggerClient
 
       # form parameters
       form_params = {}
+      form_params['symbol'] = symbol
+      form_params['leverage'] = leverage
 
       # http body (model)
       post_body = nil
@@ -217,10 +217,6 @@ module SwaggerClient
 
       # query parameters
       query_params = {}
-      query_params[:'symbol'] = symbol
-      query_params[:'take_profit'] = opts[:'take_profit'] if !opts[:'take_profit'].nil?
-      query_params[:'stop_loss'] = opts[:'stop_loss'] if !opts[:'stop_loss'].nil?
-      query_params[:'trailing_stop'] = opts[:'trailing_stop'] if !opts[:'trailing_stop'].nil?
 
       # header parameters
       header_params = {}
@@ -231,6 +227,10 @@ module SwaggerClient
 
       # form parameters
       form_params = {}
+      form_params['symbol'] = symbol
+      form_params['take_profit'] = opts[:'take_profit'] if !opts[:'take_profit'].nil?
+      form_params['stop_loss'] = opts[:'stop_loss'] if !opts[:'stop_loss'].nil?
+      form_params['trailing_stop'] = opts[:'trailing_stop'] if !opts[:'trailing_stop'].nil?
 
       # http body (model)
       post_body = nil

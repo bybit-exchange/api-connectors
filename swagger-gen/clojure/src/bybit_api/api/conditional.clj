@@ -9,8 +9,8 @@
   (call-api "/open-api/stop-order/cancel" :post
             {:path-params   {}
              :header-params {}
-             :query-params  {"stop_order_id" stop-order-id }
-             :form-params   {}
+             :query-params  {}
+             :form-params   {"stop_order_id" stop-order-id }
              :content-types ["application/json" "application/x-www-form-urlencoded"]
              :accepts       ["application/json"]
              :auth-names    ["apiKey" "apiSignature" "timestamp"]}))
@@ -47,8 +47,8 @@
    (call-api "/open-api/stop-order/create" :post
              {:path-params   {}
               :header-params {}
-              :query-params  {"side" side "symbol" symbol "order_type" order-type "qty" qty "price" price "base_price" base-price "stop_px" stop-px "time_in_force" time-in-force "trigger_by" trigger-by "close_on_trigger" close-on-trigger "order_link_id" order-link-id }
-              :form-params   {}
+              :query-params  {}
+              :form-params   {"side" side "symbol" symbol "order_type" order-type "qty" qty "price" price "base_price" base-price "stop_px" stop-px "time_in_force" time-in-force "trigger_by" trigger-by "close_on_trigger" close-on-trigger "order_link_id" order-link-id }
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json"]
               :auth-names    ["apiKey" "apiSignature" "timestamp"]})))
@@ -67,8 +67,8 @@
    (call-api "/open-api/stop-order/replace" :post
              {:path-params   {}
               :header-params {}
-              :query-params  {"order_id" order-id "symbol" symbol "p_r_qty" p-r-qty "p_r_price" p-r-price "p_r_trigger_price" p-r-trigger-price }
-              :form-params   {}
+              :query-params  {}
+              :form-params   {"order_id" order-id "symbol" symbol "p_r_qty" p-r-qty "p_r_price" p-r-price "p_r_trigger_price" p-r-trigger-price }
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json"]
               :auth-names    ["apiKey" "apiSignature" "timestamp"]})))

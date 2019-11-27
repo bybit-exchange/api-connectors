@@ -83,8 +83,6 @@ public class PositionsApi {
     Map<String, String> headerParams = new HashMap<String, String>();
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "symbol", symbol));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "margin", margin));
     String[] contentTypes = {
       "application/json",
       "application/x-www-form-urlencoded"
@@ -94,10 +92,18 @@ public class PositionsApi {
     if (contentType.startsWith("multipart/form-data")) {
       // file uploading
       MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      if (symbol != null) {
+        localVarBuilder.addTextBody("symbol", ApiInvoker.parameterToString(symbol), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (margin != null) {
+        localVarBuilder.addTextBody("margin", ApiInvoker.parameterToString(margin), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
       HttpEntity httpEntity = localVarBuilder.build();
       postBody = httpEntity;
     } else {
       // normal form params
+      formParams.put("symbol", ApiInvoker.parameterToString(symbol));
+      formParams.put("margin", ApiInvoker.parameterToString(margin));
     }
 
     String[] authNames = new String[] { "apiKey", "apiSignature", "timestamp" };
@@ -155,8 +161,6 @@ public class PositionsApi {
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
 
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "symbol", symbol));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "margin", margin));
 
 
     String[] contentTypes = {
@@ -168,12 +172,22 @@ public class PositionsApi {
       // file uploading
       MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
       
+      if (symbol != null) {
+        localVarBuilder.addTextBody("symbol", ApiInvoker.parameterToString(symbol), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (margin != null) {
+        localVarBuilder.addTextBody("margin", ApiInvoker.parameterToString(margin), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
 
       HttpEntity httpEntity = localVarBuilder.build();
       postBody = httpEntity;
     } else {
       // normal form params
-          }
+      formParams.put("symbol", ApiInvoker.parameterToString(symbol));
+formParams.put("margin", ApiInvoker.parameterToString(margin));
+    }
 
     String[] authNames = new String[] { "apiKey", "apiSignature", "timestamp" };
 
@@ -345,8 +359,6 @@ public class PositionsApi {
     Map<String, String> headerParams = new HashMap<String, String>();
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "symbol", symbol));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "leverage", leverage));
     String[] contentTypes = {
       "application/json",
       "application/x-www-form-urlencoded"
@@ -356,10 +368,18 @@ public class PositionsApi {
     if (contentType.startsWith("multipart/form-data")) {
       // file uploading
       MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      if (symbol != null) {
+        localVarBuilder.addTextBody("symbol", ApiInvoker.parameterToString(symbol), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (leverage != null) {
+        localVarBuilder.addTextBody("leverage", ApiInvoker.parameterToString(leverage), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
       HttpEntity httpEntity = localVarBuilder.build();
       postBody = httpEntity;
     } else {
       // normal form params
+      formParams.put("symbol", ApiInvoker.parameterToString(symbol));
+      formParams.put("leverage", ApiInvoker.parameterToString(leverage));
     }
 
     String[] authNames = new String[] { "apiKey", "apiSignature", "timestamp" };
@@ -417,8 +437,6 @@ public class PositionsApi {
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
 
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "symbol", symbol));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "leverage", leverage));
 
 
     String[] contentTypes = {
@@ -430,12 +448,22 @@ public class PositionsApi {
       // file uploading
       MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
       
+      if (symbol != null) {
+        localVarBuilder.addTextBody("symbol", ApiInvoker.parameterToString(symbol), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (leverage != null) {
+        localVarBuilder.addTextBody("leverage", ApiInvoker.parameterToString(leverage), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
 
       HttpEntity httpEntity = localVarBuilder.build();
       postBody = httpEntity;
     } else {
       // normal form params
-          }
+      formParams.put("symbol", ApiInvoker.parameterToString(symbol));
+formParams.put("leverage", ApiInvoker.parameterToString(leverage));
+    }
 
     String[] authNames = new String[] { "apiKey", "apiSignature", "timestamp" };
 
@@ -486,10 +514,6 @@ public class PositionsApi {
     Map<String, String> headerParams = new HashMap<String, String>();
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "symbol", symbol));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "take_profit", takeProfit));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "stop_loss", stopLoss));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "trailing_stop", trailingStop));
     String[] contentTypes = {
       "application/json",
       "application/x-www-form-urlencoded"
@@ -499,10 +523,26 @@ public class PositionsApi {
     if (contentType.startsWith("multipart/form-data")) {
       // file uploading
       MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      if (symbol != null) {
+        localVarBuilder.addTextBody("symbol", ApiInvoker.parameterToString(symbol), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (takeProfit != null) {
+        localVarBuilder.addTextBody("take_profit", ApiInvoker.parameterToString(takeProfit), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (stopLoss != null) {
+        localVarBuilder.addTextBody("stop_loss", ApiInvoker.parameterToString(stopLoss), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (trailingStop != null) {
+        localVarBuilder.addTextBody("trailing_stop", ApiInvoker.parameterToString(trailingStop), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
       HttpEntity httpEntity = localVarBuilder.build();
       postBody = httpEntity;
     } else {
       // normal form params
+      formParams.put("symbol", ApiInvoker.parameterToString(symbol));
+      formParams.put("take_profit", ApiInvoker.parameterToString(takeProfit));
+      formParams.put("stop_loss", ApiInvoker.parameterToString(stopLoss));
+      formParams.put("trailing_stop", ApiInvoker.parameterToString(trailingStop));
     }
 
     String[] authNames = new String[] { "apiKey", "apiSignature", "timestamp" };
@@ -555,10 +595,6 @@ public class PositionsApi {
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
 
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "symbol", symbol));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "take_profit", takeProfit));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "stop_loss", stopLoss));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "trailing_stop", trailingStop));
 
 
     String[] contentTypes = {
@@ -570,12 +606,32 @@ public class PositionsApi {
       // file uploading
       MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
       
+      if (symbol != null) {
+        localVarBuilder.addTextBody("symbol", ApiInvoker.parameterToString(symbol), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (takeProfit != null) {
+        localVarBuilder.addTextBody("take_profit", ApiInvoker.parameterToString(takeProfit), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (stopLoss != null) {
+        localVarBuilder.addTextBody("stop_loss", ApiInvoker.parameterToString(stopLoss), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (trailingStop != null) {
+        localVarBuilder.addTextBody("trailing_stop", ApiInvoker.parameterToString(trailingStop), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
 
       HttpEntity httpEntity = localVarBuilder.build();
       postBody = httpEntity;
     } else {
       // normal form params
-          }
+      formParams.put("symbol", ApiInvoker.parameterToString(symbol));
+formParams.put("take_profit", ApiInvoker.parameterToString(takeProfit));
+formParams.put("stop_loss", ApiInvoker.parameterToString(stopLoss));
+formParams.put("trailing_stop", ApiInvoker.parameterToString(trailingStop));
+    }
 
     String[] authNames = new String[] { "apiKey", "apiSignature", "timestamp" };
 
