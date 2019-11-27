@@ -107,14 +107,14 @@
                 "operationId": "Positions.saveLeverage",
                 "parameters": [{
                         "name": "symbol",
-                        "in": "query",
+                        "in": "formData",
                         "description": "A symbol which you want change its leverage",
                         "required": true,
                         "type": "string"
                     },
                     {
                         "name": "leverage",
-                        "in": "query",
+                        "in": "formData",
                         "description": "New leverage you want set",
                         "required": true,
                         "type": "string"
@@ -163,14 +163,14 @@
                 "operationId": "Positions.changeMargin",
                 "parameters": [{
                         "name": "symbol",
-                        "in": "query",
+                        "in": "formData",
                         "description": "Contract type which you want update its margin",
                         "required": true,
                         "type": "string"
                     },
                     {
                         "name": "margin",
-                        "in": "query",
+                        "in": "formData",
                         "description": "New margin you want set",
                         "required": true,
                         "type": "string"
@@ -198,27 +198,27 @@
                 "operationId": "Positions.tradingStop",
                 "parameters": [{
                         "name": "symbol",
-                        "in": "query",
+                        "in": "formData",
                         "description": "Contract type",
                         "required": true,
                         "type": "string"
                     },
                     {
                         "name": "take_profit",
-                        "in": "query",
+                        "in": "formData",
                         "description": "Not less than 0, 0 means cancel TP",
                         "required": false,
                         "type": "string"
                     }, {
                         "name": "stop_loss",
-                        "in": "query",
+                        "in": "formData",
                         "description": "Not less than 0, 0 means cancel SL",
                         "required": false,
                         "type": "string"
                     },
                     {
                         "name": "trailing_stop",
-                        "in": "query",
+                        "in": "formData",
                         "description": "Not less than 0, 0 means cancel TS",
                         "required": false,
                         "type": "string"
@@ -368,27 +368,27 @@
                 "operationId": "Order.new",
                 "parameters": [{
                         "name": "side",
-                        "in": "query",
+                        "in": "formData",
                         "description": "Side",
                         "required": true,
                         "type": "string"
                     },
                     {
                         "name": "symbol",
-                        "in": "query",
+                        "in": "formData",
                         "description": "Contract type.",
                         "required": true,
                         "type": "string"
                     }, {
                         "name": "order_type",
-                        "in": "query",
+                        "in": "formData",
                         "description": "Active order type",
                         "required": true,
                         "type": "string"
                     },
                     {
                         "name": "qty",
-                        "in": "query",
+                        "in": "formData",
                         "description": "",
                         "required": true,
                         "type": "number",
@@ -403,7 +403,7 @@
                     },
                     {
                         "name": "time_in_force",
-                        "in": "query",
+                        "in": "formData",
                         "description": "Time in force",
                         "required": true,
                         "type": "string"
@@ -418,7 +418,7 @@
                     },
                     {
                         "name": "stop_loss",
-                        "in": "query",
+                        "in": "formData",
                         "description": "stop loss price",
                         "required": false,
                         "type": "number",
@@ -426,21 +426,21 @@
                     },
                     {
                         "name": "reduce_only",
-                        "in": "query",
+                        "in": "formData",
                         "description": "reduce only",
                         "required": false,
                         "type": "boolean"
                     },
                     {
                         "name": "close_on_trigger",
-                        "in": "query",
+                        "in": "formData",
                         "description": "close on trigger",
                         "required": false,
                         "type": "boolean"
                     },
                     {
                         "name": "order_link_id",
-                        "in": "query",
+                        "in": "formData",
                         "description": "TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.",
                         "required": false,
                         "type": "string"
@@ -538,14 +538,14 @@
                 "operationId": "Order.cancel",
                 "parameters": [{
                         "name": "order_id",
-                        "in": "query",
+                        "in": "formData",
                         "description": "Order ID",
                         "required": true,
                         "type": "string"
                     },
                     {
                         "name": "symbol",
-                        "in": "query",
+                        "in": "formData",
                         "description": "Contract type.",
                         "required": false,
                         "type": "string"
@@ -573,26 +573,26 @@
                 "operationId": "Order.Replace",
                 "parameters": [{
                     "name": "order_id",
-                    "in": "query",
+                    "in": "formData",
                     "description": "Order ID.",
                     "required": true,
                     "type": "string"
                 }, {
                     "name": "symbol",
-                    "in": "query",
+                    "in": "formData",
                     "description": "Contract type.",
                     "required": true,
                     "type": "string"
                 }, {
                     "name": "p_r_qty",
-                    "in": "query",
+                    "in": "formData",
                     "description": "Order quantity.",
                     "required": false,
                     "type": "number",
                     "format": "int64"
                 }, {
                     "name": "p_r_price",
-                    "in": "query",
+                    "in": "formData",
                     "description": "Order price.",
                     "required": false,
                     "type": "number",
@@ -655,27 +655,27 @@
                 "operationId": "Conditional.new",
                 "parameters": [{
                         "name": "side",
-                        "in": "query",
+                        "in": "formData",
                         "description": "Side.",
                         "required": true,
                         "type": "string"
                     },
                     {
                         "name": "symbol",
-                        "in": "query",
+                        "in": "formData",
                         "description": "Contract type.",
                         "required": true,
                         "type": "string"
                     }, {
                         "name": "order_type",
-                        "in": "query",
+                        "in": "formData",
                         "description": "Conditional order type.",
                         "required": true,
                         "type": "string"
                     },
                     {
                         "name": "qty",
-                        "in": "query",
+                        "in": "formData",
                         "description": "Order quantity.",
                         "required": true,
                         "type": "number",
@@ -683,7 +683,7 @@
                     },
                     {
                         "name": "price",
-                        "in": "query",
+                        "in": "formData",
                         "description": "Execution price for conditional order",
                         "required": true,
                         "type": "number",
@@ -691,7 +691,7 @@
                     },
                     {
                         "name": "base_price",
-                        "in": "query",
+                        "in": "formData",
                         "description": "Send current market price. It will be used to compare with the value of 'stop_px', to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order..",
                         "required": true,
                         "type": "number",
@@ -699,7 +699,7 @@
                     },
                     {
                         "name": "stop_px",
-                        "in": "query",
+                        "in": "formData",
                         "description": "Trigger price.",
                         "required": true,
                         "type": "number",
@@ -707,28 +707,28 @@
                     },
                     {
                         "name": "time_in_force",
-                        "in": "query",
+                        "in": "formData",
                         "description": "Time in force.",
                         "required": true,
                         "type": "string"
                     },
                     {
                         "name": "trigger_by",
-                        "in": "query",
+                        "in": "formData",
                         "description": "Trigger price type. Default LastPrice.",
                         "required": false,
                         "type": "string"
                     },
                     {
                         "name": "close_on_trigger",
-                        "in": "query",
+                        "in": "formData",
                         "description": "close on trigger.",
                         "required": false,
                         "type": "boolean"
                     },
                     {
                         "name": "order_link_id",
-                        "in": "query",
+                        "in": "formData",
                         "description": "Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique..",
                         "required": false,
                         "type": "string"
@@ -821,7 +821,7 @@
                 "operationId": "Conditional.cancel",
                 "parameters": [{
                     "name": "stop_order_id",
-                    "in": "query",
+                    "in": "formData",
                     "description": "Order ID of conditional order.",
                     "required": true,
                     "type": "string"
@@ -848,33 +848,33 @@
                 "operationId": "Conditional.Replace",
                 "parameters": [{
                     "name": "order_id",
-                    "in": "query",
+                    "in": "formData",
                     "description": "Order ID.",
                     "required": true,
                     "type": "string"
                 }, {
                     "name": "symbol",
-                    "in": "query",
+                    "in": "formData",
                     "description": "Contract type.",
                     "required": true,
                     "type": "string"
                 }, {
                     "name": "p_r_qty",
-                    "in": "query",
+                    "in": "formData",
                     "description": "Order quantity.",
                     "required": false,
                     "type": "number",
                     "format": "int64"
                 }, {
                     "name": "p_r_price",
-                    "in": "query",
+                    "in": "formData",
                     "description": "Order price.",
                     "required": false,
                     "type": "number",
                     "format": "double"
                 }, {
                     "name": "p_r_trigger_price",
-                    "in": "query",
+                    "in": "formData",
                     "description": "Trigger price.",
                     "required": false,
                     "type": "number",

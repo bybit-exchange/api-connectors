@@ -1,6 +1,6 @@
 import bybit
 
-client  = bybit.bybit(test=True, api_key="", api_secret="")
+client  = bybit.bybit(test=True, api_key="8cxTAQ8w68MpL58rVb", api_secret="lcpJ5I4Fabcgx7joliu8ArmpkOvO6dDwnqkq")
 
 # Get server time
 print(client.Common.Common_get().result()[0])
