@@ -267,11 +267,6 @@ class OrderApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extend
 
     if (orderId == null) throw new Exception("Missing required parameter 'orderId' when calling OrderApi->orderCancel")
 
-    queryParams += "order_id" -> orderId.toString
-    symbol match {
-      case Some(param) => queryParams += "symbol" -> param.toString
-      case _ => queryParams
-    }
 
     val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")
     resFuture flatMap { resp =>
@@ -356,30 +351,9 @@ class OrderApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extend
 
     if (timeInForce == null) throw new Exception("Missing required parameter 'timeInForce' when calling OrderApi->orderNew")
 
-    queryParams += "side" -> side.toString
-    queryParams += "symbol" -> symbol.toString
-    queryParams += "order_type" -> orderType.toString
-    queryParams += "qty" -> qty.toString
     queryParams += "price" -> price.toString
-    queryParams += "time_in_force" -> timeInForce.toString
     takeProfit match {
       case Some(param) => queryParams += "take_profit" -> param.toString
-      case _ => queryParams
-    }
-    stopLoss match {
-      case Some(param) => queryParams += "stop_loss" -> param.toString
-      case _ => queryParams
-    }
-    reduceOnly match {
-      case Some(param) => queryParams += "reduce_only" -> param.toString
-      case _ => queryParams
-    }
-    closeOnTrigger match {
-      case Some(param) => queryParams += "close_on_trigger" -> param.toString
-      case _ => queryParams
-    }
-    orderLinkId match {
-      case Some(param) => queryParams += "order_link_id" -> param.toString
       case _ => queryParams
     }
 
@@ -430,16 +404,6 @@ class OrderApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extend
 
     if (symbol == null) throw new Exception("Missing required parameter 'symbol' when calling OrderApi->orderReplace")
 
-    queryParams += "order_id" -> orderId.toString
-    queryParams += "symbol" -> symbol.toString
-    pRQty match {
-      case Some(param) => queryParams += "p_r_qty" -> param.toString
-      case _ => queryParams
-    }
-    pRPrice match {
-      case Some(param) => queryParams += "p_r_price" -> param.toString
-      case _ => queryParams
-    }
 
     val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")
     resFuture flatMap { resp =>

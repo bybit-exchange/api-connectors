@@ -94,13 +94,13 @@ class ConditionalApi(object):
         path_params = {}
 
         query_params = []
-        if 'stop_order_id' in params:
-            query_params.append(('stop_order_id', params['stop_order_id']))  # noqa: E501
 
         header_params = {}
 
         form_params = []
         local_var_files = {}
+        if 'stop_order_id' in params:
+            form_params.append(('stop_order_id', params['stop_order_id']))  # noqa: E501
 
         body_params = None
         # HTTP header `Accept`
@@ -352,33 +352,33 @@ class ConditionalApi(object):
         path_params = {}
 
         query_params = []
-        if 'side' in params:
-            query_params.append(('side', params['side']))  # noqa: E501
-        if 'symbol' in params:
-            query_params.append(('symbol', params['symbol']))  # noqa: E501
-        if 'order_type' in params:
-            query_params.append(('order_type', params['order_type']))  # noqa: E501
-        if 'qty' in params:
-            query_params.append(('qty', params['qty']))  # noqa: E501
-        if 'price' in params:
-            query_params.append(('price', params['price']))  # noqa: E501
-        if 'base_price' in params:
-            query_params.append(('base_price', params['base_price']))  # noqa: E501
-        if 'stop_px' in params:
-            query_params.append(('stop_px', params['stop_px']))  # noqa: E501
-        if 'time_in_force' in params:
-            query_params.append(('time_in_force', params['time_in_force']))  # noqa: E501
-        if 'trigger_by' in params:
-            query_params.append(('trigger_by', params['trigger_by']))  # noqa: E501
-        if 'close_on_trigger' in params:
-            query_params.append(('close_on_trigger', params['close_on_trigger']))  # noqa: E501
-        if 'order_link_id' in params:
-            query_params.append(('order_link_id', params['order_link_id']))  # noqa: E501
 
         header_params = {}
 
         form_params = []
         local_var_files = {}
+        if 'side' in params:
+            form_params.append(('side', params['side']))  # noqa: E501
+        if 'symbol' in params:
+            form_params.append(('symbol', params['symbol']))  # noqa: E501
+        if 'order_type' in params:
+            form_params.append(('order_type', params['order_type']))  # noqa: E501
+        if 'qty' in params:
+            form_params.append(('qty', params['qty']))  # noqa: E501
+        if 'price' in params:
+            form_params.append(('price', params['price']))  # noqa: E501
+        if 'base_price' in params:
+            form_params.append(('base_price', params['base_price']))  # noqa: E501
+        if 'stop_px' in params:
+            form_params.append(('stop_px', params['stop_px']))  # noqa: E501
+        if 'time_in_force' in params:
+            form_params.append(('time_in_force', params['time_in_force']))  # noqa: E501
+        if 'trigger_by' in params:
+            form_params.append(('trigger_by', params['trigger_by']))  # noqa: E501
+        if 'close_on_trigger' in params:
+            form_params.append(('close_on_trigger', params['close_on_trigger']))  # noqa: E501
+        if 'order_link_id' in params:
+            form_params.append(('order_link_id', params['order_link_id']))  # noqa: E501
 
         body_params = None
         # HTTP header `Accept`
@@ -481,21 +481,21 @@ class ConditionalApi(object):
         path_params = {}
 
         query_params = []
-        if 'order_id' in params:
-            query_params.append(('order_id', params['order_id']))  # noqa: E501
-        if 'symbol' in params:
-            query_params.append(('symbol', params['symbol']))  # noqa: E501
-        if 'p_r_qty' in params:
-            query_params.append(('p_r_qty', params['p_r_qty']))  # noqa: E501
-        if 'p_r_price' in params:
-            query_params.append(('p_r_price', params['p_r_price']))  # noqa: E501
-        if 'p_r_trigger_price' in params:
-            query_params.append(('p_r_trigger_price', params['p_r_trigger_price']))  # noqa: E501
 
         header_params = {}
 
         form_params = []
         local_var_files = {}
+        if 'order_id' in params:
+            form_params.append(('order_id', params['order_id']))  # noqa: E501
+        if 'symbol' in params:
+            form_params.append(('symbol', params['symbol']))  # noqa: E501
+        if 'p_r_qty' in params:
+            form_params.append(('p_r_qty', params['p_r_qty']))  # noqa: E501
+        if 'p_r_price' in params:
+            form_params.append(('p_r_price', params['p_r_price']))  # noqa: E501
+        if 'p_r_trigger_price' in params:
+            form_params.append(('p_r_trigger_price', params['p_r_trigger_price']))  # noqa: E501
 
         body_params = None
         # HTTP header `Accept`

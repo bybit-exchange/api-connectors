@@ -79,8 +79,6 @@ public class OrderApi {
     Map<String, String> headerParams = new HashMap<String, String>();
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "order_id", orderId));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "symbol", symbol));
     String[] contentTypes = {
       "application/json",
       "application/x-www-form-urlencoded"
@@ -90,10 +88,18 @@ public class OrderApi {
     if (contentType.startsWith("multipart/form-data")) {
       // file uploading
       MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      if (orderId != null) {
+        localVarBuilder.addTextBody("order_id", ApiInvoker.parameterToString(orderId), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (symbol != null) {
+        localVarBuilder.addTextBody("symbol", ApiInvoker.parameterToString(symbol), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
       HttpEntity httpEntity = localVarBuilder.build();
       postBody = httpEntity;
     } else {
       // normal form params
+      formParams.put("order_id", ApiInvoker.parameterToString(orderId));
+      formParams.put("symbol", ApiInvoker.parameterToString(symbol));
     }
 
     String[] authNames = new String[] { "apiKey", "apiSignature", "timestamp" };
@@ -146,8 +152,6 @@ public class OrderApi {
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
 
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "order_id", orderId));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "symbol", symbol));
 
 
     String[] contentTypes = {
@@ -159,12 +163,22 @@ public class OrderApi {
       // file uploading
       MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
       
+      if (orderId != null) {
+        localVarBuilder.addTextBody("order_id", ApiInvoker.parameterToString(orderId), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (symbol != null) {
+        localVarBuilder.addTextBody("symbol", ApiInvoker.parameterToString(symbol), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
 
       HttpEntity httpEntity = localVarBuilder.build();
       postBody = httpEntity;
     } else {
       // normal form params
-          }
+      formParams.put("order_id", ApiInvoker.parameterToString(orderId));
+formParams.put("symbol", ApiInvoker.parameterToString(symbol));
+    }
 
     String[] authNames = new String[] { "apiKey", "apiSignature", "timestamp" };
 
@@ -386,17 +400,8 @@ public class OrderApi {
     Map<String, String> headerParams = new HashMap<String, String>();
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "side", side));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "symbol", symbol));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "order_type", orderType));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "qty", qty));
     queryParams.addAll(ApiInvoker.parameterToPairs("", "price", price));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "time_in_force", timeInForce));
     queryParams.addAll(ApiInvoker.parameterToPairs("", "take_profit", takeProfit));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "stop_loss", stopLoss));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "reduce_only", reduceOnly));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "close_on_trigger", closeOnTrigger));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "order_link_id", orderLinkId));
     String[] contentTypes = {
       "application/json",
       "application/x-www-form-urlencoded"
@@ -406,10 +411,46 @@ public class OrderApi {
     if (contentType.startsWith("multipart/form-data")) {
       // file uploading
       MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      if (side != null) {
+        localVarBuilder.addTextBody("side", ApiInvoker.parameterToString(side), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (symbol != null) {
+        localVarBuilder.addTextBody("symbol", ApiInvoker.parameterToString(symbol), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (orderType != null) {
+        localVarBuilder.addTextBody("order_type", ApiInvoker.parameterToString(orderType), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (qty != null) {
+        localVarBuilder.addTextBody("qty", ApiInvoker.parameterToString(qty), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (timeInForce != null) {
+        localVarBuilder.addTextBody("time_in_force", ApiInvoker.parameterToString(timeInForce), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (stopLoss != null) {
+        localVarBuilder.addTextBody("stop_loss", ApiInvoker.parameterToString(stopLoss), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (reduceOnly != null) {
+        localVarBuilder.addTextBody("reduce_only", ApiInvoker.parameterToString(reduceOnly), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (closeOnTrigger != null) {
+        localVarBuilder.addTextBody("close_on_trigger", ApiInvoker.parameterToString(closeOnTrigger), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (orderLinkId != null) {
+        localVarBuilder.addTextBody("order_link_id", ApiInvoker.parameterToString(orderLinkId), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
       HttpEntity httpEntity = localVarBuilder.build();
       postBody = httpEntity;
     } else {
       // normal form params
+      formParams.put("side", ApiInvoker.parameterToString(side));
+      formParams.put("symbol", ApiInvoker.parameterToString(symbol));
+      formParams.put("order_type", ApiInvoker.parameterToString(orderType));
+      formParams.put("qty", ApiInvoker.parameterToString(qty));
+      formParams.put("time_in_force", ApiInvoker.parameterToString(timeInForce));
+      formParams.put("stop_loss", ApiInvoker.parameterToString(stopLoss));
+      formParams.put("reduce_only", ApiInvoker.parameterToString(reduceOnly));
+      formParams.put("close_on_trigger", ApiInvoker.parameterToString(closeOnTrigger));
+      formParams.put("order_link_id", ApiInvoker.parameterToString(orderLinkId));
     }
 
     String[] authNames = new String[] { "apiKey", "apiSignature", "timestamp" };
@@ -487,17 +528,8 @@ public class OrderApi {
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
 
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "side", side));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "symbol", symbol));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "order_type", orderType));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "qty", qty));
     queryParams.addAll(ApiInvoker.parameterToPairs("", "price", price));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "time_in_force", timeInForce));
     queryParams.addAll(ApiInvoker.parameterToPairs("", "take_profit", takeProfit));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "stop_loss", stopLoss));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "reduce_only", reduceOnly));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "close_on_trigger", closeOnTrigger));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "order_link_id", orderLinkId));
 
 
     String[] contentTypes = {
@@ -509,12 +541,57 @@ public class OrderApi {
       // file uploading
       MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
       
+      if (side != null) {
+        localVarBuilder.addTextBody("side", ApiInvoker.parameterToString(side), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (symbol != null) {
+        localVarBuilder.addTextBody("symbol", ApiInvoker.parameterToString(symbol), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (orderType != null) {
+        localVarBuilder.addTextBody("order_type", ApiInvoker.parameterToString(orderType), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (qty != null) {
+        localVarBuilder.addTextBody("qty", ApiInvoker.parameterToString(qty), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (timeInForce != null) {
+        localVarBuilder.addTextBody("time_in_force", ApiInvoker.parameterToString(timeInForce), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (stopLoss != null) {
+        localVarBuilder.addTextBody("stop_loss", ApiInvoker.parameterToString(stopLoss), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (reduceOnly != null) {
+        localVarBuilder.addTextBody("reduce_only", ApiInvoker.parameterToString(reduceOnly), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (closeOnTrigger != null) {
+        localVarBuilder.addTextBody("close_on_trigger", ApiInvoker.parameterToString(closeOnTrigger), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (orderLinkId != null) {
+        localVarBuilder.addTextBody("order_link_id", ApiInvoker.parameterToString(orderLinkId), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
 
       HttpEntity httpEntity = localVarBuilder.build();
       postBody = httpEntity;
     } else {
       // normal form params
-          }
+      formParams.put("side", ApiInvoker.parameterToString(side));
+formParams.put("symbol", ApiInvoker.parameterToString(symbol));
+formParams.put("order_type", ApiInvoker.parameterToString(orderType));
+formParams.put("qty", ApiInvoker.parameterToString(qty));
+formParams.put("time_in_force", ApiInvoker.parameterToString(timeInForce));
+formParams.put("stop_loss", ApiInvoker.parameterToString(stopLoss));
+formParams.put("reduce_only", ApiInvoker.parameterToString(reduceOnly));
+formParams.put("close_on_trigger", ApiInvoker.parameterToString(closeOnTrigger));
+formParams.put("order_link_id", ApiInvoker.parameterToString(orderLinkId));
+    }
 
     String[] authNames = new String[] { "apiKey", "apiSignature", "timestamp" };
 
@@ -694,10 +771,6 @@ public class OrderApi {
     Map<String, String> headerParams = new HashMap<String, String>();
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "order_id", orderId));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "symbol", symbol));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "p_r_qty", pRQty));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "p_r_price", pRPrice));
     String[] contentTypes = {
       "application/json",
       "application/x-www-form-urlencoded"
@@ -707,10 +780,26 @@ public class OrderApi {
     if (contentType.startsWith("multipart/form-data")) {
       // file uploading
       MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      if (orderId != null) {
+        localVarBuilder.addTextBody("order_id", ApiInvoker.parameterToString(orderId), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (symbol != null) {
+        localVarBuilder.addTextBody("symbol", ApiInvoker.parameterToString(symbol), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (pRQty != null) {
+        localVarBuilder.addTextBody("p_r_qty", ApiInvoker.parameterToString(pRQty), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (pRPrice != null) {
+        localVarBuilder.addTextBody("p_r_price", ApiInvoker.parameterToString(pRPrice), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
       HttpEntity httpEntity = localVarBuilder.build();
       postBody = httpEntity;
     } else {
       // normal form params
+      formParams.put("order_id", ApiInvoker.parameterToString(orderId));
+      formParams.put("symbol", ApiInvoker.parameterToString(symbol));
+      formParams.put("p_r_qty", ApiInvoker.parameterToString(pRQty));
+      formParams.put("p_r_price", ApiInvoker.parameterToString(pRPrice));
     }
 
     String[] authNames = new String[] { "apiKey", "apiSignature", "timestamp" };
@@ -768,10 +857,6 @@ public class OrderApi {
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
 
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "order_id", orderId));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "symbol", symbol));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "p_r_qty", pRQty));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "p_r_price", pRPrice));
 
 
     String[] contentTypes = {
@@ -783,12 +868,32 @@ public class OrderApi {
       // file uploading
       MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
       
+      if (orderId != null) {
+        localVarBuilder.addTextBody("order_id", ApiInvoker.parameterToString(orderId), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (symbol != null) {
+        localVarBuilder.addTextBody("symbol", ApiInvoker.parameterToString(symbol), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (pRQty != null) {
+        localVarBuilder.addTextBody("p_r_qty", ApiInvoker.parameterToString(pRQty), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (pRPrice != null) {
+        localVarBuilder.addTextBody("p_r_price", ApiInvoker.parameterToString(pRPrice), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
 
       HttpEntity httpEntity = localVarBuilder.build();
       postBody = httpEntity;
     } else {
       // normal form params
-          }
+      formParams.put("order_id", ApiInvoker.parameterToString(orderId));
+formParams.put("symbol", ApiInvoker.parameterToString(symbol));
+formParams.put("p_r_qty", ApiInvoker.parameterToString(pRQty));
+formParams.put("p_r_price", ApiInvoker.parameterToString(pRPrice));
+    }
 
     String[] authNames = new String[] { "apiKey", "apiSignature", "timestamp" };
 

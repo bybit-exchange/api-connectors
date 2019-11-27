@@ -77,14 +77,14 @@
       var pathParams = {
       };
       var queryParams = {
-        'order_id': orderId,
-        'symbol': opts['symbol'],
       };
       var collectionQueryParams = {
       };
       var headerParams = {
       };
       var formParams = {
+        'order_id': orderId,
+        'symbol': opts['symbol']
       };
 
       var authNames = ['apiKey', 'apiSignature', 'timestamp'];
@@ -218,23 +218,23 @@
       var pathParams = {
       };
       var queryParams = {
-        'side': side,
-        'symbol': symbol,
-        'order_type': orderType,
-        'qty': qty,
         'price': price,
-        'time_in_force': timeInForce,
         'take_profit': opts['takeProfit'],
-        'stop_loss': opts['stopLoss'],
-        'reduce_only': opts['reduceOnly'],
-        'close_on_trigger': opts['closeOnTrigger'],
-        'order_link_id': opts['orderLinkId'],
       };
       var collectionQueryParams = {
       };
       var headerParams = {
       };
       var formParams = {
+        'side': side,
+        'symbol': symbol,
+        'order_type': orderType,
+        'qty': qty,
+        'time_in_force': timeInForce,
+        'stop_loss': opts['stopLoss'],
+        'reduce_only': opts['reduceOnly'],
+        'close_on_trigger': opts['closeOnTrigger'],
+        'order_link_id': opts['orderLinkId']
       };
 
       var authNames = ['apiKey', 'apiSignature', 'timestamp'];
@@ -331,16 +331,16 @@
       var pathParams = {
       };
       var queryParams = {
-        'order_id': orderId,
-        'symbol': symbol,
-        'p_r_qty': opts['pRQty'],
-        'p_r_price': opts['pRPrice'],
       };
       var collectionQueryParams = {
       };
       var headerParams = {
       };
       var formParams = {
+        'order_id': orderId,
+        'symbol': symbol,
+        'p_r_qty': opts['pRQty'],
+        'p_r_price': opts['pRPrice']
       };
 
       var authNames = ['apiKey', 'apiSignature', 'timestamp'];

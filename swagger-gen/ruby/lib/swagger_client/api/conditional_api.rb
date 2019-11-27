@@ -45,7 +45,6 @@ module SwaggerClient
 
       # query parameters
       query_params = {}
-      query_params[:'stop_order_id'] = stop_order_id
 
       # header parameters
       header_params = {}
@@ -56,6 +55,7 @@ module SwaggerClient
 
       # form parameters
       form_params = {}
+      form_params['stop_order_id'] = stop_order_id
 
       # http body (model)
       post_body = nil
@@ -210,17 +210,6 @@ module SwaggerClient
 
       # query parameters
       query_params = {}
-      query_params[:'side'] = side
-      query_params[:'symbol'] = symbol
-      query_params[:'order_type'] = order_type
-      query_params[:'qty'] = qty
-      query_params[:'price'] = price
-      query_params[:'base_price'] = base_price
-      query_params[:'stop_px'] = stop_px
-      query_params[:'time_in_force'] = time_in_force
-      query_params[:'trigger_by'] = opts[:'trigger_by'] if !opts[:'trigger_by'].nil?
-      query_params[:'close_on_trigger'] = opts[:'close_on_trigger'] if !opts[:'close_on_trigger'].nil?
-      query_params[:'order_link_id'] = opts[:'order_link_id'] if !opts[:'order_link_id'].nil?
 
       # header parameters
       header_params = {}
@@ -231,6 +220,17 @@ module SwaggerClient
 
       # form parameters
       form_params = {}
+      form_params['side'] = side
+      form_params['symbol'] = symbol
+      form_params['order_type'] = order_type
+      form_params['qty'] = qty
+      form_params['price'] = price
+      form_params['base_price'] = base_price
+      form_params['stop_px'] = stop_px
+      form_params['time_in_force'] = time_in_force
+      form_params['trigger_by'] = opts[:'trigger_by'] if !opts[:'trigger_by'].nil?
+      form_params['close_on_trigger'] = opts[:'close_on_trigger'] if !opts[:'close_on_trigger'].nil?
+      form_params['order_link_id'] = opts[:'order_link_id'] if !opts[:'order_link_id'].nil?
 
       # http body (model)
       post_body = nil
@@ -285,11 +285,6 @@ module SwaggerClient
 
       # query parameters
       query_params = {}
-      query_params[:'order_id'] = order_id
-      query_params[:'symbol'] = symbol
-      query_params[:'p_r_qty'] = opts[:'p_r_qty'] if !opts[:'p_r_qty'].nil?
-      query_params[:'p_r_price'] = opts[:'p_r_price'] if !opts[:'p_r_price'].nil?
-      query_params[:'p_r_trigger_price'] = opts[:'p_r_trigger_price'] if !opts[:'p_r_trigger_price'].nil?
 
       # header parameters
       header_params = {}
@@ -300,6 +295,11 @@ module SwaggerClient
 
       # form parameters
       form_params = {}
+      form_params['order_id'] = order_id
+      form_params['symbol'] = symbol
+      form_params['p_r_qty'] = opts[:'p_r_qty'] if !opts[:'p_r_qty'].nil?
+      form_params['p_r_price'] = opts[:'p_r_price'] if !opts[:'p_r_price'].nil?
+      form_params['p_r_trigger_price'] = opts[:'p_r_trigger_price'] if !opts[:'p_r_trigger_price'].nil?
 
       # http body (model)
       post_body = nil

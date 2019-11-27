@@ -231,8 +231,6 @@ class PositionsApiAsyncHelper(client: TransportClient, config: SwaggerConfig) ex
 
     if (margin == null) throw new Exception("Missing required parameter 'margin' when calling PositionsApi->positionsChangeMargin")
 
-    queryParams += "symbol" -> symbol.toString
-    queryParams += "margin" -> margin.toString
 
     val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")
     resFuture flatMap { resp =>
@@ -268,8 +266,6 @@ class PositionsApiAsyncHelper(client: TransportClient, config: SwaggerConfig) ex
 
     if (leverage == null) throw new Exception("Missing required parameter 'leverage' when calling PositionsApi->positionsSaveLeverage")
 
-    queryParams += "symbol" -> symbol.toString
-    queryParams += "leverage" -> leverage.toString
 
     val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")
     resFuture flatMap { resp =>
@@ -291,19 +287,6 @@ class PositionsApiAsyncHelper(client: TransportClient, config: SwaggerConfig) ex
 
     if (symbol == null) throw new Exception("Missing required parameter 'symbol' when calling PositionsApi->positionsTradingStop")
 
-    queryParams += "symbol" -> symbol.toString
-    takeProfit match {
-      case Some(param) => queryParams += "take_profit" -> param.toString
-      case _ => queryParams
-    }
-    stopLoss match {
-      case Some(param) => queryParams += "stop_loss" -> param.toString
-      case _ => queryParams
-    }
-    trailingStop match {
-      case Some(param) => queryParams += "trailing_stop" -> param.toString
-      case _ => queryParams
-    }
 
     val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")
     resFuture flatMap { resp =>

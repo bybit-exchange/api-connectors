@@ -71,14 +71,14 @@ public class OrderApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        if (orderId != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("order_id", orderId));
-        if (symbol != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("symbol", symbol));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        if (orderId != null)
+        localVarFormParams.put("order_id", orderId);
+        if (symbol != null)
+        localVarFormParams.put("symbol", symbol);
 
         final String[] localVarAccepts = {
             "application/json"
@@ -365,32 +365,32 @@ public class OrderApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        if (side != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("side", side));
-        if (symbol != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("symbol", symbol));
-        if (orderType != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("order_type", orderType));
-        if (qty != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("qty", qty));
         if (price != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("price", price));
-        if (timeInForce != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("time_in_force", timeInForce));
         if (takeProfit != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("take_profit", takeProfit));
-        if (stopLoss != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("stop_loss", stopLoss));
-        if (reduceOnly != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("reduce_only", reduceOnly));
-        if (closeOnTrigger != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("close_on_trigger", closeOnTrigger));
-        if (orderLinkId != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("order_link_id", orderLinkId));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        if (side != null)
+        localVarFormParams.put("side", side);
+        if (symbol != null)
+        localVarFormParams.put("symbol", symbol);
+        if (orderType != null)
+        localVarFormParams.put("order_type", orderType);
+        if (qty != null)
+        localVarFormParams.put("qty", qty);
+        if (timeInForce != null)
+        localVarFormParams.put("time_in_force", timeInForce);
+        if (stopLoss != null)
+        localVarFormParams.put("stop_loss", stopLoss);
+        if (reduceOnly != null)
+        localVarFormParams.put("reduce_only", reduceOnly);
+        if (closeOnTrigger != null)
+        localVarFormParams.put("close_on_trigger", closeOnTrigger);
+        if (orderLinkId != null)
+        localVarFormParams.put("order_link_id", orderLinkId);
 
         final String[] localVarAccepts = {
             "application/json"
@@ -692,18 +692,18 @@ public class OrderApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        if (orderId != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("order_id", orderId));
-        if (symbol != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("symbol", symbol));
-        if (pRQty != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("p_r_qty", pRQty));
-        if (pRPrice != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("p_r_price", pRPrice));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        if (orderId != null)
+        localVarFormParams.put("order_id", orderId);
+        if (symbol != null)
+        localVarFormParams.put("symbol", symbol);
+        if (pRQty != null)
+        localVarFormParams.put("p_r_qty", pRQty);
+        if (pRPrice != null)
+        localVarFormParams.put("p_r_price", pRPrice);
 
         final String[] localVarAccepts = {
             "application/json"

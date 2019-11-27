@@ -74,13 +74,13 @@
       var pathParams = {
       };
       var queryParams = {
-        'stop_order_id': stopOrderId,
       };
       var collectionQueryParams = {
       };
       var headerParams = {
       };
       var formParams = {
+        'stop_order_id': stopOrderId
       };
 
       var authNames = ['apiKey', 'apiSignature', 'timestamp'];
@@ -222,6 +222,12 @@
       var pathParams = {
       };
       var queryParams = {
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
         'side': side,
         'symbol': symbol,
         'order_type': orderType,
@@ -232,13 +238,7 @@
         'time_in_force': timeInForce,
         'trigger_by': opts['triggerBy'],
         'close_on_trigger': opts['closeOnTrigger'],
-        'order_link_id': opts['orderLinkId'],
-      };
-      var collectionQueryParams = {
-      };
-      var headerParams = {
-      };
-      var formParams = {
+        'order_link_id': opts['orderLinkId']
       };
 
       var authNames = ['apiKey', 'apiSignature', 'timestamp'];
@@ -290,17 +290,17 @@
       var pathParams = {
       };
       var queryParams = {
-        'order_id': orderId,
-        'symbol': symbol,
-        'p_r_qty': opts['pRQty'],
-        'p_r_price': opts['pRPrice'],
-        'p_r_trigger_price': opts['pRTriggerPrice'],
       };
       var collectionQueryParams = {
       };
       var headerParams = {
       };
       var formParams = {
+        'order_id': orderId,
+        'symbol': symbol,
+        'p_r_qty': opts['pRQty'],
+        'p_r_price': opts['pRPrice'],
+        'p_r_trigger_price': opts['pRTriggerPrice']
       };
 
       var authNames = ['apiKey', 'apiSignature', 'timestamp'];

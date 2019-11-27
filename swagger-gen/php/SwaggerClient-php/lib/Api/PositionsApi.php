@@ -286,16 +286,16 @@ class PositionsApi
         $httpBody = '';
         $multipart = false;
 
-        // query params
+
+
+        // form params
         if ($symbol !== null) {
-            $queryParams['symbol'] = ObjectSerializer::toQueryValue($symbol);
+            $formParams['symbol'] = ObjectSerializer::toFormValue($symbol);
         }
-        // query params
+        // form params
         if ($margin !== null) {
-            $queryParams['margin'] = ObjectSerializer::toQueryValue($margin);
+            $formParams['margin'] = ObjectSerializer::toFormValue($margin);
         }
-
-
         // body params
         $_tempBody = null;
 
@@ -832,16 +832,16 @@ class PositionsApi
         $httpBody = '';
         $multipart = false;
 
-        // query params
+
+
+        // form params
         if ($symbol !== null) {
-            $queryParams['symbol'] = ObjectSerializer::toQueryValue($symbol);
+            $formParams['symbol'] = ObjectSerializer::toFormValue($symbol);
         }
-        // query params
+        // form params
         if ($leverage !== null) {
-            $queryParams['leverage'] = ObjectSerializer::toQueryValue($leverage);
+            $formParams['leverage'] = ObjectSerializer::toFormValue($leverage);
         }
-
-
         // body params
         $_tempBody = null;
 
@@ -1124,24 +1124,24 @@ class PositionsApi
         $httpBody = '';
         $multipart = false;
 
-        // query params
+
+
+        // form params
         if ($symbol !== null) {
-            $queryParams['symbol'] = ObjectSerializer::toQueryValue($symbol);
+            $formParams['symbol'] = ObjectSerializer::toFormValue($symbol);
         }
-        // query params
+        // form params
         if ($take_profit !== null) {
-            $queryParams['take_profit'] = ObjectSerializer::toQueryValue($take_profit);
+            $formParams['take_profit'] = ObjectSerializer::toFormValue($take_profit);
         }
-        // query params
+        // form params
         if ($stop_loss !== null) {
-            $queryParams['stop_loss'] = ObjectSerializer::toQueryValue($stop_loss);
+            $formParams['stop_loss'] = ObjectSerializer::toFormValue($stop_loss);
         }
-        // query params
+        // form params
         if ($trailing_stop !== null) {
-            $queryParams['trailing_stop'] = ObjectSerializer::toQueryValue($trailing_stop);
+            $formParams['trailing_stop'] = ObjectSerializer::toFormValue($trailing_stop);
         }
-
-
         // body params
         $_tempBody = null;
 

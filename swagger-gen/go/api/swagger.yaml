@@ -101,13 +101,13 @@ paths:
       operationId: "Positions.saveLeverage"
       parameters:
       - name: "symbol"
-        in: "query"
+        in: "formData"
         description: "A symbol which you want change its leverage"
         required: true
         type: "string"
         x-exportParamName: "Symbol"
       - name: "leverage"
-        in: "query"
+        in: "formData"
         description: "New leverage you want set"
         required: true
         type: "string"
@@ -137,13 +137,13 @@ paths:
       operationId: "Positions.changeMargin"
       parameters:
       - name: "symbol"
-        in: "query"
+        in: "formData"
         description: "Contract type which you want update its margin"
         required: true
         type: "string"
         x-exportParamName: "Symbol"
       - name: "margin"
-        in: "query"
+        in: "formData"
         description: "New margin you want set"
         required: true
         type: "string"
@@ -161,27 +161,27 @@ paths:
       operationId: "Positions.tradingStop"
       parameters:
       - name: "symbol"
-        in: "query"
+        in: "formData"
         description: "Contract type"
         required: true
         type: "string"
         x-exportParamName: "Symbol"
       - name: "take_profit"
-        in: "query"
+        in: "formData"
         description: "Not less than 0, 0 means cancel TP"
         required: false
         type: "string"
         x-exportParamName: "TakeProfit"
         x-optionalDataType: "String"
       - name: "stop_loss"
-        in: "query"
+        in: "formData"
         description: "Not less than 0, 0 means cancel SL"
         required: false
         type: "string"
         x-exportParamName: "StopLoss"
         x-optionalDataType: "String"
       - name: "trailing_stop"
-        in: "query"
+        in: "formData"
         description: "Not less than 0, 0 means cancel TS"
         required: false
         type: "string"
@@ -310,25 +310,25 @@ paths:
       operationId: "Order.new"
       parameters:
       - name: "side"
-        in: "query"
+        in: "formData"
         description: "Side"
         required: true
         type: "string"
         x-exportParamName: "Side"
       - name: "symbol"
-        in: "query"
+        in: "formData"
         description: "Contract type."
         required: true
         type: "string"
         x-exportParamName: "Symbol"
       - name: "order_type"
-        in: "query"
+        in: "formData"
         description: "Active order type"
         required: true
         type: "string"
         x-exportParamName: "OrderType"
       - name: "qty"
-        in: "query"
+        in: "formData"
         description: ""
         required: true
         type: "number"
@@ -342,7 +342,7 @@ paths:
         format: "double"
         x-exportParamName: "Price"
       - name: "time_in_force"
-        in: "query"
+        in: "formData"
         description: "Time in force"
         required: true
         type: "string"
@@ -356,7 +356,7 @@ paths:
         x-exportParamName: "TakeProfit"
         x-optionalDataType: "Float64"
       - name: "stop_loss"
-        in: "query"
+        in: "formData"
         description: "stop loss price"
         required: false
         type: "number"
@@ -364,21 +364,21 @@ paths:
         x-exportParamName: "StopLoss"
         x-optionalDataType: "Float64"
       - name: "reduce_only"
-        in: "query"
+        in: "formData"
         description: "reduce only"
         required: false
         type: "boolean"
         x-exportParamName: "ReduceOnly"
         x-optionalDataType: "Bool"
       - name: "close_on_trigger"
-        in: "query"
+        in: "formData"
         description: "close on trigger"
         required: false
         type: "boolean"
         x-exportParamName: "CloseOnTrigger"
         x-optionalDataType: "Bool"
       - name: "order_link_id"
-        in: "query"
+        in: "formData"
         description: "TCustomized order ID, maximum length at 36 characters, and order\
           \ ID under the same agency has to be unique."
         required: false
@@ -464,13 +464,13 @@ paths:
       operationId: "Order.cancel"
       parameters:
       - name: "order_id"
-        in: "query"
+        in: "formData"
         description: "Order ID"
         required: true
         type: "string"
         x-exportParamName: "OrderId"
       - name: "symbol"
-        in: "query"
+        in: "formData"
         description: "Contract type."
         required: false
         type: "string"
@@ -489,19 +489,19 @@ paths:
       operationId: "Order.Replace"
       parameters:
       - name: "order_id"
-        in: "query"
+        in: "formData"
         description: "Order ID."
         required: true
         type: "string"
         x-exportParamName: "OrderId"
       - name: "symbol"
-        in: "query"
+        in: "formData"
         description: "Contract type."
         required: true
         type: "string"
         x-exportParamName: "Symbol"
       - name: "p_r_qty"
-        in: "query"
+        in: "formData"
         description: "Order quantity."
         required: false
         type: "number"
@@ -509,7 +509,7 @@ paths:
         x-exportParamName: "PRQty"
         x-optionalDataType: "Float32"
       - name: "p_r_price"
-        in: "query"
+        in: "formData"
         description: "Order price."
         required: false
         type: "number"
@@ -555,39 +555,39 @@ paths:
       operationId: "Conditional.new"
       parameters:
       - name: "side"
-        in: "query"
+        in: "formData"
         description: "Side."
         required: true
         type: "string"
         x-exportParamName: "Side"
       - name: "symbol"
-        in: "query"
+        in: "formData"
         description: "Contract type."
         required: true
         type: "string"
         x-exportParamName: "Symbol"
       - name: "order_type"
-        in: "query"
+        in: "formData"
         description: "Conditional order type."
         required: true
         type: "string"
         x-exportParamName: "OrderType"
       - name: "qty"
-        in: "query"
+        in: "formData"
         description: "Order quantity."
         required: true
         type: "number"
         format: "int32"
         x-exportParamName: "Qty"
       - name: "price"
-        in: "query"
+        in: "formData"
         description: "Execution price for conditional order"
         required: true
         type: "number"
         format: "double"
         x-exportParamName: "Price"
       - name: "base_price"
-        in: "query"
+        in: "formData"
         description: "Send current market price. It will be used to compare with the\
           \ value of 'stop_px', to decide whether your conditional order will be triggered\
           \ by crossing trigger price from upper side or lower side. Mainly used to\
@@ -597,34 +597,34 @@ paths:
         format: "double"
         x-exportParamName: "BasePrice"
       - name: "stop_px"
-        in: "query"
+        in: "formData"
         description: "Trigger price."
         required: true
         type: "number"
         format: "double"
         x-exportParamName: "StopPx"
       - name: "time_in_force"
-        in: "query"
+        in: "formData"
         description: "Time in force."
         required: true
         type: "string"
         x-exportParamName: "TimeInForce"
       - name: "trigger_by"
-        in: "query"
+        in: "formData"
         description: "Trigger price type. Default LastPrice."
         required: false
         type: "string"
         x-exportParamName: "TriggerBy"
         x-optionalDataType: "String"
       - name: "close_on_trigger"
-        in: "query"
+        in: "formData"
         description: "close on trigger."
         required: false
         type: "boolean"
         x-exportParamName: "CloseOnTrigger"
         x-optionalDataType: "Bool"
       - name: "order_link_id"
-        in: "query"
+        in: "formData"
         description: "Customized order ID, maximum length at 36 characters, and order\
           \ ID under the same agency has to be unique.."
         required: false
@@ -701,7 +701,7 @@ paths:
       operationId: "Conditional.cancel"
       parameters:
       - name: "stop_order_id"
-        in: "query"
+        in: "formData"
         description: "Order ID of conditional order."
         required: true
         type: "string"
@@ -719,19 +719,19 @@ paths:
       operationId: "Conditional.Replace"
       parameters:
       - name: "order_id"
-        in: "query"
+        in: "formData"
         description: "Order ID."
         required: true
         type: "string"
         x-exportParamName: "OrderId"
       - name: "symbol"
-        in: "query"
+        in: "formData"
         description: "Contract type."
         required: true
         type: "string"
         x-exportParamName: "Symbol"
       - name: "p_r_qty"
-        in: "query"
+        in: "formData"
         description: "Order quantity."
         required: false
         type: "number"
@@ -739,7 +739,7 @@ paths:
         x-exportParamName: "PRQty"
         x-optionalDataType: "Float32"
       - name: "p_r_price"
-        in: "query"
+        in: "formData"
         description: "Order price."
         required: false
         type: "number"
@@ -747,7 +747,7 @@ paths:
         x-exportParamName: "PRPrice"
         x-optionalDataType: "Float64"
       - name: "p_r_trigger_price"
-        in: "query"
+        in: "formData"
         description: "Trigger price."
         required: false
         type: "number"

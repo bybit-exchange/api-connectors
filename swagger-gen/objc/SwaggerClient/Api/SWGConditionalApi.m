@@ -73,9 +73,6 @@ NSInteger kSWGConditionalApiMissingParamErrorCode = 234513;
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    if (stopOrderId != nil) {
-        queryParams[@"stop_order_id"] = stopOrderId;
-    }
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
     // HTTP header `Accept`
@@ -96,6 +93,9 @@ NSInteger kSWGConditionalApiMissingParamErrorCode = 234513;
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
     NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+    if (stopOrderId) {
+        formParams[@"stop_order_id"] = stopOrderId;
+    }
 
     return [self.apiClient requestWithPath: resourcePath
                                     method: @"POST"
@@ -335,39 +335,6 @@ NSInteger kSWGConditionalApiMissingParamErrorCode = 234513;
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    if (side != nil) {
-        queryParams[@"side"] = side;
-    }
-    if (symbol != nil) {
-        queryParams[@"symbol"] = symbol;
-    }
-    if (orderType != nil) {
-        queryParams[@"order_type"] = orderType;
-    }
-    if (qty != nil) {
-        queryParams[@"qty"] = qty;
-    }
-    if (price != nil) {
-        queryParams[@"price"] = price;
-    }
-    if (basePrice != nil) {
-        queryParams[@"base_price"] = basePrice;
-    }
-    if (stopPx != nil) {
-        queryParams[@"stop_px"] = stopPx;
-    }
-    if (timeInForce != nil) {
-        queryParams[@"time_in_force"] = timeInForce;
-    }
-    if (triggerBy != nil) {
-        queryParams[@"trigger_by"] = triggerBy;
-    }
-    if (closeOnTrigger != nil) {
-        queryParams[@"close_on_trigger"] = [closeOnTrigger isEqual:@(YES)] ? @"true" : @"false";
-    }
-    if (orderLinkId != nil) {
-        queryParams[@"order_link_id"] = orderLinkId;
-    }
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
     // HTTP header `Accept`
@@ -388,6 +355,39 @@ NSInteger kSWGConditionalApiMissingParamErrorCode = 234513;
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
     NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+    if (side) {
+        formParams[@"side"] = side;
+    }
+    if (symbol) {
+        formParams[@"symbol"] = symbol;
+    }
+    if (orderType) {
+        formParams[@"order_type"] = orderType;
+    }
+    if (qty) {
+        formParams[@"qty"] = qty;
+    }
+    if (price) {
+        formParams[@"price"] = price;
+    }
+    if (basePrice) {
+        formParams[@"base_price"] = basePrice;
+    }
+    if (stopPx) {
+        formParams[@"stop_px"] = stopPx;
+    }
+    if (timeInForce) {
+        formParams[@"time_in_force"] = timeInForce;
+    }
+    if (triggerBy) {
+        formParams[@"trigger_by"] = triggerBy;
+    }
+    if (closeOnTrigger) {
+        formParams[@"close_on_trigger"] = closeOnTrigger;
+    }
+    if (orderLinkId) {
+        formParams[@"order_link_id"] = orderLinkId;
+    }
 
     return [self.apiClient requestWithPath: resourcePath
                                     method: @"POST"
@@ -456,21 +456,6 @@ NSInteger kSWGConditionalApiMissingParamErrorCode = 234513;
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    if (orderId != nil) {
-        queryParams[@"order_id"] = orderId;
-    }
-    if (symbol != nil) {
-        queryParams[@"symbol"] = symbol;
-    }
-    if (pRQty != nil) {
-        queryParams[@"p_r_qty"] = pRQty;
-    }
-    if (pRPrice != nil) {
-        queryParams[@"p_r_price"] = pRPrice;
-    }
-    if (pRTriggerPrice != nil) {
-        queryParams[@"p_r_trigger_price"] = pRTriggerPrice;
-    }
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
     // HTTP header `Accept`
@@ -491,6 +476,21 @@ NSInteger kSWGConditionalApiMissingParamErrorCode = 234513;
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
     NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+    if (orderId) {
+        formParams[@"order_id"] = orderId;
+    }
+    if (symbol) {
+        formParams[@"symbol"] = symbol;
+    }
+    if (pRQty) {
+        formParams[@"p_r_qty"] = pRQty;
+    }
+    if (pRPrice) {
+        formParams[@"p_r_price"] = pRPrice;
+    }
+    if (pRTriggerPrice) {
+        formParams[@"p_r_trigger_price"] = pRTriggerPrice;
+    }
 
     return [self.apiClient requestWithPath: resourcePath
                                     method: @"POST"

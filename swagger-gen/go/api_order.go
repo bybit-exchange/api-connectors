@@ -56,10 +56,6 @@ func (a *OrderApiService) OrderCancel(ctx context.Context, orderId string, local
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	localVarQueryParams.Add("order_id", parameterToString(orderId, ""))
-	if localVarOptionals != nil && localVarOptionals.Symbol.IsSet() {
-		localVarQueryParams.Add("symbol", parameterToString(localVarOptionals.Symbol.Value(), ""))
-	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
 
@@ -76,6 +72,10 @@ func (a *OrderApiService) OrderCancel(ctx context.Context, orderId string, local
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	localVarFormParams.Add("order_id", parameterToString(orderId, ""))
+	if localVarOptionals != nil && localVarOptionals.Symbol.IsSet() {
+		localVarFormParams.Add("symbol", parameterToString(localVarOptionals.Symbol.Value(), ""))
 	}
 	if ctx != nil {
 		// API Key Authentication
@@ -371,26 +371,9 @@ func (a *OrderApiService) OrderNew(ctx context.Context, side string, symbol stri
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	localVarQueryParams.Add("side", parameterToString(side, ""))
-	localVarQueryParams.Add("symbol", parameterToString(symbol, ""))
-	localVarQueryParams.Add("order_type", parameterToString(orderType, ""))
-	localVarQueryParams.Add("qty", parameterToString(qty, ""))
 	localVarQueryParams.Add("price", parameterToString(price, ""))
-	localVarQueryParams.Add("time_in_force", parameterToString(timeInForce, ""))
 	if localVarOptionals != nil && localVarOptionals.TakeProfit.IsSet() {
 		localVarQueryParams.Add("take_profit", parameterToString(localVarOptionals.TakeProfit.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.StopLoss.IsSet() {
-		localVarQueryParams.Add("stop_loss", parameterToString(localVarOptionals.StopLoss.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.ReduceOnly.IsSet() {
-		localVarQueryParams.Add("reduce_only", parameterToString(localVarOptionals.ReduceOnly.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.CloseOnTrigger.IsSet() {
-		localVarQueryParams.Add("close_on_trigger", parameterToString(localVarOptionals.CloseOnTrigger.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.OrderLinkId.IsSet() {
-		localVarQueryParams.Add("order_link_id", parameterToString(localVarOptionals.OrderLinkId.Value(), ""))
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
@@ -408,6 +391,23 @@ func (a *OrderApiService) OrderNew(ctx context.Context, side string, symbol stri
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	localVarFormParams.Add("side", parameterToString(side, ""))
+	localVarFormParams.Add("symbol", parameterToString(symbol, ""))
+	localVarFormParams.Add("order_type", parameterToString(orderType, ""))
+	localVarFormParams.Add("qty", parameterToString(qty, ""))
+	localVarFormParams.Add("time_in_force", parameterToString(timeInForce, ""))
+	if localVarOptionals != nil && localVarOptionals.StopLoss.IsSet() {
+		localVarFormParams.Add("stop_loss", parameterToString(localVarOptionals.StopLoss.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.ReduceOnly.IsSet() {
+		localVarFormParams.Add("reduce_only", parameterToString(localVarOptionals.ReduceOnly.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.CloseOnTrigger.IsSet() {
+		localVarFormParams.Add("close_on_trigger", parameterToString(localVarOptionals.CloseOnTrigger.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.OrderLinkId.IsSet() {
+		localVarFormParams.Add("order_link_id", parameterToString(localVarOptionals.OrderLinkId.Value(), ""))
 	}
 	if ctx != nil {
 		// API Key Authentication
@@ -668,14 +668,6 @@ func (a *OrderApiService) OrderReplace(ctx context.Context, orderId string, symb
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	localVarQueryParams.Add("order_id", parameterToString(orderId, ""))
-	localVarQueryParams.Add("symbol", parameterToString(symbol, ""))
-	if localVarOptionals != nil && localVarOptionals.PRQty.IsSet() {
-		localVarQueryParams.Add("p_r_qty", parameterToString(localVarOptionals.PRQty.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.PRPrice.IsSet() {
-		localVarQueryParams.Add("p_r_price", parameterToString(localVarOptionals.PRPrice.Value(), ""))
-	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
 
@@ -692,6 +684,14 @@ func (a *OrderApiService) OrderReplace(ctx context.Context, orderId string, symb
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	localVarFormParams.Add("order_id", parameterToString(orderId, ""))
+	localVarFormParams.Add("symbol", parameterToString(symbol, ""))
+	if localVarOptionals != nil && localVarOptionals.PRQty.IsSet() {
+		localVarFormParams.Add("p_r_qty", parameterToString(localVarOptionals.PRQty.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.PRPrice.IsSet() {
+		localVarFormParams.Add("p_r_price", parameterToString(localVarOptionals.PRPrice.Value(), ""))
 	}
 	if ctx != nil {
 		// API Key Authentication

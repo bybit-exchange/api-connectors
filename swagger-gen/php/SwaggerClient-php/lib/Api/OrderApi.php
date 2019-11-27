@@ -280,16 +280,16 @@ class OrderApi
         $httpBody = '';
         $multipart = false;
 
-        // query params
+
+
+        // form params
         if ($order_id !== null) {
-            $queryParams['order_id'] = ObjectSerializer::toQueryValue($order_id);
+            $formParams['order_id'] = ObjectSerializer::toFormValue($order_id);
         }
-        // query params
+        // form params
         if ($symbol !== null) {
-            $queryParams['symbol'] = ObjectSerializer::toQueryValue($symbol);
+            $formParams['symbol'] = ObjectSerializer::toFormValue($symbol);
         }
-
-
         // body params
         $_tempBody = null;
 
@@ -959,51 +959,51 @@ class OrderApi
         $multipart = false;
 
         // query params
-        if ($side !== null) {
-            $queryParams['side'] = ObjectSerializer::toQueryValue($side);
-        }
-        // query params
-        if ($symbol !== null) {
-            $queryParams['symbol'] = ObjectSerializer::toQueryValue($symbol);
-        }
-        // query params
-        if ($order_type !== null) {
-            $queryParams['order_type'] = ObjectSerializer::toQueryValue($order_type);
-        }
-        // query params
-        if ($qty !== null) {
-            $queryParams['qty'] = ObjectSerializer::toQueryValue($qty);
-        }
-        // query params
         if ($price !== null) {
             $queryParams['price'] = ObjectSerializer::toQueryValue($price);
-        }
-        // query params
-        if ($time_in_force !== null) {
-            $queryParams['time_in_force'] = ObjectSerializer::toQueryValue($time_in_force);
         }
         // query params
         if ($take_profit !== null) {
             $queryParams['take_profit'] = ObjectSerializer::toQueryValue($take_profit);
         }
-        // query params
+
+
+        // form params
+        if ($side !== null) {
+            $formParams['side'] = ObjectSerializer::toFormValue($side);
+        }
+        // form params
+        if ($symbol !== null) {
+            $formParams['symbol'] = ObjectSerializer::toFormValue($symbol);
+        }
+        // form params
+        if ($order_type !== null) {
+            $formParams['order_type'] = ObjectSerializer::toFormValue($order_type);
+        }
+        // form params
+        if ($qty !== null) {
+            $formParams['qty'] = ObjectSerializer::toFormValue($qty);
+        }
+        // form params
+        if ($time_in_force !== null) {
+            $formParams['time_in_force'] = ObjectSerializer::toFormValue($time_in_force);
+        }
+        // form params
         if ($stop_loss !== null) {
-            $queryParams['stop_loss'] = ObjectSerializer::toQueryValue($stop_loss);
+            $formParams['stop_loss'] = ObjectSerializer::toFormValue($stop_loss);
         }
-        // query params
+        // form params
         if ($reduce_only !== null) {
-            $queryParams['reduce_only'] = ObjectSerializer::toQueryValue($reduce_only);
+            $formParams['reduce_only'] = ObjectSerializer::toFormValue($reduce_only);
         }
-        // query params
+        // form params
         if ($close_on_trigger !== null) {
-            $queryParams['close_on_trigger'] = ObjectSerializer::toQueryValue($close_on_trigger);
+            $formParams['close_on_trigger'] = ObjectSerializer::toFormValue($close_on_trigger);
         }
-        // query params
+        // form params
         if ($order_link_id !== null) {
-            $queryParams['order_link_id'] = ObjectSerializer::toQueryValue($order_link_id);
+            $formParams['order_link_id'] = ObjectSerializer::toFormValue($order_link_id);
         }
-
-
         // body params
         $_tempBody = null;
 
@@ -1568,24 +1568,24 @@ class OrderApi
         $httpBody = '';
         $multipart = false;
 
-        // query params
+
+
+        // form params
         if ($order_id !== null) {
-            $queryParams['order_id'] = ObjectSerializer::toQueryValue($order_id);
+            $formParams['order_id'] = ObjectSerializer::toFormValue($order_id);
         }
-        // query params
+        // form params
         if ($symbol !== null) {
-            $queryParams['symbol'] = ObjectSerializer::toQueryValue($symbol);
+            $formParams['symbol'] = ObjectSerializer::toFormValue($symbol);
         }
-        // query params
+        // form params
         if ($p_r_qty !== null) {
-            $queryParams['p_r_qty'] = ObjectSerializer::toQueryValue($p_r_qty);
+            $formParams['p_r_qty'] = ObjectSerializer::toFormValue($p_r_qty);
         }
-        // query params
+        // form params
         if ($p_r_price !== null) {
-            $queryParams['p_r_price'] = ObjectSerializer::toQueryValue($p_r_price);
+            $formParams['p_r_price'] = ObjectSerializer::toFormValue($p_r_price);
         }
-
-
         // body params
         $_tempBody = null;
 
