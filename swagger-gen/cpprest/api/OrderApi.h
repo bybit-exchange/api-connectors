@@ -73,6 +73,28 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
+    /// <param name="symbol">Contract type.</param>
+    pplx::task<std::shared_ptr<Object>> order_cancelAll(
+        utility::string_t symbol
+    );
+    /// <summary>
+    /// Get my active order list.
+    /// </summary>
+    /// <remarks>
+    /// 
+    /// </remarks>
+    /// <param name="orderId">Order ID</param>
+    /// <param name="symbol">Contract type. (optional)</param>
+    pplx::task<std::shared_ptr<Object>> order_cancelV2(
+        utility::string_t orderId,
+        boost::optional<utility::string_t> symbol
+    );
+    /// <summary>
+    /// Get my active order list.
+    /// </summary>
+    /// <remarks>
+    /// 
+    /// </remarks>
     /// <param name="orderId">Order ID (optional)</param>
     /// <param name="orderLinkId">Customized order ID. (optional)</param>
     /// <param name="symbol">Contract type. Default BTCUSD (optional)</param>
@@ -118,6 +140,38 @@ public:
         boost::optional<bool> reduceOnly,
         boost::optional<bool> closeOnTrigger,
         boost::optional<utility::string_t> orderLinkId
+    );
+    /// <summary>
+    /// Place active order
+    /// </summary>
+    /// <remarks>
+    /// 
+    /// </remarks>
+    /// <param name="side">Side</param>
+    /// <param name="symbol">Contract type.</param>
+    /// <param name="orderType">Active order type</param>
+    /// <param name="qty"></param>
+    /// <param name="price">Order price.</param>
+    /// <param name="timeInForce">Time in force</param>
+    /// <param name="takeProfit">take profit price (optional)</param>
+    /// <param name="stopLoss">stop loss price (optional)</param>
+    /// <param name="reduceOnly">reduce only (optional)</param>
+    /// <param name="closeOnTrigger">close on trigger (optional)</param>
+    /// <param name="orderLinkId">TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. (optional)</param>
+    /// <param name="trailingStop">Trailing stop. (optional)</param>
+    pplx::task<std::shared_ptr<Object>> order_newV2(
+        utility::string_t side,
+        utility::string_t symbol,
+        utility::string_t orderType,
+        double qty,
+        double price,
+        utility::string_t timeInForce,
+        boost::optional<double> takeProfit,
+        boost::optional<double> stopLoss,
+        boost::optional<bool> reduceOnly,
+        boost::optional<bool> closeOnTrigger,
+        boost::optional<utility::string_t> orderLinkId,
+        boost::optional<utility::string_t> trailingStop
     );
     /// <summary>
     /// Get my active order list.

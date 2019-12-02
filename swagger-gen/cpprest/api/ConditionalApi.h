@@ -68,6 +68,16 @@ public:
         utility::string_t stopOrderId
     );
     /// <summary>
+    /// Cancel conditional order.
+    /// </summary>
+    /// <remarks>
+    /// 
+    /// </remarks>
+    /// <param name="symbol">Contract type.</param>
+    pplx::task<std::shared_ptr<Object>> conditional_cancelAll(
+        utility::string_t symbol
+    );
+    /// <summary>
     /// Get my conditional order list.
     /// </summary>
     /// <remarks>

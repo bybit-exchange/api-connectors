@@ -67,6 +67,109 @@ open class OrderAPI {
     /**
      Get my active order list.
      
+     - parameter symbol: (form) Contract type. 
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func orderCancelAll(symbol: String, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
+        orderCancelAllWithRequestBuilder(symbol: symbol).execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Get my active order list.
+     - POST /v2/private/order/cancelAll
+     - API Key:
+       - type: apiKey api_key (QUERY)
+       - name: apiKey
+     - API Key:
+       - type: apiKey sign (QUERY)
+       - name: apiSignature
+     - API Key:
+       - type: apiKey timestamp (QUERY)
+       - name: timestamp
+     - examples: [{contentType=application/json, example=""}]
+     
+     - parameter symbol: (form) Contract type. 
+
+     - returns: RequestBuilder<Any> 
+     */
+    open class func orderCancelAllWithRequestBuilder(symbol: String) -> RequestBuilder<Any> {
+        let path = "/v2/private/order/cancelAll"
+        let URLString = SwaggerClientAPI.basePath + path
+        let formParams: [String:Any?] = [
+            "symbol": symbol
+        ]
+
+        let nonNullParameters = APIHelper.rejectNil(formParams)
+        let parameters = APIHelper.convertBoolToString(nonNullParameters)
+        
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+        ])
+
+        let requestBuilder: RequestBuilder<Any>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+    }
+
+    /**
+     Get my active order list.
+     
+     - parameter orderId: (form) Order ID 
+     - parameter symbol: (form) Contract type. (optional)
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func orderCancelV2(orderId: String, symbol: String? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
+        orderCancelV2WithRequestBuilder(orderId: orderId, symbol: symbol).execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Get my active order list.
+     - POST /v2/private/order/cancel
+     - API Key:
+       - type: apiKey api_key (QUERY)
+       - name: apiKey
+     - API Key:
+       - type: apiKey sign (QUERY)
+       - name: apiSignature
+     - API Key:
+       - type: apiKey timestamp (QUERY)
+       - name: timestamp
+     - examples: [{contentType=application/json, example=""}]
+     
+     - parameter orderId: (form) Order ID 
+     - parameter symbol: (form) Contract type. (optional)
+
+     - returns: RequestBuilder<Any> 
+     */
+    open class func orderCancelV2WithRequestBuilder(orderId: String, symbol: String? = nil) -> RequestBuilder<Any> {
+        let path = "/v2/private/order/cancel"
+        let URLString = SwaggerClientAPI.basePath + path
+        let formParams: [String:Any?] = [
+            "order_id": orderId,
+            "symbol": symbol
+        ]
+
+        let nonNullParameters = APIHelper.rejectNil(formParams)
+        let parameters = APIHelper.convertBoolToString(nonNullParameters)
+        
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+        ])
+
+        let requestBuilder: RequestBuilder<Any>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+    }
+
+    /**
+     Get my active order list.
+     
      - parameter orderId: (query) Order ID (optional)
      - parameter orderLinkId: (query) Customized order ID. (optional)
      - parameter symbol: (query) Contract type. Default BTCUSD (optional)
@@ -192,6 +295,89 @@ open class OrderAPI {
             "reduce_only": reduceOnly,
             "close_on_trigger": closeOnTrigger,
             "order_link_id": orderLinkId
+        ]
+
+        let nonNullParameters = APIHelper.rejectNil(formParams)
+        let parameters = APIHelper.convertBoolToString(nonNullParameters)
+        
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "price": price, 
+            "take_profit": takeProfit
+        ])
+
+        let requestBuilder: RequestBuilder<Any>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+    }
+
+    /**
+     Place active order
+     
+     - parameter side: (form) Side 
+     - parameter symbol: (form) Contract type. 
+     - parameter orderType: (form) Active order type 
+     - parameter qty: (form)  
+     - parameter price: (query) Order price. 
+     - parameter timeInForce: (form) Time in force 
+     - parameter takeProfit: (query) take profit price (optional)
+     - parameter stopLoss: (form) stop loss price (optional)
+     - parameter reduceOnly: (form) reduce only (optional)
+     - parameter closeOnTrigger: (form) close on trigger (optional)
+     - parameter orderLinkId: (form) TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. (optional)
+     - parameter trailingStop: (form) Trailing stop. (optional)
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func orderNewV2(side: String, symbol: String, orderType: String, qty: Double, price: Double, timeInForce: String, takeProfit: Double? = nil, stopLoss: Double? = nil, reduceOnly: Bool? = nil, closeOnTrigger: Bool? = nil, orderLinkId: String? = nil, trailingStop: String? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
+        orderNewV2WithRequestBuilder(side: side, symbol: symbol, orderType: orderType, qty: qty, price: price, timeInForce: timeInForce, takeProfit: takeProfit, stopLoss: stopLoss, reduceOnly: reduceOnly, closeOnTrigger: closeOnTrigger, orderLinkId: orderLinkId, trailingStop: trailingStop).execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Place active order
+     - POST /v2/private/order/create
+     - API Key:
+       - type: apiKey api_key (QUERY)
+       - name: apiKey
+     - API Key:
+       - type: apiKey sign (QUERY)
+       - name: apiSignature
+     - API Key:
+       - type: apiKey timestamp (QUERY)
+       - name: timestamp
+     - examples: [{contentType=application/json, example=""}]
+     
+     - parameter side: (form) Side 
+     - parameter symbol: (form) Contract type. 
+     - parameter orderType: (form) Active order type 
+     - parameter qty: (form)  
+     - parameter price: (query) Order price. 
+     - parameter timeInForce: (form) Time in force 
+     - parameter takeProfit: (query) take profit price (optional)
+     - parameter stopLoss: (form) stop loss price (optional)
+     - parameter reduceOnly: (form) reduce only (optional)
+     - parameter closeOnTrigger: (form) close on trigger (optional)
+     - parameter orderLinkId: (form) TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. (optional)
+     - parameter trailingStop: (form) Trailing stop. (optional)
+
+     - returns: RequestBuilder<Any> 
+     */
+    open class func orderNewV2WithRequestBuilder(side: String, symbol: String, orderType: String, qty: Double, price: Double, timeInForce: String, takeProfit: Double? = nil, stopLoss: Double? = nil, reduceOnly: Bool? = nil, closeOnTrigger: Bool? = nil, orderLinkId: String? = nil, trailingStop: String? = nil) -> RequestBuilder<Any> {
+        let path = "/v2/private/order/create"
+        let URLString = SwaggerClientAPI.basePath + path
+        let formParams: [String:Any?] = [
+            "side": side,
+            "symbol": symbol,
+            "order_type": orderType,
+            "qty": qty,
+            "time_in_force": timeInForce,
+            "stop_loss": stopLoss,
+            "reduce_only": reduceOnly,
+            "close_on_trigger": closeOnTrigger,
+            "order_link_id": orderLinkId,
+            "trailing_stop": trailingStop
         ]
 
         let nonNullParameters = APIHelper.rejectNil(formParams)

@@ -370,6 +370,561 @@ class OrderApi
     }
 
     /**
+     * Operation orderCancelAll
+     *
+     * Get my active order list.
+     *
+     * @param  string $symbol Contract type. (required)
+     *
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return object
+     */
+    public function orderCancelAll($symbol)
+    {
+        list($response) = $this->orderCancelAllWithHttpInfo($symbol);
+        return $response;
+    }
+
+    /**
+     * Operation orderCancelAllWithHttpInfo
+     *
+     * Get my active order list.
+     *
+     * @param  string $symbol Contract type. (required)
+     *
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of object, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function orderCancelAllWithHttpInfo($symbol)
+    {
+        $returnType = 'object';
+        $request = $this->orderCancelAllRequest($symbol);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'object',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation orderCancelAllAsync
+     *
+     * Get my active order list.
+     *
+     * @param  string $symbol Contract type. (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function orderCancelAllAsync($symbol)
+    {
+        return $this->orderCancelAllAsyncWithHttpInfo($symbol)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation orderCancelAllAsyncWithHttpInfo
+     *
+     * Get my active order list.
+     *
+     * @param  string $symbol Contract type. (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function orderCancelAllAsyncWithHttpInfo($symbol)
+    {
+        $returnType = 'object';
+        $request = $this->orderCancelAllRequest($symbol);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'orderCancelAll'
+     *
+     * @param  string $symbol Contract type. (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function orderCancelAllRequest($symbol)
+    {
+        // verify the required parameter 'symbol' is set
+        if ($symbol === null || (is_array($symbol) && count($symbol) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $symbol when calling orderCancelAll'
+            );
+        }
+
+        $resourcePath = '/v2/private/order/cancelAll';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // form params
+        if ($symbol !== null) {
+            $formParams['symbol'] = ObjectSerializer::toFormValue($symbol);
+        }
+        // body params
+        $_tempBody = null;
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json', 'application/x-www-form-urlencoded']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            $httpBody = $_tempBody;
+            // \stdClass has no __toString(), so we should encode it manually
+            if ($httpBody instanceof \stdClass && $headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($httpBody);
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('api_key');
+        if ($apiKey !== null) {
+            $queryParams['api_key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('sign');
+        if ($apiKey !== null) {
+            $queryParams['sign'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('timestamp');
+        if ($apiKey !== null) {
+            $queryParams['timestamp'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation orderCancelV2
+     *
+     * Get my active order list.
+     *
+     * @param  string $order_id Order ID (required)
+     * @param  string $symbol Contract type. (optional)
+     *
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return object
+     */
+    public function orderCancelV2($order_id, $symbol = null)
+    {
+        list($response) = $this->orderCancelV2WithHttpInfo($order_id, $symbol);
+        return $response;
+    }
+
+    /**
+     * Operation orderCancelV2WithHttpInfo
+     *
+     * Get my active order list.
+     *
+     * @param  string $order_id Order ID (required)
+     * @param  string $symbol Contract type. (optional)
+     *
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of object, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function orderCancelV2WithHttpInfo($order_id, $symbol = null)
+    {
+        $returnType = 'object';
+        $request = $this->orderCancelV2Request($order_id, $symbol);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'object',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation orderCancelV2Async
+     *
+     * Get my active order list.
+     *
+     * @param  string $order_id Order ID (required)
+     * @param  string $symbol Contract type. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function orderCancelV2Async($order_id, $symbol = null)
+    {
+        return $this->orderCancelV2AsyncWithHttpInfo($order_id, $symbol)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation orderCancelV2AsyncWithHttpInfo
+     *
+     * Get my active order list.
+     *
+     * @param  string $order_id Order ID (required)
+     * @param  string $symbol Contract type. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function orderCancelV2AsyncWithHttpInfo($order_id, $symbol = null)
+    {
+        $returnType = 'object';
+        $request = $this->orderCancelV2Request($order_id, $symbol);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'orderCancelV2'
+     *
+     * @param  string $order_id Order ID (required)
+     * @param  string $symbol Contract type. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function orderCancelV2Request($order_id, $symbol = null)
+    {
+        // verify the required parameter 'order_id' is set
+        if ($order_id === null || (is_array($order_id) && count($order_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $order_id when calling orderCancelV2'
+            );
+        }
+
+        $resourcePath = '/v2/private/order/cancel';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // form params
+        if ($order_id !== null) {
+            $formParams['order_id'] = ObjectSerializer::toFormValue($order_id);
+        }
+        // form params
+        if ($symbol !== null) {
+            $formParams['symbol'] = ObjectSerializer::toFormValue($symbol);
+        }
+        // body params
+        $_tempBody = null;
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json', 'application/x-www-form-urlencoded']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            $httpBody = $_tempBody;
+            // \stdClass has no __toString(), so we should encode it manually
+            if ($httpBody instanceof \stdClass && $headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($httpBody);
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('api_key');
+        if ($apiKey !== null) {
+            $queryParams['api_key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('sign');
+        if ($apiKey !== null) {
+            $queryParams['sign'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('timestamp');
+        if ($apiKey !== null) {
+            $queryParams['timestamp'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation orderGetOrders
      *
      * Get my active order list.
@@ -1003,6 +1558,408 @@ class OrderApi
         // form params
         if ($order_link_id !== null) {
             $formParams['order_link_id'] = ObjectSerializer::toFormValue($order_link_id);
+        }
+        // body params
+        $_tempBody = null;
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json', 'application/x-www-form-urlencoded']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            $httpBody = $_tempBody;
+            // \stdClass has no __toString(), so we should encode it manually
+            if ($httpBody instanceof \stdClass && $headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($httpBody);
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('api_key');
+        if ($apiKey !== null) {
+            $queryParams['api_key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('sign');
+        if ($apiKey !== null) {
+            $queryParams['sign'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('timestamp');
+        if ($apiKey !== null) {
+            $queryParams['timestamp'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation orderNewV2
+     *
+     * Place active order
+     *
+     * @param  string $side Side (required)
+     * @param  string $symbol Contract type. (required)
+     * @param  string $order_type Active order type (required)
+     * @param  float $qty  (required)
+     * @param  double $price Order price. (required)
+     * @param  string $time_in_force Time in force (required)
+     * @param  double $take_profit take profit price (optional)
+     * @param  double $stop_loss stop loss price (optional)
+     * @param  bool $reduce_only reduce only (optional)
+     * @param  bool $close_on_trigger close on trigger (optional)
+     * @param  string $order_link_id TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. (optional)
+     * @param  string $trailing_stop Trailing stop. (optional)
+     *
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return object
+     */
+    public function orderNewV2($side, $symbol, $order_type, $qty, $price, $time_in_force, $take_profit = null, $stop_loss = null, $reduce_only = null, $close_on_trigger = null, $order_link_id = null, $trailing_stop = null)
+    {
+        list($response) = $this->orderNewV2WithHttpInfo($side, $symbol, $order_type, $qty, $price, $time_in_force, $take_profit, $stop_loss, $reduce_only, $close_on_trigger, $order_link_id, $trailing_stop);
+        return $response;
+    }
+
+    /**
+     * Operation orderNewV2WithHttpInfo
+     *
+     * Place active order
+     *
+     * @param  string $side Side (required)
+     * @param  string $symbol Contract type. (required)
+     * @param  string $order_type Active order type (required)
+     * @param  float $qty  (required)
+     * @param  double $price Order price. (required)
+     * @param  string $time_in_force Time in force (required)
+     * @param  double $take_profit take profit price (optional)
+     * @param  double $stop_loss stop loss price (optional)
+     * @param  bool $reduce_only reduce only (optional)
+     * @param  bool $close_on_trigger close on trigger (optional)
+     * @param  string $order_link_id TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. (optional)
+     * @param  string $trailing_stop Trailing stop. (optional)
+     *
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of object, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function orderNewV2WithHttpInfo($side, $symbol, $order_type, $qty, $price, $time_in_force, $take_profit = null, $stop_loss = null, $reduce_only = null, $close_on_trigger = null, $order_link_id = null, $trailing_stop = null)
+    {
+        $returnType = 'object';
+        $request = $this->orderNewV2Request($side, $symbol, $order_type, $qty, $price, $time_in_force, $take_profit, $stop_loss, $reduce_only, $close_on_trigger, $order_link_id, $trailing_stop);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'object',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation orderNewV2Async
+     *
+     * Place active order
+     *
+     * @param  string $side Side (required)
+     * @param  string $symbol Contract type. (required)
+     * @param  string $order_type Active order type (required)
+     * @param  float $qty  (required)
+     * @param  double $price Order price. (required)
+     * @param  string $time_in_force Time in force (required)
+     * @param  double $take_profit take profit price (optional)
+     * @param  double $stop_loss stop loss price (optional)
+     * @param  bool $reduce_only reduce only (optional)
+     * @param  bool $close_on_trigger close on trigger (optional)
+     * @param  string $order_link_id TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. (optional)
+     * @param  string $trailing_stop Trailing stop. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function orderNewV2Async($side, $symbol, $order_type, $qty, $price, $time_in_force, $take_profit = null, $stop_loss = null, $reduce_only = null, $close_on_trigger = null, $order_link_id = null, $trailing_stop = null)
+    {
+        return $this->orderNewV2AsyncWithHttpInfo($side, $symbol, $order_type, $qty, $price, $time_in_force, $take_profit, $stop_loss, $reduce_only, $close_on_trigger, $order_link_id, $trailing_stop)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation orderNewV2AsyncWithHttpInfo
+     *
+     * Place active order
+     *
+     * @param  string $side Side (required)
+     * @param  string $symbol Contract type. (required)
+     * @param  string $order_type Active order type (required)
+     * @param  float $qty  (required)
+     * @param  double $price Order price. (required)
+     * @param  string $time_in_force Time in force (required)
+     * @param  double $take_profit take profit price (optional)
+     * @param  double $stop_loss stop loss price (optional)
+     * @param  bool $reduce_only reduce only (optional)
+     * @param  bool $close_on_trigger close on trigger (optional)
+     * @param  string $order_link_id TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. (optional)
+     * @param  string $trailing_stop Trailing stop. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function orderNewV2AsyncWithHttpInfo($side, $symbol, $order_type, $qty, $price, $time_in_force, $take_profit = null, $stop_loss = null, $reduce_only = null, $close_on_trigger = null, $order_link_id = null, $trailing_stop = null)
+    {
+        $returnType = 'object';
+        $request = $this->orderNewV2Request($side, $symbol, $order_type, $qty, $price, $time_in_force, $take_profit, $stop_loss, $reduce_only, $close_on_trigger, $order_link_id, $trailing_stop);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'orderNewV2'
+     *
+     * @param  string $side Side (required)
+     * @param  string $symbol Contract type. (required)
+     * @param  string $order_type Active order type (required)
+     * @param  float $qty  (required)
+     * @param  double $price Order price. (required)
+     * @param  string $time_in_force Time in force (required)
+     * @param  double $take_profit take profit price (optional)
+     * @param  double $stop_loss stop loss price (optional)
+     * @param  bool $reduce_only reduce only (optional)
+     * @param  bool $close_on_trigger close on trigger (optional)
+     * @param  string $order_link_id TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. (optional)
+     * @param  string $trailing_stop Trailing stop. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function orderNewV2Request($side, $symbol, $order_type, $qty, $price, $time_in_force, $take_profit = null, $stop_loss = null, $reduce_only = null, $close_on_trigger = null, $order_link_id = null, $trailing_stop = null)
+    {
+        // verify the required parameter 'side' is set
+        if ($side === null || (is_array($side) && count($side) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $side when calling orderNewV2'
+            );
+        }
+        // verify the required parameter 'symbol' is set
+        if ($symbol === null || (is_array($symbol) && count($symbol) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $symbol when calling orderNewV2'
+            );
+        }
+        // verify the required parameter 'order_type' is set
+        if ($order_type === null || (is_array($order_type) && count($order_type) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $order_type when calling orderNewV2'
+            );
+        }
+        // verify the required parameter 'qty' is set
+        if ($qty === null || (is_array($qty) && count($qty) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $qty when calling orderNewV2'
+            );
+        }
+        // verify the required parameter 'price' is set
+        if ($price === null || (is_array($price) && count($price) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $price when calling orderNewV2'
+            );
+        }
+        // verify the required parameter 'time_in_force' is set
+        if ($time_in_force === null || (is_array($time_in_force) && count($time_in_force) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $time_in_force when calling orderNewV2'
+            );
+        }
+
+        $resourcePath = '/v2/private/order/create';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if ($price !== null) {
+            $queryParams['price'] = ObjectSerializer::toQueryValue($price);
+        }
+        // query params
+        if ($take_profit !== null) {
+            $queryParams['take_profit'] = ObjectSerializer::toQueryValue($take_profit);
+        }
+
+
+        // form params
+        if ($side !== null) {
+            $formParams['side'] = ObjectSerializer::toFormValue($side);
+        }
+        // form params
+        if ($symbol !== null) {
+            $formParams['symbol'] = ObjectSerializer::toFormValue($symbol);
+        }
+        // form params
+        if ($order_type !== null) {
+            $formParams['order_type'] = ObjectSerializer::toFormValue($order_type);
+        }
+        // form params
+        if ($qty !== null) {
+            $formParams['qty'] = ObjectSerializer::toFormValue($qty);
+        }
+        // form params
+        if ($time_in_force !== null) {
+            $formParams['time_in_force'] = ObjectSerializer::toFormValue($time_in_force);
+        }
+        // form params
+        if ($stop_loss !== null) {
+            $formParams['stop_loss'] = ObjectSerializer::toFormValue($stop_loss);
+        }
+        // form params
+        if ($reduce_only !== null) {
+            $formParams['reduce_only'] = ObjectSerializer::toFormValue($reduce_only);
+        }
+        // form params
+        if ($close_on_trigger !== null) {
+            $formParams['close_on_trigger'] = ObjectSerializer::toFormValue($close_on_trigger);
+        }
+        // form params
+        if ($order_link_id !== null) {
+            $formParams['order_link_id'] = ObjectSerializer::toFormValue($order_link_id);
+        }
+        // form params
+        if ($trailing_stop !== null) {
+            $formParams['trailing_stop'] = ObjectSerializer::toFormValue($trailing_stop);
         }
         // body params
         $_tempBody = null;

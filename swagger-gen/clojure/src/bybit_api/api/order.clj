@@ -22,6 +22,44 @@
   ([order-id optional-params]
    (:data (order-cancel-with-http-info order-id optional-params))))
 
+(defn order-cancel-all-with-http-info
+  "Get my active order list."
+  [symbol ]
+  (check-required-params symbol)
+  (call-api "/v2/private/order/cancelAll" :post
+            {:path-params   {}
+             :header-params {}
+             :query-params  {}
+             :form-params   {"symbol" symbol }
+             :content-types ["application/json" "application/x-www-form-urlencoded"]
+             :accepts       ["application/json"]
+             :auth-names    ["apiKey" "apiSignature" "timestamp"]}))
+
+(defn order-cancel-all
+  "Get my active order list."
+  [symbol ]
+  (:data (order-cancel-all-with-http-info symbol)))
+
+(defn order-cancel-v2-with-http-info
+  "Get my active order list."
+  ([order-id ] (order-cancel-v2-with-http-info order-id nil))
+  ([order-id {:keys [symbol ]}]
+   (check-required-params order-id)
+   (call-api "/v2/private/order/cancel" :post
+             {:path-params   {}
+              :header-params {}
+              :query-params  {}
+              :form-params   {"order_id" order-id "symbol" symbol }
+              :content-types ["application/json" "application/x-www-form-urlencoded"]
+              :accepts       ["application/json"]
+              :auth-names    ["apiKey" "apiSignature" "timestamp"]})))
+
+(defn order-cancel-v2
+  "Get my active order list."
+  ([order-id ] (order-cancel-v2 order-id nil))
+  ([order-id optional-params]
+   (:data (order-cancel-v2-with-http-info order-id optional-params))))
+
 (defn order-get-orders-with-http-info
   "Get my active order list."
   ([] (order-get-orders-with-http-info nil))
@@ -60,6 +98,26 @@
   ([side symbol order-type qty price time-in-force ] (order-new side symbol order-type qty price time-in-force nil))
   ([side symbol order-type qty price time-in-force optional-params]
    (:data (order-new-with-http-info side symbol order-type qty price time-in-force optional-params))))
+
+(defn order-new-v2-with-http-info
+  "Place active order"
+  ([side symbol order-type qty price time-in-force ] (order-new-v2-with-http-info side symbol order-type qty price time-in-force nil))
+  ([side symbol order-type qty price time-in-force {:keys [take-profit stop-loss reduce-only close-on-trigger order-link-id trailing-stop ]}]
+   (check-required-params side symbol order-type qty price time-in-force)
+   (call-api "/v2/private/order/create" :post
+             {:path-params   {}
+              :header-params {}
+              :query-params  {"price" price "take_profit" take-profit }
+              :form-params   {"side" side "symbol" symbol "order_type" order-type "qty" qty "time_in_force" time-in-force "stop_loss" stop-loss "reduce_only" reduce-only "close_on_trigger" close-on-trigger "order_link_id" order-link-id "trailing_stop" trailing-stop }
+              :content-types ["application/json" "application/x-www-form-urlencoded"]
+              :accepts       ["application/json"]
+              :auth-names    ["apiKey" "apiSignature" "timestamp"]})))
+
+(defn order-new-v2
+  "Place active order"
+  ([side symbol order-type qty price time-in-force ] (order-new-v2 side symbol order-type qty price time-in-force nil))
+  ([side symbol order-type qty price time-in-force optional-params]
+   (:data (order-new-v2-with-http-info side symbol order-type qty price time-in-force optional-params))))
 
 (defn order-query-with-http-info
   "Get my active order list."

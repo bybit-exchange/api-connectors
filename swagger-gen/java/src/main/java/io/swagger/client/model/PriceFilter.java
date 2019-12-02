@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * PriceFilter
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-11-27T16:42:38.839+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-12-02T22:18:53.713+08:00")
 public class PriceFilter {
   @SerializedName("min_price")
   private String minPrice = null;

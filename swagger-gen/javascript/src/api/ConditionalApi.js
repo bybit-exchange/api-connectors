@@ -96,6 +96,53 @@
     }
 
     /**
+     * Callback function to receive the result of the conditionalCancelAll operation.
+     * @callback module:api/ConditionalApi~conditionalCancelAllCallback
+     * @param {String} error Error message, if any.
+     * @param {Object} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Cancel conditional order.
+     * @param {String} symbol Contract type.
+     * @param {module:api/ConditionalApi~conditionalCancelAllCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link Object}
+     */
+    this.conditionalCancelAll = function(symbol, callback) {
+      var postBody = null;
+
+      // verify the required parameter 'symbol' is set
+      if (symbol === undefined || symbol === null) {
+        throw new Error("Missing the required parameter 'symbol' when calling conditionalCancelAll");
+      }
+
+
+      var pathParams = {
+      };
+      var queryParams = {
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+        'symbol': symbol
+      };
+
+      var authNames = ['apiKey', 'apiSignature', 'timestamp'];
+      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      var accepts = ['application/json'];
+      var returnType = Object;
+
+      return this.apiClient.callApi(
+        '/v2/private/stop-order/cancelAll', 'POST',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
      * Callback function to receive the result of the conditionalGetOrders operation.
      * @callback module:api/ConditionalApi~conditionalGetOrdersCallback
      * @param {String} error Error message, if any.

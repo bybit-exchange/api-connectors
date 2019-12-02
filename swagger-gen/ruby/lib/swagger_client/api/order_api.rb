@@ -76,6 +76,115 @@ module SwaggerClient
       return data, status_code, headers
     end
     # Get my active order list.
+    # @param symbol Contract type.
+    # @param [Hash] opts the optional parameters
+    # @return [Object]
+    def order_cancel_all(symbol, opts = {})
+      data, _status_code, _headers = order_cancel_all_with_http_info(symbol, opts)
+      data
+    end
+
+    # Get my active order list.
+    # @param symbol Contract type.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Object, Fixnum, Hash)>] Object data, response status code and response headers
+    def order_cancel_all_with_http_info(symbol, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: OrderApi.order_cancel_all ...'
+      end
+      # verify the required parameter 'symbol' is set
+      if @api_client.config.client_side_validation && symbol.nil?
+        fail ArgumentError, "Missing the required parameter 'symbol' when calling OrderApi.order_cancel_all"
+      end
+      # resource path
+      local_var_path = '/v2/private/order/cancelAll'
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json', 'application/x-www-form-urlencoded'])
+
+      # form parameters
+      form_params = {}
+      form_params['symbol'] = symbol
+
+      # http body (model)
+      post_body = nil
+      auth_names = ['apiKey', 'apiSignature', 'timestamp']
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'Object')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: OrderApi#order_cancel_all\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+    # Get my active order list.
+    # @param order_id Order ID
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :symbol Contract type.
+    # @return [Object]
+    def order_cancel_v2(order_id, opts = {})
+      data, _status_code, _headers = order_cancel_v2_with_http_info(order_id, opts)
+      data
+    end
+
+    # Get my active order list.
+    # @param order_id Order ID
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :symbol Contract type.
+    # @return [Array<(Object, Fixnum, Hash)>] Object data, response status code and response headers
+    def order_cancel_v2_with_http_info(order_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: OrderApi.order_cancel_v2 ...'
+      end
+      # verify the required parameter 'order_id' is set
+      if @api_client.config.client_side_validation && order_id.nil?
+        fail ArgumentError, "Missing the required parameter 'order_id' when calling OrderApi.order_cancel_v2"
+      end
+      # resource path
+      local_var_path = '/v2/private/order/cancel'
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json', 'application/x-www-form-urlencoded'])
+
+      # form parameters
+      form_params = {}
+      form_params['order_id'] = order_id
+      form_params['symbol'] = opts[:'symbol'] if !opts[:'symbol'].nil?
+
+      # http body (model)
+      post_body = nil
+      auth_names = ['apiKey', 'apiSignature', 'timestamp']
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'Object')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: OrderApi#order_cancel_v2\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+    # Get my active order list.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :order_id Order ID
     # @option opts [String] :order_link_id Customized order ID.
@@ -242,6 +351,112 @@ module SwaggerClient
         :return_type => 'Object')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: OrderApi#order_new\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+    # Place active order
+    # @param side Side
+    # @param symbol Contract type.
+    # @param order_type Active order type
+    # @param qty 
+    # @param price Order price.
+    # @param time_in_force Time in force
+    # @param [Hash] opts the optional parameters
+    # @option opts [Float] :take_profit take profit price
+    # @option opts [Float] :stop_loss stop loss price
+    # @option opts [BOOLEAN] :reduce_only reduce only
+    # @option opts [BOOLEAN] :close_on_trigger close on trigger
+    # @option opts [String] :order_link_id TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.
+    # @option opts [String] :trailing_stop Trailing stop.
+    # @return [Object]
+    def order_new_v2(side, symbol, order_type, qty, price, time_in_force, opts = {})
+      data, _status_code, _headers = order_new_v2_with_http_info(side, symbol, order_type, qty, price, time_in_force, opts)
+      data
+    end
+
+    # Place active order
+    # @param side Side
+    # @param symbol Contract type.
+    # @param order_type Active order type
+    # @param qty 
+    # @param price Order price.
+    # @param time_in_force Time in force
+    # @param [Hash] opts the optional parameters
+    # @option opts [Float] :take_profit take profit price
+    # @option opts [Float] :stop_loss stop loss price
+    # @option opts [BOOLEAN] :reduce_only reduce only
+    # @option opts [BOOLEAN] :close_on_trigger close on trigger
+    # @option opts [String] :order_link_id TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.
+    # @option opts [String] :trailing_stop Trailing stop.
+    # @return [Array<(Object, Fixnum, Hash)>] Object data, response status code and response headers
+    def order_new_v2_with_http_info(side, symbol, order_type, qty, price, time_in_force, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: OrderApi.order_new_v2 ...'
+      end
+      # verify the required parameter 'side' is set
+      if @api_client.config.client_side_validation && side.nil?
+        fail ArgumentError, "Missing the required parameter 'side' when calling OrderApi.order_new_v2"
+      end
+      # verify the required parameter 'symbol' is set
+      if @api_client.config.client_side_validation && symbol.nil?
+        fail ArgumentError, "Missing the required parameter 'symbol' when calling OrderApi.order_new_v2"
+      end
+      # verify the required parameter 'order_type' is set
+      if @api_client.config.client_side_validation && order_type.nil?
+        fail ArgumentError, "Missing the required parameter 'order_type' when calling OrderApi.order_new_v2"
+      end
+      # verify the required parameter 'qty' is set
+      if @api_client.config.client_side_validation && qty.nil?
+        fail ArgumentError, "Missing the required parameter 'qty' when calling OrderApi.order_new_v2"
+      end
+      # verify the required parameter 'price' is set
+      if @api_client.config.client_side_validation && price.nil?
+        fail ArgumentError, "Missing the required parameter 'price' when calling OrderApi.order_new_v2"
+      end
+      # verify the required parameter 'time_in_force' is set
+      if @api_client.config.client_side_validation && time_in_force.nil?
+        fail ArgumentError, "Missing the required parameter 'time_in_force' when calling OrderApi.order_new_v2"
+      end
+      # resource path
+      local_var_path = '/v2/private/order/create'
+
+      # query parameters
+      query_params = {}
+      query_params[:'price'] = price
+      query_params[:'take_profit'] = opts[:'take_profit'] if !opts[:'take_profit'].nil?
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json', 'application/x-www-form-urlencoded'])
+
+      # form parameters
+      form_params = {}
+      form_params['side'] = side
+      form_params['symbol'] = symbol
+      form_params['order_type'] = order_type
+      form_params['qty'] = qty
+      form_params['time_in_force'] = time_in_force
+      form_params['stop_loss'] = opts[:'stop_loss'] if !opts[:'stop_loss'].nil?
+      form_params['reduce_only'] = opts[:'reduce_only'] if !opts[:'reduce_only'].nil?
+      form_params['close_on_trigger'] = opts[:'close_on_trigger'] if !opts[:'close_on_trigger'].nil?
+      form_params['order_link_id'] = opts[:'order_link_id'] if !opts[:'order_link_id'].nil?
+      form_params['trailing_stop'] = opts[:'trailing_stop'] if !opts[:'trailing_stop'].nil?
+
+      # http body (model)
+      post_body = nil
+      auth_names = ['apiKey', 'apiSignature', 'timestamp']
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'Object')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: OrderApi#order_new_v2\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

@@ -72,6 +72,59 @@ module SwaggerClient
       end
       return data, status_code, headers
     end
+    # Cancel conditional order.
+    # @param symbol Contract type.
+    # @param [Hash] opts the optional parameters
+    # @return [Object]
+    def conditional_cancel_all(symbol, opts = {})
+      data, _status_code, _headers = conditional_cancel_all_with_http_info(symbol, opts)
+      data
+    end
+
+    # Cancel conditional order.
+    # @param symbol Contract type.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Object, Fixnum, Hash)>] Object data, response status code and response headers
+    def conditional_cancel_all_with_http_info(symbol, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: ConditionalApi.conditional_cancel_all ...'
+      end
+      # verify the required parameter 'symbol' is set
+      if @api_client.config.client_side_validation && symbol.nil?
+        fail ArgumentError, "Missing the required parameter 'symbol' when calling ConditionalApi.conditional_cancel_all"
+      end
+      # resource path
+      local_var_path = '/v2/private/stop-order/cancelAll'
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json', 'application/x-www-form-urlencoded'])
+
+      # form parameters
+      form_params = {}
+      form_params['symbol'] = symbol
+
+      # http body (model)
+      post_body = nil
+      auth_names = ['apiKey', 'apiSignature', 'timestamp']
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'Object')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: ConditionalApi#conditional_cancel_all\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
     # Get my conditional order list.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :stop_order_id Order ID of conditional order.

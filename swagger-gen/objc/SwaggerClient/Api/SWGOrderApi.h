@@ -39,6 +39,32 @@ extern NSInteger kSWGOrderApiMissingParamErrorCode;
 /// Get my active order list.
 /// 
 ///
+/// @param symbol Contract type.
+/// 
+///  code:200 message:"Request was successful"
+///
+/// @return NSObject*
+-(NSURLSessionTask*) orderCancelAllWithSymbol: (NSString*) symbol
+    completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+
+
+/// Get my active order list.
+/// 
+///
+/// @param orderId Order ID
+/// @param symbol Contract type. (optional)
+/// 
+///  code:200 message:"Request was successful"
+///
+/// @return NSObject*
+-(NSURLSessionTask*) orderCancelV2WithOrderId: (NSString*) orderId
+    symbol: (NSString*) symbol
+    completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+
+
+/// Get my active order list.
+/// 
+///
 /// @param orderId Order ID (optional)
 /// @param orderLinkId Customized order ID. (optional)
 /// @param symbol Contract type. Default BTCUSD (optional)
@@ -89,6 +115,40 @@ extern NSInteger kSWGOrderApiMissingParamErrorCode;
     reduceOnly: (NSNumber*) reduceOnly
     closeOnTrigger: (NSNumber*) closeOnTrigger
     orderLinkId: (NSString*) orderLinkId
+    completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+
+
+/// Place active order
+/// 
+///
+/// @param side Side
+/// @param symbol Contract type.
+/// @param orderType Active order type
+/// @param qty 
+/// @param price Order price.
+/// @param timeInForce Time in force
+/// @param takeProfit take profit price (optional)
+/// @param stopLoss stop loss price (optional)
+/// @param reduceOnly reduce only (optional)
+/// @param closeOnTrigger close on trigger (optional)
+/// @param orderLinkId TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. (optional)
+/// @param trailingStop Trailing stop. (optional)
+/// 
+///  code:200 message:"Request was successful"
+///
+/// @return NSObject*
+-(NSURLSessionTask*) orderNewV2WithSide: (NSString*) side
+    symbol: (NSString*) symbol
+    orderType: (NSString*) orderType
+    qty: (NSNumber*) qty
+    price: (NSNumber*) price
+    timeInForce: (NSString*) timeInForce
+    takeProfit: (NSNumber*) takeProfit
+    stopLoss: (NSNumber*) stopLoss
+    reduceOnly: (NSNumber*) reduceOnly
+    closeOnTrigger: (NSNumber*) closeOnTrigger
+    orderLinkId: (NSString*) orderLinkId
+    trailingStop: (NSString*) trailingStop
     completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
 
 

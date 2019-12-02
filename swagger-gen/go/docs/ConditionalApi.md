@@ -5,6 +5,7 @@ All URIs are relative to *https://api-testnet.bybit.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ConditionalCancel**](ConditionalApi.md#ConditionalCancel) | **Post** /open-api/stop-order/cancel | Cancel conditional order.
+[**ConditionalCancelAll**](ConditionalApi.md#ConditionalCancelAll) | **Post** /v2/private/stop-order/cancelAll | Cancel conditional order.
 [**ConditionalGetOrders**](ConditionalApi.md#ConditionalGetOrders) | **Get** /open-api/stop-order/list | Get my conditional order list.
 [**ConditionalNew**](ConditionalApi.md#ConditionalNew) | **Post** /open-api/stop-order/create | Place a new conditional order.
 [**ConditionalReplace**](ConditionalApi.md#ConditionalReplace) | **Post** /open-api/stop-order/replace | Replace conditional order. Only incomplete orders can be modified. 
@@ -20,6 +21,32 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **stopOrderId** | **string**| Order ID of conditional order. | 
+
+### Return type
+
+[**interface{}**](interface{}.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ConditionalCancelAll**
+> interface{} ConditionalCancelAll(ctx, symbol)
+Cancel conditional order.
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **symbol** | **string**| Contract type. | 
 
 ### Return type
 
