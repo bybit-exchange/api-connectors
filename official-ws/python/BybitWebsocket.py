@@ -1,6 +1,7 @@
 import websocket
-import threading
+from threading import Lock, Thread
 import traceback
+import socket
 from time import sleep
 import json
 import logging
@@ -8,6 +9,7 @@ import urllib
 import math
 import time
 import hmac
+import sys
 
 # This is a simple adapters for connecting to Bybit's websocket API.
 # You could use methods whose names begin with “subscribe”, and get result by "get_data" method.
@@ -21,8 +23,14 @@ class BybitWebsocket:
     #User can ues MAX_DATA_CAPACITY to control memory usage.
     MAX_DATA_CAPACITY = 200
     PRIVATE_TOPIC = ['position', 'execution', 'order']
-    def __init__(self, wsURL, api_key, api_secret):
+    def __init__(self, test, api_key, api_secret):
         '''Initialize'''
+
+        if test:
+            self.host = "wss://stream-testnet.bybit.com/realtime"
+        else:
+            self.host = "wss://stream.bybit.com/realtime"
+
         self.logger = logging.getLogger(__name__)
         self.logger.debug("Initializing WebSocket.")
 
@@ -37,10 +45,33 @@ class BybitWebsocket:
         self.data = {}
         self.exited = False
         self.auth = False
-        # We can subscribe right in the connection querystring, so let's build that.
-        # Subscribe to all pertinent endpoints
-        self.logger.info("Connecting to %s" % wsURL)
-        self.__connect(wsURL)
+
+        self._ws_lock = Lock()
+        self._ws = None
+
+        self.ping_interval = 60  # seconds
+
+    def start(self):
+        """
+        Start the client and on_connected function is called after webscoket
+        is connected succesfully.
+
+        Please don't send packet untill on_connected fucntion is called.
+        """
+
+        self._active = True
+        self._worker_thread = Thread(target=self._run)
+        self._worker_thread.start()
+
+        self._ping_thread = Thread(target=self._run_ping)
+        self._ping_thread.start()
+
+    def stop(self):
+        """
+        Stop the client.
+        """
+        self._active = False
+        self._disconnect()
 
     def exit(self):
         '''Call this to exit - will close websocket.'''
@@ -58,7 +89,7 @@ class BybitWebsocket:
                                          on_error=self.__on_error,
                                          keep_running=True)
 
-        self.wst = threading.Thread(target=lambda: self.ws.run_forever())
+        self.wst = Thread(target=lambda: self.ws.run_forever())
         self.wst.daemon = True
         self.wst.start()
         self.logger.debug("Started thread")
@@ -75,6 +106,65 @@ class BybitWebsocket:
 
         if self.api_key and self.api_secret:
             self.__do_auth()
+
+    def _run(self):
+        """
+        Keep running till stop is called.
+        """
+        try:
+            while self._active:
+                try:
+                    self._ensure_connection()
+                    ws = self._ws
+                    if ws:
+                        text = ws.recv()
+
+                        # ws object is closed when recv function is blocking
+                        if not text:
+                            self._disconnect()
+                            continue
+
+                        self._record_debug_text(text)
+
+                        try:
+                            data = json.loads(text)
+                        except ValueError as e:
+                            print("websocket unable to parse data: " + text)
+                            raise e
+
+                        self._log('recv data: %s', data)
+                        self.on_packet(data)
+                # ws is closed before recv function is called
+                # For socket.error, see Issue #1608
+                except (websocket.WebSocketConnectionClosedException, socket.error):
+                    self._disconnect()
+
+                # other internal exception raised in on_packet
+                except:  # noqa
+                    et, ev, tb = sys.exc_info()
+                    self.__on_error(et, ev, tb)
+                    self._disconnect()
+        except:  # noqa
+            et, ev, tb = sys.exc_info()
+            self.__on_error(et, ev, tb)
+        self._disconnect()
+
+    def _run_ping(self):
+        """"""
+        while self._active:
+            try:
+                self._ping()
+            except:  # noqa
+                et, ev, tb = sys.exc_info()
+                self.__on_error(et, ev, tb)
+
+                # self._run() will reconnect websocket
+                sleep(1)
+
+            for i in range(self.ping_interval):
+                if not self._active:
+                    break
+                sleep(1)
 
     def generate_signature(self, expires):
         """Generate a request signature."""
@@ -109,7 +199,7 @@ class BybitWebsocket:
             if len(self.data[message["topic"]]) > BybitWebsocket.MAX_DATA_CAPACITY:
                 self.data[message["topic"]] = self.data[message["topic"]][BybitWebsocket.MAX_DATA_CAPACITY//2:]
 
-    def __on_error(self, error):
+    def __on_error(self, exception_type: type, exception_value: Exception, tb):
         '''Called on fatal websocket errors. We exit on these.'''
         if not self.exited:
             self.logger.error("Error : %s" % error)
@@ -123,65 +213,28 @@ class BybitWebsocket:
         '''Called on websocket close.'''
         self.logger.info('Websocket Closed')
 
+    def _disconnect(self):
+        """
+        """
+        triggered = False
+        with self._ws_lock:
+            if self._ws:
+                ws: websocket.WebSocket = self._ws
+                self._ws = None
+
+                triggered = True
+        if triggered:
+            ws.close()
+            self._on_disconnected()
+
+    def _on_disconnected(self):
+        """"""
+        self.logger.info("Websocket API连接断开")
+
     def ping(self):
         self.ws.send('{"op":"ping"}')
         if 'pong' not in self.data:
             self.data['pong'] = []
-
-    def subscribe_kline(self, symbol:str, interval:str):
-        param = {}
-        param['op'] = 'subscribe'
-        param['args'] = ['kline.' + symbol + '.' + interval]
-        self.ws.send(json.dumps(param))
-        if 'kline.' + symbol + '.' + interval not in self.data:
-            self.data['kline.' + symbol + '.' + interval] = []
-
-    def subscribe_trade(self):
-        self.ws.send('{"op":"subscribe","args":["trade"]}')
-        if "trade.BTCUSD" not in self.data:
-            self.data["trade.BTCUSD"] = []
-            self.data["trade.ETHUSD"] = []
-            self.data["trade.EOSUSD"] = []
-            self.data["trade.XRPUSD"] = []
-
-    def subscribe_insurance(self):
-        self.ws.send('{"op":"subscribe","args":["insurance"]}')
-        if 'insurance.BTC' not in self.data:
-            self.data['insurance.BTC'] = []
-            self.data['insurance.XRP'] = []
-            self.data['insurance.EOS'] = []
-            self.data['insurance.ETH'] = []
-
-    def subscribe_orderBookL2(self, symbol):
-        param = {}
-        param['op'] = 'subscribe'
-        param['args'] = ['orderBookL2_25.' + symbol]
-        self.ws.send(json.dumps(param))
-        if 'orderBookL2_25.' + symbol not in self.data:
-            self.data['orderBookL2_25.' + symbol] = []
-
-    def subscribe_instrument_info(self, symbol):
-        param = {}
-        param['op'] = 'subscribe'
-        param['args'] = ['instrument_info.100ms.' + symbol]
-        self.ws.send(json.dumps(param))
-        if 'instrument_info.100ms.' + symbol not in self.data:
-            self.data['instrument_info.100ms.' + symbol] = []
-
-    def subscribe_position(self):
-        self.ws.send('{"op":"subscribe","args":["position"]}')
-        if 'position' not in self.data:
-            self.data['position'] = []
-
-    def subscribe_execution(self):
-        self.ws.send('{"op":"subscribe","args":["execution"]}')
-        if 'execution' not in self.data:
-            self.data['execution'] = []
-
-    def subscribe_order(self):
-        self.ws.send('{"op":"subscribe","args":["order"]}')
-        if 'order' not in self.data:
-            self.data['order'] = []
 
     def get_data(self, topic):
         if topic not in self.data:
@@ -197,3 +250,20 @@ class BybitWebsocket:
             # while len(self.data[topic]) == 0 :
             #     sleep(0.1)
             return self.data[topic].pop()
+
+    def _record_debug_text(self, text: str):
+        """
+        Record last received text for debug purpose.
+        """
+        self._last_received_text = text[:1000]
+
+    def load_data(self, packet: dict):
+        """"""
+        if "topic" not in packet:
+            op = packet["request"]["op"]
+            if op == "auth":
+                self.logger.info(packet)
+        else:
+            channel = packet["topic"]
+            callback = self.callbacks[channel]
+            callback(packet)
