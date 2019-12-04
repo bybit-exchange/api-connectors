@@ -86,11 +86,11 @@ class BybitWebsocket:
         expires = str(int(round(time.time())+1))+"000"
         signature = self.generate_signature(expires)
 
-        auth = {}
-        auth["op"] = "auth"
-        auth["args"] = [self.api_key, expires, signature]
+        self.auth = {}
+        self.auth["op"] = "auth"
+        self.auth["args"] = [self.api_key, expires, signature]
 
-        args = json.dumps(auth)
+        args = json.dumps(self.auth)
 
         self.ws.send(args)
 
