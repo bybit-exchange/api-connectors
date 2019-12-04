@@ -38,8 +38,9 @@ class APIKeyAuthenticator(Authenticator):
     def generate_signature(self, req):
         """Generate a request signature."""
         _dict = req.params
-        for k, v in req.data.items():
-            _dict[k] = v
+        if (type(req.data).__name__=='dict'):
+            for k, v in req.data.items():
+                _dict[k] = v
         _val = '&'.join([str(k)+"="+str(v) for k, v in sorted(_dict.items()) if (k != 'sign') and (v is not None)])
         return str(hmac.new(bytes(self.api_secret, "utf-8"), bytes(_val, "utf-8"), digestmod="sha256").hexdigest())
 
