@@ -456,6 +456,113 @@
                         }
                     }
                 },
+                "deprecated": true
+            }
+        },
+        "/v2/private/order/create": {
+            "post": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Place active order",
+                "operationId": "Order.newV2",
+                "parameters": [{
+                        "name": "side",
+                        "in": "formData",
+                        "description": "Side",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "symbol",
+                        "in": "formData",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    }, {
+                        "name": "order_type",
+                        "in": "formData",
+                        "description": "Active order type",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "qty",
+                        "in": "formData",
+                        "description": "",
+                        "required": true,
+                        "type": "number",
+                        "format": "int32"
+                    }, {
+                        "name": "price",
+                        "in": "query",
+                        "description": "Order price.",
+                        "required": true,
+                        "type": "number",
+                        "format": "double"
+                    },
+                    {
+                        "name": "time_in_force",
+                        "in": "formData",
+                        "description": "Time in force",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "take_profit",
+                        "in": "query",
+                        "description": "take profit price",
+                        "required": false,
+                        "type": "number",
+                        "format": "double"
+                    },
+                    {
+                        "name": "stop_loss",
+                        "in": "formData",
+                        "description": "stop loss price",
+                        "required": false,
+                        "type": "number",
+                        "format": "double"
+                    },
+                    {
+                        "name": "reduce_only",
+                        "in": "formData",
+                        "description": "reduce only",
+                        "required": false,
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "close_on_trigger",
+                        "in": "formData",
+                        "description": "close on trigger",
+                        "required": false,
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "order_link_id",
+                        "in": "formData",
+                        "description": "TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "trailing_stop",
+                        "in": "formData",
+                        "description": "Trailing stop.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/OrderResBase"
+                            }
+                        }
+                    }
+                },
                 "deprecated": false
             }
         },
@@ -557,6 +664,75 @@
                         "schema": {
                             "items": {
                                 "$ref": "#/definitions/OrderCancelBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": true
+            }
+        },
+        "/v2/private/order/cancel": {
+            "post": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Get my active order list.",
+                "operationId": "Order.cancelV2",
+                "parameters": [{
+                        "name": "order_id",
+                        "in": "formData",
+                        "description": "Order ID",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "symbol",
+                        "in": "formData",
+                        "description": "Contract type.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "order_link_id",
+                        "in": "formData",
+                        "description": "Order link id.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/OrderCancelBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/v2/private/order/cancelAll": {
+            "post": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Get my active order list.",
+                "operationId": "Order.cancelAll",
+                "parameters": [{
+                    "name": "symbol",
+                    "in": "formData",
+                    "description": "Contract type.",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/OrderCancelAllBase"
                             }
                         }
                     }
@@ -832,6 +1008,33 @@
                         "schema": {
                             "items": {
                                 "$ref": "#/definitions/ConditionalBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/v2/private/stop-order/cancelAll": {
+            "post": {
+                "tags": [
+                    "Conditional"
+                ],
+                "summary": "Cancel conditional order.",
+                "operationId": "Conditional.cancelAll",
+                "parameters": [{
+                    "name": "symbol",
+                    "in": "formData",
+                    "description": "Contract type.",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/ConditionalCancelAllBase"
                             }
                         }
                     }
@@ -1678,6 +1881,88 @@
             },
             "type": "object"
         },
+        "OrderCancelAllBase": {
+            "description": "Cancel all active orders response",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "items": {
+                        "$ref": "#/definitions/OrderCancelAllRes"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "OrderCancelAllRes": {
+            "description": "Cancel all active orders response",
+            "properties": {
+                "clOrdID": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "side": {
+                    "type": "string"
+                },
+                "order_type": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "string"
+                },
+                "qty": {
+                    "type": "string"
+                },
+                "time_in_force": {
+                    "type": "string"
+                },
+                "create_type": {
+                    "type": "string"
+                },
+                "order_status": {
+                    "type": "string"
+                },
+                "leaves_qty": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "leaves_value": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "cross_status": {
+                    "type": "string"
+                },
+                "cross_seq": {
+                    "format": "int32",
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
         "ReplaceOrderBase": {
             "description": "Replace active order response",
             "properties": {
@@ -1883,6 +2168,97 @@
                     "format": "double"
                 },
                 "order_link_id": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "ConditionalCancelAllBase": {
+            "description": "Cancel all conditional order response",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "items": {
+                        "$ref": "#/definitions/ConditionalCancelAllRes"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "ConditionalCancelAllRes": {
+            "description": "Cancel all conditional order response",
+            "properties": {
+                "clOrdID": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "number",
+                    "format": "int32"
+                },
+                "symbol": {
+                    "type": "string"
+                },
+                "side": {
+                    "type": "string"
+                },
+                "order_type": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "string"
+                },
+                "qty": {
+                    "type": "number",
+                    "format": "int32"
+                },
+                "time_in_force": {
+                    "type": "string"
+                },
+                "create_type": {
+                    "type": "string"
+                },
+                "cancel_type": {
+                    "type": "string"
+                },
+                "order_status": {
+                    "type": "string"
+                },
+                "leaves_qty": {
+                    "type": "number",
+                    "format": "int32"
+                },
+                "leaves_value": {
+                    "type": "string"
+                },
+                "cross_seq": {
+                    "type": "number",
+                    "format": "int32"
+                },
+                "stop_order_type": {
+                    "type": "string"
+                },
+                "trigger_by": {
                     "type": "string"
                 },
                 "created_at": {
