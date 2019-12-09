@@ -24,14 +24,14 @@ if __name__ == "__main__":
 
     ws.subscribe_orderBookL2("BTCUSD")
     ws.subscribe_kline("BTCUSD", '1m')
-    ws.subscribe_klineV2('1', "BTCUSD")
+    ws.subscribe_klineV2('1', "ETHUSD")
     ws.subscribe_order()
     ws.subscribe_execution()
     ws.subscribe_position()
     ws.subscribe_instrument_info('BTCUSD')
     ws.subscribe_insurance()
     
-    ws.add_callback('klineV2.1.BTCUSD', my_callback)
+    ws.add_callback('klineV2.1.ETHUSD', my_callback)
     
     while(1):
         logger.info(ws.get_data("orderBookL2_25.BTCUSD"))
