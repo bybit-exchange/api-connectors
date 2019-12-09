@@ -34,6 +34,8 @@ class BybitWebsocket:
         self.api_key = api_key
         self.api_secret = api_secret
 
+        self.callbacks = {}
+
         self.data = {}
         self.exited = False
         self.auth = False
@@ -105,7 +107,7 @@ class BybitWebsocket:
                 self.data["pong"].append("PING success")
 
         if 'topic' in message:
-             if message['topic'] in self.callbacks:
+            if message['topic'] in self.callbacks:
                 self.callbacks[message['topic']](message["data"])
             else:
                 self.data[message["topic"]].append(message["data"])
