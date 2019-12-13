@@ -88,6 +88,7 @@ Class | Method | HTTP request | Description
 *APIkeyApi* | [**a_p_ikey_info**](docs/APIkeyApi.md#a_p_ikey_info) | **GET** /open-api/api-key | Get account api-key information.
 *CommonApi* | [**common_get**](docs/CommonApi.md#common_get) | **GET** /v2/public/time | Get bybit server time.
 *ConditionalApi* | [**conditional_cancel**](docs/ConditionalApi.md#conditional_cancel) | **POST** /open-api/stop-order/cancel | Cancel conditional order.
+*ConditionalApi* | [**conditional_cancel_all**](docs/ConditionalApi.md#conditional_cancel_all) | **POST** /v2/private/stop-order/cancelAll | Cancel conditional order.
 *ConditionalApi* | [**conditional_get_orders**](docs/ConditionalApi.md#conditional_get_orders) | **GET** /open-api/stop-order/list | Get my conditional order list.
 *ConditionalApi* | [**conditional_new**](docs/ConditionalApi.md#conditional_new) | **POST** /open-api/stop-order/create | Place a new conditional order.
 *ConditionalApi* | [**conditional_replace**](docs/ConditionalApi.md#conditional_replace) | **POST** /open-api/stop-order/replace | Replace conditional order. Only incomplete orders can be modified. 
@@ -99,8 +100,11 @@ Class | Method | HTTP request | Description
 *MarketApi* | [**market_orderbook**](docs/MarketApi.md#market_orderbook) | **GET** /v2/public/orderBook/L2 | Get the orderbook.
 *MarketApi* | [**market_symbol_info**](docs/MarketApi.md#market_symbol_info) | **GET** /v2/public/tickers | Get the latest information for symbol.
 *OrderApi* | [**order_cancel**](docs/OrderApi.md#order_cancel) | **POST** /open-api/order/cancel | Get my active order list.
+*OrderApi* | [**order_cancel_all**](docs/OrderApi.md#order_cancel_all) | **POST** /v2/private/order/cancelAll | Get my active order list.
+*OrderApi* | [**order_cancel_v2**](docs/OrderApi.md#order_cancel_v2) | **POST** /v2/private/order/cancel | Get my active order list.
 *OrderApi* | [**order_get_orders**](docs/OrderApi.md#order_get_orders) | **GET** /open-api/order/list | Get my active order list.
 *OrderApi* | [**order_new**](docs/OrderApi.md#order_new) | **POST** /open-api/order/create | Place active order
+*OrderApi* | [**order_new_v2**](docs/OrderApi.md#order_new_v2) | **POST** /v2/private/order/create | Place active order
 *OrderApi* | [**order_query**](docs/OrderApi.md#order_query) | **GET** /v2/private/order | Get my active order list.
 *OrderApi* | [**order_replace**](docs/OrderApi.md#order_replace) | **POST** /open-api/order/replace | Replace active order. Only incomplete orders can be modified. 
 *PositionsApi* | [**positions_change_margin**](docs/PositionsApi.md#positions_change_margin) | **POST** /position/change-position-margin | Update margin.
@@ -118,6 +122,8 @@ Class | Method | HTTP request | Description
  - [APIKeyBase](docs/APIKeyBase.md)
  - [APIKeyInfo](docs/APIKeyInfo.md)
  - [ConditionalBase](docs/ConditionalBase.md)
+ - [ConditionalCancelAllBase](docs/ConditionalCancelAllBase.md)
+ - [ConditionalCancelAllRes](docs/ConditionalCancelAllRes.md)
  - [ConditionalOrdersRes](docs/ConditionalOrdersRes.md)
  - [ConditionalOrdersResBase](docs/ConditionalOrdersResBase.md)
  - [ConditionalRes](docs/ConditionalRes.md)
@@ -138,6 +144,8 @@ Class | Method | HTTP request | Description
  - [LotSizeFilter](docs/LotSizeFilter.md)
  - [OderBookRes](docs/OderBookRes.md)
  - [OrderBookBase](docs/OrderBookBase.md)
+ - [OrderCancelAllBase](docs/OrderCancelAllBase.md)
+ - [OrderCancelAllRes](docs/OrderCancelAllRes.md)
  - [OrderCancelBase](docs/OrderCancelBase.md)
  - [OrderListBase](docs/OrderListBase.md)
  - [OrderListData](docs/OrderListData.md)

@@ -35,6 +35,8 @@ from swagger_client.configuration import Configuration
 from swagger_client.models.api_key_base import APIKeyBase
 from swagger_client.models.api_key_info import APIKeyInfo
 from swagger_client.models.conditional_base import ConditionalBase
+from swagger_client.models.conditional_cancel_all_base import ConditionalCancelAllBase
+from swagger_client.models.conditional_cancel_all_res import ConditionalCancelAllRes
 from swagger_client.models.conditional_orders_res import ConditionalOrdersRes
 from swagger_client.models.conditional_orders_res_base import ConditionalOrdersResBase
 from swagger_client.models.conditional_res import ConditionalRes
@@ -55,6 +57,8 @@ from swagger_client.models.leverage_result import LeverageResult
 from swagger_client.models.lot_size_filter import LotSizeFilter
 from swagger_client.models.oder_book_res import OderBookRes
 from swagger_client.models.order_book_base import OrderBookBase
+from swagger_client.models.order_cancel_all_base import OrderCancelAllBase
+from swagger_client.models.order_cancel_all_res import OrderCancelAllRes
 from swagger_client.models.order_cancel_base import OrderCancelBase
 from swagger_client.models.order_list_base import OrderListBase
 from swagger_client.models.order_list_data import OrderListData

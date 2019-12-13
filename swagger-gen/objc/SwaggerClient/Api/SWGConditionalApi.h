@@ -34,6 +34,18 @@ extern NSInteger kSWGConditionalApiMissingParamErrorCode;
     completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
 
 
+/// Cancel conditional order.
+/// 
+///
+/// @param symbol Contract type.
+/// 
+///  code:200 message:"Request was successful"
+///
+/// @return NSObject*
+-(NSURLSessionTask*) conditionalCancelAllWithSymbol: (NSString*) symbol
+    completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+
+
 /// Get my conditional order list.
 /// 
 ///

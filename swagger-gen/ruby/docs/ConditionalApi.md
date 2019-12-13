@@ -5,6 +5,7 @@ All URIs are relative to *https://api-testnet.bybit.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**conditional_cancel**](ConditionalApi.md#conditional_cancel) | **POST** /open-api/stop-order/cancel | Cancel conditional order.
+[**conditional_cancel_all**](ConditionalApi.md#conditional_cancel_all) | **POST** /v2/private/stop-order/cancelAll | Cancel conditional order.
 [**conditional_get_orders**](ConditionalApi.md#conditional_get_orders) | **GET** /open-api/stop-order/list | Get my conditional order list.
 [**conditional_new**](ConditionalApi.md#conditional_new) | **POST** /open-api/stop-order/create | Place a new conditional order.
 [**conditional_replace**](ConditionalApi.md#conditional_replace) | **POST** /open-api/stop-order/replace | Replace conditional order. Only incomplete orders can be modified. 
@@ -56,6 +57,68 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **stop_order_id** | **String**| Order ID of conditional order. | 
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+
+
+# **conditional_cancel_all**
+> Object conditional_cancel_all(symbol)
+
+Cancel conditional order.
+
+### Example
+```ruby
+# load the gem
+require 'swagger_client'
+# setup authorization
+SwaggerClient.configure do |config|
+  # Configure API key authorization: apiKey
+  config.api_key['api_key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api_key'] = 'Bearer'
+
+  # Configure API key authorization: apiSignature
+  config.api_key['sign'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['sign'] = 'Bearer'
+
+  # Configure API key authorization: timestamp
+  config.api_key['timestamp'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['timestamp'] = 'Bearer'
+end
+
+api_instance = SwaggerClient::ConditionalApi.new
+
+symbol = 'symbol_example' # String | Contract type.
+
+
+begin
+  #Cancel conditional order.
+  result = api_instance.conditional_cancel_all(symbol)
+  p result
+rescue SwaggerClient::ApiError => e
+  puts "Exception when calling ConditionalApi->conditional_cancel_all: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **String**| Contract type. | 
 
 ### Return type
 

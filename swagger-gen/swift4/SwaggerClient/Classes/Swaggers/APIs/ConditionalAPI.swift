@@ -62,6 +62,56 @@ open class ConditionalAPI {
     }
 
     /**
+     Cancel conditional order.
+     
+     - parameter symbol: (form) Contract type. 
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func conditionalCancelAll(symbol: String, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
+        conditionalCancelAllWithRequestBuilder(symbol: symbol).execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Cancel conditional order.
+     - POST /v2/private/stop-order/cancelAll
+     - API Key:
+       - type: apiKey api_key (QUERY)
+       - name: apiKey
+     - API Key:
+       - type: apiKey sign (QUERY)
+       - name: apiSignature
+     - API Key:
+       - type: apiKey timestamp (QUERY)
+       - name: timestamp
+     - examples: [{contentType=application/json, example=""}]
+     
+     - parameter symbol: (form) Contract type. 
+
+     - returns: RequestBuilder<Any> 
+     */
+    open class func conditionalCancelAllWithRequestBuilder(symbol: String) -> RequestBuilder<Any> {
+        let path = "/v2/private/stop-order/cancelAll"
+        let URLString = SwaggerClientAPI.basePath + path
+        let formParams: [String:Any?] = [
+            "symbol": symbol
+        ]
+
+        let nonNullParameters = APIHelper.rejectNil(formParams)
+        let parameters = APIHelper.convertBoolToString(nonNullParameters)
+        
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+        ])
+
+        let requestBuilder: RequestBuilder<Any>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+    }
+
+    /**
      Get my conditional order list.
      
      - parameter stopOrderId: (query) Order ID of conditional order. (optional)

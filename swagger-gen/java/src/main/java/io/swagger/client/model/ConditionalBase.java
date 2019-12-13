@@ -29,7 +29,7 @@ import java.math.BigDecimal;
  * Place new conditional order response
  */
 @ApiModel(description = "Place new conditional order response")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-11-27T16:42:38.839+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-12-13T16:37:36.274+08:00")
 public class ConditionalBase {
   @SerializedName("ret_code")
   private BigDecimal retCode = null;

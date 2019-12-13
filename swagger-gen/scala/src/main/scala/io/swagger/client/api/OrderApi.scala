@@ -111,6 +111,62 @@ class OrderApi(
    * Get my active order list.
    * 
    *
+   * @param symbol Contract type. 
+   * @return Any
+   */
+  def orderCancelAll(symbol: String): Option[Any] = {
+    val await = Try(Await.result(orderCancelAllAsync(symbol), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
+    }
+  }
+
+  /**
+   * Get my active order list. asynchronously
+   * 
+   *
+   * @param symbol Contract type. 
+   * @return Future(Any)
+   */
+  def orderCancelAllAsync(symbol: String): Future[Any] = {
+      helper.orderCancelAll(symbol)
+  }
+
+  /**
+   * Get my active order list.
+   * 
+   *
+   * @param orderId Order ID (optional)
+   * @param symbol Contract type. (optional)
+   * @param orderLinkId Order link id. (optional)
+   * @return Any
+   */
+  def orderCancelV2(orderId: Option[String] = None, symbol: Option[String] = None, orderLinkId: Option[String] = None): Option[Any] = {
+    val await = Try(Await.result(orderCancelV2Async(orderId, symbol, orderLinkId), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
+    }
+  }
+
+  /**
+   * Get my active order list. asynchronously
+   * 
+   *
+   * @param orderId Order ID (optional)
+   * @param symbol Contract type. (optional)
+   * @param orderLinkId Order link id. (optional)
+   * @return Future(Any)
+   */
+  def orderCancelV2Async(orderId: Option[String] = None, symbol: Option[String] = None, orderLinkId: Option[String] = None): Future[Any] = {
+      helper.orderCancelV2(orderId, symbol, orderLinkId)
+  }
+
+  /**
+   * Get my active order list.
+   * 
+   *
    * @param orderId Order ID (optional)
    * @param orderLinkId Customized order ID. (optional)
    * @param symbol Contract type. Default BTCUSD (optional)
@@ -189,6 +245,54 @@ class OrderApi(
    */
   def orderNewAsync(side: String, symbol: String, orderType: String, qty: Number, price: Double, timeInForce: String, takeProfit: Option[Double] = None, stopLoss: Option[Double] = None, reduceOnly: Option[Boolean] = None, closeOnTrigger: Option[Boolean] = None, orderLinkId: Option[String] = None): Future[Any] = {
       helper.orderNew(side, symbol, orderType, qty, price, timeInForce, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId)
+  }
+
+  /**
+   * Place active order
+   * 
+   *
+   * @param side Side 
+   * @param symbol Contract type. 
+   * @param orderType Active order type 
+   * @param qty  
+   * @param price Order price. 
+   * @param timeInForce Time in force 
+   * @param takeProfit take profit price (optional)
+   * @param stopLoss stop loss price (optional)
+   * @param reduceOnly reduce only (optional)
+   * @param closeOnTrigger close on trigger (optional)
+   * @param orderLinkId TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. (optional)
+   * @param trailingStop Trailing stop. (optional)
+   * @return Any
+   */
+  def orderNewV2(side: String, symbol: String, orderType: String, qty: Number, price: Double, timeInForce: String, takeProfit: Option[Double] = None, stopLoss: Option[Double] = None, reduceOnly: Option[Boolean] = None, closeOnTrigger: Option[Boolean] = None, orderLinkId: Option[String] = None, trailingStop: Option[String] = None): Option[Any] = {
+    val await = Try(Await.result(orderNewV2Async(side, symbol, orderType, qty, price, timeInForce, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId, trailingStop), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
+    }
+  }
+
+  /**
+   * Place active order asynchronously
+   * 
+   *
+   * @param side Side 
+   * @param symbol Contract type. 
+   * @param orderType Active order type 
+   * @param qty  
+   * @param price Order price. 
+   * @param timeInForce Time in force 
+   * @param takeProfit take profit price (optional)
+   * @param stopLoss stop loss price (optional)
+   * @param reduceOnly reduce only (optional)
+   * @param closeOnTrigger close on trigger (optional)
+   * @param orderLinkId TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. (optional)
+   * @param trailingStop Trailing stop. (optional)
+   * @return Future(Any)
+   */
+  def orderNewV2Async(side: String, symbol: String, orderType: String, qty: Number, price: Double, timeInForce: String, takeProfit: Option[Double] = None, stopLoss: Option[Double] = None, reduceOnly: Option[Boolean] = None, closeOnTrigger: Option[Boolean] = None, orderLinkId: Option[String] = None, trailingStop: Option[String] = None): Future[Any] = {
+      helper.orderNewV2(side, symbol, orderType, qty, price, timeInForce, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId, trailingStop)
   }
 
   /**
@@ -274,6 +378,41 @@ class OrderApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extend
     }
   }
 
+  def orderCancelAll(symbol: String)(implicit reader: ClientResponseReader[Any]): Future[Any] = {
+    // create path and map variables
+    val path = (addFmt("/v2/private/order/cancelAll"))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    if (symbol == null) throw new Exception("Missing required parameter 'symbol' when calling OrderApi->orderCancelAll")
+
+
+    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def orderCancelV2(orderId: Option[String] = None,
+    symbol: Option[String] = None,
+    orderLinkId: Option[String] = None
+    )(implicit reader: ClientResponseReader[Any]): Future[Any] = {
+    // create path and map variables
+    val path = (addFmt("/v2/private/order/cancel"))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+
+    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
   def orderGetOrders(orderId: Option[String] = None,
     orderLinkId: Option[String] = None,
     symbol: Option[String] = None,
@@ -350,6 +489,46 @@ class OrderApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extend
     if (orderType == null) throw new Exception("Missing required parameter 'orderType' when calling OrderApi->orderNew")
 
     if (timeInForce == null) throw new Exception("Missing required parameter 'timeInForce' when calling OrderApi->orderNew")
+
+    queryParams += "price" -> price.toString
+    takeProfit match {
+      case Some(param) => queryParams += "take_profit" -> param.toString
+      case _ => queryParams
+    }
+
+    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def orderNewV2(side: String,
+    symbol: String,
+    orderType: String,
+    qty: Number,
+    price: Double,
+    timeInForce: String,
+    takeProfit: Option[Double] = None,
+    stopLoss: Option[Double] = None,
+    reduceOnly: Option[Boolean] = None,
+    closeOnTrigger: Option[Boolean] = None,
+    orderLinkId: Option[String] = None,
+    trailingStop: Option[String] = None
+    )(implicit reader: ClientResponseReader[Any]): Future[Any] = {
+    // create path and map variables
+    val path = (addFmt("/v2/private/order/create"))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    if (side == null) throw new Exception("Missing required parameter 'side' when calling OrderApi->orderNewV2")
+
+    if (symbol == null) throw new Exception("Missing required parameter 'symbol' when calling OrderApi->orderNewV2")
+
+    if (orderType == null) throw new Exception("Missing required parameter 'orderType' when calling OrderApi->orderNewV2")
+
+    if (timeInForce == null) throw new Exception("Missing required parameter 'timeInForce' when calling OrderApi->orderNewV2")
 
     queryParams += "price" -> price.toString
     takeProfit match {
