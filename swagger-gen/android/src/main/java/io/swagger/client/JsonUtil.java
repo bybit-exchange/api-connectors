@@ -69,6 +69,14 @@ public class JsonUtil {
       return new TypeToken<List<ConditionalBase>>(){}.getType();
     }
     
+    if ("ConditionalCancelAllBase".equalsIgnoreCase(className)) {
+      return new TypeToken<List<ConditionalCancelAllBase>>(){}.getType();
+    }
+    
+    if ("ConditionalCancelAllRes".equalsIgnoreCase(className)) {
+      return new TypeToken<List<ConditionalCancelAllRes>>(){}.getType();
+    }
+    
     if ("ConditionalOrdersRes".equalsIgnoreCase(className)) {
       return new TypeToken<List<ConditionalOrdersRes>>(){}.getType();
     }
@@ -147,6 +155,14 @@ public class JsonUtil {
     
     if ("OrderBookBase".equalsIgnoreCase(className)) {
       return new TypeToken<List<OrderBookBase>>(){}.getType();
+    }
+    
+    if ("OrderCancelAllBase".equalsIgnoreCase(className)) {
+      return new TypeToken<List<OrderCancelAllBase>>(){}.getType();
+    }
+    
+    if ("OrderCancelAllRes".equalsIgnoreCase(className)) {
+      return new TypeToken<List<OrderCancelAllRes>>(){}.getType();
     }
     
     if ("OrderCancelBase".equalsIgnoreCase(className)) {
@@ -263,6 +279,14 @@ public class JsonUtil {
       return new TypeToken<ConditionalBase>(){}.getType();
     }
     
+    if ("ConditionalCancelAllBase".equalsIgnoreCase(className)) {
+      return new TypeToken<ConditionalCancelAllBase>(){}.getType();
+    }
+    
+    if ("ConditionalCancelAllRes".equalsIgnoreCase(className)) {
+      return new TypeToken<ConditionalCancelAllRes>(){}.getType();
+    }
+    
     if ("ConditionalOrdersRes".equalsIgnoreCase(className)) {
       return new TypeToken<ConditionalOrdersRes>(){}.getType();
     }
@@ -341,6 +365,14 @@ public class JsonUtil {
     
     if ("OrderBookBase".equalsIgnoreCase(className)) {
       return new TypeToken<OrderBookBase>(){}.getType();
+    }
+    
+    if ("OrderCancelAllBase".equalsIgnoreCase(className)) {
+      return new TypeToken<OrderCancelAllBase>(){}.getType();
+    }
+    
+    if ("OrderCancelAllRes".equalsIgnoreCase(className)) {
+      return new TypeToken<OrderCancelAllRes>(){}.getType();
     }
     
     if ("OrderCancelBase".equalsIgnoreCase(className)) {

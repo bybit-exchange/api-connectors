@@ -206,6 +206,292 @@ formParams.put("symbol", ApiInvoker.parameterToString(symbol));
   /**
   * Get my active order list.
   * 
+   * @param symbol Contract type.
+   * @return Object
+  */
+  public Object orderCancelAll (String symbol) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'symbol' is set
+    if (symbol == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'symbol' when calling orderCancelAll",
+        new ApiException(400, "Missing the required parameter 'symbol' when calling orderCancelAll"));
+    }
+
+    // create path and map variables
+    String path = "/v2/private/order/cancelAll";
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    String[] contentTypes = {
+      "application/json",
+      "application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      if (symbol != null) {
+        localVarBuilder.addTextBody("symbol", ApiInvoker.parameterToString(symbol), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+      formParams.put("symbol", ApiInvoker.parameterToString(symbol));
+    }
+
+    String[] authNames = new String[] { "apiKey", "apiSignature", "timestamp" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (Object) ApiInvoker.deserialize(localVarResponse, "", Object.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * Get my active order list.
+   * 
+   * @param symbol Contract type.
+  */
+  public void orderCancelAll (String symbol, final Response.Listener<Object> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+    // verify the required parameter 'symbol' is set
+    if (symbol == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'symbol' when calling orderCancelAll",
+        new ApiException(400, "Missing the required parameter 'symbol' when calling orderCancelAll"));
+    }
+
+    // create path and map variables
+    String path = "/v2/private/order/cancelAll".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+      "application/json","application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+      if (symbol != null) {
+        localVarBuilder.addTextBody("symbol", ApiInvoker.parameterToString(symbol), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+      formParams.put("symbol", ApiInvoker.parameterToString(symbol));
+    }
+
+    String[] authNames = new String[] { "apiKey", "apiSignature", "timestamp" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((Object) ApiInvoker.deserialize(localVarResponse,  "", Object.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * Get my active order list.
+  * 
+   * @param orderId Order ID
+   * @param symbol Contract type.
+   * @param orderLinkId Order link id.
+   * @return Object
+  */
+  public Object orderCancelV2 (String orderId, String symbol, String orderLinkId) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+
+    // create path and map variables
+    String path = "/v2/private/order/cancel";
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    String[] contentTypes = {
+      "application/json",
+      "application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      if (orderId != null) {
+        localVarBuilder.addTextBody("order_id", ApiInvoker.parameterToString(orderId), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (symbol != null) {
+        localVarBuilder.addTextBody("symbol", ApiInvoker.parameterToString(symbol), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (orderLinkId != null) {
+        localVarBuilder.addTextBody("order_link_id", ApiInvoker.parameterToString(orderLinkId), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+      formParams.put("order_id", ApiInvoker.parameterToString(orderId));
+      formParams.put("symbol", ApiInvoker.parameterToString(symbol));
+      formParams.put("order_link_id", ApiInvoker.parameterToString(orderLinkId));
+    }
+
+    String[] authNames = new String[] { "apiKey", "apiSignature", "timestamp" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (Object) ApiInvoker.deserialize(localVarResponse, "", Object.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * Get my active order list.
+   * 
+   * @param orderId Order ID   * @param symbol Contract type.   * @param orderLinkId Order link id.
+  */
+  public void orderCancelV2 (String orderId, String symbol, String orderLinkId, final Response.Listener<Object> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+
+    // create path and map variables
+    String path = "/v2/private/order/cancel".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+      "application/json","application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+      if (orderId != null) {
+        localVarBuilder.addTextBody("order_id", ApiInvoker.parameterToString(orderId), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (symbol != null) {
+        localVarBuilder.addTextBody("symbol", ApiInvoker.parameterToString(symbol), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (orderLinkId != null) {
+        localVarBuilder.addTextBody("order_link_id", ApiInvoker.parameterToString(orderLinkId), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+      formParams.put("order_id", ApiInvoker.parameterToString(orderId));
+formParams.put("symbol", ApiInvoker.parameterToString(symbol));
+formParams.put("order_link_id", ApiInvoker.parameterToString(orderLinkId));
+    }
+
+    String[] authNames = new String[] { "apiKey", "apiSignature", "timestamp" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((Object) ApiInvoker.deserialize(localVarResponse,  "", Object.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * Get my active order list.
+  * 
    * @param orderId Order ID
    * @param orderLinkId Customized order ID.
    * @param symbol Contract type. Default BTCUSD
@@ -591,6 +877,290 @@ formParams.put("stop_loss", ApiInvoker.parameterToString(stopLoss));
 formParams.put("reduce_only", ApiInvoker.parameterToString(reduceOnly));
 formParams.put("close_on_trigger", ApiInvoker.parameterToString(closeOnTrigger));
 formParams.put("order_link_id", ApiInvoker.parameterToString(orderLinkId));
+    }
+
+    String[] authNames = new String[] { "apiKey", "apiSignature", "timestamp" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((Object) ApiInvoker.deserialize(localVarResponse,  "", Object.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * Place active order
+  * 
+   * @param side Side
+   * @param symbol Contract type.
+   * @param orderType Active order type
+   * @param qty 
+   * @param price Order price.
+   * @param timeInForce Time in force
+   * @param takeProfit take profit price
+   * @param stopLoss stop loss price
+   * @param reduceOnly reduce only
+   * @param closeOnTrigger close on trigger
+   * @param orderLinkId TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.
+   * @param trailingStop Trailing stop.
+   * @return Object
+  */
+  public Object orderNewV2 (String side, String symbol, String orderType, BigDecimal qty, Double price, String timeInForce, Double takeProfit, Double stopLoss, Boolean reduceOnly, Boolean closeOnTrigger, String orderLinkId, String trailingStop) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'side' is set
+    if (side == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'side' when calling orderNewV2",
+        new ApiException(400, "Missing the required parameter 'side' when calling orderNewV2"));
+    }
+    // verify the required parameter 'symbol' is set
+    if (symbol == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'symbol' when calling orderNewV2",
+        new ApiException(400, "Missing the required parameter 'symbol' when calling orderNewV2"));
+    }
+    // verify the required parameter 'orderType' is set
+    if (orderType == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'orderType' when calling orderNewV2",
+        new ApiException(400, "Missing the required parameter 'orderType' when calling orderNewV2"));
+    }
+    // verify the required parameter 'qty' is set
+    if (qty == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'qty' when calling orderNewV2",
+        new ApiException(400, "Missing the required parameter 'qty' when calling orderNewV2"));
+    }
+    // verify the required parameter 'price' is set
+    if (price == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'price' when calling orderNewV2",
+        new ApiException(400, "Missing the required parameter 'price' when calling orderNewV2"));
+    }
+    // verify the required parameter 'timeInForce' is set
+    if (timeInForce == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'timeInForce' when calling orderNewV2",
+        new ApiException(400, "Missing the required parameter 'timeInForce' when calling orderNewV2"));
+    }
+
+    // create path and map variables
+    String path = "/v2/private/order/create";
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "price", price));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "take_profit", takeProfit));
+    String[] contentTypes = {
+      "application/json",
+      "application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      if (side != null) {
+        localVarBuilder.addTextBody("side", ApiInvoker.parameterToString(side), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (symbol != null) {
+        localVarBuilder.addTextBody("symbol", ApiInvoker.parameterToString(symbol), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (orderType != null) {
+        localVarBuilder.addTextBody("order_type", ApiInvoker.parameterToString(orderType), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (qty != null) {
+        localVarBuilder.addTextBody("qty", ApiInvoker.parameterToString(qty), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (timeInForce != null) {
+        localVarBuilder.addTextBody("time_in_force", ApiInvoker.parameterToString(timeInForce), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (stopLoss != null) {
+        localVarBuilder.addTextBody("stop_loss", ApiInvoker.parameterToString(stopLoss), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (reduceOnly != null) {
+        localVarBuilder.addTextBody("reduce_only", ApiInvoker.parameterToString(reduceOnly), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (closeOnTrigger != null) {
+        localVarBuilder.addTextBody("close_on_trigger", ApiInvoker.parameterToString(closeOnTrigger), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (orderLinkId != null) {
+        localVarBuilder.addTextBody("order_link_id", ApiInvoker.parameterToString(orderLinkId), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (trailingStop != null) {
+        localVarBuilder.addTextBody("trailing_stop", ApiInvoker.parameterToString(trailingStop), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+      formParams.put("side", ApiInvoker.parameterToString(side));
+      formParams.put("symbol", ApiInvoker.parameterToString(symbol));
+      formParams.put("order_type", ApiInvoker.parameterToString(orderType));
+      formParams.put("qty", ApiInvoker.parameterToString(qty));
+      formParams.put("time_in_force", ApiInvoker.parameterToString(timeInForce));
+      formParams.put("stop_loss", ApiInvoker.parameterToString(stopLoss));
+      formParams.put("reduce_only", ApiInvoker.parameterToString(reduceOnly));
+      formParams.put("close_on_trigger", ApiInvoker.parameterToString(closeOnTrigger));
+      formParams.put("order_link_id", ApiInvoker.parameterToString(orderLinkId));
+      formParams.put("trailing_stop", ApiInvoker.parameterToString(trailingStop));
+    }
+
+    String[] authNames = new String[] { "apiKey", "apiSignature", "timestamp" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (Object) ApiInvoker.deserialize(localVarResponse, "", Object.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * Place active order
+   * 
+   * @param side Side   * @param symbol Contract type.   * @param orderType Active order type   * @param qty    * @param price Order price.   * @param timeInForce Time in force   * @param takeProfit take profit price   * @param stopLoss stop loss price   * @param reduceOnly reduce only   * @param closeOnTrigger close on trigger   * @param orderLinkId TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.   * @param trailingStop Trailing stop.
+  */
+  public void orderNewV2 (String side, String symbol, String orderType, BigDecimal qty, Double price, String timeInForce, Double takeProfit, Double stopLoss, Boolean reduceOnly, Boolean closeOnTrigger, String orderLinkId, String trailingStop, final Response.Listener<Object> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+    // verify the required parameter 'side' is set
+    if (side == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'side' when calling orderNewV2",
+        new ApiException(400, "Missing the required parameter 'side' when calling orderNewV2"));
+    }
+    // verify the required parameter 'symbol' is set
+    if (symbol == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'symbol' when calling orderNewV2",
+        new ApiException(400, "Missing the required parameter 'symbol' when calling orderNewV2"));
+    }
+    // verify the required parameter 'orderType' is set
+    if (orderType == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'orderType' when calling orderNewV2",
+        new ApiException(400, "Missing the required parameter 'orderType' when calling orderNewV2"));
+    }
+    // verify the required parameter 'qty' is set
+    if (qty == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'qty' when calling orderNewV2",
+        new ApiException(400, "Missing the required parameter 'qty' when calling orderNewV2"));
+    }
+    // verify the required parameter 'price' is set
+    if (price == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'price' when calling orderNewV2",
+        new ApiException(400, "Missing the required parameter 'price' when calling orderNewV2"));
+    }
+    // verify the required parameter 'timeInForce' is set
+    if (timeInForce == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'timeInForce' when calling orderNewV2",
+        new ApiException(400, "Missing the required parameter 'timeInForce' when calling orderNewV2"));
+    }
+
+    // create path and map variables
+    String path = "/v2/private/order/create".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "price", price));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "take_profit", takeProfit));
+
+
+    String[] contentTypes = {
+      "application/json","application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+      if (side != null) {
+        localVarBuilder.addTextBody("side", ApiInvoker.parameterToString(side), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (symbol != null) {
+        localVarBuilder.addTextBody("symbol", ApiInvoker.parameterToString(symbol), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (orderType != null) {
+        localVarBuilder.addTextBody("order_type", ApiInvoker.parameterToString(orderType), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (qty != null) {
+        localVarBuilder.addTextBody("qty", ApiInvoker.parameterToString(qty), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (timeInForce != null) {
+        localVarBuilder.addTextBody("time_in_force", ApiInvoker.parameterToString(timeInForce), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (stopLoss != null) {
+        localVarBuilder.addTextBody("stop_loss", ApiInvoker.parameterToString(stopLoss), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (reduceOnly != null) {
+        localVarBuilder.addTextBody("reduce_only", ApiInvoker.parameterToString(reduceOnly), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (closeOnTrigger != null) {
+        localVarBuilder.addTextBody("close_on_trigger", ApiInvoker.parameterToString(closeOnTrigger), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (orderLinkId != null) {
+        localVarBuilder.addTextBody("order_link_id", ApiInvoker.parameterToString(orderLinkId), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (trailingStop != null) {
+        localVarBuilder.addTextBody("trailing_stop", ApiInvoker.parameterToString(trailingStop), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+      formParams.put("side", ApiInvoker.parameterToString(side));
+formParams.put("symbol", ApiInvoker.parameterToString(symbol));
+formParams.put("order_type", ApiInvoker.parameterToString(orderType));
+formParams.put("qty", ApiInvoker.parameterToString(qty));
+formParams.put("time_in_force", ApiInvoker.parameterToString(timeInForce));
+formParams.put("stop_loss", ApiInvoker.parameterToString(stopLoss));
+formParams.put("reduce_only", ApiInvoker.parameterToString(reduceOnly));
+formParams.put("close_on_trigger", ApiInvoker.parameterToString(closeOnTrigger));
+formParams.put("order_link_id", ApiInvoker.parameterToString(orderLinkId));
+formParams.put("trailing_stop", ApiInvoker.parameterToString(trailingStop));
     }
 
     String[] authNames = new String[] { "apiKey", "apiSignature", "timestamp" };

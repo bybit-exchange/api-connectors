@@ -5,8 +5,11 @@ All URIs are relative to *https://api-testnet.bybit.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**orderCancel**](OrderApi.md#orderCancel) | **POST** /open-api/order/cancel | Get my active order list.
+[**orderCancelAll**](OrderApi.md#orderCancelAll) | **POST** /v2/private/order/cancelAll | Get my active order list.
+[**orderCancelV2**](OrderApi.md#orderCancelV2) | **POST** /v2/private/order/cancel | Get my active order list.
 [**orderGetOrders**](OrderApi.md#orderGetOrders) | **GET** /open-api/order/list | Get my active order list.
 [**orderNew**](OrderApi.md#orderNew) | **POST** /open-api/order/create | Place active order
+[**orderNewV2**](OrderApi.md#orderNewV2) | **POST** /v2/private/order/create | Place active order
 [**orderQuery**](OrderApi.md#orderQuery) | **GET** /v2/private/order | Get my active order list.
 [**orderReplace**](OrderApi.md#orderReplace) | **POST** /open-api/order/replace | Replace active order. Only incomplete orders can be modified. 
 
@@ -40,6 +43,92 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **orderId** | **String**| Order ID |
  **symbol** | **String**| Contract type. | [optional]
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+<a name="orderCancelAll"></a>
+# **orderCancelAll**
+> Object orderCancelAll(symbol)
+
+Get my active order list.
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.api.OrderApi;
+
+OrderApi apiInstance = new OrderApi();
+String symbol = "symbol_example"; // String | Contract type.
+try {
+    Object result = apiInstance.orderCancelAll(symbol);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling OrderApi#orderCancelAll");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **String**| Contract type. |
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+<a name="orderCancelV2"></a>
+# **orderCancelV2**
+> Object orderCancelV2(orderId, symbol, orderLinkId)
+
+Get my active order list.
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.api.OrderApi;
+
+OrderApi apiInstance = new OrderApi();
+String orderId = "orderId_example"; // String | Order ID
+String symbol = "symbol_example"; // String | Contract type.
+String orderLinkId = "orderLinkId_example"; // String | Order link id.
+try {
+    Object result = apiInstance.orderCancelV2(orderId, symbol, orderLinkId);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling OrderApi#orderCancelV2");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderId** | **String**| Order ID | [optional]
+ **symbol** | **String**| Contract type. | [optional]
+ **orderLinkId** | **String**| Order link id. | [optional]
 
 ### Return type
 
@@ -154,6 +243,69 @@ Name | Type | Description  | Notes
  **reduceOnly** | **Boolean**| reduce only | [optional]
  **closeOnTrigger** | **Boolean**| close on trigger | [optional]
  **orderLinkId** | **String**| TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. | [optional]
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+<a name="orderNewV2"></a>
+# **orderNewV2**
+> Object orderNewV2(side, symbol, orderType, qty, price, timeInForce, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId, trailingStop)
+
+Place active order
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.api.OrderApi;
+
+OrderApi apiInstance = new OrderApi();
+String side = "side_example"; // String | Side
+String symbol = "symbol_example"; // String | Contract type.
+String orderType = "orderType_example"; // String | Active order type
+BigDecimal qty = new BigDecimal(); // BigDecimal | 
+Double price = 3.4D; // Double | Order price.
+String timeInForce = "timeInForce_example"; // String | Time in force
+Double takeProfit = 3.4D; // Double | take profit price
+Double stopLoss = 3.4D; // Double | stop loss price
+Boolean reduceOnly = true; // Boolean | reduce only
+Boolean closeOnTrigger = true; // Boolean | close on trigger
+String orderLinkId = "orderLinkId_example"; // String | TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.
+String trailingStop = "trailingStop_example"; // String | Trailing stop.
+try {
+    Object result = apiInstance.orderNewV2(side, symbol, orderType, qty, price, timeInForce, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId, trailingStop);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling OrderApi#orderNewV2");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **side** | **String**| Side |
+ **symbol** | **String**| Contract type. |
+ **orderType** | **String**| Active order type |
+ **qty** | **BigDecimal**|  |
+ **price** | **Double**| Order price. |
+ **timeInForce** | **String**| Time in force |
+ **takeProfit** | **Double**| take profit price | [optional]
+ **stopLoss** | **Double**| stop loss price | [optional]
+ **reduceOnly** | **Boolean**| reduce only | [optional]
+ **closeOnTrigger** | **Boolean**| close on trigger | [optional]
+ **orderLinkId** | **String**| TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. | [optional]
+ **trailingStop** | **String**| Trailing stop. | [optional]
 
 ### Return type
 

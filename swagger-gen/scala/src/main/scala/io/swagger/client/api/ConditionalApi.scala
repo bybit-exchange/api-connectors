@@ -106,6 +106,32 @@ class ConditionalApi(
   }
 
   /**
+   * Cancel conditional order.
+   * 
+   *
+   * @param symbol Contract type. 
+   * @return Any
+   */
+  def conditionalCancelAll(symbol: String): Option[Any] = {
+    val await = Try(Await.result(conditionalCancelAllAsync(symbol), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
+    }
+  }
+
+  /**
+   * Cancel conditional order. asynchronously
+   * 
+   *
+   * @param symbol Contract type. 
+   * @return Future(Any)
+   */
+  def conditionalCancelAllAsync(symbol: String): Future[Any] = {
+      helper.conditionalCancelAll(symbol)
+  }
+
+  /**
    * Get my conditional order list.
    * 
    *
@@ -234,6 +260,23 @@ class ConditionalApiAsyncHelper(client: TransportClient, config: SwaggerConfig) 
     val headerParams = new mutable.HashMap[String, String]
 
     if (stopOrderId == null) throw new Exception("Missing required parameter 'stopOrderId' when calling ConditionalApi->conditionalCancel")
+
+
+    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def conditionalCancelAll(symbol: String)(implicit reader: ClientResponseReader[Any]): Future[Any] = {
+    // create path and map variables
+    val path = (addFmt("/v2/private/stop-order/cancelAll"))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    if (symbol == null) throw new Exception("Missing required parameter 'symbol' when calling ConditionalApi->conditionalCancelAll")
 
 
     val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")

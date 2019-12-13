@@ -20,6 +20,24 @@
   [stop-order-id ]
   (:data (conditional-cancel-with-http-info stop-order-id)))
 
+(defn conditional-cancel-all-with-http-info
+  "Cancel conditional order."
+  [symbol ]
+  (check-required-params symbol)
+  (call-api "/v2/private/stop-order/cancelAll" :post
+            {:path-params   {}
+             :header-params {}
+             :query-params  {}
+             :form-params   {"symbol" symbol }
+             :content-types ["application/json" "application/x-www-form-urlencoded"]
+             :accepts       ["application/json"]
+             :auth-names    ["apiKey" "apiSignature" "timestamp"]}))
+
+(defn conditional-cancel-all
+  "Cancel conditional order."
+  [symbol ]
+  (:data (conditional-cancel-all-with-http-info symbol)))
+
 (defn conditional-get-orders-with-http-info
   "Get my conditional order list."
   ([] (conditional-get-orders-with-http-info nil))

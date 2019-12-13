@@ -389,6 +389,101 @@ paths:
         200:
           description: "Request was successful"
           schema: {}
+      deprecated: true
+  /v2/private/order/create:
+    post:
+      tags:
+      - "Order"
+      summary: "Place active order"
+      operationId: "Order.newV2"
+      parameters:
+      - name: "side"
+        in: "formData"
+        description: "Side"
+        required: true
+        type: "string"
+        x-exportParamName: "Side"
+      - name: "symbol"
+        in: "formData"
+        description: "Contract type."
+        required: true
+        type: "string"
+        x-exportParamName: "Symbol"
+      - name: "order_type"
+        in: "formData"
+        description: "Active order type"
+        required: true
+        type: "string"
+        x-exportParamName: "OrderType"
+      - name: "qty"
+        in: "formData"
+        description: ""
+        required: true
+        type: "number"
+        format: "int32"
+        x-exportParamName: "Qty"
+      - name: "price"
+        in: "query"
+        description: "Order price."
+        required: true
+        type: "number"
+        format: "double"
+        x-exportParamName: "Price"
+      - name: "time_in_force"
+        in: "formData"
+        description: "Time in force"
+        required: true
+        type: "string"
+        x-exportParamName: "TimeInForce"
+      - name: "take_profit"
+        in: "query"
+        description: "take profit price"
+        required: false
+        type: "number"
+        format: "double"
+        x-exportParamName: "TakeProfit"
+        x-optionalDataType: "Float64"
+      - name: "stop_loss"
+        in: "formData"
+        description: "stop loss price"
+        required: false
+        type: "number"
+        format: "double"
+        x-exportParamName: "StopLoss"
+        x-optionalDataType: "Float64"
+      - name: "reduce_only"
+        in: "formData"
+        description: "reduce only"
+        required: false
+        type: "boolean"
+        x-exportParamName: "ReduceOnly"
+        x-optionalDataType: "Bool"
+      - name: "close_on_trigger"
+        in: "formData"
+        description: "close on trigger"
+        required: false
+        type: "boolean"
+        x-exportParamName: "CloseOnTrigger"
+        x-optionalDataType: "Bool"
+      - name: "order_link_id"
+        in: "formData"
+        description: "TCustomized order ID, maximum length at 36 characters, and order\
+          \ ID under the same agency has to be unique."
+        required: false
+        type: "string"
+        x-exportParamName: "OrderLinkId"
+        x-optionalDataType: "String"
+      - name: "trailing_stop"
+        in: "formData"
+        description: "Trailing stop."
+        required: false
+        type: "string"
+        x-exportParamName: "TrailingStop"
+        x-optionalDataType: "String"
+      responses:
+        200:
+          description: "Request was successful"
+          schema: {}
       deprecated: false
   /open-api/order/list:
     get:
@@ -476,6 +571,57 @@ paths:
         type: "string"
         x-exportParamName: "Symbol"
         x-optionalDataType: "String"
+      responses:
+        200:
+          description: "Request was successful"
+          schema: {}
+      deprecated: true
+  /v2/private/order/cancel:
+    post:
+      tags:
+      - "Order"
+      summary: "Get my active order list."
+      operationId: "Order.cancelV2"
+      parameters:
+      - name: "order_id"
+        in: "formData"
+        description: "Order ID"
+        required: false
+        type: "string"
+        x-exportParamName: "OrderId"
+        x-optionalDataType: "String"
+      - name: "symbol"
+        in: "formData"
+        description: "Contract type."
+        required: false
+        type: "string"
+        x-exportParamName: "Symbol"
+        x-optionalDataType: "String"
+      - name: "order_link_id"
+        in: "formData"
+        description: "Order link id."
+        required: false
+        type: "string"
+        x-exportParamName: "OrderLinkId"
+        x-optionalDataType: "String"
+      responses:
+        200:
+          description: "Request was successful"
+          schema: {}
+      deprecated: false
+  /v2/private/order/cancelAll:
+    post:
+      tags:
+      - "Order"
+      summary: "Get my active order list."
+      operationId: "Order.cancelAll"
+      parameters:
+      - name: "symbol"
+        in: "formData"
+        description: "Contract type."
+        required: true
+        type: "string"
+        x-exportParamName: "Symbol"
       responses:
         200:
           description: "Request was successful"
@@ -706,6 +852,24 @@ paths:
         required: true
         type: "string"
         x-exportParamName: "StopOrderId"
+      responses:
+        200:
+          description: "Request was successful"
+          schema: {}
+      deprecated: false
+  /v2/private/stop-order/cancelAll:
+    post:
+      tags:
+      - "Conditional"
+      summary: "Cancel conditional order."
+      operationId: "Conditional.cancelAll"
+      parameters:
+      - name: "symbol"
+        in: "formData"
+        description: "Contract type."
+        required: true
+        type: "string"
+        x-exportParamName: "Symbol"
       responses:
         200:
           description: "Request was successful"
@@ -1311,6 +1475,60 @@ definitions:
       time_now:
         type: "string"
     description: "cancel order response"
+  OrderCancelAllBase:
+    type: "object"
+    properties:
+      ret_code:
+        type: "number"
+        format: "int32"
+      ret_msg:
+        type: "string"
+      ext_code:
+        type: "string"
+      ext_info:
+        type: "string"
+      result: {}
+      time_now:
+        type: "string"
+    description: "Cancel all active orders response"
+  OrderCancelAllRes:
+    type: "object"
+    properties:
+      clOrdID:
+        type: "string"
+      user_id:
+        type: "number"
+        format: "int32"
+      side:
+        type: "string"
+      order_type:
+        type: "string"
+      price:
+        type: "string"
+      qty:
+        type: "string"
+      time_in_force:
+        type: "string"
+      create_type:
+        type: "string"
+      order_status:
+        type: "string"
+      leaves_qty:
+        type: "number"
+        format: "int32"
+      leaves_value:
+        type: "number"
+        format: "int32"
+      created_at:
+        type: "string"
+      updated_at:
+        type: "string"
+      cross_status:
+        type: "string"
+      cross_seq:
+        type: "number"
+        format: "int32"
+    description: "Cancel all active orders response"
   ReplaceOrderBase:
     type: "object"
     properties:
@@ -1453,6 +1671,66 @@ definitions:
       updated_at:
         type: "string"
     description: "Place new conditional order response"
+  ConditionalCancelAllBase:
+    type: "object"
+    properties:
+      ret_code:
+        type: "number"
+        format: "int32"
+      ret_msg:
+        type: "string"
+      ext_code:
+        type: "string"
+      ext_info:
+        type: "string"
+      result: {}
+      time_now:
+        type: "string"
+    description: "Cancel all conditional order response"
+  ConditionalCancelAllRes:
+    type: "object"
+    properties:
+      clOrdID:
+        type: "string"
+      user_id:
+        type: "number"
+        format: "int32"
+      symbol:
+        type: "string"
+      side:
+        type: "string"
+      order_type:
+        type: "string"
+      price:
+        type: "string"
+      qty:
+        type: "number"
+        format: "int32"
+      time_in_force:
+        type: "string"
+      create_type:
+        type: "string"
+      cancel_type:
+        type: "string"
+      order_status:
+        type: "string"
+      leaves_qty:
+        type: "number"
+        format: "int32"
+      leaves_value:
+        type: "string"
+      cross_seq:
+        type: "number"
+        format: "int32"
+      stop_order_type:
+        type: "string"
+      trigger_by:
+        type: "string"
+      created_at:
+        type: "string"
+      updated_at:
+        type: "string"
+    description: "Cancel all conditional order response"
   ConditionalOrdersResBase:
     type: "object"
     properties:

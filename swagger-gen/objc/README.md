@@ -44,6 +44,8 @@ Import the following:
 #import <SwaggerClient/SWGAPIKeyBase.h>
 #import <SwaggerClient/SWGAPIKeyInfo.h>
 #import <SwaggerClient/SWGConditionalBase.h>
+#import <SwaggerClient/SWGConditionalCancelAllBase.h>
+#import <SwaggerClient/SWGConditionalCancelAllRes.h>
 #import <SwaggerClient/SWGConditionalOrdersRes.h>
 #import <SwaggerClient/SWGConditionalOrdersResBase.h>
 #import <SwaggerClient/SWGConditionalRes.h>
@@ -64,6 +66,8 @@ Import the following:
 #import <SwaggerClient/SWGLotSizeFilter.h>
 #import <SwaggerClient/SWGOderBookRes.h>
 #import <SwaggerClient/SWGOrderBookBase.h>
+#import <SwaggerClient/SWGOrderCancelAllBase.h>
+#import <SwaggerClient/SWGOrderCancelAllRes.h>
 #import <SwaggerClient/SWGOrderCancelBase.h>
 #import <SwaggerClient/SWGOrderListBase.h>
 #import <SwaggerClient/SWGOrderListData.h>
@@ -156,6 +160,7 @@ Class | Method | HTTP request | Description
 *SWGAPIkeyApi* | [**aPIkeyInfo**](docs/SWGAPIkeyApi.md#apikeyinfo) | **GET** /open-api/api-key | Get account api-key information.
 *SWGCommonApi* | [**commonGet**](docs/SWGCommonApi.md#commonget) | **GET** /v2/public/time | Get bybit server time.
 *SWGConditionalApi* | [**conditionalCancel**](docs/SWGConditionalApi.md#conditionalcancel) | **POST** /open-api/stop-order/cancel | Cancel conditional order.
+*SWGConditionalApi* | [**conditionalCancelAll**](docs/SWGConditionalApi.md#conditionalcancelall) | **POST** /v2/private/stop-order/cancelAll | Cancel conditional order.
 *SWGConditionalApi* | [**conditionalGetOrders**](docs/SWGConditionalApi.md#conditionalgetorders) | **GET** /open-api/stop-order/list | Get my conditional order list.
 *SWGConditionalApi* | [**conditionalNew**](docs/SWGConditionalApi.md#conditionalnew) | **POST** /open-api/stop-order/create | Place a new conditional order.
 *SWGConditionalApi* | [**conditionalReplace**](docs/SWGConditionalApi.md#conditionalreplace) | **POST** /open-api/stop-order/replace | Replace conditional order. Only incomplete orders can be modified. 
@@ -167,8 +172,11 @@ Class | Method | HTTP request | Description
 *SWGMarketApi* | [**marketOrderbook**](docs/SWGMarketApi.md#marketorderbook) | **GET** /v2/public/orderBook/L2 | Get the orderbook.
 *SWGMarketApi* | [**marketSymbolInfo**](docs/SWGMarketApi.md#marketsymbolinfo) | **GET** /v2/public/tickers | Get the latest information for symbol.
 *SWGOrderApi* | [**orderCancel**](docs/SWGOrderApi.md#ordercancel) | **POST** /open-api/order/cancel | Get my active order list.
+*SWGOrderApi* | [**orderCancelAll**](docs/SWGOrderApi.md#ordercancelall) | **POST** /v2/private/order/cancelAll | Get my active order list.
+*SWGOrderApi* | [**orderCancelV2**](docs/SWGOrderApi.md#ordercancelv2) | **POST** /v2/private/order/cancel | Get my active order list.
 *SWGOrderApi* | [**orderGetOrders**](docs/SWGOrderApi.md#ordergetorders) | **GET** /open-api/order/list | Get my active order list.
 *SWGOrderApi* | [**orderNew**](docs/SWGOrderApi.md#ordernew) | **POST** /open-api/order/create | Place active order
+*SWGOrderApi* | [**orderNewV2**](docs/SWGOrderApi.md#ordernewv2) | **POST** /v2/private/order/create | Place active order
 *SWGOrderApi* | [**orderQuery**](docs/SWGOrderApi.md#orderquery) | **GET** /v2/private/order | Get my active order list.
 *SWGOrderApi* | [**orderReplace**](docs/SWGOrderApi.md#orderreplace) | **POST** /open-api/order/replace | Replace active order. Only incomplete orders can be modified. 
 *SWGPositionsApi* | [**positionsChangeMargin**](docs/SWGPositionsApi.md#positionschangemargin) | **POST** /position/change-position-margin | Update margin.
@@ -186,6 +194,8 @@ Class | Method | HTTP request | Description
  - [SWGAPIKeyBase](docs/SWGAPIKeyBase.md)
  - [SWGAPIKeyInfo](docs/SWGAPIKeyInfo.md)
  - [SWGConditionalBase](docs/SWGConditionalBase.md)
+ - [SWGConditionalCancelAllBase](docs/SWGConditionalCancelAllBase.md)
+ - [SWGConditionalCancelAllRes](docs/SWGConditionalCancelAllRes.md)
  - [SWGConditionalOrdersRes](docs/SWGConditionalOrdersRes.md)
  - [SWGConditionalOrdersResBase](docs/SWGConditionalOrdersResBase.md)
  - [SWGConditionalRes](docs/SWGConditionalRes.md)
@@ -206,6 +216,8 @@ Class | Method | HTTP request | Description
  - [SWGLotSizeFilter](docs/SWGLotSizeFilter.md)
  - [SWGOderBookRes](docs/SWGOderBookRes.md)
  - [SWGOrderBookBase](docs/SWGOrderBookBase.md)
+ - [SWGOrderCancelAllBase](docs/SWGOrderCancelAllBase.md)
+ - [SWGOrderCancelAllRes](docs/SWGOrderCancelAllRes.md)
  - [SWGOrderCancelBase](docs/SWGOrderCancelBase.md)
  - [SWGOrderListBase](docs/SWGOrderListBase.md)
  - [SWGOrderListData](docs/SWGOrderListData.md)
