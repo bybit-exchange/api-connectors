@@ -9,10 +9,11 @@ from threading import Lock, Thread
 from time import sleep
 from typing import Optional, Dict
 
-import websocket
+from gateway import websocket
 
 file_handlers: Dict[str, logging.FileHandler] = {}
 log_formatter = logging.Formatter('[%(asctime)s] %(message)s')
+
 
 def _get_file_logger_handler(filename: str):
     handler = file_handlers.get(filename, None)
@@ -20,6 +21,7 @@ def _get_file_logger_handler(filename: str):
         handler = logging.FileHandler(filename)
         file_handlers[filename] = handler  # Am i need a lock?
     return handler
+
 
 def get_file_logger(filename: str):
     """
@@ -39,7 +41,7 @@ class WebsocketClient(object):
     After creating the client object, use start() to run worker and ping threads.
     The worker thread connects websocket automatically.
 
-    Use stop to stop threads and disconnect websocket before destroying the client
+    Use stop to stp threads and disconnect websocket before destroying the client
     object (especially when exiting the programme).
 
     Default serialization format is json.
@@ -67,8 +69,6 @@ class WebsocketClient(object):
         self._ping_thread = None
         self._active = False
 
-        self.proxy_host = None
-        self.proxy_port = None
         self.ping_interval = 60  # seconds
         self.header = {}
 
@@ -78,19 +78,10 @@ class WebsocketClient(object):
         self._last_sent_text = None
         self._last_received_text = None
 
-    def init(self,
-             host: str,
-             proxy_host: str = "",
-             proxy_port: int = 0,
-             ping_interval: int = 60,
-             header: dict = None,
-             log_path: Optional[str] = None,
+    def init(self, host: str, ping_interval: int = 60, log_path: Optional[str] = None,
              ):
         """
         :param host:
-        :param proxy_host:
-        :param proxy_port:
-        :param header:
         :param ping_interval: unit: seconds, type: int
         :param log_path: optional. file to save log.
         """
@@ -100,13 +91,6 @@ class WebsocketClient(object):
             self.logger = get_file_logger(log_path)
             self.logger.setLevel(logging.DEBUG)
 
-        if header:
-            self.header = header
-
-        if proxy_host and proxy_port:
-            self.proxy_host = proxy_host
-            self.proxy_port = proxy_port
-
     def start(self):
         """
         Start the client and on_connected function is called after webscoket
@@ -114,7 +98,6 @@ class WebsocketClient(object):
 
         Please don't send packet untill on_connected fucntion is called.
         """
-
         self._active = True
         self._worker_thread = Thread(target=self._run)
         self._worker_thread.start()
@@ -310,7 +293,7 @@ class WebsocketClient(object):
         return sys.excepthook(exception_type, exception_value, tb)
 
     def exception_detail(
-        self, exception_type: type, exception_value: Exception, tb
+            self, exception_type: type, exception_value: Exception, tb
     ):
         """
         Print detailed exception information.

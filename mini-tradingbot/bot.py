@@ -4,15 +4,11 @@ import hmac
 import time
 import sys
 import pytz
-from datetime import datetime, timedelta
-from typing import Any, Dict, List, Callable
-from threading import Lock
+from datetime import datetime
+from typing import Any, Dict, Callable
 from copy import copy
 
-from datatypes import TickData
-
-from requests import ConnectionError
-from websocket import WebsocketClient
+from gateway.websocket import WebsocketClient
 
 
 REST_HOST = "https://api.bybit.com"
@@ -224,25 +220,19 @@ class BybitWebsocketApi(WebsocketClient):
         self.gateway.on_tick(copy(tick))
 
     def on_trade(self, packet: dict):
-        """"""
+        """
+        On trade
+        :param packet:
+        :return:
+        """
         for d in packet["data"]:
             order_id = d["order_link_id"]
             if not order_id:
                 order_id = d["order_id"]
 
-            trade = TickData(
-                symbol=d["symbol"],
-                exchange=Exchange.BYBIT,
-                orderid=order_id,
-                tradeid=d["exec_id"],
-                direction=DIRECTION_BYBIT2VT[d["side"]],
-                price=float(d["price"]),
-                volume=d["exec_qty"],
-                time=d["trade_time"],
-                gateway_name=self.gateway_name,
-            )
 
-            self.gateway.on_trade(trade)
+
+        # self.gateway.on_trade(trade)
 
     def on_order(self, packet: dict):
         """"""
@@ -252,7 +242,7 @@ class BybitWebsocketApi(WebsocketClient):
 
             if order:
                 order.traded = d["cum_exec_qty"]
-                order.status = STATUS_BYBIT2VT[d["order_status"]]
+                order.status = d["order_status"]
                 order.time = d["timestamp"]
             else:
                 # Use sys_orderid as local_orderid when

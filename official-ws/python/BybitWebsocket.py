@@ -1,4 +1,4 @@
-import websocket
+from gateway import websocket
 from threading import Lock, Thread
 import socket
 from time import sleep
