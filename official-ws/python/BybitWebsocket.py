@@ -1,12 +1,9 @@
 import websocket
 from threading import Lock, Thread
-import traceback
 import socket
 from time import sleep
 import json
 import logging
-import urllib
-import math
 import time
 import hmac
 import sys
