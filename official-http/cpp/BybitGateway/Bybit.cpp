@@ -42,7 +42,7 @@ std::string BybitGateway::OnOrder(Order order){
     std::string tm = std::to_string(getCurrentTime());
     Params param{{"api_key", _key}, {"timestamp",tm}, {"side", order.side}, {"symbol", order.symbol},
                 {"order_type", order.order_type},{"qty", std::to_string(order.qty)},{"price",std::to_string(order.price)}};
-    std::string url = host + "/position/change-position-margin?";
+    std::string url = host + "/v2/private/order/create?";
     for(Params::const_iterator it = order.param.begin();it!=order.param.end();++it){
         param[it->first] = it->second;
     }
