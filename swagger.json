@@ -9,7 +9,7 @@
         },
         "version": "1.0.0"
     },
-    "host": "api.bybit.com",
+    "host": "api-testnet.bybit.com",
     "basePath": "/",
     "paths": {
         "/v2/public/time": {
@@ -154,6 +154,33 @@
                 "deprecated": false
             }
         },
+        "/v2/private/position/list": {
+            "get": {
+                "tags": [
+                    "Positions"
+                ],
+                "summary": "Get my position list.",
+                "operationId": "Positions.myPositionV2",
+                "parameters": [{
+                    "name": "symbol",
+                    "in": "query",
+                    "description": "Contract type which you want update its margin",
+                    "required": false,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/Position"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
         "/position/change-position-margin": {
             "post": {
                 "tags": [
@@ -209,7 +236,8 @@
                         "description": "Not less than 0, 0 means cancel TP",
                         "required": false,
                         "type": "string"
-                    }, {
+                    },
+                    {
                         "name": "stop_loss",
                         "in": "formData",
                         "description": "Not less than 0, 0 means cancel SL",
@@ -257,7 +285,8 @@
                         "description": "End point for result",
                         "required": false,
                         "type": "string"
-                    }, {
+                    },
+                    {
                         "name": "currency",
                         "in": "query",
                         "description": "Currency type",
@@ -270,7 +299,8 @@
                         "description": "wallet fund type",
                         "required": false,
                         "type": "string"
-                    }, {
+                    },
+                    {
                         "name": "page",
                         "in": "query",
                         "description": "Page. Default getting first page data",
@@ -318,7 +348,8 @@
                         "description": "End point for result",
                         "required": false,
                         "type": "string"
-                    }, {
+                    },
+                    {
                         "name": "coin",
                         "in": "query",
                         "description": "Currency",
@@ -331,7 +362,8 @@
                         "description": "Withdraw status",
                         "required": false,
                         "type": "string"
-                    }, {
+                    },
+                    {
                         "name": "page",
                         "in": "query",
                         "description": "Page. Default getting first page data",
@@ -359,6 +391,63 @@
                 "deprecated": false
             }
         },
+        "/open-api/wallet/risk-limit": {
+            "post": {
+                "tags": [
+                    "Wallet"
+                ],
+                "summary": "Set risk limit",
+                "operationId": "Wallet.setRiskLimit",
+                "parameters": [{
+                        "name": "symbol",
+                        "in": "formData",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "risk_id",
+                        "in": "formData",
+                        "description": "Risk ID. Can be found with the Get risk limit list endpoint.",
+                        "required": true,
+                        "type": "number",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/SetRiskLimitBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/open-api/wallet/risk-limit/list": {
+            "get": {
+                "tags": [
+                    "Wallet"
+                ],
+                "summary": "Get risk limit.",
+                "operationId": "Wallet.getRiskLimit",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/RiskLimitBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
         "/open-api/order/create": {
             "post": {
                 "tags": [
@@ -379,7 +468,8 @@
                         "description": "Contract type.",
                         "required": true,
                         "type": "string"
-                    }, {
+                    },
+                    {
                         "name": "order_type",
                         "in": "formData",
                         "description": "Active order type",
@@ -393,7 +483,8 @@
                         "required": true,
                         "type": "number",
                         "format": "int32"
-                    }, {
+                    },
+                    {
                         "name": "price",
                         "in": "query",
                         "description": "Order price.",
@@ -479,7 +570,8 @@
                         "description": "Contract type.",
                         "required": true,
                         "type": "string"
-                    }, {
+                    },
+                    {
                         "name": "order_type",
                         "in": "formData",
                         "description": "Active order type",
@@ -493,7 +585,8 @@
                         "required": true,
                         "type": "number",
                         "format": "int32"
-                    }, {
+                    },
+                    {
                         "name": "price",
                         "in": "query",
                         "description": "Order price.",
@@ -586,7 +679,8 @@
                         "description": "Customized order ID.",
                         "required": false,
                         "type": "string"
-                    }, {
+                    },
+                    {
                         "name": "symbol",
                         "in": "query",
                         "description": "Contract type. Default BTCUSD",
@@ -599,7 +693,8 @@
                         "description": "Sort orders by creation date",
                         "required": false,
                         "type": "string"
-                    }, {
+                    },
+                    {
                         "name": "page",
                         "in": "query",
                         "description": "Page. Default getting first page data",
@@ -746,34 +841,38 @@
                     "Order"
                 ],
                 "summary": "Replace active order. Only incomplete orders can be modified. ",
-                "operationId": "Order.Replace",
+                "operationId": "Order.replace",
                 "parameters": [{
-                    "name": "order_id",
-                    "in": "formData",
-                    "description": "Order ID.",
-                    "required": true,
-                    "type": "string"
-                }, {
-                    "name": "symbol",
-                    "in": "formData",
-                    "description": "Contract type.",
-                    "required": true,
-                    "type": "string"
-                }, {
-                    "name": "p_r_qty",
-                    "in": "formData",
-                    "description": "Order quantity.",
-                    "required": false,
-                    "type": "number",
-                    "format": "int64"
-                }, {
-                    "name": "p_r_price",
-                    "in": "formData",
-                    "description": "Order price.",
-                    "required": false,
-                    "type": "number",
-                    "format": "double"
-                }],
+                        "name": "order_id",
+                        "in": "formData",
+                        "description": "Order ID.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "symbol",
+                        "in": "formData",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "p_r_qty",
+                        "in": "formData",
+                        "description": "Order quantity.",
+                        "required": false,
+                        "type": "number",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "p_r_price",
+                        "in": "formData",
+                        "description": "Order price.",
+                        "required": false,
+                        "type": "number",
+                        "format": "double"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Request was successful",
@@ -842,7 +941,8 @@
                         "description": "Contract type.",
                         "required": true,
                         "type": "string"
-                    }, {
+                    },
+                    {
                         "name": "order_type",
                         "in": "formData",
                         "description": "Conditional order type.",
@@ -1048,41 +1148,46 @@
                     "Conditional"
                 ],
                 "summary": "Replace conditional order. Only incomplete orders can be modified. ",
-                "operationId": "Conditional.Replace",
+                "operationId": "Conditional.replace",
                 "parameters": [{
-                    "name": "order_id",
-                    "in": "formData",
-                    "description": "Order ID.",
-                    "required": true,
-                    "type": "string"
-                }, {
-                    "name": "symbol",
-                    "in": "formData",
-                    "description": "Contract type.",
-                    "required": true,
-                    "type": "string"
-                }, {
-                    "name": "p_r_qty",
-                    "in": "formData",
-                    "description": "Order quantity.",
-                    "required": false,
-                    "type": "number",
-                    "format": "int64"
-                }, {
-                    "name": "p_r_price",
-                    "in": "formData",
-                    "description": "Order price.",
-                    "required": false,
-                    "type": "number",
-                    "format": "double"
-                }, {
-                    "name": "p_r_trigger_price",
-                    "in": "formData",
-                    "description": "Trigger price.",
-                    "required": false,
-                    "type": "number",
-                    "format": "double"
-                }],
+                        "name": "order_id",
+                        "in": "formData",
+                        "description": "Order ID.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "symbol",
+                        "in": "formData",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "p_r_qty",
+                        "in": "formData",
+                        "description": "Order quantity.",
+                        "required": false,
+                        "type": "number",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "p_r_price",
+                        "in": "formData",
+                        "description": "Order price.",
+                        "required": false,
+                        "type": "number",
+                        "format": "double"
+                    },
+                    {
+                        "name": "p_r_trigger_price",
+                        "in": "formData",
+                        "description": "Trigger price.",
+                        "required": false,
+                        "type": "number",
+                        "format": "double"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Request was successful",
@@ -1185,36 +1290,41 @@
                 "summary": "Get user’s trade records.",
                 "operationId": "Execution.getTrades",
                 "parameters": [{
-                    "name": "order_id",
-                    "in": "query",
-                    "description": "OrderID. If not provided, will return user’s trading records.",
-                    "required": false,
-                    "type": "string"
-                }, {
-                    "name": "symbol",
-                    "in": "query",
-                    "description": "Contract type. If order_id not provided, symbol is required.",
-                    "required": false,
-                    "type": "string"
-                }, {
-                    "name": "start_time",
-                    "in": "query",
-                    "description": "Start timestamp point for result.",
-                    "required": false,
-                    "type": "string"
-                }, {
-                    "name": "page",
-                    "in": "query",
-                    "description": "Page. Default getting first page data.",
-                    "required": false,
-                    "type": "string"
-                }, {
-                    "name": "limit",
-                    "in": "query",
-                    "description": "Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page.",
-                    "required": false,
-                    "type": "string"
-                }],
+                        "name": "order_id",
+                        "in": "query",
+                        "description": "OrderID. If not provided, will return user’s trading records.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type. If order_id not provided, symbol is required.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "start_time",
+                        "in": "query",
+                        "description": "Start timestamp point for result.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page. Default getting first page data.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Request was successful",
@@ -1292,31 +1402,35 @@
                 "summary": "Query historical kline.",
                 "operationId": "Kline.get",
                 "parameters": [{
-                    "name": "symbol",
-                    "in": "query",
-                    "description": "Contract type.",
-                    "required": true,
-                    "type": "string"
-                }, {
-                    "name": "interval",
-                    "in": "query",
-                    "description": "Kline interval.",
-                    "required": true,
-                    "type": "string"
-                }, {
-                    "name": "from",
-                    "in": "query",
-                    "description": "from timestamp.",
-                    "required": true,
-                    "type": "number",
-                    "format": "int64"
-                }, {
-                    "name": "limit",
-                    "in": "query",
-                    "description": "Contract type.",
-                    "required": false,
-                    "type": "string"
-                }],
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "interval",
+                        "in": "query",
+                        "description": "Kline interval.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "from",
+                        "in": "query",
+                        "description": "from timestamp.",
+                        "required": true,
+                        "type": "number",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Contract type.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Request was successful",
@@ -1349,9 +1463,7 @@
                 "ext_info": {
                     "type": "string"
                 },
-                "result": {
-
-                },
+                "result": {},
                 "time_now": {
                     "type": "string"
                 }
@@ -2939,6 +3051,140 @@
             },
             "type": "object"
         },
+        "SetRiskLimitBase": {
+            "description": "Set risk limit.",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "items": {
+                        "$ref": "#/definitions/RiskLimitRes"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "RiskLimitRes": {
+            "description": "Set risk limit.",
+            "properties": {
+                "position": {
+                    "items": {
+                        "$ref": "#/definitions/PositionInfo"
+                    }
+                },
+                "risk": {
+                    "items": {
+                        "$ref": "#/definitions/RiskIDRes"
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "RiskIDRes": {
+            "description": "Set risk limit.",
+            "properties": {
+                "id": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "coin": {
+                    "type": "string"
+                },
+                "limit": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "maintain_margin": {
+                    "type": "string"
+                },
+                "starting_margin": {
+                    "type": "string"
+                },
+                "section": {
+                    "type": "string"
+                },
+                "is_lowest_risk": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "RiskLimitBase": {
+            "description": "Get risk limit.",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "items": {
+                        "$ref": "#/definitions/GetRiskLimitRes"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "GetRiskLimitRes": {
+            "description": "Get risk limit.",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/RiskIDRes"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
         "TradingStopBase": {
             "description": "Set Trading-Stop Condition response",
             "properties": {
@@ -3088,39 +3334,50 @@
         }
     },
     "tags": [{
-        "name": "Common",
-        "description": "Common interface"
-    }, {
-        "name": "APIKey",
-        "description": "Get account api-key information"
-    }, {
-        "name": "Order",
-        "description": "Place new order, cancel, replace and get order list"
-    }, {
-        "name": "Conditional",
-        "description": "Place, cancel and replace conditional order, get conditional order list"
-    }, {
-        "name": "Positions",
-        "description": "Get account position info"
-    }, {
-        "name": "Wallet",
-        "description": "Get wallet funding records, get withdraw records"
-    }, {
-        "name": "Funding",
-        "description": "Get fundng rate, get my funding fee, get predicted funding fee"
-    }, {
-        "name": "Execution",
-        "description": "Get the trade records of a order"
-    }, {
-        "name": "Market",
-        "description": "Get the orderbook and latest information for symbol"
-    }, {
-        "name": "Kline",
-        "description": "Query historical kline"
-    }, {
-        "name": "Symbol",
-        "description": "Query Symbols"
-    }],
+            "name": "Common",
+            "description": "Common interface"
+        },
+        {
+            "name": "APIKey",
+            "description": "Get account api-key information"
+        },
+        {
+            "name": "Order",
+            "description": "Place new order, cancel, replace and get order list"
+        },
+        {
+            "name": "Conditional",
+            "description": "Place, cancel and replace conditional order, get conditional order list"
+        },
+        {
+            "name": "Positions",
+            "description": "Get account position info"
+        },
+        {
+            "name": "Wallet",
+            "description": "Get wallet funding records, get withdraw records"
+        },
+        {
+            "name": "Funding",
+            "description": "Get fundng rate, get my funding fee, get predicted funding fee"
+        },
+        {
+            "name": "Execution",
+            "description": "Get the trade records of a order"
+        },
+        {
+            "name": "Market",
+            "description": "Get the orderbook and latest information for symbol"
+        },
+        {
+            "name": "Kline",
+            "description": "Query historical kline"
+        },
+        {
+            "name": "Symbol",
+            "description": "Query Symbols"
+        }
+    ],
     "consumes": [
         "application/json",
         "application/x-www-form-urlencoded"
