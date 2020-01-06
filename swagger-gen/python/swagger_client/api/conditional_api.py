@@ -340,12 +340,12 @@ class ConditionalApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def conditional_new(self, side, symbol, order_type, qty, price, base_price, stop_px, time_in_force, **kwargs):  # noqa: E501
+    def conditional_new(self, side, symbol, order_type, qty, base_price, stop_px, time_in_force, **kwargs):  # noqa: E501
         """Place a new conditional order.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.conditional_new(side, symbol, order_type, qty, price, base_price, stop_px, time_in_force, async_req=True)
+        >>> thread = api.conditional_new(side, symbol, order_type, qty, base_price, stop_px, time_in_force, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
@@ -353,10 +353,10 @@ class ConditionalApi(object):
         :param str symbol: Contract type. (required)
         :param str order_type: Conditional order type. (required)
         :param float qty: Order quantity. (required)
-        :param float price: Execution price for conditional order (required)
         :param float base_price: Send current market price. It will be used to compare with the value of 'stop_px', to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order.. (required)
         :param float stop_px: Trigger price. (required)
         :param str time_in_force: Time in force. (required)
+        :param float price: Execution price for conditional order
         :param str trigger_by: Trigger price type. Default LastPrice.
         :param bool close_on_trigger: close on trigger.
         :param str order_link_id: Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique..
@@ -366,17 +366,17 @@ class ConditionalApi(object):
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.conditional_new_with_http_info(side, symbol, order_type, qty, price, base_price, stop_px, time_in_force, **kwargs)  # noqa: E501
+            return self.conditional_new_with_http_info(side, symbol, order_type, qty, base_price, stop_px, time_in_force, **kwargs)  # noqa: E501
         else:
-            (data) = self.conditional_new_with_http_info(side, symbol, order_type, qty, price, base_price, stop_px, time_in_force, **kwargs)  # noqa: E501
+            (data) = self.conditional_new_with_http_info(side, symbol, order_type, qty, base_price, stop_px, time_in_force, **kwargs)  # noqa: E501
             return data
 
-    def conditional_new_with_http_info(self, side, symbol, order_type, qty, price, base_price, stop_px, time_in_force, **kwargs):  # noqa: E501
+    def conditional_new_with_http_info(self, side, symbol, order_type, qty, base_price, stop_px, time_in_force, **kwargs):  # noqa: E501
         """Place a new conditional order.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.conditional_new_with_http_info(side, symbol, order_type, qty, price, base_price, stop_px, time_in_force, async_req=True)
+        >>> thread = api.conditional_new_with_http_info(side, symbol, order_type, qty, base_price, stop_px, time_in_force, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
@@ -384,10 +384,10 @@ class ConditionalApi(object):
         :param str symbol: Contract type. (required)
         :param str order_type: Conditional order type. (required)
         :param float qty: Order quantity. (required)
-        :param float price: Execution price for conditional order (required)
         :param float base_price: Send current market price. It will be used to compare with the value of 'stop_px', to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order.. (required)
         :param float stop_px: Trigger price. (required)
         :param str time_in_force: Time in force. (required)
+        :param float price: Execution price for conditional order
         :param str trigger_by: Trigger price type. Default LastPrice.
         :param bool close_on_trigger: close on trigger.
         :param str order_link_id: Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique..
@@ -396,7 +396,7 @@ class ConditionalApi(object):
                  returns the request thread.
         """
 
-        all_params = ['side', 'symbol', 'order_type', 'qty', 'price', 'base_price', 'stop_px', 'time_in_force', 'trigger_by', 'close_on_trigger', 'order_link_id']  # noqa: E501
+        all_params = ['side', 'symbol', 'order_type', 'qty', 'base_price', 'stop_px', 'time_in_force', 'price', 'trigger_by', 'close_on_trigger', 'order_link_id']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -427,10 +427,6 @@ class ConditionalApi(object):
         if ('qty' not in params or
                 params['qty'] is None):
             raise ValueError("Missing the required parameter `qty` when calling `conditional_new`")  # noqa: E501
-        # verify the required parameter 'price' is set
-        if ('price' not in params or
-                params['price'] is None):
-            raise ValueError("Missing the required parameter `price` when calling `conditional_new`")  # noqa: E501
         # verify the required parameter 'base_price' is set
         if ('base_price' not in params or
                 params['base_price'] is None):

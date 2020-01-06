@@ -609,8 +609,8 @@ public class OrderApi {
      * @param symbol Contract type. (required)
      * @param orderType Active order type (required)
      * @param qty  (required)
-     * @param price Order price. (required)
      * @param timeInForce Time in force (required)
+     * @param price Order price. (optional)
      * @param takeProfit take profit price (optional)
      * @param stopLoss stop loss price (optional)
      * @param reduceOnly reduce only (optional)
@@ -623,7 +623,7 @@ public class OrderApi {
      * @deprecated
      */
     @Deprecated
-    public com.squareup.okhttp.Call orderNewCall(String side, String symbol, String orderType, BigDecimal qty, Double price, String timeInForce, Double takeProfit, Double stopLoss, Boolean reduceOnly, Boolean closeOnTrigger, String orderLinkId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call orderNewCall(String side, String symbol, String orderType, BigDecimal qty, String timeInForce, Double price, Double takeProfit, Double stopLoss, Boolean reduceOnly, Boolean closeOnTrigger, String orderLinkId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -688,7 +688,7 @@ public class OrderApi {
 
     @Deprecated
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call orderNewValidateBeforeCall(String side, String symbol, String orderType, BigDecimal qty, Double price, String timeInForce, Double takeProfit, Double stopLoss, Boolean reduceOnly, Boolean closeOnTrigger, String orderLinkId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call orderNewValidateBeforeCall(String side, String symbol, String orderType, BigDecimal qty, String timeInForce, Double price, Double takeProfit, Double stopLoss, Boolean reduceOnly, Boolean closeOnTrigger, String orderLinkId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'side' is set
         if (side == null) {
@@ -710,18 +710,13 @@ public class OrderApi {
             throw new ApiException("Missing the required parameter 'qty' when calling orderNew(Async)");
         }
         
-        // verify the required parameter 'price' is set
-        if (price == null) {
-            throw new ApiException("Missing the required parameter 'price' when calling orderNew(Async)");
-        }
-        
         // verify the required parameter 'timeInForce' is set
         if (timeInForce == null) {
             throw new ApiException("Missing the required parameter 'timeInForce' when calling orderNew(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = orderNewCall(side, symbol, orderType, qty, price, timeInForce, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = orderNewCall(side, symbol, orderType, qty, timeInForce, price, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId, progressListener, progressRequestListener);
         return call;
 
     }
@@ -733,8 +728,8 @@ public class OrderApi {
      * @param symbol Contract type. (required)
      * @param orderType Active order type (required)
      * @param qty  (required)
-     * @param price Order price. (required)
      * @param timeInForce Time in force (required)
+     * @param price Order price. (optional)
      * @param takeProfit take profit price (optional)
      * @param stopLoss stop loss price (optional)
      * @param reduceOnly reduce only (optional)
@@ -745,8 +740,8 @@ public class OrderApi {
      * @deprecated
      */
     @Deprecated
-    public Object orderNew(String side, String symbol, String orderType, BigDecimal qty, Double price, String timeInForce, Double takeProfit, Double stopLoss, Boolean reduceOnly, Boolean closeOnTrigger, String orderLinkId) throws ApiException {
-        ApiResponse<Object> resp = orderNewWithHttpInfo(side, symbol, orderType, qty, price, timeInForce, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId);
+    public Object orderNew(String side, String symbol, String orderType, BigDecimal qty, String timeInForce, Double price, Double takeProfit, Double stopLoss, Boolean reduceOnly, Boolean closeOnTrigger, String orderLinkId) throws ApiException {
+        ApiResponse<Object> resp = orderNewWithHttpInfo(side, symbol, orderType, qty, timeInForce, price, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId);
         return resp.getData();
     }
 
@@ -757,8 +752,8 @@ public class OrderApi {
      * @param symbol Contract type. (required)
      * @param orderType Active order type (required)
      * @param qty  (required)
-     * @param price Order price. (required)
      * @param timeInForce Time in force (required)
+     * @param price Order price. (optional)
      * @param takeProfit take profit price (optional)
      * @param stopLoss stop loss price (optional)
      * @param reduceOnly reduce only (optional)
@@ -769,8 +764,8 @@ public class OrderApi {
      * @deprecated
      */
     @Deprecated
-    public ApiResponse<Object> orderNewWithHttpInfo(String side, String symbol, String orderType, BigDecimal qty, Double price, String timeInForce, Double takeProfit, Double stopLoss, Boolean reduceOnly, Boolean closeOnTrigger, String orderLinkId) throws ApiException {
-        com.squareup.okhttp.Call call = orderNewValidateBeforeCall(side, symbol, orderType, qty, price, timeInForce, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId, null, null);
+    public ApiResponse<Object> orderNewWithHttpInfo(String side, String symbol, String orderType, BigDecimal qty, String timeInForce, Double price, Double takeProfit, Double stopLoss, Boolean reduceOnly, Boolean closeOnTrigger, String orderLinkId) throws ApiException {
+        com.squareup.okhttp.Call call = orderNewValidateBeforeCall(side, symbol, orderType, qty, timeInForce, price, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId, null, null);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -782,8 +777,8 @@ public class OrderApi {
      * @param symbol Contract type. (required)
      * @param orderType Active order type (required)
      * @param qty  (required)
-     * @param price Order price. (required)
      * @param timeInForce Time in force (required)
+     * @param price Order price. (optional)
      * @param takeProfit take profit price (optional)
      * @param stopLoss stop loss price (optional)
      * @param reduceOnly reduce only (optional)
@@ -795,7 +790,7 @@ public class OrderApi {
      * @deprecated
      */
     @Deprecated
-    public com.squareup.okhttp.Call orderNewAsync(String side, String symbol, String orderType, BigDecimal qty, Double price, String timeInForce, Double takeProfit, Double stopLoss, Boolean reduceOnly, Boolean closeOnTrigger, String orderLinkId, final ApiCallback<Object> callback) throws ApiException {
+    public com.squareup.okhttp.Call orderNewAsync(String side, String symbol, String orderType, BigDecimal qty, String timeInForce, Double price, Double takeProfit, Double stopLoss, Boolean reduceOnly, Boolean closeOnTrigger, String orderLinkId, final ApiCallback<Object> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -816,7 +811,7 @@ public class OrderApi {
             };
         }
 
-        com.squareup.okhttp.Call call = orderNewValidateBeforeCall(side, symbol, orderType, qty, price, timeInForce, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = orderNewValidateBeforeCall(side, symbol, orderType, qty, timeInForce, price, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -827,8 +822,8 @@ public class OrderApi {
      * @param symbol Contract type. (required)
      * @param orderType Active order type (required)
      * @param qty  (required)
-     * @param price Order price. (required)
      * @param timeInForce Time in force (required)
+     * @param price Order price. (optional)
      * @param takeProfit take profit price (optional)
      * @param stopLoss stop loss price (optional)
      * @param reduceOnly reduce only (optional)
@@ -840,7 +835,7 @@ public class OrderApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call orderNewV2Call(String side, String symbol, String orderType, BigDecimal qty, Double price, String timeInForce, Double takeProfit, Double stopLoss, Boolean reduceOnly, Boolean closeOnTrigger, String orderLinkId, String trailingStop, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call orderNewV2Call(String side, String symbol, String orderType, BigDecimal qty, String timeInForce, Double price, Double takeProfit, Double stopLoss, Boolean reduceOnly, Boolean closeOnTrigger, String orderLinkId, String trailingStop, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -906,7 +901,7 @@ public class OrderApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call orderNewV2ValidateBeforeCall(String side, String symbol, String orderType, BigDecimal qty, Double price, String timeInForce, Double takeProfit, Double stopLoss, Boolean reduceOnly, Boolean closeOnTrigger, String orderLinkId, String trailingStop, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call orderNewV2ValidateBeforeCall(String side, String symbol, String orderType, BigDecimal qty, String timeInForce, Double price, Double takeProfit, Double stopLoss, Boolean reduceOnly, Boolean closeOnTrigger, String orderLinkId, String trailingStop, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'side' is set
         if (side == null) {
@@ -928,18 +923,13 @@ public class OrderApi {
             throw new ApiException("Missing the required parameter 'qty' when calling orderNewV2(Async)");
         }
         
-        // verify the required parameter 'price' is set
-        if (price == null) {
-            throw new ApiException("Missing the required parameter 'price' when calling orderNewV2(Async)");
-        }
-        
         // verify the required parameter 'timeInForce' is set
         if (timeInForce == null) {
             throw new ApiException("Missing the required parameter 'timeInForce' when calling orderNewV2(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = orderNewV2Call(side, symbol, orderType, qty, price, timeInForce, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId, trailingStop, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = orderNewV2Call(side, symbol, orderType, qty, timeInForce, price, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId, trailingStop, progressListener, progressRequestListener);
         return call;
 
     }
@@ -951,8 +941,8 @@ public class OrderApi {
      * @param symbol Contract type. (required)
      * @param orderType Active order type (required)
      * @param qty  (required)
-     * @param price Order price. (required)
      * @param timeInForce Time in force (required)
+     * @param price Order price. (optional)
      * @param takeProfit take profit price (optional)
      * @param stopLoss stop loss price (optional)
      * @param reduceOnly reduce only (optional)
@@ -962,8 +952,8 @@ public class OrderApi {
      * @return Object
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Object orderNewV2(String side, String symbol, String orderType, BigDecimal qty, Double price, String timeInForce, Double takeProfit, Double stopLoss, Boolean reduceOnly, Boolean closeOnTrigger, String orderLinkId, String trailingStop) throws ApiException {
-        ApiResponse<Object> resp = orderNewV2WithHttpInfo(side, symbol, orderType, qty, price, timeInForce, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId, trailingStop);
+    public Object orderNewV2(String side, String symbol, String orderType, BigDecimal qty, String timeInForce, Double price, Double takeProfit, Double stopLoss, Boolean reduceOnly, Boolean closeOnTrigger, String orderLinkId, String trailingStop) throws ApiException {
+        ApiResponse<Object> resp = orderNewV2WithHttpInfo(side, symbol, orderType, qty, timeInForce, price, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId, trailingStop);
         return resp.getData();
     }
 
@@ -974,8 +964,8 @@ public class OrderApi {
      * @param symbol Contract type. (required)
      * @param orderType Active order type (required)
      * @param qty  (required)
-     * @param price Order price. (required)
      * @param timeInForce Time in force (required)
+     * @param price Order price. (optional)
      * @param takeProfit take profit price (optional)
      * @param stopLoss stop loss price (optional)
      * @param reduceOnly reduce only (optional)
@@ -985,8 +975,8 @@ public class OrderApi {
      * @return ApiResponse&lt;Object&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Object> orderNewV2WithHttpInfo(String side, String symbol, String orderType, BigDecimal qty, Double price, String timeInForce, Double takeProfit, Double stopLoss, Boolean reduceOnly, Boolean closeOnTrigger, String orderLinkId, String trailingStop) throws ApiException {
-        com.squareup.okhttp.Call call = orderNewV2ValidateBeforeCall(side, symbol, orderType, qty, price, timeInForce, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId, trailingStop, null, null);
+    public ApiResponse<Object> orderNewV2WithHttpInfo(String side, String symbol, String orderType, BigDecimal qty, String timeInForce, Double price, Double takeProfit, Double stopLoss, Boolean reduceOnly, Boolean closeOnTrigger, String orderLinkId, String trailingStop) throws ApiException {
+        com.squareup.okhttp.Call call = orderNewV2ValidateBeforeCall(side, symbol, orderType, qty, timeInForce, price, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId, trailingStop, null, null);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -998,8 +988,8 @@ public class OrderApi {
      * @param symbol Contract type. (required)
      * @param orderType Active order type (required)
      * @param qty  (required)
-     * @param price Order price. (required)
      * @param timeInForce Time in force (required)
+     * @param price Order price. (optional)
      * @param takeProfit take profit price (optional)
      * @param stopLoss stop loss price (optional)
      * @param reduceOnly reduce only (optional)
@@ -1010,7 +1000,7 @@ public class OrderApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call orderNewV2Async(String side, String symbol, String orderType, BigDecimal qty, Double price, String timeInForce, Double takeProfit, Double stopLoss, Boolean reduceOnly, Boolean closeOnTrigger, String orderLinkId, String trailingStop, final ApiCallback<Object> callback) throws ApiException {
+    public com.squareup.okhttp.Call orderNewV2Async(String side, String symbol, String orderType, BigDecimal qty, String timeInForce, Double price, Double takeProfit, Double stopLoss, Boolean reduceOnly, Boolean closeOnTrigger, String orderLinkId, String trailingStop, final ApiCallback<Object> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1031,7 +1021,7 @@ public class OrderApi {
             };
         }
 
-        com.squareup.okhttp.Call call = orderNewV2ValidateBeforeCall(side, symbol, orderType, qty, price, timeInForce, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId, trailingStop, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = orderNewV2ValidateBeforeCall(side, symbol, orderType, qty, timeInForce, price, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId, trailingStop, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

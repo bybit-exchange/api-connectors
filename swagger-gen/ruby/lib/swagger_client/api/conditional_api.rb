@@ -194,17 +194,17 @@ module SwaggerClient
     # @param symbol Contract type.
     # @param order_type Conditional order type.
     # @param qty Order quantity.
-    # @param price Execution price for conditional order
     # @param base_price Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order..
     # @param stop_px Trigger price.
     # @param time_in_force Time in force.
     # @param [Hash] opts the optional parameters
+    # @option opts [Float] :price Execution price for conditional order
     # @option opts [String] :trigger_by Trigger price type. Default LastPrice.
     # @option opts [BOOLEAN] :close_on_trigger close on trigger.
     # @option opts [String] :order_link_id Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique..
     # @return [Object]
-    def conditional_new(side, symbol, order_type, qty, price, base_price, stop_px, time_in_force, opts = {})
-      data, _status_code, _headers = conditional_new_with_http_info(side, symbol, order_type, qty, price, base_price, stop_px, time_in_force, opts)
+    def conditional_new(side, symbol, order_type, qty, base_price, stop_px, time_in_force, opts = {})
+      data, _status_code, _headers = conditional_new_with_http_info(side, symbol, order_type, qty, base_price, stop_px, time_in_force, opts)
       data
     end
 
@@ -213,16 +213,16 @@ module SwaggerClient
     # @param symbol Contract type.
     # @param order_type Conditional order type.
     # @param qty Order quantity.
-    # @param price Execution price for conditional order
     # @param base_price Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order..
     # @param stop_px Trigger price.
     # @param time_in_force Time in force.
     # @param [Hash] opts the optional parameters
+    # @option opts [Float] :price Execution price for conditional order
     # @option opts [String] :trigger_by Trigger price type. Default LastPrice.
     # @option opts [BOOLEAN] :close_on_trigger close on trigger.
     # @option opts [String] :order_link_id Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique..
     # @return [Array<(Object, Fixnum, Hash)>] Object data, response status code and response headers
-    def conditional_new_with_http_info(side, symbol, order_type, qty, price, base_price, stop_px, time_in_force, opts = {})
+    def conditional_new_with_http_info(side, symbol, order_type, qty, base_price, stop_px, time_in_force, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: ConditionalApi.conditional_new ...'
       end
@@ -241,10 +241,6 @@ module SwaggerClient
       # verify the required parameter 'qty' is set
       if @api_client.config.client_side_validation && qty.nil?
         fail ArgumentError, "Missing the required parameter 'qty' when calling ConditionalApi.conditional_new"
-      end
-      # verify the required parameter 'price' is set
-      if @api_client.config.client_side_validation && price.nil?
-        fail ArgumentError, "Missing the required parameter 'price' when calling ConditionalApi.conditional_new"
       end
       # verify the required parameter 'base_price' is set
       if @api_client.config.client_side_validation && base_price.nil?
@@ -277,10 +273,10 @@ module SwaggerClient
       form_params['symbol'] = symbol
       form_params['order_type'] = order_type
       form_params['qty'] = qty
-      form_params['price'] = price
       form_params['base_price'] = base_price
       form_params['stop_px'] = stop_px
       form_params['time_in_force'] = time_in_force
+      form_params['price'] = opts[:'price'] if !opts[:'price'].nil?
       form_params['trigger_by'] = opts[:'trigger_by'] if !opts[:'trigger_by'].nil?
       form_params['close_on_trigger'] = opts[:'close_on_trigger'] if !opts[:'close_on_trigger'].nil?
       form_params['order_link_id'] = opts[:'order_link_id'] if !opts[:'order_link_id'].nil?

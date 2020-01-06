@@ -449,12 +449,12 @@ class OrderApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def order_new(self, side, symbol, order_type, qty, price, time_in_force, **kwargs):  # noqa: E501
+    def order_new(self, side, symbol, order_type, qty, time_in_force, **kwargs):  # noqa: E501
         """Place active order  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.order_new(side, symbol, order_type, qty, price, time_in_force, async_req=True)
+        >>> thread = api.order_new(side, symbol, order_type, qty, time_in_force, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
@@ -462,8 +462,8 @@ class OrderApi(object):
         :param str symbol: Contract type. (required)
         :param str order_type: Active order type (required)
         :param float qty:  (required)
-        :param float price: Order price. (required)
         :param str time_in_force: Time in force (required)
+        :param float price: Order price.
         :param float take_profit: take profit price
         :param float stop_loss: stop loss price
         :param bool reduce_only: reduce only
@@ -475,17 +475,17 @@ class OrderApi(object):
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.order_new_with_http_info(side, symbol, order_type, qty, price, time_in_force, **kwargs)  # noqa: E501
+            return self.order_new_with_http_info(side, symbol, order_type, qty, time_in_force, **kwargs)  # noqa: E501
         else:
-            (data) = self.order_new_with_http_info(side, symbol, order_type, qty, price, time_in_force, **kwargs)  # noqa: E501
+            (data) = self.order_new_with_http_info(side, symbol, order_type, qty, time_in_force, **kwargs)  # noqa: E501
             return data
 
-    def order_new_with_http_info(self, side, symbol, order_type, qty, price, time_in_force, **kwargs):  # noqa: E501
+    def order_new_with_http_info(self, side, symbol, order_type, qty, time_in_force, **kwargs):  # noqa: E501
         """Place active order  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.order_new_with_http_info(side, symbol, order_type, qty, price, time_in_force, async_req=True)
+        >>> thread = api.order_new_with_http_info(side, symbol, order_type, qty, time_in_force, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
@@ -493,8 +493,8 @@ class OrderApi(object):
         :param str symbol: Contract type. (required)
         :param str order_type: Active order type (required)
         :param float qty:  (required)
-        :param float price: Order price. (required)
         :param str time_in_force: Time in force (required)
+        :param float price: Order price.
         :param float take_profit: take profit price
         :param float stop_loss: stop loss price
         :param bool reduce_only: reduce only
@@ -505,7 +505,7 @@ class OrderApi(object):
                  returns the request thread.
         """
 
-        all_params = ['side', 'symbol', 'order_type', 'qty', 'price', 'time_in_force', 'take_profit', 'stop_loss', 'reduce_only', 'close_on_trigger', 'order_link_id']  # noqa: E501
+        all_params = ['side', 'symbol', 'order_type', 'qty', 'time_in_force', 'price', 'take_profit', 'stop_loss', 'reduce_only', 'close_on_trigger', 'order_link_id']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -536,10 +536,6 @@ class OrderApi(object):
         if ('qty' not in params or
                 params['qty'] is None):
             raise ValueError("Missing the required parameter `qty` when calling `order_new`")  # noqa: E501
-        # verify the required parameter 'price' is set
-        if ('price' not in params or
-                params['price'] is None):
-            raise ValueError("Missing the required parameter `price` when calling `order_new`")  # noqa: E501
         # verify the required parameter 'time_in_force' is set
         if ('time_in_force' not in params or
                 params['time_in_force'] is None):
@@ -606,12 +602,12 @@ class OrderApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def order_new_v2(self, side, symbol, order_type, qty, price, time_in_force, **kwargs):  # noqa: E501
+    def order_new_v2(self, side, symbol, order_type, qty, time_in_force, **kwargs):  # noqa: E501
         """Place active order  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.order_new_v2(side, symbol, order_type, qty, price, time_in_force, async_req=True)
+        >>> thread = api.order_new_v2(side, symbol, order_type, qty, time_in_force, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
@@ -619,8 +615,8 @@ class OrderApi(object):
         :param str symbol: Contract type. (required)
         :param str order_type: Active order type (required)
         :param float qty:  (required)
-        :param float price: Order price. (required)
         :param str time_in_force: Time in force (required)
+        :param float price: Order price.
         :param float take_profit: take profit price
         :param float stop_loss: stop loss price
         :param bool reduce_only: reduce only
@@ -633,17 +629,17 @@ class OrderApi(object):
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.order_new_v2_with_http_info(side, symbol, order_type, qty, price, time_in_force, **kwargs)  # noqa: E501
+            return self.order_new_v2_with_http_info(side, symbol, order_type, qty, time_in_force, **kwargs)  # noqa: E501
         else:
-            (data) = self.order_new_v2_with_http_info(side, symbol, order_type, qty, price, time_in_force, **kwargs)  # noqa: E501
+            (data) = self.order_new_v2_with_http_info(side, symbol, order_type, qty, time_in_force, **kwargs)  # noqa: E501
             return data
 
-    def order_new_v2_with_http_info(self, side, symbol, order_type, qty, price, time_in_force, **kwargs):  # noqa: E501
+    def order_new_v2_with_http_info(self, side, symbol, order_type, qty, time_in_force, **kwargs):  # noqa: E501
         """Place active order  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.order_new_v2_with_http_info(side, symbol, order_type, qty, price, time_in_force, async_req=True)
+        >>> thread = api.order_new_v2_with_http_info(side, symbol, order_type, qty, time_in_force, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
@@ -651,8 +647,8 @@ class OrderApi(object):
         :param str symbol: Contract type. (required)
         :param str order_type: Active order type (required)
         :param float qty:  (required)
-        :param float price: Order price. (required)
         :param str time_in_force: Time in force (required)
+        :param float price: Order price.
         :param float take_profit: take profit price
         :param float stop_loss: stop loss price
         :param bool reduce_only: reduce only
@@ -664,7 +660,7 @@ class OrderApi(object):
                  returns the request thread.
         """
 
-        all_params = ['side', 'symbol', 'order_type', 'qty', 'price', 'time_in_force', 'take_profit', 'stop_loss', 'reduce_only', 'close_on_trigger', 'order_link_id', 'trailing_stop']  # noqa: E501
+        all_params = ['side', 'symbol', 'order_type', 'qty', 'time_in_force', 'price', 'take_profit', 'stop_loss', 'reduce_only', 'close_on_trigger', 'order_link_id', 'trailing_stop']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -695,10 +691,6 @@ class OrderApi(object):
         if ('qty' not in params or
                 params['qty'] is None):
             raise ValueError("Missing the required parameter `qty` when calling `order_new_v2`")  # noqa: E501
-        # verify the required parameter 'price' is set
-        if ('price' not in params or
-                params['price'] is None):
-            raise ValueError("Missing the required parameter `price` when calling `order_new_v2`")  # noqa: E501
         # verify the required parameter 'time_in_force' is set
         if ('time_in_force' not in params or
                 params['time_in_force'] is None):

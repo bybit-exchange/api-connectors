@@ -107,6 +107,52 @@ open class PositionsAPI {
     }
 
     /**
+     Get my position list.
+     
+     - parameter symbol: (query) Contract type which you want update its margin (optional)
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func positionsMyPositionV2(symbol: String? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
+        positionsMyPositionV2WithRequestBuilder(symbol: symbol).execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Get my position list.
+     - GET /v2/private/position/list
+     - API Key:
+       - type: apiKey api_key (QUERY)
+       - name: apiKey
+     - API Key:
+       - type: apiKey sign (QUERY)
+       - name: apiSignature
+     - API Key:
+       - type: apiKey timestamp (QUERY)
+       - name: timestamp
+     - examples: [{contentType=application/json, example=""}]
+     
+     - parameter symbol: (query) Contract type which you want update its margin (optional)
+
+     - returns: RequestBuilder<Any> 
+     */
+    open class func positionsMyPositionV2WithRequestBuilder(symbol: String? = nil) -> RequestBuilder<Any> {
+        let path = "/v2/private/position/list"
+        let URLString = SwaggerClientAPI.basePath + path
+        let parameters: [String:Any]? = nil
+        
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "symbol": symbol
+        ])
+
+        let requestBuilder: RequestBuilder<Any>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+    }
+
+    /**
      Change user leverage.
      
      - parameter symbol: (form) A symbol which you want change its leverage 

@@ -40,22 +40,6 @@ public:
     OrderApi( std::shared_ptr<ApiClient> apiClient );
     virtual ~OrderApi();
     /// <summary>
-    /// Replace active order. Only incomplete orders can be modified. 
-    /// </summary>
-    /// <remarks>
-    /// 
-    /// </remarks>
-    /// <param name="orderId">Order ID.</param>
-    /// <param name="symbol">Contract type.</param>
-    /// <param name="pRQty">Order quantity. (optional)</param>
-    /// <param name="pRPrice">Order price. (optional)</param>
-    pplx::task<std::shared_ptr<Object>> order_Replace(
-        utility::string_t orderId,
-        utility::string_t symbol,
-        boost::optional<double> pRQty,
-        boost::optional<double> pRPrice
-    );
-    /// <summary>
     /// Get my active order list.
     /// </summary>
     /// <remarks>
@@ -123,8 +107,8 @@ public:
     /// <param name="symbol">Contract type.</param>
     /// <param name="orderType">Active order type</param>
     /// <param name="qty"></param>
-    /// <param name="price">Order price.</param>
     /// <param name="timeInForce">Time in force</param>
+    /// <param name="price">Order price. (optional)</param>
     /// <param name="takeProfit">take profit price (optional)</param>
     /// <param name="stopLoss">stop loss price (optional)</param>
     /// <param name="reduceOnly">reduce only (optional)</param>
@@ -135,8 +119,8 @@ public:
         utility::string_t symbol,
         utility::string_t orderType,
         double qty,
-        double price,
         utility::string_t timeInForce,
+        boost::optional<double> price,
         boost::optional<double> takeProfit,
         boost::optional<double> stopLoss,
         boost::optional<bool> reduceOnly,
@@ -153,8 +137,8 @@ public:
     /// <param name="symbol">Contract type.</param>
     /// <param name="orderType">Active order type</param>
     /// <param name="qty"></param>
-    /// <param name="price">Order price.</param>
     /// <param name="timeInForce">Time in force</param>
+    /// <param name="price">Order price. (optional)</param>
     /// <param name="takeProfit">take profit price (optional)</param>
     /// <param name="stopLoss">stop loss price (optional)</param>
     /// <param name="reduceOnly">reduce only (optional)</param>
@@ -166,8 +150,8 @@ public:
         utility::string_t symbol,
         utility::string_t orderType,
         double qty,
-        double price,
         utility::string_t timeInForce,
+        boost::optional<double> price,
         boost::optional<double> takeProfit,
         boost::optional<double> stopLoss,
         boost::optional<bool> reduceOnly,
@@ -186,6 +170,22 @@ public:
     pplx::task<std::shared_ptr<Object>> order_query(
         boost::optional<utility::string_t> orderId,
         boost::optional<utility::string_t> symbol
+    );
+    /// <summary>
+    /// Replace active order. Only incomplete orders can be modified. 
+    /// </summary>
+    /// <remarks>
+    /// 
+    /// </remarks>
+    /// <param name="orderId">Order ID.</param>
+    /// <param name="symbol">Contract type.</param>
+    /// <param name="pRQty">Order quantity. (optional)</param>
+    /// <param name="pRPrice">Order price. (optional)</param>
+    pplx::task<std::shared_ptr<Object>> order_replace(
+        utility::string_t orderId,
+        utility::string_t symbol,
+        boost::optional<double> pRQty,
+        boost::optional<double> pRPrice
     );
 
 protected:

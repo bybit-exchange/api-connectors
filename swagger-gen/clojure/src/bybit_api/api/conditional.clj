@@ -59,9 +59,9 @@
 
 (defn conditional-new-with-http-info
   "Place a new conditional order."
-  ([side symbol order-type qty price base-price stop-px time-in-force ] (conditional-new-with-http-info side symbol order-type qty price base-price stop-px time-in-force nil))
-  ([side symbol order-type qty price base-price stop-px time-in-force {:keys [trigger-by close-on-trigger order-link-id ]}]
-   (check-required-params side symbol order-type qty price base-price stop-px time-in-force)
+  ([side symbol order-type qty base-price stop-px time-in-force ] (conditional-new-with-http-info side symbol order-type qty base-price stop-px time-in-force nil))
+  ([side symbol order-type qty base-price stop-px time-in-force {:keys [price trigger-by close-on-trigger order-link-id ]}]
+   (check-required-params side symbol order-type qty base-price stop-px time-in-force)
    (call-api "/open-api/stop-order/create" :post
              {:path-params   {}
               :header-params {}
@@ -73,9 +73,9 @@
 
 (defn conditional-new
   "Place a new conditional order."
-  ([side symbol order-type qty price base-price stop-px time-in-force ] (conditional-new side symbol order-type qty price base-price stop-px time-in-force nil))
-  ([side symbol order-type qty price base-price stop-px time-in-force optional-params]
-   (:data (conditional-new-with-http-info side symbol order-type qty price base-price stop-px time-in-force optional-params))))
+  ([side symbol order-type qty base-price stop-px time-in-force ] (conditional-new side symbol order-type qty base-price stop-px time-in-force nil))
+  ([side symbol order-type qty base-price stop-px time-in-force optional-params]
+   (:data (conditional-new-with-http-info side symbol order-type qty base-price stop-px time-in-force optional-params))))
 
 (defn conditional-replace-with-http-info
   "Replace conditional order. Only incomplete orders can be modified."

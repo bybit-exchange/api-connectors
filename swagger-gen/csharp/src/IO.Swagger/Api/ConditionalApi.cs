@@ -107,15 +107,15 @@ namespace IO.Swagger.Api
         /// <param name="symbol">Contract type.</param>
         /// <param name="orderType">Conditional order type.</param>
         /// <param name="qty">Order quantity.</param>
-        /// <param name="price">Execution price for conditional order</param>
         /// <param name="basePrice">Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order..</param>
         /// <param name="stopPx">Trigger price.</param>
         /// <param name="timeInForce">Time in force.</param>
+        /// <param name="price">Execution price for conditional order (optional)</param>
         /// <param name="triggerBy">Trigger price type. Default LastPrice. (optional)</param>
         /// <param name="closeOnTrigger">close on trigger. (optional)</param>
         /// <param name="orderLinkId">Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. (optional)</param>
         /// <returns>Object</returns>
-        Object ConditionalNew (string side, string symbol, string orderType, decimal? qty, double? price, double? basePrice, double? stopPx, string timeInForce, string triggerBy = null, bool? closeOnTrigger = null, string orderLinkId = null);
+        Object ConditionalNew (string side, string symbol, string orderType, decimal? qty, double? basePrice, double? stopPx, string timeInForce, double? price = null, string triggerBy = null, bool? closeOnTrigger = null, string orderLinkId = null);
 
         /// <summary>
         /// Place a new conditional order.
@@ -128,15 +128,15 @@ namespace IO.Swagger.Api
         /// <param name="symbol">Contract type.</param>
         /// <param name="orderType">Conditional order type.</param>
         /// <param name="qty">Order quantity.</param>
-        /// <param name="price">Execution price for conditional order</param>
         /// <param name="basePrice">Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order..</param>
         /// <param name="stopPx">Trigger price.</param>
         /// <param name="timeInForce">Time in force.</param>
+        /// <param name="price">Execution price for conditional order (optional)</param>
         /// <param name="triggerBy">Trigger price type. Default LastPrice. (optional)</param>
         /// <param name="closeOnTrigger">close on trigger. (optional)</param>
         /// <param name="orderLinkId">Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. (optional)</param>
         /// <returns>ApiResponse of Object</returns>
-        ApiResponse<Object> ConditionalNewWithHttpInfo (string side, string symbol, string orderType, decimal? qty, double? price, double? basePrice, double? stopPx, string timeInForce, string triggerBy = null, bool? closeOnTrigger = null, string orderLinkId = null);
+        ApiResponse<Object> ConditionalNewWithHttpInfo (string side, string symbol, string orderType, decimal? qty, double? basePrice, double? stopPx, string timeInForce, double? price = null, string triggerBy = null, bool? closeOnTrigger = null, string orderLinkId = null);
         /// <summary>
         /// Replace conditional order. Only incomplete orders can be modified. 
         /// </summary>
@@ -252,15 +252,15 @@ namespace IO.Swagger.Api
         /// <param name="symbol">Contract type.</param>
         /// <param name="orderType">Conditional order type.</param>
         /// <param name="qty">Order quantity.</param>
-        /// <param name="price">Execution price for conditional order</param>
         /// <param name="basePrice">Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order..</param>
         /// <param name="stopPx">Trigger price.</param>
         /// <param name="timeInForce">Time in force.</param>
+        /// <param name="price">Execution price for conditional order (optional)</param>
         /// <param name="triggerBy">Trigger price type. Default LastPrice. (optional)</param>
         /// <param name="closeOnTrigger">close on trigger. (optional)</param>
         /// <param name="orderLinkId">Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. (optional)</param>
         /// <returns>Task of Object</returns>
-        System.Threading.Tasks.Task<Object> ConditionalNewAsync (string side, string symbol, string orderType, decimal? qty, double? price, double? basePrice, double? stopPx, string timeInForce, string triggerBy = null, bool? closeOnTrigger = null, string orderLinkId = null);
+        System.Threading.Tasks.Task<Object> ConditionalNewAsync (string side, string symbol, string orderType, decimal? qty, double? basePrice, double? stopPx, string timeInForce, double? price = null, string triggerBy = null, bool? closeOnTrigger = null, string orderLinkId = null);
 
         /// <summary>
         /// Place a new conditional order.
@@ -273,15 +273,15 @@ namespace IO.Swagger.Api
         /// <param name="symbol">Contract type.</param>
         /// <param name="orderType">Conditional order type.</param>
         /// <param name="qty">Order quantity.</param>
-        /// <param name="price">Execution price for conditional order</param>
         /// <param name="basePrice">Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order..</param>
         /// <param name="stopPx">Trigger price.</param>
         /// <param name="timeInForce">Time in force.</param>
+        /// <param name="price">Execution price for conditional order (optional)</param>
         /// <param name="triggerBy">Trigger price type. Default LastPrice. (optional)</param>
         /// <param name="closeOnTrigger">close on trigger. (optional)</param>
         /// <param name="orderLinkId">Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. (optional)</param>
         /// <returns>Task of ApiResponse (Object)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ConditionalNewAsyncWithHttpInfo (string side, string symbol, string orderType, decimal? qty, double? price, double? basePrice, double? stopPx, string timeInForce, string triggerBy = null, bool? closeOnTrigger = null, string orderLinkId = null);
+        System.Threading.Tasks.Task<ApiResponse<Object>> ConditionalNewAsyncWithHttpInfo (string side, string symbol, string orderType, decimal? qty, double? basePrice, double? stopPx, string timeInForce, double? price = null, string triggerBy = null, bool? closeOnTrigger = null, string orderLinkId = null);
         /// <summary>
         /// Replace conditional order. Only incomplete orders can be modified. 
         /// </summary>
@@ -944,17 +944,17 @@ namespace IO.Swagger.Api
         /// <param name="symbol">Contract type.</param>
         /// <param name="orderType">Conditional order type.</param>
         /// <param name="qty">Order quantity.</param>
-        /// <param name="price">Execution price for conditional order</param>
         /// <param name="basePrice">Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order..</param>
         /// <param name="stopPx">Trigger price.</param>
         /// <param name="timeInForce">Time in force.</param>
+        /// <param name="price">Execution price for conditional order (optional)</param>
         /// <param name="triggerBy">Trigger price type. Default LastPrice. (optional)</param>
         /// <param name="closeOnTrigger">close on trigger. (optional)</param>
         /// <param name="orderLinkId">Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. (optional)</param>
         /// <returns>Object</returns>
-        public Object ConditionalNew (string side, string symbol, string orderType, decimal? qty, double? price, double? basePrice, double? stopPx, string timeInForce, string triggerBy = null, bool? closeOnTrigger = null, string orderLinkId = null)
+        public Object ConditionalNew (string side, string symbol, string orderType, decimal? qty, double? basePrice, double? stopPx, string timeInForce, double? price = null, string triggerBy = null, bool? closeOnTrigger = null, string orderLinkId = null)
         {
-             ApiResponse<Object> localVarResponse = ConditionalNewWithHttpInfo(side, symbol, orderType, qty, price, basePrice, stopPx, timeInForce, triggerBy, closeOnTrigger, orderLinkId);
+             ApiResponse<Object> localVarResponse = ConditionalNewWithHttpInfo(side, symbol, orderType, qty, basePrice, stopPx, timeInForce, price, triggerBy, closeOnTrigger, orderLinkId);
              return localVarResponse.Data;
         }
 
@@ -966,15 +966,15 @@ namespace IO.Swagger.Api
         /// <param name="symbol">Contract type.</param>
         /// <param name="orderType">Conditional order type.</param>
         /// <param name="qty">Order quantity.</param>
-        /// <param name="price">Execution price for conditional order</param>
         /// <param name="basePrice">Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order..</param>
         /// <param name="stopPx">Trigger price.</param>
         /// <param name="timeInForce">Time in force.</param>
+        /// <param name="price">Execution price for conditional order (optional)</param>
         /// <param name="triggerBy">Trigger price type. Default LastPrice. (optional)</param>
         /// <param name="closeOnTrigger">close on trigger. (optional)</param>
         /// <param name="orderLinkId">Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. (optional)</param>
         /// <returns>ApiResponse of Object</returns>
-        public ApiResponse< Object > ConditionalNewWithHttpInfo (string side, string symbol, string orderType, decimal? qty, double? price, double? basePrice, double? stopPx, string timeInForce, string triggerBy = null, bool? closeOnTrigger = null, string orderLinkId = null)
+        public ApiResponse< Object > ConditionalNewWithHttpInfo (string side, string symbol, string orderType, decimal? qty, double? basePrice, double? stopPx, string timeInForce, double? price = null, string triggerBy = null, bool? closeOnTrigger = null, string orderLinkId = null)
         {
             // verify the required parameter 'side' is set
             if (side == null)
@@ -988,9 +988,6 @@ namespace IO.Swagger.Api
             // verify the required parameter 'qty' is set
             if (qty == null)
                 throw new ApiException(400, "Missing required parameter 'qty' when calling ConditionalApi->ConditionalNew");
-            // verify the required parameter 'price' is set
-            if (price == null)
-                throw new ApiException(400, "Missing required parameter 'price' when calling ConditionalApi->ConditionalNew");
             // verify the required parameter 'basePrice' is set
             if (basePrice == null)
                 throw new ApiException(400, "Missing required parameter 'basePrice' when calling ConditionalApi->ConditionalNew");
@@ -1078,17 +1075,17 @@ namespace IO.Swagger.Api
         /// <param name="symbol">Contract type.</param>
         /// <param name="orderType">Conditional order type.</param>
         /// <param name="qty">Order quantity.</param>
-        /// <param name="price">Execution price for conditional order</param>
         /// <param name="basePrice">Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order..</param>
         /// <param name="stopPx">Trigger price.</param>
         /// <param name="timeInForce">Time in force.</param>
+        /// <param name="price">Execution price for conditional order (optional)</param>
         /// <param name="triggerBy">Trigger price type. Default LastPrice. (optional)</param>
         /// <param name="closeOnTrigger">close on trigger. (optional)</param>
         /// <param name="orderLinkId">Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. (optional)</param>
         /// <returns>Task of Object</returns>
-        public async System.Threading.Tasks.Task<Object> ConditionalNewAsync (string side, string symbol, string orderType, decimal? qty, double? price, double? basePrice, double? stopPx, string timeInForce, string triggerBy = null, bool? closeOnTrigger = null, string orderLinkId = null)
+        public async System.Threading.Tasks.Task<Object> ConditionalNewAsync (string side, string symbol, string orderType, decimal? qty, double? basePrice, double? stopPx, string timeInForce, double? price = null, string triggerBy = null, bool? closeOnTrigger = null, string orderLinkId = null)
         {
-             ApiResponse<Object> localVarResponse = await ConditionalNewAsyncWithHttpInfo(side, symbol, orderType, qty, price, basePrice, stopPx, timeInForce, triggerBy, closeOnTrigger, orderLinkId);
+             ApiResponse<Object> localVarResponse = await ConditionalNewAsyncWithHttpInfo(side, symbol, orderType, qty, basePrice, stopPx, timeInForce, price, triggerBy, closeOnTrigger, orderLinkId);
              return localVarResponse.Data;
 
         }
@@ -1101,15 +1098,15 @@ namespace IO.Swagger.Api
         /// <param name="symbol">Contract type.</param>
         /// <param name="orderType">Conditional order type.</param>
         /// <param name="qty">Order quantity.</param>
-        /// <param name="price">Execution price for conditional order</param>
         /// <param name="basePrice">Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order..</param>
         /// <param name="stopPx">Trigger price.</param>
         /// <param name="timeInForce">Time in force.</param>
+        /// <param name="price">Execution price for conditional order (optional)</param>
         /// <param name="triggerBy">Trigger price type. Default LastPrice. (optional)</param>
         /// <param name="closeOnTrigger">close on trigger. (optional)</param>
         /// <param name="orderLinkId">Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. (optional)</param>
         /// <returns>Task of ApiResponse (Object)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> ConditionalNewAsyncWithHttpInfo (string side, string symbol, string orderType, decimal? qty, double? price, double? basePrice, double? stopPx, string timeInForce, string triggerBy = null, bool? closeOnTrigger = null, string orderLinkId = null)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> ConditionalNewAsyncWithHttpInfo (string side, string symbol, string orderType, decimal? qty, double? basePrice, double? stopPx, string timeInForce, double? price = null, string triggerBy = null, bool? closeOnTrigger = null, string orderLinkId = null)
         {
             // verify the required parameter 'side' is set
             if (side == null)
@@ -1123,9 +1120,6 @@ namespace IO.Swagger.Api
             // verify the required parameter 'qty' is set
             if (qty == null)
                 throw new ApiException(400, "Missing required parameter 'qty' when calling ConditionalApi->ConditionalNew");
-            // verify the required parameter 'price' is set
-            if (price == null)
-                throw new ApiException(400, "Missing required parameter 'price' when calling ConditionalApi->ConditionalNew");
             // verify the required parameter 'basePrice' is set
             if (basePrice == null)
                 throw new ApiException(400, "Missing required parameter 'basePrice' when calling ConditionalApi->ConditionalNew");

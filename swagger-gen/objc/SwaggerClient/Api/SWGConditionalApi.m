@@ -282,13 +282,13 @@ NSInteger kSWGConditionalApiMissingParamErrorCode = 234513;
 ///
 ///  @param qty Order quantity. 
 ///
-///  @param price Execution price for conditional order 
-///
 ///  @param basePrice Send current market price. It will be used to compare with the value of 'stop_px', to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order.. 
 ///
 ///  @param stopPx Trigger price. 
 ///
 ///  @param timeInForce Time in force. 
+///
+///  @param price Execution price for conditional order (optional)
 ///
 ///  @param triggerBy Trigger price type. Default LastPrice. (optional)
 ///
@@ -302,10 +302,10 @@ NSInteger kSWGConditionalApiMissingParamErrorCode = 234513;
     symbol: (NSString*) symbol
     orderType: (NSString*) orderType
     qty: (NSNumber*) qty
-    price: (NSNumber*) price
     basePrice: (NSNumber*) basePrice
     stopPx: (NSNumber*) stopPx
     timeInForce: (NSString*) timeInForce
+    price: (NSNumber*) price
     triggerBy: (NSString*) triggerBy
     closeOnTrigger: (NSNumber*) closeOnTrigger
     orderLinkId: (NSString*) orderLinkId
@@ -348,17 +348,6 @@ NSInteger kSWGConditionalApiMissingParamErrorCode = 234513;
         NSParameterAssert(qty);
         if(handler) {
             NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"qty"] };
-            NSError* error = [NSError errorWithDomain:kSWGConditionalApiErrorDomain code:kSWGConditionalApiMissingParamErrorCode userInfo:userInfo];
-            handler(nil, error);
-        }
-        return nil;
-    }
-
-    // verify the required parameter 'price' is set
-    if (price == nil) {
-        NSParameterAssert(price);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"price"] };
             NSError* error = [NSError errorWithDomain:kSWGConditionalApiErrorDomain code:kSWGConditionalApiMissingParamErrorCode userInfo:userInfo];
             handler(nil, error);
         }

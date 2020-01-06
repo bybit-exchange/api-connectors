@@ -281,7 +281,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **order_new**
-> object order_new(side, symbol, order_type, qty, price, time_in_force, take_profit=take_profit, stop_loss=stop_loss, reduce_only=reduce_only, close_on_trigger=close_on_trigger, order_link_id=order_link_id)
+> object order_new(side, symbol, order_type, qty, time_in_force, price=price, take_profit=take_profit, stop_loss=stop_loss, reduce_only=reduce_only, close_on_trigger=close_on_trigger, order_link_id=order_link_id)
 
 Place active order
 
@@ -315,8 +315,8 @@ side = 'side_example' # str | Side
 symbol = 'symbol_example' # str | Contract type.
 order_type = 'order_type_example' # str | Active order type
 qty = 8.14 # float | 
-price = 1.2 # float | Order price.
 time_in_force = 'time_in_force_example' # str | Time in force
+price = 1.2 # float | Order price. (optional)
 take_profit = 1.2 # float | take profit price (optional)
 stop_loss = 1.2 # float | stop loss price (optional)
 reduce_only = true # bool | reduce only (optional)
@@ -325,7 +325,7 @@ order_link_id = 'order_link_id_example' # str | TCustomized order ID, maximum le
 
 try:
     # Place active order
-    api_response = api_instance.order_new(side, symbol, order_type, qty, price, time_in_force, take_profit=take_profit, stop_loss=stop_loss, reduce_only=reduce_only, close_on_trigger=close_on_trigger, order_link_id=order_link_id)
+    api_response = api_instance.order_new(side, symbol, order_type, qty, time_in_force, price=price, take_profit=take_profit, stop_loss=stop_loss, reduce_only=reduce_only, close_on_trigger=close_on_trigger, order_link_id=order_link_id)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling OrderApi->order_new: %s\n" % e)
@@ -339,8 +339,8 @@ Name | Type | Description  | Notes
  **symbol** | **str**| Contract type. | 
  **order_type** | **str**| Active order type | 
  **qty** | **float**|  | 
- **price** | **float**| Order price. | 
  **time_in_force** | **str**| Time in force | 
+ **price** | **float**| Order price. | [optional] 
  **take_profit** | **float**| take profit price | [optional] 
  **stop_loss** | **float**| stop loss price | [optional] 
  **reduce_only** | **bool**| reduce only | [optional] 
@@ -363,7 +363,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **order_new_v2**
-> object order_new_v2(side, symbol, order_type, qty, price, time_in_force, take_profit=take_profit, stop_loss=stop_loss, reduce_only=reduce_only, close_on_trigger=close_on_trigger, order_link_id=order_link_id, trailing_stop=trailing_stop)
+> object order_new_v2(side, symbol, order_type, qty, time_in_force, price=price, take_profit=take_profit, stop_loss=stop_loss, reduce_only=reduce_only, close_on_trigger=close_on_trigger, order_link_id=order_link_id, trailing_stop=trailing_stop)
 
 Place active order
 
@@ -397,8 +397,8 @@ side = 'side_example' # str | Side
 symbol = 'symbol_example' # str | Contract type.
 order_type = 'order_type_example' # str | Active order type
 qty = 8.14 # float | 
-price = 1.2 # float | Order price.
 time_in_force = 'time_in_force_example' # str | Time in force
+price = 1.2 # float | Order price. (optional)
 take_profit = 1.2 # float | take profit price (optional)
 stop_loss = 1.2 # float | stop loss price (optional)
 reduce_only = true # bool | reduce only (optional)
@@ -408,7 +408,7 @@ trailing_stop = 'trailing_stop_example' # str | Trailing stop. (optional)
 
 try:
     # Place active order
-    api_response = api_instance.order_new_v2(side, symbol, order_type, qty, price, time_in_force, take_profit=take_profit, stop_loss=stop_loss, reduce_only=reduce_only, close_on_trigger=close_on_trigger, order_link_id=order_link_id, trailing_stop=trailing_stop)
+    api_response = api_instance.order_new_v2(side, symbol, order_type, qty, time_in_force, price=price, take_profit=take_profit, stop_loss=stop_loss, reduce_only=reduce_only, close_on_trigger=close_on_trigger, order_link_id=order_link_id, trailing_stop=trailing_stop)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling OrderApi->order_new_v2: %s\n" % e)
@@ -422,8 +422,8 @@ Name | Type | Description  | Notes
  **symbol** | **str**| Contract type. | 
  **order_type** | **str**| Active order type | 
  **qty** | **float**|  | 
- **price** | **float**| Order price. | 
  **time_in_force** | **str**| Time in force | 
+ **price** | **float**| Order price. | [optional] 
  **take_profit** | **float**| take profit price | [optional] 
  **stop_loss** | **float**| stop loss price | [optional] 
  **reduce_only** | **bool**| reduce only | [optional] 

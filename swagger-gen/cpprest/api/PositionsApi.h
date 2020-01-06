@@ -60,6 +60,16 @@ public:
     pplx::task<std::shared_ptr<Object>> positions_myPosition(
     );
     /// <summary>
+    /// Get my position list.
+    /// </summary>
+    /// <remarks>
+    /// 
+    /// </remarks>
+    /// <param name="symbol">Contract type which you want update its margin (optional)</param>
+    pplx::task<std::shared_ptr<Object>> positions_myPositionV2(
+        boost::optional<utility::string_t> symbol
+    );
+    /// <summary>
     /// Change user leverage.
     /// </summary>
     /// <remarks>

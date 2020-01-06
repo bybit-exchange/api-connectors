@@ -131,6 +131,32 @@ class PositionsApi(
   }
 
   /**
+   * Get my position list.
+   * 
+   *
+   * @param symbol Contract type which you want update its margin (optional)
+   * @return Any
+   */
+  def positionsMyPositionV2(symbol: Option[String] = None): Option[Any] = {
+    val await = Try(Await.result(positionsMyPositionV2Async(symbol), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
+    }
+  }
+
+  /**
+   * Get my position list. asynchronously
+   * 
+   *
+   * @param symbol Contract type which you want update its margin (optional)
+   * @return Future(Any)
+   */
+  def positionsMyPositionV2Async(symbol: Option[String] = None): Future[Any] = {
+      helper.positionsMyPositionV2(symbol)
+  }
+
+  /**
    * Change user leverage.
    * 
    *
@@ -246,6 +272,26 @@ class PositionsApiAsyncHelper(client: TransportClient, config: SwaggerConfig) ex
     val queryParams = new mutable.HashMap[String, String]
     val headerParams = new mutable.HashMap[String, String]
 
+
+    val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def positionsMyPositionV2(symbol: Option[String] = None
+    )(implicit reader: ClientResponseReader[Any]): Future[Any] = {
+    // create path and map variables
+    val path = (addFmt("/v2/private/position/list"))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    symbol match {
+      case Some(param) => queryParams += "symbol" -> param.toString
+      case _ => queryParams
+    }
 
     val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
     resFuture flatMap { resp =>

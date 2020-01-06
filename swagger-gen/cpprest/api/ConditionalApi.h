@@ -40,24 +40,6 @@ public:
     ConditionalApi( std::shared_ptr<ApiClient> apiClient );
     virtual ~ConditionalApi();
     /// <summary>
-    /// Replace conditional order. Only incomplete orders can be modified. 
-    /// </summary>
-    /// <remarks>
-    /// 
-    /// </remarks>
-    /// <param name="orderId">Order ID.</param>
-    /// <param name="symbol">Contract type.</param>
-    /// <param name="pRQty">Order quantity. (optional)</param>
-    /// <param name="pRPrice">Order price. (optional)</param>
-    /// <param name="pRTriggerPrice">Trigger price. (optional)</param>
-    pplx::task<std::shared_ptr<Object>> conditional_Replace(
-        utility::string_t orderId,
-        utility::string_t symbol,
-        boost::optional<double> pRQty,
-        boost::optional<double> pRPrice,
-        boost::optional<double> pRTriggerPrice
-    );
-    /// <summary>
     /// Cancel conditional order.
     /// </summary>
     /// <remarks>
@@ -107,10 +89,10 @@ public:
     /// <param name="symbol">Contract type.</param>
     /// <param name="orderType">Conditional order type.</param>
     /// <param name="qty">Order quantity.</param>
-    /// <param name="price">Execution price for conditional order</param>
     /// <param name="basePrice">Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order..</param>
     /// <param name="stopPx">Trigger price.</param>
     /// <param name="timeInForce">Time in force.</param>
+    /// <param name="price">Execution price for conditional order (optional)</param>
     /// <param name="triggerBy">Trigger price type. Default LastPrice. (optional)</param>
     /// <param name="closeOnTrigger">close on trigger. (optional)</param>
     /// <param name="orderLinkId">Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. (optional)</param>
@@ -119,13 +101,31 @@ public:
         utility::string_t symbol,
         utility::string_t orderType,
         double qty,
-        double price,
         double basePrice,
         double stopPx,
         utility::string_t timeInForce,
+        boost::optional<double> price,
         boost::optional<utility::string_t> triggerBy,
         boost::optional<bool> closeOnTrigger,
         boost::optional<utility::string_t> orderLinkId
+    );
+    /// <summary>
+    /// Replace conditional order. Only incomplete orders can be modified. 
+    /// </summary>
+    /// <remarks>
+    /// 
+    /// </remarks>
+    /// <param name="orderId">Order ID.</param>
+    /// <param name="symbol">Contract type.</param>
+    /// <param name="pRQty">Order quantity. (optional)</param>
+    /// <param name="pRPrice">Order price. (optional)</param>
+    /// <param name="pRTriggerPrice">Trigger price. (optional)</param>
+    pplx::task<std::shared_ptr<Object>> conditional_replace(
+        utility::string_t orderId,
+        utility::string_t symbol,
+        boost::optional<double> pRQty,
+        boost::optional<double> pRPrice,
+        boost::optional<double> pRTriggerPrice
     );
 
 protected:

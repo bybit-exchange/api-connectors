@@ -1257,8 +1257,8 @@ class OrderApi
      * @param  string $symbol Contract type. (required)
      * @param  string $order_type Active order type (required)
      * @param  float $qty  (required)
-     * @param  double $price Order price. (required)
      * @param  string $time_in_force Time in force (required)
+     * @param  double $price Order price. (optional)
      * @param  double $take_profit take profit price (optional)
      * @param  double $stop_loss stop loss price (optional)
      * @param  bool $reduce_only reduce only (optional)
@@ -1269,9 +1269,9 @@ class OrderApi
      * @throws \InvalidArgumentException
      * @return object
      */
-    public function orderNew($side, $symbol, $order_type, $qty, $price, $time_in_force, $take_profit = null, $stop_loss = null, $reduce_only = null, $close_on_trigger = null, $order_link_id = null)
+    public function orderNew($side, $symbol, $order_type, $qty, $time_in_force, $price = null, $take_profit = null, $stop_loss = null, $reduce_only = null, $close_on_trigger = null, $order_link_id = null)
     {
-        list($response) = $this->orderNewWithHttpInfo($side, $symbol, $order_type, $qty, $price, $time_in_force, $take_profit, $stop_loss, $reduce_only, $close_on_trigger, $order_link_id);
+        list($response) = $this->orderNewWithHttpInfo($side, $symbol, $order_type, $qty, $time_in_force, $price, $take_profit, $stop_loss, $reduce_only, $close_on_trigger, $order_link_id);
         return $response;
     }
 
@@ -1284,8 +1284,8 @@ class OrderApi
      * @param  string $symbol Contract type. (required)
      * @param  string $order_type Active order type (required)
      * @param  float $qty  (required)
-     * @param  double $price Order price. (required)
      * @param  string $time_in_force Time in force (required)
+     * @param  double $price Order price. (optional)
      * @param  double $take_profit take profit price (optional)
      * @param  double $stop_loss stop loss price (optional)
      * @param  bool $reduce_only reduce only (optional)
@@ -1296,10 +1296,10 @@ class OrderApi
      * @throws \InvalidArgumentException
      * @return array of object, HTTP status code, HTTP response headers (array of strings)
      */
-    public function orderNewWithHttpInfo($side, $symbol, $order_type, $qty, $price, $time_in_force, $take_profit = null, $stop_loss = null, $reduce_only = null, $close_on_trigger = null, $order_link_id = null)
+    public function orderNewWithHttpInfo($side, $symbol, $order_type, $qty, $time_in_force, $price = null, $take_profit = null, $stop_loss = null, $reduce_only = null, $close_on_trigger = null, $order_link_id = null)
     {
         $returnType = 'object';
-        $request = $this->orderNewRequest($side, $symbol, $order_type, $qty, $price, $time_in_force, $take_profit, $stop_loss, $reduce_only, $close_on_trigger, $order_link_id);
+        $request = $this->orderNewRequest($side, $symbol, $order_type, $qty, $time_in_force, $price, $take_profit, $stop_loss, $reduce_only, $close_on_trigger, $order_link_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1369,8 +1369,8 @@ class OrderApi
      * @param  string $symbol Contract type. (required)
      * @param  string $order_type Active order type (required)
      * @param  float $qty  (required)
-     * @param  double $price Order price. (required)
      * @param  string $time_in_force Time in force (required)
+     * @param  double $price Order price. (optional)
      * @param  double $take_profit take profit price (optional)
      * @param  double $stop_loss stop loss price (optional)
      * @param  bool $reduce_only reduce only (optional)
@@ -1380,9 +1380,9 @@ class OrderApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function orderNewAsync($side, $symbol, $order_type, $qty, $price, $time_in_force, $take_profit = null, $stop_loss = null, $reduce_only = null, $close_on_trigger = null, $order_link_id = null)
+    public function orderNewAsync($side, $symbol, $order_type, $qty, $time_in_force, $price = null, $take_profit = null, $stop_loss = null, $reduce_only = null, $close_on_trigger = null, $order_link_id = null)
     {
-        return $this->orderNewAsyncWithHttpInfo($side, $symbol, $order_type, $qty, $price, $time_in_force, $take_profit, $stop_loss, $reduce_only, $close_on_trigger, $order_link_id)
+        return $this->orderNewAsyncWithHttpInfo($side, $symbol, $order_type, $qty, $time_in_force, $price, $take_profit, $stop_loss, $reduce_only, $close_on_trigger, $order_link_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1399,8 +1399,8 @@ class OrderApi
      * @param  string $symbol Contract type. (required)
      * @param  string $order_type Active order type (required)
      * @param  float $qty  (required)
-     * @param  double $price Order price. (required)
      * @param  string $time_in_force Time in force (required)
+     * @param  double $price Order price. (optional)
      * @param  double $take_profit take profit price (optional)
      * @param  double $stop_loss stop loss price (optional)
      * @param  bool $reduce_only reduce only (optional)
@@ -1410,10 +1410,10 @@ class OrderApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function orderNewAsyncWithHttpInfo($side, $symbol, $order_type, $qty, $price, $time_in_force, $take_profit = null, $stop_loss = null, $reduce_only = null, $close_on_trigger = null, $order_link_id = null)
+    public function orderNewAsyncWithHttpInfo($side, $symbol, $order_type, $qty, $time_in_force, $price = null, $take_profit = null, $stop_loss = null, $reduce_only = null, $close_on_trigger = null, $order_link_id = null)
     {
         $returnType = 'object';
-        $request = $this->orderNewRequest($side, $symbol, $order_type, $qty, $price, $time_in_force, $take_profit, $stop_loss, $reduce_only, $close_on_trigger, $order_link_id);
+        $request = $this->orderNewRequest($side, $symbol, $order_type, $qty, $time_in_force, $price, $take_profit, $stop_loss, $reduce_only, $close_on_trigger, $order_link_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1459,8 +1459,8 @@ class OrderApi
      * @param  string $symbol Contract type. (required)
      * @param  string $order_type Active order type (required)
      * @param  float $qty  (required)
-     * @param  double $price Order price. (required)
      * @param  string $time_in_force Time in force (required)
+     * @param  double $price Order price. (optional)
      * @param  double $take_profit take profit price (optional)
      * @param  double $stop_loss stop loss price (optional)
      * @param  bool $reduce_only reduce only (optional)
@@ -1470,7 +1470,7 @@ class OrderApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function orderNewRequest($side, $symbol, $order_type, $qty, $price, $time_in_force, $take_profit = null, $stop_loss = null, $reduce_only = null, $close_on_trigger = null, $order_link_id = null)
+    protected function orderNewRequest($side, $symbol, $order_type, $qty, $time_in_force, $price = null, $take_profit = null, $stop_loss = null, $reduce_only = null, $close_on_trigger = null, $order_link_id = null)
     {
         // verify the required parameter 'side' is set
         if ($side === null || (is_array($side) && count($side) === 0)) {
@@ -1494,12 +1494,6 @@ class OrderApi
         if ($qty === null || (is_array($qty) && count($qty) === 0)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $qty when calling orderNew'
-            );
-        }
-        // verify the required parameter 'price' is set
-        if ($price === null || (is_array($price) && count($price) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $price when calling orderNew'
             );
         }
         // verify the required parameter 'time_in_force' is set
@@ -1650,8 +1644,8 @@ class OrderApi
      * @param  string $symbol Contract type. (required)
      * @param  string $order_type Active order type (required)
      * @param  float $qty  (required)
-     * @param  double $price Order price. (required)
      * @param  string $time_in_force Time in force (required)
+     * @param  double $price Order price. (optional)
      * @param  double $take_profit take profit price (optional)
      * @param  double $stop_loss stop loss price (optional)
      * @param  bool $reduce_only reduce only (optional)
@@ -1663,9 +1657,9 @@ class OrderApi
      * @throws \InvalidArgumentException
      * @return object
      */
-    public function orderNewV2($side, $symbol, $order_type, $qty, $price, $time_in_force, $take_profit = null, $stop_loss = null, $reduce_only = null, $close_on_trigger = null, $order_link_id = null, $trailing_stop = null)
+    public function orderNewV2($side, $symbol, $order_type, $qty, $time_in_force, $price = null, $take_profit = null, $stop_loss = null, $reduce_only = null, $close_on_trigger = null, $order_link_id = null, $trailing_stop = null)
     {
-        list($response) = $this->orderNewV2WithHttpInfo($side, $symbol, $order_type, $qty, $price, $time_in_force, $take_profit, $stop_loss, $reduce_only, $close_on_trigger, $order_link_id, $trailing_stop);
+        list($response) = $this->orderNewV2WithHttpInfo($side, $symbol, $order_type, $qty, $time_in_force, $price, $take_profit, $stop_loss, $reduce_only, $close_on_trigger, $order_link_id, $trailing_stop);
         return $response;
     }
 
@@ -1678,8 +1672,8 @@ class OrderApi
      * @param  string $symbol Contract type. (required)
      * @param  string $order_type Active order type (required)
      * @param  float $qty  (required)
-     * @param  double $price Order price. (required)
      * @param  string $time_in_force Time in force (required)
+     * @param  double $price Order price. (optional)
      * @param  double $take_profit take profit price (optional)
      * @param  double $stop_loss stop loss price (optional)
      * @param  bool $reduce_only reduce only (optional)
@@ -1691,10 +1685,10 @@ class OrderApi
      * @throws \InvalidArgumentException
      * @return array of object, HTTP status code, HTTP response headers (array of strings)
      */
-    public function orderNewV2WithHttpInfo($side, $symbol, $order_type, $qty, $price, $time_in_force, $take_profit = null, $stop_loss = null, $reduce_only = null, $close_on_trigger = null, $order_link_id = null, $trailing_stop = null)
+    public function orderNewV2WithHttpInfo($side, $symbol, $order_type, $qty, $time_in_force, $price = null, $take_profit = null, $stop_loss = null, $reduce_only = null, $close_on_trigger = null, $order_link_id = null, $trailing_stop = null)
     {
         $returnType = 'object';
-        $request = $this->orderNewV2Request($side, $symbol, $order_type, $qty, $price, $time_in_force, $take_profit, $stop_loss, $reduce_only, $close_on_trigger, $order_link_id, $trailing_stop);
+        $request = $this->orderNewV2Request($side, $symbol, $order_type, $qty, $time_in_force, $price, $take_profit, $stop_loss, $reduce_only, $close_on_trigger, $order_link_id, $trailing_stop);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1764,8 +1758,8 @@ class OrderApi
      * @param  string $symbol Contract type. (required)
      * @param  string $order_type Active order type (required)
      * @param  float $qty  (required)
-     * @param  double $price Order price. (required)
      * @param  string $time_in_force Time in force (required)
+     * @param  double $price Order price. (optional)
      * @param  double $take_profit take profit price (optional)
      * @param  double $stop_loss stop loss price (optional)
      * @param  bool $reduce_only reduce only (optional)
@@ -1776,9 +1770,9 @@ class OrderApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function orderNewV2Async($side, $symbol, $order_type, $qty, $price, $time_in_force, $take_profit = null, $stop_loss = null, $reduce_only = null, $close_on_trigger = null, $order_link_id = null, $trailing_stop = null)
+    public function orderNewV2Async($side, $symbol, $order_type, $qty, $time_in_force, $price = null, $take_profit = null, $stop_loss = null, $reduce_only = null, $close_on_trigger = null, $order_link_id = null, $trailing_stop = null)
     {
-        return $this->orderNewV2AsyncWithHttpInfo($side, $symbol, $order_type, $qty, $price, $time_in_force, $take_profit, $stop_loss, $reduce_only, $close_on_trigger, $order_link_id, $trailing_stop)
+        return $this->orderNewV2AsyncWithHttpInfo($side, $symbol, $order_type, $qty, $time_in_force, $price, $take_profit, $stop_loss, $reduce_only, $close_on_trigger, $order_link_id, $trailing_stop)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1795,8 +1789,8 @@ class OrderApi
      * @param  string $symbol Contract type. (required)
      * @param  string $order_type Active order type (required)
      * @param  float $qty  (required)
-     * @param  double $price Order price. (required)
      * @param  string $time_in_force Time in force (required)
+     * @param  double $price Order price. (optional)
      * @param  double $take_profit take profit price (optional)
      * @param  double $stop_loss stop loss price (optional)
      * @param  bool $reduce_only reduce only (optional)
@@ -1807,10 +1801,10 @@ class OrderApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function orderNewV2AsyncWithHttpInfo($side, $symbol, $order_type, $qty, $price, $time_in_force, $take_profit = null, $stop_loss = null, $reduce_only = null, $close_on_trigger = null, $order_link_id = null, $trailing_stop = null)
+    public function orderNewV2AsyncWithHttpInfo($side, $symbol, $order_type, $qty, $time_in_force, $price = null, $take_profit = null, $stop_loss = null, $reduce_only = null, $close_on_trigger = null, $order_link_id = null, $trailing_stop = null)
     {
         $returnType = 'object';
-        $request = $this->orderNewV2Request($side, $symbol, $order_type, $qty, $price, $time_in_force, $take_profit, $stop_loss, $reduce_only, $close_on_trigger, $order_link_id, $trailing_stop);
+        $request = $this->orderNewV2Request($side, $symbol, $order_type, $qty, $time_in_force, $price, $take_profit, $stop_loss, $reduce_only, $close_on_trigger, $order_link_id, $trailing_stop);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1856,8 +1850,8 @@ class OrderApi
      * @param  string $symbol Contract type. (required)
      * @param  string $order_type Active order type (required)
      * @param  float $qty  (required)
-     * @param  double $price Order price. (required)
      * @param  string $time_in_force Time in force (required)
+     * @param  double $price Order price. (optional)
      * @param  double $take_profit take profit price (optional)
      * @param  double $stop_loss stop loss price (optional)
      * @param  bool $reduce_only reduce only (optional)
@@ -1868,7 +1862,7 @@ class OrderApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function orderNewV2Request($side, $symbol, $order_type, $qty, $price, $time_in_force, $take_profit = null, $stop_loss = null, $reduce_only = null, $close_on_trigger = null, $order_link_id = null, $trailing_stop = null)
+    protected function orderNewV2Request($side, $symbol, $order_type, $qty, $time_in_force, $price = null, $take_profit = null, $stop_loss = null, $reduce_only = null, $close_on_trigger = null, $order_link_id = null, $trailing_stop = null)
     {
         // verify the required parameter 'side' is set
         if ($side === null || (is_array($side) && count($side) === 0)) {
@@ -1892,12 +1886,6 @@ class OrderApi
         if ($qty === null || (is_array($qty) && count($qty) === 0)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $qty when calling orderNewV2'
-            );
-        }
-        // verify the required parameter 'price' is set
-        if ($price === null || (is_array($price) && count($price) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $price when calling orderNewV2'
             );
         }
         // verify the required parameter 'time_in_force' is set

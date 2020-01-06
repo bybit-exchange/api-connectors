@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **OrderNew**
-> interface{} OrderNew(ctx, side, symbol, orderType, qty, price, timeInForce, optional)
+> interface{} OrderNew(ctx, side, symbol, orderType, qty, timeInForce, optional)
 Place active order
 
 ### Required Parameters
@@ -162,7 +162,6 @@ Name | Type | Description  | Notes
   **symbol** | **string**| Contract type. | 
   **orderType** | **string**| Active order type | 
   **qty** | **float32**|  | 
-  **price** | **float64**| Order price. | 
   **timeInForce** | **string**| Time in force | 
  **optional** | ***OrderNewOpts** | optional parameters | nil if no parameters
 
@@ -176,7 +175,7 @@ Name | Type | Description  | Notes
 
 
 
-
+ **price** | **optional.Float64**| Order price. | 
  **takeProfit** | **optional.Float64**| take profit price | 
  **stopLoss** | **optional.Float64**| stop loss price | 
  **reduceOnly** | **optional.Bool**| reduce only | 
@@ -199,7 +198,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **OrderNewV2**
-> interface{} OrderNewV2(ctx, side, symbol, orderType, qty, price, timeInForce, optional)
+> interface{} OrderNewV2(ctx, side, symbol, orderType, qty, timeInForce, optional)
 Place active order
 
 ### Required Parameters
@@ -211,7 +210,6 @@ Name | Type | Description  | Notes
   **symbol** | **string**| Contract type. | 
   **orderType** | **string**| Active order type | 
   **qty** | **float32**|  | 
-  **price** | **float64**| Order price. | 
   **timeInForce** | **string**| Time in force | 
  **optional** | ***OrderNewV2Opts** | optional parameters | nil if no parameters
 
@@ -225,7 +223,7 @@ Name | Type | Description  | Notes
 
 
 
-
+ **price** | **optional.Float64**| Order price. | 
  **takeProfit** | **optional.Float64**| take profit price | 
  **stopLoss** | **optional.Float64**| stop loss price | 
  **reduceOnly** | **optional.Bool**| reduce only | 

@@ -143,6 +143,50 @@
     }
 
     /**
+     * Callback function to receive the result of the positionsMyPositionV2 operation.
+     * @callback module:api/PositionsApi~positionsMyPositionV2Callback
+     * @param {String} error Error message, if any.
+     * @param {Object} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Get my position list.
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.symbol Contract type which you want update its margin
+     * @param {module:api/PositionsApi~positionsMyPositionV2Callback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link Object}
+     */
+    this.positionsMyPositionV2 = function(opts, callback) {
+      opts = opts || {};
+      var postBody = null;
+
+
+      var pathParams = {
+      };
+      var queryParams = {
+        'symbol': opts['symbol'],
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = ['apiKey', 'apiSignature', 'timestamp'];
+      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      var accepts = ['application/json'];
+      var returnType = Object;
+
+      return this.apiClient.callApi(
+        '/v2/private/position/list', 'GET',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
      * Callback function to receive the result of the positionsSaveLeverage operation.
      * @callback module:api/PositionsApi~positionsSaveLeverageCallback
      * @param {String} error Error message, if any.

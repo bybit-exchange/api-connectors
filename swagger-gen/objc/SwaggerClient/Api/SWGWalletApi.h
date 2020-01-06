@@ -44,6 +44,31 @@ extern NSInteger kSWGWalletApiMissingParamErrorCode;
     completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
 
 
+/// Get risk limit.
+/// 
+///
+/// 
+///  code:200 message:"Request was successful"
+///
+/// @return NSObject*
+-(NSURLSessionTask*) walletGetRiskLimitWithCompletionHandler: 
+    (void (^)(NSObject* output, NSError* error)) handler;
+
+
+/// Set risk limit
+/// 
+///
+/// @param symbol Contract type.
+/// @param riskId Risk ID. Can be found with the Get risk limit list endpoint.
+/// 
+///  code:200 message:"Request was successful"
+///
+/// @return NSObject*
+-(NSURLSessionTask*) walletSetRiskLimitWithSymbol: (NSString*) symbol
+    riskId: (NSNumber*) riskId
+    completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+
+
 /// Get wallet fund records
 /// 
 ///

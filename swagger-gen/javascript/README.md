@@ -158,11 +158,14 @@ Class | Method | HTTP request | Description
 *BybitApi.OrderApi* | [**orderReplace**](docs/OrderApi.md#orderReplace) | **POST** /open-api/order/replace | Replace active order. Only incomplete orders can be modified. 
 *BybitApi.PositionsApi* | [**positionsChangeMargin**](docs/PositionsApi.md#positionsChangeMargin) | **POST** /position/change-position-margin | Update margin.
 *BybitApi.PositionsApi* | [**positionsMyPosition**](docs/PositionsApi.md#positionsMyPosition) | **GET** /position/list | Get my position list.
+*BybitApi.PositionsApi* | [**positionsMyPositionV2**](docs/PositionsApi.md#positionsMyPositionV2) | **GET** /v2/private/position/list | Get my position list.
 *BybitApi.PositionsApi* | [**positionsSaveLeverage**](docs/PositionsApi.md#positionsSaveLeverage) | **POST** /user/leverage/save | Change user leverage.
 *BybitApi.PositionsApi* | [**positionsTradingStop**](docs/PositionsApi.md#positionsTradingStop) | **POST** /open-api/position/trading-stop | Set Trading-Stop Condition.
 *BybitApi.PositionsApi* | [**positionsUserLeverage**](docs/PositionsApi.md#positionsUserLeverage) | **GET** /user/leverage | Get user leverage setting.
 *BybitApi.SymbolApi* | [**symbolGet**](docs/SymbolApi.md#symbolGet) | **GET** /v2/public/symbols | Query Symbols.
 *BybitApi.WalletApi* | [**walletGetRecords**](docs/WalletApi.md#walletGetRecords) | **GET** /open-api/wallet/fund/records | Get wallet fund records
+*BybitApi.WalletApi* | [**walletGetRiskLimit**](docs/WalletApi.md#walletGetRiskLimit) | **GET** /open-api/wallet/risk-limit/list | Get risk limit.
+*BybitApi.WalletApi* | [**walletSetRiskLimit**](docs/WalletApi.md#walletSetRiskLimit) | **POST** /open-api/wallet/risk-limit | Set risk limit
 *BybitApi.WalletApi* | [**walletWithdraw**](docs/WalletApi.md#walletWithdraw) | **GET** /open-api/wallet/withdraw/list | Get wallet fund records
 
 
@@ -185,6 +188,7 @@ Class | Method | HTTP request | Description
  - [BybitApi.FundingRate](docs/FundingRate.md)
  - [BybitApi.FundingRateBase](docs/FundingRateBase.md)
  - [BybitApi.FundingRecords](docs/FundingRecords.md)
+ - [BybitApi.GetRiskLimitRes](docs/GetRiskLimitRes.md)
  - [BybitApi.KlineBase](docs/KlineBase.md)
  - [BybitApi.KlineRes](docs/KlineRes.md)
  - [BybitApi.Leverage](docs/Leverage.md)
@@ -207,7 +211,11 @@ Class | Method | HTTP request | Description
  - [BybitApi.QueryOrderRes](docs/QueryOrderRes.md)
  - [BybitApi.ReplaceConditionalBase](docs/ReplaceConditionalBase.md)
  - [BybitApi.ReplaceOrderBase](docs/ReplaceOrderBase.md)
+ - [BybitApi.RiskIDRes](docs/RiskIDRes.md)
+ - [BybitApi.RiskLimitBase](docs/RiskLimitBase.md)
+ - [BybitApi.RiskLimitRes](docs/RiskLimitRes.md)
  - [BybitApi.ServerTime](docs/ServerTime.md)
+ - [BybitApi.SetRiskLimitBase](docs/SetRiskLimitBase.md)
  - [BybitApi.SymbolInfo](docs/SymbolInfo.md)
  - [BybitApi.SymbolInfoBase](docs/SymbolInfoBase.md)
  - [BybitApi.SymbolTickInfo](docs/SymbolTickInfo.md)

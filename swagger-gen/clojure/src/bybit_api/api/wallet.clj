@@ -21,6 +21,41 @@
   ([optional-params]
    (:data (wallet-get-records-with-http-info optional-params))))
 
+(defn wallet-get-risk-limit-with-http-info
+  "Get risk limit."
+  []
+  (call-api "/open-api/wallet/risk-limit/list" :get
+            {:path-params   {}
+             :header-params {}
+             :query-params  {}
+             :form-params   {}
+             :content-types ["application/json" "application/x-www-form-urlencoded"]
+             :accepts       ["application/json"]
+             :auth-names    ["apiKey" "apiSignature" "timestamp"]}))
+
+(defn wallet-get-risk-limit
+  "Get risk limit."
+  []
+  (:data (wallet-get-risk-limit-with-http-info)))
+
+(defn wallet-set-risk-limit-with-http-info
+  "Set risk limit"
+  [symbol risk-id ]
+  (check-required-params symbol risk-id)
+  (call-api "/open-api/wallet/risk-limit" :post
+            {:path-params   {}
+             :header-params {}
+             :query-params  {}
+             :form-params   {"symbol" symbol "risk_id" risk-id }
+             :content-types ["application/json" "application/x-www-form-urlencoded"]
+             :accepts       ["application/json"]
+             :auth-names    ["apiKey" "apiSignature" "timestamp"]}))
+
+(defn wallet-set-risk-limit
+  "Set risk limit"
+  [symbol risk-id ]
+  (:data (wallet-set-risk-limit-with-http-info symbol risk-id)))
+
 (defn wallet-withdraw-with-http-info
   "Get wallet fund records"
   ([] (wallet-withdraw-with-http-info nil))

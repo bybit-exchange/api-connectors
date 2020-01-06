@@ -316,8 +316,8 @@ Name | Type | Description  | Notes
     symbol: (NSString*) symbol
     orderType: (NSString*) orderType
     qty: (NSNumber*) qty
-    price: (NSNumber*) price
     timeInForce: (NSString*) timeInForce
+    price: (NSNumber*) price
     takeProfit: (NSNumber*) takeProfit
     stopLoss: (NSNumber*) stopLoss
     reduceOnly: (NSNumber*) reduceOnly
@@ -352,8 +352,8 @@ NSString* side = @"side_example"; // Side
 NSString* symbol = @"symbol_example"; // Contract type.
 NSString* orderType = @"orderType_example"; // Active order type
 NSNumber* qty = @8.14; // 
-NSNumber* price = @1.2; // Order price.
 NSString* timeInForce = @"timeInForce_example"; // Time in force
+NSNumber* price = @1.2; // Order price. (optional)
 NSNumber* takeProfit = @1.2; // take profit price (optional)
 NSNumber* stopLoss = @1.2; // stop loss price (optional)
 NSNumber* reduceOnly = @true; // reduce only (optional)
@@ -367,8 +367,8 @@ SWGOrderApi*apiInstance = [[SWGOrderApi alloc] init];
               symbol:symbol
               orderType:orderType
               qty:qty
-              price:price
               timeInForce:timeInForce
+              price:price
               takeProfit:takeProfit
               stopLoss:stopLoss
               reduceOnly:reduceOnly
@@ -392,8 +392,8 @@ Name | Type | Description  | Notes
  **symbol** | **NSString***| Contract type. | 
  **orderType** | **NSString***| Active order type | 
  **qty** | **NSNumber***|  | 
- **price** | **NSNumber***| Order price. | 
  **timeInForce** | **NSString***| Time in force | 
+ **price** | **NSNumber***| Order price. | [optional] 
  **takeProfit** | **NSNumber***| take profit price | [optional] 
  **stopLoss** | **NSNumber***| stop loss price | [optional] 
  **reduceOnly** | **NSNumber***| reduce only | [optional] 
@@ -421,8 +421,8 @@ Name | Type | Description  | Notes
     symbol: (NSString*) symbol
     orderType: (NSString*) orderType
     qty: (NSNumber*) qty
-    price: (NSNumber*) price
     timeInForce: (NSString*) timeInForce
+    price: (NSNumber*) price
     takeProfit: (NSNumber*) takeProfit
     stopLoss: (NSNumber*) stopLoss
     reduceOnly: (NSNumber*) reduceOnly
@@ -458,8 +458,8 @@ NSString* side = @"side_example"; // Side
 NSString* symbol = @"symbol_example"; // Contract type.
 NSString* orderType = @"orderType_example"; // Active order type
 NSNumber* qty = @8.14; // 
-NSNumber* price = @1.2; // Order price.
 NSString* timeInForce = @"timeInForce_example"; // Time in force
+NSNumber* price = @1.2; // Order price. (optional)
 NSNumber* takeProfit = @1.2; // take profit price (optional)
 NSNumber* stopLoss = @1.2; // stop loss price (optional)
 NSNumber* reduceOnly = @true; // reduce only (optional)
@@ -474,8 +474,8 @@ SWGOrderApi*apiInstance = [[SWGOrderApi alloc] init];
               symbol:symbol
               orderType:orderType
               qty:qty
-              price:price
               timeInForce:timeInForce
+              price:price
               takeProfit:takeProfit
               stopLoss:stopLoss
               reduceOnly:reduceOnly
@@ -500,8 +500,8 @@ Name | Type | Description  | Notes
  **symbol** | **NSString***| Contract type. | 
  **orderType** | **NSString***| Active order type | 
  **qty** | **NSNumber***|  | 
- **price** | **NSNumber***| Order price. | 
  **timeInForce** | **NSString***| Time in force | 
+ **price** | **NSNumber***| Order price. | [optional] 
  **takeProfit** | **NSNumber***| take profit price | [optional] 
  **stopLoss** | **NSNumber***| stop loss price | [optional] 
  **reduceOnly** | **NSNumber***| reduce only | [optional] 

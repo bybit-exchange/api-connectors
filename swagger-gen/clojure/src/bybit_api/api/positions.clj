@@ -37,6 +37,25 @@
   []
   (:data (positions-my-position-with-http-info)))
 
+(defn positions-my-position-v2-with-http-info
+  "Get my position list."
+  ([] (positions-my-position-v2-with-http-info nil))
+  ([{:keys [symbol ]}]
+   (call-api "/v2/private/position/list" :get
+             {:path-params   {}
+              :header-params {}
+              :query-params  {"symbol" symbol }
+              :form-params   {}
+              :content-types ["application/json" "application/x-www-form-urlencoded"]
+              :accepts       ["application/json"]
+              :auth-names    ["apiKey" "apiSignature" "timestamp"]})))
+
+(defn positions-my-position-v2
+  "Get my position list."
+  ([] (positions-my-position-v2 nil))
+  ([optional-params]
+   (:data (positions-my-position-v2-with-http-info optional-params))))
+
 (defn positions-save-leverage-with-http-info
   "Change user leverage."
   [symbol leverage ]

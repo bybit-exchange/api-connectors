@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**positionsChangeMargin**](SWGPositionsApi.md#positionschangemargin) | **POST** /position/change-position-margin | Update margin.
 [**positionsMyPosition**](SWGPositionsApi.md#positionsmyposition) | **GET** /position/list | Get my position list.
+[**positionsMyPositionV2**](SWGPositionsApi.md#positionsmypositionv2) | **GET** /v2/private/position/list | Get my position list.
 [**positionsSaveLeverage**](SWGPositionsApi.md#positionssaveleverage) | **POST** /user/leverage/save | Change user leverage.
 [**positionsTradingStop**](SWGPositionsApi.md#positionstradingstop) | **POST** /open-api/position/trading-stop | Set Trading-Stop Condition.
 [**positionsUserLeverage**](SWGPositionsApi.md#positionsuserleverage) | **GET** /user/leverage | Get user leverage setting.
@@ -125,6 +126,71 @@ SWGPositionsApi*apiInstance = [[SWGPositionsApi alloc] init];
 
 ### Parameters
 This endpoint does not need any parameter.
+
+### Return type
+
+**NSObject***
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **positionsMyPositionV2**
+```objc
+-(NSURLSessionTask*) positionsMyPositionV2WithSymbol: (NSString*) symbol
+        completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+```
+
+Get my position list.
+
+### Example 
+```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: apiKey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api_key"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api_key"];
+
+// Configure API key authorization: (authentication scheme: apiSignature)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"sign"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"sign"];
+
+// Configure API key authorization: (authentication scheme: timestamp)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"timestamp"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"timestamp"];
+
+
+NSString* symbol = @"symbol_example"; // Contract type which you want update its margin (optional)
+
+SWGPositionsApi*apiInstance = [[SWGPositionsApi alloc] init];
+
+// Get my position list.
+[apiInstance positionsMyPositionV2WithSymbol:symbol
+          completionHandler: ^(NSObject* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling SWGPositionsApi->positionsMyPositionV2: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **NSString***| Contract type which you want update its margin | [optional] 
 
 ### Return type
 

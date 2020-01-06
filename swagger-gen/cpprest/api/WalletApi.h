@@ -60,6 +60,26 @@ public:
         boost::optional<utility::string_t> limit
     );
     /// <summary>
+    /// Get risk limit.
+    /// </summary>
+    /// <remarks>
+    /// 
+    /// </remarks>
+    pplx::task<std::shared_ptr<Object>> wallet_getRiskLimit(
+    );
+    /// <summary>
+    /// Set risk limit
+    /// </summary>
+    /// <remarks>
+    /// 
+    /// </remarks>
+    /// <param name="symbol">Contract type.</param>
+    /// <param name="riskId">Risk ID. Can be found with the Get risk limit list endpoint.</param>
+    pplx::task<std::shared_ptr<Object>> wallet_setRiskLimit(
+        utility::string_t symbol,
+        double riskId
+    );
+    /// <summary>
     /// Get wallet fund records
     /// </summary>
     /// <remarks>

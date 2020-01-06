@@ -73,6 +73,101 @@ open class WalletAPI {
     }
 
     /**
+     Get risk limit.
+     
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func walletGetRiskLimit(completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
+        walletGetRiskLimitWithRequestBuilder().execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Get risk limit.
+     - GET /open-api/wallet/risk-limit/list
+     - API Key:
+       - type: apiKey api_key (QUERY)
+       - name: apiKey
+     - API Key:
+       - type: apiKey sign (QUERY)
+       - name: apiSignature
+     - API Key:
+       - type: apiKey timestamp (QUERY)
+       - name: timestamp
+     - examples: [{contentType=application/json, example=""}]
+
+     - returns: RequestBuilder<Any> 
+     */
+    open class func walletGetRiskLimitWithRequestBuilder() -> RequestBuilder<Any> {
+        let path = "/open-api/wallet/risk-limit/list"
+        let URLString = SwaggerClientAPI.basePath + path
+        let parameters: [String:Any]? = nil
+        
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+        ])
+
+        let requestBuilder: RequestBuilder<Any>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+    }
+
+    /**
+     Set risk limit
+     
+     - parameter symbol: (form) Contract type. 
+     - parameter riskId: (form) Risk ID. Can be found with the Get risk limit list endpoint. 
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func walletSetRiskLimit(symbol: String, riskId: Double, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
+        walletSetRiskLimitWithRequestBuilder(symbol: symbol, riskId: riskId).execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Set risk limit
+     - POST /open-api/wallet/risk-limit
+     - API Key:
+       - type: apiKey api_key (QUERY)
+       - name: apiKey
+     - API Key:
+       - type: apiKey sign (QUERY)
+       - name: apiSignature
+     - API Key:
+       - type: apiKey timestamp (QUERY)
+       - name: timestamp
+     - examples: [{contentType=application/json, example=""}]
+     
+     - parameter symbol: (form) Contract type. 
+     - parameter riskId: (form) Risk ID. Can be found with the Get risk limit list endpoint. 
+
+     - returns: RequestBuilder<Any> 
+     */
+    open class func walletSetRiskLimitWithRequestBuilder(symbol: String, riskId: Double) -> RequestBuilder<Any> {
+        let path = "/open-api/wallet/risk-limit"
+        let URLString = SwaggerClientAPI.basePath + path
+        let formParams: [String:Any?] = [
+            "symbol": symbol,
+            "risk_id": riskId
+        ]
+
+        let nonNullParameters = APIHelper.rejectNil(formParams)
+        let parameters = APIHelper.convertBoolToString(nonNullParameters)
+        
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+        ])
+
+        let requestBuilder: RequestBuilder<Any>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+    }
+
+    /**
      Get wallet fund records
      
      - parameter startDate: (query) Start point for result (optional)

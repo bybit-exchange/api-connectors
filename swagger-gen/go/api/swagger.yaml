@@ -129,6 +129,25 @@ paths:
           description: "Request was successful"
           schema: {}
       deprecated: false
+  /v2/private/position/list:
+    get:
+      tags:
+      - "Positions"
+      summary: "Get my position list."
+      operationId: "Positions.myPositionV2"
+      parameters:
+      - name: "symbol"
+        in: "query"
+        description: "Contract type which you want update its margin"
+        required: false
+        type: "string"
+        x-exportParamName: "Symbol"
+        x-optionalDataType: "String"
+      responses:
+        200:
+          description: "Request was successful"
+          schema: {}
+      deprecated: false
   /position/change-position-margin:
     post:
       tags:
@@ -302,6 +321,43 @@ paths:
           description: "Request was successful"
           schema: {}
       deprecated: false
+  /open-api/wallet/risk-limit:
+    post:
+      tags:
+      - "Wallet"
+      summary: "Set risk limit"
+      operationId: "Wallet.setRiskLimit"
+      parameters:
+      - name: "symbol"
+        in: "formData"
+        description: "Contract type."
+        required: true
+        type: "string"
+        x-exportParamName: "Symbol"
+      - name: "risk_id"
+        in: "formData"
+        description: "Risk ID. Can be found with the Get risk limit list endpoint."
+        required: true
+        type: "number"
+        format: "int32"
+        x-exportParamName: "RiskId"
+      responses:
+        200:
+          description: "Request was successful"
+          schema: {}
+      deprecated: false
+  /open-api/wallet/risk-limit/list:
+    get:
+      tags:
+      - "Wallet"
+      summary: "Get risk limit."
+      operationId: "Wallet.getRiskLimit"
+      parameters: []
+      responses:
+        200:
+          description: "Request was successful"
+          schema: {}
+      deprecated: false
   /open-api/order/create:
     post:
       tags:
@@ -337,10 +393,11 @@ paths:
       - name: "price"
         in: "query"
         description: "Order price."
-        required: true
+        required: false
         type: "number"
         format: "double"
         x-exportParamName: "Price"
+        x-optionalDataType: "Float64"
       - name: "time_in_force"
         in: "formData"
         description: "Time in force"
@@ -425,10 +482,11 @@ paths:
       - name: "price"
         in: "query"
         description: "Order price."
-        required: true
+        required: false
         type: "number"
         format: "double"
         x-exportParamName: "Price"
+        x-optionalDataType: "Float64"
       - name: "time_in_force"
         in: "formData"
         description: "Time in force"
@@ -632,7 +690,7 @@ paths:
       tags:
       - "Order"
       summary: "Replace active order. Only incomplete orders can be modified. "
-      operationId: "Order.Replace"
+      operationId: "Order.replace"
       parameters:
       - name: "order_id"
         in: "formData"
@@ -728,10 +786,11 @@ paths:
       - name: "price"
         in: "formData"
         description: "Execution price for conditional order"
-        required: true
+        required: false
         type: "number"
         format: "double"
         x-exportParamName: "Price"
+        x-optionalDataType: "Float64"
       - name: "base_price"
         in: "formData"
         description: "Send current market price. It will be used to compare with the\
@@ -880,7 +939,7 @@ paths:
       tags:
       - "Conditional"
       summary: "Replace conditional order. Only incomplete orders can be modified. "
-      operationId: "Conditional.Replace"
+      operationId: "Conditional.replace"
       parameters:
       - name: "order_id"
         in: "formData"
@@ -2182,6 +2241,88 @@ definitions:
       updated_at:
         type: "string"
     description: "Get withdraw records response"
+  SetRiskLimitBase:
+    type: "object"
+    properties:
+      ret_code:
+        type: "number"
+        format: "int32"
+      ret_msg:
+        type: "string"
+      ext_code:
+        type: "string"
+      ext_info:
+        type: "string"
+      result: {}
+      time_now:
+        type: "string"
+    description: "Set risk limit."
+  RiskLimitRes:
+    type: "object"
+    properties:
+      position: {}
+      risk: {}
+    description: "Set risk limit."
+  RiskIDRes:
+    type: "object"
+    properties:
+      id:
+        type: "number"
+        format: "int32"
+      coin:
+        type: "string"
+      limit:
+        type: "number"
+        format: "int32"
+      maintain_margin:
+        type: "string"
+      starting_margin:
+        type: "string"
+      section:
+        type: "string"
+      is_lowest_risk:
+        type: "number"
+        format: "int32"
+      created_at:
+        type: "string"
+      updated_at:
+        type: "string"
+    description: "Set risk limit."
+  RiskLimitBase:
+    type: "object"
+    properties:
+      ret_code:
+        type: "number"
+        format: "int32"
+      ret_msg:
+        type: "string"
+      ext_code:
+        type: "string"
+      ext_info:
+        type: "string"
+      result: {}
+      time_now:
+        type: "string"
+    description: "Get risk limit."
+  GetRiskLimitRes:
+    type: "object"
+    properties:
+      ret_code:
+        type: "number"
+        format: "int32"
+      ret_msg:
+        type: "string"
+      ext_code:
+        type: "string"
+      ext_info:
+        type: "string"
+      result:
+        type: "array"
+        items:
+          $ref: "#/definitions/RiskIDRes"
+      time_now:
+        type: "string"
+    description: "Get risk limit."
   TradingStopBase:
     type: "object"
     properties:

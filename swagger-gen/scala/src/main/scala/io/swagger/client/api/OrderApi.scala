@@ -209,8 +209,8 @@ class OrderApi(
    * @param symbol Contract type. 
    * @param orderType Active order type 
    * @param qty  
-   * @param price Order price. 
    * @param timeInForce Time in force 
+   * @param price Order price. (optional)
    * @param takeProfit take profit price (optional)
    * @param stopLoss stop loss price (optional)
    * @param reduceOnly reduce only (optional)
@@ -218,8 +218,8 @@ class OrderApi(
    * @param orderLinkId TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. (optional)
    * @return Any
    */
-  def orderNew(side: String, symbol: String, orderType: String, qty: Number, price: Double, timeInForce: String, takeProfit: Option[Double] = None, stopLoss: Option[Double] = None, reduceOnly: Option[Boolean] = None, closeOnTrigger: Option[Boolean] = None, orderLinkId: Option[String] = None): Option[Any] = {
-    val await = Try(Await.result(orderNewAsync(side, symbol, orderType, qty, price, timeInForce, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId), Duration.Inf))
+  def orderNew(side: String, symbol: String, orderType: String, qty: Number, timeInForce: String, price: Option[Double] = None, takeProfit: Option[Double] = None, stopLoss: Option[Double] = None, reduceOnly: Option[Boolean] = None, closeOnTrigger: Option[Boolean] = None, orderLinkId: Option[String] = None): Option[Any] = {
+    val await = Try(Await.result(orderNewAsync(side, symbol, orderType, qty, timeInForce, price, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -234,8 +234,8 @@ class OrderApi(
    * @param symbol Contract type. 
    * @param orderType Active order type 
    * @param qty  
-   * @param price Order price. 
    * @param timeInForce Time in force 
+   * @param price Order price. (optional)
    * @param takeProfit take profit price (optional)
    * @param stopLoss stop loss price (optional)
    * @param reduceOnly reduce only (optional)
@@ -243,8 +243,8 @@ class OrderApi(
    * @param orderLinkId TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. (optional)
    * @return Future(Any)
    */
-  def orderNewAsync(side: String, symbol: String, orderType: String, qty: Number, price: Double, timeInForce: String, takeProfit: Option[Double] = None, stopLoss: Option[Double] = None, reduceOnly: Option[Boolean] = None, closeOnTrigger: Option[Boolean] = None, orderLinkId: Option[String] = None): Future[Any] = {
-      helper.orderNew(side, symbol, orderType, qty, price, timeInForce, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId)
+  def orderNewAsync(side: String, symbol: String, orderType: String, qty: Number, timeInForce: String, price: Option[Double] = None, takeProfit: Option[Double] = None, stopLoss: Option[Double] = None, reduceOnly: Option[Boolean] = None, closeOnTrigger: Option[Boolean] = None, orderLinkId: Option[String] = None): Future[Any] = {
+      helper.orderNew(side, symbol, orderType, qty, timeInForce, price, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId)
   }
 
   /**
@@ -255,8 +255,8 @@ class OrderApi(
    * @param symbol Contract type. 
    * @param orderType Active order type 
    * @param qty  
-   * @param price Order price. 
    * @param timeInForce Time in force 
+   * @param price Order price. (optional)
    * @param takeProfit take profit price (optional)
    * @param stopLoss stop loss price (optional)
    * @param reduceOnly reduce only (optional)
@@ -265,8 +265,8 @@ class OrderApi(
    * @param trailingStop Trailing stop. (optional)
    * @return Any
    */
-  def orderNewV2(side: String, symbol: String, orderType: String, qty: Number, price: Double, timeInForce: String, takeProfit: Option[Double] = None, stopLoss: Option[Double] = None, reduceOnly: Option[Boolean] = None, closeOnTrigger: Option[Boolean] = None, orderLinkId: Option[String] = None, trailingStop: Option[String] = None): Option[Any] = {
-    val await = Try(Await.result(orderNewV2Async(side, symbol, orderType, qty, price, timeInForce, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId, trailingStop), Duration.Inf))
+  def orderNewV2(side: String, symbol: String, orderType: String, qty: Number, timeInForce: String, price: Option[Double] = None, takeProfit: Option[Double] = None, stopLoss: Option[Double] = None, reduceOnly: Option[Boolean] = None, closeOnTrigger: Option[Boolean] = None, orderLinkId: Option[String] = None, trailingStop: Option[String] = None): Option[Any] = {
+    val await = Try(Await.result(orderNewV2Async(side, symbol, orderType, qty, timeInForce, price, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId, trailingStop), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -281,8 +281,8 @@ class OrderApi(
    * @param symbol Contract type. 
    * @param orderType Active order type 
    * @param qty  
-   * @param price Order price. 
    * @param timeInForce Time in force 
+   * @param price Order price. (optional)
    * @param takeProfit take profit price (optional)
    * @param stopLoss stop loss price (optional)
    * @param reduceOnly reduce only (optional)
@@ -291,8 +291,8 @@ class OrderApi(
    * @param trailingStop Trailing stop. (optional)
    * @return Future(Any)
    */
-  def orderNewV2Async(side: String, symbol: String, orderType: String, qty: Number, price: Double, timeInForce: String, takeProfit: Option[Double] = None, stopLoss: Option[Double] = None, reduceOnly: Option[Boolean] = None, closeOnTrigger: Option[Boolean] = None, orderLinkId: Option[String] = None, trailingStop: Option[String] = None): Future[Any] = {
-      helper.orderNewV2(side, symbol, orderType, qty, price, timeInForce, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId, trailingStop)
+  def orderNewV2Async(side: String, symbol: String, orderType: String, qty: Number, timeInForce: String, price: Option[Double] = None, takeProfit: Option[Double] = None, stopLoss: Option[Double] = None, reduceOnly: Option[Boolean] = None, closeOnTrigger: Option[Boolean] = None, orderLinkId: Option[String] = None, trailingStop: Option[String] = None): Future[Any] = {
+      helper.orderNewV2(side, symbol, orderType, qty, timeInForce, price, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId, trailingStop)
   }
 
   /**
@@ -467,8 +467,8 @@ class OrderApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extend
     symbol: String,
     orderType: String,
     qty: Number,
-    price: Double,
     timeInForce: String,
+    price: Option[Double] = None,
     takeProfit: Option[Double] = None,
     stopLoss: Option[Double] = None,
     reduceOnly: Option[Boolean] = None,
@@ -490,7 +490,10 @@ class OrderApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extend
 
     if (timeInForce == null) throw new Exception("Missing required parameter 'timeInForce' when calling OrderApi->orderNew")
 
-    queryParams += "price" -> price.toString
+    price match {
+      case Some(param) => queryParams += "price" -> param.toString
+      case _ => queryParams
+    }
     takeProfit match {
       case Some(param) => queryParams += "take_profit" -> param.toString
       case _ => queryParams
@@ -506,8 +509,8 @@ class OrderApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extend
     symbol: String,
     orderType: String,
     qty: Number,
-    price: Double,
     timeInForce: String,
+    price: Option[Double] = None,
     takeProfit: Option[Double] = None,
     stopLoss: Option[Double] = None,
     reduceOnly: Option[Boolean] = None,
@@ -530,7 +533,10 @@ class OrderApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extend
 
     if (timeInForce == null) throw new Exception("Missing required parameter 'timeInForce' when calling OrderApi->orderNewV2")
 
-    queryParams += "price" -> price.toString
+    price match {
+      case Some(param) => queryParams += "price" -> param.toString
+      case _ => queryParams
+    }
     takeProfit match {
       case Some(param) => queryParams += "take_profit" -> param.toString
       case _ => queryParams

@@ -58,6 +58,7 @@ Import the following:
 #import <SwaggerClient/SWGFundingRate.h>
 #import <SwaggerClient/SWGFundingRateBase.h>
 #import <SwaggerClient/SWGFundingRecords.h>
+#import <SwaggerClient/SWGGetRiskLimitRes.h>
 #import <SwaggerClient/SWGKlineBase.h>
 #import <SwaggerClient/SWGKlineRes.h>
 #import <SwaggerClient/SWGLeverage.h>
@@ -80,7 +81,11 @@ Import the following:
 #import <SwaggerClient/SWGQueryOrderRes.h>
 #import <SwaggerClient/SWGReplaceConditionalBase.h>
 #import <SwaggerClient/SWGReplaceOrderBase.h>
+#import <SwaggerClient/SWGRiskIDRes.h>
+#import <SwaggerClient/SWGRiskLimitBase.h>
+#import <SwaggerClient/SWGRiskLimitRes.h>
 #import <SwaggerClient/SWGServerTime.h>
+#import <SwaggerClient/SWGSetRiskLimitBase.h>
 #import <SwaggerClient/SWGSymbolInfo.h>
 #import <SwaggerClient/SWGSymbolInfoBase.h>
 #import <SwaggerClient/SWGSymbolTickInfo.h>
@@ -181,11 +186,14 @@ Class | Method | HTTP request | Description
 *SWGOrderApi* | [**orderReplace**](docs/SWGOrderApi.md#orderreplace) | **POST** /open-api/order/replace | Replace active order. Only incomplete orders can be modified. 
 *SWGPositionsApi* | [**positionsChangeMargin**](docs/SWGPositionsApi.md#positionschangemargin) | **POST** /position/change-position-margin | Update margin.
 *SWGPositionsApi* | [**positionsMyPosition**](docs/SWGPositionsApi.md#positionsmyposition) | **GET** /position/list | Get my position list.
+*SWGPositionsApi* | [**positionsMyPositionV2**](docs/SWGPositionsApi.md#positionsmypositionv2) | **GET** /v2/private/position/list | Get my position list.
 *SWGPositionsApi* | [**positionsSaveLeverage**](docs/SWGPositionsApi.md#positionssaveleverage) | **POST** /user/leverage/save | Change user leverage.
 *SWGPositionsApi* | [**positionsTradingStop**](docs/SWGPositionsApi.md#positionstradingstop) | **POST** /open-api/position/trading-stop | Set Trading-Stop Condition.
 *SWGPositionsApi* | [**positionsUserLeverage**](docs/SWGPositionsApi.md#positionsuserleverage) | **GET** /user/leverage | Get user leverage setting.
 *SWGSymbolApi* | [**symbolGet**](docs/SWGSymbolApi.md#symbolget) | **GET** /v2/public/symbols | Query Symbols.
 *SWGWalletApi* | [**walletGetRecords**](docs/SWGWalletApi.md#walletgetrecords) | **GET** /open-api/wallet/fund/records | Get wallet fund records
+*SWGWalletApi* | [**walletGetRiskLimit**](docs/SWGWalletApi.md#walletgetrisklimit) | **GET** /open-api/wallet/risk-limit/list | Get risk limit.
+*SWGWalletApi* | [**walletSetRiskLimit**](docs/SWGWalletApi.md#walletsetrisklimit) | **POST** /open-api/wallet/risk-limit | Set risk limit
 *SWGWalletApi* | [**walletWithdraw**](docs/SWGWalletApi.md#walletwithdraw) | **GET** /open-api/wallet/withdraw/list | Get wallet fund records
 
 
@@ -208,6 +216,7 @@ Class | Method | HTTP request | Description
  - [SWGFundingRate](docs/SWGFundingRate.md)
  - [SWGFundingRateBase](docs/SWGFundingRateBase.md)
  - [SWGFundingRecords](docs/SWGFundingRecords.md)
+ - [SWGGetRiskLimitRes](docs/SWGGetRiskLimitRes.md)
  - [SWGKlineBase](docs/SWGKlineBase.md)
  - [SWGKlineRes](docs/SWGKlineRes.md)
  - [SWGLeverage](docs/SWGLeverage.md)
@@ -230,7 +239,11 @@ Class | Method | HTTP request | Description
  - [SWGQueryOrderRes](docs/SWGQueryOrderRes.md)
  - [SWGReplaceConditionalBase](docs/SWGReplaceConditionalBase.md)
  - [SWGReplaceOrderBase](docs/SWGReplaceOrderBase.md)
+ - [SWGRiskIDRes](docs/SWGRiskIDRes.md)
+ - [SWGRiskLimitBase](docs/SWGRiskLimitBase.md)
+ - [SWGRiskLimitRes](docs/SWGRiskLimitRes.md)
  - [SWGServerTime](docs/SWGServerTime.md)
+ - [SWGSetRiskLimitBase](docs/SWGSetRiskLimitBase.md)
  - [SWGSymbolInfo](docs/SWGSymbolInfo.md)
  - [SWGSymbolInfoBase](docs/SWGSymbolInfoBase.md)
  - [SWGSymbolTickInfo](docs/SWGSymbolTickInfo.md)

@@ -232,10 +232,10 @@ Name | Type | Description  | Notes
     symbol: (NSString*) symbol
     orderType: (NSString*) orderType
     qty: (NSNumber*) qty
-    price: (NSNumber*) price
     basePrice: (NSNumber*) basePrice
     stopPx: (NSNumber*) stopPx
     timeInForce: (NSString*) timeInForce
+    price: (NSNumber*) price
     triggerBy: (NSString*) triggerBy
     closeOnTrigger: (NSNumber*) closeOnTrigger
     orderLinkId: (NSString*) orderLinkId
@@ -268,10 +268,10 @@ NSString* side = @"side_example"; // Side.
 NSString* symbol = @"symbol_example"; // Contract type.
 NSString* orderType = @"orderType_example"; // Conditional order type.
 NSNumber* qty = @8.14; // Order quantity.
-NSNumber* price = @1.2; // Execution price for conditional order
 NSNumber* basePrice = @1.2; // Send current market price. It will be used to compare with the value of 'stop_px', to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order..
 NSNumber* stopPx = @1.2; // Trigger price.
 NSString* timeInForce = @"timeInForce_example"; // Time in force.
+NSNumber* price = @1.2; // Execution price for conditional order (optional)
 NSString* triggerBy = @"triggerBy_example"; // Trigger price type. Default LastPrice. (optional)
 NSNumber* closeOnTrigger = @true; // close on trigger. (optional)
 NSString* orderLinkId = @"orderLinkId_example"; // Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. (optional)
@@ -283,10 +283,10 @@ SWGConditionalApi*apiInstance = [[SWGConditionalApi alloc] init];
               symbol:symbol
               orderType:orderType
               qty:qty
-              price:price
               basePrice:basePrice
               stopPx:stopPx
               timeInForce:timeInForce
+              price:price
               triggerBy:triggerBy
               closeOnTrigger:closeOnTrigger
               orderLinkId:orderLinkId
@@ -308,10 +308,10 @@ Name | Type | Description  | Notes
  **symbol** | **NSString***| Contract type. | 
  **orderType** | **NSString***| Conditional order type. | 
  **qty** | **NSNumber***| Order quantity. | 
- **price** | **NSNumber***| Execution price for conditional order | 
  **basePrice** | **NSNumber***| Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order.. | 
  **stopPx** | **NSNumber***| Trigger price. | 
  **timeInForce** | **NSString***| Time in force. | 
+ **price** | **NSNumber***| Execution price for conditional order | [optional] 
  **triggerBy** | **NSString***| Trigger price type. Default LastPrice. | [optional] 
  **closeOnTrigger** | **NSNumber***| close on trigger. | [optional] 
  **orderLinkId** | **NSString***| Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. | [optional] 

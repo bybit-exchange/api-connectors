@@ -285,7 +285,7 @@ Name | Type | Description  | Notes
 
 
 # **order_new**
-> Object order_new(side, symbol, order_type, qty, price, time_in_force, opts)
+> Object order_new(side, symbol, order_type, qty, time_in_force, opts)
 
 Place active order
 
@@ -321,11 +321,10 @@ order_type = 'order_type_example' # String | Active order type
 
 qty = 8.14 # Float | 
 
-price = 1.2 # Float | Order price.
-
 time_in_force = 'time_in_force_example' # String | Time in force
 
 opts = { 
+  price: 1.2, # Float | Order price.
   take_profit: 1.2, # Float | take profit price
   stop_loss: 1.2, # Float | stop loss price
   reduce_only: true, # BOOLEAN | reduce only
@@ -335,7 +334,7 @@ opts = {
 
 begin
   #Place active order
-  result = api_instance.order_new(side, symbol, order_type, qty, price, time_in_force, opts)
+  result = api_instance.order_new(side, symbol, order_type, qty, time_in_force, opts)
   p result
 rescue SwaggerClient::ApiError => e
   puts "Exception when calling OrderApi->order_new: #{e}"
@@ -350,8 +349,8 @@ Name | Type | Description  | Notes
  **symbol** | **String**| Contract type. | 
  **order_type** | **String**| Active order type | 
  **qty** | **Float**|  | 
- **price** | **Float**| Order price. | 
  **time_in_force** | **String**| Time in force | 
+ **price** | **Float**| Order price. | [optional] 
  **take_profit** | **Float**| take profit price | [optional] 
  **stop_loss** | **Float**| stop loss price | [optional] 
  **reduce_only** | **BOOLEAN**| reduce only | [optional] 
@@ -374,7 +373,7 @@ Name | Type | Description  | Notes
 
 
 # **order_new_v2**
-> Object order_new_v2(side, symbol, order_type, qty, price, time_in_force, opts)
+> Object order_new_v2(side, symbol, order_type, qty, time_in_force, opts)
 
 Place active order
 
@@ -410,11 +409,10 @@ order_type = 'order_type_example' # String | Active order type
 
 qty = 8.14 # Float | 
 
-price = 1.2 # Float | Order price.
-
 time_in_force = 'time_in_force_example' # String | Time in force
 
 opts = { 
+  price: 1.2, # Float | Order price.
   take_profit: 1.2, # Float | take profit price
   stop_loss: 1.2, # Float | stop loss price
   reduce_only: true, # BOOLEAN | reduce only
@@ -425,7 +423,7 @@ opts = {
 
 begin
   #Place active order
-  result = api_instance.order_new_v2(side, symbol, order_type, qty, price, time_in_force, opts)
+  result = api_instance.order_new_v2(side, symbol, order_type, qty, time_in_force, opts)
   p result
 rescue SwaggerClient::ApiError => e
   puts "Exception when calling OrderApi->order_new_v2: #{e}"
@@ -440,8 +438,8 @@ Name | Type | Description  | Notes
  **symbol** | **String**| Contract type. | 
  **order_type** | **String**| Active order type | 
  **qty** | **Float**|  | 
- **price** | **Float**| Order price. | 
  **time_in_force** | **String**| Time in force | 
+ **price** | **Float**| Order price. | [optional] 
  **take_profit** | **Float**| take profit price | [optional] 
  **stop_loss** | **Float**| stop loss price | [optional] 
  **reduce_only** | **BOOLEAN**| reduce only | [optional] 

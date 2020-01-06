@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**positionsChangeMargin**](PositionsApi.md#positionsChangeMargin) | **POST** /position/change-position-margin | Update margin.
 [**positionsMyPosition**](PositionsApi.md#positionsMyPosition) | **GET** /position/list | Get my position list.
+[**positionsMyPositionV2**](PositionsApi.md#positionsMyPositionV2) | **GET** /v2/private/position/list | Get my position list.
 [**positionsSaveLeverage**](PositionsApi.md#positionsSaveLeverage) | **POST** /user/leverage/save | Change user leverage.
 [**positionsTradingStop**](PositionsApi.md#positionsTradingStop) | **POST** /open-api/position/trading-stop | Set Trading-Stop Condition.
 [**positionsUserLeverage**](PositionsApi.md#positionsUserLeverage) | **GET** /user/leverage | Get user leverage setting.
@@ -120,6 +121,70 @@ apiInstance.positionsMyPosition(callback);
 
 ### Parameters
 This endpoint does not need any parameter.
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+<a name="positionsMyPositionV2"></a>
+# **positionsMyPositionV2**
+> Object positionsMyPositionV2(opts)
+
+Get my position list.
+
+### Example
+```javascript
+var BybitApi = require('bybit_api');
+var defaultClient = BybitApi.ApiClient.instance;
+
+// Configure API key authorization: apiKey
+var apiKey = defaultClient.authentications['apiKey'];
+apiKey.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiKey.apiKeyPrefix = 'Token';
+
+// Configure API key authorization: apiSignature
+var apiSignature = defaultClient.authentications['apiSignature'];
+apiSignature.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiSignature.apiKeyPrefix = 'Token';
+
+// Configure API key authorization: timestamp
+var timestamp = defaultClient.authentications['timestamp'];
+timestamp.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//timestamp.apiKeyPrefix = 'Token';
+
+var apiInstance = new BybitApi.PositionsApi();
+
+var opts = { 
+  'symbol': "symbol_example" // String | Contract type which you want update its margin
+};
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.positionsMyPositionV2(opts, callback);
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **String**| Contract type which you want update its margin | [optional] 
 
 ### Return type
 

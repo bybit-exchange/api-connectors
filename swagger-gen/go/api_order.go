@@ -607,9 +607,9 @@ OrderApiService Place active order
  * @param symbol Contract type.
  * @param orderType Active order type
  * @param qty 
- * @param price Order price.
  * @param timeInForce Time in force
  * @param optional nil or *OrderNewOpts - Optional Parameters:
+     * @param "Price" (optional.Float64) -  Order price.
      * @param "TakeProfit" (optional.Float64) -  take profit price
      * @param "StopLoss" (optional.Float64) -  stop loss price
      * @param "ReduceOnly" (optional.Bool) -  reduce only
@@ -620,6 +620,7 @@ OrderApiService Place active order
 */
 
 type OrderNewOpts struct { 
+	Price optional.Float64
 	TakeProfit optional.Float64
 	StopLoss optional.Float64
 	ReduceOnly optional.Bool
@@ -627,7 +628,7 @@ type OrderNewOpts struct {
 	OrderLinkId optional.String
 }
 
-func (a *OrderApiService) OrderNew(ctx context.Context, side string, symbol string, orderType string, qty float32, price float64, timeInForce string, localVarOptionals *OrderNewOpts) (interface{}, *http.Response, error) {
+func (a *OrderApiService) OrderNew(ctx context.Context, side string, symbol string, orderType string, qty float32, timeInForce string, localVarOptionals *OrderNewOpts) (interface{}, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -643,7 +644,9 @@ func (a *OrderApiService) OrderNew(ctx context.Context, side string, symbol stri
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	localVarQueryParams.Add("price", parameterToString(price, ""))
+	if localVarOptionals != nil && localVarOptionals.Price.IsSet() {
+		localVarQueryParams.Add("price", parameterToString(localVarOptionals.Price.Value(), ""))
+	}
 	if localVarOptionals != nil && localVarOptionals.TakeProfit.IsSet() {
 		localVarQueryParams.Add("take_profit", parameterToString(localVarOptionals.TakeProfit.Value(), ""))
 	}
@@ -774,9 +777,9 @@ OrderApiService Place active order
  * @param symbol Contract type.
  * @param orderType Active order type
  * @param qty 
- * @param price Order price.
  * @param timeInForce Time in force
  * @param optional nil or *OrderNewV2Opts - Optional Parameters:
+     * @param "Price" (optional.Float64) -  Order price.
      * @param "TakeProfit" (optional.Float64) -  take profit price
      * @param "StopLoss" (optional.Float64) -  stop loss price
      * @param "ReduceOnly" (optional.Bool) -  reduce only
@@ -788,6 +791,7 @@ OrderApiService Place active order
 */
 
 type OrderNewV2Opts struct { 
+	Price optional.Float64
 	TakeProfit optional.Float64
 	StopLoss optional.Float64
 	ReduceOnly optional.Bool
@@ -796,7 +800,7 @@ type OrderNewV2Opts struct {
 	TrailingStop optional.String
 }
 
-func (a *OrderApiService) OrderNewV2(ctx context.Context, side string, symbol string, orderType string, qty float32, price float64, timeInForce string, localVarOptionals *OrderNewV2Opts) (interface{}, *http.Response, error) {
+func (a *OrderApiService) OrderNewV2(ctx context.Context, side string, symbol string, orderType string, qty float32, timeInForce string, localVarOptionals *OrderNewV2Opts) (interface{}, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -812,7 +816,9 @@ func (a *OrderApiService) OrderNewV2(ctx context.Context, side string, symbol st
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	localVarQueryParams.Add("price", parameterToString(price, ""))
+	if localVarOptionals != nil && localVarOptionals.Price.IsSet() {
+		localVarQueryParams.Add("price", parameterToString(localVarOptionals.Price.Value(), ""))
+	}
 	if localVarOptionals != nil && localVarOptionals.TakeProfit.IsSet() {
 		localVarQueryParams.Add("take_profit", parameterToString(localVarOptionals.TakeProfit.Value(), ""))
 	}

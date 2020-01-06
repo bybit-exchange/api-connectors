@@ -103,6 +103,100 @@
     }
 
     /**
+     * Callback function to receive the result of the walletGetRiskLimit operation.
+     * @callback module:api/WalletApi~walletGetRiskLimitCallback
+     * @param {String} error Error message, if any.
+     * @param {Object} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Get risk limit.
+     * @param {module:api/WalletApi~walletGetRiskLimitCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link Object}
+     */
+    this.walletGetRiskLimit = function(callback) {
+      var postBody = null;
+
+
+      var pathParams = {
+      };
+      var queryParams = {
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = ['apiKey', 'apiSignature', 'timestamp'];
+      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      var accepts = ['application/json'];
+      var returnType = Object;
+
+      return this.apiClient.callApi(
+        '/open-api/wallet/risk-limit/list', 'GET',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the walletSetRiskLimit operation.
+     * @callback module:api/WalletApi~walletSetRiskLimitCallback
+     * @param {String} error Error message, if any.
+     * @param {Object} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Set risk limit
+     * @param {String} symbol Contract type.
+     * @param {Number} riskId Risk ID. Can be found with the Get risk limit list endpoint.
+     * @param {module:api/WalletApi~walletSetRiskLimitCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link Object}
+     */
+    this.walletSetRiskLimit = function(symbol, riskId, callback) {
+      var postBody = null;
+
+      // verify the required parameter 'symbol' is set
+      if (symbol === undefined || symbol === null) {
+        throw new Error("Missing the required parameter 'symbol' when calling walletSetRiskLimit");
+      }
+
+      // verify the required parameter 'riskId' is set
+      if (riskId === undefined || riskId === null) {
+        throw new Error("Missing the required parameter 'riskId' when calling walletSetRiskLimit");
+      }
+
+
+      var pathParams = {
+      };
+      var queryParams = {
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+        'symbol': symbol,
+        'risk_id': riskId
+      };
+
+      var authNames = ['apiKey', 'apiSignature', 'timestamp'];
+      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      var accepts = ['application/json'];
+      var returnType = Object;
+
+      return this.apiClient.callApi(
+        '/open-api/wallet/risk-limit', 'POST',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
      * Callback function to receive the result of the walletWithdraw operation.
      * @callback module:api/WalletApi~walletWithdrawCallback
      * @param {String} error Error message, if any.

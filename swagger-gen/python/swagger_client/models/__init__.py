@@ -32,6 +32,7 @@ from swagger_client.models.funding_predicted_base import FundingPredictedBase
 from swagger_client.models.funding_rate import FundingRate
 from swagger_client.models.funding_rate_base import FundingRateBase
 from swagger_client.models.funding_records import FundingRecords
+from swagger_client.models.get_risk_limit_res import GetRiskLimitRes
 from swagger_client.models.kline_base import KlineBase
 from swagger_client.models.kline_res import KlineRes
 from swagger_client.models.leverage import Leverage
@@ -54,7 +55,11 @@ from swagger_client.models.query_order_base import QueryOrderBase
 from swagger_client.models.query_order_res import QueryOrderRes
 from swagger_client.models.replace_conditional_base import ReplaceConditionalBase
 from swagger_client.models.replace_order_base import ReplaceOrderBase
+from swagger_client.models.risk_id_res import RiskIDRes
+from swagger_client.models.risk_limit_base import RiskLimitBase
+from swagger_client.models.risk_limit_res import RiskLimitRes
 from swagger_client.models.server_time import ServerTime
+from swagger_client.models.set_risk_limit_base import SetRiskLimitBase
 from swagger_client.models.symbol_info import SymbolInfo
 from swagger_client.models.symbol_info_base import SymbolInfoBase
 from swagger_client.models.symbol_tick_info import SymbolTickInfo

@@ -205,7 +205,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **conditionalNew**
-> object conditionalNew($side, $symbol, $order_type, $qty, $price, $base_price, $stop_px, $time_in_force, $trigger_by, $close_on_trigger, $order_link_id)
+> object conditionalNew($side, $symbol, $order_type, $qty, $base_price, $stop_px, $time_in_force, $price, $trigger_by, $close_on_trigger, $order_link_id)
 
 Place a new conditional order.
 
@@ -237,16 +237,16 @@ $side = "side_example"; // string | Side.
 $symbol = "symbol_example"; // string | Contract type.
 $order_type = "order_type_example"; // string | Conditional order type.
 $qty = 8.14; // float | Order quantity.
-$price = 1.2; // double | Execution price for conditional order
 $base_price = 1.2; // double | Send current market price. It will be used to compare with the value of 'stop_px', to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order..
 $stop_px = 1.2; // double | Trigger price.
 $time_in_force = "time_in_force_example"; // string | Time in force.
+$price = 1.2; // double | Execution price for conditional order
 $trigger_by = "trigger_by_example"; // string | Trigger price type. Default LastPrice.
 $close_on_trigger = true; // bool | close on trigger.
 $order_link_id = "order_link_id_example"; // string | Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique..
 
 try {
-    $result = $apiInstance->conditionalNew($side, $symbol, $order_type, $qty, $price, $base_price, $stop_px, $time_in_force, $trigger_by, $close_on_trigger, $order_link_id);
+    $result = $apiInstance->conditionalNew($side, $symbol, $order_type, $qty, $base_price, $stop_px, $time_in_force, $price, $trigger_by, $close_on_trigger, $order_link_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ConditionalApi->conditionalNew: ', $e->getMessage(), PHP_EOL;
@@ -262,10 +262,10 @@ Name | Type | Description  | Notes
  **symbol** | **string**| Contract type. |
  **order_type** | **string**| Conditional order type. |
  **qty** | **float**| Order quantity. |
- **price** | **double**| Execution price for conditional order |
  **base_price** | **double**| Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order.. |
  **stop_px** | **double**| Trigger price. |
  **time_in_force** | **string**| Time in force. |
+ **price** | **double**| Execution price for conditional order | [optional]
  **trigger_by** | **string**| Trigger price type. Default LastPrice. | [optional]
  **close_on_trigger** | **bool**| close on trigger. | [optional]
  **order_link_id** | **string**| Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. | [optional]

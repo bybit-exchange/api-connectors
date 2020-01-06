@@ -635,8 +635,8 @@ formParams.put("order_link_id", ApiInvoker.parameterToString(orderLinkId));
    * @param symbol Contract type.
    * @param orderType Active order type
    * @param qty 
-   * @param price Order price.
    * @param timeInForce Time in force
+   * @param price Order price.
    * @param takeProfit take profit price
    * @param stopLoss stop loss price
    * @param reduceOnly reduce only
@@ -644,7 +644,7 @@ formParams.put("order_link_id", ApiInvoker.parameterToString(orderLinkId));
    * @param orderLinkId TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.
    * @return Object
   */
-  public Object orderNew (String side, String symbol, String orderType, BigDecimal qty, Double price, String timeInForce, Double takeProfit, Double stopLoss, Boolean reduceOnly, Boolean closeOnTrigger, String orderLinkId) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public Object orderNew (String side, String symbol, String orderType, BigDecimal qty, String timeInForce, Double price, Double takeProfit, Double stopLoss, Boolean reduceOnly, Boolean closeOnTrigger, String orderLinkId) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
     // verify the required parameter 'side' is set
     if (side == null) {
@@ -665,11 +665,6 @@ formParams.put("order_link_id", ApiInvoker.parameterToString(orderLinkId));
     if (qty == null) {
       VolleyError error = new VolleyError("Missing the required parameter 'qty' when calling orderNew",
         new ApiException(400, "Missing the required parameter 'qty' when calling orderNew"));
-    }
-    // verify the required parameter 'price' is set
-    if (price == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'price' when calling orderNew",
-        new ApiException(400, "Missing the required parameter 'price' when calling orderNew"));
     }
     // verify the required parameter 'timeInForce' is set
     if (timeInForce == null) {
@@ -768,9 +763,9 @@ formParams.put("order_link_id", ApiInvoker.parameterToString(orderLinkId));
       /**
    * Place active order
    * 
-   * @param side Side   * @param symbol Contract type.   * @param orderType Active order type   * @param qty    * @param price Order price.   * @param timeInForce Time in force   * @param takeProfit take profit price   * @param stopLoss stop loss price   * @param reduceOnly reduce only   * @param closeOnTrigger close on trigger   * @param orderLinkId TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.
+   * @param side Side   * @param symbol Contract type.   * @param orderType Active order type   * @param qty    * @param timeInForce Time in force   * @param price Order price.   * @param takeProfit take profit price   * @param stopLoss stop loss price   * @param reduceOnly reduce only   * @param closeOnTrigger close on trigger   * @param orderLinkId TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.
   */
-  public void orderNew (String side, String symbol, String orderType, BigDecimal qty, Double price, String timeInForce, Double takeProfit, Double stopLoss, Boolean reduceOnly, Boolean closeOnTrigger, String orderLinkId, final Response.Listener<Object> responseListener, final Response.ErrorListener errorListener) {
+  public void orderNew (String side, String symbol, String orderType, BigDecimal qty, String timeInForce, Double price, Double takeProfit, Double stopLoss, Boolean reduceOnly, Boolean closeOnTrigger, String orderLinkId, final Response.Listener<Object> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
     // verify the required parameter 'side' is set
@@ -792,11 +787,6 @@ formParams.put("order_link_id", ApiInvoker.parameterToString(orderLinkId));
     if (qty == null) {
       VolleyError error = new VolleyError("Missing the required parameter 'qty' when calling orderNew",
         new ApiException(400, "Missing the required parameter 'qty' when calling orderNew"));
-    }
-    // verify the required parameter 'price' is set
-    if (price == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'price' when calling orderNew",
-        new ApiException(400, "Missing the required parameter 'price' when calling orderNew"));
     }
     // verify the required parameter 'timeInForce' is set
     if (timeInForce == null) {
@@ -909,8 +899,8 @@ formParams.put("order_link_id", ApiInvoker.parameterToString(orderLinkId));
    * @param symbol Contract type.
    * @param orderType Active order type
    * @param qty 
-   * @param price Order price.
    * @param timeInForce Time in force
+   * @param price Order price.
    * @param takeProfit take profit price
    * @param stopLoss stop loss price
    * @param reduceOnly reduce only
@@ -919,7 +909,7 @@ formParams.put("order_link_id", ApiInvoker.parameterToString(orderLinkId));
    * @param trailingStop Trailing stop.
    * @return Object
   */
-  public Object orderNewV2 (String side, String symbol, String orderType, BigDecimal qty, Double price, String timeInForce, Double takeProfit, Double stopLoss, Boolean reduceOnly, Boolean closeOnTrigger, String orderLinkId, String trailingStop) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public Object orderNewV2 (String side, String symbol, String orderType, BigDecimal qty, String timeInForce, Double price, Double takeProfit, Double stopLoss, Boolean reduceOnly, Boolean closeOnTrigger, String orderLinkId, String trailingStop) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
     // verify the required parameter 'side' is set
     if (side == null) {
@@ -940,11 +930,6 @@ formParams.put("order_link_id", ApiInvoker.parameterToString(orderLinkId));
     if (qty == null) {
       VolleyError error = new VolleyError("Missing the required parameter 'qty' when calling orderNewV2",
         new ApiException(400, "Missing the required parameter 'qty' when calling orderNewV2"));
-    }
-    // verify the required parameter 'price' is set
-    if (price == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'price' when calling orderNewV2",
-        new ApiException(400, "Missing the required parameter 'price' when calling orderNewV2"));
     }
     // verify the required parameter 'timeInForce' is set
     if (timeInForce == null) {
@@ -1047,9 +1032,9 @@ formParams.put("order_link_id", ApiInvoker.parameterToString(orderLinkId));
       /**
    * Place active order
    * 
-   * @param side Side   * @param symbol Contract type.   * @param orderType Active order type   * @param qty    * @param price Order price.   * @param timeInForce Time in force   * @param takeProfit take profit price   * @param stopLoss stop loss price   * @param reduceOnly reduce only   * @param closeOnTrigger close on trigger   * @param orderLinkId TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.   * @param trailingStop Trailing stop.
+   * @param side Side   * @param symbol Contract type.   * @param orderType Active order type   * @param qty    * @param timeInForce Time in force   * @param price Order price.   * @param takeProfit take profit price   * @param stopLoss stop loss price   * @param reduceOnly reduce only   * @param closeOnTrigger close on trigger   * @param orderLinkId TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.   * @param trailingStop Trailing stop.
   */
-  public void orderNewV2 (String side, String symbol, String orderType, BigDecimal qty, Double price, String timeInForce, Double takeProfit, Double stopLoss, Boolean reduceOnly, Boolean closeOnTrigger, String orderLinkId, String trailingStop, final Response.Listener<Object> responseListener, final Response.ErrorListener errorListener) {
+  public void orderNewV2 (String side, String symbol, String orderType, BigDecimal qty, String timeInForce, Double price, Double takeProfit, Double stopLoss, Boolean reduceOnly, Boolean closeOnTrigger, String orderLinkId, String trailingStop, final Response.Listener<Object> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
     // verify the required parameter 'side' is set
@@ -1071,11 +1056,6 @@ formParams.put("order_link_id", ApiInvoker.parameterToString(orderLinkId));
     if (qty == null) {
       VolleyError error = new VolleyError("Missing the required parameter 'qty' when calling orderNewV2",
         new ApiException(400, "Missing the required parameter 'qty' when calling orderNewV2"));
-    }
-    // verify the required parameter 'price' is set
-    if (price == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'price' when calling orderNewV2",
-        new ApiException(400, "Missing the required parameter 'price' when calling orderNewV2"));
     }
     // verify the required parameter 'timeInForce' is set
     if (timeInForce == null) {

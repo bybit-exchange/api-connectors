@@ -294,7 +294,7 @@ Name | Type | Description  | Notes
 
 <a name="orderNew"></a>
 # **orderNew**
-> Object orderNew(side, symbol, orderType, qty, price, timeInForce, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId)
+> Object orderNew(side, symbol, orderType, qty, timeInForce, price, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId)
 
 Place active order
 
@@ -332,15 +332,15 @@ String side = "side_example"; // String | Side
 String symbol = "symbol_example"; // String | Contract type.
 String orderType = "orderType_example"; // String | Active order type
 BigDecimal qty = new BigDecimal(); // BigDecimal | 
-Double price = 3.4D; // Double | Order price.
 String timeInForce = "timeInForce_example"; // String | Time in force
+Double price = 3.4D; // Double | Order price.
 Double takeProfit = 3.4D; // Double | take profit price
 Double stopLoss = 3.4D; // Double | stop loss price
 Boolean reduceOnly = true; // Boolean | reduce only
 Boolean closeOnTrigger = true; // Boolean | close on trigger
 String orderLinkId = "orderLinkId_example"; // String | TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.
 try {
-    Object result = apiInstance.orderNew(side, symbol, orderType, qty, price, timeInForce, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId);
+    Object result = apiInstance.orderNew(side, symbol, orderType, qty, timeInForce, price, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling OrderApi#orderNew");
@@ -356,8 +356,8 @@ Name | Type | Description  | Notes
  **symbol** | **String**| Contract type. |
  **orderType** | **String**| Active order type |
  **qty** | **BigDecimal**|  |
- **price** | **Double**| Order price. |
  **timeInForce** | **String**| Time in force |
+ **price** | **Double**| Order price. | [optional]
  **takeProfit** | **Double**| take profit price | [optional]
  **stopLoss** | **Double**| stop loss price | [optional]
  **reduceOnly** | **Boolean**| reduce only | [optional]
@@ -379,7 +379,7 @@ Name | Type | Description  | Notes
 
 <a name="orderNewV2"></a>
 # **orderNewV2**
-> Object orderNewV2(side, symbol, orderType, qty, price, timeInForce, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId, trailingStop)
+> Object orderNewV2(side, symbol, orderType, qty, timeInForce, price, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId, trailingStop)
 
 Place active order
 
@@ -417,8 +417,8 @@ String side = "side_example"; // String | Side
 String symbol = "symbol_example"; // String | Contract type.
 String orderType = "orderType_example"; // String | Active order type
 BigDecimal qty = new BigDecimal(); // BigDecimal | 
-Double price = 3.4D; // Double | Order price.
 String timeInForce = "timeInForce_example"; // String | Time in force
+Double price = 3.4D; // Double | Order price.
 Double takeProfit = 3.4D; // Double | take profit price
 Double stopLoss = 3.4D; // Double | stop loss price
 Boolean reduceOnly = true; // Boolean | reduce only
@@ -426,7 +426,7 @@ Boolean closeOnTrigger = true; // Boolean | close on trigger
 String orderLinkId = "orderLinkId_example"; // String | TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.
 String trailingStop = "trailingStop_example"; // String | Trailing stop.
 try {
-    Object result = apiInstance.orderNewV2(side, symbol, orderType, qty, price, timeInForce, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId, trailingStop);
+    Object result = apiInstance.orderNewV2(side, symbol, orderType, qty, timeInForce, price, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId, trailingStop);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling OrderApi#orderNewV2");
@@ -442,8 +442,8 @@ Name | Type | Description  | Notes
  **symbol** | **String**| Contract type. |
  **orderType** | **String**| Active order type |
  **qty** | **BigDecimal**|  |
- **price** | **Double**| Order price. |
  **timeInForce** | **String**| Time in force |
+ **price** | **Double**| Order price. | [optional]
  **takeProfit** | **Double**| take profit price | [optional]
  **stopLoss** | **Double**| stop loss price | [optional]
  **reduceOnly** | **Boolean**| reduce only | [optional]

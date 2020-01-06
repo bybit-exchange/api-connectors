@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**PositionsChangeMargin**](PositionsApi.md#positionschangemargin) | **POST** /position/change-position-margin | Update margin.
 [**PositionsMyPosition**](PositionsApi.md#positionsmyposition) | **GET** /position/list | Get my position list.
+[**PositionsMyPositionV2**](PositionsApi.md#positionsmypositionv2) | **GET** /v2/private/position/list | Get my position list.
 [**PositionsSaveLeverage**](PositionsApi.md#positionssaveleverage) | **POST** /user/leverage/save | Change user leverage.
 [**PositionsTradingStop**](PositionsApi.md#positionstradingstop) | **POST** /open-api/position/trading-stop | Set Trading-Stop Condition.
 [**PositionsUserLeverage**](PositionsApi.md#positionsuserleverage) | **GET** /user/leverage | Get user leverage setting.
@@ -137,6 +138,78 @@ namespace Example
 
 ### Parameters
 This endpoint does not need any parameter.
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="positionsmypositionv2"></a>
+# **PositionsMyPositionV2**
+> Object PositionsMyPositionV2 (string symbol = null)
+
+Get my position list.
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class PositionsMyPositionV2Example
+    {
+        public void main()
+        {
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api_key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api_key", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("sign", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("sign", "Bearer");
+            // Configure API key authorization: timestamp
+            Configuration.Default.AddApiKey("timestamp", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("timestamp", "Bearer");
+
+            var apiInstance = new PositionsApi();
+            var symbol = symbol_example;  // string | Contract type which you want update its margin (optional) 
+
+            try
+            {
+                // Get my position list.
+                Object result = apiInstance.PositionsMyPositionV2(symbol);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling PositionsApi.PositionsMyPositionV2: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string**| Contract type which you want update its margin | [optional] 
 
 ### Return type
 

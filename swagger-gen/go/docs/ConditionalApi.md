@@ -102,7 +102,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ConditionalNew**
-> interface{} ConditionalNew(ctx, side, symbol, orderType, qty, price, basePrice, stopPx, timeInForce, optional)
+> interface{} ConditionalNew(ctx, side, symbol, orderType, qty, basePrice, stopPx, timeInForce, optional)
 Place a new conditional order.
 
 ### Required Parameters
@@ -114,7 +114,6 @@ Name | Type | Description  | Notes
   **symbol** | **string**| Contract type. | 
   **orderType** | **string**| Conditional order type. | 
   **qty** | **float32**| Order quantity. | 
-  **price** | **float64**| Execution price for conditional order | 
   **basePrice** | **float64**| Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order.. | 
   **stopPx** | **float64**| Trigger price. | 
   **timeInForce** | **string**| Time in force. | 
@@ -132,7 +131,7 @@ Name | Type | Description  | Notes
 
 
 
-
+ **price** | **optional.Float64**| Execution price for conditional order | 
  **triggerBy** | **optional.String**| Trigger price type. Default LastPrice. | 
  **closeOnTrigger** | **optional.Bool**| close on trigger. | 
  **orderLinkId** | **optional.String**| Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. | 

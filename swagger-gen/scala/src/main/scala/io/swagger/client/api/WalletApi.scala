@@ -14,6 +14,7 @@ package io.swagger.client.api
 
 import java.text.SimpleDateFormat
 
+import io.swagger.client.model.Number
 import io.swagger.client.{ApiInvoker, ApiException}
 
 import com.sun.jersey.multipart.FormDataMultiPart
@@ -115,6 +116,58 @@ class WalletApi(
   }
 
   /**
+   * Get risk limit.
+   * 
+   *
+   * @return Any
+   */
+  def walletGetRiskLimit(): Option[Any] = {
+    val await = Try(Await.result(walletGetRiskLimitAsync(), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
+    }
+  }
+
+  /**
+   * Get risk limit. asynchronously
+   * 
+   *
+   * @return Future(Any)
+   */
+  def walletGetRiskLimitAsync(): Future[Any] = {
+      helper.walletGetRiskLimit()
+  }
+
+  /**
+   * Set risk limit
+   * 
+   *
+   * @param symbol Contract type. 
+   * @param riskId Risk ID. Can be found with the Get risk limit list endpoint. 
+   * @return Any
+   */
+  def walletSetRiskLimit(symbol: String, riskId: Number): Option[Any] = {
+    val await = Try(Await.result(walletSetRiskLimitAsync(symbol, riskId), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
+    }
+  }
+
+  /**
+   * Set risk limit asynchronously
+   * 
+   *
+   * @param symbol Contract type. 
+   * @param riskId Risk ID. Can be found with the Get risk limit list endpoint. 
+   * @return Future(Any)
+   */
+  def walletSetRiskLimitAsync(symbol: String, riskId: Number): Future[Any] = {
+      helper.walletSetRiskLimit(symbol, riskId)
+  }
+
+  /**
    * Get wallet fund records
    * 
    *
@@ -194,6 +247,39 @@ class WalletApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exten
     }
 
     val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def walletGetRiskLimit()(implicit reader: ClientResponseReader[Any]): Future[Any] = {
+    // create path and map variables
+    val path = (addFmt("/open-api/wallet/risk-limit/list"))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+
+    val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def walletSetRiskLimit(symbol: String,
+    riskId: Number)(implicit reader: ClientResponseReader[Any]): Future[Any] = {
+    // create path and map variables
+    val path = (addFmt("/open-api/wallet/risk-limit"))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    if (symbol == null) throw new Exception("Missing required parameter 'symbol' when calling WalletApi->walletSetRiskLimit")
+
+
+    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")
     resFuture flatMap { resp =>
       process(reader.read(resp))
     }

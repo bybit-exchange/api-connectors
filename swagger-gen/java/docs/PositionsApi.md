@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**positionsChangeMargin**](PositionsApi.md#positionsChangeMargin) | **POST** /position/change-position-margin | Update margin.
 [**positionsMyPosition**](PositionsApi.md#positionsMyPosition) | **GET** /position/list | Get my position list.
+[**positionsMyPositionV2**](PositionsApi.md#positionsMyPositionV2) | **GET** /v2/private/position/list | Get my position list.
 [**positionsSaveLeverage**](PositionsApi.md#positionsSaveLeverage) | **POST** /user/leverage/save | Change user leverage.
 [**positionsTradingStop**](PositionsApi.md#positionsTradingStop) | **POST** /open-api/position/trading-stop | Set Trading-Stop Condition.
 [**positionsUserLeverage**](PositionsApi.md#positionsUserLeverage) | **GET** /user/leverage | Get user leverage setting.
@@ -125,6 +126,71 @@ try {
 
 ### Parameters
 This endpoint does not need any parameter.
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+<a name="positionsMyPositionV2"></a>
+# **positionsMyPositionV2**
+> Object positionsMyPositionV2(symbol)
+
+Get my position list.
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.ApiClient;
+//import io.swagger.client.ApiException;
+//import io.swagger.client.Configuration;
+//import io.swagger.client.auth.*;
+//import io.swagger.client.api.PositionsApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: apiKey
+ApiKeyAuth apiKey = (ApiKeyAuth) defaultClient.getAuthentication("apiKey");
+apiKey.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiKey.setApiKeyPrefix("Token");
+
+// Configure API key authorization: apiSignature
+ApiKeyAuth apiSignature = (ApiKeyAuth) defaultClient.getAuthentication("apiSignature");
+apiSignature.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiSignature.setApiKeyPrefix("Token");
+
+// Configure API key authorization: timestamp
+ApiKeyAuth timestamp = (ApiKeyAuth) defaultClient.getAuthentication("timestamp");
+timestamp.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//timestamp.setApiKeyPrefix("Token");
+
+PositionsApi apiInstance = new PositionsApi();
+String symbol = "symbol_example"; // String | Contract type which you want update its margin
+try {
+    Object result = apiInstance.positionsMyPositionV2(symbol);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling PositionsApi#positionsMyPositionV2");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **String**| Contract type which you want update its margin | [optional]
 
 ### Return type
 

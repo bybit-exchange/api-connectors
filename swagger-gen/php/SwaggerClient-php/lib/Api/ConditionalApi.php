@@ -954,10 +954,10 @@ class ConditionalApi
      * @param  string $symbol Contract type. (required)
      * @param  string $order_type Conditional order type. (required)
      * @param  float $qty Order quantity. (required)
-     * @param  double $price Execution price for conditional order (required)
      * @param  double $base_price Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order.. (required)
      * @param  double $stop_px Trigger price. (required)
      * @param  string $time_in_force Time in force. (required)
+     * @param  double $price Execution price for conditional order (optional)
      * @param  string $trigger_by Trigger price type. Default LastPrice. (optional)
      * @param  bool $close_on_trigger close on trigger. (optional)
      * @param  string $order_link_id Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. (optional)
@@ -966,9 +966,9 @@ class ConditionalApi
      * @throws \InvalidArgumentException
      * @return object
      */
-    public function conditionalNew($side, $symbol, $order_type, $qty, $price, $base_price, $stop_px, $time_in_force, $trigger_by = null, $close_on_trigger = null, $order_link_id = null)
+    public function conditionalNew($side, $symbol, $order_type, $qty, $base_price, $stop_px, $time_in_force, $price = null, $trigger_by = null, $close_on_trigger = null, $order_link_id = null)
     {
-        list($response) = $this->conditionalNewWithHttpInfo($side, $symbol, $order_type, $qty, $price, $base_price, $stop_px, $time_in_force, $trigger_by, $close_on_trigger, $order_link_id);
+        list($response) = $this->conditionalNewWithHttpInfo($side, $symbol, $order_type, $qty, $base_price, $stop_px, $time_in_force, $price, $trigger_by, $close_on_trigger, $order_link_id);
         return $response;
     }
 
@@ -981,10 +981,10 @@ class ConditionalApi
      * @param  string $symbol Contract type. (required)
      * @param  string $order_type Conditional order type. (required)
      * @param  float $qty Order quantity. (required)
-     * @param  double $price Execution price for conditional order (required)
      * @param  double $base_price Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order.. (required)
      * @param  double $stop_px Trigger price. (required)
      * @param  string $time_in_force Time in force. (required)
+     * @param  double $price Execution price for conditional order (optional)
      * @param  string $trigger_by Trigger price type. Default LastPrice. (optional)
      * @param  bool $close_on_trigger close on trigger. (optional)
      * @param  string $order_link_id Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. (optional)
@@ -993,10 +993,10 @@ class ConditionalApi
      * @throws \InvalidArgumentException
      * @return array of object, HTTP status code, HTTP response headers (array of strings)
      */
-    public function conditionalNewWithHttpInfo($side, $symbol, $order_type, $qty, $price, $base_price, $stop_px, $time_in_force, $trigger_by = null, $close_on_trigger = null, $order_link_id = null)
+    public function conditionalNewWithHttpInfo($side, $symbol, $order_type, $qty, $base_price, $stop_px, $time_in_force, $price = null, $trigger_by = null, $close_on_trigger = null, $order_link_id = null)
     {
         $returnType = 'object';
-        $request = $this->conditionalNewRequest($side, $symbol, $order_type, $qty, $price, $base_price, $stop_px, $time_in_force, $trigger_by, $close_on_trigger, $order_link_id);
+        $request = $this->conditionalNewRequest($side, $symbol, $order_type, $qty, $base_price, $stop_px, $time_in_force, $price, $trigger_by, $close_on_trigger, $order_link_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1066,10 +1066,10 @@ class ConditionalApi
      * @param  string $symbol Contract type. (required)
      * @param  string $order_type Conditional order type. (required)
      * @param  float $qty Order quantity. (required)
-     * @param  double $price Execution price for conditional order (required)
      * @param  double $base_price Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order.. (required)
      * @param  double $stop_px Trigger price. (required)
      * @param  string $time_in_force Time in force. (required)
+     * @param  double $price Execution price for conditional order (optional)
      * @param  string $trigger_by Trigger price type. Default LastPrice. (optional)
      * @param  bool $close_on_trigger close on trigger. (optional)
      * @param  string $order_link_id Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. (optional)
@@ -1077,9 +1077,9 @@ class ConditionalApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function conditionalNewAsync($side, $symbol, $order_type, $qty, $price, $base_price, $stop_px, $time_in_force, $trigger_by = null, $close_on_trigger = null, $order_link_id = null)
+    public function conditionalNewAsync($side, $symbol, $order_type, $qty, $base_price, $stop_px, $time_in_force, $price = null, $trigger_by = null, $close_on_trigger = null, $order_link_id = null)
     {
-        return $this->conditionalNewAsyncWithHttpInfo($side, $symbol, $order_type, $qty, $price, $base_price, $stop_px, $time_in_force, $trigger_by, $close_on_trigger, $order_link_id)
+        return $this->conditionalNewAsyncWithHttpInfo($side, $symbol, $order_type, $qty, $base_price, $stop_px, $time_in_force, $price, $trigger_by, $close_on_trigger, $order_link_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1096,10 +1096,10 @@ class ConditionalApi
      * @param  string $symbol Contract type. (required)
      * @param  string $order_type Conditional order type. (required)
      * @param  float $qty Order quantity. (required)
-     * @param  double $price Execution price for conditional order (required)
      * @param  double $base_price Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order.. (required)
      * @param  double $stop_px Trigger price. (required)
      * @param  string $time_in_force Time in force. (required)
+     * @param  double $price Execution price for conditional order (optional)
      * @param  string $trigger_by Trigger price type. Default LastPrice. (optional)
      * @param  bool $close_on_trigger close on trigger. (optional)
      * @param  string $order_link_id Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. (optional)
@@ -1107,10 +1107,10 @@ class ConditionalApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function conditionalNewAsyncWithHttpInfo($side, $symbol, $order_type, $qty, $price, $base_price, $stop_px, $time_in_force, $trigger_by = null, $close_on_trigger = null, $order_link_id = null)
+    public function conditionalNewAsyncWithHttpInfo($side, $symbol, $order_type, $qty, $base_price, $stop_px, $time_in_force, $price = null, $trigger_by = null, $close_on_trigger = null, $order_link_id = null)
     {
         $returnType = 'object';
-        $request = $this->conditionalNewRequest($side, $symbol, $order_type, $qty, $price, $base_price, $stop_px, $time_in_force, $trigger_by, $close_on_trigger, $order_link_id);
+        $request = $this->conditionalNewRequest($side, $symbol, $order_type, $qty, $base_price, $stop_px, $time_in_force, $price, $trigger_by, $close_on_trigger, $order_link_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1156,10 +1156,10 @@ class ConditionalApi
      * @param  string $symbol Contract type. (required)
      * @param  string $order_type Conditional order type. (required)
      * @param  float $qty Order quantity. (required)
-     * @param  double $price Execution price for conditional order (required)
      * @param  double $base_price Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order.. (required)
      * @param  double $stop_px Trigger price. (required)
      * @param  string $time_in_force Time in force. (required)
+     * @param  double $price Execution price for conditional order (optional)
      * @param  string $trigger_by Trigger price type. Default LastPrice. (optional)
      * @param  bool $close_on_trigger close on trigger. (optional)
      * @param  string $order_link_id Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. (optional)
@@ -1167,7 +1167,7 @@ class ConditionalApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function conditionalNewRequest($side, $symbol, $order_type, $qty, $price, $base_price, $stop_px, $time_in_force, $trigger_by = null, $close_on_trigger = null, $order_link_id = null)
+    protected function conditionalNewRequest($side, $symbol, $order_type, $qty, $base_price, $stop_px, $time_in_force, $price = null, $trigger_by = null, $close_on_trigger = null, $order_link_id = null)
     {
         // verify the required parameter 'side' is set
         if ($side === null || (is_array($side) && count($side) === 0)) {
@@ -1191,12 +1191,6 @@ class ConditionalApi
         if ($qty === null || (is_array($qty) && count($qty) === 0)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $qty when calling conditionalNew'
-            );
-        }
-        // verify the required parameter 'price' is set
-        if ($price === null || (is_array($price) && count($price) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $price when calling conditionalNew'
             );
         }
         // verify the required parameter 'base_price' is set

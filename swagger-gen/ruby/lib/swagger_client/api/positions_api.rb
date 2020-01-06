@@ -125,6 +125,55 @@ module SwaggerClient
       end
       return data, status_code, headers
     end
+    # Get my position list.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :symbol Contract type which you want update its margin
+    # @return [Object]
+    def positions_my_position_v2(opts = {})
+      data, _status_code, _headers = positions_my_position_v2_with_http_info(opts)
+      data
+    end
+
+    # Get my position list.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :symbol Contract type which you want update its margin
+    # @return [Array<(Object, Fixnum, Hash)>] Object data, response status code and response headers
+    def positions_my_position_v2_with_http_info(opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: PositionsApi.positions_my_position_v2 ...'
+      end
+      # resource path
+      local_var_path = '/v2/private/position/list'
+
+      # query parameters
+      query_params = {}
+      query_params[:'symbol'] = opts[:'symbol'] if !opts[:'symbol'].nil?
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json', 'application/x-www-form-urlencoded'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = nil
+      auth_names = ['apiKey', 'apiSignature', 'timestamp']
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'Object')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: PositionsApi#positions_my_position_v2\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
     # Change user leverage.
     # @param symbol A symbol which you want change its leverage
     # @param leverage New leverage you want set

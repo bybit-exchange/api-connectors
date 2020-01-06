@@ -239,7 +239,7 @@ Name | Type | Description  | Notes
 
 <a name="conditionalnew"></a>
 # **ConditionalNew**
-> Object ConditionalNew (string side, string symbol, string orderType, decimal? qty, double? price, double? basePrice, double? stopPx, string timeInForce, string triggerBy = null, bool? closeOnTrigger = null, string orderLinkId = null)
+> Object ConditionalNew (string side, string symbol, string orderType, decimal? qty, double? basePrice, double? stopPx, string timeInForce, double? price = null, string triggerBy = null, bool? closeOnTrigger = null, string orderLinkId = null)
 
 Place a new conditional order.
 
@@ -275,10 +275,10 @@ namespace Example
             var symbol = symbol_example;  // string | Contract type.
             var orderType = orderType_example;  // string | Conditional order type.
             var qty = 8.14;  // decimal? | Order quantity.
-            var price = 1.2;  // double? | Execution price for conditional order
             var basePrice = 1.2;  // double? | Send current market price. It will be used to compare with the value of 'stop_px', to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order..
             var stopPx = 1.2;  // double? | Trigger price.
             var timeInForce = timeInForce_example;  // string | Time in force.
+            var price = 1.2;  // double? | Execution price for conditional order (optional) 
             var triggerBy = triggerBy_example;  // string | Trigger price type. Default LastPrice. (optional) 
             var closeOnTrigger = true;  // bool? | close on trigger. (optional) 
             var orderLinkId = orderLinkId_example;  // string | Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. (optional) 
@@ -286,7 +286,7 @@ namespace Example
             try
             {
                 // Place a new conditional order.
-                Object result = apiInstance.ConditionalNew(side, symbol, orderType, qty, price, basePrice, stopPx, timeInForce, triggerBy, closeOnTrigger, orderLinkId);
+                Object result = apiInstance.ConditionalNew(side, symbol, orderType, qty, basePrice, stopPx, timeInForce, price, triggerBy, closeOnTrigger, orderLinkId);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -306,10 +306,10 @@ Name | Type | Description  | Notes
  **symbol** | **string**| Contract type. | 
  **orderType** | **string**| Conditional order type. | 
  **qty** | **decimal?**| Order quantity. | 
- **price** | **double?**| Execution price for conditional order | 
  **basePrice** | **double?**| Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order.. | 
  **stopPx** | **double?**| Trigger price. | 
  **timeInForce** | **string**| Time in force. | 
+ **price** | **double?**| Execution price for conditional order | [optional] 
  **triggerBy** | **string**| Trigger price type. Default LastPrice. | [optional] 
  **closeOnTrigger** | **bool?**| close on trigger. | [optional] 
  **orderLinkId** | **string**| Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. | [optional] 

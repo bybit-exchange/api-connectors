@@ -106,11 +106,14 @@ Class | Method | HTTP request | Description
 *OrderApi* | [**orderReplace**](docs/OrderApi.md#orderReplace) | **POST** /open-api/order/replace | Replace active order. Only incomplete orders can be modified. 
 *PositionsApi* | [**positionsChangeMargin**](docs/PositionsApi.md#positionsChangeMargin) | **POST** /position/change-position-margin | Update margin.
 *PositionsApi* | [**positionsMyPosition**](docs/PositionsApi.md#positionsMyPosition) | **GET** /position/list | Get my position list.
+*PositionsApi* | [**positionsMyPositionV2**](docs/PositionsApi.md#positionsMyPositionV2) | **GET** /v2/private/position/list | Get my position list.
 *PositionsApi* | [**positionsSaveLeverage**](docs/PositionsApi.md#positionsSaveLeverage) | **POST** /user/leverage/save | Change user leverage.
 *PositionsApi* | [**positionsTradingStop**](docs/PositionsApi.md#positionsTradingStop) | **POST** /open-api/position/trading-stop | Set Trading-Stop Condition.
 *PositionsApi* | [**positionsUserLeverage**](docs/PositionsApi.md#positionsUserLeverage) | **GET** /user/leverage | Get user leverage setting.
 *SymbolApi* | [**symbolGet**](docs/SymbolApi.md#symbolGet) | **GET** /v2/public/symbols | Query Symbols.
 *WalletApi* | [**walletGetRecords**](docs/WalletApi.md#walletGetRecords) | **GET** /open-api/wallet/fund/records | Get wallet fund records
+*WalletApi* | [**walletGetRiskLimit**](docs/WalletApi.md#walletGetRiskLimit) | **GET** /open-api/wallet/risk-limit/list | Get risk limit.
+*WalletApi* | [**walletSetRiskLimit**](docs/WalletApi.md#walletSetRiskLimit) | **POST** /open-api/wallet/risk-limit | Set risk limit
 *WalletApi* | [**walletWithdraw**](docs/WalletApi.md#walletWithdraw) | **GET** /open-api/wallet/withdraw/list | Get wallet fund records
 
 
@@ -133,6 +136,7 @@ Class | Method | HTTP request | Description
  - [FundingRate](docs/FundingRate.md)
  - [FundingRateBase](docs/FundingRateBase.md)
  - [FundingRecords](docs/FundingRecords.md)
+ - [GetRiskLimitRes](docs/GetRiskLimitRes.md)
  - [KlineBase](docs/KlineBase.md)
  - [KlineRes](docs/KlineRes.md)
  - [Leverage](docs/Leverage.md)
@@ -155,7 +159,11 @@ Class | Method | HTTP request | Description
  - [QueryOrderRes](docs/QueryOrderRes.md)
  - [ReplaceConditionalBase](docs/ReplaceConditionalBase.md)
  - [ReplaceOrderBase](docs/ReplaceOrderBase.md)
+ - [RiskIDRes](docs/RiskIDRes.md)
+ - [RiskLimitBase](docs/RiskLimitBase.md)
+ - [RiskLimitRes](docs/RiskLimitRes.md)
  - [ServerTime](docs/ServerTime.md)
+ - [SetRiskLimitBase](docs/SetRiskLimitBase.md)
  - [SymbolInfo](docs/SymbolInfo.md)
  - [SymbolInfoBase](docs/SymbolInfoBase.md)
  - [SymbolTickInfo](docs/SymbolTickInfo.md)

@@ -47,6 +47,18 @@ extern NSInteger kSWGPositionsApiMissingParamErrorCode;
     (void (^)(NSObject* output, NSError* error)) handler;
 
 
+/// Get my position list.
+/// 
+///
+/// @param symbol Contract type which you want update its margin (optional)
+/// 
+///  code:200 message:"Request was successful"
+///
+/// @return NSObject*
+-(NSURLSessionTask*) positionsMyPositionV2WithSymbol: (NSString*) symbol
+    completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+
+
 /// Change user leverage.
 /// 
 ///

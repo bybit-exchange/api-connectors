@@ -114,11 +114,14 @@ Class | Method | HTTP request | Description
 *SwaggerClient::OrderApi* | [**order_replace**](docs/OrderApi.md#order_replace) | **POST** /open-api/order/replace | Replace active order. Only incomplete orders can be modified. 
 *SwaggerClient::PositionsApi* | [**positions_change_margin**](docs/PositionsApi.md#positions_change_margin) | **POST** /position/change-position-margin | Update margin.
 *SwaggerClient::PositionsApi* | [**positions_my_position**](docs/PositionsApi.md#positions_my_position) | **GET** /position/list | Get my position list.
+*SwaggerClient::PositionsApi* | [**positions_my_position_v2**](docs/PositionsApi.md#positions_my_position_v2) | **GET** /v2/private/position/list | Get my position list.
 *SwaggerClient::PositionsApi* | [**positions_save_leverage**](docs/PositionsApi.md#positions_save_leverage) | **POST** /user/leverage/save | Change user leverage.
 *SwaggerClient::PositionsApi* | [**positions_trading_stop**](docs/PositionsApi.md#positions_trading_stop) | **POST** /open-api/position/trading-stop | Set Trading-Stop Condition.
 *SwaggerClient::PositionsApi* | [**positions_user_leverage**](docs/PositionsApi.md#positions_user_leverage) | **GET** /user/leverage | Get user leverage setting.
 *SwaggerClient::SymbolApi* | [**symbol_get**](docs/SymbolApi.md#symbol_get) | **GET** /v2/public/symbols | Query Symbols.
 *SwaggerClient::WalletApi* | [**wallet_get_records**](docs/WalletApi.md#wallet_get_records) | **GET** /open-api/wallet/fund/records | Get wallet fund records
+*SwaggerClient::WalletApi* | [**wallet_get_risk_limit**](docs/WalletApi.md#wallet_get_risk_limit) | **GET** /open-api/wallet/risk-limit/list | Get risk limit.
+*SwaggerClient::WalletApi* | [**wallet_set_risk_limit**](docs/WalletApi.md#wallet_set_risk_limit) | **POST** /open-api/wallet/risk-limit | Set risk limit
 *SwaggerClient::WalletApi* | [**wallet_withdraw**](docs/WalletApi.md#wallet_withdraw) | **GET** /open-api/wallet/withdraw/list | Get wallet fund records
 
 
@@ -141,6 +144,7 @@ Class | Method | HTTP request | Description
  - [SwaggerClient::FundingRate](docs/FundingRate.md)
  - [SwaggerClient::FundingRateBase](docs/FundingRateBase.md)
  - [SwaggerClient::FundingRecords](docs/FundingRecords.md)
+ - [SwaggerClient::GetRiskLimitRes](docs/GetRiskLimitRes.md)
  - [SwaggerClient::KlineBase](docs/KlineBase.md)
  - [SwaggerClient::KlineRes](docs/KlineRes.md)
  - [SwaggerClient::Leverage](docs/Leverage.md)
@@ -163,7 +167,11 @@ Class | Method | HTTP request | Description
  - [SwaggerClient::QueryOrderRes](docs/QueryOrderRes.md)
  - [SwaggerClient::ReplaceConditionalBase](docs/ReplaceConditionalBase.md)
  - [SwaggerClient::ReplaceOrderBase](docs/ReplaceOrderBase.md)
+ - [SwaggerClient::RiskIDRes](docs/RiskIDRes.md)
+ - [SwaggerClient::RiskLimitBase](docs/RiskLimitBase.md)
+ - [SwaggerClient::RiskLimitRes](docs/RiskLimitRes.md)
  - [SwaggerClient::ServerTime](docs/ServerTime.md)
+ - [SwaggerClient::SetRiskLimitBase](docs/SetRiskLimitBase.md)
  - [SwaggerClient::SymbolInfo](docs/SymbolInfo.md)
  - [SwaggerClient::SymbolInfoBase](docs/SymbolInfoBase.md)
  - [SwaggerClient::SymbolTickInfo](docs/SymbolTickInfo.md)

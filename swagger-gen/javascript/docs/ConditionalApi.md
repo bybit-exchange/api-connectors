@@ -213,7 +213,7 @@ Name | Type | Description  | Notes
 
 <a name="conditionalNew"></a>
 # **conditionalNew**
-> Object conditionalNew(side, symbol, orderType, qty, price, basePrice, stopPx, timeInForce, opts)
+> Object conditionalNew(side, symbol, orderType, qty, basePrice, stopPx, timeInForce, opts)
 
 Place a new conditional order.
 
@@ -250,8 +250,6 @@ var orderType = "orderType_example"; // String | Conditional order type.
 
 var qty = 8.14; // Number | Order quantity.
 
-var price = 1.2; // Number | Execution price for conditional order
-
 var basePrice = 1.2; // Number | Send current market price. It will be used to compare with the value of 'stop_px', to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order..
 
 var stopPx = 1.2; // Number | Trigger price.
@@ -259,6 +257,7 @@ var stopPx = 1.2; // Number | Trigger price.
 var timeInForce = "timeInForce_example"; // String | Time in force.
 
 var opts = { 
+  'price': 1.2, // Number | Execution price for conditional order
   'triggerBy': "triggerBy_example", // String | Trigger price type. Default LastPrice.
   'closeOnTrigger': true, // Boolean | close on trigger.
   'orderLinkId': "orderLinkId_example" // String | Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique..
@@ -271,7 +270,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.conditionalNew(side, symbol, orderType, qty, price, basePrice, stopPx, timeInForce, opts, callback);
+apiInstance.conditionalNew(side, symbol, orderType, qty, basePrice, stopPx, timeInForce, opts, callback);
 ```
 
 ### Parameters
@@ -282,10 +281,10 @@ Name | Type | Description  | Notes
  **symbol** | **String**| Contract type. | 
  **orderType** | **String**| Conditional order type. | 
  **qty** | **Number**| Order quantity. | 
- **price** | **Number**| Execution price for conditional order | 
  **basePrice** | **Number**| Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order.. | 
  **stopPx** | **Number**| Trigger price. | 
  **timeInForce** | **String**| Time in force. | 
+ **price** | **Number**| Execution price for conditional order | [optional] 
  **triggerBy** | **String**| Trigger price type. Default LastPrice. | [optional] 
  **closeOnTrigger** | **Boolean**| close on trigger. | [optional] 
  **orderLinkId** | **String**| Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. | [optional] 

@@ -5,6 +5,8 @@ All URIs are relative to *https://api-testnet.bybit.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**walletGetRecords**](WalletApi.md#walletGetRecords) | **GET** /open-api/wallet/fund/records | Get wallet fund records
+[**walletGetRiskLimit**](WalletApi.md#walletGetRiskLimit) | **GET** /open-api/wallet/risk-limit/list | Get risk limit.
+[**walletSetRiskLimit**](WalletApi.md#walletSetRiskLimit) | **POST** /open-api/wallet/risk-limit | Set risk limit
 [**walletWithdraw**](WalletApi.md#walletWithdraw) | **GET** /open-api/wallet/withdraw/list | Get wallet fund records
 
 
@@ -45,6 +47,86 @@ Name | Type | Description  | Notes
  **walletFundType** | **String**| wallet fund type | [optional]
  **page** | **String**| Page. Default getting first page data | [optional]
  **limit** | **String**| Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page | [optional]
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+<a name="walletGetRiskLimit"></a>
+# **walletGetRiskLimit**
+> Object walletGetRiskLimit()
+
+Get risk limit.
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.api.WalletApi;
+
+WalletApi apiInstance = new WalletApi();
+try {
+    Object result = apiInstance.walletGetRiskLimit();
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling WalletApi#walletGetRiskLimit");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+<a name="walletSetRiskLimit"></a>
+# **walletSetRiskLimit**
+> Object walletSetRiskLimit(symbol, riskId)
+
+Set risk limit
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.api.WalletApi;
+
+WalletApi apiInstance = new WalletApi();
+String symbol = "symbol_example"; // String | Contract type.
+BigDecimal riskId = new BigDecimal(); // BigDecimal | Risk ID. Can be found with the Get risk limit list endpoint.
+try {
+    Object result = apiInstance.walletSetRiskLimit(symbol, riskId);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling WalletApi#walletSetRiskLimit");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **String**| Contract type. |
+ **riskId** | **BigDecimal**| Risk ID. Can be found with the Get risk limit list endpoint. |
 
 ### Return type
 

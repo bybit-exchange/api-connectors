@@ -210,18 +210,18 @@
      * @param {String} symbol Contract type.
      * @param {String} orderType Conditional order type.
      * @param {Number} qty Order quantity.
-     * @param {Number} price Execution price for conditional order
      * @param {Number} basePrice Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order..
      * @param {Number} stopPx Trigger price.
      * @param {String} timeInForce Time in force.
      * @param {Object} opts Optional parameters
+     * @param {Number} opts.price Execution price for conditional order
      * @param {String} opts.triggerBy Trigger price type. Default LastPrice.
      * @param {Boolean} opts.closeOnTrigger close on trigger.
      * @param {String} opts.orderLinkId Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique..
      * @param {module:api/ConditionalApi~conditionalNewCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link Object}
      */
-    this.conditionalNew = function(side, symbol, orderType, qty, price, basePrice, stopPx, timeInForce, opts, callback) {
+    this.conditionalNew = function(side, symbol, orderType, qty, basePrice, stopPx, timeInForce, opts, callback) {
       opts = opts || {};
       var postBody = null;
 
@@ -243,11 +243,6 @@
       // verify the required parameter 'qty' is set
       if (qty === undefined || qty === null) {
         throw new Error("Missing the required parameter 'qty' when calling conditionalNew");
-      }
-
-      // verify the required parameter 'price' is set
-      if (price === undefined || price === null) {
-        throw new Error("Missing the required parameter 'price' when calling conditionalNew");
       }
 
       // verify the required parameter 'basePrice' is set
@@ -279,7 +274,7 @@
         'symbol': symbol,
         'order_type': orderType,
         'qty': qty,
-        'price': price,
+        'price': opts['price'],
         'base_price': basePrice,
         'stop_px': stopPx,
         'time_in_force': timeInForce,

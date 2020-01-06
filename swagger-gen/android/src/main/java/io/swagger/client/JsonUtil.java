@@ -125,6 +125,10 @@ public class JsonUtil {
       return new TypeToken<List<FundingRecords>>(){}.getType();
     }
     
+    if ("GetRiskLimitRes".equalsIgnoreCase(className)) {
+      return new TypeToken<List<GetRiskLimitRes>>(){}.getType();
+    }
+    
     if ("KlineBase".equalsIgnoreCase(className)) {
       return new TypeToken<List<KlineBase>>(){}.getType();
     }
@@ -213,8 +217,24 @@ public class JsonUtil {
       return new TypeToken<List<ReplaceOrderBase>>(){}.getType();
     }
     
+    if ("RiskIDRes".equalsIgnoreCase(className)) {
+      return new TypeToken<List<RiskIDRes>>(){}.getType();
+    }
+    
+    if ("RiskLimitBase".equalsIgnoreCase(className)) {
+      return new TypeToken<List<RiskLimitBase>>(){}.getType();
+    }
+    
+    if ("RiskLimitRes".equalsIgnoreCase(className)) {
+      return new TypeToken<List<RiskLimitRes>>(){}.getType();
+    }
+    
     if ("ServerTime".equalsIgnoreCase(className)) {
       return new TypeToken<List<ServerTime>>(){}.getType();
+    }
+    
+    if ("SetRiskLimitBase".equalsIgnoreCase(className)) {
+      return new TypeToken<List<SetRiskLimitBase>>(){}.getType();
     }
     
     if ("SymbolInfo".equalsIgnoreCase(className)) {
@@ -335,6 +355,10 @@ public class JsonUtil {
       return new TypeToken<FundingRecords>(){}.getType();
     }
     
+    if ("GetRiskLimitRes".equalsIgnoreCase(className)) {
+      return new TypeToken<GetRiskLimitRes>(){}.getType();
+    }
+    
     if ("KlineBase".equalsIgnoreCase(className)) {
       return new TypeToken<KlineBase>(){}.getType();
     }
@@ -423,8 +447,24 @@ public class JsonUtil {
       return new TypeToken<ReplaceOrderBase>(){}.getType();
     }
     
+    if ("RiskIDRes".equalsIgnoreCase(className)) {
+      return new TypeToken<RiskIDRes>(){}.getType();
+    }
+    
+    if ("RiskLimitBase".equalsIgnoreCase(className)) {
+      return new TypeToken<RiskLimitBase>(){}.getType();
+    }
+    
+    if ("RiskLimitRes".equalsIgnoreCase(className)) {
+      return new TypeToken<RiskLimitRes>(){}.getType();
+    }
+    
     if ("ServerTime".equalsIgnoreCase(className)) {
       return new TypeToken<ServerTime>(){}.getType();
+    }
+    
+    if ("SetRiskLimitBase".equalsIgnoreCase(className)) {
+      return new TypeToken<SetRiskLimitBase>(){}.getType();
     }
     
     if ("SymbolInfo".equalsIgnoreCase(className)) {

@@ -241,8 +241,8 @@ open class OrderAPI {
      - parameter symbol: (form) Contract type. 
      - parameter orderType: (form) Active order type 
      - parameter qty: (form)  
-     - parameter price: (query) Order price. 
      - parameter timeInForce: (form) Time in force 
+     - parameter price: (query) Order price. (optional)
      - parameter takeProfit: (query) take profit price (optional)
      - parameter stopLoss: (form) stop loss price (optional)
      - parameter reduceOnly: (form) reduce only (optional)
@@ -250,8 +250,8 @@ open class OrderAPI {
      - parameter orderLinkId: (form) TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func orderNew(side: String, symbol: String, orderType: String, qty: Double, price: Double, timeInForce: String, takeProfit: Double? = nil, stopLoss: Double? = nil, reduceOnly: Bool? = nil, closeOnTrigger: Bool? = nil, orderLinkId: String? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
-        orderNewWithRequestBuilder(side: side, symbol: symbol, orderType: orderType, qty: qty, price: price, timeInForce: timeInForce, takeProfit: takeProfit, stopLoss: stopLoss, reduceOnly: reduceOnly, closeOnTrigger: closeOnTrigger, orderLinkId: orderLinkId).execute { (response, error) -> Void in
+    open class func orderNew(side: String, symbol: String, orderType: String, qty: Double, timeInForce: String, price: Double? = nil, takeProfit: Double? = nil, stopLoss: Double? = nil, reduceOnly: Bool? = nil, closeOnTrigger: Bool? = nil, orderLinkId: String? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
+        orderNewWithRequestBuilder(side: side, symbol: symbol, orderType: orderType, qty: qty, timeInForce: timeInForce, price: price, takeProfit: takeProfit, stopLoss: stopLoss, reduceOnly: reduceOnly, closeOnTrigger: closeOnTrigger, orderLinkId: orderLinkId).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -275,8 +275,8 @@ open class OrderAPI {
      - parameter symbol: (form) Contract type. 
      - parameter orderType: (form) Active order type 
      - parameter qty: (form)  
-     - parameter price: (query) Order price. 
      - parameter timeInForce: (form) Time in force 
+     - parameter price: (query) Order price. (optional)
      - parameter takeProfit: (query) take profit price (optional)
      - parameter stopLoss: (form) stop loss price (optional)
      - parameter reduceOnly: (form) reduce only (optional)
@@ -285,7 +285,7 @@ open class OrderAPI {
 
      - returns: RequestBuilder<Any> 
      */
-    open class func orderNewWithRequestBuilder(side: String, symbol: String, orderType: String, qty: Double, price: Double, timeInForce: String, takeProfit: Double? = nil, stopLoss: Double? = nil, reduceOnly: Bool? = nil, closeOnTrigger: Bool? = nil, orderLinkId: String? = nil) -> RequestBuilder<Any> {
+    open class func orderNewWithRequestBuilder(side: String, symbol: String, orderType: String, qty: Double, timeInForce: String, price: Double? = nil, takeProfit: Double? = nil, stopLoss: Double? = nil, reduceOnly: Bool? = nil, closeOnTrigger: Bool? = nil, orderLinkId: String? = nil) -> RequestBuilder<Any> {
         let path = "/open-api/order/create"
         let URLString = SwaggerClientAPI.basePath + path
         let formParams: [String:Any?] = [
@@ -321,8 +321,8 @@ open class OrderAPI {
      - parameter symbol: (form) Contract type. 
      - parameter orderType: (form) Active order type 
      - parameter qty: (form)  
-     - parameter price: (query) Order price. 
      - parameter timeInForce: (form) Time in force 
+     - parameter price: (query) Order price. (optional)
      - parameter takeProfit: (query) take profit price (optional)
      - parameter stopLoss: (form) stop loss price (optional)
      - parameter reduceOnly: (form) reduce only (optional)
@@ -331,8 +331,8 @@ open class OrderAPI {
      - parameter trailingStop: (form) Trailing stop. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func orderNewV2(side: String, symbol: String, orderType: String, qty: Double, price: Double, timeInForce: String, takeProfit: Double? = nil, stopLoss: Double? = nil, reduceOnly: Bool? = nil, closeOnTrigger: Bool? = nil, orderLinkId: String? = nil, trailingStop: String? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
-        orderNewV2WithRequestBuilder(side: side, symbol: symbol, orderType: orderType, qty: qty, price: price, timeInForce: timeInForce, takeProfit: takeProfit, stopLoss: stopLoss, reduceOnly: reduceOnly, closeOnTrigger: closeOnTrigger, orderLinkId: orderLinkId, trailingStop: trailingStop).execute { (response, error) -> Void in
+    open class func orderNewV2(side: String, symbol: String, orderType: String, qty: Double, timeInForce: String, price: Double? = nil, takeProfit: Double? = nil, stopLoss: Double? = nil, reduceOnly: Bool? = nil, closeOnTrigger: Bool? = nil, orderLinkId: String? = nil, trailingStop: String? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
+        orderNewV2WithRequestBuilder(side: side, symbol: symbol, orderType: orderType, qty: qty, timeInForce: timeInForce, price: price, takeProfit: takeProfit, stopLoss: stopLoss, reduceOnly: reduceOnly, closeOnTrigger: closeOnTrigger, orderLinkId: orderLinkId, trailingStop: trailingStop).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -356,8 +356,8 @@ open class OrderAPI {
      - parameter symbol: (form) Contract type. 
      - parameter orderType: (form) Active order type 
      - parameter qty: (form)  
-     - parameter price: (query) Order price. 
      - parameter timeInForce: (form) Time in force 
+     - parameter price: (query) Order price. (optional)
      - parameter takeProfit: (query) take profit price (optional)
      - parameter stopLoss: (form) stop loss price (optional)
      - parameter reduceOnly: (form) reduce only (optional)
@@ -367,7 +367,7 @@ open class OrderAPI {
 
      - returns: RequestBuilder<Any> 
      */
-    open class func orderNewV2WithRequestBuilder(side: String, symbol: String, orderType: String, qty: Double, price: Double, timeInForce: String, takeProfit: Double? = nil, stopLoss: Double? = nil, reduceOnly: Bool? = nil, closeOnTrigger: Bool? = nil, orderLinkId: String? = nil, trailingStop: String? = nil) -> RequestBuilder<Any> {
+    open class func orderNewV2WithRequestBuilder(side: String, symbol: String, orderType: String, qty: Double, timeInForce: String, price: Double? = nil, takeProfit: Double? = nil, stopLoss: Double? = nil, reduceOnly: Bool? = nil, closeOnTrigger: Bool? = nil, orderLinkId: String? = nil, trailingStop: String? = nil) -> RequestBuilder<Any> {
         let path = "/v2/private/order/create"
         let URLString = SwaggerClientAPI.basePath + path
         let formParams: [String:Any?] = [

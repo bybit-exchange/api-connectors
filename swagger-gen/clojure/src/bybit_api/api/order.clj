@@ -80,9 +80,9 @@
 
 (defn order-new-with-http-info
   "Place active order"
-  ([side symbol order-type qty price time-in-force ] (order-new-with-http-info side symbol order-type qty price time-in-force nil))
-  ([side symbol order-type qty price time-in-force {:keys [take-profit stop-loss reduce-only close-on-trigger order-link-id ]}]
-   (check-required-params side symbol order-type qty price time-in-force)
+  ([side symbol order-type qty time-in-force ] (order-new-with-http-info side symbol order-type qty time-in-force nil))
+  ([side symbol order-type qty time-in-force {:keys [price take-profit stop-loss reduce-only close-on-trigger order-link-id ]}]
+   (check-required-params side symbol order-type qty time-in-force)
    (call-api "/open-api/order/create" :post
              {:path-params   {}
               :header-params {}
@@ -94,15 +94,15 @@
 
 (defn order-new
   "Place active order"
-  ([side symbol order-type qty price time-in-force ] (order-new side symbol order-type qty price time-in-force nil))
-  ([side symbol order-type qty price time-in-force optional-params]
-   (:data (order-new-with-http-info side symbol order-type qty price time-in-force optional-params))))
+  ([side symbol order-type qty time-in-force ] (order-new side symbol order-type qty time-in-force nil))
+  ([side symbol order-type qty time-in-force optional-params]
+   (:data (order-new-with-http-info side symbol order-type qty time-in-force optional-params))))
 
 (defn order-new-v2-with-http-info
   "Place active order"
-  ([side symbol order-type qty price time-in-force ] (order-new-v2-with-http-info side symbol order-type qty price time-in-force nil))
-  ([side symbol order-type qty price time-in-force {:keys [take-profit stop-loss reduce-only close-on-trigger order-link-id trailing-stop ]}]
-   (check-required-params side symbol order-type qty price time-in-force)
+  ([side symbol order-type qty time-in-force ] (order-new-v2-with-http-info side symbol order-type qty time-in-force nil))
+  ([side symbol order-type qty time-in-force {:keys [price take-profit stop-loss reduce-only close-on-trigger order-link-id trailing-stop ]}]
+   (check-required-params side symbol order-type qty time-in-force)
    (call-api "/v2/private/order/create" :post
              {:path-params   {}
               :header-params {}
@@ -114,9 +114,9 @@
 
 (defn order-new-v2
   "Place active order"
-  ([side symbol order-type qty price time-in-force ] (order-new-v2 side symbol order-type qty price time-in-force nil))
-  ([side symbol order-type qty price time-in-force optional-params]
-   (:data (order-new-v2-with-http-info side symbol order-type qty price time-in-force optional-params))))
+  ([side symbol order-type qty time-in-force ] (order-new-v2 side symbol order-type qty time-in-force nil))
+  ([side symbol order-type qty time-in-force optional-params]
+   (:data (order-new-v2-with-http-info side symbol order-type qty time-in-force optional-params))))
 
 (defn order-query-with-http-info
   "Get my active order list."

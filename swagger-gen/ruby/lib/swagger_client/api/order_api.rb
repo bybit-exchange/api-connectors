@@ -255,17 +255,17 @@ module SwaggerClient
     # @param symbol Contract type.
     # @param order_type Active order type
     # @param qty 
-    # @param price Order price.
     # @param time_in_force Time in force
     # @param [Hash] opts the optional parameters
+    # @option opts [Float] :price Order price.
     # @option opts [Float] :take_profit take profit price
     # @option opts [Float] :stop_loss stop loss price
     # @option opts [BOOLEAN] :reduce_only reduce only
     # @option opts [BOOLEAN] :close_on_trigger close on trigger
     # @option opts [String] :order_link_id TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.
     # @return [Object]
-    def order_new(side, symbol, order_type, qty, price, time_in_force, opts = {})
-      data, _status_code, _headers = order_new_with_http_info(side, symbol, order_type, qty, price, time_in_force, opts)
+    def order_new(side, symbol, order_type, qty, time_in_force, opts = {})
+      data, _status_code, _headers = order_new_with_http_info(side, symbol, order_type, qty, time_in_force, opts)
       data
     end
 
@@ -274,16 +274,16 @@ module SwaggerClient
     # @param symbol Contract type.
     # @param order_type Active order type
     # @param qty 
-    # @param price Order price.
     # @param time_in_force Time in force
     # @param [Hash] opts the optional parameters
+    # @option opts [Float] :price Order price.
     # @option opts [Float] :take_profit take profit price
     # @option opts [Float] :stop_loss stop loss price
     # @option opts [BOOLEAN] :reduce_only reduce only
     # @option opts [BOOLEAN] :close_on_trigger close on trigger
     # @option opts [String] :order_link_id TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.
     # @return [Array<(Object, Fixnum, Hash)>] Object data, response status code and response headers
-    def order_new_with_http_info(side, symbol, order_type, qty, price, time_in_force, opts = {})
+    def order_new_with_http_info(side, symbol, order_type, qty, time_in_force, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: OrderApi.order_new ...'
       end
@@ -303,10 +303,6 @@ module SwaggerClient
       if @api_client.config.client_side_validation && qty.nil?
         fail ArgumentError, "Missing the required parameter 'qty' when calling OrderApi.order_new"
       end
-      # verify the required parameter 'price' is set
-      if @api_client.config.client_side_validation && price.nil?
-        fail ArgumentError, "Missing the required parameter 'price' when calling OrderApi.order_new"
-      end
       # verify the required parameter 'time_in_force' is set
       if @api_client.config.client_side_validation && time_in_force.nil?
         fail ArgumentError, "Missing the required parameter 'time_in_force' when calling OrderApi.order_new"
@@ -316,7 +312,7 @@ module SwaggerClient
 
       # query parameters
       query_params = {}
-      query_params[:'price'] = price
+      query_params[:'price'] = opts[:'price'] if !opts[:'price'].nil?
       query_params[:'take_profit'] = opts[:'take_profit'] if !opts[:'take_profit'].nil?
 
       # header parameters
@@ -358,9 +354,9 @@ module SwaggerClient
     # @param symbol Contract type.
     # @param order_type Active order type
     # @param qty 
-    # @param price Order price.
     # @param time_in_force Time in force
     # @param [Hash] opts the optional parameters
+    # @option opts [Float] :price Order price.
     # @option opts [Float] :take_profit take profit price
     # @option opts [Float] :stop_loss stop loss price
     # @option opts [BOOLEAN] :reduce_only reduce only
@@ -368,8 +364,8 @@ module SwaggerClient
     # @option opts [String] :order_link_id TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.
     # @option opts [String] :trailing_stop Trailing stop.
     # @return [Object]
-    def order_new_v2(side, symbol, order_type, qty, price, time_in_force, opts = {})
-      data, _status_code, _headers = order_new_v2_with_http_info(side, symbol, order_type, qty, price, time_in_force, opts)
+    def order_new_v2(side, symbol, order_type, qty, time_in_force, opts = {})
+      data, _status_code, _headers = order_new_v2_with_http_info(side, symbol, order_type, qty, time_in_force, opts)
       data
     end
 
@@ -378,9 +374,9 @@ module SwaggerClient
     # @param symbol Contract type.
     # @param order_type Active order type
     # @param qty 
-    # @param price Order price.
     # @param time_in_force Time in force
     # @param [Hash] opts the optional parameters
+    # @option opts [Float] :price Order price.
     # @option opts [Float] :take_profit take profit price
     # @option opts [Float] :stop_loss stop loss price
     # @option opts [BOOLEAN] :reduce_only reduce only
@@ -388,7 +384,7 @@ module SwaggerClient
     # @option opts [String] :order_link_id TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.
     # @option opts [String] :trailing_stop Trailing stop.
     # @return [Array<(Object, Fixnum, Hash)>] Object data, response status code and response headers
-    def order_new_v2_with_http_info(side, symbol, order_type, qty, price, time_in_force, opts = {})
+    def order_new_v2_with_http_info(side, symbol, order_type, qty, time_in_force, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: OrderApi.order_new_v2 ...'
       end
@@ -408,10 +404,6 @@ module SwaggerClient
       if @api_client.config.client_side_validation && qty.nil?
         fail ArgumentError, "Missing the required parameter 'qty' when calling OrderApi.order_new_v2"
       end
-      # verify the required parameter 'price' is set
-      if @api_client.config.client_side_validation && price.nil?
-        fail ArgumentError, "Missing the required parameter 'price' when calling OrderApi.order_new_v2"
-      end
       # verify the required parameter 'time_in_force' is set
       if @api_client.config.client_side_validation && time_in_force.nil?
         fail ArgumentError, "Missing the required parameter 'time_in_force' when calling OrderApi.order_new_v2"
@@ -421,7 +413,7 @@ module SwaggerClient
 
       # query parameters
       query_params = {}
-      query_params[:'price'] = price
+      query_params[:'price'] = opts[:'price'] if !opts[:'price'].nil?
       query_params[:'take_profit'] = opts[:'take_profit'] if !opts[:'take_profit'].nil?
 
       # header parameters
