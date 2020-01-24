@@ -29,7 +29,7 @@ import java.math.BigDecimal;
  * Get the orderbook response
  */
 @ApiModel(description = "Get the orderbook response")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-24T20:01:33.839+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-24T20:04:35.557+08:00")
 public class OderBookRes {
   @SerializedName("symbol")
   private String symbol = null;
