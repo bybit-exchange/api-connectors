@@ -1,6 +1,6 @@
 /*
  * Bybit API
- * ## REST API for the Bybit Exchange. 
+ * ## REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]  
  *
  * OpenAPI spec version: 1.0.0
  * Contact: support@bybit.com
@@ -32,7 +32,7 @@ public class ExecutionApiTest {
 
     
     /**
-     * Get the trade records of a order.
+     * Get user’s trade records.
      *
      * 
      *
@@ -42,7 +42,11 @@ public class ExecutionApiTest {
     @Test
     public void executionGetTradesTest() throws ApiException {
         String orderId = null;
-        Object response = api.executionGetTrades(orderId);
+        String symbol = null;
+        String startTime = null;
+        String page = null;
+        String limit = null;
+        Object response = api.executionGetTrades(orderId, symbol, startTime, page, limit);
 
         // TODO: test validations
     }

@@ -1,6 +1,6 @@
 /*
  * Bybit API
- * ## REST API for the Bybit Exchange. 
+ * ## REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]  
  *
  * OpenAPI spec version: 1.0.0
  * Contact: support@bybit.com
@@ -49,6 +49,22 @@ public class ConditionalApiTest {
     }
     
     /**
+     * Cancel conditional order.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void conditionalCancelAllTest() throws ApiException {
+        String symbol = null;
+        Object response = api.conditionalCancelAll(symbol);
+
+        // TODO: test validations
+    }
+    
+    /**
      * Get my conditional order list.
      *
      * 
@@ -83,13 +99,34 @@ public class ConditionalApiTest {
         String symbol = null;
         String orderType = null;
         BigDecimal qty = null;
-        Double price = null;
         Double basePrice = null;
         Double stopPx = null;
         String timeInForce = null;
+        Double price = null;
+        String triggerBy = null;
         Boolean closeOnTrigger = null;
         String orderLinkId = null;
-        Object response = api.conditionalNew(side, symbol, orderType, qty, price, basePrice, stopPx, timeInForce, closeOnTrigger, orderLinkId);
+        Object response = api.conditionalNew(side, symbol, orderType, qty, basePrice, stopPx, timeInForce, price, triggerBy, closeOnTrigger, orderLinkId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Replace conditional order. Only incomplete orders can be modified. 
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void conditionalReplaceTest() throws ApiException {
+        String orderId = null;
+        String symbol = null;
+        BigDecimal pRQty = null;
+        Double pRPrice = null;
+        Double pRTriggerPrice = null;
+        Object response = api.conditionalReplace(orderId, symbol, pRQty, pRPrice, pRTriggerPrice);
 
         // TODO: test validations
     }

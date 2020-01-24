@@ -1,6 +1,6 @@
 /*
  * Bybit API
- * ## REST API for the Bybit Exchange. 
+ * ## REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]  
  *
  * OpenAPI spec version: 1.0.0
  * Contact: support@bybit.com
@@ -59,6 +59,22 @@ public class PositionsApiTest {
     @Test
     public void positionsMyPositionTest() throws ApiException {
         Object response = api.positionsMyPosition();
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Get my position list.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void positionsMyPositionV2Test() throws ApiException {
+        String symbol = null;
+        Object response = api.positionsMyPositionV2(symbol);
 
         // TODO: test validations
     }

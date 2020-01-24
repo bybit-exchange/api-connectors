@@ -1,6 +1,6 @@
 /*
  * Bybit API
- * ## REST API for the Bybit Exchange. 
+ * ## REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]  
  *
  * OpenAPI spec version: 1.0.0
  * Contact: support@bybit.com
@@ -18,7 +18,7 @@ import io.swagger.client.Pair;
 import java.util.Map;
 import java.util.List;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-06T18:07:36.892+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-24T20:01:33.839+08:00")
 public class OAuth implements Authentication {
   private String accessToken;
 

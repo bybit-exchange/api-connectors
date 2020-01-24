@@ -1,6 +1,6 @@
 /*
  * Bybit API
- * ## REST API for the Bybit Exchange. 
+ * ## REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]  
  *
  * OpenAPI spec version: 1.0.0
  * Contact: support@bybit.com
@@ -58,6 +58,40 @@ public class OrderApiTest {
      *          if the Api call fails
      */
     @Test
+    public void orderCancelAllTest() throws ApiException {
+        String symbol = null;
+        Object response = api.orderCancelAll(symbol);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Get my active order list.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void orderCancelV2Test() throws ApiException {
+        String orderId = null;
+        String symbol = null;
+        String orderLinkId = null;
+        Object response = api.orderCancelV2(orderId, symbol, orderLinkId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Get my active order list.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
     public void orderGetOrdersTest() throws ApiException {
         String orderId = null;
         String orderLinkId = null;
@@ -85,14 +119,77 @@ public class OrderApiTest {
         String symbol = null;
         String orderType = null;
         BigDecimal qty = null;
-        Double price = null;
         String timeInForce = null;
+        Double price = null;
         Double takeProfit = null;
         Double stopLoss = null;
         Boolean reduceOnly = null;
         Boolean closeOnTrigger = null;
         String orderLinkId = null;
-        Object response = api.orderNew(side, symbol, orderType, qty, price, timeInForce, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId);
+        Object response = api.orderNew(side, symbol, orderType, qty, timeInForce, price, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Place active order
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void orderNewV2Test() throws ApiException {
+        String side = null;
+        String symbol = null;
+        String orderType = null;
+        BigDecimal qty = null;
+        String timeInForce = null;
+        Double price = null;
+        Double takeProfit = null;
+        Double stopLoss = null;
+        Boolean reduceOnly = null;
+        Boolean closeOnTrigger = null;
+        String orderLinkId = null;
+        String trailingStop = null;
+        Object response = api.orderNewV2(side, symbol, orderType, qty, timeInForce, price, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId, trailingStop);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Get my active order list.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void orderQueryTest() throws ApiException {
+        String orderId = null;
+        String symbol = null;
+        Object response = api.orderQuery(orderId, symbol);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Replace active order. Only incomplete orders can be modified. 
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void orderReplaceTest() throws ApiException {
+        String orderId = null;
+        String symbol = null;
+        BigDecimal pRQty = null;
+        Double pRPrice = null;
+        Object response = api.orderReplace(orderId, symbol, pRQty, pRPrice);
 
         // TODO: test validations
     }

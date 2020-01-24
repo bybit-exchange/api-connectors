@@ -1,6 +1,6 @@
 /*
  * Bybit API
- * ## REST API for the Bybit Exchange. 
+ * ## REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]  
  *
  * OpenAPI spec version: 1.0.0
  * Contact: support@bybit.com
@@ -14,6 +14,7 @@
 package io.swagger.client.api;
 
 import io.swagger.client.ApiException;
+import java.math.BigDecimal;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -48,6 +49,59 @@ public class WalletApiTest {
         String page = null;
         String limit = null;
         Object response = api.walletGetRecords(startDate, endDate, currency, walletFundType, page, limit);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Get risk limit.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void walletGetRiskLimitTest() throws ApiException {
+        Object response = api.walletGetRiskLimit();
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Set risk limit
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void walletSetRiskLimitTest() throws ApiException {
+        String symbol = null;
+        BigDecimal riskId = null;
+        Object response = api.walletSetRiskLimit(symbol, riskId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Get wallet fund records
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void walletWithdrawTest() throws ApiException {
+        String startDate = null;
+        String endDate = null;
+        String coin = null;
+        String status = null;
+        String page = null;
+        String limit = null;
+        Object response = api.walletWithdraw(startDate, endDate, coin, status, page, limit);
 
         // TODO: test validations
     }
