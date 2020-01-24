@@ -3,7 +3,8 @@
     "info": {
         "title": "Bybit API",
         "termsOfService": "https://www.bybit.com/app/login",
-        "description": "## REST API for the Bybit Exchange.\n",
+        "description": "## REST API for the Bybit Exchange.\nBase URI: [https://api-testnet.bybit.com]\n\n",
+        ,
         "contact": {
             "email": "support@bybit.com"
         },
