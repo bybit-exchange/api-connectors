@@ -1,7 +1,7 @@
 =begin
 #Bybit API
 
-### REST API for the Bybit Exchange. 
+### REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]  
 
 OpenAPI spec version: 1.0.0
 Contact: support@bybit.com
@@ -44,6 +44,30 @@ describe 'OrderApi' do
     end
   end
 
+  # unit tests for order_cancel_all
+  # Get my active order list.
+  # @param symbol Contract type.
+  # @param [Hash] opts the optional parameters
+  # @return [Object]
+  describe 'order_cancel_all test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for order_cancel_v2
+  # Get my active order list.
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :order_id Order ID
+  # @option opts [String] :symbol Contract type.
+  # @option opts [String] :order_link_id Order link id.
+  # @return [Object]
+  describe 'order_cancel_v2 test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for order_get_orders
   # Get my active order list.
   # @param [Hash] opts the optional parameters
@@ -67,9 +91,9 @@ describe 'OrderApi' do
   # @param symbol Contract type.
   # @param order_type Active order type
   # @param qty 
-  # @param price Order price.
   # @param time_in_force Time in force
   # @param [Hash] opts the optional parameters
+  # @option opts [Float] :price Order price.
   # @option opts [Float] :take_profit take profit price
   # @option opts [Float] :stop_loss stop loss price
   # @option opts [BOOLEAN] :reduce_only reduce only
@@ -77,6 +101,54 @@ describe 'OrderApi' do
   # @option opts [String] :order_link_id TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.
   # @return [Object]
   describe 'order_new test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for order_new_v2
+  # Place active order
+  # @param side Side
+  # @param symbol Contract type.
+  # @param order_type Active order type
+  # @param qty 
+  # @param time_in_force Time in force
+  # @param [Hash] opts the optional parameters
+  # @option opts [Float] :price Order price.
+  # @option opts [Float] :take_profit take profit price
+  # @option opts [Float] :stop_loss stop loss price
+  # @option opts [BOOLEAN] :reduce_only reduce only
+  # @option opts [BOOLEAN] :close_on_trigger close on trigger
+  # @option opts [String] :order_link_id TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.
+  # @option opts [String] :trailing_stop Trailing stop.
+  # @return [Object]
+  describe 'order_new_v2 test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for order_query
+  # Get my active order list.
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :order_id Order ID
+  # @option opts [String] :symbol Contract type. Default BTCUSD
+  # @return [Object]
+  describe 'order_query test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for order_replace
+  # Replace active order. Only incomplete orders can be modified. 
+  # @param order_id Order ID.
+  # @param symbol Contract type.
+  # @param [Hash] opts the optional parameters
+  # @option opts [Float] :p_r_qty Order quantity.
+  # @option opts [Float] :p_r_price Order price.
+  # @return [Object]
+  describe 'order_replace test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

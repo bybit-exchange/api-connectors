@@ -1,6 +1,6 @@
 /*
  * Bybit API
- * ## REST API for the Bybit Exchange. 
+ * ## REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]  
  *
  * OpenAPI spec version: 1.0.0
  * Contact: support@bybit.com
@@ -57,7 +57,8 @@ public class MarketApiTest {
      */
     @Test
     public void marketSymbolInfoTest() throws ApiException {
-        Object response = api.marketSymbolInfo();
+        String symbol = null;
+        Object response = api.marketSymbolInfo(symbol);
 
         // TODO: test validations
     }

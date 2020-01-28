@@ -1,7 +1,7 @@
 =begin
 #Bybit API
 
-### REST API for the Bybit Exchange. 
+### REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]  
 
 OpenAPI spec version: 1.0.0
 Contact: support@bybit.com
@@ -18,7 +18,7 @@ describe SwaggerClient::Configuration do
   before(:each) do
     # uncomment below to setup host and base_path
     # require 'URI'
-    # uri = URI.parse("https://localhost")
+    # uri = URI.parse("https://api-testnet.bybit.com")
     # SwaggerClient.configure do |c|
     #   c.host = uri.host
     #   c.base_path = uri.path
@@ -28,14 +28,14 @@ describe SwaggerClient::Configuration do
   describe '#base_url' do
     it 'should have the default value' do
       # uncomment below to test default value of the base path
-      # expect(config.base_url).to eq("https://localhost")
+      # expect(config.base_url).to eq("https://api-testnet.bybit.com")
     end
 
     it 'should remove trailing slashes' do
       [nil, '', '/', '//'].each do |base_path|
         config.base_path = base_path
         # uncomment below to test trailing slashes
-        # expect(config.base_url).to eq("https://localhost")
+        # expect(config.base_url).to eq("https://api-testnet.bybit.com")
       end
     end
   end

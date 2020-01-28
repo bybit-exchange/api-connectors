@@ -1,7 +1,7 @@
 /* 
  * Bybit API
  *
- * ## REST API for the Bybit Exchange. 
+ * ## REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]  
  *
  * OpenAPI spec version: 1.0.0
  * Contact: support@bybit.com
@@ -77,6 +77,32 @@ namespace IO.Swagger.Test
         }
         
         /// <summary>
+        /// Test OrderCancelAll
+        /// </summary>
+        [Test]
+        public void OrderCancelAllTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string symbol = null;
+            //var response = instance.OrderCancelAll(symbol);
+            //Assert.IsInstanceOf<Object> (response, "response is Object");
+        }
+        
+        /// <summary>
+        /// Test OrderCancelV2
+        /// </summary>
+        [Test]
+        public void OrderCancelV2Test()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string orderId = null;
+            //string symbol = null;
+            //string orderLinkId = null;
+            //var response = instance.OrderCancelV2(orderId, symbol, orderLinkId);
+            //Assert.IsInstanceOf<Object> (response, "response is Object");
+        }
+        
+        /// <summary>
         /// Test OrderGetOrders
         /// </summary>
         [Test]
@@ -105,14 +131,65 @@ namespace IO.Swagger.Test
             //string symbol = null;
             //string orderType = null;
             //decimal? qty = null;
-            //double? price = null;
             //string timeInForce = null;
+            //double? price = null;
             //double? takeProfit = null;
             //double? stopLoss = null;
             //bool? reduceOnly = null;
             //bool? closeOnTrigger = null;
             //string orderLinkId = null;
-            //var response = instance.OrderNew(side, symbol, orderType, qty, price, timeInForce, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId);
+            //var response = instance.OrderNew(side, symbol, orderType, qty, timeInForce, price, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId);
+            //Assert.IsInstanceOf<Object> (response, "response is Object");
+        }
+        
+        /// <summary>
+        /// Test OrderNewV2
+        /// </summary>
+        [Test]
+        public void OrderNewV2Test()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string side = null;
+            //string symbol = null;
+            //string orderType = null;
+            //decimal? qty = null;
+            //string timeInForce = null;
+            //double? price = null;
+            //double? takeProfit = null;
+            //double? stopLoss = null;
+            //bool? reduceOnly = null;
+            //bool? closeOnTrigger = null;
+            //string orderLinkId = null;
+            //string trailingStop = null;
+            //var response = instance.OrderNewV2(side, symbol, orderType, qty, timeInForce, price, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId, trailingStop);
+            //Assert.IsInstanceOf<Object> (response, "response is Object");
+        }
+        
+        /// <summary>
+        /// Test OrderQuery
+        /// </summary>
+        [Test]
+        public void OrderQueryTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string orderId = null;
+            //string symbol = null;
+            //var response = instance.OrderQuery(orderId, symbol);
+            //Assert.IsInstanceOf<Object> (response, "response is Object");
+        }
+        
+        /// <summary>
+        /// Test OrderReplace
+        /// </summary>
+        [Test]
+        public void OrderReplaceTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string orderId = null;
+            //string symbol = null;
+            //decimal? pRQty = null;
+            //double? pRPrice = null;
+            //var response = instance.OrderReplace(orderId, symbol, pRQty, pRPrice);
             //Assert.IsInstanceOf<Object> (response, "response is Object");
         }
         

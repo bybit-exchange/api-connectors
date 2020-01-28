@@ -12,7 +12,7 @@
 /**
  * Bybit API
  *
- * ## REST API for the Bybit Exchange.
+ * ## REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]
  *
  * OpenAPI spec version: 1.0.0
  * Contact: support@bybit.com
@@ -82,6 +82,26 @@ class OrderApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test case for orderCancelAll
+     *
+     * Get my active order list..
+     *
+     */
+    public function testOrderCancelAll()
+    {
+    }
+
+    /**
+     * Test case for orderCancelV2
+     *
+     * Get my active order list..
+     *
+     */
+    public function testOrderCancelV2()
+    {
+    }
+
+    /**
      * Test case for orderGetOrders
      *
      * Get my active order list..
@@ -98,6 +118,36 @@ class OrderApiTest extends \PHPUnit_Framework_TestCase
      *
      */
     public function testOrderNew()
+    {
+    }
+
+    /**
+     * Test case for orderNewV2
+     *
+     * Place active order.
+     *
+     */
+    public function testOrderNewV2()
+    {
+    }
+
+    /**
+     * Test case for orderQuery
+     *
+     * Get my active order list..
+     *
+     */
+    public function testOrderQuery()
+    {
+    }
+
+    /**
+     * Test case for orderReplace
+     *
+     * Replace active order. Only incomplete orders can be modified..
+     *
+     */
+    public function testOrderReplace()
     {
     }
 }

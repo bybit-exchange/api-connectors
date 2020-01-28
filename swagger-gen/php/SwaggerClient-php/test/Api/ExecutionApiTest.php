@@ -12,7 +12,7 @@
 /**
  * Bybit API
  *
- * ## REST API for the Bybit Exchange.
+ * ## REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]
  *
  * OpenAPI spec version: 1.0.0
  * Contact: support@bybit.com
@@ -74,7 +74,7 @@ class ExecutionApiTest extends \PHPUnit_Framework_TestCase
     /**
      * Test case for executionGetTrades
      *
-     * Get the trade records of a order..
+     * Get user’s trade records..
      *
      */
     public function testExecutionGetTrades()

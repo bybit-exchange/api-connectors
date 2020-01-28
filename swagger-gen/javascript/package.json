@@ -1,7 +1,7 @@
 {
   "name": "bybit_api",
   "version": "1.0.0",
-  "description": "_REST_API_for_the_Bybit_Exchange_",
+  "description": "_REST_API_for_the_Bybit_Exchange_Base_URI__httpsapi_testnet_bybit_com",
   "license": "Unlicense",
   "main": "src/index.js",
   "scripts": {

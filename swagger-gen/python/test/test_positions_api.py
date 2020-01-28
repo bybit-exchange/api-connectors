@@ -3,7 +3,7 @@
 """
     Bybit API
 
-    ## REST API for the Bybit Exchange.   # noqa: E501
+    ## REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]    # noqa: E501
 
     OpenAPI spec version: 1.0.0
     Contact: support@bybit.com
@@ -38,6 +38,13 @@ class TestPositionsApi(unittest.TestCase):
 
     def test_positions_my_position(self):
         """Test case for positions_my_position
+
+        Get my position list.  # noqa: E501
+        """
+        pass
+
+    def test_positions_my_position_v2(self):
+        """Test case for positions_my_position_v2
 
         Get my position list.  # noqa: E501
         """

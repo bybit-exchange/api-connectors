@@ -1,7 +1,7 @@
 /* 
  * Bybit API
  *
- * ## REST API for the Bybit Exchange. 
+ * ## REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]  
  *
  * OpenAPI spec version: 1.0.0
  * Contact: support@bybit.com
@@ -82,7 +82,8 @@ namespace IO.Swagger.Test
         public void MarketSymbolInfoTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //var response = instance.MarketSymbolInfo();
+            //string symbol = null;
+            //var response = instance.MarketSymbolInfo(symbol);
             //Assert.IsInstanceOf<Object> (response, "response is Object");
         }
         

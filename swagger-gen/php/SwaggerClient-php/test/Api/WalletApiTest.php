@@ -12,7 +12,7 @@
 /**
  * Bybit API
  *
- * ## REST API for the Bybit Exchange.
+ * ## REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]
  *
  * OpenAPI spec version: 1.0.0
  * Contact: support@bybit.com
@@ -78,6 +78,36 @@ class WalletApiTest extends \PHPUnit_Framework_TestCase
      *
      */
     public function testWalletGetRecords()
+    {
+    }
+
+    /**
+     * Test case for walletGetRiskLimit
+     *
+     * Get risk limit..
+     *
+     */
+    public function testWalletGetRiskLimit()
+    {
+    }
+
+    /**
+     * Test case for walletSetRiskLimit
+     *
+     * Set risk limit.
+     *
+     */
+    public function testWalletSetRiskLimit()
+    {
+    }
+
+    /**
+     * Test case for walletWithdraw
+     *
+     * Get wallet fund records.
+     *
+     */
+    public function testWalletWithdraw()
     {
     }
 }

@@ -3,7 +3,7 @@
 """
     Bybit API
 
-    ## REST API for the Bybit Exchange.   # noqa: E501
+    ## REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]    # noqa: E501
 
     OpenAPI spec version: 1.0.0
     Contact: support@bybit.com
@@ -36,6 +36,20 @@ class TestOrderApi(unittest.TestCase):
         """
         pass
 
+    def test_order_cancel_all(self):
+        """Test case for order_cancel_all
+
+        Get my active order list.  # noqa: E501
+        """
+        pass
+
+    def test_order_cancel_v2(self):
+        """Test case for order_cancel_v2
+
+        Get my active order list.  # noqa: E501
+        """
+        pass
+
     def test_order_get_orders(self):
         """Test case for order_get_orders
 
@@ -47,6 +61,27 @@ class TestOrderApi(unittest.TestCase):
         """Test case for order_new
 
         Place active order  # noqa: E501
+        """
+        pass
+
+    def test_order_new_v2(self):
+        """Test case for order_new_v2
+
+        Place active order  # noqa: E501
+        """
+        pass
+
+    def test_order_query(self):
+        """Test case for order_query
+
+        Get my active order list.  # noqa: E501
+        """
+        pass
+
+    def test_order_replace(self):
+        """Test case for order_replace
+
+        Replace active order. Only incomplete orders can be modified.   # noqa: E501
         """
         pass
 

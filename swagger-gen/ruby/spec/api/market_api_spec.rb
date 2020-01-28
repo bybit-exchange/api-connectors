@@ -1,7 +1,7 @@
 =begin
 #Bybit API
 
-### REST API for the Bybit Exchange. 
+### REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]  
 
 OpenAPI spec version: 1.0.0
 Contact: support@bybit.com
@@ -46,6 +46,7 @@ describe 'MarketApi' do
   # unit tests for market_symbol_info
   # Get the latest information for symbol.
   # @param [Hash] opts the optional parameters
+  # @option opts [String] :symbol Contract type.
   # @return [Object]
   describe 'market_symbol_info test' do
     it 'should work' do

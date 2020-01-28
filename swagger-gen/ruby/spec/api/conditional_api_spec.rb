@@ -1,7 +1,7 @@
 =begin
 #Bybit API
 
-### REST API for the Bybit Exchange. 
+### REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]  
 
 OpenAPI spec version: 1.0.0
 Contact: support@bybit.com
@@ -43,6 +43,17 @@ describe 'ConditionalApi' do
     end
   end
 
+  # unit tests for conditional_cancel_all
+  # Cancel conditional order.
+  # @param symbol Contract type.
+  # @param [Hash] opts the optional parameters
+  # @return [Object]
+  describe 'conditional_cancel_all test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for conditional_get_orders
   # Get my conditional order list.
   # @param [Hash] opts the optional parameters
@@ -65,15 +76,31 @@ describe 'ConditionalApi' do
   # @param symbol Contract type.
   # @param order_type Conditional order type.
   # @param qty Order quantity.
-  # @param price Execution price for conditional order
   # @param base_price Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order..
   # @param stop_px Trigger price.
   # @param time_in_force Time in force.
   # @param [Hash] opts the optional parameters
+  # @option opts [Float] :price Execution price for conditional order
+  # @option opts [String] :trigger_by Trigger price type. Default LastPrice.
   # @option opts [BOOLEAN] :close_on_trigger close on trigger.
   # @option opts [String] :order_link_id Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique..
   # @return [Object]
   describe 'conditional_new test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for conditional_replace
+  # Replace conditional order. Only incomplete orders can be modified. 
+  # @param order_id Order ID.
+  # @param symbol Contract type.
+  # @param [Hash] opts the optional parameters
+  # @option opts [Float] :p_r_qty Order quantity.
+  # @option opts [Float] :p_r_price Order price.
+  # @option opts [Float] :p_r_trigger_price Trigger price.
+  # @return [Object]
+  describe 'conditional_replace test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

@@ -1,6 +1,6 @@
 /**
  * Bybit API
- * ## REST API for the Bybit Exchange. 
+ * ## REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]  
  *
  * OpenAPI spec version: 1.0.0
  * Contact: support@bybit.com
@@ -61,6 +61,26 @@
         done();
       });
     });
+    describe('orderCancelAll', function() {
+      it('should call orderCancelAll successfully', function(done) {
+        //uncomment below and update the code to test orderCancelAll
+        //instance.orderCancelAll(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
+    describe('orderCancelV2', function() {
+      it('should call orderCancelV2 successfully', function(done) {
+        //uncomment below and update the code to test orderCancelV2
+        //instance.orderCancelV2(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
     describe('orderGetOrders', function() {
       it('should call orderGetOrders successfully', function(done) {
         //uncomment below and update the code to test orderGetOrders
@@ -75,6 +95,36 @@
       it('should call orderNew successfully', function(done) {
         //uncomment below and update the code to test orderNew
         //instance.orderNew(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
+    describe('orderNewV2', function() {
+      it('should call orderNewV2 successfully', function(done) {
+        //uncomment below and update the code to test orderNewV2
+        //instance.orderNewV2(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
+    describe('orderQuery', function() {
+      it('should call orderQuery successfully', function(done) {
+        //uncomment below and update the code to test orderQuery
+        //instance.orderQuery(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
+    describe('orderReplace', function() {
+      it('should call orderReplace successfully', function(done) {
+        //uncomment below and update the code to test orderReplace
+        //instance.orderReplace(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});

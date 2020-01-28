@@ -1,7 +1,7 @@
 =begin
 #Bybit API
 
-### REST API for the Bybit Exchange. 
+### REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]  
 
 OpenAPI spec version: 1.0.0
 Contact: support@bybit.com
@@ -33,9 +33,13 @@ describe 'ExecutionApi' do
   end
 
   # unit tests for execution_get_trades
-  # Get the trade records of a order.
-  # @param order_id orderID.
+  # Get user’s trade records.
   # @param [Hash] opts the optional parameters
+  # @option opts [String] :order_id OrderID. If not provided, will return user’s trading records.
+  # @option opts [String] :symbol Contract type. If order_id not provided, symbol is required.
+  # @option opts [String] :start_time Start timestamp point for result.
+  # @option opts [String] :page Page. Default getting first page data.
+  # @option opts [String] :limit Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page.
   # @return [Object]
   describe 'execution_get_trades test' do
     it 'should work' do

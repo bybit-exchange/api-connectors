@@ -12,7 +12,7 @@
 /**
  * Bybit API
  *
- * ## REST API for the Bybit Exchange.
+ * ## REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]
  *
  * OpenAPI spec version: 1.0.0
  * Contact: support@bybit.com
@@ -82,6 +82,16 @@ class ConditionalApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test case for conditionalCancelAll
+     *
+     * Cancel conditional order..
+     *
+     */
+    public function testConditionalCancelAll()
+    {
+    }
+
+    /**
      * Test case for conditionalGetOrders
      *
      * Get my conditional order list..
@@ -98,6 +108,16 @@ class ConditionalApiTest extends \PHPUnit_Framework_TestCase
      *
      */
     public function testConditionalNew()
+    {
+    }
+
+    /**
+     * Test case for conditionalReplace
+     *
+     * Replace conditional order. Only incomplete orders can be modified..
+     *
+     */
+    public function testConditionalReplace()
     {
     }
 }

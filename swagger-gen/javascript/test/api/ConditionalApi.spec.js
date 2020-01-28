@@ -1,6 +1,6 @@
 /**
  * Bybit API
- * ## REST API for the Bybit Exchange. 
+ * ## REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]  
  *
  * OpenAPI spec version: 1.0.0
  * Contact: support@bybit.com
@@ -61,6 +61,16 @@
         done();
       });
     });
+    describe('conditionalCancelAll', function() {
+      it('should call conditionalCancelAll successfully', function(done) {
+        //uncomment below and update the code to test conditionalCancelAll
+        //instance.conditionalCancelAll(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
     describe('conditionalGetOrders', function() {
       it('should call conditionalGetOrders successfully', function(done) {
         //uncomment below and update the code to test conditionalGetOrders
@@ -75,6 +85,16 @@
       it('should call conditionalNew successfully', function(done) {
         //uncomment below and update the code to test conditionalNew
         //instance.conditionalNew(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
+    describe('conditionalReplace', function() {
+      it('should call conditionalReplace successfully', function(done) {
+        //uncomment below and update the code to test conditionalReplace
+        //instance.conditionalReplace(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});

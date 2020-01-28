@@ -2,7 +2,7 @@
 <!--
 Bybit API
 
-## REST API for the Bybit Exchange. 
+## REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]  
 
 OpenAPI spec version: 1.0.0
 Contact: support@bybit.com
@@ -81,7 +81,7 @@ Contact: support@bybit.com
   <Import Project="$(MsBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
       <ProjectReference Include="..\IO.Swagger\IO.Swagger.csproj">
-          <Project>{030F13E0-B2B1-4DC0-8351-A912D7F45733}</Project>
+          <Project>{44A97559-0AB3-4513-B21D-BA5C62E5AAD8}</Project>
           <Name>IO.Swagger</Name>
       </ProjectReference>
   </ItemGroup>

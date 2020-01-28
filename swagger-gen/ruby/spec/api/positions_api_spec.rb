@@ -1,7 +1,7 @@
 =begin
 #Bybit API
 
-### REST API for the Bybit Exchange. 
+### REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]  
 
 OpenAPI spec version: 1.0.0
 Contact: support@bybit.com
@@ -49,6 +49,17 @@ describe 'PositionsApi' do
   # @param [Hash] opts the optional parameters
   # @return [Object]
   describe 'positions_my_position test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for positions_my_position_v2
+  # Get my position list.
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :symbol Contract type which you want update its margin
+  # @return [Object]
+  describe 'positions_my_position_v2 test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

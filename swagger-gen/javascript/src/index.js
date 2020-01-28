@@ -1,6 +1,6 @@
 /**
  * Bybit API
- * ## REST API for the Bybit Exchange. 
+ * ## REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]  
  *
  * OpenAPI spec version: 1.0.0
  * Contact: support@bybit.com
@@ -26,7 +26,7 @@
   'use strict';
 
   /**
-   * _REST_API_for_the_Bybit_Exchange_.<br>
+   * _REST_API_for_the_Bybit_Exchange_Base_URI__httpsapi_testnet_bybit_com.<br>
    * The <code>index</code> module provides access to constructors for all the classes which comprise the public API.
    * <p>
    * An AMD (recommended!) or CommonJS application will generally do something equivalent to the following:

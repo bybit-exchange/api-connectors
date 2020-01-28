@@ -1,6 +1,6 @@
 /**
  * Bybit API
- * ## REST API for the Bybit Exchange. 
+ * ## REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]  
  *
  * OpenAPI spec version: 1.0.0
  * Contact: support@bybit.com
@@ -55,6 +55,36 @@
       it('should call walletGetRecords successfully', function(done) {
         //uncomment below and update the code to test walletGetRecords
         //instance.walletGetRecords(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
+    describe('walletGetRiskLimit', function() {
+      it('should call walletGetRiskLimit successfully', function(done) {
+        //uncomment below and update the code to test walletGetRiskLimit
+        //instance.walletGetRiskLimit(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
+    describe('walletSetRiskLimit', function() {
+      it('should call walletSetRiskLimit successfully', function(done) {
+        //uncomment below and update the code to test walletSetRiskLimit
+        //instance.walletSetRiskLimit(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
+    describe('walletWithdraw', function() {
+      it('should call walletWithdraw successfully', function(done) {
+        //uncomment below and update the code to test walletWithdraw
+        //instance.walletWithdraw(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});

@@ -3,7 +3,7 @@
 """
     Bybit API
 
-    ## REST API for the Bybit Exchange.   # noqa: E501
+    ## REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]    # noqa: E501
 
     OpenAPI spec version: 1.0.0
     Contact: support@bybit.com
@@ -32,7 +32,7 @@ class TestExecutionApi(unittest.TestCase):
     def test_execution_get_trades(self):
         """Test case for execution_get_trades
 
-        Get the trade records of a order.  # noqa: E501
+        Get user’s trade records.  # noqa: E501
         """
         pass
 

@@ -1,7 +1,7 @@
 /* 
  * Bybit API
  *
- * ## REST API for the Bybit Exchange. 
+ * ## REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]  
  *
  * OpenAPI spec version: 1.0.0
  * Contact: support@bybit.com
@@ -76,6 +76,18 @@ namespace IO.Swagger.Test
         }
         
         /// <summary>
+        /// Test ConditionalCancelAll
+        /// </summary>
+        [Test]
+        public void ConditionalCancelAllTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string symbol = null;
+            //var response = instance.ConditionalCancelAll(symbol);
+            //Assert.IsInstanceOf<Object> (response, "response is Object");
+        }
+        
+        /// <summary>
         /// Test ConditionalGetOrders
         /// </summary>
         [Test]
@@ -103,13 +115,30 @@ namespace IO.Swagger.Test
             //string symbol = null;
             //string orderType = null;
             //decimal? qty = null;
-            //double? price = null;
             //double? basePrice = null;
             //double? stopPx = null;
             //string timeInForce = null;
+            //double? price = null;
+            //string triggerBy = null;
             //bool? closeOnTrigger = null;
             //string orderLinkId = null;
-            //var response = instance.ConditionalNew(side, symbol, orderType, qty, price, basePrice, stopPx, timeInForce, closeOnTrigger, orderLinkId);
+            //var response = instance.ConditionalNew(side, symbol, orderType, qty, basePrice, stopPx, timeInForce, price, triggerBy, closeOnTrigger, orderLinkId);
+            //Assert.IsInstanceOf<Object> (response, "response is Object");
+        }
+        
+        /// <summary>
+        /// Test ConditionalReplace
+        /// </summary>
+        [Test]
+        public void ConditionalReplaceTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string orderId = null;
+            //string symbol = null;
+            //decimal? pRQty = null;
+            //double? pRPrice = null;
+            //double? pRTriggerPrice = null;
+            //var response = instance.ConditionalReplace(orderId, symbol, pRQty, pRPrice, pRTriggerPrice);
             //Assert.IsInstanceOf<Object> (response, "response is Object");
         }
         

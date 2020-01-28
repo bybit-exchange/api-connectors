@@ -3,7 +3,7 @@
 =begin
 #Bybit API
 
-### REST API for the Bybit Exchange. 
+### REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]  
 
 OpenAPI spec version: 1.0.0
 Contact: support@bybit.com
@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.email       = ["support@bybit.com"]
   s.homepage    = "https://github.com/swagger-api/swagger-codegen"
   s.summary     = "Bybit API Ruby Gem"
-  s.description = "## REST API for the Bybit Exchange. "
+  s.description = "## REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]  "
   s.license     = "Unlicense"
   s.required_ruby_version = ">= 1.9"
 

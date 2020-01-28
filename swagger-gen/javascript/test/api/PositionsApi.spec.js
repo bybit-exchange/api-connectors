@@ -1,6 +1,6 @@
 /**
  * Bybit API
- * ## REST API for the Bybit Exchange. 
+ * ## REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]  
  *
  * OpenAPI spec version: 1.0.0
  * Contact: support@bybit.com
@@ -65,6 +65,16 @@
       it('should call positionsMyPosition successfully', function(done) {
         //uncomment below and update the code to test positionsMyPosition
         //instance.positionsMyPosition(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
+    describe('positionsMyPositionV2', function() {
+      it('should call positionsMyPositionV2 successfully', function(done) {
+        //uncomment below and update the code to test positionsMyPositionV2
+        //instance.positionsMyPositionV2(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});

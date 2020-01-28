@@ -1,7 +1,7 @@
 =begin
 #Bybit API
 
-### REST API for the Bybit Exchange. 
+### REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]  
 
 OpenAPI spec version: 1.0.0
 Contact: support@bybit.com
@@ -43,6 +43,44 @@ describe 'WalletApi' do
   # @option opts [String] :limit Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page
   # @return [Object]
   describe 'wallet_get_records test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for wallet_get_risk_limit
+  # Get risk limit.
+  # @param [Hash] opts the optional parameters
+  # @return [Object]
+  describe 'wallet_get_risk_limit test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for wallet_set_risk_limit
+  # Set risk limit
+  # @param symbol Contract type.
+  # @param risk_id Risk ID. Can be found with the Get risk limit list endpoint.
+  # @param [Hash] opts the optional parameters
+  # @return [Object]
+  describe 'wallet_set_risk_limit test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for wallet_withdraw
+  # Get wallet fund records
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :start_date Start point for result
+  # @option opts [String] :end_date End point for result
+  # @option opts [String] :coin Currency
+  # @option opts [String] :status Withdraw status
+  # @option opts [String] :page Page. Default getting first page data
+  # @option opts [String] :limit Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page
+  # @return [Object]
+  describe 'wallet_withdraw test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

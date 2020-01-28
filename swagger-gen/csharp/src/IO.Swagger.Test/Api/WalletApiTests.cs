@@ -1,7 +1,7 @@
 /* 
  * Bybit API
  *
- * ## REST API for the Bybit Exchange. 
+ * ## REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]  
  *
  * OpenAPI spec version: 1.0.0
  * Contact: support@bybit.com
@@ -77,6 +77,47 @@ namespace IO.Swagger.Test
             //string page = null;
             //string limit = null;
             //var response = instance.WalletGetRecords(startDate, endDate, currency, walletFundType, page, limit);
+            //Assert.IsInstanceOf<Object> (response, "response is Object");
+        }
+        
+        /// <summary>
+        /// Test WalletGetRiskLimit
+        /// </summary>
+        [Test]
+        public void WalletGetRiskLimitTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //var response = instance.WalletGetRiskLimit();
+            //Assert.IsInstanceOf<Object> (response, "response is Object");
+        }
+        
+        /// <summary>
+        /// Test WalletSetRiskLimit
+        /// </summary>
+        [Test]
+        public void WalletSetRiskLimitTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string symbol = null;
+            //decimal? riskId = null;
+            //var response = instance.WalletSetRiskLimit(symbol, riskId);
+            //Assert.IsInstanceOf<Object> (response, "response is Object");
+        }
+        
+        /// <summary>
+        /// Test WalletWithdraw
+        /// </summary>
+        [Test]
+        public void WalletWithdrawTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string startDate = null;
+            //string endDate = null;
+            //string coin = null;
+            //string status = null;
+            //string page = null;
+            //string limit = null;
+            //var response = instance.WalletWithdraw(startDate, endDate, coin, status, page, limit);
             //Assert.IsInstanceOf<Object> (response, "response is Object");
         }
         

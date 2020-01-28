@@ -3,7 +3,7 @@
 """
     Bybit API
 
-    ## REST API for the Bybit Exchange.   # noqa: E501
+    ## REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]    # noqa: E501
 
     OpenAPI spec version: 1.0.0
     Contact: support@bybit.com
@@ -36,6 +36,13 @@ class TestConditionalApi(unittest.TestCase):
         """
         pass
 
+    def test_conditional_cancel_all(self):
+        """Test case for conditional_cancel_all
+
+        Cancel conditional order.  # noqa: E501
+        """
+        pass
+
     def test_conditional_get_orders(self):
         """Test case for conditional_get_orders
 
@@ -47,6 +54,13 @@ class TestConditionalApi(unittest.TestCase):
         """Test case for conditional_new
 
         Place a new conditional order.  # noqa: E501
+        """
+        pass
+
+    def test_conditional_replace(self):
+        """Test case for conditional_replace
+
+        Replace conditional order. Only incomplete orders can be modified.   # noqa: E501
         """
         pass
 

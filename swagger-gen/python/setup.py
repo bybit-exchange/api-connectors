@@ -3,7 +3,7 @@
 """
     Bybit API
 
-    ## REST API for the Bybit Exchange.   # noqa: E501
+    ## REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]    # noqa: E501
 
     OpenAPI spec version: 1.0.0
     Contact: support@bybit.com
@@ -41,6 +41,6 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     long_description="""\
-    ## REST API for the Bybit Exchange.   # noqa: E501
+    ## REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]    # noqa: E501
     """
 )

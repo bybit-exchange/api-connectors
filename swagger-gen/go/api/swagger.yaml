@@ -1,7 +1,8 @@
 ---
 swagger: "2.0"
 info:
-  description: "## REST API for the Bybit Exchange.\n"
+  description: "## REST API for the Bybit Exchange.\nBase URI: [https://api-testnet.bybit.com]\n\
+    \n"
   version: "1.0.0"
   title: "Bybit API"
   termsOfService: "https://www.bybit.com/app/login"

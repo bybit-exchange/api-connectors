@@ -12,7 +12,7 @@
 /**
  * Bybit API
  *
- * ## REST API for the Bybit Exchange.
+ * ## REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]
  *
  * OpenAPI spec version: 1.0.0
  * Contact: support@bybit.com
@@ -88,6 +88,16 @@ class PositionsApiTest extends \PHPUnit_Framework_TestCase
      *
      */
     public function testPositionsMyPosition()
+    {
+    }
+
+    /**
+     * Test case for positionsMyPositionV2
+     *
+     * Get my position list..
+     *
+     */
+    public function testPositionsMyPositionV2()
     {
     }
 
