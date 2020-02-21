@@ -1,7 +1,14 @@
 # api-connectors
-Libraries for connecting to the Bybit API. https://github.com/bybit-exchange/bybit-official-api-docs
+Libraries for connecting to the Bybit API. https://bybit-exchange.github.io/docs/inverse
 
 # Official Examples
+
+### Encryption
+* [Cpp](/encryption_example/Encryption.cpp)
+* [C#](/encryption_example/Encryption.cs)
+* [Go](/encryption_example/Encryption.go)
+* [PHP](/encryption_example/Encryption.php)
+* [Python](/encryption_example/Encryption.py)
 
 #### HTTP
 
