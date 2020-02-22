@@ -1,4 +1,3 @@
-const request = require('request');
 const crypto = require('crypto');
 
 var apiKey = "";
