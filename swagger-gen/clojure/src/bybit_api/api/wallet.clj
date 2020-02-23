@@ -2,6 +2,25 @@
   (:require [bybit-api.core :refer [call-api check-required-params with-collection-format]])
   (:import (java.io File)))
 
+(defn wallet-get-balance-with-http-info
+  "get wallet balance info"
+  ([] (wallet-get-balance-with-http-info nil))
+  ([{:keys [coin ]}]
+   (call-api "/v2/private/wallet/balance" :get
+             {:path-params   {}
+              :header-params {}
+              :query-params  {"coin" coin }
+              :form-params   {}
+              :content-types ["application/json" "application/x-www-form-urlencoded"]
+              :accepts       ["application/json"]
+              :auth-names    ["apiKey" "apiSignature" "timestamp"]})))
+
+(defn wallet-get-balance
+  "get wallet balance info"
+  ([] (wallet-get-balance nil))
+  ([optional-params]
+   (:data (wallet-get-balance-with-http-info optional-params))))
+
 (defn wallet-get-records-with-http-info
   "Get wallet fund records"
   ([] (wallet-get-records-with-http-info nil))

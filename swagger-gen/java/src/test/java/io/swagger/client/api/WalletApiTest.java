@@ -33,6 +33,22 @@ public class WalletApiTest {
 
     
     /**
+     * get wallet balance info
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void walletGetBalanceTest() throws ApiException {
+        String coin = null;
+        Object response = api.walletGetBalance(coin);
+
+        // TODO: test validations
+    }
+    
+    /**
      * Get wallet fund records
      *
      * 

@@ -40,6 +40,16 @@ public:
     WalletApi( std::shared_ptr<ApiClient> apiClient );
     virtual ~WalletApi();
     /// <summary>
+    /// get wallet balance info
+    /// </summary>
+    /// <remarks>
+    /// 
+    /// </remarks>
+    /// <param name="coin">Coin.enum {BTC,EOS,XRP,ETH,USDT} (optional)</param>
+    pplx::task<std::shared_ptr<Object>> wallet_getBalance(
+        boost::optional<utility::string_t> coin
+    );
+    /// <summary>
     /// Get wallet fund records
     /// </summary>
     /// <remarks>

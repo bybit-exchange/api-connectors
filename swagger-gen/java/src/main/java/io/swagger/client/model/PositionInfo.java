@@ -29,7 +29,7 @@ import java.math.BigDecimal;
  * PositionInfo.
  */
 @ApiModel(description = "PositionInfo.")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-23T14:32:26.035+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-23T16:28:10.586+08:00")
 public class PositionInfo {
   @SerializedName("id")
   private BigDecimal id = null;
@@ -81,9 +81,6 @@ public class PositionInfo {
 
   @SerializedName("stop_loss")
   private BigDecimal stopLoss = null;
-
-  @SerializedName("trailing_stop")
-  private BigDecimal trailingStop = null;
 
   @SerializedName("position_status")
   private String positionStatus = null;
@@ -430,24 +427,6 @@ public class PositionInfo {
     this.stopLoss = stopLoss;
   }
 
-  public PositionInfo trailingStop(BigDecimal trailingStop) {
-    this.trailingStop = trailingStop;
-    return this;
-  }
-
-   /**
-   * Get trailingStop
-   * @return trailingStop
-  **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getTrailingStop() {
-    return trailingStop;
-  }
-
-  public void setTrailingStop(BigDecimal trailingStop) {
-    this.trailingStop = trailingStop;
-  }
-
   public PositionInfo positionStatus(String positionStatus) {
     this.positionStatus = positionStatus;
     return this;
@@ -709,7 +688,6 @@ public class PositionInfo {
         Objects.equals(this.occFundingFee, positionInfo.occFundingFee) &&
         Objects.equals(this.takeProfit, positionInfo.takeProfit) &&
         Objects.equals(this.stopLoss, positionInfo.stopLoss) &&
-        Objects.equals(this.trailingStop, positionInfo.trailingStop) &&
         Objects.equals(this.positionStatus, positionInfo.positionStatus) &&
         Objects.equals(this.deleverageIndicator, positionInfo.deleverageIndicator) &&
         Objects.equals(this.ocCalcData, positionInfo.ocCalcData) &&
@@ -727,7 +705,7 @@ public class PositionInfo {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, userId, riskId, symbol, side, size, positionValue, entryPrice, leverage, autoAddMargin, positionMargin, liqPrice, bustPrice, occClosingFee, occFundingFee, takeProfit, stopLoss, trailingStop, positionStatus, deleverageIndicator, ocCalcData, orderMargin, walletBalance, unrealisedPnl, realisedPnl, cumRealisedPnl, cumCommission, crossSeq, positionSeq, createdAt, updatedAt);
+    return Objects.hash(id, userId, riskId, symbol, side, size, positionValue, entryPrice, leverage, autoAddMargin, positionMargin, liqPrice, bustPrice, occClosingFee, occFundingFee, takeProfit, stopLoss, positionStatus, deleverageIndicator, ocCalcData, orderMargin, walletBalance, unrealisedPnl, realisedPnl, cumRealisedPnl, cumCommission, crossSeq, positionSeq, createdAt, updatedAt);
   }
 
 
@@ -753,7 +731,6 @@ public class PositionInfo {
     sb.append("    occFundingFee: ").append(toIndentedString(occFundingFee)).append("\n");
     sb.append("    takeProfit: ").append(toIndentedString(takeProfit)).append("\n");
     sb.append("    stopLoss: ").append(toIndentedString(stopLoss)).append("\n");
-    sb.append("    trailingStop: ").append(toIndentedString(trailingStop)).append("\n");
     sb.append("    positionStatus: ").append(toIndentedString(positionStatus)).append("\n");
     sb.append("    deleverageIndicator: ").append(toIndentedString(deleverageIndicator)).append("\n");
     sb.append("    ocCalcData: ").append(toIndentedString(ocCalcData)).append("\n");

@@ -95,6 +95,8 @@ Import the following:
 #import <SwaggerClient/SWGTradeRecordsInfo.h>
 #import <SwaggerClient/SWGTradingStopBase.h>
 #import <SwaggerClient/SWGTradingStopRes.h>
+#import <SwaggerClient/SWGWithdrawBalance.h>
+#import <SwaggerClient/SWGWithdrawBalanceBase.h>
 #import <SwaggerClient/SWGWithdrawRecords.h>
 #import <SwaggerClient/SWGWithdrawResBase.h>
 // load API classes for accessing endpoints
@@ -191,6 +193,7 @@ Class | Method | HTTP request | Description
 *SWGPositionsApi* | [**positionsTradingStop**](docs/SWGPositionsApi.md#positionstradingstop) | **POST** /open-api/position/trading-stop | Set Trading-Stop Condition.
 *SWGPositionsApi* | [**positionsUserLeverage**](docs/SWGPositionsApi.md#positionsuserleverage) | **GET** /user/leverage | Get user leverage setting.
 *SWGSymbolApi* | [**symbolGet**](docs/SWGSymbolApi.md#symbolget) | **GET** /v2/public/symbols | Query Symbols.
+*SWGWalletApi* | [**walletGetBalance**](docs/SWGWalletApi.md#walletgetbalance) | **GET** /v2/private/wallet/balance | get wallet balance info
 *SWGWalletApi* | [**walletGetRecords**](docs/SWGWalletApi.md#walletgetrecords) | **GET** /open-api/wallet/fund/records | Get wallet fund records
 *SWGWalletApi* | [**walletGetRiskLimit**](docs/SWGWalletApi.md#walletgetrisklimit) | **GET** /open-api/wallet/risk-limit/list | Get risk limit.
 *SWGWalletApi* | [**walletSetRiskLimit**](docs/SWGWalletApi.md#walletsetrisklimit) | **POST** /open-api/wallet/risk-limit | Set risk limit
@@ -253,6 +256,8 @@ Class | Method | HTTP request | Description
  - [SWGTradeRecordsInfo](docs/SWGTradeRecordsInfo.md)
  - [SWGTradingStopBase](docs/SWGTradingStopBase.md)
  - [SWGTradingStopRes](docs/SWGTradingStopRes.md)
+ - [SWGWithdrawBalance](docs/SWGWithdrawBalance.md)
+ - [SWGWithdrawBalanceBase](docs/SWGWithdrawBalanceBase.md)
  - [SWGWithdrawRecords](docs/SWGWithdrawRecords.md)
  - [SWGWithdrawResBase](docs/SWGWithdrawResBase.md)
 

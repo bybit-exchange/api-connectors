@@ -20,7 +20,6 @@ Name | Type | Description | Notes
 **occFundingFee** | **NSNumber*** |  | [optional] 
 **takeProfit** | **NSNumber*** |  | [optional] 
 **stopLoss** | **NSNumber*** |  | [optional] 
-**trailingStop** | **NSNumber*** |  | [optional] 
 **positionStatus** | **NSString*** |  | [optional] 
 **deleverageIndicator** | **NSNumber*** |  | [optional] 
 **ocCalcData** | **NSString*** |  | [optional] 

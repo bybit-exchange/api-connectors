@@ -12,6 +12,52 @@ import Alamofire
 
 open class WalletAPI {
     /**
+     get wallet balance info
+     
+     - parameter coin: (query) Coin.enum {BTC,EOS,XRP,ETH,USDT} (optional)
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func walletGetBalance(coin: String? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
+        walletGetBalanceWithRequestBuilder(coin: coin).execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     get wallet balance info
+     - GET /v2/private/wallet/balance
+     - API Key:
+       - type: apiKey api_key (QUERY)
+       - name: apiKey
+     - API Key:
+       - type: apiKey sign (QUERY)
+       - name: apiSignature
+     - API Key:
+       - type: apiKey timestamp (QUERY)
+       - name: timestamp
+     - examples: [{contentType=application/json, example=""}]
+     
+     - parameter coin: (query) Coin.enum {BTC,EOS,XRP,ETH,USDT} (optional)
+
+     - returns: RequestBuilder<Any> 
+     */
+    open class func walletGetBalanceWithRequestBuilder(coin: String? = nil) -> RequestBuilder<Any> {
+        let path = "/v2/private/wallet/balance"
+        let URLString = SwaggerClientAPI.basePath + path
+        let parameters: [String:Any]? = nil
+        
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "coin": coin
+        ])
+
+        let requestBuilder: RequestBuilder<Any>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+    }
+
+    /**
      Get wallet fund records
      
      - parameter startDate: (query) Start point for result (optional)

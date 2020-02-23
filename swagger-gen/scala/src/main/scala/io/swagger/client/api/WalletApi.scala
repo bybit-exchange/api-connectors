@@ -80,6 +80,32 @@ class WalletApi(
   val helper = new WalletApiAsyncHelper(client, config)
 
   /**
+   * get wallet balance info
+   * 
+   *
+   * @param coin Coin.enum {BTC,EOS,XRP,ETH,USDT} (optional)
+   * @return Any
+   */
+  def walletGetBalance(coin: Option[String] = None): Option[Any] = {
+    val await = Try(Await.result(walletGetBalanceAsync(coin), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
+    }
+  }
+
+  /**
+   * get wallet balance info asynchronously
+   * 
+   *
+   * @param coin Coin.enum {BTC,EOS,XRP,ETH,USDT} (optional)
+   * @return Future(Any)
+   */
+  def walletGetBalanceAsync(coin: Option[String] = None): Future[Any] = {
+      helper.walletGetBalance(coin)
+  }
+
+  /**
    * Get wallet fund records
    * 
    *
@@ -206,6 +232,26 @@ class WalletApi(
 }
 
 class WalletApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
+
+  def walletGetBalance(coin: Option[String] = None
+    )(implicit reader: ClientResponseReader[Any]): Future[Any] = {
+    // create path and map variables
+    val path = (addFmt("/v2/private/wallet/balance"))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    coin match {
+      case Some(param) => queryParams += "coin" -> param.toString
+      case _ => queryParams
+    }
+
+    val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
 
   def walletGetRecords(startDate: Option[String] = None,
     endDate: Option[String] = None,

@@ -163,6 +163,7 @@ Class | Method | HTTP request | Description
 *BybitApi.PositionsApi* | [**positionsTradingStop**](docs/PositionsApi.md#positionsTradingStop) | **POST** /open-api/position/trading-stop | Set Trading-Stop Condition.
 *BybitApi.PositionsApi* | [**positionsUserLeverage**](docs/PositionsApi.md#positionsUserLeverage) | **GET** /user/leverage | Get user leverage setting.
 *BybitApi.SymbolApi* | [**symbolGet**](docs/SymbolApi.md#symbolGet) | **GET** /v2/public/symbols | Query Symbols.
+*BybitApi.WalletApi* | [**walletGetBalance**](docs/WalletApi.md#walletGetBalance) | **GET** /v2/private/wallet/balance | get wallet balance info
 *BybitApi.WalletApi* | [**walletGetRecords**](docs/WalletApi.md#walletGetRecords) | **GET** /open-api/wallet/fund/records | Get wallet fund records
 *BybitApi.WalletApi* | [**walletGetRiskLimit**](docs/WalletApi.md#walletGetRiskLimit) | **GET** /open-api/wallet/risk-limit/list | Get risk limit.
 *BybitApi.WalletApi* | [**walletSetRiskLimit**](docs/WalletApi.md#walletSetRiskLimit) | **POST** /open-api/wallet/risk-limit | Set risk limit
@@ -225,6 +226,8 @@ Class | Method | HTTP request | Description
  - [BybitApi.TradeRecordsInfo](docs/TradeRecordsInfo.md)
  - [BybitApi.TradingStopBase](docs/TradingStopBase.md)
  - [BybitApi.TradingStopRes](docs/TradingStopRes.md)
+ - [BybitApi.WithdrawBalance](docs/WithdrawBalance.md)
+ - [BybitApi.WithdrawBalanceBase](docs/WithdrawBalanceBase.md)
  - [BybitApi.WithdrawRecords](docs/WithdrawRecords.md)
  - [BybitApi.WithdrawResBase](docs/WithdrawResBase.md)
 

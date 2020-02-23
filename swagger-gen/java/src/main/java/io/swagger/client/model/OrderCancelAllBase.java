@@ -29,7 +29,7 @@ import java.math.BigDecimal;
  * Cancel all active orders response
  */
 @ApiModel(description = "Cancel all active orders response")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-23T14:32:26.035+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-23T16:28:10.586+08:00")
 public class OrderCancelAllBase {
   @SerializedName("ret_code")
   private BigDecimal retCode = null;

@@ -29,7 +29,7 @@ import java.math.BigDecimal;
  * Query real-time active order information response
  */
 @ApiModel(description = "Query real-time active order information response")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-23T14:32:26.035+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-23T16:28:10.586+08:00")
 public class QueryOrderRes {
   @SerializedName("order_id")
   private String orderId = null;

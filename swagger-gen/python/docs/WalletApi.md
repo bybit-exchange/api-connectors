@@ -4,11 +4,74 @@ All URIs are relative to *https://api-testnet.bybit.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**wallet_get_balance**](WalletApi.md#wallet_get_balance) | **GET** /v2/private/wallet/balance | get wallet balance info
 [**wallet_get_records**](WalletApi.md#wallet_get_records) | **GET** /open-api/wallet/fund/records | Get wallet fund records
 [**wallet_get_risk_limit**](WalletApi.md#wallet_get_risk_limit) | **GET** /open-api/wallet/risk-limit/list | Get risk limit.
 [**wallet_set_risk_limit**](WalletApi.md#wallet_set_risk_limit) | **POST** /open-api/wallet/risk-limit | Set risk limit
 [**wallet_withdraw**](WalletApi.md#wallet_withdraw) | **GET** /open-api/wallet/withdraw/list | Get wallet fund records
 
+
+# **wallet_get_balance**
+> object wallet_get_balance(coin=coin)
+
+get wallet balance info
+
+### Example
+```python
+from __future__ import print_function
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api_key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api_key'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['sign'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['sign'] = 'Bearer'
+# Configure API key authorization: timestamp
+configuration = swagger_client.Configuration()
+configuration.api_key['timestamp'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['timestamp'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = swagger_client.WalletApi(swagger_client.ApiClient(configuration))
+coin = 'coin_example' # str | Coin.enum {BTC,EOS,XRP,ETH,USDT} (optional)
+
+try:
+    # get wallet balance info
+    api_response = api_instance.wallet_get_balance(coin=coin)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling WalletApi->wallet_get_balance: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **coin** | **str**| Coin.enum {BTC,EOS,XRP,ETH,USDT} | [optional] 
+
+### Return type
+
+**object**
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **wallet_get_records**
 > object wallet_get_records(start_date=start_date, end_date=end_date, currency=currency, wallet_fund_type=wallet_fund_type, page=page, limit=limit)

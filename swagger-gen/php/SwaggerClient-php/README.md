@@ -121,6 +121,7 @@ Class | Method | HTTP request | Description
 *PositionsApi* | [**positionsTradingStop**](docs/Api/PositionsApi.md#positionstradingstop) | **POST** /open-api/position/trading-stop | Set Trading-Stop Condition.
 *PositionsApi* | [**positionsUserLeverage**](docs/Api/PositionsApi.md#positionsuserleverage) | **GET** /user/leverage | Get user leverage setting.
 *SymbolApi* | [**symbolGet**](docs/Api/SymbolApi.md#symbolget) | **GET** /v2/public/symbols | Query Symbols.
+*WalletApi* | [**walletGetBalance**](docs/Api/WalletApi.md#walletgetbalance) | **GET** /v2/private/wallet/balance | get wallet balance info
 *WalletApi* | [**walletGetRecords**](docs/Api/WalletApi.md#walletgetrecords) | **GET** /open-api/wallet/fund/records | Get wallet fund records
 *WalletApi* | [**walletGetRiskLimit**](docs/Api/WalletApi.md#walletgetrisklimit) | **GET** /open-api/wallet/risk-limit/list | Get risk limit.
 *WalletApi* | [**walletSetRiskLimit**](docs/Api/WalletApi.md#walletsetrisklimit) | **POST** /open-api/wallet/risk-limit | Set risk limit
@@ -183,6 +184,8 @@ Class | Method | HTTP request | Description
  - [TradeRecordsInfo](docs/Model/TradeRecordsInfo.md)
  - [TradingStopBase](docs/Model/TradingStopBase.md)
  - [TradingStopRes](docs/Model/TradingStopRes.md)
+ - [WithdrawBalance](docs/Model/WithdrawBalance.md)
+ - [WithdrawBalanceBase](docs/Model/WithdrawBalanceBase.md)
  - [WithdrawRecords](docs/Model/WithdrawRecords.md)
  - [WithdrawResBase](docs/Model/WithdrawResBase.md)
 

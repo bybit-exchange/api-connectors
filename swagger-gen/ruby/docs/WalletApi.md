@@ -4,10 +4,74 @@ All URIs are relative to *https://api-testnet.bybit.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**wallet_get_balance**](WalletApi.md#wallet_get_balance) | **GET** /v2/private/wallet/balance | get wallet balance info
 [**wallet_get_records**](WalletApi.md#wallet_get_records) | **GET** /open-api/wallet/fund/records | Get wallet fund records
 [**wallet_get_risk_limit**](WalletApi.md#wallet_get_risk_limit) | **GET** /open-api/wallet/risk-limit/list | Get risk limit.
 [**wallet_set_risk_limit**](WalletApi.md#wallet_set_risk_limit) | **POST** /open-api/wallet/risk-limit | Set risk limit
 [**wallet_withdraw**](WalletApi.md#wallet_withdraw) | **GET** /open-api/wallet/withdraw/list | Get wallet fund records
+
+
+# **wallet_get_balance**
+> Object wallet_get_balance(opts)
+
+get wallet balance info
+
+### Example
+```ruby
+# load the gem
+require 'swagger_client'
+# setup authorization
+SwaggerClient.configure do |config|
+  # Configure API key authorization: apiKey
+  config.api_key['api_key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api_key'] = 'Bearer'
+
+  # Configure API key authorization: apiSignature
+  config.api_key['sign'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['sign'] = 'Bearer'
+
+  # Configure API key authorization: timestamp
+  config.api_key['timestamp'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['timestamp'] = 'Bearer'
+end
+
+api_instance = SwaggerClient::WalletApi.new
+
+opts = { 
+  coin: 'coin_example' # String | Coin.enum {BTC,EOS,XRP,ETH,USDT}
+}
+
+begin
+  #get wallet balance info
+  result = api_instance.wallet_get_balance(opts)
+  p result
+rescue SwaggerClient::ApiError => e
+  puts "Exception when calling WalletApi->wallet_get_balance: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **coin** | **String**| Coin.enum {BTC,EOS,XRP,ETH,USDT} | [optional] 
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
 
 
 # **wallet_get_records**

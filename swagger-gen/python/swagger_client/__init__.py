@@ -86,5 +86,7 @@ from swagger_client.models.trade_records_base import TradeRecordsBase
 from swagger_client.models.trade_records_info import TradeRecordsInfo
 from swagger_client.models.trading_stop_base import TradingStopBase
 from swagger_client.models.trading_stop_res import TradingStopRes
+from swagger_client.models.withdraw_balance import WithdrawBalance
+from swagger_client.models.withdraw_balance_base import WithdrawBalanceBase
 from swagger_client.models.withdraw_records import WithdrawRecords
 from swagger_client.models.withdraw_res_base import WithdrawResBase

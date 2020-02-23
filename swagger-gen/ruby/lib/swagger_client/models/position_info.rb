@@ -49,8 +49,6 @@ module SwaggerClient
 
     attr_accessor :stop_loss
 
-    attr_accessor :trailing_stop
-
     attr_accessor :position_status
 
     attr_accessor :deleverage_indicator
@@ -97,7 +95,6 @@ module SwaggerClient
         :'occ_funding_fee' => :'occ_funding_fee',
         :'take_profit' => :'take_profit',
         :'stop_loss' => :'stop_loss',
-        :'trailing_stop' => :'trailing_stop',
         :'position_status' => :'position_status',
         :'deleverage_indicator' => :'deleverage_indicator',
         :'oc_calc_data' => :'oc_calc_data',
@@ -134,7 +131,6 @@ module SwaggerClient
         :'occ_funding_fee' => :'Float',
         :'take_profit' => :'Float',
         :'stop_loss' => :'Float',
-        :'trailing_stop' => :'Float',
         :'position_status' => :'String',
         :'deleverage_indicator' => :'String',
         :'oc_calc_data' => :'String',
@@ -227,10 +223,6 @@ module SwaggerClient
         self.stop_loss = attributes[:'stop_loss']
       end
 
-      if attributes.has_key?(:'trailing_stop')
-        self.trailing_stop = attributes[:'trailing_stop']
-      end
-
       if attributes.has_key?(:'position_status')
         self.position_status = attributes[:'position_status']
       end
@@ -319,7 +311,6 @@ module SwaggerClient
           occ_funding_fee == o.occ_funding_fee &&
           take_profit == o.take_profit &&
           stop_loss == o.stop_loss &&
-          trailing_stop == o.trailing_stop &&
           position_status == o.position_status &&
           deleverage_indicator == o.deleverage_indicator &&
           oc_calc_data == o.oc_calc_data &&
@@ -344,7 +335,7 @@ module SwaggerClient
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, user_id, risk_id, symbol, side, size, position_value, entry_price, leverage, auto_add_margin, position_margin, liq_price, bust_price, occ_closing_fee, occ_funding_fee, take_profit, stop_loss, trailing_stop, position_status, deleverage_indicator, oc_calc_data, order_margin, wallet_balance, unrealised_pnl, realised_pnl, cum_realised_pnl, cum_commission, cross_seq, position_seq, created_at, updated_at].hash
+      [id, user_id, risk_id, symbol, side, size, position_value, entry_price, leverage, auto_add_margin, position_margin, liq_price, bust_price, occ_closing_fee, occ_funding_fee, take_profit, stop_loss, position_status, deleverage_indicator, oc_calc_data, order_margin, wallet_balance, unrealised_pnl, realised_pnl, cum_realised_pnl, cum_commission, cross_seq, position_seq, created_at, updated_at].hash
     end
 
     # Builds the object from hash

@@ -49,6 +49,50 @@
 
 
     /**
+     * Callback function to receive the result of the walletGetBalance operation.
+     * @callback module:api/WalletApi~walletGetBalanceCallback
+     * @param {String} error Error message, if any.
+     * @param {Object} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * get wallet balance info
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.coin Coin.enum {BTC,EOS,XRP,ETH,USDT}
+     * @param {module:api/WalletApi~walletGetBalanceCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link Object}
+     */
+    this.walletGetBalance = function(opts, callback) {
+      opts = opts || {};
+      var postBody = null;
+
+
+      var pathParams = {
+      };
+      var queryParams = {
+        'coin': opts['coin'],
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = ['apiKey', 'apiSignature', 'timestamp'];
+      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      var accepts = ['application/json'];
+      var returnType = Object;
+
+      return this.apiClient.callApi(
+        '/v2/private/wallet/balance', 'GET',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
      * Callback function to receive the result of the walletGetRecords operation.
      * @callback module:api/WalletApi~walletGetRecordsCallback
      * @param {String} error Error message, if any.

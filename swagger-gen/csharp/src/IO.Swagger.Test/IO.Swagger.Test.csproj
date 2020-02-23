@@ -81,7 +81,7 @@ Contact: support@bybit.com
   <Import Project="$(MsBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
       <ProjectReference Include="..\IO.Swagger\IO.Swagger.csproj">
-          <Project>{5966F943-3D9F-4679-BCA3-FACCEAA21A74}</Project>
+          <Project>{0B0EE4B5-8CA1-48F9-A3EB-B29F227DD935}</Project>
           <Name>IO.Swagger</Name>
       </ProjectReference>
   </ItemGroup>

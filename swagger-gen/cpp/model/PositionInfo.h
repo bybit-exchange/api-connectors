@@ -175,13 +175,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getTrailingStop() const;
-    bool trailingStopIsSet() const;
-    void unsetTrailing_stop();
-    void setTrailingStop(double value);
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getPositionStatus() const;
     bool positionStatusIsSet() const;
     void unsetPosition_status();
@@ -306,8 +299,6 @@ protected:
     bool m_Take_profitIsSet;
     double m_Stop_loss;
     bool m_Stop_lossIsSet;
-    double m_Trailing_stop;
-    bool m_Trailing_stopIsSet;
     utility::string_t m_Position_status;
     bool m_Position_statusIsSet;
     utility::string_t m_Deleverage_indicator;

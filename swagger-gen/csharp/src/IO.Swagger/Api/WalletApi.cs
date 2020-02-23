@@ -24,6 +24,27 @@ namespace IO.Swagger.Api
     {
         #region Synchronous Operations
         /// <summary>
+        /// get wallet balance info
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="coin">Coin.enum {BTC,EOS,XRP,ETH,USDT} (optional)</param>
+        /// <returns>Object</returns>
+        Object WalletGetBalance (string coin = null);
+
+        /// <summary>
+        /// get wallet balance info
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="coin">Coin.enum {BTC,EOS,XRP,ETH,USDT} (optional)</param>
+        /// <returns>ApiResponse of Object</returns>
+        ApiResponse<Object> WalletGetBalanceWithHttpInfo (string coin = null);
+        /// <summary>
         /// Get wallet fund records
         /// </summary>
         /// <remarks>
@@ -129,6 +150,27 @@ namespace IO.Swagger.Api
         ApiResponse<Object> WalletWithdrawWithHttpInfo (string startDate = null, string endDate = null, string coin = null, string status = null, string page = null, string limit = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
+        /// <summary>
+        /// get wallet balance info
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="coin">Coin.enum {BTC,EOS,XRP,ETH,USDT} (optional)</param>
+        /// <returns>Task of Object</returns>
+        System.Threading.Tasks.Task<Object> WalletGetBalanceAsync (string coin = null);
+
+        /// <summary>
+        /// get wallet balance info
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="coin">Coin.enum {BTC,EOS,XRP,ETH,USDT} (optional)</param>
+        /// <returns>Task of ApiResponse (Object)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> WalletGetBalanceAsyncWithHttpInfo (string coin = null);
         /// <summary>
         /// Get wallet fund records
         /// </summary>
@@ -331,6 +373,167 @@ namespace IO.Swagger.Api
         public void AddDefaultHeader(string key, string value)
         {
             this.Configuration.AddDefaultHeader(key, value);
+        }
+
+        /// <summary>
+        /// get wallet balance info 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="coin">Coin.enum {BTC,EOS,XRP,ETH,USDT} (optional)</param>
+        /// <returns>Object</returns>
+        public Object WalletGetBalance (string coin = null)
+        {
+             ApiResponse<Object> localVarResponse = WalletGetBalanceWithHttpInfo(coin);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// get wallet balance info 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="coin">Coin.enum {BTC,EOS,XRP,ETH,USDT} (optional)</param>
+        /// <returns>ApiResponse of Object</returns>
+        public ApiResponse< Object > WalletGetBalanceWithHttpInfo (string coin = null)
+        {
+
+            var localVarPath = "/v2/private/wallet/balance";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (coin != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "coin", coin)); // query parameter
+
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api_key")))
+            {
+                localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "api_key", this.Configuration.GetApiKeyWithPrefix("api_key")));
+            }
+            // authentication (apiSignature) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("sign")))
+            {
+                localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "sign", this.Configuration.GetApiKeyWithPrefix("sign")));
+            }
+            // authentication (timestamp) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("timestamp")))
+            {
+                localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "timestamp", this.Configuration.GetApiKeyWithPrefix("timestamp")));
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("WalletGetBalance", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Object) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Object)));
+        }
+
+        /// <summary>
+        /// get wallet balance info 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="coin">Coin.enum {BTC,EOS,XRP,ETH,USDT} (optional)</param>
+        /// <returns>Task of Object</returns>
+        public async System.Threading.Tasks.Task<Object> WalletGetBalanceAsync (string coin = null)
+        {
+             ApiResponse<Object> localVarResponse = await WalletGetBalanceAsyncWithHttpInfo(coin);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// get wallet balance info 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="coin">Coin.enum {BTC,EOS,XRP,ETH,USDT} (optional)</param>
+        /// <returns>Task of ApiResponse (Object)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> WalletGetBalanceAsyncWithHttpInfo (string coin = null)
+        {
+
+            var localVarPath = "/v2/private/wallet/balance";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (coin != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "coin", coin)); // query parameter
+
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api_key")))
+            {
+                localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "api_key", this.Configuration.GetApiKeyWithPrefix("api_key")));
+            }
+            // authentication (apiSignature) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("sign")))
+            {
+                localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "sign", this.Configuration.GetApiKeyWithPrefix("sign")));
+            }
+            // authentication (timestamp) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("timestamp")))
+            {
+                localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "timestamp", this.Configuration.GetApiKeyWithPrefix("timestamp")));
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("WalletGetBalance", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Object) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Object)));
         }
 
         /// <summary>

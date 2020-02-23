@@ -203,14 +203,6 @@ namespace IO.Swagger.Test
             // TODO unit test for the property 'StopLoss'
         }
         /// <summary>
-        /// Test the property 'TrailingStop'
-        /// </summary>
-        [Test]
-        public void TrailingStopTest()
-        {
-            // TODO unit test for the property 'TrailingStop'
-        }
-        /// <summary>
         /// Test the property 'PositionStatus'
         /// </summary>
         [Test]

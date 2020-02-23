@@ -75,7 +75,6 @@ class TradingStopRes implements ModelInterface, ArrayAccess
         'occ_funding_fee' => 'double',
         'take_profit' => 'double',
         'stop_loss' => 'double',
-        'trailing_stop' => 'double',
         'position_status' => 'string',
         'deleverage_indicator' => 'float',
         'oc_calc_data' => 'string',
@@ -113,7 +112,6 @@ class TradingStopRes implements ModelInterface, ArrayAccess
         'occ_funding_fee' => 'double',
         'take_profit' => 'double',
         'stop_loss' => 'double',
-        'trailing_stop' => 'double',
         'position_status' => null,
         'deleverage_indicator' => 'int32',
         'oc_calc_data' => null,
@@ -172,7 +170,6 @@ class TradingStopRes implements ModelInterface, ArrayAccess
         'occ_funding_fee' => 'occ_funding_fee',
         'take_profit' => 'take_profit',
         'stop_loss' => 'stop_loss',
-        'trailing_stop' => 'trailing_stop',
         'position_status' => 'position_status',
         'deleverage_indicator' => 'deleverage_indicator',
         'oc_calc_data' => 'oc_calc_data',
@@ -210,7 +207,6 @@ class TradingStopRes implements ModelInterface, ArrayAccess
         'occ_funding_fee' => 'setOccFundingFee',
         'take_profit' => 'setTakeProfit',
         'stop_loss' => 'setStopLoss',
-        'trailing_stop' => 'setTrailingStop',
         'position_status' => 'setPositionStatus',
         'deleverage_indicator' => 'setDeleverageIndicator',
         'oc_calc_data' => 'setOcCalcData',
@@ -248,7 +244,6 @@ class TradingStopRes implements ModelInterface, ArrayAccess
         'occ_funding_fee' => 'getOccFundingFee',
         'take_profit' => 'getTakeProfit',
         'stop_loss' => 'getStopLoss',
-        'trailing_stop' => 'getTrailingStop',
         'position_status' => 'getPositionStatus',
         'deleverage_indicator' => 'getDeleverageIndicator',
         'oc_calc_data' => 'getOcCalcData',
@@ -340,7 +335,6 @@ class TradingStopRes implements ModelInterface, ArrayAccess
         $this->container['occ_funding_fee'] = isset($data['occ_funding_fee']) ? $data['occ_funding_fee'] : null;
         $this->container['take_profit'] = isset($data['take_profit']) ? $data['take_profit'] : null;
         $this->container['stop_loss'] = isset($data['stop_loss']) ? $data['stop_loss'] : null;
-        $this->container['trailing_stop'] = isset($data['trailing_stop']) ? $data['trailing_stop'] : null;
         $this->container['position_status'] = isset($data['position_status']) ? $data['position_status'] : null;
         $this->container['deleverage_indicator'] = isset($data['deleverage_indicator']) ? $data['deleverage_indicator'] : null;
         $this->container['oc_calc_data'] = isset($data['oc_calc_data']) ? $data['oc_calc_data'] : null;
@@ -783,30 +777,6 @@ class TradingStopRes implements ModelInterface, ArrayAccess
     public function setStopLoss($stop_loss)
     {
         $this->container['stop_loss'] = $stop_loss;
-
-        return $this;
-    }
-
-    /**
-     * Gets trailing_stop
-     *
-     * @return double
-     */
-    public function getTrailingStop()
-    {
-        return $this->container['trailing_stop'];
-    }
-
-    /**
-     * Sets trailing_stop
-     *
-     * @param double $trailing_stop trailing_stop
-     *
-     * @return $this
-     */
-    public function setTrailingStop($trailing_stop)
-    {
-        $this->container['trailing_stop'] = $trailing_stop;
 
         return $this;
     }

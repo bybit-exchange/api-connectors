@@ -29,7 +29,6 @@ type TradingStopRes struct {
 	OccFundingFee float64 `json:"occ_funding_fee,omitempty"`
 	TakeProfit float64 `json:"take_profit,omitempty"`
 	StopLoss float64 `json:"stop_loss,omitempty"`
-	TrailingStop float64 `json:"trailing_stop,omitempty"`
 	PositionStatus string `json:"position_status,omitempty"`
 	DeleverageIndicator float32 `json:"deleverage_indicator,omitempty"`
 	OcCalcData string `json:"oc_calc_data,omitempty"`

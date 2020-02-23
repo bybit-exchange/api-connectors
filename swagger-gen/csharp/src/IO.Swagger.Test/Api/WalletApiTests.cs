@@ -64,6 +64,18 @@ namespace IO.Swagger.Test
 
         
         /// <summary>
+        /// Test WalletGetBalance
+        /// </summary>
+        [Test]
+        public void WalletGetBalanceTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string coin = null;
+            //var response = instance.WalletGetBalance(coin);
+            //Assert.IsInstanceOf<Object> (response, "response is Object");
+        }
+        
+        /// <summary>
         /// Test WalletGetRecords
         /// </summary>
         [Test]
