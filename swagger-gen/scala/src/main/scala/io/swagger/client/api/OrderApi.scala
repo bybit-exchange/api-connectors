@@ -490,14 +490,6 @@ class OrderApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extend
 
     if (timeInForce == null) throw new Exception("Missing required parameter 'timeInForce' when calling OrderApi->orderNew")
 
-    price match {
-      case Some(param) => queryParams += "price" -> param.toString
-      case _ => queryParams
-    }
-    takeProfit match {
-      case Some(param) => queryParams += "take_profit" -> param.toString
-      case _ => queryParams
-    }
 
     val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")
     resFuture flatMap { resp =>
@@ -533,14 +525,6 @@ class OrderApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extend
 
     if (timeInForce == null) throw new Exception("Missing required parameter 'timeInForce' when calling OrderApi->orderNewV2")
 
-    price match {
-      case Some(param) => queryParams += "price" -> param.toString
-      case _ => queryParams
-    }
-    takeProfit match {
-      case Some(param) => queryParams += "take_profit" -> param.toString
-      case _ => queryParams
-    }
 
     val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")
     resFuture flatMap { resp =>

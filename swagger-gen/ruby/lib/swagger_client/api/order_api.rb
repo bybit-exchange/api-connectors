@@ -312,8 +312,6 @@ module SwaggerClient
 
       # query parameters
       query_params = {}
-      query_params[:'price'] = opts[:'price'] if !opts[:'price'].nil?
-      query_params[:'take_profit'] = opts[:'take_profit'] if !opts[:'take_profit'].nil?
 
       # header parameters
       header_params = {}
@@ -329,6 +327,8 @@ module SwaggerClient
       form_params['order_type'] = order_type
       form_params['qty'] = qty
       form_params['time_in_force'] = time_in_force
+      form_params['price'] = opts[:'price'] if !opts[:'price'].nil?
+      form_params['take_profit'] = opts[:'take_profit'] if !opts[:'take_profit'].nil?
       form_params['stop_loss'] = opts[:'stop_loss'] if !opts[:'stop_loss'].nil?
       form_params['reduce_only'] = opts[:'reduce_only'] if !opts[:'reduce_only'].nil?
       form_params['close_on_trigger'] = opts[:'close_on_trigger'] if !opts[:'close_on_trigger'].nil?
@@ -413,8 +413,6 @@ module SwaggerClient
 
       # query parameters
       query_params = {}
-      query_params[:'price'] = opts[:'price'] if !opts[:'price'].nil?
-      query_params[:'take_profit'] = opts[:'take_profit'] if !opts[:'take_profit'].nil?
 
       # header parameters
       header_params = {}
@@ -430,6 +428,8 @@ module SwaggerClient
       form_params['order_type'] = order_type
       form_params['qty'] = qty
       form_params['time_in_force'] = time_in_force
+      form_params['price'] = opts[:'price'] if !opts[:'price'].nil?
+      form_params['take_profit'] = opts[:'take_profit'] if !opts[:'take_profit'].nil?
       form_params['stop_loss'] = opts[:'stop_loss'] if !opts[:'stop_loss'].nil?
       form_params['reduce_only'] = opts[:'reduce_only'] if !opts[:'reduce_only'].nil?
       form_params['close_on_trigger'] = opts[:'close_on_trigger'] if !opts[:'close_on_trigger'].nil?

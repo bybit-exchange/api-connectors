@@ -631,10 +631,6 @@ public class OrderApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        if (price != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("price", price));
-        if (takeProfit != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("take_profit", takeProfit));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -647,8 +643,12 @@ public class OrderApi {
         localVarFormParams.put("order_type", orderType);
         if (qty != null)
         localVarFormParams.put("qty", qty);
+        if (price != null)
+        localVarFormParams.put("price", price);
         if (timeInForce != null)
         localVarFormParams.put("time_in_force", timeInForce);
+        if (takeProfit != null)
+        localVarFormParams.put("take_profit", takeProfit);
         if (stopLoss != null)
         localVarFormParams.put("stop_loss", stopLoss);
         if (reduceOnly != null)
@@ -843,10 +843,6 @@ public class OrderApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        if (price != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("price", price));
-        if (takeProfit != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("take_profit", takeProfit));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -859,8 +855,12 @@ public class OrderApi {
         localVarFormParams.put("order_type", orderType);
         if (qty != null)
         localVarFormParams.put("qty", qty);
+        if (price != null)
+        localVarFormParams.put("price", price);
         if (timeInForce != null)
         localVarFormParams.put("time_in_force", timeInForce);
+        if (takeProfit != null)
+        localVarFormParams.put("take_profit", takeProfit);
         if (stopLoss != null)
         localVarFormParams.put("stop_loss", stopLoss);
         if (reduceOnly != null)

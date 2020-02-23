@@ -32,7 +32,7 @@ import java.util.List;
  * Get the orderbook response
  */
 @ApiModel(description = "Get the orderbook response")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-24T20:04:35.557+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-23T14:32:26.035+08:00")
 public class SymbolInfoBase {
   @SerializedName("ret_code")
   private BigDecimal retCode = null;
