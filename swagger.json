@@ -486,7 +486,7 @@
                     },
                     {
                         "name": "price",
-                        "in": "query",
+                        "in": "formData",
                         "description": "Order price.",
                         "required": false,
                         "type": "number",
@@ -501,7 +501,7 @@
                     },
                     {
                         "name": "take_profit",
-                        "in": "query",
+                        "in": "formData",
                         "description": "take profit price",
                         "required": false,
                         "type": "number",
@@ -588,7 +588,7 @@
                     },
                     {
                         "name": "price",
-                        "in": "query",
+                        "in": "formData",
                         "description": "Order price.",
                         "required": false,
                         "type": "number",
@@ -603,7 +603,7 @@
                     },
                     {
                         "name": "take_profit",
-                        "in": "query",
+                        "in": "formData",
                         "description": "take profit price",
                         "required": false,
                         "type": "number",
