@@ -399,13 +399,12 @@
                 "summary": "get wallet balance info",
                 "operationId": "Wallet.getBalance",
                 "parameters": [{
-                        "name": "coin",
-                        "in": "query",
-                        "description": "Coin.enum {BTC,EOS,XRP,ETH,USDT}",
-                        "required": false,
-                        "type": "string"
-                    }
-                ],
+                    "name": "coin",
+                    "in": "query",
+                    "description": "Coin.enum {BTC,EOS,XRP,ETH,USDT}",
+                    "required": false,
+                    "type": "string"
+                }],
                 "responses": {
                     "200": {
                         "description": "Request was successful",
