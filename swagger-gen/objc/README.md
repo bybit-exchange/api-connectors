@@ -95,8 +95,8 @@ Import the following:
 #import <SwaggerClient/SWGTradeRecordsInfo.h>
 #import <SwaggerClient/SWGTradingStopBase.h>
 #import <SwaggerClient/SWGTradingStopRes.h>
-#import <SwaggerClient/SWGWithdrawBalance.h>
-#import <SwaggerClient/SWGWithdrawBalanceBase.h>
+#import <SwaggerClient/SWGWalletBalance.h>
+#import <SwaggerClient/SWGWalletBalanceBase.h>
 #import <SwaggerClient/SWGWithdrawRecords.h>
 #import <SwaggerClient/SWGWithdrawResBase.h>
 // load API classes for accessing endpoints
@@ -256,8 +256,8 @@ Class | Method | HTTP request | Description
  - [SWGTradeRecordsInfo](docs/SWGTradeRecordsInfo.md)
  - [SWGTradingStopBase](docs/SWGTradingStopBase.md)
  - [SWGTradingStopRes](docs/SWGTradingStopRes.md)
- - [SWGWithdrawBalance](docs/SWGWithdrawBalance.md)
- - [SWGWithdrawBalanceBase](docs/SWGWithdrawBalanceBase.md)
+ - [SWGWalletBalance](docs/SWGWalletBalance.md)
+ - [SWGWalletBalanceBase](docs/SWGWalletBalanceBase.md)
  - [SWGWithdrawRecords](docs/SWGWithdrawRecords.md)
  - [SWGWithdrawResBase](docs/SWGWithdrawResBase.md)
 

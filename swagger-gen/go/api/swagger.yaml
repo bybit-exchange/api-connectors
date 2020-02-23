@@ -2258,7 +2258,7 @@ definitions:
       updated_at:
         type: "string"
     description: "Get withdraw records response"
-  WithdrawBalanceBase:
+  WalletBalanceBase:
     type: "object"
     properties:
       ret_code:
@@ -2276,7 +2276,7 @@ definitions:
       time_now:
         type: "string"
     description: "Get account withdraw balance response"
-  WithdrawBalance:
+  WalletBalance:
     type: "object"
     properties:
       equity:

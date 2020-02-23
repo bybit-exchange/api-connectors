@@ -113,8 +113,8 @@ Class | Method | HTTP request | Description
  - [TradeRecordsInfo](docs/TradeRecordsInfo.md)
  - [TradingStopBase](docs/TradingStopBase.md)
  - [TradingStopRes](docs/TradingStopRes.md)
- - [WithdrawBalance](docs/WithdrawBalance.md)
- - [WithdrawBalanceBase](docs/WithdrawBalanceBase.md)
+ - [WalletBalance](docs/WalletBalance.md)
+ - [WalletBalanceBase](docs/WalletBalanceBase.md)
  - [WithdrawRecords](docs/WithdrawRecords.md)
  - [WithdrawResBase](docs/WithdrawResBase.md)
 

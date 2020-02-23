@@ -2,7 +2,7 @@
 
 Bybit API
 - API version: 1.0.0
-  - Build date: 2020-02-23T16:28:10.586+08:00
+  - Build date: 2020-02-23T17:07:23.289+08:00
 
 ## REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]  
 
@@ -214,8 +214,8 @@ Class | Method | HTTP request | Description
  - [TradeRecordsInfo](docs/TradeRecordsInfo.md)
  - [TradingStopBase](docs/TradingStopBase.md)
  - [TradingStopRes](docs/TradingStopRes.md)
- - [WithdrawBalance](docs/WithdrawBalance.md)
- - [WithdrawBalanceBase](docs/WithdrawBalanceBase.md)
+ - [WalletBalance](docs/WalletBalance.md)
+ - [WalletBalanceBase](docs/WalletBalanceBase.md)
  - [WithdrawRecords](docs/WithdrawRecords.md)
  - [WithdrawResBase](docs/WithdrawResBase.md)
 

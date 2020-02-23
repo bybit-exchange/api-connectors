@@ -184,8 +184,8 @@ Class | Method | HTTP request | Description
  - [TradeRecordsInfo](docs/Model/TradeRecordsInfo.md)
  - [TradingStopBase](docs/Model/TradingStopBase.md)
  - [TradingStopRes](docs/Model/TradingStopRes.md)
- - [WithdrawBalance](docs/Model/WithdrawBalance.md)
- - [WithdrawBalanceBase](docs/Model/WithdrawBalanceBase.md)
+ - [WalletBalance](docs/Model/WalletBalance.md)
+ - [WalletBalanceBase](docs/Model/WalletBalanceBase.md)
  - [WithdrawRecords](docs/Model/WithdrawRecords.md)
  - [WithdrawResBase](docs/Model/WithdrawResBase.md)
 

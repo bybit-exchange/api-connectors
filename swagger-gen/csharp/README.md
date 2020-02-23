@@ -201,8 +201,8 @@ Class | Method | HTTP request | Description
  - [Model.TradeRecordsInfo](docs/TradeRecordsInfo.md)
  - [Model.TradingStopBase](docs/TradingStopBase.md)
  - [Model.TradingStopRes](docs/TradingStopRes.md)
- - [Model.WithdrawBalance](docs/WithdrawBalance.md)
- - [Model.WithdrawBalanceBase](docs/WithdrawBalanceBase.md)
+ - [Model.WalletBalance](docs/WalletBalance.md)
+ - [Model.WalletBalanceBase](docs/WalletBalanceBase.md)
  - [Model.WithdrawRecords](docs/WithdrawRecords.md)
  - [Model.WithdrawResBase](docs/WithdrawResBase.md)
 

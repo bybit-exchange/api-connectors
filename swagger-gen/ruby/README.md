@@ -182,8 +182,8 @@ Class | Method | HTTP request | Description
  - [SwaggerClient::TradeRecordsInfo](docs/TradeRecordsInfo.md)
  - [SwaggerClient::TradingStopBase](docs/TradingStopBase.md)
  - [SwaggerClient::TradingStopRes](docs/TradingStopRes.md)
- - [SwaggerClient::WithdrawBalance](docs/WithdrawBalance.md)
- - [SwaggerClient::WithdrawBalanceBase](docs/WithdrawBalanceBase.md)
+ - [SwaggerClient::WalletBalance](docs/WalletBalance.md)
+ - [SwaggerClient::WalletBalanceBase](docs/WalletBalanceBase.md)
  - [SwaggerClient::WithdrawRecords](docs/WithdrawRecords.md)
  - [SwaggerClient::WithdrawResBase](docs/WithdrawResBase.md)
 

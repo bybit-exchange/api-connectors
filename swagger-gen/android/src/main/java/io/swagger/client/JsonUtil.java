@@ -273,12 +273,12 @@ public class JsonUtil {
       return new TypeToken<List<TradingStopRes>>(){}.getType();
     }
     
-    if ("WithdrawBalance".equalsIgnoreCase(className)) {
-      return new TypeToken<List<WithdrawBalance>>(){}.getType();
+    if ("WalletBalance".equalsIgnoreCase(className)) {
+      return new TypeToken<List<WalletBalance>>(){}.getType();
     }
     
-    if ("WithdrawBalanceBase".equalsIgnoreCase(className)) {
-      return new TypeToken<List<WithdrawBalanceBase>>(){}.getType();
+    if ("WalletBalanceBase".equalsIgnoreCase(className)) {
+      return new TypeToken<List<WalletBalanceBase>>(){}.getType();
     }
     
     if ("WithdrawRecords".equalsIgnoreCase(className)) {
@@ -511,12 +511,12 @@ public class JsonUtil {
       return new TypeToken<TradingStopRes>(){}.getType();
     }
     
-    if ("WithdrawBalance".equalsIgnoreCase(className)) {
-      return new TypeToken<WithdrawBalance>(){}.getType();
+    if ("WalletBalance".equalsIgnoreCase(className)) {
+      return new TypeToken<WalletBalance>(){}.getType();
     }
     
-    if ("WithdrawBalanceBase".equalsIgnoreCase(className)) {
-      return new TypeToken<WithdrawBalanceBase>(){}.getType();
+    if ("WalletBalanceBase".equalsIgnoreCase(className)) {
+      return new TypeToken<WalletBalanceBase>(){}.getType();
     }
     
     if ("WithdrawRecords".equalsIgnoreCase(className)) {

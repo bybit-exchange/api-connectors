@@ -226,8 +226,8 @@ Class | Method | HTTP request | Description
  - [BybitApi.TradeRecordsInfo](docs/TradeRecordsInfo.md)
  - [BybitApi.TradingStopBase](docs/TradingStopBase.md)
  - [BybitApi.TradingStopRes](docs/TradingStopRes.md)
- - [BybitApi.WithdrawBalance](docs/WithdrawBalance.md)
- - [BybitApi.WithdrawBalanceBase](docs/WithdrawBalanceBase.md)
+ - [BybitApi.WalletBalance](docs/WalletBalance.md)
+ - [BybitApi.WalletBalanceBase](docs/WalletBalanceBase.md)
  - [BybitApi.WithdrawRecords](docs/WithdrawRecords.md)
  - [BybitApi.WithdrawResBase](docs/WithdrawResBase.md)
 
