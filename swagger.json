@@ -410,7 +410,7 @@
                         "description": "Request was successful",
                         "schema": {
                             "items": {
-                                "$ref": "#/definitions/WithdrawBalance"
+                                "$ref": "#/definitions/WalletBalanceBase"
                             }
                         }
                     }
@@ -3074,7 +3074,7 @@
             },
             "type": "object"
         },
-        "WithdrawBalanceBase": {
+        "WalletBalanceBase": {
             "description": "Get account withdraw balance response",
             "properties": {
                 "ret_code": {
@@ -3093,7 +3093,7 @@
                 "result": {
                     "type": "object",
                     "items": {
-                        "$ref": "#/definitions/WithdrawBalance"
+                        "$ref": "#/definitions/WalletBalance"
                     }
                 },
                 "time_now": {
@@ -3102,7 +3102,7 @@
             },
             "type": "object"
         },
-        "WithdrawBalance": {
+        "WalletBalance": {
             "description": "Get wallet balance response",
             "properties": {
                 "equity": {
