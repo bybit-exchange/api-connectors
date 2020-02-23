@@ -308,8 +308,6 @@
       var pathParams = {
       };
       var queryParams = {
-        'price': opts['price'],
-        'take_profit': opts['takeProfit'],
       };
       var collectionQueryParams = {
       };
@@ -320,7 +318,9 @@
         'symbol': symbol,
         'order_type': orderType,
         'qty': qty,
+        'price': opts['price'],
         'time_in_force': timeInForce,
+        'take_profit': opts['takeProfit'],
         'stop_loss': opts['stopLoss'],
         'reduce_only': opts['reduceOnly'],
         'close_on_trigger': opts['closeOnTrigger'],
@@ -398,8 +398,6 @@
       var pathParams = {
       };
       var queryParams = {
-        'price': opts['price'],
-        'take_profit': opts['takeProfit'],
       };
       var collectionQueryParams = {
       };
@@ -410,7 +408,9 @@
         'symbol': symbol,
         'order_type': orderType,
         'qty': qty,
+        'price': opts['price'],
         'time_in_force': timeInForce,
+        'take_profit': opts['takeProfit'],
         'stop_loss': opts['stopLoss'],
         'reduce_only': opts['reduceOnly'],
         'close_on_trigger': opts['closeOnTrigger'],

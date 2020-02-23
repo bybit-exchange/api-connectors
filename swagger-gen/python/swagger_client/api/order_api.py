@@ -546,10 +546,6 @@ class OrderApi(object):
         path_params = {}
 
         query_params = []
-        if 'price' in params:
-            query_params.append(('price', params['price']))  # noqa: E501
-        if 'take_profit' in params:
-            query_params.append(('take_profit', params['take_profit']))  # noqa: E501
 
         header_params = {}
 
@@ -563,8 +559,12 @@ class OrderApi(object):
             form_params.append(('order_type', params['order_type']))  # noqa: E501
         if 'qty' in params:
             form_params.append(('qty', params['qty']))  # noqa: E501
+        if 'price' in params:
+            form_params.append(('price', params['price']))  # noqa: E501
         if 'time_in_force' in params:
             form_params.append(('time_in_force', params['time_in_force']))  # noqa: E501
+        if 'take_profit' in params:
+            form_params.append(('take_profit', params['take_profit']))  # noqa: E501
         if 'stop_loss' in params:
             form_params.append(('stop_loss', params['stop_loss']))  # noqa: E501
         if 'reduce_only' in params:
@@ -701,10 +701,6 @@ class OrderApi(object):
         path_params = {}
 
         query_params = []
-        if 'price' in params:
-            query_params.append(('price', params['price']))  # noqa: E501
-        if 'take_profit' in params:
-            query_params.append(('take_profit', params['take_profit']))  # noqa: E501
 
         header_params = {}
 
@@ -718,8 +714,12 @@ class OrderApi(object):
             form_params.append(('order_type', params['order_type']))  # noqa: E501
         if 'qty' in params:
             form_params.append(('qty', params['qty']))  # noqa: E501
+        if 'price' in params:
+            form_params.append(('price', params['price']))  # noqa: E501
         if 'time_in_force' in params:
             form_params.append(('time_in_force', params['time_in_force']))  # noqa: E501
+        if 'take_profit' in params:
+            form_params.append(('take_profit', params['take_profit']))  # noqa: E501
         if 'stop_loss' in params:
             form_params.append(('stop_loss', params['stop_loss']))  # noqa: E501
         if 'reduce_only' in params:

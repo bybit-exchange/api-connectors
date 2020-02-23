@@ -644,12 +644,6 @@ func (a *OrderApiService) OrderNew(ctx context.Context, side string, symbol stri
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if localVarOptionals != nil && localVarOptionals.Price.IsSet() {
-		localVarQueryParams.Add("price", parameterToString(localVarOptionals.Price.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.TakeProfit.IsSet() {
-		localVarQueryParams.Add("take_profit", parameterToString(localVarOptionals.TakeProfit.Value(), ""))
-	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
 
@@ -671,7 +665,13 @@ func (a *OrderApiService) OrderNew(ctx context.Context, side string, symbol stri
 	localVarFormParams.Add("symbol", parameterToString(symbol, ""))
 	localVarFormParams.Add("order_type", parameterToString(orderType, ""))
 	localVarFormParams.Add("qty", parameterToString(qty, ""))
+	if localVarOptionals != nil && localVarOptionals.Price.IsSet() {
+		localVarFormParams.Add("price", parameterToString(localVarOptionals.Price.Value(), ""))
+	}
 	localVarFormParams.Add("time_in_force", parameterToString(timeInForce, ""))
+	if localVarOptionals != nil && localVarOptionals.TakeProfit.IsSet() {
+		localVarFormParams.Add("take_profit", parameterToString(localVarOptionals.TakeProfit.Value(), ""))
+	}
 	if localVarOptionals != nil && localVarOptionals.StopLoss.IsSet() {
 		localVarFormParams.Add("stop_loss", parameterToString(localVarOptionals.StopLoss.Value(), ""))
 	}
@@ -816,12 +816,6 @@ func (a *OrderApiService) OrderNewV2(ctx context.Context, side string, symbol st
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if localVarOptionals != nil && localVarOptionals.Price.IsSet() {
-		localVarQueryParams.Add("price", parameterToString(localVarOptionals.Price.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.TakeProfit.IsSet() {
-		localVarQueryParams.Add("take_profit", parameterToString(localVarOptionals.TakeProfit.Value(), ""))
-	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
 
@@ -843,7 +837,13 @@ func (a *OrderApiService) OrderNewV2(ctx context.Context, side string, symbol st
 	localVarFormParams.Add("symbol", parameterToString(symbol, ""))
 	localVarFormParams.Add("order_type", parameterToString(orderType, ""))
 	localVarFormParams.Add("qty", parameterToString(qty, ""))
+	if localVarOptionals != nil && localVarOptionals.Price.IsSet() {
+		localVarFormParams.Add("price", parameterToString(localVarOptionals.Price.Value(), ""))
+	}
 	localVarFormParams.Add("time_in_force", parameterToString(timeInForce, ""))
+	if localVarOptionals != nil && localVarOptionals.TakeProfit.IsSet() {
+		localVarFormParams.Add("take_profit", parameterToString(localVarOptionals.TakeProfit.Value(), ""))
+	}
 	if localVarOptionals != nil && localVarOptionals.StopLoss.IsSet() {
 		localVarFormParams.Add("stop_loss", parameterToString(localVarOptionals.StopLoss.Value(), ""))
 	}

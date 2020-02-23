@@ -29,7 +29,7 @@ import java.math.BigDecimal;
  * Set Trading-Stop Condition response
  */
 @ApiModel(description = "Set Trading-Stop Condition response")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-24T20:04:35.557+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-23T14:32:26.035+08:00")
 public class TradingStopRes {
   @SerializedName("id")
   private BigDecimal id = null;

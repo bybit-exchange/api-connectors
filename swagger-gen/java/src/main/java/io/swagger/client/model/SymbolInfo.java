@@ -28,7 +28,7 @@ import java.math.BigDecimal;
 /**
  * SymbolInfo
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-24T20:04:35.557+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-23T14:32:26.035+08:00")
 public class SymbolInfo {
   @SerializedName("name")
   private String name = null;

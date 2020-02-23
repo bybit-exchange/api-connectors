@@ -681,8 +681,6 @@ formParams.put("order_link_id", ApiInvoker.parameterToString(orderLinkId));
     Map<String, String> headerParams = new HashMap<String, String>();
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "price", price));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "take_profit", takeProfit));
     String[] contentTypes = {
       "application/json",
       "application/x-www-form-urlencoded"
@@ -704,8 +702,14 @@ formParams.put("order_link_id", ApiInvoker.parameterToString(orderLinkId));
       if (qty != null) {
         localVarBuilder.addTextBody("qty", ApiInvoker.parameterToString(qty), ApiInvoker.TEXT_PLAIN_UTF8);
       }
+      if (price != null) {
+        localVarBuilder.addTextBody("price", ApiInvoker.parameterToString(price), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
       if (timeInForce != null) {
         localVarBuilder.addTextBody("time_in_force", ApiInvoker.parameterToString(timeInForce), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (takeProfit != null) {
+        localVarBuilder.addTextBody("take_profit", ApiInvoker.parameterToString(takeProfit), ApiInvoker.TEXT_PLAIN_UTF8);
       }
       if (stopLoss != null) {
         localVarBuilder.addTextBody("stop_loss", ApiInvoker.parameterToString(stopLoss), ApiInvoker.TEXT_PLAIN_UTF8);
@@ -727,7 +731,9 @@ formParams.put("order_link_id", ApiInvoker.parameterToString(orderLinkId));
       formParams.put("symbol", ApiInvoker.parameterToString(symbol));
       formParams.put("order_type", ApiInvoker.parameterToString(orderType));
       formParams.put("qty", ApiInvoker.parameterToString(qty));
+      formParams.put("price", ApiInvoker.parameterToString(price));
       formParams.put("time_in_force", ApiInvoker.parameterToString(timeInForce));
+      formParams.put("take_profit", ApiInvoker.parameterToString(takeProfit));
       formParams.put("stop_loss", ApiInvoker.parameterToString(stopLoss));
       formParams.put("reduce_only", ApiInvoker.parameterToString(reduceOnly));
       formParams.put("close_on_trigger", ApiInvoker.parameterToString(closeOnTrigger));
@@ -804,8 +810,6 @@ formParams.put("order_link_id", ApiInvoker.parameterToString(orderLinkId));
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
 
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "price", price));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "take_profit", takeProfit));
 
 
     String[] contentTypes = {
@@ -833,8 +837,16 @@ formParams.put("order_link_id", ApiInvoker.parameterToString(orderLinkId));
         localVarBuilder.addTextBody("qty", ApiInvoker.parameterToString(qty), ApiInvoker.TEXT_PLAIN_UTF8);
       }
       
+      if (price != null) {
+        localVarBuilder.addTextBody("price", ApiInvoker.parameterToString(price), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
       if (timeInForce != null) {
         localVarBuilder.addTextBody("time_in_force", ApiInvoker.parameterToString(timeInForce), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (takeProfit != null) {
+        localVarBuilder.addTextBody("take_profit", ApiInvoker.parameterToString(takeProfit), ApiInvoker.TEXT_PLAIN_UTF8);
       }
       
       if (stopLoss != null) {
@@ -862,7 +874,9 @@ formParams.put("order_link_id", ApiInvoker.parameterToString(orderLinkId));
 formParams.put("symbol", ApiInvoker.parameterToString(symbol));
 formParams.put("order_type", ApiInvoker.parameterToString(orderType));
 formParams.put("qty", ApiInvoker.parameterToString(qty));
+formParams.put("price", ApiInvoker.parameterToString(price));
 formParams.put("time_in_force", ApiInvoker.parameterToString(timeInForce));
+formParams.put("take_profit", ApiInvoker.parameterToString(takeProfit));
 formParams.put("stop_loss", ApiInvoker.parameterToString(stopLoss));
 formParams.put("reduce_only", ApiInvoker.parameterToString(reduceOnly));
 formParams.put("close_on_trigger", ApiInvoker.parameterToString(closeOnTrigger));
@@ -946,8 +960,6 @@ formParams.put("order_link_id", ApiInvoker.parameterToString(orderLinkId));
     Map<String, String> headerParams = new HashMap<String, String>();
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "price", price));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "take_profit", takeProfit));
     String[] contentTypes = {
       "application/json",
       "application/x-www-form-urlencoded"
@@ -969,8 +981,14 @@ formParams.put("order_link_id", ApiInvoker.parameterToString(orderLinkId));
       if (qty != null) {
         localVarBuilder.addTextBody("qty", ApiInvoker.parameterToString(qty), ApiInvoker.TEXT_PLAIN_UTF8);
       }
+      if (price != null) {
+        localVarBuilder.addTextBody("price", ApiInvoker.parameterToString(price), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
       if (timeInForce != null) {
         localVarBuilder.addTextBody("time_in_force", ApiInvoker.parameterToString(timeInForce), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (takeProfit != null) {
+        localVarBuilder.addTextBody("take_profit", ApiInvoker.parameterToString(takeProfit), ApiInvoker.TEXT_PLAIN_UTF8);
       }
       if (stopLoss != null) {
         localVarBuilder.addTextBody("stop_loss", ApiInvoker.parameterToString(stopLoss), ApiInvoker.TEXT_PLAIN_UTF8);
@@ -995,7 +1013,9 @@ formParams.put("order_link_id", ApiInvoker.parameterToString(orderLinkId));
       formParams.put("symbol", ApiInvoker.parameterToString(symbol));
       formParams.put("order_type", ApiInvoker.parameterToString(orderType));
       formParams.put("qty", ApiInvoker.parameterToString(qty));
+      formParams.put("price", ApiInvoker.parameterToString(price));
       formParams.put("time_in_force", ApiInvoker.parameterToString(timeInForce));
+      formParams.put("take_profit", ApiInvoker.parameterToString(takeProfit));
       formParams.put("stop_loss", ApiInvoker.parameterToString(stopLoss));
       formParams.put("reduce_only", ApiInvoker.parameterToString(reduceOnly));
       formParams.put("close_on_trigger", ApiInvoker.parameterToString(closeOnTrigger));
@@ -1073,8 +1093,6 @@ formParams.put("order_link_id", ApiInvoker.parameterToString(orderLinkId));
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
 
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "price", price));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "take_profit", takeProfit));
 
 
     String[] contentTypes = {
@@ -1102,8 +1120,16 @@ formParams.put("order_link_id", ApiInvoker.parameterToString(orderLinkId));
         localVarBuilder.addTextBody("qty", ApiInvoker.parameterToString(qty), ApiInvoker.TEXT_PLAIN_UTF8);
       }
       
+      if (price != null) {
+        localVarBuilder.addTextBody("price", ApiInvoker.parameterToString(price), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
       if (timeInForce != null) {
         localVarBuilder.addTextBody("time_in_force", ApiInvoker.parameterToString(timeInForce), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (takeProfit != null) {
+        localVarBuilder.addTextBody("take_profit", ApiInvoker.parameterToString(takeProfit), ApiInvoker.TEXT_PLAIN_UTF8);
       }
       
       if (stopLoss != null) {
@@ -1135,7 +1161,9 @@ formParams.put("order_link_id", ApiInvoker.parameterToString(orderLinkId));
 formParams.put("symbol", ApiInvoker.parameterToString(symbol));
 formParams.put("order_type", ApiInvoker.parameterToString(orderType));
 formParams.put("qty", ApiInvoker.parameterToString(qty));
+formParams.put("price", ApiInvoker.parameterToString(price));
 formParams.put("time_in_force", ApiInvoker.parameterToString(timeInForce));
+formParams.put("take_profit", ApiInvoker.parameterToString(takeProfit));
 formParams.put("stop_loss", ApiInvoker.parameterToString(stopLoss));
 formParams.put("reduce_only", ApiInvoker.parameterToString(reduceOnly));
 formParams.put("close_on_trigger", ApiInvoker.parameterToString(closeOnTrigger));

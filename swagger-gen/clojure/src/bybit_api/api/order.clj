@@ -86,8 +86,8 @@
    (call-api "/open-api/order/create" :post
              {:path-params   {}
               :header-params {}
-              :query-params  {"price" price "take_profit" take-profit }
-              :form-params   {"side" side "symbol" symbol "order_type" order-type "qty" qty "time_in_force" time-in-force "stop_loss" stop-loss "reduce_only" reduce-only "close_on_trigger" close-on-trigger "order_link_id" order-link-id }
+              :query-params  {}
+              :form-params   {"side" side "symbol" symbol "order_type" order-type "qty" qty "price" price "time_in_force" time-in-force "take_profit" take-profit "stop_loss" stop-loss "reduce_only" reduce-only "close_on_trigger" close-on-trigger "order_link_id" order-link-id }
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json"]
               :auth-names    ["apiKey" "apiSignature" "timestamp"]})))
@@ -106,8 +106,8 @@
    (call-api "/v2/private/order/create" :post
              {:path-params   {}
               :header-params {}
-              :query-params  {"price" price "take_profit" take-profit }
-              :form-params   {"side" side "symbol" symbol "order_type" order-type "qty" qty "time_in_force" time-in-force "stop_loss" stop-loss "reduce_only" reduce-only "close_on_trigger" close-on-trigger "order_link_id" order-link-id "trailing_stop" trailing-stop }
+              :query-params  {}
+              :form-params   {"side" side "symbol" symbol "order_type" order-type "qty" qty "price" price "time_in_force" time-in-force "take_profit" take-profit "stop_loss" stop-loss "reduce_only" reduce-only "close_on_trigger" close-on-trigger "order_link_id" order-link-id "trailing_stop" trailing-stop }
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json"]
               :auth-names    ["apiKey" "apiSignature" "timestamp"]})))

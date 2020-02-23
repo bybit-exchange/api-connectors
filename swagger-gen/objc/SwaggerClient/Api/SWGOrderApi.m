@@ -451,12 +451,6 @@ NSInteger kSWGOrderApiMissingParamErrorCode = 234513;
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    if (price != nil) {
-        queryParams[@"price"] = price;
-    }
-    if (takeProfit != nil) {
-        queryParams[@"take_profit"] = takeProfit;
-    }
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
     // HTTP header `Accept`
@@ -489,8 +483,14 @@ NSInteger kSWGOrderApiMissingParamErrorCode = 234513;
     if (qty) {
         formParams[@"qty"] = qty;
     }
+    if (price) {
+        formParams[@"price"] = price;
+    }
     if (timeInForce) {
         formParams[@"time_in_force"] = timeInForce;
+    }
+    if (takeProfit) {
+        formParams[@"take_profit"] = takeProfit;
     }
     if (stopLoss) {
         formParams[@"stop_loss"] = stopLoss;
@@ -626,12 +626,6 @@ NSInteger kSWGOrderApiMissingParamErrorCode = 234513;
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    if (price != nil) {
-        queryParams[@"price"] = price;
-    }
-    if (takeProfit != nil) {
-        queryParams[@"take_profit"] = takeProfit;
-    }
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
     // HTTP header `Accept`
@@ -664,8 +658,14 @@ NSInteger kSWGOrderApiMissingParamErrorCode = 234513;
     if (qty) {
         formParams[@"qty"] = qty;
     }
+    if (price) {
+        formParams[@"price"] = price;
+    }
     if (timeInForce) {
         formParams[@"time_in_force"] = timeInForce;
+    }
+    if (takeProfit) {
+        formParams[@"take_profit"] = takeProfit;
     }
     if (stopLoss) {
         formParams[@"stop_loss"] = stopLoss;
