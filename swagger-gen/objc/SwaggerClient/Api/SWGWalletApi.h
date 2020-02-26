@@ -22,6 +22,18 @@ extern NSInteger kSWGWalletApiMissingParamErrorCode;
 
 -(instancetype) initWithApiClient:(SWGApiClient *)apiClient NS_DESIGNATED_INITIALIZER;
 
+/// get wallet balance info
+/// 
+///
+/// @param coin Coin.enum {BTC,EOS,XRP,ETH,USDT} (optional)
+/// 
+///  code:200 message:"Request was successful"
+///
+/// @return NSObject*
+-(NSURLSessionTask*) walletGetBalanceWithCoin: (NSString*) coin
+    completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+
+
 /// Get wallet fund records
 /// 
 ///

@@ -196,13 +196,6 @@ class PositionInfoTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "trailing_stop"
-     */
-    public function testPropertyTrailingStop()
-    {
-    }
-
-    /**
      * Test attribute "position_status"
      */
     public function testPropertyPositionStatus()

@@ -2,7 +2,7 @@
 
 Bybit API
 - API version: 1.0.0
-  - Build date: 2020-01-24T20:04:35.557+08:00
+  - Build date: 2020-02-23T17:07:23.289+08:00
 
 ## REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]  
 
@@ -151,6 +151,7 @@ Class | Method | HTTP request | Description
 *PositionsApi* | [**positionsTradingStop**](docs/PositionsApi.md#positionsTradingStop) | **POST** /open-api/position/trading-stop | Set Trading-Stop Condition.
 *PositionsApi* | [**positionsUserLeverage**](docs/PositionsApi.md#positionsUserLeverage) | **GET** /user/leverage | Get user leverage setting.
 *SymbolApi* | [**symbolGet**](docs/SymbolApi.md#symbolGet) | **GET** /v2/public/symbols | Query Symbols.
+*WalletApi* | [**walletGetBalance**](docs/WalletApi.md#walletGetBalance) | **GET** /v2/private/wallet/balance | get wallet balance info
 *WalletApi* | [**walletGetRecords**](docs/WalletApi.md#walletGetRecords) | **GET** /open-api/wallet/fund/records | Get wallet fund records
 *WalletApi* | [**walletGetRiskLimit**](docs/WalletApi.md#walletGetRiskLimit) | **GET** /open-api/wallet/risk-limit/list | Get risk limit.
 *WalletApi* | [**walletSetRiskLimit**](docs/WalletApi.md#walletSetRiskLimit) | **POST** /open-api/wallet/risk-limit | Set risk limit
@@ -213,6 +214,8 @@ Class | Method | HTTP request | Description
  - [TradeRecordsInfo](docs/TradeRecordsInfo.md)
  - [TradingStopBase](docs/TradingStopBase.md)
  - [TradingStopRes](docs/TradingStopRes.md)
+ - [WalletBalance](docs/WalletBalance.md)
+ - [WalletBalanceBase](docs/WalletBalanceBase.md)
  - [WithdrawRecords](docs/WithdrawRecords.md)
  - [WithdrawResBase](docs/WithdrawResBase.md)
 

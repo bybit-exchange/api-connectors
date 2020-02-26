@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * LotSizeFilter
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-24T20:04:35.557+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-23T17:07:23.289+08:00")
 public class LotSizeFilter {
   @SerializedName("min_trading_qty")
   private Object minTradingQty = null;

@@ -29,7 +29,6 @@ type PositionInfo struct {
 	OccFundingFee float32 `json:"occ_funding_fee,omitempty"`
 	TakeProfit float32 `json:"take_profit,omitempty"`
 	StopLoss float32 `json:"stop_loss,omitempty"`
-	TrailingStop float32 `json:"trailing_stop,omitempty"`
 	PositionStatus string `json:"position_status,omitempty"`
 	DeleverageIndicator string `json:"deleverage_indicator,omitempty"`
 	OcCalcData string `json:"oc_calc_data,omitempty"`

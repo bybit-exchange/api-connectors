@@ -4,11 +4,45 @@ All URIs are relative to *https://api-testnet.bybit.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**WalletGetBalance**](WalletApi.md#WalletGetBalance) | **Get** /v2/private/wallet/balance | get wallet balance info
 [**WalletGetRecords**](WalletApi.md#WalletGetRecords) | **Get** /open-api/wallet/fund/records | Get wallet fund records
 [**WalletGetRiskLimit**](WalletApi.md#WalletGetRiskLimit) | **Get** /open-api/wallet/risk-limit/list | Get risk limit.
 [**WalletSetRiskLimit**](WalletApi.md#WalletSetRiskLimit) | **Post** /open-api/wallet/risk-limit | Set risk limit
 [**WalletWithdraw**](WalletApi.md#WalletWithdraw) | **Get** /open-api/wallet/withdraw/list | Get wallet fund records
 
+
+# **WalletGetBalance**
+> interface{} WalletGetBalance(ctx, optional)
+get wallet balance info
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***WalletGetBalanceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a WalletGetBalanceOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **coin** | **optional.String**| Coin.enum {BTC,EOS,XRP,ETH,USDT} | 
+
+### Return type
+
+[**interface{}**](interface{}.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **WalletGetRecords**
 > interface{} WalletGetRecords(ctx, optional)

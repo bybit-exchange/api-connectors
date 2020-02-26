@@ -702,11 +702,11 @@ pplx::task<std::shared_ptr<Object>> OrderApi::order_new(utility::string_t side, 
     }
     if (price)
     {
-        queryParams[utility::conversions::to_string_t("price")] = ApiClient::parameterToString(*price);
+        formParams[ utility::conversions::to_string_t("price") ] = ApiClient::parameterToString(*price);
     }
     if (takeProfit)
     {
-        queryParams[utility::conversions::to_string_t("take_profit")] = ApiClient::parameterToString(*takeProfit);
+        formParams[ utility::conversions::to_string_t("take_profit") ] = ApiClient::parameterToString(*takeProfit);
     }
     if (stopLoss)
     {
@@ -880,11 +880,11 @@ pplx::task<std::shared_ptr<Object>> OrderApi::order_newV2(utility::string_t side
     }
     if (price)
     {
-        queryParams[utility::conversions::to_string_t("price")] = ApiClient::parameterToString(*price);
+        formParams[ utility::conversions::to_string_t("price") ] = ApiClient::parameterToString(*price);
     }
     if (takeProfit)
     {
-        queryParams[utility::conversions::to_string_t("take_profit")] = ApiClient::parameterToString(*takeProfit);
+        formParams[ utility::conversions::to_string_t("take_profit") ] = ApiClient::parameterToString(*takeProfit);
     }
     if (stopLoss)
     {

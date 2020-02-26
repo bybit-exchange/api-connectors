@@ -159,12 +159,6 @@
       //expect(instance).to.be();
     });
 
-    it('should have the property trailingStop (base name: "trailing_stop")', function() {
-      // uncomment below and update the code to test the property trailingStop
-      //var instance = new BybitApi.PositionInfo();
-      //expect(instance).to.be();
-    });
-
     it('should have the property positionStatus (base name: "position_status")', function() {
       // uncomment below and update the code to test the property positionStatus
       //var instance = new BybitApi.PositionInfo();

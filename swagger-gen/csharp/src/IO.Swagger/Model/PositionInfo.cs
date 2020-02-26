@@ -50,7 +50,6 @@ namespace IO.Swagger.Model
         /// <param name="occFundingFee">occFundingFee.</param>
         /// <param name="takeProfit">takeProfit.</param>
         /// <param name="stopLoss">stopLoss.</param>
-        /// <param name="trailingStop">trailingStop.</param>
         /// <param name="positionStatus">positionStatus.</param>
         /// <param name="deleverageIndicator">deleverageIndicator.</param>
         /// <param name="ocCalcData">ocCalcData.</param>
@@ -64,7 +63,7 @@ namespace IO.Swagger.Model
         /// <param name="positionSeq">positionSeq.</param>
         /// <param name="createdAt">createdAt.</param>
         /// <param name="updatedAt">updatedAt.</param>
-        public PositionInfo(decimal? id = default(decimal?), decimal? userId = default(decimal?), decimal? riskId = default(decimal?), string symbol = default(string), string side = default(string), decimal? size = default(decimal?), decimal? positionValue = default(decimal?), decimal? entryPrice = default(decimal?), decimal? leverage = default(decimal?), decimal? autoAddMargin = default(decimal?), decimal? positionMargin = default(decimal?), decimal? liqPrice = default(decimal?), decimal? bustPrice = default(decimal?), decimal? occClosingFee = default(decimal?), decimal? occFundingFee = default(decimal?), decimal? takeProfit = default(decimal?), decimal? stopLoss = default(decimal?), decimal? trailingStop = default(decimal?), string positionStatus = default(string), string deleverageIndicator = default(string), string ocCalcData = default(string), decimal? orderMargin = default(decimal?), decimal? walletBalance = default(decimal?), decimal? unrealisedPnl = default(decimal?), decimal? realisedPnl = default(decimal?), decimal? cumRealisedPnl = default(decimal?), decimal? cumCommission = default(decimal?), decimal? crossSeq = default(decimal?), decimal? positionSeq = default(decimal?), string createdAt = default(string), string updatedAt = default(string))
+        public PositionInfo(decimal? id = default(decimal?), decimal? userId = default(decimal?), decimal? riskId = default(decimal?), string symbol = default(string), string side = default(string), decimal? size = default(decimal?), decimal? positionValue = default(decimal?), decimal? entryPrice = default(decimal?), decimal? leverage = default(decimal?), decimal? autoAddMargin = default(decimal?), decimal? positionMargin = default(decimal?), decimal? liqPrice = default(decimal?), decimal? bustPrice = default(decimal?), decimal? occClosingFee = default(decimal?), decimal? occFundingFee = default(decimal?), decimal? takeProfit = default(decimal?), decimal? stopLoss = default(decimal?), string positionStatus = default(string), string deleverageIndicator = default(string), string ocCalcData = default(string), decimal? orderMargin = default(decimal?), decimal? walletBalance = default(decimal?), decimal? unrealisedPnl = default(decimal?), decimal? realisedPnl = default(decimal?), decimal? cumRealisedPnl = default(decimal?), decimal? cumCommission = default(decimal?), decimal? crossSeq = default(decimal?), decimal? positionSeq = default(decimal?), string createdAt = default(string), string updatedAt = default(string))
         {
             this.Id = id;
             this.UserId = userId;
@@ -83,7 +82,6 @@ namespace IO.Swagger.Model
             this.OccFundingFee = occFundingFee;
             this.TakeProfit = takeProfit;
             this.StopLoss = stopLoss;
-            this.TrailingStop = trailingStop;
             this.PositionStatus = positionStatus;
             this.DeleverageIndicator = deleverageIndicator;
             this.OcCalcData = ocCalcData;
@@ -202,12 +200,6 @@ namespace IO.Swagger.Model
         public decimal? StopLoss { get; set; }
 
         /// <summary>
-        /// Gets or Sets TrailingStop
-        /// </summary>
-        [DataMember(Name="trailing_stop", EmitDefaultValue=false)]
-        public decimal? TrailingStop { get; set; }
-
-        /// <summary>
         /// Gets or Sets PositionStatus
         /// </summary>
         [DataMember(Name="position_status", EmitDefaultValue=false)]
@@ -310,7 +302,6 @@ namespace IO.Swagger.Model
             sb.Append("  OccFundingFee: ").Append(OccFundingFee).Append("\n");
             sb.Append("  TakeProfit: ").Append(TakeProfit).Append("\n");
             sb.Append("  StopLoss: ").Append(StopLoss).Append("\n");
-            sb.Append("  TrailingStop: ").Append(TrailingStop).Append("\n");
             sb.Append("  PositionStatus: ").Append(PositionStatus).Append("\n");
             sb.Append("  DeleverageIndicator: ").Append(DeleverageIndicator).Append("\n");
             sb.Append("  OcCalcData: ").Append(OcCalcData).Append("\n");
@@ -444,11 +435,6 @@ namespace IO.Swagger.Model
                     this.StopLoss.Equals(input.StopLoss))
                 ) && 
                 (
-                    this.TrailingStop == input.TrailingStop ||
-                    (this.TrailingStop != null &&
-                    this.TrailingStop.Equals(input.TrailingStop))
-                ) && 
-                (
                     this.PositionStatus == input.PositionStatus ||
                     (this.PositionStatus != null &&
                     this.PositionStatus.Equals(input.PositionStatus))
@@ -558,8 +544,6 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.TakeProfit.GetHashCode();
                 if (this.StopLoss != null)
                     hashCode = hashCode * 59 + this.StopLoss.GetHashCode();
-                if (this.TrailingStop != null)
-                    hashCode = hashCode * 59 + this.TrailingStop.GetHashCode();
                 if (this.PositionStatus != null)
                     hashCode = hashCode * 59 + this.PositionStatus.GetHashCode();
                 if (this.DeleverageIndicator != null)

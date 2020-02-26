@@ -72,6 +72,16 @@ class WalletApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test case for walletGetBalance
+     *
+     * get wallet balance info.
+     *
+     */
+    public function testWalletGetBalance()
+    {
+    }
+
+    /**
      * Test case for walletGetRecords
      *
      * Get wallet fund records.

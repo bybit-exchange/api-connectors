@@ -1386,13 +1386,13 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (price != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "price", price)); // query parameter
-            if (takeProfit != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "take_profit", takeProfit)); // query parameter
             if (side != null) localVarFormParams.Add("side", this.Configuration.ApiClient.ParameterToString(side)); // form parameter
             if (symbol != null) localVarFormParams.Add("symbol", this.Configuration.ApiClient.ParameterToString(symbol)); // form parameter
             if (orderType != null) localVarFormParams.Add("order_type", this.Configuration.ApiClient.ParameterToString(orderType)); // form parameter
             if (qty != null) localVarFormParams.Add("qty", this.Configuration.ApiClient.ParameterToString(qty)); // form parameter
+            if (price != null) localVarFormParams.Add("price", this.Configuration.ApiClient.ParameterToString(price)); // form parameter
             if (timeInForce != null) localVarFormParams.Add("time_in_force", this.Configuration.ApiClient.ParameterToString(timeInForce)); // form parameter
+            if (takeProfit != null) localVarFormParams.Add("take_profit", this.Configuration.ApiClient.ParameterToString(takeProfit)); // form parameter
             if (stopLoss != null) localVarFormParams.Add("stop_loss", this.Configuration.ApiClient.ParameterToString(stopLoss)); // form parameter
             if (reduceOnly != null) localVarFormParams.Add("reduce_only", this.Configuration.ApiClient.ParameterToString(reduceOnly)); // form parameter
             if (closeOnTrigger != null) localVarFormParams.Add("close_on_trigger", this.Configuration.ApiClient.ParameterToString(closeOnTrigger)); // form parameter
@@ -1512,13 +1512,13 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (price != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "price", price)); // query parameter
-            if (takeProfit != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "take_profit", takeProfit)); // query parameter
             if (side != null) localVarFormParams.Add("side", this.Configuration.ApiClient.ParameterToString(side)); // form parameter
             if (symbol != null) localVarFormParams.Add("symbol", this.Configuration.ApiClient.ParameterToString(symbol)); // form parameter
             if (orderType != null) localVarFormParams.Add("order_type", this.Configuration.ApiClient.ParameterToString(orderType)); // form parameter
             if (qty != null) localVarFormParams.Add("qty", this.Configuration.ApiClient.ParameterToString(qty)); // form parameter
+            if (price != null) localVarFormParams.Add("price", this.Configuration.ApiClient.ParameterToString(price)); // form parameter
             if (timeInForce != null) localVarFormParams.Add("time_in_force", this.Configuration.ApiClient.ParameterToString(timeInForce)); // form parameter
+            if (takeProfit != null) localVarFormParams.Add("take_profit", this.Configuration.ApiClient.ParameterToString(takeProfit)); // form parameter
             if (stopLoss != null) localVarFormParams.Add("stop_loss", this.Configuration.ApiClient.ParameterToString(stopLoss)); // form parameter
             if (reduceOnly != null) localVarFormParams.Add("reduce_only", this.Configuration.ApiClient.ParameterToString(reduceOnly)); // form parameter
             if (closeOnTrigger != null) localVarFormParams.Add("close_on_trigger", this.Configuration.ApiClient.ParameterToString(closeOnTrigger)); // form parameter
@@ -1639,13 +1639,13 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (price != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "price", price)); // query parameter
-            if (takeProfit != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "take_profit", takeProfit)); // query parameter
             if (side != null) localVarFormParams.Add("side", this.Configuration.ApiClient.ParameterToString(side)); // form parameter
             if (symbol != null) localVarFormParams.Add("symbol", this.Configuration.ApiClient.ParameterToString(symbol)); // form parameter
             if (orderType != null) localVarFormParams.Add("order_type", this.Configuration.ApiClient.ParameterToString(orderType)); // form parameter
             if (qty != null) localVarFormParams.Add("qty", this.Configuration.ApiClient.ParameterToString(qty)); // form parameter
+            if (price != null) localVarFormParams.Add("price", this.Configuration.ApiClient.ParameterToString(price)); // form parameter
             if (timeInForce != null) localVarFormParams.Add("time_in_force", this.Configuration.ApiClient.ParameterToString(timeInForce)); // form parameter
+            if (takeProfit != null) localVarFormParams.Add("take_profit", this.Configuration.ApiClient.ParameterToString(takeProfit)); // form parameter
             if (stopLoss != null) localVarFormParams.Add("stop_loss", this.Configuration.ApiClient.ParameterToString(stopLoss)); // form parameter
             if (reduceOnly != null) localVarFormParams.Add("reduce_only", this.Configuration.ApiClient.ParameterToString(reduceOnly)); // form parameter
             if (closeOnTrigger != null) localVarFormParams.Add("close_on_trigger", this.Configuration.ApiClient.ParameterToString(closeOnTrigger)); // form parameter
@@ -1768,13 +1768,13 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (price != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "price", price)); // query parameter
-            if (takeProfit != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "take_profit", takeProfit)); // query parameter
             if (side != null) localVarFormParams.Add("side", this.Configuration.ApiClient.ParameterToString(side)); // form parameter
             if (symbol != null) localVarFormParams.Add("symbol", this.Configuration.ApiClient.ParameterToString(symbol)); // form parameter
             if (orderType != null) localVarFormParams.Add("order_type", this.Configuration.ApiClient.ParameterToString(orderType)); // form parameter
             if (qty != null) localVarFormParams.Add("qty", this.Configuration.ApiClient.ParameterToString(qty)); // form parameter
+            if (price != null) localVarFormParams.Add("price", this.Configuration.ApiClient.ParameterToString(price)); // form parameter
             if (timeInForce != null) localVarFormParams.Add("time_in_force", this.Configuration.ApiClient.ParameterToString(timeInForce)); // form parameter
+            if (takeProfit != null) localVarFormParams.Add("take_profit", this.Configuration.ApiClient.ParameterToString(takeProfit)); // form parameter
             if (stopLoss != null) localVarFormParams.Add("stop_loss", this.Configuration.ApiClient.ParameterToString(stopLoss)); // form parameter
             if (reduceOnly != null) localVarFormParams.Add("reduce_only", this.Configuration.ApiClient.ParameterToString(reduceOnly)); // form parameter
             if (closeOnTrigger != null) localVarFormParams.Add("close_on_trigger", this.Configuration.ApiClient.ParameterToString(closeOnTrigger)); // form parameter

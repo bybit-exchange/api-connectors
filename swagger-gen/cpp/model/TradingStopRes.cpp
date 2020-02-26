@@ -55,8 +55,6 @@ TradingStopRes::TradingStopRes()
     m_Take_profitIsSet = false;
     m_Stop_loss = 0.0;
     m_Stop_lossIsSet = false;
-    m_Trailing_stop = 0.0;
-    m_Trailing_stopIsSet = false;
     m_Position_status = utility::conversions::to_string_t("");
     m_Position_statusIsSet = false;
     m_Deleverage_indicator = 0.0;
@@ -163,10 +161,6 @@ web::json::value TradingStopRes::toJson() const
     if(m_Stop_lossIsSet)
     {
         val[utility::conversions::to_string_t("stop_loss")] = ModelBase::toJson(m_Stop_loss);
-    }
-    if(m_Trailing_stopIsSet)
-    {
-        val[utility::conversions::to_string_t("trailing_stop")] = ModelBase::toJson(m_Trailing_stop);
     }
     if(m_Position_statusIsSet)
     {
@@ -358,14 +352,6 @@ void TradingStopRes::fromJson(web::json::value& val)
             setStopLoss(ModelBase::doubleFromJson(fieldValue));
         }
     }
-    if(val.has_field(utility::conversions::to_string_t("trailing_stop")))
-    {
-        web::json::value& fieldValue = val[utility::conversions::to_string_t("trailing_stop")];
-        if(!fieldValue.is_null())
-        {
-            setTrailingStop(ModelBase::doubleFromJson(fieldValue));
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t("position_status")))
     {
         web::json::value& fieldValue = val[utility::conversions::to_string_t("position_status")];
@@ -542,10 +528,6 @@ void TradingStopRes::toMultipart(std::shared_ptr<MultipartFormData> multipart, c
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("stop_loss"), m_Stop_loss));
     }
-    if(m_Trailing_stopIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("trailing_stop"), m_Trailing_stop));
-    }
     if(m_Position_statusIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("position_status"), m_Position_status));
@@ -675,10 +657,6 @@ void TradingStopRes::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     if(multipart->hasContent(utility::conversions::to_string_t("stop_loss")))
     {
         setStopLoss(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("stop_loss"))));
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t("trailing_stop")))
-    {
-        setTrailingStop(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("trailing_stop"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("position_status")))
     {
@@ -1085,27 +1063,6 @@ bool TradingStopRes::stopLossIsSet() const
 void TradingStopRes::unsetStop_loss()
 {
     m_Stop_lossIsSet = false;
-}
-
-double TradingStopRes::getTrailingStop() const
-{
-    return m_Trailing_stop;
-}
-
-
-void TradingStopRes::setTrailingStop(double value)
-{
-    m_Trailing_stop = value;
-    m_Trailing_stopIsSet = true;
-}
-bool TradingStopRes::trailingStopIsSet() const
-{
-    return m_Trailing_stopIsSet;
-}
-
-void TradingStopRes::unsetTrailing_stop()
-{
-    m_Trailing_stopIsSet = false;
 }
 
 utility::string_t TradingStopRes::getPositionStatus() const

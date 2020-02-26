@@ -29,7 +29,6 @@ public struct PositionInfo: Codable {
     public var occFundingFee: Double?
     public var takeProfit: Double?
     public var stopLoss: Double?
-    public var trailingStop: Double?
     public var positionStatus: String?
     public var deleverageIndicator: String?
     public var ocCalcData: String?
@@ -44,7 +43,7 @@ public struct PositionInfo: Codable {
     public var createdAt: String?
     public var updatedAt: String?
 
-    public init(_id: Double?, userId: Double?, riskId: Double?, symbol: String?, side: String?, size: Double?, positionValue: Double?, entryPrice: Double?, leverage: Double?, autoAddMargin: Double?, positionMargin: Double?, liqPrice: Double?, bustPrice: Double?, occClosingFee: Double?, occFundingFee: Double?, takeProfit: Double?, stopLoss: Double?, trailingStop: Double?, positionStatus: String?, deleverageIndicator: String?, ocCalcData: String?, orderMargin: Double?, walletBalance: Double?, unrealisedPnl: Double?, realisedPnl: Double?, cumRealisedPnl: Double?, cumCommission: Double?, crossSeq: Double?, positionSeq: Double?, createdAt: String?, updatedAt: String?) {
+    public init(_id: Double?, userId: Double?, riskId: Double?, symbol: String?, side: String?, size: Double?, positionValue: Double?, entryPrice: Double?, leverage: Double?, autoAddMargin: Double?, positionMargin: Double?, liqPrice: Double?, bustPrice: Double?, occClosingFee: Double?, occFundingFee: Double?, takeProfit: Double?, stopLoss: Double?, positionStatus: String?, deleverageIndicator: String?, ocCalcData: String?, orderMargin: Double?, walletBalance: Double?, unrealisedPnl: Double?, realisedPnl: Double?, cumRealisedPnl: Double?, cumCommission: Double?, crossSeq: Double?, positionSeq: Double?, createdAt: String?, updatedAt: String?) {
         self._id = _id
         self.userId = userId
         self.riskId = riskId
@@ -62,7 +61,6 @@ public struct PositionInfo: Codable {
         self.occFundingFee = occFundingFee
         self.takeProfit = takeProfit
         self.stopLoss = stopLoss
-        self.trailingStop = trailingStop
         self.positionStatus = positionStatus
         self.deleverageIndicator = deleverageIndicator
         self.ocCalcData = ocCalcData
@@ -96,7 +94,6 @@ public struct PositionInfo: Codable {
         case occFundingFee = "occ_funding_fee"
         case takeProfit = "take_profit"
         case stopLoss = "stop_loss"
-        case trailingStop = "trailing_stop"
         case positionStatus = "position_status"
         case deleverageIndicator = "deleverage_indicator"
         case ocCalcData = "oc_calc_data"

@@ -391,6 +391,33 @@
                 "deprecated": false
             }
         },
+        "/v2/private/wallet/balance": {
+            "get": {
+                "tags": [
+                    "Wallet"
+                ],
+                "summary": "get wallet balance info",
+                "operationId": "Wallet.getBalance",
+                "parameters": [{
+                    "name": "coin",
+                    "in": "query",
+                    "description": "Coin.enum {BTC,EOS,XRP,ETH,USDT}",
+                    "required": false,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/WalletBalanceBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
         "/open-api/wallet/risk-limit": {
             "post": {
                 "tags": [
@@ -486,7 +513,7 @@
                     },
                     {
                         "name": "price",
-                        "in": "query",
+                        "in": "formData",
                         "description": "Order price.",
                         "required": false,
                         "type": "number",
@@ -501,7 +528,7 @@
                     },
                     {
                         "name": "take_profit",
-                        "in": "query",
+                        "in": "formData",
                         "description": "take profit price",
                         "required": false,
                         "type": "number",
@@ -588,7 +615,7 @@
                     },
                     {
                         "name": "price",
-                        "in": "query",
+                        "in": "formData",
                         "description": "Order price.",
                         "required": false,
                         "type": "number",
@@ -603,7 +630,7 @@
                     },
                     {
                         "name": "take_profit",
-                        "in": "query",
+                        "in": "formData",
                         "description": "take profit price",
                         "required": false,
                         "type": "number",
@@ -1771,10 +1798,6 @@
                     "type": "number"
                 },
                 "stop_loss": {
-                    "format": "int32",
-                    "type": "number"
-                },
-                "trailing_stop": {
                     "format": "int32",
                     "type": "number"
                 },
@@ -3051,6 +3074,92 @@
             },
             "type": "object"
         },
+        "WalletBalanceBase": {
+            "description": "Get account withdraw balance response",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "type": "object",
+                    "items": {
+                        "$ref": "#/definitions/WalletBalance"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "WalletBalance": {
+            "description": "Get wallet balance response",
+            "properties": {
+                "equity": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "available_balance": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "used_margin": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "order_margin": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "position_margin": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "occ_closing_fee": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "occ_funding_fee": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "wallet_balance": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "realised_pnl": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "unrealised_pnl": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "cum_realised_pnl": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "given_cash": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "service_cash": {
+                    "format": "double",
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
         "SetRiskLimitBase": {
             "description": "Set risk limit.",
             "properties": {
@@ -3278,10 +3387,6 @@
                     "format": "double"
                 },
                 "stop_loss": {
-                    "type": "number",
-                    "format": "double"
-                },
-                "trailing_stop": {
                     "type": "number",
                     "format": "double"
                 },

@@ -48,7 +48,6 @@ class TradingStopRes(object):
         'occ_funding_fee': 'float',
         'take_profit': 'float',
         'stop_loss': 'float',
-        'trailing_stop': 'float',
         'position_status': 'str',
         'deleverage_indicator': 'float',
         'oc_calc_data': 'str',
@@ -81,7 +80,6 @@ class TradingStopRes(object):
         'occ_funding_fee': 'occ_funding_fee',
         'take_profit': 'take_profit',
         'stop_loss': 'stop_loss',
-        'trailing_stop': 'trailing_stop',
         'position_status': 'position_status',
         'deleverage_indicator': 'deleverage_indicator',
         'oc_calc_data': 'oc_calc_data',
@@ -96,7 +94,7 @@ class TradingStopRes(object):
         'updated_at': 'updated_at'
     }
 
-    def __init__(self, id=None, user_id=None, symbol=None, side=None, size=None, position_value=None, entry_price=None, risk_id=None, auto_add_margin=None, leverage=None, position_margin=None, liq_price=None, bust_price=None, occ_closing_fee=None, occ_funding_fee=None, take_profit=None, stop_loss=None, trailing_stop=None, position_status=None, deleverage_indicator=None, oc_calc_data=None, order_margin=None, wallet_balance=None, realised_pnl=None, cum_realised_pnl=None, cum_commission=None, cross_seq=None, position_seq=None, created_at=None, updated_at=None):  # noqa: E501
+    def __init__(self, id=None, user_id=None, symbol=None, side=None, size=None, position_value=None, entry_price=None, risk_id=None, auto_add_margin=None, leverage=None, position_margin=None, liq_price=None, bust_price=None, occ_closing_fee=None, occ_funding_fee=None, take_profit=None, stop_loss=None, position_status=None, deleverage_indicator=None, oc_calc_data=None, order_margin=None, wallet_balance=None, realised_pnl=None, cum_realised_pnl=None, cum_commission=None, cross_seq=None, position_seq=None, created_at=None, updated_at=None):  # noqa: E501
         """TradingStopRes - a model defined in Swagger"""  # noqa: E501
 
         self._id = None
@@ -116,7 +114,6 @@ class TradingStopRes(object):
         self._occ_funding_fee = None
         self._take_profit = None
         self._stop_loss = None
-        self._trailing_stop = None
         self._position_status = None
         self._deleverage_indicator = None
         self._oc_calc_data = None
@@ -165,8 +162,6 @@ class TradingStopRes(object):
             self.take_profit = take_profit
         if stop_loss is not None:
             self.stop_loss = stop_loss
-        if trailing_stop is not None:
-            self.trailing_stop = trailing_stop
         if position_status is not None:
             self.position_status = position_status
         if deleverage_indicator is not None:
@@ -548,27 +543,6 @@ class TradingStopRes(object):
         """
 
         self._stop_loss = stop_loss
-
-    @property
-    def trailing_stop(self):
-        """Gets the trailing_stop of this TradingStopRes.  # noqa: E501
-
-
-        :return: The trailing_stop of this TradingStopRes.  # noqa: E501
-        :rtype: float
-        """
-        return self._trailing_stop
-
-    @trailing_stop.setter
-    def trailing_stop(self, trailing_stop):
-        """Sets the trailing_stop of this TradingStopRes.
-
-
-        :param trailing_stop: The trailing_stop of this TradingStopRes.  # noqa: E501
-        :type: float
-        """
-
-        self._trailing_stop = trailing_stop
 
     @property
     def position_status(self):

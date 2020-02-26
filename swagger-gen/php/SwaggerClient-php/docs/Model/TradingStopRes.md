@@ -20,7 +20,6 @@ Name | Type | Description | Notes
 **occ_funding_fee** | **double** |  | [optional] 
 **take_profit** | **double** |  | [optional] 
 **stop_loss** | **double** |  | [optional] 
-**trailing_stop** | **double** |  | [optional] 
 **position_status** | **string** |  | [optional] 
 **deleverage_indicator** | **float** |  | [optional] 
 **oc_calc_data** | **string** |  | [optional] 

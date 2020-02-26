@@ -56,8 +56,6 @@ public class PositionInfo {
   private BigDecimal takeProfit = null;
   @SerializedName("stop_loss")
   private BigDecimal stopLoss = null;
-  @SerializedName("trailing_stop")
-  private BigDecimal trailingStop = null;
   @SerializedName("position_status")
   private String positionStatus = null;
   @SerializedName("deleverage_indicator")
@@ -258,16 +256,6 @@ public class PositionInfo {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getTrailingStop() {
-    return trailingStop;
-  }
-  public void setTrailingStop(BigDecimal trailingStop) {
-    this.trailingStop = trailingStop;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
   public String getPositionStatus() {
     return positionStatus;
   }
@@ -422,7 +410,6 @@ public class PositionInfo {
         (this.occFundingFee == null ? positionInfo.occFundingFee == null : this.occFundingFee.equals(positionInfo.occFundingFee)) &&
         (this.takeProfit == null ? positionInfo.takeProfit == null : this.takeProfit.equals(positionInfo.takeProfit)) &&
         (this.stopLoss == null ? positionInfo.stopLoss == null : this.stopLoss.equals(positionInfo.stopLoss)) &&
-        (this.trailingStop == null ? positionInfo.trailingStop == null : this.trailingStop.equals(positionInfo.trailingStop)) &&
         (this.positionStatus == null ? positionInfo.positionStatus == null : this.positionStatus.equals(positionInfo.positionStatus)) &&
         (this.deleverageIndicator == null ? positionInfo.deleverageIndicator == null : this.deleverageIndicator.equals(positionInfo.deleverageIndicator)) &&
         (this.ocCalcData == null ? positionInfo.ocCalcData == null : this.ocCalcData.equals(positionInfo.ocCalcData)) &&
@@ -458,7 +445,6 @@ public class PositionInfo {
     result = 31 * result + (this.occFundingFee == null ? 0: this.occFundingFee.hashCode());
     result = 31 * result + (this.takeProfit == null ? 0: this.takeProfit.hashCode());
     result = 31 * result + (this.stopLoss == null ? 0: this.stopLoss.hashCode());
-    result = 31 * result + (this.trailingStop == null ? 0: this.trailingStop.hashCode());
     result = 31 * result + (this.positionStatus == null ? 0: this.positionStatus.hashCode());
     result = 31 * result + (this.deleverageIndicator == null ? 0: this.deleverageIndicator.hashCode());
     result = 31 * result + (this.ocCalcData == null ? 0: this.ocCalcData.hashCode());
@@ -497,7 +483,6 @@ public class PositionInfo {
     sb.append("  occFundingFee: ").append(occFundingFee).append("\n");
     sb.append("  takeProfit: ").append(takeProfit).append("\n");
     sb.append("  stopLoss: ").append(stopLoss).append("\n");
-    sb.append("  trailingStop: ").append(trailingStop).append("\n");
     sb.append("  positionStatus: ").append(positionStatus).append("\n");
     sb.append("  deleverageIndicator: ").append(deleverageIndicator).append("\n");
     sb.append("  ocCalcData: ").append(ocCalcData).append("\n");

@@ -20,7 +20,6 @@ Name | Type | Description | Notes
 **OccFundingFee** | **float32** |  | [optional] [default to null]
 **TakeProfit** | **float32** |  | [optional] [default to null]
 **StopLoss** | **float32** |  | [optional] [default to null]
-**TrailingStop** | **float32** |  | [optional] [default to null]
 **PositionStatus** | **string** |  | [optional] [default to null]
 **DeleverageIndicator** | **string** |  | [optional] [default to null]
 **OcCalcData** | **string** |  | [optional] [default to null]

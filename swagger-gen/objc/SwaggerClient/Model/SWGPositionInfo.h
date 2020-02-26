@@ -57,8 +57,6 @@
 
 @property(nonatomic) NSNumber* stopLoss;
 
-@property(nonatomic) NSNumber* trailingStop;
-
 @property(nonatomic) NSString* positionStatus;
 
 @property(nonatomic) NSString* deleverageIndicator;

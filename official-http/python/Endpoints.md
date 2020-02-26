@@ -31,6 +31,9 @@
 ### Wallet.withdraw
 [Get withdraw records](https://github.com/bybit-exchange/bybit-official-api-docs/blob/master/en/rest_api.md#wallet-withdrawrecordget)
 
+### Wallet.getBalance
+[Get wallet balance info](https://github.com/bybit-exchange/bybit-official-api-docs/blob/master/en/rest_api.md#open-apiwalletbalanceget)
+
 ### Wallet.setRiskLimit
 [Set risk limit](https://github.com/bybit-exchange/bybit-official-api-docs/blob/master/en/rest_api.md#wallet-setrisklimit)
 

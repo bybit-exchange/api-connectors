@@ -4,11 +4,76 @@ All URIs are relative to *https://api-testnet.bybit.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**walletGetBalance**](WalletApi.md#walletGetBalance) | **GET** /v2/private/wallet/balance | get wallet balance info
 [**walletGetRecords**](WalletApi.md#walletGetRecords) | **GET** /open-api/wallet/fund/records | Get wallet fund records
 [**walletGetRiskLimit**](WalletApi.md#walletGetRiskLimit) | **GET** /open-api/wallet/risk-limit/list | Get risk limit.
 [**walletSetRiskLimit**](WalletApi.md#walletSetRiskLimit) | **POST** /open-api/wallet/risk-limit | Set risk limit
 [**walletWithdraw**](WalletApi.md#walletWithdraw) | **GET** /open-api/wallet/withdraw/list | Get wallet fund records
 
+
+<a name="walletGetBalance"></a>
+# **walletGetBalance**
+> Object walletGetBalance(opts)
+
+get wallet balance info
+
+### Example
+```javascript
+var BybitApi = require('bybit_api');
+var defaultClient = BybitApi.ApiClient.instance;
+
+// Configure API key authorization: apiKey
+var apiKey = defaultClient.authentications['apiKey'];
+apiKey.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiKey.apiKeyPrefix = 'Token';
+
+// Configure API key authorization: apiSignature
+var apiSignature = defaultClient.authentications['apiSignature'];
+apiSignature.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiSignature.apiKeyPrefix = 'Token';
+
+// Configure API key authorization: timestamp
+var timestamp = defaultClient.authentications['timestamp'];
+timestamp.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//timestamp.apiKeyPrefix = 'Token';
+
+var apiInstance = new BybitApi.WalletApi();
+
+var opts = { 
+  'coin': "coin_example" // String | Coin.enum {BTC,EOS,XRP,ETH,USDT}
+};
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.walletGetBalance(opts, callback);
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **coin** | **String**| Coin.enum {BTC,EOS,XRP,ETH,USDT} | [optional] 
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
 
 <a name="walletGetRecords"></a>
 # **walletGetRecords**

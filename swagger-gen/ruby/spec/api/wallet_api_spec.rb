@@ -32,6 +32,17 @@ describe 'WalletApi' do
     end
   end
 
+  # unit tests for wallet_get_balance
+  # get wallet balance info
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :coin Coin.enum {BTC,EOS,XRP,ETH,USDT}
+  # @return [Object]
+  describe 'wallet_get_balance test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for wallet_get_records
   # Get wallet fund records
   # @param [Hash] opts the optional parameters

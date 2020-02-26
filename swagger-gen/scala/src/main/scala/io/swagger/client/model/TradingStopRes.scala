@@ -31,7 +31,6 @@ case class TradingStopRes (
   occFundingFee: Option[Double] = None,
   takeProfit: Option[Double] = None,
   stopLoss: Option[Double] = None,
-  trailingStop: Option[Double] = None,
   positionStatus: Option[String] = None,
   deleverageIndicator: Option[Number] = None,
   ocCalcData: Option[String] = None,

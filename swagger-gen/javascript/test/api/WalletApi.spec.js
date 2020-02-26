@@ -51,6 +51,16 @@
   }
 
   describe('WalletApi', function() {
+    describe('walletGetBalance', function() {
+      it('should call walletGetBalance successfully', function(done) {
+        //uncomment below and update the code to test walletGetBalance
+        //instance.walletGetBalance(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
     describe('walletGetRecords', function() {
       it('should call walletGetRecords successfully', function(done) {
         //uncomment below and update the code to test walletGetRecords

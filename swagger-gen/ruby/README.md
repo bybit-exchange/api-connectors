@@ -119,6 +119,7 @@ Class | Method | HTTP request | Description
 *SwaggerClient::PositionsApi* | [**positions_trading_stop**](docs/PositionsApi.md#positions_trading_stop) | **POST** /open-api/position/trading-stop | Set Trading-Stop Condition.
 *SwaggerClient::PositionsApi* | [**positions_user_leverage**](docs/PositionsApi.md#positions_user_leverage) | **GET** /user/leverage | Get user leverage setting.
 *SwaggerClient::SymbolApi* | [**symbol_get**](docs/SymbolApi.md#symbol_get) | **GET** /v2/public/symbols | Query Symbols.
+*SwaggerClient::WalletApi* | [**wallet_get_balance**](docs/WalletApi.md#wallet_get_balance) | **GET** /v2/private/wallet/balance | get wallet balance info
 *SwaggerClient::WalletApi* | [**wallet_get_records**](docs/WalletApi.md#wallet_get_records) | **GET** /open-api/wallet/fund/records | Get wallet fund records
 *SwaggerClient::WalletApi* | [**wallet_get_risk_limit**](docs/WalletApi.md#wallet_get_risk_limit) | **GET** /open-api/wallet/risk-limit/list | Get risk limit.
 *SwaggerClient::WalletApi* | [**wallet_set_risk_limit**](docs/WalletApi.md#wallet_set_risk_limit) | **POST** /open-api/wallet/risk-limit | Set risk limit
@@ -181,6 +182,8 @@ Class | Method | HTTP request | Description
  - [SwaggerClient::TradeRecordsInfo](docs/TradeRecordsInfo.md)
  - [SwaggerClient::TradingStopBase](docs/TradingStopBase.md)
  - [SwaggerClient::TradingStopRes](docs/TradingStopRes.md)
+ - [SwaggerClient::WalletBalance](docs/WalletBalance.md)
+ - [SwaggerClient::WalletBalanceBase](docs/WalletBalanceBase.md)
  - [SwaggerClient::WithdrawRecords](docs/WithdrawRecords.md)
  - [SwaggerClient::WithdrawResBase](docs/WithdrawResBase.md)
 

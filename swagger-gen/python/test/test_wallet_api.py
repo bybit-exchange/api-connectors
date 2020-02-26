@@ -29,6 +29,13 @@ class TestWalletApi(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def test_wallet_get_balance(self):
+        """Test case for wallet_get_balance
+
+        get wallet balance info  # noqa: E501
+        """
+        pass
+
     def test_wallet_get_records(self):
         """Test case for wallet_get_records
 

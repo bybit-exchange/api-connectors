@@ -31,7 +31,6 @@ case class PositionInfo (
   occFundingFee: Option[Number] = None,
   takeProfit: Option[Number] = None,
   stopLoss: Option[Number] = None,
-  trailingStop: Option[Number] = None,
   positionStatus: Option[String] = None,
   deleverageIndicator: Option[String] = None,
   ocCalcData: Option[String] = None,

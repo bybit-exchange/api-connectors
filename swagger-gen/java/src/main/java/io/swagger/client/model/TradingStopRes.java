@@ -29,7 +29,7 @@ import java.math.BigDecimal;
  * Set Trading-Stop Condition response
  */
 @ApiModel(description = "Set Trading-Stop Condition response")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-24T20:04:35.557+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-23T17:07:23.289+08:00")
 public class TradingStopRes {
   @SerializedName("id")
   private BigDecimal id = null;
@@ -81,9 +81,6 @@ public class TradingStopRes {
 
   @SerializedName("stop_loss")
   private Double stopLoss = null;
-
-  @SerializedName("trailing_stop")
-  private Double trailingStop = null;
 
   @SerializedName("position_status")
   private String positionStatus = null;
@@ -427,24 +424,6 @@ public class TradingStopRes {
     this.stopLoss = stopLoss;
   }
 
-  public TradingStopRes trailingStop(Double trailingStop) {
-    this.trailingStop = trailingStop;
-    return this;
-  }
-
-   /**
-   * Get trailingStop
-   * @return trailingStop
-  **/
-  @ApiModelProperty(value = "")
-  public Double getTrailingStop() {
-    return trailingStop;
-  }
-
-  public void setTrailingStop(Double trailingStop) {
-    this.trailingStop = trailingStop;
-  }
-
   public TradingStopRes positionStatus(String positionStatus) {
     this.positionStatus = positionStatus;
     return this;
@@ -688,7 +667,6 @@ public class TradingStopRes {
         Objects.equals(this.occFundingFee, tradingStopRes.occFundingFee) &&
         Objects.equals(this.takeProfit, tradingStopRes.takeProfit) &&
         Objects.equals(this.stopLoss, tradingStopRes.stopLoss) &&
-        Objects.equals(this.trailingStop, tradingStopRes.trailingStop) &&
         Objects.equals(this.positionStatus, tradingStopRes.positionStatus) &&
         Objects.equals(this.deleverageIndicator, tradingStopRes.deleverageIndicator) &&
         Objects.equals(this.ocCalcData, tradingStopRes.ocCalcData) &&
@@ -705,7 +683,7 @@ public class TradingStopRes {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, userId, symbol, side, size, positionValue, entryPrice, riskId, autoAddMargin, leverage, positionMargin, liqPrice, bustPrice, occClosingFee, occFundingFee, takeProfit, stopLoss, trailingStop, positionStatus, deleverageIndicator, ocCalcData, orderMargin, walletBalance, realisedPnl, cumRealisedPnl, cumCommission, crossSeq, positionSeq, createdAt, updatedAt);
+    return Objects.hash(id, userId, symbol, side, size, positionValue, entryPrice, riskId, autoAddMargin, leverage, positionMargin, liqPrice, bustPrice, occClosingFee, occFundingFee, takeProfit, stopLoss, positionStatus, deleverageIndicator, ocCalcData, orderMargin, walletBalance, realisedPnl, cumRealisedPnl, cumCommission, crossSeq, positionSeq, createdAt, updatedAt);
   }
 
 
@@ -731,7 +709,6 @@ public class TradingStopRes {
     sb.append("    occFundingFee: ").append(toIndentedString(occFundingFee)).append("\n");
     sb.append("    takeProfit: ").append(toIndentedString(takeProfit)).append("\n");
     sb.append("    stopLoss: ").append(toIndentedString(stopLoss)).append("\n");
-    sb.append("    trailingStop: ").append(toIndentedString(trailingStop)).append("\n");
     sb.append("    positionStatus: ").append(toIndentedString(positionStatus)).append("\n");
     sb.append("    deleverageIndicator: ").append(toIndentedString(deleverageIndicator)).append("\n");
     sb.append("    ocCalcData: ").append(toIndentedString(ocCalcData)).append("\n");

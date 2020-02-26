@@ -1510,14 +1510,6 @@ class OrderApi
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        if ($price !== null) {
-            $queryParams['price'] = ObjectSerializer::toQueryValue($price);
-        }
-        // query params
-        if ($take_profit !== null) {
-            $queryParams['take_profit'] = ObjectSerializer::toQueryValue($take_profit);
-        }
 
 
         // form params
@@ -1537,8 +1529,16 @@ class OrderApi
             $formParams['qty'] = ObjectSerializer::toFormValue($qty);
         }
         // form params
+        if ($price !== null) {
+            $formParams['price'] = ObjectSerializer::toFormValue($price);
+        }
+        // form params
         if ($time_in_force !== null) {
             $formParams['time_in_force'] = ObjectSerializer::toFormValue($time_in_force);
+        }
+        // form params
+        if ($take_profit !== null) {
+            $formParams['take_profit'] = ObjectSerializer::toFormValue($take_profit);
         }
         // form params
         if ($stop_loss !== null) {
@@ -1902,14 +1902,6 @@ class OrderApi
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        if ($price !== null) {
-            $queryParams['price'] = ObjectSerializer::toQueryValue($price);
-        }
-        // query params
-        if ($take_profit !== null) {
-            $queryParams['take_profit'] = ObjectSerializer::toQueryValue($take_profit);
-        }
 
 
         // form params
@@ -1929,8 +1921,16 @@ class OrderApi
             $formParams['qty'] = ObjectSerializer::toFormValue($qty);
         }
         // form params
+        if ($price !== null) {
+            $formParams['price'] = ObjectSerializer::toFormValue($price);
+        }
+        // form params
         if ($time_in_force !== null) {
             $formParams['time_in_force'] = ObjectSerializer::toFormValue($time_in_force);
+        }
+        // form params
+        if ($take_profit !== null) {
+            $formParams['take_profit'] = ObjectSerializer::toFormValue($take_profit);
         }
         // form params
         if ($stop_loss !== null) {

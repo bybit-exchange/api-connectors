@@ -79,7 +79,6 @@
 
 
 
-
   };
 
   /**
@@ -143,9 +142,6 @@
       }
       if (data.hasOwnProperty('stop_loss')) {
         obj['stop_loss'] = ApiClient.convertToType(data['stop_loss'], 'Number');
-      }
-      if (data.hasOwnProperty('trailing_stop')) {
-        obj['trailing_stop'] = ApiClient.convertToType(data['trailing_stop'], 'Number');
       }
       if (data.hasOwnProperty('position_status')) {
         obj['position_status'] = ApiClient.convertToType(data['position_status'], 'String');
@@ -258,10 +254,6 @@
    * @member {Number} stop_loss
    */
   exports.prototype['stop_loss'] = undefined;
-  /**
-   * @member {Number} trailing_stop
-   */
-  exports.prototype['trailing_stop'] = undefined;
   /**
    * @member {String} position_status
    */

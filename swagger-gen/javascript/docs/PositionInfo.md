@@ -20,7 +20,6 @@ Name | Type | Description | Notes
 **occFundingFee** | **Number** |  | [optional] 
 **takeProfit** | **Number** |  | [optional] 
 **stopLoss** | **Number** |  | [optional] 
-**trailingStop** | **Number** |  | [optional] 
 **positionStatus** | **String** |  | [optional] 
 **deleverageIndicator** | **String** |  | [optional] 
 **ocCalcData** | **String** |  | [optional] 

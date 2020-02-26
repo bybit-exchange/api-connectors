@@ -242,8 +242,8 @@ open class OrderAPI {
      - parameter orderType: (form) Active order type 
      - parameter qty: (form)  
      - parameter timeInForce: (form) Time in force 
-     - parameter price: (query) Order price. (optional)
-     - parameter takeProfit: (query) take profit price (optional)
+     - parameter price: (form) Order price. (optional)
+     - parameter takeProfit: (form) take profit price (optional)
      - parameter stopLoss: (form) stop loss price (optional)
      - parameter reduceOnly: (form) reduce only (optional)
      - parameter closeOnTrigger: (form) close on trigger (optional)
@@ -276,8 +276,8 @@ open class OrderAPI {
      - parameter orderType: (form) Active order type 
      - parameter qty: (form)  
      - parameter timeInForce: (form) Time in force 
-     - parameter price: (query) Order price. (optional)
-     - parameter takeProfit: (query) take profit price (optional)
+     - parameter price: (form) Order price. (optional)
+     - parameter takeProfit: (form) take profit price (optional)
      - parameter stopLoss: (form) stop loss price (optional)
      - parameter reduceOnly: (form) reduce only (optional)
      - parameter closeOnTrigger: (form) close on trigger (optional)
@@ -293,7 +293,9 @@ open class OrderAPI {
             "symbol": symbol,
             "order_type": orderType,
             "qty": qty,
+            "price": price,
             "time_in_force": timeInForce,
+            "take_profit": takeProfit,
             "stop_loss": stopLoss,
             "reduce_only": reduceOnly,
             "close_on_trigger": closeOnTrigger,
@@ -305,8 +307,6 @@ open class OrderAPI {
         
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "price": price, 
-            "take_profit": takeProfit
         ])
 
         let requestBuilder: RequestBuilder<Any>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
@@ -322,8 +322,8 @@ open class OrderAPI {
      - parameter orderType: (form) Active order type 
      - parameter qty: (form)  
      - parameter timeInForce: (form) Time in force 
-     - parameter price: (query) Order price. (optional)
-     - parameter takeProfit: (query) take profit price (optional)
+     - parameter price: (form) Order price. (optional)
+     - parameter takeProfit: (form) take profit price (optional)
      - parameter stopLoss: (form) stop loss price (optional)
      - parameter reduceOnly: (form) reduce only (optional)
      - parameter closeOnTrigger: (form) close on trigger (optional)
@@ -357,8 +357,8 @@ open class OrderAPI {
      - parameter orderType: (form) Active order type 
      - parameter qty: (form)  
      - parameter timeInForce: (form) Time in force 
-     - parameter price: (query) Order price. (optional)
-     - parameter takeProfit: (query) take profit price (optional)
+     - parameter price: (form) Order price. (optional)
+     - parameter takeProfit: (form) take profit price (optional)
      - parameter stopLoss: (form) stop loss price (optional)
      - parameter reduceOnly: (form) reduce only (optional)
      - parameter closeOnTrigger: (form) close on trigger (optional)
@@ -375,7 +375,9 @@ open class OrderAPI {
             "symbol": symbol,
             "order_type": orderType,
             "qty": qty,
+            "price": price,
             "time_in_force": timeInForce,
+            "take_profit": takeProfit,
             "stop_loss": stopLoss,
             "reduce_only": reduceOnly,
             "close_on_trigger": closeOnTrigger,
@@ -388,8 +390,6 @@ open class OrderAPI {
         
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "price": price, 
-            "take_profit": takeProfit
         ])
 
         let requestBuilder: RequestBuilder<Any>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()

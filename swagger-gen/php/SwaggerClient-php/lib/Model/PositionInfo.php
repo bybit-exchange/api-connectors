@@ -75,7 +75,6 @@ class PositionInfo implements ModelInterface, ArrayAccess
         'occ_funding_fee' => 'float',
         'take_profit' => 'float',
         'stop_loss' => 'float',
-        'trailing_stop' => 'float',
         'position_status' => 'string',
         'deleverage_indicator' => 'string',
         'oc_calc_data' => 'string',
@@ -114,7 +113,6 @@ class PositionInfo implements ModelInterface, ArrayAccess
         'occ_funding_fee' => 'int32',
         'take_profit' => 'int32',
         'stop_loss' => 'int32',
-        'trailing_stop' => 'int32',
         'position_status' => null,
         'deleverage_indicator' => null,
         'oc_calc_data' => 'JSON',
@@ -174,7 +172,6 @@ class PositionInfo implements ModelInterface, ArrayAccess
         'occ_funding_fee' => 'occ_funding_fee',
         'take_profit' => 'take_profit',
         'stop_loss' => 'stop_loss',
-        'trailing_stop' => 'trailing_stop',
         'position_status' => 'position_status',
         'deleverage_indicator' => 'deleverage_indicator',
         'oc_calc_data' => 'oc_calc_data',
@@ -213,7 +210,6 @@ class PositionInfo implements ModelInterface, ArrayAccess
         'occ_funding_fee' => 'setOccFundingFee',
         'take_profit' => 'setTakeProfit',
         'stop_loss' => 'setStopLoss',
-        'trailing_stop' => 'setTrailingStop',
         'position_status' => 'setPositionStatus',
         'deleverage_indicator' => 'setDeleverageIndicator',
         'oc_calc_data' => 'setOcCalcData',
@@ -252,7 +248,6 @@ class PositionInfo implements ModelInterface, ArrayAccess
         'occ_funding_fee' => 'getOccFundingFee',
         'take_profit' => 'getTakeProfit',
         'stop_loss' => 'getStopLoss',
-        'trailing_stop' => 'getTrailingStop',
         'position_status' => 'getPositionStatus',
         'deleverage_indicator' => 'getDeleverageIndicator',
         'oc_calc_data' => 'getOcCalcData',
@@ -345,7 +340,6 @@ class PositionInfo implements ModelInterface, ArrayAccess
         $this->container['occ_funding_fee'] = isset($data['occ_funding_fee']) ? $data['occ_funding_fee'] : null;
         $this->container['take_profit'] = isset($data['take_profit']) ? $data['take_profit'] : null;
         $this->container['stop_loss'] = isset($data['stop_loss']) ? $data['stop_loss'] : null;
-        $this->container['trailing_stop'] = isset($data['trailing_stop']) ? $data['trailing_stop'] : null;
         $this->container['position_status'] = isset($data['position_status']) ? $data['position_status'] : null;
         $this->container['deleverage_indicator'] = isset($data['deleverage_indicator']) ? $data['deleverage_indicator'] : null;
         $this->container['oc_calc_data'] = isset($data['oc_calc_data']) ? $data['oc_calc_data'] : null;
@@ -789,30 +783,6 @@ class PositionInfo implements ModelInterface, ArrayAccess
     public function setStopLoss($stop_loss)
     {
         $this->container['stop_loss'] = $stop_loss;
-
-        return $this;
-    }
-
-    /**
-     * Gets trailing_stop
-     *
-     * @return float
-     */
-    public function getTrailingStop()
-    {
-        return $this->container['trailing_stop'];
-    }
-
-    /**
-     * Sets trailing_stop
-     *
-     * @param float $trailing_stop trailing_stop
-     *
-     * @return $this
-     */
-    public function setTrailingStop($trailing_stop)
-    {
-        $this->container['trailing_stop'] = $trailing_stop;
 
         return $this;
     }

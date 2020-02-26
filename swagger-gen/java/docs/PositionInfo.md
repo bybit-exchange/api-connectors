@@ -21,7 +21,6 @@ Name | Type | Description | Notes
 **occFundingFee** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **takeProfit** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **stopLoss** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
-**trailingStop** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **positionStatus** | **String** |  |  [optional]
 **deleverageIndicator** | **String** |  |  [optional]
 **ocCalcData** | **String** |  |  [optional]

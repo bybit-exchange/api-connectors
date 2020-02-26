@@ -322,6 +322,25 @@ paths:
           description: "Request was successful"
           schema: {}
       deprecated: false
+  /v2/private/wallet/balance:
+    get:
+      tags:
+      - "Wallet"
+      summary: "get wallet balance info"
+      operationId: "Wallet.getBalance"
+      parameters:
+      - name: "coin"
+        in: "query"
+        description: "Coin.enum {BTC,EOS,XRP,ETH,USDT}"
+        required: false
+        type: "string"
+        x-exportParamName: "Coin"
+        x-optionalDataType: "String"
+      responses:
+        200:
+          description: "Request was successful"
+          schema: {}
+      deprecated: false
   /open-api/wallet/risk-limit:
     post:
       tags:
@@ -392,7 +411,7 @@ paths:
         format: "int32"
         x-exportParamName: "Qty"
       - name: "price"
-        in: "query"
+        in: "formData"
         description: "Order price."
         required: false
         type: "number"
@@ -406,7 +425,7 @@ paths:
         type: "string"
         x-exportParamName: "TimeInForce"
       - name: "take_profit"
-        in: "query"
+        in: "formData"
         description: "take profit price"
         required: false
         type: "number"
@@ -481,7 +500,7 @@ paths:
         format: "int32"
         x-exportParamName: "Qty"
       - name: "price"
-        in: "query"
+        in: "formData"
         description: "Order price."
         required: false
         type: "number"
@@ -495,7 +514,7 @@ paths:
         type: "string"
         x-exportParamName: "TimeInForce"
       - name: "take_profit"
-        in: "query"
+        in: "formData"
         description: "take profit price"
         required: false
         type: "number"
@@ -1390,9 +1409,6 @@ definitions:
       stop_loss:
         type: "number"
         format: "int32"
-      trailing_stop:
-        type: "number"
-        format: "int32"
       position_status:
         type: "string"
       deleverage_indicator:
@@ -2242,6 +2258,67 @@ definitions:
       updated_at:
         type: "string"
     description: "Get withdraw records response"
+  WalletBalanceBase:
+    type: "object"
+    properties:
+      ret_code:
+        type: "number"
+        format: "int32"
+      ret_msg:
+        type: "string"
+      ext_code:
+        type: "string"
+      ext_info:
+        type: "string"
+      result:
+        type: "object"
+        properties: {}
+      time_now:
+        type: "string"
+    description: "Get account withdraw balance response"
+  WalletBalance:
+    type: "object"
+    properties:
+      equity:
+        type: "number"
+        format: "double"
+      available_balance:
+        type: "number"
+        format: "double"
+      used_margin:
+        type: "number"
+        format: "double"
+      order_margin:
+        type: "number"
+        format: "double"
+      position_margin:
+        type: "number"
+        format: "double"
+      occ_closing_fee:
+        type: "number"
+        format: "double"
+      occ_funding_fee:
+        type: "number"
+        format: "double"
+      wallet_balance:
+        type: "number"
+        format: "double"
+      realised_pnl:
+        type: "number"
+        format: "double"
+      unrealised_pnl:
+        type: "number"
+        format: "double"
+      cum_realised_pnl:
+        type: "number"
+        format: "double"
+      given_cash:
+        type: "number"
+        format: "double"
+      service_cash:
+        type: "number"
+        format: "double"
+    description: "Get wallet balance response"
   SetRiskLimitBase:
     type: "object"
     properties:
@@ -2390,9 +2467,6 @@ definitions:
         type: "number"
         format: "double"
       stop_loss:
-        type: "number"
-        format: "double"
-      trailing_stop:
         type: "number"
         format: "double"
       position_status:
