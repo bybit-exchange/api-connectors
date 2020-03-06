@@ -1177,10 +1177,17 @@
                 "summary": "Replace conditional order. Only incomplete orders can be modified. ",
                 "operationId": "Conditional.replace",
                 "parameters": [{
+                        "name": "stop_order_id",
+                        "in": "formData",
+                        "description": "Stop order ID.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
                         "name": "order_id",
                         "in": "formData",
-                        "description": "Order ID.",
-                        "required": true,
+                        "description": "Stop order ID.",
+                        "required": false,
                         "type": "string"
                     },
                     {
