@@ -297,33 +297,31 @@ module SwaggerClient
       return data, status_code, headers
     end
     # Replace conditional order. Only incomplete orders can be modified. 
-    # @param order_id Order ID.
     # @param symbol Contract type.
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :stop_order_id Stop order ID.
+    # @option opts [String] :order_id Stop order ID.
     # @option opts [Float] :p_r_qty Order quantity.
     # @option opts [Float] :p_r_price Order price.
     # @option opts [Float] :p_r_trigger_price Trigger price.
     # @return [Object]
-    def conditional_replace(order_id, symbol, opts = {})
-      data, _status_code, _headers = conditional_replace_with_http_info(order_id, symbol, opts)
+    def conditional_replace(symbol, opts = {})
+      data, _status_code, _headers = conditional_replace_with_http_info(symbol, opts)
       data
     end
 
     # Replace conditional order. Only incomplete orders can be modified. 
-    # @param order_id Order ID.
     # @param symbol Contract type.
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :stop_order_id Stop order ID.
+    # @option opts [String] :order_id Stop order ID.
     # @option opts [Float] :p_r_qty Order quantity.
     # @option opts [Float] :p_r_price Order price.
     # @option opts [Float] :p_r_trigger_price Trigger price.
     # @return [Array<(Object, Fixnum, Hash)>] Object data, response status code and response headers
-    def conditional_replace_with_http_info(order_id, symbol, opts = {})
+    def conditional_replace_with_http_info(symbol, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: ConditionalApi.conditional_replace ...'
-      end
-      # verify the required parameter 'order_id' is set
-      if @api_client.config.client_side_validation && order_id.nil?
-        fail ArgumentError, "Missing the required parameter 'order_id' when calling ConditionalApi.conditional_replace"
       end
       # verify the required parameter 'symbol' is set
       if @api_client.config.client_side_validation && symbol.nil?
@@ -344,8 +342,9 @@ module SwaggerClient
 
       # form parameters
       form_params = {}
-      form_params['order_id'] = order_id
       form_params['symbol'] = symbol
+      form_params['stop_order_id'] = opts[:'stop_order_id'] if !opts[:'stop_order_id'].nil?
+      form_params['order_id'] = opts[:'order_id'] if !opts[:'order_id'].nil?
       form_params['p_r_qty'] = opts[:'p_r_qty'] if !opts[:'p_r_qty'].nil?
       form_params['p_r_price'] = opts[:'p_r_price'] if !opts[:'p_r_price'].nil?
       form_params['p_r_trigger_price'] = opts[:'p_r_trigger_price'] if !opts[:'p_r_trigger_price'].nil?

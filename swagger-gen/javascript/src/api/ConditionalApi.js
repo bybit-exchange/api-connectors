@@ -305,23 +305,19 @@
 
     /**
      * Replace conditional order. Only incomplete orders can be modified. 
-     * @param {String} orderId Order ID.
      * @param {String} symbol Contract type.
      * @param {Object} opts Optional parameters
+     * @param {String} opts.stopOrderId Stop order ID.
+     * @param {String} opts.orderId Stop order ID.
      * @param {Number} opts.pRQty Order quantity.
      * @param {Number} opts.pRPrice Order price.
      * @param {Number} opts.pRTriggerPrice Trigger price.
      * @param {module:api/ConditionalApi~conditionalReplaceCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link Object}
      */
-    this.conditionalReplace = function(orderId, symbol, opts, callback) {
+    this.conditionalReplace = function(symbol, opts, callback) {
       opts = opts || {};
       var postBody = null;
-
-      // verify the required parameter 'orderId' is set
-      if (orderId === undefined || orderId === null) {
-        throw new Error("Missing the required parameter 'orderId' when calling conditionalReplace");
-      }
 
       // verify the required parameter 'symbol' is set
       if (symbol === undefined || symbol === null) {
@@ -338,7 +334,8 @@
       var headerParams = {
       };
       var formParams = {
-        'order_id': orderId,
+        'stop_order_id': opts['stopOrderId'],
+        'order_id': opts['orderId'],
         'symbol': symbol,
         'p_r_qty': opts['pRQty'],
         'p_r_price': opts['pRPrice'],

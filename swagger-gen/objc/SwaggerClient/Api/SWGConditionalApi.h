@@ -103,8 +103,9 @@ extern NSInteger kSWGConditionalApiMissingParamErrorCode;
 /// Replace conditional order. Only incomplete orders can be modified. 
 /// 
 ///
-/// @param orderId Order ID.
 /// @param symbol Contract type.
+/// @param stopOrderId Stop order ID. (optional)
+/// @param orderId Stop order ID. (optional)
 /// @param pRQty Order quantity. (optional)
 /// @param pRPrice Order price. (optional)
 /// @param pRTriggerPrice Trigger price. (optional)
@@ -112,8 +113,9 @@ extern NSInteger kSWGConditionalApiMissingParamErrorCode;
 ///  code:200 message:"Request was successful"
 ///
 /// @return NSObject*
--(NSURLSessionTask*) conditionalReplaceWithOrderId: (NSString*) orderId
-    symbol: (NSString*) symbol
+-(NSURLSessionTask*) conditionalReplaceWithSymbol: (NSString*) symbol
+    stopOrderId: (NSString*) stopOrderId
+    orderId: (NSString*) orderId
     pRQty: (NSNumber*) pRQty
     pRPrice: (NSNumber*) pRPrice
     pRTriggerPrice: (NSNumber*) pRTriggerPrice

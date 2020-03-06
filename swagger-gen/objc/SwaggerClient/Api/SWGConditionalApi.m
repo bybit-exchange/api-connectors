@@ -468,9 +468,11 @@ NSInteger kSWGConditionalApiMissingParamErrorCode = 234513;
 ///
 /// Replace conditional order. Only incomplete orders can be modified. 
 /// 
-///  @param orderId Order ID. 
-///
 ///  @param symbol Contract type. 
+///
+///  @param stopOrderId Stop order ID. (optional)
+///
+///  @param orderId Stop order ID. (optional)
 ///
 ///  @param pRQty Order quantity. (optional)
 ///
@@ -480,23 +482,13 @@ NSInteger kSWGConditionalApiMissingParamErrorCode = 234513;
 ///
 ///  @returns NSObject*
 ///
--(NSURLSessionTask*) conditionalReplaceWithOrderId: (NSString*) orderId
-    symbol: (NSString*) symbol
+-(NSURLSessionTask*) conditionalReplaceWithSymbol: (NSString*) symbol
+    stopOrderId: (NSString*) stopOrderId
+    orderId: (NSString*) orderId
     pRQty: (NSNumber*) pRQty
     pRPrice: (NSNumber*) pRPrice
     pRTriggerPrice: (NSNumber*) pRTriggerPrice
     completionHandler: (void (^)(NSObject* output, NSError* error)) handler {
-    // verify the required parameter 'orderId' is set
-    if (orderId == nil) {
-        NSParameterAssert(orderId);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"orderId"] };
-            NSError* error = [NSError errorWithDomain:kSWGConditionalApiErrorDomain code:kSWGConditionalApiMissingParamErrorCode userInfo:userInfo];
-            handler(nil, error);
-        }
-        return nil;
-    }
-
     // verify the required parameter 'symbol' is set
     if (symbol == nil) {
         NSParameterAssert(symbol);
@@ -533,6 +525,9 @@ NSInteger kSWGConditionalApiMissingParamErrorCode = 234513;
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
     NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+    if (stopOrderId) {
+        formParams[@"stop_order_id"] = stopOrderId;
+    }
     if (orderId) {
         formParams[@"order_id"] = orderId;
     }

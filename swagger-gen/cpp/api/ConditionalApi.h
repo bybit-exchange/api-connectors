@@ -115,14 +115,16 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="orderId">Order ID.</param>
     /// <param name="symbol">Contract type.</param>
+    /// <param name="stopOrderId">Stop order ID. (optional)</param>
+    /// <param name="orderId">Stop order ID. (optional)</param>
     /// <param name="pRQty">Order quantity. (optional)</param>
     /// <param name="pRPrice">Order price. (optional)</param>
     /// <param name="pRTriggerPrice">Trigger price. (optional)</param>
     pplx::task<std::shared_ptr<Object>> conditional_replace(
-        utility::string_t orderId,
         utility::string_t symbol,
+        boost::optional<utility::string_t> stopOrderId,
+        boost::optional<utility::string_t> orderId,
         boost::optional<double> pRQty,
         boost::optional<double> pRPrice,
         boost::optional<double> pRTriggerPrice

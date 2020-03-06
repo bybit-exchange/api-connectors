@@ -1349,8 +1349,9 @@ class ConditionalApi
      *
      * Replace conditional order. Only incomplete orders can be modified.
      *
-     * @param  string $order_id Order ID. (required)
      * @param  string $symbol Contract type. (required)
+     * @param  string $stop_order_id Stop order ID. (optional)
+     * @param  string $order_id Stop order ID. (optional)
      * @param  float $p_r_qty Order quantity. (optional)
      * @param  double $p_r_price Order price. (optional)
      * @param  double $p_r_trigger_price Trigger price. (optional)
@@ -1359,9 +1360,9 @@ class ConditionalApi
      * @throws \InvalidArgumentException
      * @return object
      */
-    public function conditionalReplace($order_id, $symbol, $p_r_qty = null, $p_r_price = null, $p_r_trigger_price = null)
+    public function conditionalReplace($symbol, $stop_order_id = null, $order_id = null, $p_r_qty = null, $p_r_price = null, $p_r_trigger_price = null)
     {
-        list($response) = $this->conditionalReplaceWithHttpInfo($order_id, $symbol, $p_r_qty, $p_r_price, $p_r_trigger_price);
+        list($response) = $this->conditionalReplaceWithHttpInfo($symbol, $stop_order_id, $order_id, $p_r_qty, $p_r_price, $p_r_trigger_price);
         return $response;
     }
 
@@ -1370,8 +1371,9 @@ class ConditionalApi
      *
      * Replace conditional order. Only incomplete orders can be modified.
      *
-     * @param  string $order_id Order ID. (required)
      * @param  string $symbol Contract type. (required)
+     * @param  string $stop_order_id Stop order ID. (optional)
+     * @param  string $order_id Stop order ID. (optional)
      * @param  float $p_r_qty Order quantity. (optional)
      * @param  double $p_r_price Order price. (optional)
      * @param  double $p_r_trigger_price Trigger price. (optional)
@@ -1380,10 +1382,10 @@ class ConditionalApi
      * @throws \InvalidArgumentException
      * @return array of object, HTTP status code, HTTP response headers (array of strings)
      */
-    public function conditionalReplaceWithHttpInfo($order_id, $symbol, $p_r_qty = null, $p_r_price = null, $p_r_trigger_price = null)
+    public function conditionalReplaceWithHttpInfo($symbol, $stop_order_id = null, $order_id = null, $p_r_qty = null, $p_r_price = null, $p_r_trigger_price = null)
     {
         $returnType = 'object';
-        $request = $this->conditionalReplaceRequest($order_id, $symbol, $p_r_qty, $p_r_price, $p_r_trigger_price);
+        $request = $this->conditionalReplaceRequest($symbol, $stop_order_id, $order_id, $p_r_qty, $p_r_price, $p_r_trigger_price);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1449,8 +1451,9 @@ class ConditionalApi
      *
      * Replace conditional order. Only incomplete orders can be modified.
      *
-     * @param  string $order_id Order ID. (required)
      * @param  string $symbol Contract type. (required)
+     * @param  string $stop_order_id Stop order ID. (optional)
+     * @param  string $order_id Stop order ID. (optional)
      * @param  float $p_r_qty Order quantity. (optional)
      * @param  double $p_r_price Order price. (optional)
      * @param  double $p_r_trigger_price Trigger price. (optional)
@@ -1458,9 +1461,9 @@ class ConditionalApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function conditionalReplaceAsync($order_id, $symbol, $p_r_qty = null, $p_r_price = null, $p_r_trigger_price = null)
+    public function conditionalReplaceAsync($symbol, $stop_order_id = null, $order_id = null, $p_r_qty = null, $p_r_price = null, $p_r_trigger_price = null)
     {
-        return $this->conditionalReplaceAsyncWithHttpInfo($order_id, $symbol, $p_r_qty, $p_r_price, $p_r_trigger_price)
+        return $this->conditionalReplaceAsyncWithHttpInfo($symbol, $stop_order_id, $order_id, $p_r_qty, $p_r_price, $p_r_trigger_price)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1473,8 +1476,9 @@ class ConditionalApi
      *
      * Replace conditional order. Only incomplete orders can be modified.
      *
-     * @param  string $order_id Order ID. (required)
      * @param  string $symbol Contract type. (required)
+     * @param  string $stop_order_id Stop order ID. (optional)
+     * @param  string $order_id Stop order ID. (optional)
      * @param  float $p_r_qty Order quantity. (optional)
      * @param  double $p_r_price Order price. (optional)
      * @param  double $p_r_trigger_price Trigger price. (optional)
@@ -1482,10 +1486,10 @@ class ConditionalApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function conditionalReplaceAsyncWithHttpInfo($order_id, $symbol, $p_r_qty = null, $p_r_price = null, $p_r_trigger_price = null)
+    public function conditionalReplaceAsyncWithHttpInfo($symbol, $stop_order_id = null, $order_id = null, $p_r_qty = null, $p_r_price = null, $p_r_trigger_price = null)
     {
         $returnType = 'object';
-        $request = $this->conditionalReplaceRequest($order_id, $symbol, $p_r_qty, $p_r_price, $p_r_trigger_price);
+        $request = $this->conditionalReplaceRequest($symbol, $stop_order_id, $order_id, $p_r_qty, $p_r_price, $p_r_trigger_price);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1527,8 +1531,9 @@ class ConditionalApi
     /**
      * Create request for operation 'conditionalReplace'
      *
-     * @param  string $order_id Order ID. (required)
      * @param  string $symbol Contract type. (required)
+     * @param  string $stop_order_id Stop order ID. (optional)
+     * @param  string $order_id Stop order ID. (optional)
      * @param  float $p_r_qty Order quantity. (optional)
      * @param  double $p_r_price Order price. (optional)
      * @param  double $p_r_trigger_price Trigger price. (optional)
@@ -1536,14 +1541,8 @@ class ConditionalApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function conditionalReplaceRequest($order_id, $symbol, $p_r_qty = null, $p_r_price = null, $p_r_trigger_price = null)
+    protected function conditionalReplaceRequest($symbol, $stop_order_id = null, $order_id = null, $p_r_qty = null, $p_r_price = null, $p_r_trigger_price = null)
     {
-        // verify the required parameter 'order_id' is set
-        if ($order_id === null || (is_array($order_id) && count($order_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $order_id when calling conditionalReplace'
-            );
-        }
         // verify the required parameter 'symbol' is set
         if ($symbol === null || (is_array($symbol) && count($symbol) === 0)) {
             throw new \InvalidArgumentException(
@@ -1560,6 +1559,10 @@ class ConditionalApi
 
 
 
+        // form params
+        if ($stop_order_id !== null) {
+            $formParams['stop_order_id'] = ObjectSerializer::toFormValue($stop_order_id);
+        }
         // form params
         if ($order_id !== null) {
             $formParams['order_id'] = ObjectSerializer::toFormValue($order_id);

@@ -93,9 +93,10 @@ describe 'ConditionalApi' do
 
   # unit tests for conditional_replace
   # Replace conditional order. Only incomplete orders can be modified. 
-  # @param order_id Order ID.
   # @param symbol Contract type.
   # @param [Hash] opts the optional parameters
+  # @option opts [String] :stop_order_id Stop order ID.
+  # @option opts [String] :order_id Stop order ID.
   # @option opts [Float] :p_r_qty Order quantity.
   # @option opts [Float] :p_r_price Order price.
   # @option opts [Float] :p_r_trigger_price Trigger price.

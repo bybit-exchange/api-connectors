@@ -28,7 +28,7 @@ import java.io.IOException;
  * Get wallet balance response
  */
 @ApiModel(description = "Get wallet balance response")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-23T17:07:23.289+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-03-06T15:36:40.091+08:00")
 public class WalletBalance {
   @SerializedName("equity")
   private Double equity = null;

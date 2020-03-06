@@ -333,8 +333,9 @@ Name | Type | Description  | Notes
 
 # **conditionalReplace**
 ```objc
--(NSURLSessionTask*) conditionalReplaceWithOrderId: (NSString*) orderId
-    symbol: (NSString*) symbol
+-(NSURLSessionTask*) conditionalReplaceWithSymbol: (NSString*) symbol
+    stopOrderId: (NSString*) stopOrderId
+    orderId: (NSString*) orderId
     pRQty: (NSNumber*) pRQty
     pRPrice: (NSNumber*) pRPrice
     pRTriggerPrice: (NSNumber*) pRTriggerPrice
@@ -363,8 +364,9 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"timestamp"];
 
 
-NSString* orderId = @"orderId_example"; // Order ID.
 NSString* symbol = @"symbol_example"; // Contract type.
+NSString* stopOrderId = @"stopOrderId_example"; // Stop order ID. (optional)
+NSString* orderId = @"orderId_example"; // Stop order ID. (optional)
 NSNumber* pRQty = @8.14; // Order quantity. (optional)
 NSNumber* pRPrice = @1.2; // Order price. (optional)
 NSNumber* pRTriggerPrice = @1.2; // Trigger price. (optional)
@@ -372,8 +374,9 @@ NSNumber* pRTriggerPrice = @1.2; // Trigger price. (optional)
 SWGConditionalApi*apiInstance = [[SWGConditionalApi alloc] init];
 
 // Replace conditional order. Only incomplete orders can be modified. 
-[apiInstance conditionalReplaceWithOrderId:orderId
-              symbol:symbol
+[apiInstance conditionalReplaceWithSymbol:symbol
+              stopOrderId:stopOrderId
+              orderId:orderId
               pRQty:pRQty
               pRPrice:pRPrice
               pRTriggerPrice:pRTriggerPrice
@@ -391,8 +394,9 @@ SWGConditionalApi*apiInstance = [[SWGConditionalApi alloc] init];
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **orderId** | **NSString***| Order ID. | 
  **symbol** | **NSString***| Contract type. | 
+ **stopOrderId** | **NSString***| Stop order ID. | [optional] 
+ **orderId** | **NSString***| Stop order ID. | [optional] 
  **pRQty** | **NSNumber***| Order quantity. | [optional] 
  **pRPrice** | **NSNumber***| Order price. | [optional] 
  **pRTriggerPrice** | **NSNumber***| Trigger price. | [optional] 

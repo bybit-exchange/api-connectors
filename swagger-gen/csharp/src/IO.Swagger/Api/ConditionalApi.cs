@@ -144,13 +144,14 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="orderId">Order ID.</param>
         /// <param name="symbol">Contract type.</param>
+        /// <param name="stopOrderId">Stop order ID. (optional)</param>
+        /// <param name="orderId">Stop order ID. (optional)</param>
         /// <param name="pRQty">Order quantity. (optional)</param>
         /// <param name="pRPrice">Order price. (optional)</param>
         /// <param name="pRTriggerPrice">Trigger price. (optional)</param>
         /// <returns>Object</returns>
-        Object ConditionalReplace (string orderId, string symbol, decimal? pRQty = null, double? pRPrice = null, double? pRTriggerPrice = null);
+        Object ConditionalReplace (string symbol, string stopOrderId = null, string orderId = null, decimal? pRQty = null, double? pRPrice = null, double? pRTriggerPrice = null);
 
         /// <summary>
         /// Replace conditional order. Only incomplete orders can be modified. 
@@ -159,13 +160,14 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="orderId">Order ID.</param>
         /// <param name="symbol">Contract type.</param>
+        /// <param name="stopOrderId">Stop order ID. (optional)</param>
+        /// <param name="orderId">Stop order ID. (optional)</param>
         /// <param name="pRQty">Order quantity. (optional)</param>
         /// <param name="pRPrice">Order price. (optional)</param>
         /// <param name="pRTriggerPrice">Trigger price. (optional)</param>
         /// <returns>ApiResponse of Object</returns>
-        ApiResponse<Object> ConditionalReplaceWithHttpInfo (string orderId, string symbol, decimal? pRQty = null, double? pRPrice = null, double? pRTriggerPrice = null);
+        ApiResponse<Object> ConditionalReplaceWithHttpInfo (string symbol, string stopOrderId = null, string orderId = null, decimal? pRQty = null, double? pRPrice = null, double? pRTriggerPrice = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -289,13 +291,14 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="orderId">Order ID.</param>
         /// <param name="symbol">Contract type.</param>
+        /// <param name="stopOrderId">Stop order ID. (optional)</param>
+        /// <param name="orderId">Stop order ID. (optional)</param>
         /// <param name="pRQty">Order quantity. (optional)</param>
         /// <param name="pRPrice">Order price. (optional)</param>
         /// <param name="pRTriggerPrice">Trigger price. (optional)</param>
         /// <returns>Task of Object</returns>
-        System.Threading.Tasks.Task<Object> ConditionalReplaceAsync (string orderId, string symbol, decimal? pRQty = null, double? pRPrice = null, double? pRTriggerPrice = null);
+        System.Threading.Tasks.Task<Object> ConditionalReplaceAsync (string symbol, string stopOrderId = null, string orderId = null, decimal? pRQty = null, double? pRPrice = null, double? pRTriggerPrice = null);
 
         /// <summary>
         /// Replace conditional order. Only incomplete orders can be modified. 
@@ -304,13 +307,14 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="orderId">Order ID.</param>
         /// <param name="symbol">Contract type.</param>
+        /// <param name="stopOrderId">Stop order ID. (optional)</param>
+        /// <param name="orderId">Stop order ID. (optional)</param>
         /// <param name="pRQty">Order quantity. (optional)</param>
         /// <param name="pRPrice">Order price. (optional)</param>
         /// <param name="pRTriggerPrice">Trigger price. (optional)</param>
         /// <returns>Task of ApiResponse (Object)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ConditionalReplaceAsyncWithHttpInfo (string orderId, string symbol, decimal? pRQty = null, double? pRPrice = null, double? pRTriggerPrice = null);
+        System.Threading.Tasks.Task<ApiResponse<Object>> ConditionalReplaceAsyncWithHttpInfo (string symbol, string stopOrderId = null, string orderId = null, decimal? pRQty = null, double? pRPrice = null, double? pRTriggerPrice = null);
         #endregion Asynchronous Operations
     }
 
@@ -1203,15 +1207,16 @@ namespace IO.Swagger.Api
         /// Replace conditional order. Only incomplete orders can be modified.  
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="orderId">Order ID.</param>
         /// <param name="symbol">Contract type.</param>
+        /// <param name="stopOrderId">Stop order ID. (optional)</param>
+        /// <param name="orderId">Stop order ID. (optional)</param>
         /// <param name="pRQty">Order quantity. (optional)</param>
         /// <param name="pRPrice">Order price. (optional)</param>
         /// <param name="pRTriggerPrice">Trigger price. (optional)</param>
         /// <returns>Object</returns>
-        public Object ConditionalReplace (string orderId, string symbol, decimal? pRQty = null, double? pRPrice = null, double? pRTriggerPrice = null)
+        public Object ConditionalReplace (string symbol, string stopOrderId = null, string orderId = null, decimal? pRQty = null, double? pRPrice = null, double? pRTriggerPrice = null)
         {
-             ApiResponse<Object> localVarResponse = ConditionalReplaceWithHttpInfo(orderId, symbol, pRQty, pRPrice, pRTriggerPrice);
+             ApiResponse<Object> localVarResponse = ConditionalReplaceWithHttpInfo(symbol, stopOrderId, orderId, pRQty, pRPrice, pRTriggerPrice);
              return localVarResponse.Data;
         }
 
@@ -1219,17 +1224,15 @@ namespace IO.Swagger.Api
         /// Replace conditional order. Only incomplete orders can be modified.  
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="orderId">Order ID.</param>
         /// <param name="symbol">Contract type.</param>
+        /// <param name="stopOrderId">Stop order ID. (optional)</param>
+        /// <param name="orderId">Stop order ID. (optional)</param>
         /// <param name="pRQty">Order quantity. (optional)</param>
         /// <param name="pRPrice">Order price. (optional)</param>
         /// <param name="pRTriggerPrice">Trigger price. (optional)</param>
         /// <returns>ApiResponse of Object</returns>
-        public ApiResponse< Object > ConditionalReplaceWithHttpInfo (string orderId, string symbol, decimal? pRQty = null, double? pRPrice = null, double? pRTriggerPrice = null)
+        public ApiResponse< Object > ConditionalReplaceWithHttpInfo (string symbol, string stopOrderId = null, string orderId = null, decimal? pRQty = null, double? pRPrice = null, double? pRTriggerPrice = null)
         {
-            // verify the required parameter 'orderId' is set
-            if (orderId == null)
-                throw new ApiException(400, "Missing required parameter 'orderId' when calling ConditionalApi->ConditionalReplace");
             // verify the required parameter 'symbol' is set
             if (symbol == null)
                 throw new ApiException(400, "Missing required parameter 'symbol' when calling ConditionalApi->ConditionalReplace");
@@ -1257,6 +1260,7 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            if (stopOrderId != null) localVarFormParams.Add("stop_order_id", this.Configuration.ApiClient.ParameterToString(stopOrderId)); // form parameter
             if (orderId != null) localVarFormParams.Add("order_id", this.Configuration.ApiClient.ParameterToString(orderId)); // form parameter
             if (symbol != null) localVarFormParams.Add("symbol", this.Configuration.ApiClient.ParameterToString(symbol)); // form parameter
             if (pRQty != null) localVarFormParams.Add("p_r_qty", this.Configuration.ApiClient.ParameterToString(pRQty)); // form parameter
@@ -1301,15 +1305,16 @@ namespace IO.Swagger.Api
         /// Replace conditional order. Only incomplete orders can be modified.  
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="orderId">Order ID.</param>
         /// <param name="symbol">Contract type.</param>
+        /// <param name="stopOrderId">Stop order ID. (optional)</param>
+        /// <param name="orderId">Stop order ID. (optional)</param>
         /// <param name="pRQty">Order quantity. (optional)</param>
         /// <param name="pRPrice">Order price. (optional)</param>
         /// <param name="pRTriggerPrice">Trigger price. (optional)</param>
         /// <returns>Task of Object</returns>
-        public async System.Threading.Tasks.Task<Object> ConditionalReplaceAsync (string orderId, string symbol, decimal? pRQty = null, double? pRPrice = null, double? pRTriggerPrice = null)
+        public async System.Threading.Tasks.Task<Object> ConditionalReplaceAsync (string symbol, string stopOrderId = null, string orderId = null, decimal? pRQty = null, double? pRPrice = null, double? pRTriggerPrice = null)
         {
-             ApiResponse<Object> localVarResponse = await ConditionalReplaceAsyncWithHttpInfo(orderId, symbol, pRQty, pRPrice, pRTriggerPrice);
+             ApiResponse<Object> localVarResponse = await ConditionalReplaceAsyncWithHttpInfo(symbol, stopOrderId, orderId, pRQty, pRPrice, pRTriggerPrice);
              return localVarResponse.Data;
 
         }
@@ -1318,17 +1323,15 @@ namespace IO.Swagger.Api
         /// Replace conditional order. Only incomplete orders can be modified.  
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="orderId">Order ID.</param>
         /// <param name="symbol">Contract type.</param>
+        /// <param name="stopOrderId">Stop order ID. (optional)</param>
+        /// <param name="orderId">Stop order ID. (optional)</param>
         /// <param name="pRQty">Order quantity. (optional)</param>
         /// <param name="pRPrice">Order price. (optional)</param>
         /// <param name="pRTriggerPrice">Trigger price. (optional)</param>
         /// <returns>Task of ApiResponse (Object)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> ConditionalReplaceAsyncWithHttpInfo (string orderId, string symbol, decimal? pRQty = null, double? pRPrice = null, double? pRTriggerPrice = null)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> ConditionalReplaceAsyncWithHttpInfo (string symbol, string stopOrderId = null, string orderId = null, decimal? pRQty = null, double? pRPrice = null, double? pRTriggerPrice = null)
         {
-            // verify the required parameter 'orderId' is set
-            if (orderId == null)
-                throw new ApiException(400, "Missing required parameter 'orderId' when calling ConditionalApi->ConditionalReplace");
             // verify the required parameter 'symbol' is set
             if (symbol == null)
                 throw new ApiException(400, "Missing required parameter 'symbol' when calling ConditionalApi->ConditionalReplace");
@@ -1356,6 +1359,7 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            if (stopOrderId != null) localVarFormParams.Add("stop_order_id", this.Configuration.ApiClient.ParameterToString(stopOrderId)); // form parameter
             if (orderId != null) localVarFormParams.Add("order_id", this.Configuration.ApiClient.ParameterToString(orderId)); // form parameter
             if (symbol != null) localVarFormParams.Add("symbol", this.Configuration.ApiClient.ParameterToString(symbol)); // form parameter
             if (pRQty != null) localVarFormParams.Add("p_r_qty", this.Configuration.ApiClient.ParameterToString(pRQty)); // form parameter

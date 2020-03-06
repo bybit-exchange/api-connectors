@@ -207,7 +207,7 @@ Name | Type | Description  | Notes
 
 <a name="conditionalReplace"></a>
 # **conditionalReplace**
-> Object conditionalReplace(orderId, symbol, pRQty, pRPrice, pRTriggerPrice)
+> Object conditionalReplace(symbol, stopOrderId, orderId, pRQty, pRPrice, pRTriggerPrice)
 
 Replace conditional order. Only incomplete orders can be modified. 
 
@@ -217,13 +217,14 @@ Replace conditional order. Only incomplete orders can be modified.
 //import io.swagger.client.api.ConditionalApi;
 
 ConditionalApi apiInstance = new ConditionalApi();
-String orderId = "orderId_example"; // String | Order ID.
 String symbol = "symbol_example"; // String | Contract type.
+String stopOrderId = "stopOrderId_example"; // String | Stop order ID.
+String orderId = "orderId_example"; // String | Stop order ID.
 BigDecimal pRQty = new BigDecimal(); // BigDecimal | Order quantity.
 Double pRPrice = 3.4D; // Double | Order price.
 Double pRTriggerPrice = 3.4D; // Double | Trigger price.
 try {
-    Object result = apiInstance.conditionalReplace(orderId, symbol, pRQty, pRPrice, pRTriggerPrice);
+    Object result = apiInstance.conditionalReplace(symbol, stopOrderId, orderId, pRQty, pRPrice, pRTriggerPrice);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ConditionalApi#conditionalReplace");
@@ -235,8 +236,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **orderId** | **String**| Order ID. |
  **symbol** | **String**| Contract type. |
+ **stopOrderId** | **String**| Stop order ID. | [optional]
+ **orderId** | **String**| Stop order ID. | [optional]
  **pRQty** | **BigDecimal**| Order quantity. | [optional]
  **pRPrice** | **Double**| Order price. | [optional]
  **pRTriggerPrice** | **Double**| Trigger price. | [optional]

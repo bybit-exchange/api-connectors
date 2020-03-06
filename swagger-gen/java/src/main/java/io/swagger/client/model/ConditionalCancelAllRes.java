@@ -29,7 +29,7 @@ import java.math.BigDecimal;
  * Cancel all conditional order response
  */
 @ApiModel(description = "Cancel all conditional order response")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-23T17:07:23.289+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-03-06T15:36:40.091+08:00")
 public class ConditionalCancelAllRes {
   @SerializedName("clOrdID")
   private String clOrdID = null;

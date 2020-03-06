@@ -2,7 +2,7 @@
 
 Bybit API
 - API version: 1.0.0
-  - Build date: 2020-02-23T17:07:23.289+08:00
+  - Build date: 2020-03-06T15:36:40.091+08:00
 
 ## REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]  
 

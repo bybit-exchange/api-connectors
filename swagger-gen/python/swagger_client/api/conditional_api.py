@@ -501,17 +501,18 @@ class ConditionalApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def conditional_replace(self, order_id, symbol, **kwargs):  # noqa: E501
+    def conditional_replace(self, symbol, **kwargs):  # noqa: E501
         """Replace conditional order. Only incomplete orders can be modified.   # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.conditional_replace(order_id, symbol, async_req=True)
+        >>> thread = api.conditional_replace(symbol, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param str order_id: Order ID. (required)
         :param str symbol: Contract type. (required)
+        :param str stop_order_id: Stop order ID.
+        :param str order_id: Stop order ID.
         :param float p_r_qty: Order quantity.
         :param float p_r_price: Order price.
         :param float p_r_trigger_price: Trigger price.
@@ -521,22 +522,23 @@ class ConditionalApi(object):
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.conditional_replace_with_http_info(order_id, symbol, **kwargs)  # noqa: E501
+            return self.conditional_replace_with_http_info(symbol, **kwargs)  # noqa: E501
         else:
-            (data) = self.conditional_replace_with_http_info(order_id, symbol, **kwargs)  # noqa: E501
+            (data) = self.conditional_replace_with_http_info(symbol, **kwargs)  # noqa: E501
             return data
 
-    def conditional_replace_with_http_info(self, order_id, symbol, **kwargs):  # noqa: E501
+    def conditional_replace_with_http_info(self, symbol, **kwargs):  # noqa: E501
         """Replace conditional order. Only incomplete orders can be modified.   # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.conditional_replace_with_http_info(order_id, symbol, async_req=True)
+        >>> thread = api.conditional_replace_with_http_info(symbol, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param str order_id: Order ID. (required)
         :param str symbol: Contract type. (required)
+        :param str stop_order_id: Stop order ID.
+        :param str order_id: Stop order ID.
         :param float p_r_qty: Order quantity.
         :param float p_r_price: Order price.
         :param float p_r_trigger_price: Trigger price.
@@ -545,7 +547,7 @@ class ConditionalApi(object):
                  returns the request thread.
         """
 
-        all_params = ['order_id', 'symbol', 'p_r_qty', 'p_r_price', 'p_r_trigger_price']  # noqa: E501
+        all_params = ['symbol', 'stop_order_id', 'order_id', 'p_r_qty', 'p_r_price', 'p_r_trigger_price']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -560,10 +562,6 @@ class ConditionalApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'order_id' is set
-        if ('order_id' not in params or
-                params['order_id'] is None):
-            raise ValueError("Missing the required parameter `order_id` when calling `conditional_replace`")  # noqa: E501
         # verify the required parameter 'symbol' is set
         if ('symbol' not in params or
                 params['symbol'] is None):
@@ -579,6 +577,8 @@ class ConditionalApi(object):
 
         form_params = []
         local_var_files = {}
+        if 'stop_order_id' in params:
+            form_params.append(('stop_order_id', params['stop_order_id']))  # noqa: E501
         if 'order_id' in params:
             form_params.append(('order_id', params['order_id']))  # noqa: E501
         if 'symbol' in params:

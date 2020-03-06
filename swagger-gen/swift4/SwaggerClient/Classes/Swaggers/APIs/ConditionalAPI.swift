@@ -255,15 +255,16 @@ open class ConditionalAPI {
     /**
      Replace conditional order. Only incomplete orders can be modified. 
      
-     - parameter orderId: (form) Order ID. 
      - parameter symbol: (form) Contract type. 
+     - parameter stopOrderId: (form) Stop order ID. (optional)
+     - parameter orderId: (form) Stop order ID. (optional)
      - parameter pRQty: (form) Order quantity. (optional)
      - parameter pRPrice: (form) Order price. (optional)
      - parameter pRTriggerPrice: (form) Trigger price. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func conditionalReplace(orderId: String, symbol: String, pRQty: Double? = nil, pRPrice: Double? = nil, pRTriggerPrice: Double? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
-        conditionalReplaceWithRequestBuilder(orderId: orderId, symbol: symbol, pRQty: pRQty, pRPrice: pRPrice, pRTriggerPrice: pRTriggerPrice).execute { (response, error) -> Void in
+    open class func conditionalReplace(symbol: String, stopOrderId: String? = nil, orderId: String? = nil, pRQty: Double? = nil, pRPrice: Double? = nil, pRTriggerPrice: Double? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
+        conditionalReplaceWithRequestBuilder(symbol: symbol, stopOrderId: stopOrderId, orderId: orderId, pRQty: pRQty, pRPrice: pRPrice, pRTriggerPrice: pRTriggerPrice).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -283,18 +284,20 @@ open class ConditionalAPI {
        - name: timestamp
      - examples: [{contentType=application/json, example=""}]
      
-     - parameter orderId: (form) Order ID. 
      - parameter symbol: (form) Contract type. 
+     - parameter stopOrderId: (form) Stop order ID. (optional)
+     - parameter orderId: (form) Stop order ID. (optional)
      - parameter pRQty: (form) Order quantity. (optional)
      - parameter pRPrice: (form) Order price. (optional)
      - parameter pRTriggerPrice: (form) Trigger price. (optional)
 
      - returns: RequestBuilder<Any> 
      */
-    open class func conditionalReplaceWithRequestBuilder(orderId: String, symbol: String, pRQty: Double? = nil, pRPrice: Double? = nil, pRTriggerPrice: Double? = nil) -> RequestBuilder<Any> {
+    open class func conditionalReplaceWithRequestBuilder(symbol: String, stopOrderId: String? = nil, orderId: String? = nil, pRQty: Double? = nil, pRPrice: Double? = nil, pRTriggerPrice: Double? = nil) -> RequestBuilder<Any> {
         let path = "/open-api/stop-order/replace"
         let URLString = SwaggerClientAPI.basePath + path
         let formParams: [String:Any?] = [
+            "stop_order_id": stopOrderId,
             "order_id": orderId,
             "symbol": symbol,
             "p_r_qty": pRQty,

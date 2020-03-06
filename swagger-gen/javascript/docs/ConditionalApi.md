@@ -304,7 +304,7 @@ Name | Type | Description  | Notes
 
 <a name="conditionalReplace"></a>
 # **conditionalReplace**
-> Object conditionalReplace(orderId, symbol, opts)
+> Object conditionalReplace(symbol, opts)
 
 Replace conditional order. Only incomplete orders can be modified. 
 
@@ -333,11 +333,11 @@ timestamp.apiKey = 'YOUR API KEY';
 
 var apiInstance = new BybitApi.ConditionalApi();
 
-var orderId = "orderId_example"; // String | Order ID.
-
 var symbol = "symbol_example"; // String | Contract type.
 
 var opts = { 
+  'stopOrderId': "stopOrderId_example", // String | Stop order ID.
+  'orderId': "orderId_example", // String | Stop order ID.
   'pRQty': 8.14, // Number | Order quantity.
   'pRPrice': 1.2, // Number | Order price.
   'pRTriggerPrice': 1.2 // Number | Trigger price.
@@ -350,15 +350,16 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.conditionalReplace(orderId, symbol, opts, callback);
+apiInstance.conditionalReplace(symbol, opts, callback);
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **orderId** | **String**| Order ID. | 
  **symbol** | **String**| Contract type. | 
+ **stopOrderId** | **String**| Stop order ID. | [optional] 
+ **orderId** | **String**| Stop order ID. | [optional] 
  **pRQty** | **Number**| Order quantity. | [optional] 
  **pRPrice** | **Number**| Order price. | [optional] 
  **pRTriggerPrice** | **Number**| Trigger price. | [optional] 

@@ -290,7 +290,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **conditional_replace**
-> object conditional_replace(order_id, symbol, p_r_qty=p_r_qty, p_r_price=p_r_price, p_r_trigger_price=p_r_trigger_price)
+> object conditional_replace(symbol, stop_order_id=stop_order_id, order_id=order_id, p_r_qty=p_r_qty, p_r_price=p_r_price, p_r_trigger_price=p_r_trigger_price)
 
 Replace conditional order. Only incomplete orders can be modified. 
 
@@ -320,15 +320,16 @@ configuration.api_key['timestamp'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = swagger_client.ConditionalApi(swagger_client.ApiClient(configuration))
-order_id = 'order_id_example' # str | Order ID.
 symbol = 'symbol_example' # str | Contract type.
+stop_order_id = 'stop_order_id_example' # str | Stop order ID. (optional)
+order_id = 'order_id_example' # str | Stop order ID. (optional)
 p_r_qty = 8.14 # float | Order quantity. (optional)
 p_r_price = 1.2 # float | Order price. (optional)
 p_r_trigger_price = 1.2 # float | Trigger price. (optional)
 
 try:
     # Replace conditional order. Only incomplete orders can be modified. 
-    api_response = api_instance.conditional_replace(order_id, symbol, p_r_qty=p_r_qty, p_r_price=p_r_price, p_r_trigger_price=p_r_trigger_price)
+    api_response = api_instance.conditional_replace(symbol, stop_order_id=stop_order_id, order_id=order_id, p_r_qty=p_r_qty, p_r_price=p_r_price, p_r_trigger_price=p_r_trigger_price)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ConditionalApi->conditional_replace: %s\n" % e)
@@ -338,8 +339,9 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **order_id** | **str**| Order ID. | 
  **symbol** | **str**| Contract type. | 
+ **stop_order_id** | **str**| Stop order ID. | [optional] 
+ **order_id** | **str**| Stop order ID. | [optional] 
  **p_r_qty** | **float**| Order quantity. | [optional] 
  **p_r_price** | **float**| Order price. | [optional] 
  **p_r_trigger_price** | **float**| Trigger price. | [optional] 

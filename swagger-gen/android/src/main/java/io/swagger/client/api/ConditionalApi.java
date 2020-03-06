@@ -768,20 +768,16 @@ formParams.put("order_link_id", ApiInvoker.parameterToString(orderLinkId));
   /**
   * Replace conditional order. Only incomplete orders can be modified. 
   * 
-   * @param orderId Order ID.
    * @param symbol Contract type.
+   * @param stopOrderId Stop order ID.
+   * @param orderId Stop order ID.
    * @param pRQty Order quantity.
    * @param pRPrice Order price.
    * @param pRTriggerPrice Trigger price.
    * @return Object
   */
-  public Object conditionalReplace (String orderId, String symbol, BigDecimal pRQty, Double pRPrice, Double pRTriggerPrice) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public Object conditionalReplace (String symbol, String stopOrderId, String orderId, BigDecimal pRQty, Double pRPrice, Double pRTriggerPrice) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
-    // verify the required parameter 'orderId' is set
-    if (orderId == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'orderId' when calling conditionalReplace",
-        new ApiException(400, "Missing the required parameter 'orderId' when calling conditionalReplace"));
-    }
     // verify the required parameter 'symbol' is set
     if (symbol == null) {
       VolleyError error = new VolleyError("Missing the required parameter 'symbol' when calling conditionalReplace",
@@ -806,6 +802,9 @@ formParams.put("order_link_id", ApiInvoker.parameterToString(orderLinkId));
     if (contentType.startsWith("multipart/form-data")) {
       // file uploading
       MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      if (stopOrderId != null) {
+        localVarBuilder.addTextBody("stop_order_id", ApiInvoker.parameterToString(stopOrderId), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
       if (orderId != null) {
         localVarBuilder.addTextBody("order_id", ApiInvoker.parameterToString(orderId), ApiInvoker.TEXT_PLAIN_UTF8);
       }
@@ -825,6 +824,7 @@ formParams.put("order_link_id", ApiInvoker.parameterToString(orderLinkId));
       postBody = httpEntity;
     } else {
       // normal form params
+      formParams.put("stop_order_id", ApiInvoker.parameterToString(stopOrderId));
       formParams.put("order_id", ApiInvoker.parameterToString(orderId));
       formParams.put("symbol", ApiInvoker.parameterToString(symbol));
       formParams.put("p_r_qty", ApiInvoker.parameterToString(pRQty));
@@ -861,16 +861,11 @@ formParams.put("order_link_id", ApiInvoker.parameterToString(orderLinkId));
       /**
    * Replace conditional order. Only incomplete orders can be modified. 
    * 
-   * @param orderId Order ID.   * @param symbol Contract type.   * @param pRQty Order quantity.   * @param pRPrice Order price.   * @param pRTriggerPrice Trigger price.
+   * @param symbol Contract type.   * @param stopOrderId Stop order ID.   * @param orderId Stop order ID.   * @param pRQty Order quantity.   * @param pRPrice Order price.   * @param pRTriggerPrice Trigger price.
   */
-  public void conditionalReplace (String orderId, String symbol, BigDecimal pRQty, Double pRPrice, Double pRTriggerPrice, final Response.Listener<Object> responseListener, final Response.ErrorListener errorListener) {
+  public void conditionalReplace (String symbol, String stopOrderId, String orderId, BigDecimal pRQty, Double pRPrice, Double pRTriggerPrice, final Response.Listener<Object> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-    // verify the required parameter 'orderId' is set
-    if (orderId == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'orderId' when calling conditionalReplace",
-        new ApiException(400, "Missing the required parameter 'orderId' when calling conditionalReplace"));
-    }
     // verify the required parameter 'symbol' is set
     if (symbol == null) {
       VolleyError error = new VolleyError("Missing the required parameter 'symbol' when calling conditionalReplace",
@@ -898,6 +893,10 @@ formParams.put("order_link_id", ApiInvoker.parameterToString(orderLinkId));
       // file uploading
       MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
       
+      if (stopOrderId != null) {
+        localVarBuilder.addTextBody("stop_order_id", ApiInvoker.parameterToString(stopOrderId), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
       if (orderId != null) {
         localVarBuilder.addTextBody("order_id", ApiInvoker.parameterToString(orderId), ApiInvoker.TEXT_PLAIN_UTF8);
       }
@@ -923,7 +922,8 @@ formParams.put("order_link_id", ApiInvoker.parameterToString(orderLinkId));
       postBody = httpEntity;
     } else {
       // normal form params
-      formParams.put("order_id", ApiInvoker.parameterToString(orderId));
+      formParams.put("stop_order_id", ApiInvoker.parameterToString(stopOrderId));
+formParams.put("order_id", ApiInvoker.parameterToString(orderId));
 formParams.put("symbol", ApiInvoker.parameterToString(symbol));
 formParams.put("p_r_qty", ApiInvoker.parameterToString(pRQty));
 formParams.put("p_r_price", ApiInvoker.parameterToString(pRPrice));

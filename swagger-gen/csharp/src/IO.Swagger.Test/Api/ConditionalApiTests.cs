@@ -133,12 +133,13 @@ namespace IO.Swagger.Test
         public void ConditionalReplaceTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //string orderId = null;
             //string symbol = null;
+            //string stopOrderId = null;
+            //string orderId = null;
             //decimal? pRQty = null;
             //double? pRPrice = null;
             //double? pRTriggerPrice = null;
-            //var response = instance.ConditionalReplace(orderId, symbol, pRQty, pRPrice, pRTriggerPrice);
+            //var response = instance.ConditionalReplace(symbol, stopOrderId, orderId, pRQty, pRPrice, pRTriggerPrice);
             //Assert.IsInstanceOf<Object> (response, "response is Object");
         }
         

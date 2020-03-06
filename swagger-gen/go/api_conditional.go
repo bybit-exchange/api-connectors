@@ -607,9 +607,10 @@ func (a *ConditionalApiService) ConditionalNew(ctx context.Context, side string,
 /* 
 ConditionalApiService Replace conditional order. Only incomplete orders can be modified. 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param orderId Order ID.
  * @param symbol Contract type.
  * @param optional nil or *ConditionalReplaceOpts - Optional Parameters:
+     * @param "StopOrderId" (optional.String) -  Stop order ID.
+     * @param "OrderId" (optional.String) -  Stop order ID.
      * @param "PRQty" (optional.Float32) -  Order quantity.
      * @param "PRPrice" (optional.Float64) -  Order price.
      * @param "PRTriggerPrice" (optional.Float64) -  Trigger price.
@@ -618,12 +619,14 @@ ConditionalApiService Replace conditional order. Only incomplete orders can be m
 */
 
 type ConditionalReplaceOpts struct { 
+	StopOrderId optional.String
+	OrderId optional.String
 	PRQty optional.Float32
 	PRPrice optional.Float64
 	PRTriggerPrice optional.Float64
 }
 
-func (a *ConditionalApiService) ConditionalReplace(ctx context.Context, orderId string, symbol string, localVarOptionals *ConditionalReplaceOpts) (interface{}, *http.Response, error) {
+func (a *ConditionalApiService) ConditionalReplace(ctx context.Context, symbol string, localVarOptionals *ConditionalReplaceOpts) (interface{}, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -656,7 +659,12 @@ func (a *ConditionalApiService) ConditionalReplace(ctx context.Context, orderId 
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	localVarFormParams.Add("order_id", parameterToString(orderId, ""))
+	if localVarOptionals != nil && localVarOptionals.StopOrderId.IsSet() {
+		localVarFormParams.Add("stop_order_id", parameterToString(localVarOptionals.StopOrderId.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.OrderId.IsSet() {
+		localVarFormParams.Add("order_id", parameterToString(localVarOptionals.OrderId.Value(), ""))
+	}
 	localVarFormParams.Add("symbol", parameterToString(symbol, ""))
 	if localVarOptionals != nil && localVarOptionals.PRQty.IsSet() {
 		localVarFormParams.Add("p_r_qty", parameterToString(localVarOptionals.PRQty.Value(), ""))

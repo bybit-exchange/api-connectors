@@ -28,7 +28,7 @@ import java.io.IOException;
  * Get the last funding fee
  */
 @ApiModel(description = "Get the last funding fee")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-23T17:07:23.289+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-03-06T15:36:40.091+08:00")
 public class FundingPredicted {
   @SerializedName("predicted_funding_rate")
   private Double predictedFundingRate = null;

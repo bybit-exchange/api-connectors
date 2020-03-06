@@ -79,21 +79,21 @@
 
 (defn conditional-replace-with-http-info
   "Replace conditional order. Only incomplete orders can be modified."
-  ([order-id symbol ] (conditional-replace-with-http-info order-id symbol nil))
-  ([order-id symbol {:keys [p-r-qty p-r-price p-r-trigger-price ]}]
-   (check-required-params order-id symbol)
+  ([symbol ] (conditional-replace-with-http-info symbol nil))
+  ([symbol {:keys [stop-order-id order-id p-r-qty p-r-price p-r-trigger-price ]}]
+   (check-required-params symbol)
    (call-api "/open-api/stop-order/replace" :post
              {:path-params   {}
               :header-params {}
               :query-params  {}
-              :form-params   {"order_id" order-id "symbol" symbol "p_r_qty" p-r-qty "p_r_price" p-r-price "p_r_trigger_price" p-r-trigger-price }
+              :form-params   {"stop_order_id" stop-order-id "order_id" order-id "symbol" symbol "p_r_qty" p-r-qty "p_r_price" p-r-price "p_r_trigger_price" p-r-trigger-price }
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json"]
               :auth-names    ["apiKey" "apiSignature" "timestamp"]})))
 
 (defn conditional-replace
   "Replace conditional order. Only incomplete orders can be modified."
-  ([order-id symbol ] (conditional-replace order-id symbol nil))
-  ([order-id symbol optional-params]
-   (:data (conditional-replace-with-http-info order-id symbol optional-params))))
+  ([symbol ] (conditional-replace symbol nil))
+  ([symbol optional-params]
+   (:data (conditional-replace-with-http-info symbol optional-params))))
 

@@ -299,7 +299,7 @@ Name | Type | Description  | Notes
 
 
 # **conditional_replace**
-> Object conditional_replace(order_id, symbol, opts)
+> Object conditional_replace(symbol, opts)
 
 Replace conditional order. Only incomplete orders can be modified. 
 
@@ -327,11 +327,11 @@ end
 
 api_instance = SwaggerClient::ConditionalApi.new
 
-order_id = 'order_id_example' # String | Order ID.
-
 symbol = 'symbol_example' # String | Contract type.
 
 opts = { 
+  stop_order_id: 'stop_order_id_example', # String | Stop order ID.
+  order_id: 'order_id_example', # String | Stop order ID.
   p_r_qty: 8.14, # Float | Order quantity.
   p_r_price: 1.2, # Float | Order price.
   p_r_trigger_price: 1.2 # Float | Trigger price.
@@ -339,7 +339,7 @@ opts = {
 
 begin
   #Replace conditional order. Only incomplete orders can be modified. 
-  result = api_instance.conditional_replace(order_id, symbol, opts)
+  result = api_instance.conditional_replace(symbol, opts)
   p result
 rescue SwaggerClient::ApiError => e
   puts "Exception when calling ConditionalApi->conditional_replace: #{e}"
@@ -350,8 +350,9 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **order_id** | **String**| Order ID. | 
  **symbol** | **String**| Contract type. | 
+ **stop_order_id** | **String**| Stop order ID. | [optional] 
+ **order_id** | **String**| Stop order ID. | [optional] 
  **p_r_qty** | **Float**| Order quantity. | [optional] 
  **p_r_price** | **Float**| Order price. | [optional] 
  **p_r_trigger_price** | **Float**| Trigger price. | [optional] 

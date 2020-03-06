@@ -659,7 +659,7 @@ pplx::task<std::shared_ptr<Object>> ConditionalApi::conditional_new(utility::str
         return result;
     });
 }
-pplx::task<std::shared_ptr<Object>> ConditionalApi::conditional_replace(utility::string_t orderId, utility::string_t symbol, boost::optional<double> pRQty, boost::optional<double> pRPrice, boost::optional<double> pRTriggerPrice)
+pplx::task<std::shared_ptr<Object>> ConditionalApi::conditional_replace(utility::string_t symbol, boost::optional<utility::string_t> stopOrderId, boost::optional<utility::string_t> orderId, boost::optional<double> pRQty, boost::optional<double> pRPrice, boost::optional<double> pRTriggerPrice)
 {
 
 
@@ -703,10 +703,15 @@ pplx::task<std::shared_ptr<Object>> ConditionalApi::conditional_replace(utility:
     consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/x-www-form-urlencoded") );
 
     {
-        formParams[ utility::conversions::to_string_t("order_id") ] = ApiClient::parameterToString(orderId);
-    }
-    {
         formParams[ utility::conversions::to_string_t("symbol") ] = ApiClient::parameterToString(symbol);
+    }
+    if (stopOrderId)
+    {
+        formParams[ utility::conversions::to_string_t("stop_order_id") ] = ApiClient::parameterToString(*stopOrderId);
+    }
+    if (orderId)
+    {
+        formParams[ utility::conversions::to_string_t("order_id") ] = ApiClient::parameterToString(*orderId);
     }
     if (pRQty)
     {

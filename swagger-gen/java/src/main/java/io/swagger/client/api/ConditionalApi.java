@@ -667,8 +667,9 @@ public class ConditionalApi {
     }
     /**
      * Build call for conditionalReplace
-     * @param orderId Order ID. (required)
      * @param symbol Contract type. (required)
+     * @param stopOrderId Stop order ID. (optional)
+     * @param orderId Stop order ID. (optional)
      * @param pRQty Order quantity. (optional)
      * @param pRPrice Order price. (optional)
      * @param pRTriggerPrice Trigger price. (optional)
@@ -677,7 +678,7 @@ public class ConditionalApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call conditionalReplaceCall(String orderId, String symbol, BigDecimal pRQty, Double pRPrice, Double pRTriggerPrice, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call conditionalReplaceCall(String symbol, String stopOrderId, String orderId, BigDecimal pRQty, Double pRPrice, Double pRTriggerPrice, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -689,6 +690,8 @@ public class ConditionalApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        if (stopOrderId != null)
+        localVarFormParams.put("stop_order_id", stopOrderId);
         if (orderId != null)
         localVarFormParams.put("order_id", orderId);
         if (symbol != null)
@@ -729,12 +732,7 @@ public class ConditionalApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call conditionalReplaceValidateBeforeCall(String orderId, String symbol, BigDecimal pRQty, Double pRPrice, Double pRTriggerPrice, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
-        // verify the required parameter 'orderId' is set
-        if (orderId == null) {
-            throw new ApiException("Missing the required parameter 'orderId' when calling conditionalReplace(Async)");
-        }
+    private com.squareup.okhttp.Call conditionalReplaceValidateBeforeCall(String symbol, String stopOrderId, String orderId, BigDecimal pRQty, Double pRPrice, Double pRTriggerPrice, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'symbol' is set
         if (symbol == null) {
@@ -742,7 +740,7 @@ public class ConditionalApi {
         }
         
 
-        com.squareup.okhttp.Call call = conditionalReplaceCall(orderId, symbol, pRQty, pRPrice, pRTriggerPrice, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = conditionalReplaceCall(symbol, stopOrderId, orderId, pRQty, pRPrice, pRTriggerPrice, progressListener, progressRequestListener);
         return call;
 
     }
@@ -750,32 +748,34 @@ public class ConditionalApi {
     /**
      * Replace conditional order. Only incomplete orders can be modified. 
      * 
-     * @param orderId Order ID. (required)
      * @param symbol Contract type. (required)
+     * @param stopOrderId Stop order ID. (optional)
+     * @param orderId Stop order ID. (optional)
      * @param pRQty Order quantity. (optional)
      * @param pRPrice Order price. (optional)
      * @param pRTriggerPrice Trigger price. (optional)
      * @return Object
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Object conditionalReplace(String orderId, String symbol, BigDecimal pRQty, Double pRPrice, Double pRTriggerPrice) throws ApiException {
-        ApiResponse<Object> resp = conditionalReplaceWithHttpInfo(orderId, symbol, pRQty, pRPrice, pRTriggerPrice);
+    public Object conditionalReplace(String symbol, String stopOrderId, String orderId, BigDecimal pRQty, Double pRPrice, Double pRTriggerPrice) throws ApiException {
+        ApiResponse<Object> resp = conditionalReplaceWithHttpInfo(symbol, stopOrderId, orderId, pRQty, pRPrice, pRTriggerPrice);
         return resp.getData();
     }
 
     /**
      * Replace conditional order. Only incomplete orders can be modified. 
      * 
-     * @param orderId Order ID. (required)
      * @param symbol Contract type. (required)
+     * @param stopOrderId Stop order ID. (optional)
+     * @param orderId Stop order ID. (optional)
      * @param pRQty Order quantity. (optional)
      * @param pRPrice Order price. (optional)
      * @param pRTriggerPrice Trigger price. (optional)
      * @return ApiResponse&lt;Object&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Object> conditionalReplaceWithHttpInfo(String orderId, String symbol, BigDecimal pRQty, Double pRPrice, Double pRTriggerPrice) throws ApiException {
-        com.squareup.okhttp.Call call = conditionalReplaceValidateBeforeCall(orderId, symbol, pRQty, pRPrice, pRTriggerPrice, null, null);
+    public ApiResponse<Object> conditionalReplaceWithHttpInfo(String symbol, String stopOrderId, String orderId, BigDecimal pRQty, Double pRPrice, Double pRTriggerPrice) throws ApiException {
+        com.squareup.okhttp.Call call = conditionalReplaceValidateBeforeCall(symbol, stopOrderId, orderId, pRQty, pRPrice, pRTriggerPrice, null, null);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -783,8 +783,9 @@ public class ConditionalApi {
     /**
      * Replace conditional order. Only incomplete orders can be modified.  (asynchronously)
      * 
-     * @param orderId Order ID. (required)
      * @param symbol Contract type. (required)
+     * @param stopOrderId Stop order ID. (optional)
+     * @param orderId Stop order ID. (optional)
      * @param pRQty Order quantity. (optional)
      * @param pRPrice Order price. (optional)
      * @param pRTriggerPrice Trigger price. (optional)
@@ -792,7 +793,7 @@ public class ConditionalApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call conditionalReplaceAsync(String orderId, String symbol, BigDecimal pRQty, Double pRPrice, Double pRTriggerPrice, final ApiCallback<Object> callback) throws ApiException {
+    public com.squareup.okhttp.Call conditionalReplaceAsync(String symbol, String stopOrderId, String orderId, BigDecimal pRQty, Double pRPrice, Double pRTriggerPrice, final ApiCallback<Object> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -813,7 +814,7 @@ public class ConditionalApi {
             };
         }
 
-        com.squareup.okhttp.Call call = conditionalReplaceValidateBeforeCall(orderId, symbol, pRQty, pRPrice, pRTriggerPrice, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = conditionalReplaceValidateBeforeCall(symbol, stopOrderId, orderId, pRQty, pRPrice, pRTriggerPrice, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

@@ -121,12 +121,13 @@ public class ConditionalApiTest {
      */
     @Test
     public void conditionalReplaceTest() throws ApiException {
-        String orderId = null;
         String symbol = null;
+        String stopOrderId = null;
+        String orderId = null;
         BigDecimal pRQty = null;
         Double pRPrice = null;
         Double pRTriggerPrice = null;
-        Object response = api.conditionalReplace(orderId, symbol, pRQty, pRPrice, pRTriggerPrice);
+        Object response = api.conditionalReplace(symbol, stopOrderId, orderId, pRQty, pRPrice, pRTriggerPrice);
 
         // TODO: test validations
     }

@@ -152,7 +152,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ConditionalReplace**
-> interface{} ConditionalReplace(ctx, orderId, symbol, optional)
+> interface{} ConditionalReplace(ctx, symbol, optional)
 Replace conditional order. Only incomplete orders can be modified. 
 
 ### Required Parameters
@@ -160,7 +160,6 @@ Replace conditional order. Only incomplete orders can be modified.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **orderId** | **string**| Order ID. | 
   **symbol** | **string**| Contract type. | 
  **optional** | ***ConditionalReplaceOpts** | optional parameters | nil if no parameters
 
@@ -170,7 +169,8 @@ Optional parameters are passed through a pointer to a ConditionalReplaceOpts str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
-
+ **stopOrderId** | **optional.String**| Stop order ID. | 
+ **orderId** | **optional.String**| Stop order ID. | 
  **pRQty** | **optional.Float32**| Order quantity. | 
  **pRPrice** | **optional.Float64**| Order price. | 
  **pRTriggerPrice** | **optional.Float64**| Trigger price. | 

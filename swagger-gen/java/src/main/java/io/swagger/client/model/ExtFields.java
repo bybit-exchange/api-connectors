@@ -29,7 +29,7 @@ import java.math.BigDecimal;
  * extra fields
  */
 @ApiModel(description = "extra fields")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-23T17:07:23.289+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-03-06T15:36:40.091+08:00")
 public class ExtFields {
   @SerializedName("o_req_num")
   private BigDecimal oReqNum = null;

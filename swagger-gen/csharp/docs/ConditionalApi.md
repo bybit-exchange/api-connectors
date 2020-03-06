@@ -331,7 +331,7 @@ Name | Type | Description  | Notes
 
 <a name="conditionalreplace"></a>
 # **ConditionalReplace**
-> Object ConditionalReplace (string orderId, string symbol, decimal? pRQty = null, double? pRPrice = null, double? pRTriggerPrice = null)
+> Object ConditionalReplace (string symbol, string stopOrderId = null, string orderId = null, decimal? pRQty = null, double? pRPrice = null, double? pRTriggerPrice = null)
 
 Replace conditional order. Only incomplete orders can be modified. 
 
@@ -363,8 +363,9 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("timestamp", "Bearer");
 
             var apiInstance = new ConditionalApi();
-            var orderId = orderId_example;  // string | Order ID.
             var symbol = symbol_example;  // string | Contract type.
+            var stopOrderId = stopOrderId_example;  // string | Stop order ID. (optional) 
+            var orderId = orderId_example;  // string | Stop order ID. (optional) 
             var pRQty = 8.14;  // decimal? | Order quantity. (optional) 
             var pRPrice = 1.2;  // double? | Order price. (optional) 
             var pRTriggerPrice = 1.2;  // double? | Trigger price. (optional) 
@@ -372,7 +373,7 @@ namespace Example
             try
             {
                 // Replace conditional order. Only incomplete orders can be modified. 
-                Object result = apiInstance.ConditionalReplace(orderId, symbol, pRQty, pRPrice, pRTriggerPrice);
+                Object result = apiInstance.ConditionalReplace(symbol, stopOrderId, orderId, pRQty, pRPrice, pRTriggerPrice);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -388,8 +389,9 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **orderId** | **string**| Order ID. | 
  **symbol** | **string**| Contract type. | 
+ **stopOrderId** | **string**| Stop order ID. | [optional] 
+ **orderId** | **string**| Stop order ID. | [optional] 
  **pRQty** | **decimal?**| Order quantity. | [optional] 
  **pRPrice** | **double?**| Order price. | [optional] 
  **pRTriggerPrice** | **double?**| Trigger price. | [optional] 

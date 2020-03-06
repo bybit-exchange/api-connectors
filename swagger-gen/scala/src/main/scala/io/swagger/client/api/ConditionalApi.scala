@@ -217,15 +217,16 @@ class ConditionalApi(
    * Replace conditional order. Only incomplete orders can be modified. 
    * 
    *
-   * @param orderId Order ID. 
    * @param symbol Contract type. 
+   * @param stopOrderId Stop order ID. (optional)
+   * @param orderId Stop order ID. (optional)
    * @param pRQty Order quantity. (optional)
    * @param pRPrice Order price. (optional)
    * @param pRTriggerPrice Trigger price. (optional)
    * @return Any
    */
-  def conditionalReplace(orderId: String, symbol: String, pRQty: Option[Number] = None, pRPrice: Option[Double] = None, pRTriggerPrice: Option[Double] = None): Option[Any] = {
-    val await = Try(Await.result(conditionalReplaceAsync(orderId, symbol, pRQty, pRPrice, pRTriggerPrice), Duration.Inf))
+  def conditionalReplace(symbol: String, stopOrderId: Option[String] = None, orderId: Option[String] = None, pRQty: Option[Number] = None, pRPrice: Option[Double] = None, pRTriggerPrice: Option[Double] = None): Option[Any] = {
+    val await = Try(Await.result(conditionalReplaceAsync(symbol, stopOrderId, orderId, pRQty, pRPrice, pRTriggerPrice), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -236,15 +237,16 @@ class ConditionalApi(
    * Replace conditional order. Only incomplete orders can be modified.  asynchronously
    * 
    *
-   * @param orderId Order ID. 
    * @param symbol Contract type. 
+   * @param stopOrderId Stop order ID. (optional)
+   * @param orderId Stop order ID. (optional)
    * @param pRQty Order quantity. (optional)
    * @param pRPrice Order price. (optional)
    * @param pRTriggerPrice Trigger price. (optional)
    * @return Future(Any)
    */
-  def conditionalReplaceAsync(orderId: String, symbol: String, pRQty: Option[Number] = None, pRPrice: Option[Double] = None, pRTriggerPrice: Option[Double] = None): Future[Any] = {
-      helper.conditionalReplace(orderId, symbol, pRQty, pRPrice, pRTriggerPrice)
+  def conditionalReplaceAsync(symbol: String, stopOrderId: Option[String] = None, orderId: Option[String] = None, pRQty: Option[Number] = None, pRPrice: Option[Double] = None, pRTriggerPrice: Option[Double] = None): Future[Any] = {
+      helper.conditionalReplace(symbol, stopOrderId, orderId, pRQty, pRPrice, pRTriggerPrice)
   }
 
 }
@@ -364,8 +366,9 @@ class ConditionalApiAsyncHelper(client: TransportClient, config: SwaggerConfig) 
     }
   }
 
-  def conditionalReplace(orderId: String,
-    symbol: String,
+  def conditionalReplace(symbol: String,
+    stopOrderId: Option[String] = None,
+    orderId: Option[String] = None,
     pRQty: Option[Number] = None,
     pRPrice: Option[Double] = None,
     pRTriggerPrice: Option[Double] = None
@@ -376,8 +379,6 @@ class ConditionalApiAsyncHelper(client: TransportClient, config: SwaggerConfig) 
     // query params
     val queryParams = new mutable.HashMap[String, String]
     val headerParams = new mutable.HashMap[String, String]
-
-    if (orderId == null) throw new Exception("Missing required parameter 'orderId' when calling ConditionalApi->conditionalReplace")
 
     if (symbol == null) throw new Exception("Missing required parameter 'symbol' when calling ConditionalApi->conditionalReplace")
 

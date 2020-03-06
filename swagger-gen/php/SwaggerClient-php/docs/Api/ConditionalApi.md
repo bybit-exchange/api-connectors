@@ -286,7 +286,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **conditionalReplace**
-> object conditionalReplace($order_id, $symbol, $p_r_qty, $p_r_price, $p_r_trigger_price)
+> object conditionalReplace($symbol, $stop_order_id, $order_id, $p_r_qty, $p_r_price, $p_r_trigger_price)
 
 Replace conditional order. Only incomplete orders can be modified.
 
@@ -314,14 +314,15 @@ $apiInstance = new Swagger\Client\Api\ConditionalApi(
     new GuzzleHttp\Client(),
     $config
 );
-$order_id = "order_id_example"; // string | Order ID.
 $symbol = "symbol_example"; // string | Contract type.
+$stop_order_id = "stop_order_id_example"; // string | Stop order ID.
+$order_id = "order_id_example"; // string | Stop order ID.
 $p_r_qty = 8.14; // float | Order quantity.
 $p_r_price = 1.2; // double | Order price.
 $p_r_trigger_price = 1.2; // double | Trigger price.
 
 try {
-    $result = $apiInstance->conditionalReplace($order_id, $symbol, $p_r_qty, $p_r_price, $p_r_trigger_price);
+    $result = $apiInstance->conditionalReplace($symbol, $stop_order_id, $order_id, $p_r_qty, $p_r_price, $p_r_trigger_price);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ConditionalApi->conditionalReplace: ', $e->getMessage(), PHP_EOL;
@@ -333,8 +334,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **order_id** | **string**| Order ID. |
  **symbol** | **string**| Contract type. |
+ **stop_order_id** | **string**| Stop order ID. | [optional]
+ **order_id** | **string**| Stop order ID. | [optional]
  **p_r_qty** | **float**| Order quantity. | [optional]
  **p_r_price** | **double**| Order price. | [optional]
  **p_r_trigger_price** | **double**| Trigger price. | [optional]
