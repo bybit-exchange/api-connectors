@@ -33,12 +33,12 @@ class FundingApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def funding_get_rate(self, symbol, **kwargs):  # noqa: E501
+    def funding_my_last_fee(self, symbol, **kwargs):  # noqa: E501
         """Funding settlement occurs every 8 hours at 00:00 UTC, 08:00 UTC and 16:00 UTC. The current interval's fund fee settlement is based on the previous interval's fund rate. For example, at 16:00, the settlement is based on the fund rate generated at 8:00. The fund rate generated at 16:00 will be used at 0:00 on the next day.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.funding_get_rate(symbol, async_req=True)
+        >>> thread = api.funding_my_last_fee(symbol, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
@@ -49,17 +49,17 @@ class FundingApi(object):
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.funding_get_rate_with_http_info(symbol, **kwargs)  # noqa: E501
+            return self.funding_my_last_fee_with_http_info(symbol, **kwargs)  # noqa: E501
         else:
-            (data) = self.funding_get_rate_with_http_info(symbol, **kwargs)  # noqa: E501
+            (data) = self.funding_my_last_fee_with_http_info(symbol, **kwargs)  # noqa: E501
             return data
 
-    def funding_get_rate_with_http_info(self, symbol, **kwargs):  # noqa: E501
+    def funding_my_last_fee_with_http_info(self, symbol, **kwargs):  # noqa: E501
         """Funding settlement occurs every 8 hours at 00:00 UTC, 08:00 UTC and 16:00 UTC. The current interval's fund fee settlement is based on the previous interval's fund rate. For example, at 16:00, the settlement is based on the fund rate generated at 8:00. The fund rate generated at 16:00 will be used at 0:00 on the next day.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.funding_get_rate_with_http_info(symbol, async_req=True)
+        >>> thread = api.funding_my_last_fee_with_http_info(symbol, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
@@ -80,14 +80,14 @@ class FundingApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method funding_get_rate" % key
+                    " to method funding_my_last_fee" % key
                 )
             params[key] = val
         del params['kwargs']
         # verify the required parameter 'symbol' is set
         if ('symbol' not in params or
                 params['symbol'] is None):
-            raise ValueError("Missing the required parameter `symbol` when calling `funding_get_rate`")  # noqa: E501
+            raise ValueError("Missing the required parameter `symbol` when calling `funding_my_last_fee`")  # noqa: E501
 
         collection_formats = {}
 
@@ -227,12 +227,12 @@ class FundingApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def funding_predicted_rate(self, symbol, **kwargs):  # noqa: E501
+    def funding_prev_rate(self, symbol, **kwargs):  # noqa: E501
         """Get predicted funding rate and funding fee.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.funding_predicted_rate(symbol, async_req=True)
+        >>> thread = api.funding_prev_rate(symbol, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
@@ -243,17 +243,17 @@ class FundingApi(object):
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.funding_predicted_rate_with_http_info(symbol, **kwargs)  # noqa: E501
+            return self.funding_prev_rate_with_http_info(symbol, **kwargs)  # noqa: E501
         else:
-            (data) = self.funding_predicted_rate_with_http_info(symbol, **kwargs)  # noqa: E501
+            (data) = self.funding_prev_rate_with_http_info(symbol, **kwargs)  # noqa: E501
             return data
 
-    def funding_predicted_rate_with_http_info(self, symbol, **kwargs):  # noqa: E501
+    def funding_prev_rate_with_http_info(self, symbol, **kwargs):  # noqa: E501
         """Get predicted funding rate and funding fee.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.funding_predicted_rate_with_http_info(symbol, async_req=True)
+        >>> thread = api.funding_prev_rate_with_http_info(symbol, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
@@ -274,14 +274,14 @@ class FundingApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method funding_predicted_rate" % key
+                    " to method funding_prev_rate" % key
                 )
             params[key] = val
         del params['kwargs']
         # verify the required parameter 'symbol' is set
         if ('symbol' not in params or
                 params['symbol'] is None):
-            raise ValueError("Missing the required parameter `symbol` when calling `funding_predicted_rate`")  # noqa: E501
+            raise ValueError("Missing the required parameter `symbol` when calling `funding_prev_rate`")  # noqa: E501
 
         collection_formats = {}
 

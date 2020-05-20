@@ -104,6 +104,7 @@ Class | Method | HTTP request | Description
 *FundingApi* | [**fundingPredicted**](docs/Api/FundingApi.md#fundingpredicted) | **GET** /open-api/funding/predicted-funding | Get predicted funding rate and funding fee.
 *FundingApi* | [**fundingPredictedRate**](docs/Api/FundingApi.md#fundingpredictedrate) | **GET** /open-api/funding/prev-funding-rate | Get predicted funding rate and funding fee.
 *KlineApi* | [**klineGet**](docs/Api/KlineApi.md#klineget) | **GET** /v2/public/kline/list | Query historical kline.
+*LinearOrderApi* | [**linearOrderNew**](docs/Api/LinearOrderApi.md#linearordernew) | **POST** /private/linear/order/create | Create Order
 *MarketApi* | [**marketOrderbook**](docs/Api/MarketApi.md#marketorderbook) | **GET** /v2/public/orderBook/L2 | Get the orderbook.
 *MarketApi* | [**marketSymbolInfo**](docs/Api/MarketApi.md#marketsymbolinfo) | **GET** /v2/public/tickers | Get the latest information for symbol.
 *OrderApi* | [**orderCancel**](docs/Api/OrderApi.md#ordercancel) | **POST** /open-api/order/cancel | Get my active order list.
@@ -153,6 +154,8 @@ Class | Method | HTTP request | Description
  - [Leverage](docs/Model/Leverage.md)
  - [LeverageInfo](docs/Model/LeverageInfo.md)
  - [LeverageResult](docs/Model/LeverageResult.md)
+ - [LinearCreateOrderResult](docs/Model/LinearCreateOrderResult.md)
+ - [LinearCreateOrderResultBase](docs/Model/LinearCreateOrderResultBase.md)
  - [LotSizeFilter](docs/Model/LotSizeFilter.md)
  - [OderBookRes](docs/Model/OderBookRes.md)
  - [OrderBookBase](docs/Model/OrderBookBase.md)

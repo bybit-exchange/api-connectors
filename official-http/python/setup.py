@@ -4,11 +4,11 @@ from os.path import join, dirname
 
 here = dirname(__file__)
 
-setup(name='bybit',
-      version='0.1.1',
+setup(name='Bybit',
+      version='0.2.3',
       description='Client for connecting to the Bybit Restful API.',
-      author='Simon',
-      author_email='simon.zhang@bybit.com',
+      author='Bybit',
+      author_email='api@bybit.com',
       url='https://github.com/bybit-exchange/api-connectors',
       install_requires=[
           'urllib3==1.24.2',

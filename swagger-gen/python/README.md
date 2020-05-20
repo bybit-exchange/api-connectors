@@ -93,10 +93,35 @@ Class | Method | HTTP request | Description
 *ConditionalApi* | [**conditional_new**](docs/ConditionalApi.md#conditional_new) | **POST** /open-api/stop-order/create | Place a new conditional order.
 *ConditionalApi* | [**conditional_replace**](docs/ConditionalApi.md#conditional_replace) | **POST** /open-api/stop-order/replace | Replace conditional order. Only incomplete orders can be modified. 
 *ExecutionApi* | [**execution_get_trades**](docs/ExecutionApi.md#execution_get_trades) | **GET** /v2/private/execution/list | Get user’s trade records.
-*FundingApi* | [**funding_get_rate**](docs/FundingApi.md#funding_get_rate) | **GET** /open-api/funding/prev-funding | Funding settlement occurs every 8 hours at 00:00 UTC, 08:00 UTC and 16:00 UTC. The current interval&#39;s fund fee settlement is based on the previous interval&#39;s fund rate. For example, at 16:00, the settlement is based on the fund rate generated at 8:00. The fund rate generated at 16:00 will be used at 0:00 on the next day.
+*FundingApi* | [**funding_my_last_fee**](docs/FundingApi.md#funding_my_last_fee) | **GET** /open-api/funding/prev-funding | Funding settlement occurs every 8 hours at 00:00 UTC, 08:00 UTC and 16:00 UTC. The current interval&#39;s fund fee settlement is based on the previous interval&#39;s fund rate. For example, at 16:00, the settlement is based on the fund rate generated at 8:00. The fund rate generated at 16:00 will be used at 0:00 on the next day.
 *FundingApi* | [**funding_predicted**](docs/FundingApi.md#funding_predicted) | **GET** /open-api/funding/predicted-funding | Get predicted funding rate and funding fee.
-*FundingApi* | [**funding_predicted_rate**](docs/FundingApi.md#funding_predicted_rate) | **GET** /open-api/funding/prev-funding-rate | Get predicted funding rate and funding fee.
+*FundingApi* | [**funding_prev_rate**](docs/FundingApi.md#funding_prev_rate) | **GET** /open-api/funding/prev-funding-rate | Get predicted funding rate and funding fee.
 *KlineApi* | [**kline_get**](docs/KlineApi.md#kline_get) | **GET** /v2/public/kline/list | Query historical kline.
+*LinearConditionalApi* | [**linear_conditional_cancel**](docs/LinearConditionalApi.md#linear_conditional_cancel) | **POST** /private/linear/stop-order/cancel | Cancel Active Order
+*LinearConditionalApi* | [**linear_conditional_cancel_all**](docs/LinearConditionalApi.md#linear_conditional_cancel_all) | **POST** /private/linear/stop-order/cancel-all | Cancel all stop orders.
+*LinearConditionalApi* | [**linear_conditional_get_orders**](docs/LinearConditionalApi.md#linear_conditional_get_orders) | **GET** /private/linear/stop-order/list | Get linear Stop Orders
+*LinearConditionalApi* | [**linear_conditional_new**](docs/LinearConditionalApi.md#linear_conditional_new) | **POST** /private/linear/stop-order/create | Create linear stop Order
+*LinearConditionalApi* | [**linear_conditional_query**](docs/LinearConditionalApi.md#linear_conditional_query) | **GET** /private/linear/stop-order/search | Get Stop Orders(real-time)
+*LinearExecutionApi* | [**linear_execution_get_trades**](docs/LinearExecutionApi.md#linear_execution_get_trades) | **GET** /private/linear/trade/execution/list | Get user&#39;s trading records.
+*LinearFundingApi* | [**linear_funding_my_last_fee**](docs/LinearFundingApi.md#linear_funding_my_last_fee) | **GET** /private/linear/funding/prev-funding | Get prev funding
+*LinearFundingApi* | [**linear_funding_predicted**](docs/LinearFundingApi.md#linear_funding_predicted) | **GET** /private/linear/funding/predicted-funding | Get predicted funding rate and funding fee.
+*LinearFundingApi* | [**linear_funding_prev_rate**](docs/LinearFundingApi.md#linear_funding_prev_rate) | **GET** /public/linear/funding/prev-funding-rate | Get prev funding
+*LinearKlineApi* | [**linear_kline_get**](docs/LinearKlineApi.md#linear_kline_get) | **GET** /public/linear/kline | Get kline
+*LinearKlineApi* | [**linear_kline_mark_price**](docs/LinearKlineApi.md#linear_kline_mark_price) | **GET** /public/linear/mark-price-kline | Get kline
+*LinearMarketApi* | [**linear_market_trading**](docs/LinearMarketApi.md#linear_market_trading) | **GET** /public/linear/recent-trading-records | Get recent trades
+*LinearPositionsApi* | [**linear_positions_change_margin**](docs/LinearPositionsApi.md#linear_positions_change_margin) | **POST** /private/linear/position/add-margin | Add/Reduce Margin
+*LinearPositionsApi* | [**linear_positions_close_pnl_records**](docs/LinearPositionsApi.md#linear_positions_close_pnl_records) | **GET** /private/linear/trade/closed-pnl/list | Get user&#39;s closed profit and loss records.
+*LinearPositionsApi* | [**linear_positions_my_position**](docs/LinearPositionsApi.md#linear_positions_my_position) | **GET** /private/linear/position/list | Get my position list.
+*LinearPositionsApi* | [**linear_positions_save_leverage**](docs/LinearPositionsApi.md#linear_positions_save_leverage) | **POST** /private/linear/position/set-leverage | Set leverage
+*LinearPositionsApi* | [**linear_positions_set_auto_add_margin**](docs/LinearPositionsApi.md#linear_positions_set_auto_add_margin) | **POST** /private/linear/position/set-auto-add-margin | Set auto add margin
+*LinearPositionsApi* | [**linear_positions_switch_isolated**](docs/LinearPositionsApi.md#linear_positions_switch_isolated) | **POST** /private/linear/position/switch-isolated | Switch isolated
+*LinearPositionsApi* | [**linear_positions_trading_stop**](docs/LinearPositionsApi.md#linear_positions_trading_stop) | **POST** /private/linear/position/trading-stop | Set tradingStop
+*LinearWalletApi* | [**linear_wallet_get_risk_limit**](docs/LinearWalletApi.md#linear_wallet_get_risk_limit) | **GET** /public/linear/risk-limit | Get risk limit.
+*LinearorderApi* | [**linearorder_cancel**](docs/LinearorderApi.md#linearorder_cancel) | **POST** /private/linear/order/cancel | Cancel Active Order
+*LinearorderApi* | [**linearorder_cancel_all**](docs/LinearorderApi.md#linearorder_cancel_all) | **POST** /private/linear/order/cancel-all | Cancel all active orders.
+*LinearorderApi* | [**linearorder_get_orders**](docs/LinearorderApi.md#linearorder_get_orders) | **GET** /private/linear/order/list | Get linear Active Orders
+*LinearorderApi* | [**linearorder_new**](docs/LinearorderApi.md#linearorder_new) | **POST** /private/linear/order/create | Create Active Order
+*LinearorderApi* | [**linearorder_query**](docs/LinearorderApi.md#linearorder_query) | **GET** /private/linear/order/search | Get Active Orders(real-time)
 *MarketApi* | [**market_orderbook**](docs/MarketApi.md#market_orderbook) | **GET** /v2/public/orderBook/L2 | Get the orderbook.
 *MarketApi* | [**market_symbol_info**](docs/MarketApi.md#market_symbol_info) | **GET** /v2/public/tickers | Get the latest information for symbol.
 *OrderApi* | [**order_cancel**](docs/OrderApi.md#order_cancel) | **POST** /open-api/order/cancel | Get my active order list.
@@ -146,6 +171,49 @@ Class | Method | HTTP request | Description
  - [Leverage](docs/Leverage.md)
  - [LeverageInfo](docs/LeverageInfo.md)
  - [LeverageResult](docs/LeverageResult.md)
+ - [LinearCancelOrderResult](docs/LinearCancelOrderResult.md)
+ - [LinearCancelOrderResultBase](docs/LinearCancelOrderResultBase.md)
+ - [LinearCancelStopOrderResult](docs/LinearCancelStopOrderResult.md)
+ - [LinearCancelStopOrderResultBase](docs/LinearCancelStopOrderResultBase.md)
+ - [LinearClosePnlRecordsResponse](docs/LinearClosePnlRecordsResponse.md)
+ - [LinearClosedPnlRecordResult](docs/LinearClosedPnlRecordResult.md)
+ - [LinearCreateOrderResult](docs/LinearCreateOrderResult.md)
+ - [LinearCreateOrderResultBase](docs/LinearCreateOrderResultBase.md)
+ - [LinearCreateStopOrderResult](docs/LinearCreateStopOrderResult.md)
+ - [LinearCreateStopOrderResultBase](docs/LinearCreateStopOrderResultBase.md)
+ - [LinearFundingPredicted](docs/LinearFundingPredicted.md)
+ - [LinearFundingPredictedBase](docs/LinearFundingPredictedBase.md)
+ - [LinearKlineResp](docs/LinearKlineResp.md)
+ - [LinearKlineRespBase](docs/LinearKlineRespBase.md)
+ - [LinearListOrderResult](docs/LinearListOrderResult.md)
+ - [LinearListStopOrderResult](docs/LinearListStopOrderResult.md)
+ - [LinearOrderCancelAllBase](docs/LinearOrderCancelAllBase.md)
+ - [LinearOrderRecordsResponse](docs/LinearOrderRecordsResponse.md)
+ - [LinearOrderRecordsResponseBase](docs/LinearOrderRecordsResponseBase.md)
+ - [LinearPositionListResult](docs/LinearPositionListResult.md)
+ - [LinearPositionListResultBase](docs/LinearPositionListResultBase.md)
+ - [LinearPrevFundingRateResp](docs/LinearPrevFundingRateResp.md)
+ - [LinearPrevFundingRateRespBase](docs/LinearPrevFundingRateRespBase.md)
+ - [LinearPrevFundingResp](docs/LinearPrevFundingResp.md)
+ - [LinearPrevFundingRespBase](docs/LinearPrevFundingRespBase.md)
+ - [LinearRecentTradingRecordResp](docs/LinearRecentTradingRecordResp.md)
+ - [LinearRecentTradingRecordRespBase](docs/LinearRecentTradingRecordRespBase.md)
+ - [LinearRiskLimitResp](docs/LinearRiskLimitResp.md)
+ - [LinearRiskLimitRespBase](docs/LinearRiskLimitRespBase.md)
+ - [LinearSearchOrderResult](docs/LinearSearchOrderResult.md)
+ - [LinearSearchOrderResultBase](docs/LinearSearchOrderResultBase.md)
+ - [LinearSearchStopOrderResult](docs/LinearSearchStopOrderResult.md)
+ - [LinearSearchStopOrderResultBase](docs/LinearSearchStopOrderResultBase.md)
+ - [LinearSetLeverageResult](docs/LinearSetLeverageResult.md)
+ - [LinearSetMarginResult](docs/LinearSetMarginResult.md)
+ - [LinearSetMarginResultBase](docs/LinearSetMarginResultBase.md)
+ - [LinearSetTradingStopResult](docs/LinearSetTradingStopResult.md)
+ - [LinearStopOrderCancelAllBase](docs/LinearStopOrderCancelAllBase.md)
+ - [LinearStopOrderRecordsResponse](docs/LinearStopOrderRecordsResponse.md)
+ - [LinearStopOrderRecordsResponseBase](docs/LinearStopOrderRecordsResponseBase.md)
+ - [LinearSwitchIsolatedResult](docs/LinearSwitchIsolatedResult.md)
+ - [LinearTradeRecordItem](docs/LinearTradeRecordItem.md)
+ - [LinearTradeRecordsResponse](docs/LinearTradeRecordsResponse.md)
  - [LotSizeFilter](docs/LotSizeFilter.md)
  - [OderBookRes](docs/OderBookRes.md)
  - [OrderBookBase](docs/OrderBookBase.md)

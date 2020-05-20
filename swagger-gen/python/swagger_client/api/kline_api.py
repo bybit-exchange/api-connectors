@@ -45,7 +45,7 @@ class KlineApi(object):
         :param str symbol: Contract type. (required)
         :param str interval: Kline interval. (required)
         :param float _from: from timestamp. (required)
-        :param str limit: Contract type.
+        :param float limit: Contract type.
         :return: object
                  If the method is called asynchronously,
                  returns the request thread.
@@ -69,7 +69,7 @@ class KlineApi(object):
         :param str symbol: Contract type. (required)
         :param str interval: Kline interval. (required)
         :param float _from: from timestamp. (required)
-        :param str limit: Contract type.
+        :param float limit: Contract type.
         :return: object
                  If the method is called asynchronously,
                  returns the request thread.

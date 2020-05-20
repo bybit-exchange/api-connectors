@@ -25,7 +25,7 @@ api_instance = swagger_client.KlineApi()
 symbol = 'symbol_example' # str | Contract type.
 interval = 'interval_example' # str | Kline interval.
 _from = 8.14 # float | from timestamp.
-limit = 'limit_example' # str | Contract type. (optional)
+limit = 8.14 # float | Contract type. (optional)
 
 try:
     # Query historical kline.
@@ -42,7 +42,7 @@ Name | Type | Description  | Notes
  **symbol** | **str**| Contract type. | 
  **interval** | **str**| Kline interval. | 
  **_from** | **float**| from timestamp. | 
- **limit** | **str**| Contract type. | [optional] 
+ **limit** | **float**| Contract type. | [optional] 
 
 ### Return type
 
