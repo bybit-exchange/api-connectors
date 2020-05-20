@@ -33,13 +33,332 @@ class LinearOrderApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def linearorder_new(self, **kwargs):  # noqa: E501
-        """Create Order  # noqa: E501
+    def linear_order_cancel(self, **kwargs):  # noqa: E501
+        """Cancel Active Order  # noqa: E501
+
+        This will cancel linear active order  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.linear_order_cancel(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str order_id:
+        :param str order_link_id:
+        :param str symbol:
+        :return: object
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.linear_order_cancel_with_http_info(**kwargs)  # noqa: E501
+        else:
+            (data) = self.linear_order_cancel_with_http_info(**kwargs)  # noqa: E501
+            return data
+
+    def linear_order_cancel_with_http_info(self, **kwargs):  # noqa: E501
+        """Cancel Active Order  # noqa: E501
+
+        This will cancel linear active order  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.linear_order_cancel_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str order_id:
+        :param str order_link_id:
+        :param str symbol:
+        :return: object
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['order_id', 'order_link_id', 'symbol']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method linear_order_cancel" % key
+                )
+            params[key] = val
+        del params['kwargs']
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+        if 'order_id' in params:
+            form_params.append(('order_id', params['order_id']))  # noqa: E501
+        if 'order_link_id' in params:
+            form_params.append(('order_link_id', params['order_link_id']))  # noqa: E501
+        if 'symbol' in params:
+            form_params.append(('symbol', params['symbol']))  # noqa: E501
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json', 'application/x-www-form-urlencoded'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['apiKey', 'apiSignature', 'timestamp']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/private/linear/order/cancel', 'POST',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='object',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def linear_order_cancel_all(self, symbol, **kwargs):  # noqa: E501
+        """Cancel all active orders.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.linear_order_cancel_all(symbol, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str symbol: Contract type. (required)
+        :return: object
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.linear_order_cancel_all_with_http_info(symbol, **kwargs)  # noqa: E501
+        else:
+            (data) = self.linear_order_cancel_all_with_http_info(symbol, **kwargs)  # noqa: E501
+            return data
+
+    def linear_order_cancel_all_with_http_info(self, symbol, **kwargs):  # noqa: E501
+        """Cancel all active orders.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.linear_order_cancel_all_with_http_info(symbol, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str symbol: Contract type. (required)
+        :return: object
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['symbol']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method linear_order_cancel_all" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'symbol' is set
+        if ('symbol' not in params or
+                params['symbol'] is None):
+            raise ValueError("Missing the required parameter `symbol` when calling `linear_order_cancel_all`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+        if 'symbol' in params:
+            form_params.append(('symbol', params['symbol']))  # noqa: E501
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json', 'application/x-www-form-urlencoded'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['apiKey', 'apiSignature', 'timestamp']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/private/linear/order/cancel-all', 'POST',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='object',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def linear_order_get_orders(self, **kwargs):  # noqa: E501
+        """Get linear Active Orders  # noqa: E501
+
+        This will get linear active orders  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.linear_order_get_orders(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str order_id:
+        :param str order_link_id:
+        :param str symbol:
+        :param str order:
+        :param str page:
+        :param str limit:
+        :param str order_status:
+        :return: object
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.linear_order_get_orders_with_http_info(**kwargs)  # noqa: E501
+        else:
+            (data) = self.linear_order_get_orders_with_http_info(**kwargs)  # noqa: E501
+            return data
+
+    def linear_order_get_orders_with_http_info(self, **kwargs):  # noqa: E501
+        """Get linear Active Orders  # noqa: E501
+
+        This will get linear active orders  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.linear_order_get_orders_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str order_id:
+        :param str order_link_id:
+        :param str symbol:
+        :param str order:
+        :param str page:
+        :param str limit:
+        :param str order_status:
+        :return: object
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['order_id', 'order_link_id', 'symbol', 'order', 'page', 'limit', 'order_status']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method linear_order_get_orders" % key
+                )
+            params[key] = val
+        del params['kwargs']
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+        if 'order_id' in params:
+            query_params.append(('order_id', params['order_id']))  # noqa: E501
+        if 'order_link_id' in params:
+            query_params.append(('order_link_id', params['order_link_id']))  # noqa: E501
+        if 'symbol' in params:
+            query_params.append(('symbol', params['symbol']))  # noqa: E501
+        if 'order' in params:
+            query_params.append(('order', params['order']))  # noqa: E501
+        if 'page' in params:
+            query_params.append(('page', params['page']))  # noqa: E501
+        if 'limit' in params:
+            query_params.append(('limit', params['limit']))  # noqa: E501
+        if 'order_status' in params:
+            query_params.append(('order_status', params['order_status']))  # noqa: E501
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json', 'application/x-www-form-urlencoded'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['apiKey', 'apiSignature', 'timestamp']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/private/linear/order/list', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='object',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def linear_order_new(self, **kwargs):  # noqa: E501
+        """Create Active Order  # noqa: E501
 
         This will create linear order  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.linearorder_new(async_req=True)
+        >>> thread = api.linear_order_new(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
@@ -62,18 +381,18 @@ class LinearOrderApi(object):
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.linearorder_new_with_http_info(**kwargs)  # noqa: E501
+            return self.linear_order_new_with_http_info(**kwargs)  # noqa: E501
         else:
-            (data) = self.linearorder_new_with_http_info(**kwargs)  # noqa: E501
+            (data) = self.linear_order_new_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def linearorder_new_with_http_info(self, **kwargs):  # noqa: E501
-        """Create Order  # noqa: E501
+    def linear_order_new_with_http_info(self, **kwargs):  # noqa: E501
+        """Create Active Order  # noqa: E501
 
         This will create linear order  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.linearorder_new_with_http_info(async_req=True)
+        >>> thread = api.linear_order_new_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
@@ -106,7 +425,7 @@ class LinearOrderApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method linearorder_new" % key
+                    " to method linear_order_new" % key
                 )
             params[key] = val
         del params['kwargs']
@@ -158,10 +477,113 @@ class LinearOrderApi(object):
             ['application/json', 'application/x-www-form-urlencoded'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKey', 'apiSignature', 'timestamp']  # noqa: E501
 
         return self.api_client.call_api(
             '/private/linear/order/create', 'POST',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='object',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def linear_order_query(self, **kwargs):  # noqa: E501
+        """Get Active Orders(real-time)  # noqa: E501
+
+        This will get linear active orders(real-time)  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.linear_order_query(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str symbol:
+        :param str order_id:
+        :param str order_link_id:
+        :return: object
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.linear_order_query_with_http_info(**kwargs)  # noqa: E501
+        else:
+            (data) = self.linear_order_query_with_http_info(**kwargs)  # noqa: E501
+            return data
+
+    def linear_order_query_with_http_info(self, **kwargs):  # noqa: E501
+        """Get Active Orders(real-time)  # noqa: E501
+
+        This will get linear active orders(real-time)  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.linear_order_query_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str symbol:
+        :param str order_id:
+        :param str order_link_id:
+        :return: object
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['symbol', 'order_id', 'order_link_id']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method linear_order_query" % key
+                )
+            params[key] = val
+        del params['kwargs']
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+        if 'symbol' in params:
+            query_params.append(('symbol', params['symbol']))  # noqa: E501
+        if 'order_id' in params:
+            query_params.append(('order_id', params['order_id']))  # noqa: E501
+        if 'order_link_id' in params:
+            query_params.append(('order_link_id', params['order_link_id']))  # noqa: E501
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json', 'application/x-www-form-urlencoded'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['apiKey', 'apiSignature', 'timestamp']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/private/linear/order/search', 'GET',
             path_params,
             query_params,
             header_params,

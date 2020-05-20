@@ -14,9 +14,9 @@ from swagger_client.api.linear_execution_api import LinearExecutionApi
 from swagger_client.api.linear_funding_api import LinearFundingApi
 from swagger_client.api.linear_kline_api import LinearKlineApi
 from swagger_client.api.linear_market_api import LinearMarketApi
+from swagger_client.api.linear_order_api import LinearOrderApi
 from swagger_client.api.linear_positions_api import LinearPositionsApi
 from swagger_client.api.linear_wallet_api import LinearWalletApi
-from swagger_client.api.linearorder_api import LinearorderApi
 from swagger_client.api.market_api import MarketApi
 from swagger_client.api.order_api import OrderApi
 from swagger_client.api.positions_api import PositionsApi

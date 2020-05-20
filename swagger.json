@@ -1484,10 +1484,10 @@
             "post": {
                 "description": "This will create linear order",
                 "tags": [
-                    "Linearorder"
+                    "LinearOrder"
                 ],
                 "summary": "Create Active Order",
-                "operationId": "Linearorder.new",
+                "operationId": "LinearOrder.new",
                 "parameters": [{
                         "type": "string",
                         "name": "symbol",
@@ -1575,10 +1575,10 @@
             "post": {
                 "description": "This will cancel linear active order",
                 "tags": [
-                    "Linearorder"
+                    "LinearOrder"
                 ],
                 "summary": "Cancel Active Order",
-                "operationId": "Linearorder.cancel",
+                "operationId": "LinearOrder.cancel",
                 "parameters": [{
                         "type": "string",
                         "name": "order_id",
@@ -1611,10 +1611,10 @@
         "/private/linear/order/cancel-all": {
             "post": {
                 "tags": [
-                    "Linearorder"
+                    "LinearOrder"
                 ],
                 "summary": "Cancel all active orders.",
-                "operationId": "Linearorder.cancelAll",
+                "operationId": "LinearOrder.cancelAll",
                 "parameters": [{
                     "name": "symbol",
                     "in": "formData",
@@ -1639,10 +1639,10 @@
             "get": {
                 "description": "This will get linear active orders",
                 "tags": [
-                    "Linearorder"
+                    "LinearOrder"
                 ],
                 "summary": "Get linear Active Orders",
-                "operationId": "Linearorder.getOrders",
+                "operationId": "LinearOrder.getOrders",
                 "parameters": [{
                         "type": "string",
                         "name": "order_id",
@@ -1696,10 +1696,10 @@
             "get": {
                 "description": "This will get linear active orders(real-time)",
                 "tags": [
-                    "Linearorder"
+                    "LinearOrder"
                 ],
                 "summary": "Get Active Orders(real-time)",
-                "operationId": "Linearorder.query",
+                "operationId": "LinearOrder.query",
                 "parameters": [{
                         "name": "symbol",
                         "in": "query",
@@ -5974,7 +5974,7 @@
             "description": "Query Symbols"
         },
         {
-            "name": "Linearorder",
+            "name": "LinearOrder",
             "description": "Place new linear order, cancel, replace and get linear order list"
         }
     ],

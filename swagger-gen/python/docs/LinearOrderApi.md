@@ -1,18 +1,18 @@
-# swagger_client.LinearorderApi
+# swagger_client.LinearOrderApi
 
 All URIs are relative to *https://api-testnet.bybit.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**linearorder_cancel**](LinearorderApi.md#linearorder_cancel) | **POST** /private/linear/order/cancel | Cancel Active Order
-[**linearorder_cancel_all**](LinearorderApi.md#linearorder_cancel_all) | **POST** /private/linear/order/cancel-all | Cancel all active orders.
-[**linearorder_get_orders**](LinearorderApi.md#linearorder_get_orders) | **GET** /private/linear/order/list | Get linear Active Orders
-[**linearorder_new**](LinearorderApi.md#linearorder_new) | **POST** /private/linear/order/create | Create Active Order
-[**linearorder_query**](LinearorderApi.md#linearorder_query) | **GET** /private/linear/order/search | Get Active Orders(real-time)
+[**linear_order_cancel**](LinearOrderApi.md#linear_order_cancel) | **POST** /private/linear/order/cancel | Cancel Active Order
+[**linear_order_cancel_all**](LinearOrderApi.md#linear_order_cancel_all) | **POST** /private/linear/order/cancel-all | Cancel all active orders.
+[**linear_order_get_orders**](LinearOrderApi.md#linear_order_get_orders) | **GET** /private/linear/order/list | Get linear Active Orders
+[**linear_order_new**](LinearOrderApi.md#linear_order_new) | **POST** /private/linear/order/create | Create Active Order
+[**linear_order_query**](LinearOrderApi.md#linear_order_query) | **GET** /private/linear/order/search | Get Active Orders(real-time)
 
 
-# **linearorder_cancel**
-> object linearorder_cancel(order_id=order_id, order_link_id=order_link_id, symbol=symbol)
+# **linear_order_cancel**
+> object linear_order_cancel(order_id=order_id, order_link_id=order_link_id, symbol=symbol)
 
 Cancel Active Order
 
@@ -43,17 +43,17 @@ configuration.api_key['timestamp'] = 'YOUR_API_KEY'
 # configuration.api_key_prefix['timestamp'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.LinearorderApi(swagger_client.ApiClient(configuration))
+api_instance = swagger_client.LinearOrderApi(swagger_client.ApiClient(configuration))
 order_id = 'order_id_example' # str |  (optional)
 order_link_id = 'order_link_id_example' # str |  (optional)
 symbol = 'symbol_example' # str |  (optional)
 
 try:
     # Cancel Active Order
-    api_response = api_instance.linearorder_cancel(order_id=order_id, order_link_id=order_link_id, symbol=symbol)
+    api_response = api_instance.linear_order_cancel(order_id=order_id, order_link_id=order_link_id, symbol=symbol)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling LinearorderApi->linearorder_cancel: %s\n" % e)
+    print("Exception when calling LinearOrderApi->linear_order_cancel: %s\n" % e)
 ```
 
 ### Parameters
@@ -79,8 +79,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **linearorder_cancel_all**
-> object linearorder_cancel_all(symbol)
+# **linear_order_cancel_all**
+> object linear_order_cancel_all(symbol)
 
 Cancel all active orders.
 
@@ -109,15 +109,15 @@ configuration.api_key['timestamp'] = 'YOUR_API_KEY'
 # configuration.api_key_prefix['timestamp'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.LinearorderApi(swagger_client.ApiClient(configuration))
+api_instance = swagger_client.LinearOrderApi(swagger_client.ApiClient(configuration))
 symbol = 'symbol_example' # str | Contract type.
 
 try:
     # Cancel all active orders.
-    api_response = api_instance.linearorder_cancel_all(symbol)
+    api_response = api_instance.linear_order_cancel_all(symbol)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling LinearorderApi->linearorder_cancel_all: %s\n" % e)
+    print("Exception when calling LinearOrderApi->linear_order_cancel_all: %s\n" % e)
 ```
 
 ### Parameters
@@ -141,8 +141,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **linearorder_get_orders**
-> object linearorder_get_orders(order_id=order_id, order_link_id=order_link_id, symbol=symbol, order=order, page=page, limit=limit, order_status=order_status)
+# **linear_order_get_orders**
+> object linear_order_get_orders(order_id=order_id, order_link_id=order_link_id, symbol=symbol, order=order, page=page, limit=limit, order_status=order_status)
 
 Get linear Active Orders
 
@@ -173,7 +173,7 @@ configuration.api_key['timestamp'] = 'YOUR_API_KEY'
 # configuration.api_key_prefix['timestamp'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.LinearorderApi(swagger_client.ApiClient(configuration))
+api_instance = swagger_client.LinearOrderApi(swagger_client.ApiClient(configuration))
 order_id = 'order_id_example' # str |  (optional)
 order_link_id = 'order_link_id_example' # str |  (optional)
 symbol = 'symbol_example' # str |  (optional)
@@ -184,10 +184,10 @@ order_status = 'order_status_example' # str |  (optional)
 
 try:
     # Get linear Active Orders
-    api_response = api_instance.linearorder_get_orders(order_id=order_id, order_link_id=order_link_id, symbol=symbol, order=order, page=page, limit=limit, order_status=order_status)
+    api_response = api_instance.linear_order_get_orders(order_id=order_id, order_link_id=order_link_id, symbol=symbol, order=order, page=page, limit=limit, order_status=order_status)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling LinearorderApi->linearorder_get_orders: %s\n" % e)
+    print("Exception when calling LinearOrderApi->linear_order_get_orders: %s\n" % e)
 ```
 
 ### Parameters
@@ -217,8 +217,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **linearorder_new**
-> object linearorder_new(symbol=symbol, side=side, order_type=order_type, time_in_force=time_in_force, qty=qty, price=price, take_profit=take_profit, stop_loss=stop_loss, reduce_only=reduce_only, tp_trigger_by=tp_trigger_by, sl_trigger_by=sl_trigger_by, close_on_trigger=close_on_trigger, order_link_id=order_link_id)
+# **linear_order_new**
+> object linear_order_new(symbol=symbol, side=side, order_type=order_type, time_in_force=time_in_force, qty=qty, price=price, take_profit=take_profit, stop_loss=stop_loss, reduce_only=reduce_only, tp_trigger_by=tp_trigger_by, sl_trigger_by=sl_trigger_by, close_on_trigger=close_on_trigger, order_link_id=order_link_id)
 
 Create Active Order
 
@@ -249,7 +249,7 @@ configuration.api_key['timestamp'] = 'YOUR_API_KEY'
 # configuration.api_key_prefix['timestamp'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.LinearorderApi(swagger_client.ApiClient(configuration))
+api_instance = swagger_client.LinearOrderApi(swagger_client.ApiClient(configuration))
 symbol = 'symbol_example' # str |  (optional)
 side = 'side_example' # str |  (optional)
 order_type = 'order_type_example' # str |  (optional)
@@ -266,10 +266,10 @@ order_link_id = 'order_link_id_example' # str |  (optional)
 
 try:
     # Create Active Order
-    api_response = api_instance.linearorder_new(symbol=symbol, side=side, order_type=order_type, time_in_force=time_in_force, qty=qty, price=price, take_profit=take_profit, stop_loss=stop_loss, reduce_only=reduce_only, tp_trigger_by=tp_trigger_by, sl_trigger_by=sl_trigger_by, close_on_trigger=close_on_trigger, order_link_id=order_link_id)
+    api_response = api_instance.linear_order_new(symbol=symbol, side=side, order_type=order_type, time_in_force=time_in_force, qty=qty, price=price, take_profit=take_profit, stop_loss=stop_loss, reduce_only=reduce_only, tp_trigger_by=tp_trigger_by, sl_trigger_by=sl_trigger_by, close_on_trigger=close_on_trigger, order_link_id=order_link_id)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling LinearorderApi->linearorder_new: %s\n" % e)
+    print("Exception when calling LinearOrderApi->linear_order_new: %s\n" % e)
 ```
 
 ### Parameters
@@ -305,8 +305,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **linearorder_query**
-> object linearorder_query(symbol=symbol, order_id=order_id, order_link_id=order_link_id)
+# **linear_order_query**
+> object linear_order_query(symbol=symbol, order_id=order_id, order_link_id=order_link_id)
 
 Get Active Orders(real-time)
 
@@ -337,17 +337,17 @@ configuration.api_key['timestamp'] = 'YOUR_API_KEY'
 # configuration.api_key_prefix['timestamp'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.LinearorderApi(swagger_client.ApiClient(configuration))
+api_instance = swagger_client.LinearOrderApi(swagger_client.ApiClient(configuration))
 symbol = 'symbol_example' # str |  (optional)
 order_id = 'order_id_example' # str |  (optional)
 order_link_id = 'order_link_id_example' # str |  (optional)
 
 try:
     # Get Active Orders(real-time)
-    api_response = api_instance.linearorder_query(symbol=symbol, order_id=order_id, order_link_id=order_link_id)
+    api_response = api_instance.linear_order_query(symbol=symbol, order_id=order_id, order_link_id=order_link_id)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling LinearorderApi->linearorder_query: %s\n" % e)
+    print("Exception when calling LinearOrderApi->linear_order_query: %s\n" % e)
 ```
 
 ### Parameters

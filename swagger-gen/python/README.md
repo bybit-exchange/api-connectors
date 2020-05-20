@@ -109,6 +109,11 @@ Class | Method | HTTP request | Description
 *LinearKlineApi* | [**linear_kline_get**](docs/LinearKlineApi.md#linear_kline_get) | **GET** /public/linear/kline | Get kline
 *LinearKlineApi* | [**linear_kline_mark_price**](docs/LinearKlineApi.md#linear_kline_mark_price) | **GET** /public/linear/mark-price-kline | Get kline
 *LinearMarketApi* | [**linear_market_trading**](docs/LinearMarketApi.md#linear_market_trading) | **GET** /public/linear/recent-trading-records | Get recent trades
+*LinearOrderApi* | [**linear_order_cancel**](docs/LinearOrderApi.md#linear_order_cancel) | **POST** /private/linear/order/cancel | Cancel Active Order
+*LinearOrderApi* | [**linear_order_cancel_all**](docs/LinearOrderApi.md#linear_order_cancel_all) | **POST** /private/linear/order/cancel-all | Cancel all active orders.
+*LinearOrderApi* | [**linear_order_get_orders**](docs/LinearOrderApi.md#linear_order_get_orders) | **GET** /private/linear/order/list | Get linear Active Orders
+*LinearOrderApi* | [**linear_order_new**](docs/LinearOrderApi.md#linear_order_new) | **POST** /private/linear/order/create | Create Active Order
+*LinearOrderApi* | [**linear_order_query**](docs/LinearOrderApi.md#linear_order_query) | **GET** /private/linear/order/search | Get Active Orders(real-time)
 *LinearPositionsApi* | [**linear_positions_change_margin**](docs/LinearPositionsApi.md#linear_positions_change_margin) | **POST** /private/linear/position/add-margin | Add/Reduce Margin
 *LinearPositionsApi* | [**linear_positions_close_pnl_records**](docs/LinearPositionsApi.md#linear_positions_close_pnl_records) | **GET** /private/linear/trade/closed-pnl/list | Get user&#39;s closed profit and loss records.
 *LinearPositionsApi* | [**linear_positions_my_position**](docs/LinearPositionsApi.md#linear_positions_my_position) | **GET** /private/linear/position/list | Get my position list.
@@ -117,11 +122,6 @@ Class | Method | HTTP request | Description
 *LinearPositionsApi* | [**linear_positions_switch_isolated**](docs/LinearPositionsApi.md#linear_positions_switch_isolated) | **POST** /private/linear/position/switch-isolated | Switch isolated
 *LinearPositionsApi* | [**linear_positions_trading_stop**](docs/LinearPositionsApi.md#linear_positions_trading_stop) | **POST** /private/linear/position/trading-stop | Set tradingStop
 *LinearWalletApi* | [**linear_wallet_get_risk_limit**](docs/LinearWalletApi.md#linear_wallet_get_risk_limit) | **GET** /public/linear/risk-limit | Get risk limit.
-*LinearorderApi* | [**linearorder_cancel**](docs/LinearorderApi.md#linearorder_cancel) | **POST** /private/linear/order/cancel | Cancel Active Order
-*LinearorderApi* | [**linearorder_cancel_all**](docs/LinearorderApi.md#linearorder_cancel_all) | **POST** /private/linear/order/cancel-all | Cancel all active orders.
-*LinearorderApi* | [**linearorder_get_orders**](docs/LinearorderApi.md#linearorder_get_orders) | **GET** /private/linear/order/list | Get linear Active Orders
-*LinearorderApi* | [**linearorder_new**](docs/LinearorderApi.md#linearorder_new) | **POST** /private/linear/order/create | Create Active Order
-*LinearorderApi* | [**linearorder_query**](docs/LinearorderApi.md#linearorder_query) | **GET** /private/linear/order/search | Get Active Orders(real-time)
 *MarketApi* | [**market_orderbook**](docs/MarketApi.md#market_orderbook) | **GET** /v2/public/orderBook/L2 | Get the orderbook.
 *MarketApi* | [**market_symbol_info**](docs/MarketApi.md#market_symbol_info) | **GET** /v2/public/tickers | Get the latest information for symbol.
 *OrderApi* | [**order_cancel**](docs/OrderApi.md#order_cancel) | **POST** /open-api/order/cancel | Get my active order list.

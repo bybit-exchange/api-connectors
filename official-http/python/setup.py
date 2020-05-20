@@ -5,7 +5,7 @@ from os.path import join, dirname
 here = dirname(__file__)
 
 setup(name='Bybit',
-      version='0.2.3',
+      version='0.2.4',
       description='Client for connecting to the Bybit Restful API.',
       author='Bybit',
       author_email='api@bybit.com',
