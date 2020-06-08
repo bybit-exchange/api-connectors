@@ -3,13 +3,13 @@
     "info": {
         "title": "Bybit API",
         "termsOfService": "https://www.bybit.com/app/login",
-        "description": "## REST API for the Bybit Exchange.\nBase URI: [https://api-testnet.bybit.com]\n\n",
+        "description": "## REST API for the Bybit Exchange.\nBase URI: [https://api.bybit.com]\n\n",
         "contact": {
             "email": "support@bybit.com"
         },
-        "version": "1.0.0"
+        "version": "0.2.6"
     },
-    "host": "api-testnet.bybit.com",
+    "host": "api.bybit.com",
     "basePath": "/",
     "paths": {
         "/v2/public/time": {
@@ -19,7 +19,8 @@
                 ],
                 "summary": "Get bybit server time.",
                 "operationId": "Common.get",
-                "parameters": [],
+                "parameters": [
+                ],
                 "responses": {
                     "200": {
                         "description": "Request was successful",
@@ -31,7 +32,8 @@
                     }
                 },
                 "deprecated": false,
-                "security": []
+                "security": [
+                ]
             }
         },
         "/open-api/api-key": {
@@ -41,7 +43,8 @@
                 ],
                 "summary": "Get account api-key information.",
                 "operationId": "APIkey.info",
-                "parameters": [],
+                "parameters": [
+                ],
                 "responses": {
                     "200": {
                         "description": "Request was successful",
@@ -62,7 +65,8 @@
                 ],
                 "summary": "Query Symbols.",
                 "operationId": "Symbol.get",
-                "parameters": [],
+                "parameters": [
+                ],
                 "responses": {
                     "200": {
                         "description": "Request was successful",
@@ -74,7 +78,8 @@
                     }
                 },
                 "deprecated": false,
-                "security": []
+                "security": [
+                ]
             }
         },
         "/user/leverage": {
@@ -84,7 +89,8 @@
                 ],
                 "summary": "Get user leverage setting.",
                 "operationId": "Positions.userLeverage",
-                "parameters": [],
+                "parameters": [
+                ],
                 "responses": {
                     "200": {
                         "description": "Request was successful",
@@ -105,7 +111,8 @@
                 ],
                 "summary": "Change user leverage.",
                 "operationId": "Positions.saveLeverage",
-                "parameters": [{
+                "parameters": [
+                    {
                         "name": "symbol",
                         "in": "formData",
                         "description": "A symbol which you want change its leverage",
@@ -140,7 +147,8 @@
                 ],
                 "summary": "Get my position list.",
                 "operationId": "Positions.myPosition",
-                "parameters": [],
+                "parameters": [
+                ],
                 "responses": {
                     "200": {
                         "description": "Request was successful",
@@ -161,13 +169,14 @@
                 ],
                 "summary": "Get my position list.",
                 "operationId": "Positions.myPositionV2",
-                "parameters": [{
-                    "name": "symbol",
-                    "in": "query",
-                    "description": "Contract type which you want update its margin",
-                    "required": false,
-                    "type": "string"
-                }],
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type which you want update its margin",
+                        "required": false,
+                        "type": "string"
+                    }],
                 "responses": {
                     "200": {
                         "description": "Request was successful",
@@ -188,7 +197,8 @@
                 ],
                 "summary": "Update margin.",
                 "operationId": "Positions.changeMargin",
-                "parameters": [{
+                "parameters": [
+                    {
                         "name": "symbol",
                         "in": "formData",
                         "description": "Contract type which you want update its margin",
@@ -223,7 +233,8 @@
                 ],
                 "summary": "Set Trading-Stop Condition.",
                 "operationId": "Positions.tradingStop",
-                "parameters": [{
+                "parameters": [
+                    {
                         "name": "symbol",
                         "in": "formData",
                         "description": "Contract type",
@@ -250,6 +261,13 @@
                         "description": "Not less than 0, 0 means cancel TS",
                         "required": false,
                         "type": "string"
+                    },
+                    {
+                        "name": "new_trailing_active",
+                        "in": "formData",
+                        "description": "Trailing stop trigger price. Trailing stops are triggered only when the price reaches the specified price. Trailing stops are triggered immediately by default.",
+                        "required": false,
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -272,7 +290,8 @@
                 ],
                 "summary": "Get wallet fund records",
                 "operationId": "Wallet.getRecords",
-                "parameters": [{
+                "parameters": [
+                    {
                         "name": "start_date",
                         "in": "query",
                         "description": "Start point for result",
@@ -335,7 +354,8 @@
                 ],
                 "summary": "Get wallet fund records",
                 "operationId": "Wallet.withdraw",
-                "parameters": [{
+                "parameters": [
+                    {
                         "name": "start_date",
                         "in": "query",
                         "description": "Start point for result",
@@ -398,13 +418,14 @@
                 ],
                 "summary": "get wallet balance info",
                 "operationId": "Wallet.getBalance",
-                "parameters": [{
-                    "name": "coin",
-                    "in": "query",
-                    "description": "Coin.enum {BTC,EOS,XRP,ETH,USDT}",
-                    "required": false,
-                    "type": "string"
-                }],
+                "parameters": [
+                    {
+                        "name": "coin",
+                        "in": "query",
+                        "description": "Coin.enum {BTC,EOS,XRP,ETH,USDT}",
+                        "required": false,
+                        "type": "string"
+                    }],
                 "responses": {
                     "200": {
                         "description": "Request was successful",
@@ -425,7 +446,8 @@
                 ],
                 "summary": "Set risk limit",
                 "operationId": "Wallet.setRiskLimit",
-                "parameters": [{
+                "parameters": [
+                    {
                         "name": "symbol",
                         "in": "formData",
                         "description": "Contract type.",
@@ -461,7 +483,8 @@
                 ],
                 "summary": "Get risk limit.",
                 "operationId": "Wallet.getRiskLimit",
-                "parameters": [],
+                "parameters": [
+                ],
                 "responses": {
                     "200": {
                         "description": "Request was successful",
@@ -475,108 +498,6 @@
                 "deprecated": false
             }
         },
-        "/open-api/order/create": {
-            "post": {
-                "tags": [
-                    "Order"
-                ],
-                "summary": "Place active order",
-                "operationId": "Order.new",
-                "parameters": [{
-                        "name": "side",
-                        "in": "formData",
-                        "description": "Side",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "symbol",
-                        "in": "formData",
-                        "description": "Contract type.",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "order_type",
-                        "in": "formData",
-                        "description": "Active order type",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "qty",
-                        "in": "formData",
-                        "description": "",
-                        "required": true,
-                        "type": "number",
-                        "format": "int32"
-                    },
-                    {
-                        "name": "price",
-                        "in": "formData",
-                        "description": "Order price.",
-                        "required": false,
-                        "type": "number",
-                        "format": "double"
-                    },
-                    {
-                        "name": "time_in_force",
-                        "in": "formData",
-                        "description": "Time in force",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "take_profit",
-                        "in": "formData",
-                        "description": "take profit price",
-                        "required": false,
-                        "type": "number",
-                        "format": "double"
-                    },
-                    {
-                        "name": "stop_loss",
-                        "in": "formData",
-                        "description": "stop loss price",
-                        "required": false,
-                        "type": "number",
-                        "format": "double"
-                    },
-                    {
-                        "name": "reduce_only",
-                        "in": "formData",
-                        "description": "reduce only",
-                        "required": false,
-                        "type": "boolean"
-                    },
-                    {
-                        "name": "close_on_trigger",
-                        "in": "formData",
-                        "description": "close on trigger",
-                        "required": false,
-                        "type": "boolean"
-                    },
-                    {
-                        "name": "order_link_id",
-                        "in": "formData",
-                        "description": "TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.",
-                        "required": false,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Request was successful",
-                        "schema": {
-                            "items": {
-                                "$ref": "#/definitions/OrderResBase"
-                            }
-                        }
-                    }
-                },
-                "deprecated": true
-            }
-        },
         "/v2/private/order/create": {
             "post": {
                 "tags": [
@@ -584,7 +505,8 @@
                 ],
                 "summary": "Place active order",
                 "operationId": "Order.newV2",
-                "parameters": [{
+                "parameters": [
+                    {
                         "name": "side",
                         "in": "formData",
                         "description": "Side",
@@ -662,13 +584,6 @@
                         "name": "order_link_id",
                         "in": "formData",
                         "description": "TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "trailing_stop",
-                        "in": "formData",
-                        "description": "Trailing stop.",
                         "required": false,
                         "type": "string"
                     }
@@ -693,7 +608,8 @@
                 ],
                 "summary": "Get my active order list.",
                 "operationId": "Order.getOrders",
-                "parameters": [{
+                "parameters": [
+                    {
                         "name": "order_id",
                         "in": "query",
                         "description": "Order ID",
@@ -758,41 +674,6 @@
                 "deprecated": false
             }
         },
-        "/open-api/order/cancel": {
-            "post": {
-                "tags": [
-                    "Order"
-                ],
-                "summary": "Get my active order list.",
-                "operationId": "Order.cancel",
-                "parameters": [{
-                        "name": "order_id",
-                        "in": "formData",
-                        "description": "Order ID",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "symbol",
-                        "in": "formData",
-                        "description": "Contract type.",
-                        "required": false,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Request was successful",
-                        "schema": {
-                            "items": {
-                                "$ref": "#/definitions/OrderCancelBase"
-                            }
-                        }
-                    }
-                },
-                "deprecated": true
-            }
-        },
         "/v2/private/order/cancel": {
             "post": {
                 "tags": [
@@ -800,7 +681,8 @@
                 ],
                 "summary": "Get my active order list.",
                 "operationId": "Order.cancelV2",
-                "parameters": [{
+                "parameters": [
+                    {
                         "name": "order_id",
                         "in": "formData",
                         "description": "Order ID",
@@ -811,7 +693,7 @@
                         "name": "symbol",
                         "in": "formData",
                         "description": "Contract type.",
-                        "required": false,
+                        "required": true,
                         "type": "string"
                     },
                     {
@@ -842,13 +724,14 @@
                 ],
                 "summary": "Get my active order list.",
                 "operationId": "Order.cancelAll",
-                "parameters": [{
-                    "name": "symbol",
-                    "in": "formData",
-                    "description": "Contract type.",
-                    "required": true,
-                    "type": "string"
-                }],
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "formData",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    }],
                 "responses": {
                     "200": {
                         "description": "Request was successful",
@@ -869,7 +752,8 @@
                 ],
                 "summary": "Replace active order. Only incomplete orders can be modified. ",
                 "operationId": "Order.replace",
-                "parameters": [{
+                "parameters": [
+                    {
                         "name": "order_id",
                         "in": "formData",
                         "description": "Order ID.",
@@ -920,7 +804,8 @@
                 ],
                 "summary": "Get my active order list.",
                 "operationId": "Order.query",
-                "parameters": [{
+                "parameters": [
+                    {
                         "name": "order_id",
                         "in": "query",
                         "description": "Order ID",
@@ -955,7 +840,8 @@
                 ],
                 "summary": "Place a new conditional order.",
                 "operationId": "Conditional.new",
-                "parameters": [{
+                "parameters": [
+                    {
                         "name": "side",
                         "in": "formData",
                         "description": "Side.",
@@ -1057,7 +943,8 @@
                 ],
                 "summary": "Get my conditional order list.",
                 "operationId": "Conditional.getOrders",
-                "parameters": [{
+                "parameters": [
+                    {
                         "name": "stop_order_id",
                         "in": "query",
                         "description": "Order ID of conditional order.",
@@ -1075,6 +962,13 @@
                         "name": "symbol",
                         "in": "query",
                         "description": "Contract type. Default BTCUSD.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "stop_order_status",
+                        "in": "query",
+                        "description": "Stop order status.",
                         "required": false,
                         "type": "string"
                     },
@@ -1122,13 +1016,28 @@
                 ],
                 "summary": "Cancel conditional order.",
                 "operationId": "Conditional.cancel",
-                "parameters": [{
-                    "name": "stop_order_id",
-                    "in": "formData",
-                    "description": "Order ID of conditional order.",
-                    "required": true,
-                    "type": "string"
-                }],
+                "parameters": [
+                    {
+                        "name": "stop_order_id",
+                        "in": "formData",
+                        "description": "Order ID of conditional order.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "order_link_id",
+                        "in": "formData",
+                        "description": "Agency customized order ID.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "symbol",
+                        "in": "formData",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    }],
                 "responses": {
                     "200": {
                         "description": "Request was successful",
@@ -1149,13 +1058,14 @@
                 ],
                 "summary": "Cancel conditional order.",
                 "operationId": "Conditional.cancelAll",
-                "parameters": [{
-                    "name": "symbol",
-                    "in": "formData",
-                    "description": "Contract type.",
-                    "required": true,
-                    "type": "string"
-                }],
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "formData",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    }],
                 "responses": {
                     "200": {
                         "description": "Request was successful",
@@ -1176,7 +1086,8 @@
                 ],
                 "summary": "Replace conditional order. Only incomplete orders can be modified. ",
                 "operationId": "Conditional.replace",
-                "parameters": [{
+                "parameters": [
+                    {
                         "name": "stop_order_id",
                         "in": "formData",
                         "description": "Stop order ID.",
@@ -1242,13 +1153,14 @@
                 ],
                 "summary": "Get predicted funding rate and funding fee.",
                 "operationId": "Funding.prevRate",
-                "parameters": [{
-                    "name": "symbol",
-                    "in": "query",
-                    "description": "Contract type.",
-                    "required": true,
-                    "type": "string"
-                }],
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    }],
                 "responses": {
                     "200": {
                         "description": "Request was successful",
@@ -1269,13 +1181,14 @@
                 ],
                 "summary": "Funding settlement occurs every 8 hours at 00:00 UTC, 08:00 UTC and 16:00 UTC. The current interval's fund fee settlement is based on the previous interval's fund rate. For example, at 16:00, the settlement is based on the fund rate generated at 8:00. The fund rate generated at 16:00 will be used at 0:00 on the next day.",
                 "operationId": "Funding.myLastFee",
-                "parameters": [{
-                    "name": "symbol",
-                    "in": "query",
-                    "description": "Contract type.",
-                    "required": true,
-                    "type": "string"
-                }],
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    }],
                 "responses": {
                     "200": {
                         "description": "Request was successful",
@@ -1296,13 +1209,14 @@
                 ],
                 "summary": "Get predicted funding rate and funding fee.",
                 "operationId": "Funding.predicted",
-                "parameters": [{
-                    "name": "symbol",
-                    "in": "query",
-                    "description": "Contract type.",
-                    "required": true,
-                    "type": "string"
-                }],
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    }],
                 "responses": {
                     "200": {
                         "description": "Request was successful",
@@ -1323,7 +1237,8 @@
                 ],
                 "summary": "Get user’s trade records.",
                 "operationId": "Execution.getTrades",
-                "parameters": [{
+                "parameters": [
+                    {
                         "name": "order_id",
                         "in": "query",
                         "description": "OrderID. If not provided, will return user’s trading records.",
@@ -1379,13 +1294,14 @@
                 ],
                 "summary": "Get the orderbook.",
                 "operationId": "Market.orderbook",
-                "parameters": [{
-                    "name": "symbol",
-                    "in": "query",
-                    "description": "Contract type.",
-                    "required": true,
-                    "type": "string"
-                }],
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    }],
                 "responses": {
                     "200": {
                         "description": "Request was successful",
@@ -1397,7 +1313,8 @@
                     }
                 },
                 "deprecated": false,
-                "security": []
+                "security": [
+                ]
             }
         },
         "/v2/public/tickers": {
@@ -1407,13 +1324,14 @@
                 ],
                 "summary": "Get the latest information for symbol.",
                 "operationId": "Market.symbolInfo",
-                "parameters": [{
-                    "name": "symbol",
-                    "in": "query",
-                    "description": "Contract type.",
-                    "required": false,
-                    "type": "string"
-                }],
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type.",
+                        "required": false,
+                        "type": "string"
+                    }],
                 "responses": {
                     "200": {
                         "description": "Request was successful",
@@ -1425,7 +1343,8 @@
                     }
                 },
                 "deprecated": false,
-                "security": []
+                "security": [
+                ]
             }
         },
         "/v2/public/kline/list": {
@@ -1435,7 +1354,8 @@
                 ],
                 "summary": "Query historical kline.",
                 "operationId": "Kline.get",
-                "parameters": [{
+                "parameters": [
+                    {
                         "name": "symbol",
                         "in": "query",
                         "description": "Contract type.",
@@ -1477,7 +1397,8 @@
                     }
                 },
                 "deprecated": false,
-                "security": []
+                "security": [
+                ]
             }
         },
         "/private/linear/order/create": {
@@ -1488,7 +1409,8 @@
                 ],
                 "summary": "Create Active Order",
                 "operationId": "LinearOrder.new",
-                "parameters": [{
+                "parameters": [
+                    {
                         "type": "string",
                         "name": "symbol",
                         "in": "formData"
@@ -1579,7 +1501,8 @@
                 ],
                 "summary": "Cancel Active Order",
                 "operationId": "LinearOrder.cancel",
-                "parameters": [{
+                "parameters": [
+                    {
                         "type": "string",
                         "name": "order_id",
                         "in": "formData"
@@ -1603,7 +1526,6 @@
                                 "$ref": "#/definitions/LinearCancelOrderResultBase"
                             }
                         }
-
                     }
                 }
             }
@@ -1615,13 +1537,14 @@
                 ],
                 "summary": "Cancel all active orders.",
                 "operationId": "LinearOrder.cancelAll",
-                "parameters": [{
-                    "name": "symbol",
-                    "in": "formData",
-                    "description": "Contract type.",
-                    "required": true,
-                    "type": "string"
-                }],
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "formData",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    }],
                 "responses": {
                     "200": {
                         "description": "Request was successful",
@@ -1643,7 +1566,8 @@
                 ],
                 "summary": "Get linear Active Orders",
                 "operationId": "LinearOrder.getOrders",
-                "parameters": [{
+                "parameters": [
+                    {
                         "type": "string",
                         "name": "order_id",
                         "in": "query"
@@ -1687,7 +1611,6 @@
                                 "$ref": "#/definitions/LinearOrderRecordsResponseBase"
                             }
                         }
-
                     }
                 }
             }
@@ -1700,7 +1623,8 @@
                 ],
                 "summary": "Get Active Orders(real-time)",
                 "operationId": "LinearOrder.query",
-                "parameters": [{
+                "parameters": [
+                    {
                         "name": "symbol",
                         "in": "query",
                         "type": "string"
@@ -1736,7 +1660,8 @@
                 ],
                 "summary": "Create linear stop Order",
                 "operationId": "LinearConditional.new",
-                "parameters": [{
+                "parameters": [
+                    {
                         "type": "string",
                         "name": "symbol",
                         "in": "formData"
@@ -1822,7 +1747,8 @@
                 ],
                 "summary": "Cancel Active Order",
                 "operationId": "LinearConditional.cancel",
-                "parameters": [{
+                "parameters": [
+                    {
                         "type": "string",
                         "name": "stop_order_id",
                         "in": "formData"
@@ -1846,7 +1772,6 @@
                                 "$ref": "#/definitions/LinearCancelStopOrderResultBase"
                             }
                         }
-
                     }
                 }
             }
@@ -1858,13 +1783,14 @@
                 ],
                 "summary": "Cancel all stop orders.",
                 "operationId": "LinearConditional.cancelAll",
-                "parameters": [{
-                    "name": "symbol",
-                    "in": "formData",
-                    "description": "Contract type.",
-                    "required": true,
-                    "type": "string"
-                }],
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "formData",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    }],
                 "responses": {
                     "200": {
                         "description": "Request was successful",
@@ -1886,7 +1812,8 @@
                 ],
                 "summary": "Get linear Stop Orders",
                 "operationId": "LinearConditional.getOrders",
-                "parameters": [{
+                "parameters": [
+                    {
                         "type": "string",
                         "name": "stop_order_id",
                         "in": "query"
@@ -1930,7 +1857,6 @@
                                 "$ref": "#/definitions/LinearStopOrderRecordsResponseBase"
                             }
                         }
-
                     }
                 }
             }
@@ -1943,7 +1869,8 @@
                 ],
                 "summary": "Get Stop Orders(real-time)",
                 "operationId": "LinearConditional.query",
-                "parameters": [{
+                "parameters": [
+                    {
                         "name": "symbol",
                         "in": "query",
                         "type": "string"
@@ -1979,11 +1906,12 @@
                 "description": "This will get my position list.",
                 "summary": "Get my position list.",
                 "operationId": "LinearPositions.myPosition",
-                "parameters": [{
-                    "name": "symbol",
-                    "in": "query",
-                    "type": "string"
-                }],
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "type": "string"
+                    }],
                 "responses": {
                     "200": {
                         "description": "Request was successful",
@@ -2004,7 +1932,8 @@
                 "description": "This will Set auto add margin",
                 "summary": "Set auto add margin",
                 "operationId": "LinearPositions.setAutoAddMargin",
-                "parameters": [{
+                "parameters": [
+                    {
                         "name": "symbol",
                         "in": "formData",
                         "type": "string"
@@ -2040,7 +1969,8 @@
                 "description": "This will Set Leverage",
                 "summary": "Set leverage",
                 "operationId": "LinearPositions.saveLeverage",
-                "parameters": [{
+                "parameters": [
+                    {
                         "name": "symbol",
                         "in": "formData",
                         "type": "string"
@@ -2078,7 +2008,8 @@
                 "description": "This will switch isolated",
                 "summary": "Switch isolated",
                 "operationId": "LinearPositions.switchIsolated",
-                "parameters": [{
+                "parameters": [
+                    {
                         "name": "symbol",
                         "in": "formData",
                         "type": "string"
@@ -2121,7 +2052,8 @@
                 "description": "This will set tradingStop",
                 "summary": "Set tradingStop",
                 "operationId": "LinearPositions.tradingStop",
-                "parameters": [{
+                "parameters": [
+                    {
                         "name": "symbol",
                         "in": "formData",
                         "type": "string"
@@ -2180,7 +2112,8 @@
                 "description": "This will Add/Reduce Margin",
                 "summary": "Add/Reduce Margin",
                 "operationId": "LinearPositions.changeMargin",
-                "parameters": [{
+                "parameters": [
+                    {
                         "type": "string",
                         "name": "symbol",
                         "in": "formData"
@@ -2217,7 +2150,8 @@
                 "description": "This will get user's closed profit and loss records.",
                 "summary": "Get user's closed profit and loss records.",
                 "operationId": "LinearPositions.closePnlRecords",
-                "parameters": [{
+                "parameters": [
+                    {
                         "type": "string",
                         "name": "symbol",
                         "in": "query"
@@ -2272,7 +2206,8 @@
                 "description": "This will get user's trading records.",
                 "summary": "Get user's trading records.",
                 "operationId": "LinearExecution.getTrades",
-                "parameters": [{
+                "parameters": [
+                    {
                         "type": "string",
                         "name": "symbol",
                         "in": "query"
@@ -2315,7 +2250,6 @@
                                 "$ref": "#/definitions/LinearTradeRecordsResponse"
                             }
                         }
-
                     }
                 }
             }
@@ -2328,11 +2262,12 @@
                 "description": "This will get prev funding",
                 "summary": "Get prev funding",
                 "operationId": "LinearFunding.myLastFee",
-                "parameters": [{
-                    "name": "symbol",
-                    "in": "query",
-                    "type": "string"
-                }],
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "type": "string"
+                    }],
                 "responses": {
                     "200": {
                         "description": "Request was successful",
@@ -2353,12 +2288,13 @@
                 "description": "This will get prev funding rate",
                 "summary": "Get prev funding",
                 "operationId": "LinearFunding.prevRate",
-                "parameters": [{
-                    "name": "symbol",
-                    "in": "query",
-                    "required": true,
-                    "type": "string"
-                }],
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    }],
                 "responses": {
                     "200": {
                         "description": "Request was successful",
@@ -2378,13 +2314,14 @@
                 ],
                 "summary": "Get predicted funding rate and funding fee.",
                 "operationId": "LinearFunding.predicted",
-                "parameters": [{
-                    "name": "symbol",
-                    "in": "query",
-                    "description": "Contract type.",
-                    "required": true,
-                    "type": "string"
-                }],
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    }],
                 "responses": {
                     "200": {
                         "description": "Request was successful",
@@ -2406,7 +2343,8 @@
                 "description": "This will get kline",
                 "summary": "Get kline",
                 "operationId": "LinearKline.get",
-                "parameters": [{
+                "parameters": [
+                    {
                         "name": "symbol",
                         "in": "query",
                         "description": "Contract type.",
@@ -2457,7 +2395,8 @@
                 "description": "This will get mark price kline",
                 "summary": "Get kline",
                 "operationId": "LinearKline.markPrice",
-                "parameters": [{
+                "parameters": [
+                    {
                         "name": "symbol",
                         "in": "query",
                         "description": "Contract type.",
@@ -2508,7 +2447,8 @@
                 "description": "This will get recent trades",
                 "summary": "Get recent trades",
                 "operationId": "LinearMarket.trading",
-                "parameters": [{
+                "parameters": [
+                    {
                         "name": "symbol",
                         "in": "query",
                         "description": "Contract type.",
@@ -2551,7 +2491,6 @@
                                 "$ref": "#/definitions/LinearRiskLimitRespBase"
                             }
                         }
-
                     }
                 }
             }
@@ -2574,7 +2513,8 @@
                 "ext_info": {
                     "type": "string"
                 },
-                "result": {},
+                "result": {
+                },
                 "time_now": {
                     "type": "string"
                 }
@@ -5804,7 +5744,6 @@
                 }
             }
         },
-
         "LinearRecentTradingRecordRespBase": {
             "description": "Get Recent Trading Record",
             "properties": {
@@ -5929,7 +5868,8 @@
             }
         }
     },
-    "tags": [{
+    "tags": [
+        {
             "name": "Common",
             "description": "Common interface"
         },
@@ -6002,9 +5942,13 @@
             "name": "sign"
         }
     },
-    "security": [{
-        "apiKey": [],
-        "timestamp": [],
-        "apiSignature": []
-    }]
+    "security": [
+        {
+            "apiKey": [
+            ],
+            "timestamp": [
+            ],
+            "apiSignature": [
+            ]
+        }]
 }

@@ -1,6 +1,6 @@
 # swagger_client.ConditionalApi
 
-All URIs are relative to *https://api-testnet.bybit.com*
+All URIs are relative to *https://api.bybit.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **conditional_cancel**
-> object conditional_cancel(stop_order_id)
+> object conditional_cancel(symbol, stop_order_id=stop_order_id, order_link_id=order_link_id)
 
 Cancel conditional order.
 
@@ -42,11 +42,13 @@ configuration.api_key['timestamp'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = swagger_client.ConditionalApi(swagger_client.ApiClient(configuration))
-stop_order_id = 'stop_order_id_example' # str | Order ID of conditional order.
+symbol = 'symbol_example' # str | Contract type.
+stop_order_id = 'stop_order_id_example' # str | Order ID of conditional order. (optional)
+order_link_id = 'order_link_id_example' # str | Agency customized order ID. (optional)
 
 try:
     # Cancel conditional order.
-    api_response = api_instance.conditional_cancel(stop_order_id)
+    api_response = api_instance.conditional_cancel(symbol, stop_order_id=stop_order_id, order_link_id=order_link_id)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ConditionalApi->conditional_cancel: %s\n" % e)
@@ -56,7 +58,9 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **stop_order_id** | **str**| Order ID of conditional order. | 
+ **symbol** | **str**| Contract type. | 
+ **stop_order_id** | **str**| Order ID of conditional order. | [optional] 
+ **order_link_id** | **str**| Agency customized order ID. | [optional] 
 
 ### Return type
 
@@ -136,7 +140,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **conditional_get_orders**
-> object conditional_get_orders(stop_order_id=stop_order_id, order_link_id=order_link_id, symbol=symbol, order=order, page=page, limit=limit)
+> object conditional_get_orders(stop_order_id=stop_order_id, order_link_id=order_link_id, symbol=symbol, stop_order_status=stop_order_status, order=order, page=page, limit=limit)
 
 Get my conditional order list.
 
@@ -169,13 +173,14 @@ api_instance = swagger_client.ConditionalApi(swagger_client.ApiClient(configurat
 stop_order_id = 'stop_order_id_example' # str | Order ID of conditional order. (optional)
 order_link_id = 'order_link_id_example' # str | Agency customized order ID. (optional)
 symbol = 'symbol_example' # str | Contract type. Default BTCUSD. (optional)
+stop_order_status = 'stop_order_status_example' # str | Stop order status. (optional)
 order = 'order_example' # str | Sort orders by creation date (optional)
 page = 8.14 # float | Page. Default getting first page data (optional)
 limit = 8.14 # float | Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. (optional)
 
 try:
     # Get my conditional order list.
-    api_response = api_instance.conditional_get_orders(stop_order_id=stop_order_id, order_link_id=order_link_id, symbol=symbol, order=order, page=page, limit=limit)
+    api_response = api_instance.conditional_get_orders(stop_order_id=stop_order_id, order_link_id=order_link_id, symbol=symbol, stop_order_status=stop_order_status, order=order, page=page, limit=limit)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ConditionalApi->conditional_get_orders: %s\n" % e)
@@ -188,6 +193,7 @@ Name | Type | Description  | Notes
  **stop_order_id** | **str**| Order ID of conditional order. | [optional] 
  **order_link_id** | **str**| Agency customized order ID. | [optional] 
  **symbol** | **str**| Contract type. Default BTCUSD. | [optional] 
+ **stop_order_status** | **str**| Stop order status. | [optional] 
  **order** | **str**| Sort orders by creation date | [optional] 
  **page** | **float**| Page. Default getting first page data | [optional] 
  **limit** | **float**| Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. | [optional] 

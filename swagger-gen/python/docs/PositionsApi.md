@@ -1,6 +1,6 @@
 # swagger_client.PositionsApi
 
-All URIs are relative to *https://api-testnet.bybit.com*
+All URIs are relative to *https://api.bybit.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -261,7 +261,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **positions_trading_stop**
-> object positions_trading_stop(symbol, take_profit=take_profit, stop_loss=stop_loss, trailing_stop=trailing_stop)
+> object positions_trading_stop(symbol, take_profit=take_profit, stop_loss=stop_loss, trailing_stop=trailing_stop, new_trailing_active=new_trailing_active)
 
 Set Trading-Stop Condition.
 
@@ -295,10 +295,11 @@ symbol = 'symbol_example' # str | Contract type
 take_profit = 'take_profit_example' # str | Not less than 0, 0 means cancel TP (optional)
 stop_loss = 'stop_loss_example' # str | Not less than 0, 0 means cancel SL (optional)
 trailing_stop = 'trailing_stop_example' # str | Not less than 0, 0 means cancel TS (optional)
+new_trailing_active = 'new_trailing_active_example' # str | Trailing stop trigger price. Trailing stops are triggered only when the price reaches the specified price. Trailing stops are triggered immediately by default. (optional)
 
 try:
     # Set Trading-Stop Condition.
-    api_response = api_instance.positions_trading_stop(symbol, take_profit=take_profit, stop_loss=stop_loss, trailing_stop=trailing_stop)
+    api_response = api_instance.positions_trading_stop(symbol, take_profit=take_profit, stop_loss=stop_loss, trailing_stop=trailing_stop, new_trailing_active=new_trailing_active)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling PositionsApi->positions_trading_stop: %s\n" % e)
@@ -312,6 +313,7 @@ Name | Type | Description  | Notes
  **take_profit** | **str**| Not less than 0, 0 means cancel TP | [optional] 
  **stop_loss** | **str**| Not less than 0, 0 means cancel SL | [optional] 
  **trailing_stop** | **str**| Not less than 0, 0 means cancel TS | [optional] 
+ **new_trailing_active** | **str**| Trailing stop trigger price. Trailing stops are triggered only when the price reaches the specified price. Trailing stops are triggered immediately by default. | [optional] 
 
 ### Return type
 

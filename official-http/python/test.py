@@ -1,6 +1,6 @@
 import bybit
 #
-client  = bybit.bybit(test=True, api_key="xx", api_secret="xx")
+client = bybit.bybit(test=True, api_key="", api_secret="")
 #
 # # # Get server time
 # print(client.Common.Common_get().result()[0])
@@ -15,28 +15,29 @@ client  = bybit.bybit(test=True, api_key="xx", api_secret="xx")
 # print(client.Positions.Positions_myPosition().result())
 # #
 # # #Place an Active Order
-# print(client.Order.Order_new(side="Buy",symbol="BTCUSD",order_type="Limit",qty=1,price=8300,time_in_force="GoodTillCancel").result())
+# print(client.Order.Order_newV2(side="Buy",symbol="BTCUSD",order_type="Limit",qty=1,price=8300,time_in_force="GoodTillCancel").result())
 # #
 # # #Get Active Order
 # print(client.Order.Order_getOrders().result())
 # #
 # # #Cancel Active Order
-# print(client.Order.Order_cancel(order_id="baaa9182-86e1-42aa-8420-da6428346b30").result())
+print(client.Order.Order_cancelV2(symbol="BTCUSD", order_id="69bd5b88-fa2e-4c33-a489-1860f595191d").result())
 # #
 # # # Place Conditional Order
-# print(client.Conditional.Conditional_new(order_type="Limit",side="Buy",symbol="BTCUSD",qty=1,price=8100,base_price=8300,stop_px=8150,time_in_force="GoodTillCancel").result())
+# print(client.Conditional.Conditional_new(order_type="Limit",side="Buy",symbol="BTCUSD",qty=1,price=8100,base_price=8300,stop_px=8150,time_in_force="GoodTillCancel", order_link_id="cus_order_id_1").result())
 # #
 # # #Get Conditional Order
-# print(client.Conditional.Conditional_getOrders().result())
+# print(client.Conditional.Conditional_getOrders(stop_order_status="Untriggered").result())
 # #
 # # #Cancel conditional order
-# print(client.Conditional.Conditional_cancel(stop_order_id="53c8e250-252b-47f7-a768-5f5456b64e17").result())
+# print(client.Conditional.Conditional_cancel(symbol="BTCUSD", order_link_id="cus_order_id_1").result())
 # #
 # # #changeMargin
 # print(client.Positions.Positions_changeMargin(symbol="BTCUSD", margin="10").result())
 # #
 # # #Set Trading-Stop
 # print(client.Positions.Positions_tradingStop(symbol="BTCUSD",stop_loss="8100").result())
+# print(client.Positions.Positions_tradingStop(symbol="BTCUSD",take_profit="0", stop_loss="9110", trailing_stop="0", new_trailing_active="0").result())
 # #
 # # #Get wallet fund records
 # print(client.Wallet.Wallet_getRecords().result())
@@ -61,7 +62,7 @@ client  = bybit.bybit(test=True, api_key="xx", api_secret="xx")
 #
 # print(client.LinearOrder.LinearOrder_new(side="Sell",symbol="BTCUSDT",order_type="Limit",qty=0.22,price=10000,time_in_force="GoodTillCancel",reduce_only=False, close_on_trigger=False).result())
 # print(client.LinearOrder.LinearOrder_cancel(symbol="BTCUSDT", order_id="87d8a4ed-dc9d-41c9-8dac-6e3c51356645").result())
-print(client.LinearOrder.LinearOrder_getOrders(symbol="BTCUSDT").result())
+# print(client.LinearOrder.LinearOrder_getOrders(symbol="BTCUSDT").result())
 # print(client.LinearOrder.LinearOrder_query(symbol="BTCUSDT", order_id="87d8a4ed-dc9d-41c9-8dac-6e3c51356645").result())
 # print(client.LinearOrder.LinearOrder_cancelAll(symbol="BTCUSDT").result())
 #
