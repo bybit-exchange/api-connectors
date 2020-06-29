@@ -9,7 +9,7 @@ You can get more information in [the documentation of Restful-API](https://githu
 
 # Endpoints
 
-[All Endpoints](./Endpoints.md)
+See a full example detailing all the endpoints in [test.py](/official-http/python/test.py).
 
 ## Installation
 
@@ -62,7 +62,3 @@ print(client.Order.Order_new(side="Buy",symbol="BTCUSD",order_type="Limit",qty=1
 ```
 print(client.Funding.Funding_getRate(symbol="BTCUSD").result())
 ```
-
-## Full example
-
-See a full example detailing all the endpoints in [test.py](/official-http/python/test.py).
