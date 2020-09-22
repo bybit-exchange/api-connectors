@@ -1,4 +1,4 @@
-package websocket;
+package com.bybit;
 
 import java.net.URI;
 
@@ -71,7 +71,7 @@ public class Client {
 
         try {
             WebSocketContainer container = ContainerProvider.getWebSocketContainer();
-            String uri = "wss://stream-testnet.bybit.com/realtime";
+            String uri = "wss://stream-testnet.bybit-cn.com/realtime";
             container.connectToServer(BybitWebsocket.class, URI.create(uri));
             session.getBasicRemote().sendText("{\"op\":\"ping\"}");
             session.getBasicRemote().sendText(getAuthMessage());
