@@ -34,6 +34,8 @@ class BybitWebsocket:
         self.api_key = api_key
         self.api_secret = api_secret
 
+        self.callbacks = {}
+
         self.data = {}
         self.exited = False
         self.auth = False
@@ -105,9 +107,12 @@ class BybitWebsocket:
                 self.data["pong"].append("PING success")
 
         if 'topic' in message:
-            self.data[message["topic"]].append(message["data"])
-            if len(self.data[message["topic"]]) > BybitWebsocket.MAX_DATA_CAPACITY:
-                self.data[message["topic"]] = self.data[message["topic"]][BybitWebsocket.MAX_DATA_CAPACITY//2:]
+            if message['topic'] in self.callbacks:
+                self.callbacks[message['topic']](message["data"])
+            else:
+                self.data[message["topic"]].append(message["data"])
+                if len(self.data[message["topic"]]) > BybitWebsocket.MAX_DATA_CAPACITY:
+                    self.data[message["topic"]] = self.data[message["topic"]][BybitWebsocket.MAX_DATA_CAPACITY//2:]
 
     def __on_error(self, error):
         '''Called on fatal websocket errors. We exit on these.'''
@@ -136,6 +141,15 @@ class BybitWebsocket:
         if 'kline.' + symbol + '.' + interval not in self.data:
             self.data['kline.' + symbol + '.' + interval] = []
 
+    def subscribe_klineV2(self, interval: str, symbol: str):
+        param = {}
+        param['op'] = 'subscribe'
+        args = 'klineV2.'+interval+'.'+symbol
+        param['args'] = [args]
+        self.ws.send(json.dumps(param))
+        if args not in self.data:
+            self.data[args] = []
+            
     def subscribe_trade(self):
         self.ws.send('{"op":"subscribe","args":["trade"]}')
         if "trade.BTCUSD" not in self.data:
@@ -197,3 +211,9 @@ class BybitWebsocket:
             # while len(self.data[topic]) == 0 :
             #     sleep(0.1)
             return self.data[topic].pop()
+        
+    def add_callback(self, topic, callback):
+        self.callbacks[topic] = callback
+
+    def remove_callback(self, topic):
+        self.callbacks.pop(topic, None)
