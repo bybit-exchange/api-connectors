@@ -7,7 +7,7 @@
         "contact": {
             "email": "support@bybit.com"
         },
-        "version": "0.2.6"
+        "version": "0.2.9"
     },
     "host": "api.bybit.com",
     "basePath": "/",
@@ -82,6 +82,247 @@
                 ]
             }
         },
+        "/v2/public/liq-records": {
+            "get": {
+                "tags": [
+                    "Market"
+                ],
+                "summary": "Query liq records.",
+                "operationId": "Market.liqRecords",
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "from",
+                        "in": "query",
+                        "description": "From ID. Default: return latest data",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit for data size, max size is 1000. Default size is 500",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "start_time",
+                        "in": "query",
+                        "description": "Start timestamp point for result, in millisecond",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "end_time",
+                        "in": "query",
+                        "description": "End timestamp point for result, in millisecond",
+                        "required": false,
+                        "type": "integer"
+                    }
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/LiqRecords"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": [
+                ]
+            }
+        },
+        "/v2/public/mark-price-kline": {
+            "get": {
+                "tags": [
+                    "Kline"
+                ],
+                "summary": "Query mark price kline.",
+                "operationId": "Kline.markPrice",
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "interval",
+                        "in": "query",
+                        "description": "Data refresh interval",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "from",
+                        "in": "query",
+                        "description": "From timestamp in seconds",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit for data size, max size is 1000. Default size is 500",
+                        "required": false,
+                        "type": "integer"
+                    }
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/MarkPriceKlineBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": [
+                ]
+            }
+        },
+        "/v2/public/open-interest": {
+            "get": {
+                "tags": [
+                    "Market"
+                ],
+                "summary": "Query Open Interest",
+                "operationId": "Market.openInterest",
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit for data size, max size is 200. Default size is 50",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "period",
+                        "in": "query",
+                        "description": "Data recording period. 5min, 15min, 30min, 1h, 4h, 1d",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/OpenInterest"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": [
+                ]
+            }
+        },
+        "/v2/public/big-deal": {
+            "get": {
+                "tags": [
+                    "Market"
+                ],
+                "summary": "Query Big Deal",
+                "operationId": "Market.bigDeal",
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit for data size, max size is 1000. Default size is 500",
+                        "required": false,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/BigDeal"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": [
+                ]
+            }
+        },
+        "/v2/public/account-ratio": {
+            "get": {
+                "tags": [
+                    "Market"
+                ],
+                "summary": "Query Account Long Short Ratio",
+                "operationId": "Market.accountRatio",
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit for data size, max size is 500. Default size is 50",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "period",
+                        "in": "query",
+                        "description": "Data recording period. 5min, 15min, 30min, 1h, 4h, 1d",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/AccountRatio"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": [
+                ]
+            }
+        },
         "/user/leverage": {
             "get": {
                 "tags": [
@@ -111,6 +352,9 @@
                 ],
                 "summary": "Change user leverage.",
                 "operationId": "Positions.saveLeverage",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
                 "parameters": [
                     {
                         "name": "symbol",
@@ -140,35 +384,13 @@
                 "deprecated": false
             }
         },
-        "/position/list": {
-            "get": {
-                "tags": [
-                    "Positions"
-                ],
-                "summary": "Get my position list.",
-                "operationId": "Positions.myPosition",
-                "parameters": [
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Request was successful",
-                        "schema": {
-                            "items": {
-                                "$ref": "#/definitions/Position"
-                            }
-                        }
-                    }
-                },
-                "deprecated": false
-            }
-        },
         "/v2/private/position/list": {
             "get": {
                 "tags": [
                     "Positions"
                 ],
                 "summary": "Get my position list.",
-                "operationId": "Positions.myPositionV2",
+                "operationId": "Positions.myPosition",
                 "parameters": [
                     {
                         "name": "symbol",
@@ -196,6 +418,9 @@
                     "Positions"
                 ],
                 "summary": "Update margin.",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
                 "operationId": "Positions.changeMargin",
                 "parameters": [
                     {
@@ -233,6 +458,9 @@
                 ],
                 "summary": "Set Trading-Stop Condition.",
                 "operationId": "Positions.tradingStop",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
                 "parameters": [
                     {
                         "name": "symbol",
@@ -446,6 +674,9 @@
                 ],
                 "summary": "Set risk limit",
                 "operationId": "Wallet.setRiskLimit",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
                 "parameters": [
                     {
                         "name": "symbol",
@@ -504,7 +735,10 @@
                     "Order"
                 ],
                 "summary": "Place active order",
-                "operationId": "Order.newV2",
+                "operationId": "Order.new",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
                 "parameters": [
                     {
                         "name": "side",
@@ -680,7 +914,10 @@
                     "Order"
                 ],
                 "summary": "Get my active order list.",
-                "operationId": "Order.cancelV2",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "operationId": "Order.cancel",
                 "parameters": [
                     {
                         "name": "order_id",
@@ -724,6 +961,9 @@
                 ],
                 "summary": "Get my active order list.",
                 "operationId": "Order.cancelAll",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
                 "parameters": [
                     {
                         "name": "symbol",
@@ -752,14 +992,25 @@
                 ],
                 "summary": "Replace active order. Only incomplete orders can be modified. ",
                 "operationId": "Order.replace",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
                 "parameters": [
                     {
                         "name": "order_id",
                         "in": "formData",
                         "description": "Order ID.",
-                        "required": true,
+                        "required": false,
                         "type": "string"
                     },
+                    {
+                        "name": "order_link_id",
+                        "in": "formData",
+                        "description": "Order Link ID.",
+                        "required": false,
+                        "type": "string"
+                    },
+
                     {
                         "name": "symbol",
                         "in": "formData",
@@ -840,6 +1091,9 @@
                 ],
                 "summary": "Place a new conditional order.",
                 "operationId": "Conditional.new",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
                 "parameters": [
                     {
                         "name": "side",
@@ -1016,6 +1270,9 @@
                 ],
                 "summary": "Cancel conditional order.",
                 "operationId": "Conditional.cancel",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
                 "parameters": [
                     {
                         "name": "stop_order_id",
@@ -1058,6 +1315,9 @@
                 ],
                 "summary": "Cancel conditional order.",
                 "operationId": "Conditional.cancelAll",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
                 "parameters": [
                     {
                         "name": "symbol",
@@ -1086,11 +1346,21 @@
                 ],
                 "summary": "Replace conditional order. Only incomplete orders can be modified. ",
                 "operationId": "Conditional.replace",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
                 "parameters": [
                     {
                         "name": "stop_order_id",
                         "in": "formData",
                         "description": "Stop order ID.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "order_link_id",
+                        "in": "formData",
+                        "description": "Order Link ID.",
                         "required": false,
                         "type": "string"
                     },
@@ -1287,6 +1557,73 @@
                 "deprecated": false
             }
         },
+        "/v2/private/trade/closed-pnl/list": {
+            "get": {
+                "tags": [
+                    "Execution",
+                    "Positions"
+                ],
+                "summary": "Get user's closed profit and loss records",
+                "operationId": "Positions.closePnlRecords",
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "start_time",
+                        "in": "query",
+                        "description": "Start timestamp point for result, in second",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "end_time",
+                        "in": "query",
+                        "description": "End timestamp point for result, in second",
+                        "required": false,
+                        "type": "integer"
+                    },
+
+                    {
+                        "name": "exec_type",
+                        "in": "query",
+                        "description": "Execution type",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page. By default, gets first page of data. Maximum of 50 pages",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page.",
+                        "required": false,
+                        "type": "integer"
+                    }
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/ClosedPnlBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
         "/v2/public/orderBook/L2": {
             "get": {
                 "tags": [
@@ -1338,6 +1675,51 @@
                         "schema": {
                             "items": {
                                 "$ref": "#/definitions/SymbolInfoBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": [
+                ]
+            }
+        },
+        "/v2/public/trading-records": {
+            "get": {
+                "tags": [
+                    "Market"
+                ],
+                "summary": "Get recent trades",
+                "operationId": "Market.tradingRecords",
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "from",
+                        "in": "query",
+                        "description": "From ID. Default: return latest data",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Number of results. Default 500; max 1000",
+                        "required": false,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/TradingRecords"
                             }
                         }
                     }
@@ -1409,6 +1791,9 @@
                 ],
                 "summary": "Create Active Order",
                 "operationId": "LinearOrder.new",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
                 "parameters": [
                     {
                         "type": "string",
@@ -1500,6 +1885,9 @@
                     "LinearOrder"
                 ],
                 "summary": "Cancel Active Order",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
                 "operationId": "LinearOrder.cancel",
                 "parameters": [
                     {
@@ -1537,6 +1925,9 @@
                 ],
                 "summary": "Cancel all active orders.",
                 "operationId": "LinearOrder.cancelAll",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
                 "parameters": [
                     {
                         "name": "symbol",
@@ -1652,6 +2043,56 @@
                 }
             }
         },
+        "/private/linear/order/replace": {
+            "post": {
+                "tags": [
+                    "LinearOrder"
+                ],
+                "summary": "Replace Active Order",
+                "operationId": "LinearOrder.replace",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string"
+                    },{
+                        "name": "order_id",
+                        "in": "formData",
+                        "required": false,
+                        "type": "string"
+                    },{
+                        "name": "order_link_id",
+                        "in": "formData",
+                        "required": false,
+                        "type": "string"
+                    },{
+                        "name": "p_r_qty",
+                        "in": "formData",
+                        "required": false,
+                        "type": "string"
+                    },{
+                        "name": "p_r_price",
+                        "in": "formData",
+                        "required": false,
+                        "type": "number"
+                    }],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/LinearOrderReplace"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
         "/private/linear/stop-order/create": {
             "post": {
                 "description": "This will create linear stop order",
@@ -1660,6 +2101,9 @@
                 ],
                 "summary": "Create linear stop Order",
                 "operationId": "LinearConditional.new",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
                 "parameters": [
                     {
                         "type": "string",
@@ -1724,6 +2168,28 @@
                         "type": "string",
                         "name": "order_link_id",
                         "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "format": "double",
+                        "name": "take_profit",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "format": "double",
+                        "name": "stop_loss",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "name": "tp_trigger_by",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "name": "sl_trigger_by",
+                        "in": "formData"
                     }
                 ],
                 "responses": {
@@ -1746,6 +2212,9 @@
                     "LinearConditional"
                 ],
                 "summary": "Cancel Active Order",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
                 "operationId": "LinearConditional.cancel",
                 "parameters": [
                     {
@@ -1782,6 +2251,9 @@
                     "LinearConditional"
                 ],
                 "summary": "Cancel all stop orders.",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
                 "operationId": "LinearConditional.cancelAll",
                 "parameters": [
                     {
@@ -1898,6 +2370,61 @@
                 }
             }
         },
+        "/private/linear/stop-order/replace": {
+            "post": {
+                "tags": [
+                    "LinearConditional"
+                ],
+                "summary": "Replace conditional order",
+                "operationId": "LinearConditional.replace",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string"
+                    },{
+                        "name": "stop_order_id",
+                        "in": "formData",
+                        "required": false,
+                        "type": "string"
+                    },{
+                        "name": "order_link_id",
+                        "in": "formData",
+                        "required": false,
+                        "type": "string"
+                    },{
+                        "name": "p_r_qty",
+                        "in": "formData",
+                        "required": false,
+                        "type": "string"
+                    },{
+                        "name": "p_r_price",
+                        "in": "formData",
+                        "required": false,
+                        "type": "number"
+                    },{
+                        "name": "p_r_trigger_price",
+                        "in": "formData",
+                        "required": false,
+                        "type": "number"
+                    }],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/LinearStopOrderReplace"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
         "/private/linear/position/list": {
             "get": {
                 "tags": [
@@ -1931,6 +2458,9 @@
                 ],
                 "description": "This will Set auto add margin",
                 "summary": "Set auto add margin",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
                 "operationId": "LinearPositions.setAutoAddMargin",
                 "parameters": [
                     {
@@ -1969,6 +2499,9 @@
                 "description": "This will Set Leverage",
                 "summary": "Set leverage",
                 "operationId": "LinearPositions.saveLeverage",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
                 "parameters": [
                     {
                         "name": "symbol",
@@ -2008,6 +2541,9 @@
                 "description": "This will switch isolated",
                 "summary": "Switch isolated",
                 "operationId": "LinearPositions.switchIsolated",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
                 "parameters": [
                     {
                         "name": "symbol",
@@ -2052,6 +2588,9 @@
                 "description": "This will set tradingStop",
                 "summary": "Set tradingStop",
                 "operationId": "LinearPositions.tradingStop",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
                 "parameters": [
                     {
                         "name": "symbol",
@@ -2090,6 +2629,18 @@
                         "name": "sl_trigger_by",
                         "in": "formData",
                         "type": "string"
+                    },
+                    {
+                        "name": "sl_size",
+                        "in": "formData",
+                        "type": "number",
+                        "format": "double"
+                    },
+                    {
+                        "name": "tp_size",
+                        "in": "formData",
+                        "type": "number",
+                        "format": "double"
                     }
                 ],
                 "responses": {
@@ -2112,6 +2663,9 @@
                 "description": "This will Add/Reduce Margin",
                 "summary": "Add/Reduce Margin",
                 "operationId": "LinearPositions.changeMargin",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
                 "parameters": [
                     {
                         "type": "string",
@@ -2142,6 +2696,44 @@
                 }
             }
         },
+
+        "/private/linear/tpsl/switch-mode": {
+            "post": {
+                "tags": [
+                    "LinearPositions"
+                ],
+                "description": "This will Switch TP/SL Mode",
+                "summary": "Switch Mode",
+                "operationId": "LinearPositions.switchMode",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "symbol",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "name": "tp_sl_mode",
+                        "in": "formData"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/LinearSwitchModeResult"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+
         "/private/linear/trade/closed-pnl/list": {
             "get": {
                 "tags": [
@@ -2384,7 +2976,9 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                ]
             }
         },
         "/public/linear/mark-price-kline": {
@@ -2701,6 +3295,247 @@
                 }
             }
         },
+        "LiqRecords": {
+            "description": "Get liq_records information.",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/LiqRecordsInfo"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "LiqRecordsInfo": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "qty": {
+                    "type": "integer"
+                },
+                "side": {
+                    "type": "string"
+                },
+                "time": {
+                    "type": "integer"
+                },
+                "symbol": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "integer"
+                }
+            }
+        },
+        "OpenInterest": {
+            "description": "Get open_interest information.",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/OpenInterestInfo"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "OpenInterestInfo": {
+            "type": "object",
+            "properties": {
+                "open_interest": {
+                    "type": "integer"
+                },
+                "timestamp": {
+                    "type": "integer"
+                },
+                "symbol": {
+                    "type": "string"
+                }
+            }
+        },
+        "BigDeal": {
+            "description": "Get big deal information.",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/BigDealInfo"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "BigDealInfo": {
+            "type": "object",
+            "properties": {
+                "side": {
+                    "type": "string"
+                },
+                "timestamp": {
+                    "type": "integer"
+                },
+                "symbol": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "integer"
+                }
+            }
+        },
+        "AccountRatio": {
+            "description": "Get account long short account ratio information.",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AccountRatioInfo"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "AccountRatioInfo": {
+            "type": "object",
+            "properties": {
+                "buy_ratio": {
+                    "type": "integer"
+                },
+                "sell_ratio": {
+                    "type": "integer"
+                },
+                "timestamp": {
+                    "type": "integer"
+                },
+                "symbol": {
+                    "type": "string"
+                }
+            }
+        },
+        "MarkPriceKlineBase": {
+            "description": "Get mark price kline information.",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/MarkPriceKlineInfo"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "MarkPriceKlineInfo": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "symbol": {
+                    "type": "string"
+                },
+                "period":{
+                    "type": "string"
+                },
+                "start_at":{
+                    "type": "integer"
+                },
+                "open":{
+                    "type": "integer"
+                },
+                "high":{
+                    "type": "integer"
+                },
+                "low":{
+                    "type": "integer"
+                },
+                "close":{
+                    "type": "integer"
+                }
+            }
+        },
+
         "price_filter": {
             "type": "object",
             "properties": {
@@ -2969,6 +3804,15 @@
                     "type": "string"
                 },
                 "updated_at": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "OrderIdRes": {
+            "description": "Order Id response",
+            "properties": {
+                "order_id": {
                     "type": "string"
                 }
             },
@@ -3795,6 +4639,94 @@
             },
             "type": "object"
         },
+        "ClosedPnlBase": {
+            "description": "Get the closed-pnl/list response",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ClosedPnlInfo"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "ClosedPnlInfo": {
+            "description": "Get the closed-pnl/list response",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "user_id": {
+                    "type": "integer"
+                },
+                "symbol": {
+                    "type": "string"
+                },
+                "order_id": {
+                    "type": "string"
+                },
+                "side": {
+                    "type": "string"
+                },
+                "qty": {
+                    "type": "integer"
+                },
+                "order_price": {
+                    "type": "integer"
+                },
+                "order_type": {
+                    "type": "string"
+                },
+                "exec_type": {
+                    "type": "string"
+                },
+                "closed_size": {
+                    "type": "integer"
+                },
+                "cum_entry_value": {
+                    "type": "number"
+                },
+                "avg_entry_price": {
+                    "type": "integer"
+                },
+                "cum_exit_value": {
+                    "type": "number"
+                },
+                "avg_exit_price": {
+                    "type": "integer"
+                },
+                "closed_pnl": {
+                    "type": "number"
+                },
+                "fill_count": {
+                    "type": "integer"
+                },
+                "leverage": {
+                    "type": "integer"
+                },
+                "created_at": {
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        },
         "SymbolInfoBase": {
             "description": "Get the orderbook response",
             "properties": {
@@ -3899,6 +4831,59 @@
                     "type": "number",
                     "format": "int32"
                 }
+            },
+            "type": "object"
+        },
+        "TradingRecords": {
+            "description": "Get the Trading Records response",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TradingRecordsInfo"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "TradingRecordsInfo": {
+            "description": "Get the orderbook response",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "symbol": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "number"
+                },
+                "qty": {
+                    "type": "number"
+                },
+                "side": {
+                    "type": "string"
+                },
+                "time": {
+                    "type": "string"
+                }
+
             },
             "type": "object"
         },
@@ -4548,6 +5533,20 @@
                 "user_id": {
                     "type": "integer",
                     "format": "int64"
+                },
+                "take_profit": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "stop_loss": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "tp_trigger_by": {
+                    "type": "string"
+                },
+                "sl_trigger_by": {
+                    "type": "string"
                 }
             },
             "type": "object"
@@ -4571,6 +5570,33 @@
                 "result": {
                     "items": {
                         "$ref": "#/definitions/LinearCancelOrderResult"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "LinearOrderReplace": {
+            "description": "replace order can modify/amend your active orders",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "items": {
+                        "$ref": "#/definitions/OrderIdRes"
                     }
                 },
                 "time_now": {
@@ -4608,6 +5634,33 @@
                     "type": "array",
                     "items": {
                         "type": "string"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "LinearStopOrderReplace": {
+            "description": "replace conditional order can modify/amend your conditional orders",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "items": {
+                        "$ref": "#/definitions/OrderIdRes"
                     }
                 },
                 "time_now": {
@@ -4718,6 +5771,20 @@
                 "user_id": {
                     "type": "integer",
                     "format": "int64"
+                },
+                "take_profit": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "stop_loss": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "tp_trigger_by": {
+                    "type": "string"
+                },
+                "sl_trigger_by": {
+                    "type": "string"
                 }
             }
         },
@@ -4808,6 +5875,20 @@
                 "user_id": {
                     "type": "integer",
                     "format": "int64"
+                },
+                "take_profit": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "stop_loss": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "tp_trigger_by": {
+                    "type": "string"
+                },
+                "sl_trigger_by": {
+                    "type": "string"
                 }
             }
         },
@@ -4883,7 +5964,22 @@
                 },
                 "updated_at": {
                     "type": "string"
+                },
+                "take_profit": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "stop_loss": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "tp_trigger_by": {
+                    "type": "string"
+                },
+                "sl_trigger_by": {
+                    "type": "string"
                 }
+
             },
             "type": "object"
         },
@@ -5042,6 +6138,20 @@
                 },
                 "updated_at": {
                     "type": "string"
+                },
+                "take_profit": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "stop_loss": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "tp_trigger_by": {
+                    "type": "string"
+                },
+                "sl_trigger_by": {
+                    "type": "string"
                 }
             }
         },
@@ -5116,6 +6226,20 @@
                     "type": "string"
                 },
                 "updated_at": {
+                    "type": "string"
+                },
+                "take_profit": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "stop_loss": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "tp_trigger_by": {
+                    "type": "string"
+                },
+                "sl_trigger_by": {
                     "type": "string"
                 }
             }
@@ -5204,9 +6328,22 @@
                 "user_id": {
                     "type": "integer",
                     "format": "int64"
+                },
+                "tp_sl_mode": {
+                    "type": "string"
                 }
             }
         },
+        "LinearSwitchModeResult": {
+            "type": "object",
+            "properties": {
+                "tp_sl_mode": {
+                    "type": "number",
+                    "format": "double"
+                }
+            }
+        },
+
         "LinearSetLeverageResult": {
             "description": "Set leverage result",
             "properties": {
@@ -5895,7 +7032,7 @@
         },
         {
             "name": "Funding",
-            "description": "Get fundng rate, get my funding fee, get predicted funding fee"
+            "description": "Get funding rate, get my funding fee, get predicted funding fee"
         },
         {
             "name": "Execution",
@@ -5952,3 +7089,4 @@
             ]
         }]
 }
+
