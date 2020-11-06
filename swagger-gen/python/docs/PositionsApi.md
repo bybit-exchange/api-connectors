@@ -5,8 +5,8 @@ All URIs are relative to *https://api.bybit.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**positions_change_margin**](PositionsApi.md#positions_change_margin) | **POST** /position/change-position-margin | Update margin.
-[**positions_my_position**](PositionsApi.md#positions_my_position) | **GET** /position/list | Get my position list.
-[**positions_my_position_v2**](PositionsApi.md#positions_my_position_v2) | **GET** /v2/private/position/list | Get my position list.
+[**positions_close_pnl_records**](PositionsApi.md#positions_close_pnl_records) | **GET** /v2/private/trade/closed-pnl/list | Get user&#39;s closed profit and loss records
+[**positions_my_position**](PositionsApi.md#positions_my_position) | **GET** /v2/private/position/list | Get my position list.
 [**positions_save_leverage**](PositionsApi.md#positions_save_leverage) | **POST** /user/leverage/save | Change user leverage.
 [**positions_trading_stop**](PositionsApi.md#positions_trading_stop) | **POST** /open-api/position/trading-stop | Set Trading-Stop Condition.
 [**positions_user_leverage**](PositionsApi.md#positions_user_leverage) | **GET** /user/leverage | Get user leverage setting.
@@ -71,15 +71,15 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **positions_my_position**
-> object positions_my_position()
+# **positions_close_pnl_records**
+> object positions_close_pnl_records(symbol, start_time=start_time, end_time=end_time, exec_type=exec_type, page=page, limit=limit)
 
-Get my position list.
+Get user's closed profit and loss records
 
 ### Example
 ```python
@@ -107,17 +107,31 @@ configuration.api_key['timestamp'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = swagger_client.PositionsApi(swagger_client.ApiClient(configuration))
+symbol = 'symbol_example' # str | Contract type
+start_time = 56 # int | Start timestamp point for result, in second (optional)
+end_time = 56 # int | End timestamp point for result, in second (optional)
+exec_type = 'exec_type_example' # str | Execution type (optional)
+page = 56 # int | Page. By default, gets first page of data. Maximum of 50 pages (optional)
+limit = 56 # int | Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. (optional)
 
 try:
-    # Get my position list.
-    api_response = api_instance.positions_my_position()
+    # Get user's closed profit and loss records
+    api_response = api_instance.positions_close_pnl_records(symbol, start_time=start_time, end_time=end_time, exec_type=exec_type, page=page, limit=limit)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling PositionsApi->positions_my_position: %s\n" % e)
+    print("Exception when calling PositionsApi->positions_close_pnl_records: %s\n" % e)
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **str**| Contract type | 
+ **start_time** | **int**| Start timestamp point for result, in second | [optional] 
+ **end_time** | **int**| End timestamp point for result, in second | [optional] 
+ **exec_type** | **str**| Execution type | [optional] 
+ **page** | **int**| Page. By default, gets first page of data. Maximum of 50 pages | [optional] 
+ **limit** | **int**| Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. | [optional] 
 
 ### Return type
 
@@ -134,8 +148,8 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **positions_my_position_v2**
-> object positions_my_position_v2(symbol=symbol)
+# **positions_my_position**
+> object positions_my_position(symbol=symbol)
 
 Get my position list.
 
@@ -169,10 +183,10 @@ symbol = 'symbol_example' # str | Contract type which you want update its margin
 
 try:
     # Get my position list.
-    api_response = api_instance.positions_my_position_v2(symbol=symbol)
+    api_response = api_instance.positions_my_position(symbol=symbol)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling PositionsApi->positions_my_position_v2: %s\n" % e)
+    print("Exception when calling PositionsApi->positions_my_position: %s\n" % e)
 ```
 
 ### Parameters
@@ -255,7 +269,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -325,7 +339,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

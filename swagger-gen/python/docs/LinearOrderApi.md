@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**linear_order_get_orders**](LinearOrderApi.md#linear_order_get_orders) | **GET** /private/linear/order/list | Get linear Active Orders
 [**linear_order_new**](LinearOrderApi.md#linear_order_new) | **POST** /private/linear/order/create | Create Active Order
 [**linear_order_query**](LinearOrderApi.md#linear_order_query) | **GET** /private/linear/order/search | Get Active Orders(real-time)
+[**linear_order_replace**](LinearOrderApi.md#linear_order_replace) | **POST** /private/linear/order/replace | Replace Active Order
 
 
 # **linear_order_cancel**
@@ -74,7 +75,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -136,7 +137,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -300,7 +301,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -369,6 +370,76 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **linear_order_replace**
+> object linear_order_replace(symbol, order_id=order_id, order_link_id=order_link_id, p_r_qty=p_r_qty, p_r_price=p_r_price)
+
+Replace Active Order
+
+### Example
+```python
+from __future__ import print_function
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api_key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api_key'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['sign'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['sign'] = 'Bearer'
+# Configure API key authorization: timestamp
+configuration = swagger_client.Configuration()
+configuration.api_key['timestamp'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['timestamp'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = swagger_client.LinearOrderApi(swagger_client.ApiClient(configuration))
+symbol = 'symbol_example' # str | 
+order_id = 'order_id_example' # str |  (optional)
+order_link_id = 'order_link_id_example' # str |  (optional)
+p_r_qty = 'p_r_qty_example' # str |  (optional)
+p_r_price = 8.14 # float |  (optional)
+
+try:
+    # Replace Active Order
+    api_response = api_instance.linear_order_replace(symbol, order_id=order_id, order_link_id=order_link_id, p_r_qty=p_r_qty, p_r_price=p_r_price)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling LinearOrderApi->linear_order_replace: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **str**|  | 
+ **order_id** | **str**|  | [optional] 
+ **order_link_id** | **str**|  | [optional] 
+ **p_r_qty** | **str**|  | [optional] 
+ **p_r_price** | **float**|  | [optional] 
+
+### Return type
+
+**object**
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
