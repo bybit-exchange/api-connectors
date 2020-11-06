@@ -29,7 +29,7 @@ def bybit(test=True, config=None, api_key=None, api_secret=None):
     api_key = api_key
     api_secret = api_secret
 
-    spec_uri = host + "/doc/swagger/v_0_2_6.txt"
+    spec_uri = host + "/doc/swagger/v_0_2_9.txt"
 
     if api_key and api_secret:
         request_client = RequestsClient()
@@ -40,3 +40,4 @@ def bybit(test=True, config=None, api_key=None, api_secret=None):
     else:
 
         return SwaggerClient.from_url(spec_uri, config=config)
+
