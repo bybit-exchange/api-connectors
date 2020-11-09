@@ -4,13 +4,79 @@ All URIs are relative to *https://api.bybit.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**order_cancel**](OrderApi.md#order_cancel) | **POST** /v2/private/order/cancel | Get my active order list.
 [**order_cancel_all**](OrderApi.md#order_cancel_all) | **POST** /v2/private/order/cancelAll | Get my active order list.
-[**order_cancel_v2**](OrderApi.md#order_cancel_v2) | **POST** /v2/private/order/cancel | Get my active order list.
 [**order_get_orders**](OrderApi.md#order_get_orders) | **GET** /open-api/order/list | Get my active order list.
-[**order_new_v2**](OrderApi.md#order_new_v2) | **POST** /v2/private/order/create | Place active order
+[**order_new**](OrderApi.md#order_new) | **POST** /v2/private/order/create | Place active order
 [**order_query**](OrderApi.md#order_query) | **GET** /v2/private/order | Get my active order list.
 [**order_replace**](OrderApi.md#order_replace) | **POST** /open-api/order/replace | Replace active order. Only incomplete orders can be modified. 
 
+
+# **order_cancel**
+> object order_cancel(symbol, order_id=order_id, order_link_id=order_link_id)
+
+Get my active order list.
+
+### Example
+```python
+from __future__ import print_function
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api_key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api_key'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['sign'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['sign'] = 'Bearer'
+# Configure API key authorization: timestamp
+configuration = swagger_client.Configuration()
+configuration.api_key['timestamp'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['timestamp'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = swagger_client.OrderApi(swagger_client.ApiClient(configuration))
+symbol = 'symbol_example' # str | Contract type.
+order_id = 'order_id_example' # str | Order ID (optional)
+order_link_id = 'order_link_id_example' # str | Order link id. (optional)
+
+try:
+    # Get my active order list.
+    api_response = api_instance.order_cancel(symbol, order_id=order_id, order_link_id=order_link_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling OrderApi->order_cancel: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **str**| Contract type. | 
+ **order_id** | **str**| Order ID | [optional] 
+ **order_link_id** | **str**| Order link id. | [optional] 
+
+### Return type
+
+**object**
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **order_cancel_all**
 > object order_cancel_all(symbol)
@@ -69,73 +135,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **order_cancel_v2**
-> object order_cancel_v2(symbol, order_id=order_id, order_link_id=order_link_id)
-
-Get my active order list.
-
-### Example
-```python
-from __future__ import print_function
-import time
-import swagger_client
-from swagger_client.rest import ApiException
-from pprint import pprint
-
-# Configure API key authorization: apiKey
-configuration = swagger_client.Configuration()
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api_key'] = 'Bearer'
-# Configure API key authorization: apiSignature
-configuration = swagger_client.Configuration()
-configuration.api_key['sign'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['sign'] = 'Bearer'
-# Configure API key authorization: timestamp
-configuration = swagger_client.Configuration()
-configuration.api_key['timestamp'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['timestamp'] = 'Bearer'
-
-# create an instance of the API class
-api_instance = swagger_client.OrderApi(swagger_client.ApiClient(configuration))
-symbol = 'symbol_example' # str | Contract type.
-order_id = 'order_id_example' # str | Order ID (optional)
-order_link_id = 'order_link_id_example' # str | Order link id. (optional)
-
-try:
-    # Get my active order list.
-    api_response = api_instance.order_cancel_v2(symbol, order_id=order_id, order_link_id=order_link_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling OrderApi->order_cancel_v2: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **symbol** | **str**| Contract type. | 
- **order_id** | **str**| Order ID | [optional] 
- **order_link_id** | **str**| Order link id. | [optional] 
-
-### Return type
-
-**object**
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -214,8 +214,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **order_new_v2**
-> object order_new_v2(side, symbol, order_type, qty, time_in_force, price=price, take_profit=take_profit, stop_loss=stop_loss, reduce_only=reduce_only, close_on_trigger=close_on_trigger, order_link_id=order_link_id)
+# **order_new**
+> object order_new(side, symbol, order_type, qty, time_in_force, price=price, take_profit=take_profit, stop_loss=stop_loss, reduce_only=reduce_only, close_on_trigger=close_on_trigger, order_link_id=order_link_id)
 
 Place active order
 
@@ -259,10 +259,10 @@ order_link_id = 'order_link_id_example' # str | TCustomized order ID, maximum le
 
 try:
     # Place active order
-    api_response = api_instance.order_new_v2(side, symbol, order_type, qty, time_in_force, price=price, take_profit=take_profit, stop_loss=stop_loss, reduce_only=reduce_only, close_on_trigger=close_on_trigger, order_link_id=order_link_id)
+    api_response = api_instance.order_new(side, symbol, order_type, qty, time_in_force, price=price, take_profit=take_profit, stop_loss=stop_loss, reduce_only=reduce_only, close_on_trigger=close_on_trigger, order_link_id=order_link_id)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling OrderApi->order_new_v2: %s\n" % e)
+    print("Exception when calling OrderApi->order_new: %s\n" % e)
 ```
 
 ### Parameters
@@ -291,7 +291,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -361,7 +361,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **order_replace**
-> object order_replace(order_id, symbol, p_r_qty=p_r_qty, p_r_price=p_r_price)
+> object order_replace(symbol, order_id=order_id, order_link_id=order_link_id, p_r_qty=p_r_qty, p_r_price=p_r_price)
 
 Replace active order. Only incomplete orders can be modified. 
 
@@ -391,14 +391,15 @@ configuration.api_key['timestamp'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = swagger_client.OrderApi(swagger_client.ApiClient(configuration))
-order_id = 'order_id_example' # str | Order ID.
 symbol = 'symbol_example' # str | Contract type.
+order_id = 'order_id_example' # str | Order ID. (optional)
+order_link_id = 'order_link_id_example' # str | Order Link ID. (optional)
 p_r_qty = 8.14 # float | Order quantity. (optional)
 p_r_price = 1.2 # float | Order price. (optional)
 
 try:
     # Replace active order. Only incomplete orders can be modified. 
-    api_response = api_instance.order_replace(order_id, symbol, p_r_qty=p_r_qty, p_r_price=p_r_price)
+    api_response = api_instance.order_replace(symbol, order_id=order_id, order_link_id=order_link_id, p_r_qty=p_r_qty, p_r_price=p_r_price)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling OrderApi->order_replace: %s\n" % e)
@@ -408,8 +409,9 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **order_id** | **str**| Order ID. | 
  **symbol** | **str**| Contract type. | 
+ **order_id** | **str**| Order ID. | [optional] 
+ **order_link_id** | **str**| Order Link ID. | [optional] 
  **p_r_qty** | **float**| Order quantity. | [optional] 
  **p_r_price** | **float**| Order price. | [optional] 
 
@@ -423,7 +425,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

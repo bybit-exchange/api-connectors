@@ -1,4 +1,4 @@
-package websocket;
+package com.bybit;
 
 import javax.websocket.*;
 

@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**linear_positions_save_leverage**](LinearPositionsApi.md#linear_positions_save_leverage) | **POST** /private/linear/position/set-leverage | Set leverage
 [**linear_positions_set_auto_add_margin**](LinearPositionsApi.md#linear_positions_set_auto_add_margin) | **POST** /private/linear/position/set-auto-add-margin | Set auto add margin
 [**linear_positions_switch_isolated**](LinearPositionsApi.md#linear_positions_switch_isolated) | **POST** /private/linear/position/switch-isolated | Switch isolated
+[**linear_positions_switch_mode**](LinearPositionsApi.md#linear_positions_switch_mode) | **POST** /private/linear/tpsl/switch-mode | Switch Mode
 [**linear_positions_trading_stop**](LinearPositionsApi.md#linear_positions_trading_stop) | **POST** /private/linear/position/trading-stop | Set tradingStop
 
 
@@ -76,7 +77,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -282,7 +283,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -350,7 +351,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -420,13 +421,79 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **linear_positions_switch_mode**
+> object linear_positions_switch_mode(symbol=symbol, tp_sl_mode=tp_sl_mode)
+
+Switch Mode
+
+This will Switch TP/SL Mode
+
+### Example
+```python
+from __future__ import print_function
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api_key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api_key'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['sign'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['sign'] = 'Bearer'
+# Configure API key authorization: timestamp
+configuration = swagger_client.Configuration()
+configuration.api_key['timestamp'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['timestamp'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = swagger_client.LinearPositionsApi(swagger_client.ApiClient(configuration))
+symbol = 'symbol_example' # str |  (optional)
+tp_sl_mode = 'tp_sl_mode_example' # str |  (optional)
+
+try:
+    # Switch Mode
+    api_response = api_instance.linear_positions_switch_mode(symbol=symbol, tp_sl_mode=tp_sl_mode)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling LinearPositionsApi->linear_positions_switch_mode: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **str**|  | [optional] 
+ **tp_sl_mode** | **str**|  | [optional] 
+
+### Return type
+
+**object**
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **linear_positions_trading_stop**
-> object linear_positions_trading_stop(symbol=symbol, side=side, take_profit=take_profit, stop_loss=stop_loss, trailing_stop=trailing_stop, tp_trigger_by=tp_trigger_by, sl_trigger_by=sl_trigger_by)
+> object linear_positions_trading_stop(symbol=symbol, side=side, take_profit=take_profit, stop_loss=stop_loss, trailing_stop=trailing_stop, tp_trigger_by=tp_trigger_by, sl_trigger_by=sl_trigger_by, sl_size=sl_size, tp_size=tp_size)
 
 Set tradingStop
 
@@ -465,10 +532,12 @@ stop_loss = 1.2 # float |  (optional)
 trailing_stop = 1.2 # float |  (optional)
 tp_trigger_by = 'tp_trigger_by_example' # str |  (optional)
 sl_trigger_by = 'sl_trigger_by_example' # str |  (optional)
+sl_size = 1.2 # float |  (optional)
+tp_size = 1.2 # float |  (optional)
 
 try:
     # Set tradingStop
-    api_response = api_instance.linear_positions_trading_stop(symbol=symbol, side=side, take_profit=take_profit, stop_loss=stop_loss, trailing_stop=trailing_stop, tp_trigger_by=tp_trigger_by, sl_trigger_by=sl_trigger_by)
+    api_response = api_instance.linear_positions_trading_stop(symbol=symbol, side=side, take_profit=take_profit, stop_loss=stop_loss, trailing_stop=trailing_stop, tp_trigger_by=tp_trigger_by, sl_trigger_by=sl_trigger_by, sl_size=sl_size, tp_size=tp_size)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling LinearPositionsApi->linear_positions_trading_stop: %s\n" % e)
@@ -485,6 +554,8 @@ Name | Type | Description  | Notes
  **trailing_stop** | **float**|  | [optional] 
  **tp_trigger_by** | **str**|  | [optional] 
  **sl_trigger_by** | **str**|  | [optional] 
+ **sl_size** | **float**|  | [optional] 
+ **tp_size** | **float**|  | [optional] 
 
 ### Return type
 
@@ -496,7 +567,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

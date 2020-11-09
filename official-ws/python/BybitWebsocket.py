@@ -20,7 +20,9 @@ class BybitWebsocket:
 
     #User can ues MAX_DATA_CAPACITY to control memory usage.
     MAX_DATA_CAPACITY = 200
-    PRIVATE_TOPIC = ['position', 'execution', 'order']
+    PRIVATE_TOPIC = ['position', 'execution', 'order', 'stop_order', 'wallet']
+    USDT_SYMBOLS = ['BTCUSDT']
+    WS_OPS = ['auth', 'subscribe']
     def __init__(self, wsURL, api_key, api_secret):
         '''Initialize'''
         self.logger = logging.getLogger(__name__)
@@ -97,7 +99,7 @@ class BybitWebsocket:
     def __on_message(self, message):
         '''Handler for parsing WS messages.'''
         message = json.loads(message)
-        if 'success' in message and message["success"]:   
+        if 'success' in message and message["success"]:
             if 'request' in message and message["request"]["op"] == 'auth':
                 self.auth = True
                 self.logger.info("Authentication success.")
@@ -131,18 +133,21 @@ class BybitWebsocket:
     def subscribe_kline(self, symbol:str, interval:str):
         param = {}
         param['op'] = 'subscribe'
-        param['args'] = ['kline.' + symbol + '.' + interval]
+        if symbol in BybitWebsocket.USDT_SYMBOLS:
+            topic_name = 'candle.' + interval + '.' + symbol
+        else:
+            topic_name = 'klineV2.' + interval + '.' + symbol
+        param['args'] = [topic_name]
         self.ws.send(json.dumps(param))
-        if 'kline.' + symbol + '.' + interval not in self.data:
-            self.data['kline.' + symbol + '.' + interval] = []
+        if topic_name not in self.data:
+            self.data[topic_name] = []
 
-    def subscribe_trade(self):
-        self.ws.send('{"op":"subscribe","args":["trade"]}')
-        if "trade.BTCUSD" not in self.data:
-            self.data["trade.BTCUSD"] = []
-            self.data["trade.ETHUSD"] = []
-            self.data["trade.EOSUSD"] = []
-            self.data["trade.XRPUSD"] = []
+    def subscribe_trade(self, symbol:str):
+        topic_name = 'trade.' + symbol
+        param = {'op': 'subscribe', 'args': [topic_name]}
+        self.ws.send(json.dumps(param))
+        if topic_name not in self.data:
+            self.data[topic_name] = []
 
     def subscribe_insurance(self):
         self.ws.send('{"op":"subscribe","args":["insurance"]}')
@@ -183,11 +188,28 @@ class BybitWebsocket:
         if 'order' not in self.data:
             self.data['order'] = []
 
+    def subscribe_stop_order(self):
+        self.ws.send('{"op":"subscribe","args":["stop_order"]}')
+        if 'wallet' not in self.data:
+            self.data['stop_order'] = []
+
+    def subscribe_wallet(self):
+        self.ws.send('{"op":"subscribe","args":["wallet"]}')
+        if 'wallet' not in self.data:
+            self.data['wallet'] = []
+
     def get_data(self, topic):
         if topic not in self.data:
+            topic_splits = topic.split('.')
+            # adaptor for different kline topic names
+            if topic_splits[len(topic_splits) - 1] not in BybitWebsocket.USDT_SYMBOLS and topic_splits[0] == "candle":
+                topic = topic.replace('candle', 'klineV2')
+                ret = self.data[topic].pop() if topic in self.data and len(self.data[topic]) > 0 else []
+                return ret
             self.logger.info(" The topic %s is not subscribed." % topic)
             return []
-        if topic.split('.')[0] in BybitWebsocket.PRIVATE_TOPIC and not self.auth:
+        if topic.split('.')[0] in BybitWebsocket.PRIVATE_TOPIC and not self.auth and 'request' in self.data \
+                and self.data['request']['op'] not in BybitWebsocket.WS_OPS:
             self.logger.info("Authentication failed. Please check your api_key and api_secret. Topic: %s" % topic)
             return []
         else:

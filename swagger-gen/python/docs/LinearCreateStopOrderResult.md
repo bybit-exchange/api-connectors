@@ -16,6 +16,10 @@ Name | Type | Description | Notes
 **order_link_id** | **str** |  | [optional] 
 **created_at** | **str** |  | [optional] 
 **updated_at** | **str** |  | [optional] 
+**take_profit** | **float** |  | [optional] 
+**stop_loss** | **float** |  | [optional] 
+**tp_trigger_by** | **str** |  | [optional] 
+**sl_trigger_by** | **str** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -1,4 +1,4 @@
-package websocket;
+package com.bybit;
 
 import java.net.URI;
 
@@ -71,12 +71,15 @@ public class Client {
 
         try {
             WebSocketContainer container = ContainerProvider.getWebSocketContainer();
+//            String uri = "wss://stream.bybit.com/realtime";
+//            String uri = "wss://stream.bytick.com/realtime";
+//            String uri = "wss://stream-testnet.bybit-cn.com/realtime";
             String uri = "wss://stream-testnet.bybit.com/realtime";
             container.connectToServer(BybitWebsocket.class, URI.create(uri));
             session.getBasicRemote().sendText("{\"op\":\"ping\"}");
             session.getBasicRemote().sendText(getAuthMessage());
             session.getBasicRemote().sendText(subscribe("subscribe", "instrument_info.100ms.BTCUSD"));
-            session.getBasicRemote().sendText(subscribe("subscribe", "order"));
+//            session.getBasicRemote().sendText(subscribe("subscribe", "order"));
             java.io.BufferedReader r=new  java.io.BufferedReader(new java.io.InputStreamReader( System.in));
             while(true){
                 String line=r.readLine();

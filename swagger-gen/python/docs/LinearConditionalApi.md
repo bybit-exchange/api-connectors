@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**linear_conditional_get_orders**](LinearConditionalApi.md#linear_conditional_get_orders) | **GET** /private/linear/stop-order/list | Get linear Stop Orders
 [**linear_conditional_new**](LinearConditionalApi.md#linear_conditional_new) | **POST** /private/linear/stop-order/create | Create linear stop Order
 [**linear_conditional_query**](LinearConditionalApi.md#linear_conditional_query) | **GET** /private/linear/stop-order/search | Get Stop Orders(real-time)
+[**linear_conditional_replace**](LinearConditionalApi.md#linear_conditional_replace) | **POST** /private/linear/stop-order/replace | Replace conditional order
 
 
 # **linear_conditional_cancel**
@@ -74,7 +75,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -136,7 +137,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -218,7 +219,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **linear_conditional_new**
-> object linear_conditional_new(symbol=symbol, side=side, order_type=order_type, qty=qty, price=price, base_price=base_price, stop_px=stop_px, time_in_force=time_in_force, trigger_by=trigger_by, reduce_only=reduce_only, close_on_trigger=close_on_trigger, order_link_id=order_link_id)
+> object linear_conditional_new(symbol=symbol, side=side, order_type=order_type, qty=qty, price=price, base_price=base_price, stop_px=stop_px, time_in_force=time_in_force, trigger_by=trigger_by, reduce_only=reduce_only, close_on_trigger=close_on_trigger, order_link_id=order_link_id, take_profit=take_profit, stop_loss=stop_loss, tp_trigger_by=tp_trigger_by, sl_trigger_by=sl_trigger_by)
 
 Create linear stop Order
 
@@ -262,10 +263,14 @@ trigger_by = 'trigger_by_example' # str |  (optional)
 reduce_only = true # bool |  (optional)
 close_on_trigger = true # bool |  (optional)
 order_link_id = 'order_link_id_example' # str |  (optional)
+take_profit = 1.2 # float |  (optional)
+stop_loss = 1.2 # float |  (optional)
+tp_trigger_by = 'tp_trigger_by_example' # str |  (optional)
+sl_trigger_by = 'sl_trigger_by_example' # str |  (optional)
 
 try:
     # Create linear stop Order
-    api_response = api_instance.linear_conditional_new(symbol=symbol, side=side, order_type=order_type, qty=qty, price=price, base_price=base_price, stop_px=stop_px, time_in_force=time_in_force, trigger_by=trigger_by, reduce_only=reduce_only, close_on_trigger=close_on_trigger, order_link_id=order_link_id)
+    api_response = api_instance.linear_conditional_new(symbol=symbol, side=side, order_type=order_type, qty=qty, price=price, base_price=base_price, stop_px=stop_px, time_in_force=time_in_force, trigger_by=trigger_by, reduce_only=reduce_only, close_on_trigger=close_on_trigger, order_link_id=order_link_id, take_profit=take_profit, stop_loss=stop_loss, tp_trigger_by=tp_trigger_by, sl_trigger_by=sl_trigger_by)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling LinearConditionalApi->linear_conditional_new: %s\n" % e)
@@ -287,6 +292,10 @@ Name | Type | Description  | Notes
  **reduce_only** | **bool**|  | [optional] 
  **close_on_trigger** | **bool**|  | [optional] 
  **order_link_id** | **str**|  | [optional] 
+ **take_profit** | **float**|  | [optional] 
+ **stop_loss** | **float**|  | [optional] 
+ **tp_trigger_by** | **str**|  | [optional] 
+ **sl_trigger_by** | **str**|  | [optional] 
 
 ### Return type
 
@@ -298,7 +307,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -367,6 +376,78 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **linear_conditional_replace**
+> object linear_conditional_replace(symbol, stop_order_id=stop_order_id, order_link_id=order_link_id, p_r_qty=p_r_qty, p_r_price=p_r_price, p_r_trigger_price=p_r_trigger_price)
+
+Replace conditional order
+
+### Example
+```python
+from __future__ import print_function
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api_key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api_key'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['sign'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['sign'] = 'Bearer'
+# Configure API key authorization: timestamp
+configuration = swagger_client.Configuration()
+configuration.api_key['timestamp'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['timestamp'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = swagger_client.LinearConditionalApi(swagger_client.ApiClient(configuration))
+symbol = 'symbol_example' # str | 
+stop_order_id = 'stop_order_id_example' # str |  (optional)
+order_link_id = 'order_link_id_example' # str |  (optional)
+p_r_qty = 'p_r_qty_example' # str |  (optional)
+p_r_price = 8.14 # float |  (optional)
+p_r_trigger_price = 8.14 # float |  (optional)
+
+try:
+    # Replace conditional order
+    api_response = api_instance.linear_conditional_replace(symbol, stop_order_id=stop_order_id, order_link_id=order_link_id, p_r_qty=p_r_qty, p_r_price=p_r_price, p_r_trigger_price=p_r_trigger_price)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling LinearConditionalApi->linear_conditional_replace: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **str**|  | 
+ **stop_order_id** | **str**|  | [optional] 
+ **order_link_id** | **str**|  | [optional] 
+ **p_r_qty** | **str**|  | [optional] 
+ **p_r_price** | **float**|  | [optional] 
+ **p_r_trigger_price** | **float**|  | [optional] 
+
+### Return type
+
+**object**
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

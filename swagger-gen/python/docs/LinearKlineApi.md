@@ -23,24 +23,8 @@ import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
-# Configure API key authorization: apiKey
-configuration = swagger_client.Configuration()
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api_key'] = 'Bearer'
-# Configure API key authorization: apiSignature
-configuration = swagger_client.Configuration()
-configuration.api_key['sign'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['sign'] = 'Bearer'
-# Configure API key authorization: timestamp
-configuration = swagger_client.Configuration()
-configuration.api_key['timestamp'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['timestamp'] = 'Bearer'
-
 # create an instance of the API class
-api_instance = swagger_client.LinearKlineApi(swagger_client.ApiClient(configuration))
+api_instance = swagger_client.LinearKlineApi()
 symbol = 'symbol_example' # str | Contract type.
 interval = 'interval_example' # str | Kline interval.
 _from = 8.14 # float | from timestamp.
@@ -69,7 +53,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
+No authorization required
 
 ### HTTP request headers
 

@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **size** | **float** |  | [optional] 
 **symbol** | **str** |  | [optional] 
 **user_id** | **int** |  | [optional] 
+**tp_sl_mode** | **str** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
