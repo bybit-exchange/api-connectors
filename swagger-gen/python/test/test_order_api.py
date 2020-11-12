@@ -19,12 +19,14 @@ import swagger_client
 from swagger_client.api.order_api import OrderApi  # noqa: E501
 from swagger_client.rest import ApiException
 
+from swagger_client.BybitApiClient import BybitApiClient
 
 class TestOrderApi(unittest.TestCase):
     """OrderApi unit test stubs"""
 
     def setUp(self):
-        self.api = swagger_client.api.order_api.OrderApi()  # noqa: E501
+        bybitClient = swagger_client.BybitApiClient.BybitApiClient()
+        self.api = swagger_client.api.order_api.OrderApi(api_client=bybitClient)  # noqa: E501
 
     def tearDown(self):
         pass
@@ -48,6 +50,9 @@ class TestOrderApi(unittest.TestCase):
 
         Get my active order list.  # noqa: E501
         """
+        k = {"symbol":"BTCUSD"}
+        data = self.api.order_get_orders(**k)
+        print(data)
         pass
 
     def test_order_new(self):

@@ -19,15 +19,12 @@ import swagger_client
 from swagger_client.api.common_api import CommonApi  # noqa: E501
 from swagger_client.rest import ApiException
 
-from swagger_client.BybitApiClient import BybitApiClient
 
 class TestCommonApi(unittest.TestCase):
     """CommonApi unit test stubs"""
 
     def setUp(self):
-
-        bybitClient = swagger_client.BybitApiClient.BybitApiClient()
-        self.api = swagger_client.api.common_api.CommonApi(api_client=bybitClient)  # noqa: E501
+        self.api = swagger_client.api.common_api.CommonApi()  # noqa: E501
 
     def tearDown(self):
         pass
@@ -37,9 +34,6 @@ class TestCommonApi(unittest.TestCase):
 
         Get Bybit OpenAPI announcements in the last 30 days in reverse order.  # noqa: E501
         """
-
-        data = self.api.common_announcements()
-        print(data)
         pass
 
     def test_common_get_lcp(self):
