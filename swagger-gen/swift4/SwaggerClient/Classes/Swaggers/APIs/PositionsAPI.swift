@@ -65,20 +65,26 @@ open class PositionsAPI {
     }
 
     /**
-     Get my position list.
+     Get user's closed profit and loss records
      
+     - parameter symbol: (query) Contract type 
+     - parameter startTime: (query) Start timestamp point for result, in second (optional)
+     - parameter endTime: (query) End timestamp point for result, in second (optional)
+     - parameter execType: (query) Execution type (optional)
+     - parameter page: (query) Page. By default, gets first page of data. Maximum of 50 pages (optional)
+     - parameter limit: (query) Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func positionsMyPosition(completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
-        positionsMyPositionWithRequestBuilder().execute { (response, error) -> Void in
+    open class func positionsClosePnlRecords(symbol: String, startTime: Int? = nil, endTime: Int? = nil, execType: String? = nil, page: Int? = nil, limit: Int? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
+        positionsClosePnlRecordsWithRequestBuilder(symbol: symbol, startTime: startTime, endTime: endTime, execType: execType, page: page, limit: limit).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
 
 
     /**
-     Get my position list.
-     - GET /position/list
+     Get user's closed profit and loss records
+     - GET /v2/private/trade/closed-pnl/list
      - API Key:
        - type: apiKey api_key (QUERY)
        - name: apiKey
@@ -89,16 +95,29 @@ open class PositionsAPI {
        - type: apiKey timestamp (QUERY)
        - name: timestamp
      - examples: [{contentType=application/json, example=""}]
+     
+     - parameter symbol: (query) Contract type 
+     - parameter startTime: (query) Start timestamp point for result, in second (optional)
+     - parameter endTime: (query) End timestamp point for result, in second (optional)
+     - parameter execType: (query) Execution type (optional)
+     - parameter page: (query) Page. By default, gets first page of data. Maximum of 50 pages (optional)
+     - parameter limit: (query) Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. (optional)
 
      - returns: RequestBuilder<Any> 
      */
-    open class func positionsMyPositionWithRequestBuilder() -> RequestBuilder<Any> {
-        let path = "/position/list"
+    open class func positionsClosePnlRecordsWithRequestBuilder(symbol: String, startTime: Int? = nil, endTime: Int? = nil, execType: String? = nil, page: Int? = nil, limit: Int? = nil) -> RequestBuilder<Any> {
+        let path = "/v2/private/trade/closed-pnl/list"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "symbol": symbol, 
+            "start_time": startTime?.encodeToJSON(), 
+            "end_time": endTime?.encodeToJSON(), 
+            "exec_type": execType, 
+            "page": page?.encodeToJSON(), 
+            "limit": limit?.encodeToJSON()
         ])
 
         let requestBuilder: RequestBuilder<Any>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
@@ -112,8 +131,8 @@ open class PositionsAPI {
      - parameter symbol: (query) Contract type which you want update its margin (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func positionsMyPositionV2(symbol: String? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
-        positionsMyPositionV2WithRequestBuilder(symbol: symbol).execute { (response, error) -> Void in
+    open class func positionsMyPosition(symbol: String? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
+        positionsMyPositionWithRequestBuilder(symbol: symbol).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -137,7 +156,7 @@ open class PositionsAPI {
 
      - returns: RequestBuilder<Any> 
      */
-    open class func positionsMyPositionV2WithRequestBuilder(symbol: String? = nil) -> RequestBuilder<Any> {
+    open class func positionsMyPositionWithRequestBuilder(symbol: String? = nil) -> RequestBuilder<Any> {
         let path = "/v2/private/position/list"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
@@ -212,10 +231,11 @@ open class PositionsAPI {
      - parameter takeProfit: (form) Not less than 0, 0 means cancel TP (optional)
      - parameter stopLoss: (form) Not less than 0, 0 means cancel SL (optional)
      - parameter trailingStop: (form) Not less than 0, 0 means cancel TS (optional)
+     - parameter newTrailingActive: (form) Trailing stop trigger price. Trailing stops are triggered only when the price reaches the specified price. Trailing stops are triggered immediately by default. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func positionsTradingStop(symbol: String, takeProfit: String? = nil, stopLoss: String? = nil, trailingStop: String? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
-        positionsTradingStopWithRequestBuilder(symbol: symbol, takeProfit: takeProfit, stopLoss: stopLoss, trailingStop: trailingStop).execute { (response, error) -> Void in
+    open class func positionsTradingStop(symbol: String, takeProfit: String? = nil, stopLoss: String? = nil, trailingStop: String? = nil, newTrailingActive: String? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
+        positionsTradingStopWithRequestBuilder(symbol: symbol, takeProfit: takeProfit, stopLoss: stopLoss, trailingStop: trailingStop, newTrailingActive: newTrailingActive).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -239,17 +259,19 @@ open class PositionsAPI {
      - parameter takeProfit: (form) Not less than 0, 0 means cancel TP (optional)
      - parameter stopLoss: (form) Not less than 0, 0 means cancel SL (optional)
      - parameter trailingStop: (form) Not less than 0, 0 means cancel TS (optional)
+     - parameter newTrailingActive: (form) Trailing stop trigger price. Trailing stops are triggered only when the price reaches the specified price. Trailing stops are triggered immediately by default. (optional)
 
      - returns: RequestBuilder<Any> 
      */
-    open class func positionsTradingStopWithRequestBuilder(symbol: String, takeProfit: String? = nil, stopLoss: String? = nil, trailingStop: String? = nil) -> RequestBuilder<Any> {
+    open class func positionsTradingStopWithRequestBuilder(symbol: String, takeProfit: String? = nil, stopLoss: String? = nil, trailingStop: String? = nil, newTrailingActive: String? = nil) -> RequestBuilder<Any> {
         let path = "/open-api/position/trading-stop"
         let URLString = SwaggerClientAPI.basePath + path
         let formParams: [String:Any?] = [
             "symbol": symbol,
             "take_profit": takeProfit,
             "stop_loss": stopLoss,
-            "trailing_stop": trailingStop
+            "trailing_stop": trailingStop,
+            "new_trailing_active": newTrailingActive
         ]
 
         let nonNullParameters = APIHelper.rejectNil(formParams)
@@ -262,48 +284,6 @@ open class PositionsAPI {
         let requestBuilder: RequestBuilder<Any>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
-    }
-
-    /**
-     Get user leverage setting.
-     
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func positionsUserLeverage(completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
-        positionsUserLeverageWithRequestBuilder().execute { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Get user leverage setting.
-     - GET /user/leverage
-     - API Key:
-       - type: apiKey api_key (QUERY)
-       - name: apiKey
-     - API Key:
-       - type: apiKey sign (QUERY)
-       - name: apiSignature
-     - API Key:
-       - type: apiKey timestamp (QUERY)
-       - name: timestamp
-     - examples: [{contentType=application/json, example=""}]
-
-     - returns: RequestBuilder<Any> 
-     */
-    open class func positionsUserLeverageWithRequestBuilder() -> RequestBuilder<Any> {
-        let path = "/user/leverage"
-        let URLString = SwaggerClientAPI.basePath + path
-        let parameters: [String:Any]? = nil
-        
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-        ])
-
-        let requestBuilder: RequestBuilder<Any>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
 
 }

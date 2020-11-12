@@ -20,7 +20,7 @@ open class KlineAPI {
      - parameter limit: (query) Contract type. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func klineGet(symbol: String, interval: String, from: Double, limit: String? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
+    open class func klineGet(symbol: String, interval: String, from: Double, limit: Double? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
         klineGetWithRequestBuilder(symbol: symbol, interval: interval, from: from, limit: limit).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -39,7 +39,7 @@ open class KlineAPI {
 
      - returns: RequestBuilder<Any> 
      */
-    open class func klineGetWithRequestBuilder(symbol: String, interval: String, from: Double, limit: String? = nil) -> RequestBuilder<Any> {
+    open class func klineGetWithRequestBuilder(symbol: String, interval: String, from: Double, limit: Double? = nil) -> RequestBuilder<Any> {
         let path = "/v2/public/kline/list"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
@@ -50,6 +50,52 @@ open class KlineAPI {
             "interval": interval, 
             "from": from, 
             "limit": limit
+        ])
+
+        let requestBuilder: RequestBuilder<Any>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+    }
+
+    /**
+     Query mark price kline.
+     
+     - parameter symbol: (query) Contract type. 
+     - parameter interval: (query) Data refresh interval 
+     - parameter from: (query) From timestamp in seconds 
+     - parameter limit: (query) Limit for data size, max size is 1000. Default size is 500 (optional)
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func klineMarkPrice(symbol: String, interval: String, from: Int, limit: Int? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
+        klineMarkPriceWithRequestBuilder(symbol: symbol, interval: interval, from: from, limit: limit).execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Query mark price kline.
+     - GET /v2/public/mark-price-kline
+     - examples: [{contentType=application/json, example=""}]
+     
+     - parameter symbol: (query) Contract type. 
+     - parameter interval: (query) Data refresh interval 
+     - parameter from: (query) From timestamp in seconds 
+     - parameter limit: (query) Limit for data size, max size is 1000. Default size is 500 (optional)
+
+     - returns: RequestBuilder<Any> 
+     */
+    open class func klineMarkPriceWithRequestBuilder(symbol: String, interval: String, from: Int, limit: Int? = nil) -> RequestBuilder<Any> {
+        let path = "/v2/public/mark-price-kline"
+        let URLString = SwaggerClientAPI.basePath + path
+        let parameters: [String:Any]? = nil
+        
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "symbol": symbol, 
+            "interval": interval, 
+            "from": from.encodeToJSON(), 
+            "limit": limit?.encodeToJSON()
         ])
 
         let requestBuilder: RequestBuilder<Any>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
