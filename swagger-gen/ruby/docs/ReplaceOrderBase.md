@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **ret_msg** | **String** |  | [optional] 
 **ext_code** | **String** |  | [optional] 
 **ext_info** | **String** |  | [optional] 
-**result** | **String** |  | [optional] 
+**result** | **Object** |  | [optional] 
 **time_now** | **String** |  | [optional] 
 
 

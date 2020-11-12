@@ -22,3 +22,23 @@
   ([symbol interval from optional-params]
    (:data (kline-get-with-http-info symbol interval from optional-params))))
 
+(defn kline-mark-price-with-http-info
+  "Query mark price kline."
+  ([symbol interval from ] (kline-mark-price-with-http-info symbol interval from nil))
+  ([symbol interval from {:keys [limit ]}]
+   (check-required-params symbol interval from)
+   (call-api "/v2/public/mark-price-kline" :get
+             {:path-params   {}
+              :header-params {}
+              :query-params  {"symbol" symbol "interval" interval "from" from "limit" limit }
+              :form-params   {}
+              :content-types ["application/json" "application/x-www-form-urlencoded"]
+              :accepts       ["application/json"]
+              :auth-names    []})))
+
+(defn kline-mark-price
+  "Query mark price kline."
+  ([symbol interval from ] (kline-mark-price symbol interval from nil))
+  ([symbol interval from optional-params]
+   (:data (kline-mark-price-with-http-info symbol interval from optional-params))))
+

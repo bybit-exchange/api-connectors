@@ -19,15 +19,12 @@ import swagger_client
 from swagger_client.api.wallet_api import WalletApi  # noqa: E501
 from swagger_client.rest import ApiException
 
-from swagger_client.BybitApiClient import BybitApiClient
 
 class TestWalletApi(unittest.TestCase):
     """WalletApi unit test stubs"""
 
     def setUp(self):
-
-        bybitClient = swagger_client.BybitApiClient.BybitApiClient()
-        self.api = swagger_client.api.wallet_api.WalletApi(api_client=bybitClient)  # noqa: E501
+        self.api = swagger_client.api.wallet_api.WalletApi()  # noqa: E501
 
     def tearDown(self):
         pass
@@ -37,9 +34,6 @@ class TestWalletApi(unittest.TestCase):
 
         Asset Exchange Records  # noqa: E501
         """
-        k = {}
-        data = self.api.wallet_exchange_order(**k)
-        print(data)
         pass
 
     def test_wallet_get_balance(self):

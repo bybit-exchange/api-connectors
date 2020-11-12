@@ -7,7 +7,7 @@
         "contact": {
             "email": "support@bybit.com"
         },
-        "version": "0.2.9"
+        "version": "0.2.10"
     },
     "host": "api.bybit.com",
     "basePath": "/",
@@ -18,7 +18,7 @@
                     "Common"
                 ],
                 "summary": "Get bybit server time.",
-                "operationId": "Common.get",
+                "operationId": "Common.getTime",
                 "parameters": [
                 ],
                 "responses": {
@@ -27,6 +27,61 @@
                         "schema": {
                             "items": {
                                 "$ref": "#/definitions/ServerTime"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": [
+                ]
+            }
+        },
+        "/v2/public/announcement": {
+            "get": {
+                "tags": [
+                    "Common"
+                ],
+                "summary": "Get Bybit OpenAPI announcements in the last 30 days in reverse order.",
+                "operationId": "Common.announcements",
+                "parameters": [
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/Announcement"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": [
+                ]
+            }
+        },
+        "/v2/private/account/lcp": {
+            "get": {
+                "tags": [
+                    "Common"
+                ],
+                "summary": "Query LCP info.",
+                "operationId": "Common.getLcp",
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/LCPInfo"
                             }
                         }
                     }
@@ -323,28 +378,6 @@
                 ]
             }
         },
-        "/user/leverage": {
-            "get": {
-                "tags": [
-                    "Positions"
-                ],
-                "summary": "Get user leverage setting.",
-                "operationId": "Positions.userLeverage",
-                "parameters": [
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Request was successful",
-                        "schema": {
-                            "items": {
-                                "$ref": "#/definitions/Leverage"
-                            }
-                        }
-                    }
-                },
-                "deprecated": false
-            }
-        },
         "/user/leverage/save": {
             "post": {
                 "tags": [
@@ -511,6 +544,55 @@
                 "deprecated": false
             }
         },
+        "/v2/private/exchange-order/list": {
+            "get": {
+                "tags": [
+                    "Wallet"
+                ],
+                "summary": "Asset Exchange Records",
+                "operationId": "Wallet.exchangeOrder",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page",
+                        "required": false,
+                        "type": "number",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "from",
+                        "in": "query",
+                        "description": "Start ID. By default, returns the latest IDs",
+                        "required": false,
+                        "type": "number",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "direction",
+                        "in": "query",
+                        "description": "Search direction. Prev: searches in ascending order from start ID, Next: searches in descending order from start ID. Defaults to Next",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/ExchangeOrderListBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+
         "/open-api/wallet/fund/records": {
             "get": {
                 "tags": [
@@ -835,7 +917,7 @@
                 "deprecated": false
             }
         },
-        "/open-api/order/list": {
+        "/v2/private/order/list": {
             "get": {
                 "tags": [
                     "Order"
@@ -844,40 +926,11 @@
                 "operationId": "Order.getOrders",
                 "parameters": [
                     {
-                        "name": "order_id",
-                        "in": "query",
-                        "description": "Order ID",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "order_link_id",
-                        "in": "query",
-                        "description": "Customized order ID.",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
                         "name": "symbol",
                         "in": "query",
                         "description": "Contract type. Default BTCUSD",
-                        "required": false,
+                        "required": true,
                         "type": "string"
-                    },
-                    {
-                        "name": "order",
-                        "in": "query",
-                        "description": "Sort orders by creation date",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "page",
-                        "in": "query",
-                        "description": "Page. Default getting first page data",
-                        "required": false,
-                        "type": "number",
-                        "format": "int32"
                     },
                     {
                         "name": "limit",
@@ -893,14 +946,30 @@
                         "description": "Query your orders for all statuses if 'order_status' is empty. If you want to query orders with specific statuses , you can pass the order_status split by",
                         "required": false,
                         "type": "string"
+                    },
+                    {
+                        "name": "direction",
+                        "in": "query",
+                        "description": "Search direction. prev: prev page, next: next page. Defaults to next",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "cursor",
+                        "in": "query",
+                        "description": "Page turning mark，Use return cursor,Sign use origin data, in request please urlencode",
+                        "required": false,
+                        "type": "string"
                     }
+
+
                 ],
                 "responses": {
                     "200": {
                         "description": "Request was successful",
                         "schema": {
                             "items": {
-                                "$ref": "#/definitions/OrderListBase"
+                                "$ref": "#/definitions/V2OrderListBase"
                             }
                         }
                     }
@@ -908,6 +977,7 @@
                 "deprecated": false
             }
         },
+
         "/v2/private/order/cancel": {
             "post": {
                 "tags": [
@@ -985,7 +1055,7 @@
                 "deprecated": false
             }
         },
-        "/open-api/order/replace": {
+        "/v2/private/order/replace": {
             "post": {
                 "tags": [
                     "Order"
@@ -1023,16 +1093,14 @@
                         "in": "formData",
                         "description": "Order quantity.",
                         "required": false,
-                        "type": "number",
-                        "format": "int64"
+                        "type": "string"
                     },
                     {
                         "name": "p_r_price",
                         "in": "formData",
                         "description": "Order price.",
                         "required": false,
-                        "type": "number",
-                        "format": "double"
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -1084,7 +1152,7 @@
                 "deprecated": false
             }
         },
-        "/open-api/stop-order/create": {
+        "/v2/private/stop-order/create": {
             "post": {
                 "tags": [
                     "Conditional"
@@ -1121,32 +1189,28 @@
                         "in": "formData",
                         "description": "Order quantity.",
                         "required": true,
-                        "type": "number",
-                        "format": "int32"
+                        "type": "string"
                     },
                     {
                         "name": "price",
                         "in": "formData",
                         "description": "Execution price for conditional order",
                         "required": false,
-                        "type": "number",
-                        "format": "double"
+                        "type": "string"
                     },
                     {
                         "name": "base_price",
                         "in": "formData",
                         "description": "Send current market price. It will be used to compare with the value of 'stop_px', to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order..",
                         "required": true,
-                        "type": "number",
-                        "format": "double"
+                        "type": "string"
                     },
                     {
                         "name": "stop_px",
                         "in": "formData",
                         "description": "Trigger price.",
                         "required": true,
-                        "type": "number",
-                        "format": "double"
+                        "type": "string"
                     },
                     {
                         "name": "time_in_force",
@@ -1182,7 +1246,7 @@
                         "description": "Request was successful",
                         "schema": {
                             "items": {
-                                "$ref": "#/definitions/ConditionalBase"
+                                "$ref": "#/definitions/V2ConditionalBase"
                             }
                         }
                     }
@@ -1190,13 +1254,70 @@
                 "deprecated": false
             }
         },
-        "/open-api/stop-order/list": {
+        "/v2/private/stop-order/list": {
             "get": {
                 "tags": [
                     "Conditional"
                 ],
                 "summary": "Get my conditional order list.",
                 "operationId": "Conditional.getOrders",
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "stop_order_status",
+                        "in": "query",
+                        "description": "Stop order status.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page.",
+                        "required": false,
+                        "type": "number",
+                        "format": "int32"
+                    },{
+                        "name": "direction",
+                        "in": "query",
+                        "description": "Search direction. prev: prev page, next: next page. Defaults to next",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "cursor",
+                        "in": "query",
+                        "description": "Page turning mark，Use return cursor,Sign use origin data, in request please urlencode",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/ConditionalOrdersResBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/v2/private/stop-order": {
+            "get": {
+                "tags": [
+                    "Conditional"
+                ],
+                "summary": "Query real-time stop order information.",
+                "operationId": "Conditional.query",
                 "parameters": [
                     {
                         "name": "stop_order_id",
@@ -1215,39 +1336,9 @@
                     {
                         "name": "symbol",
                         "in": "query",
-                        "description": "Contract type. Default BTCUSD.",
+                        "description": "Contract type.",
                         "required": false,
                         "type": "string"
-                    },
-                    {
-                        "name": "stop_order_status",
-                        "in": "query",
-                        "description": "Stop order status.",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "order",
-                        "in": "query",
-                        "description": "Sort orders by creation date",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "page",
-                        "in": "query",
-                        "description": "Page. Default getting first page data",
-                        "required": false,
-                        "type": "number",
-                        "format": "int32"
-                    },
-                    {
-                        "name": "limit",
-                        "in": "query",
-                        "description": "Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page.",
-                        "required": false,
-                        "type": "number",
-                        "format": "int32"
                     }
                 ],
                 "responses": {
@@ -1255,7 +1346,7 @@
                         "description": "Request was successful",
                         "schema": {
                             "items": {
-                                "$ref": "#/definitions/ConditionalOrdersResBase"
+                                "$ref": "#/definitions/StopOrderOrdersResBase"
                             }
                         }
                     }
@@ -1263,7 +1354,7 @@
                 "deprecated": false
             }
         },
-        "/open-api/stop-order/cancel": {
+        "/v2/private/stop-order/cancel": {
             "post": {
                 "tags": [
                     "Conditional"
@@ -1300,7 +1391,7 @@
                         "description": "Request was successful",
                         "schema": {
                             "items": {
-                                "$ref": "#/definitions/ConditionalBase"
+                                "$ref": "#/definitions/V2CancelOrderBase"
                             }
                         }
                     }
@@ -1339,7 +1430,7 @@
                 "deprecated": false
             }
         },
-        "/open-api/stop-order/replace": {
+        "/v2/private/stop-order/replace": {
             "post": {
                 "tags": [
                     "Conditional"
@@ -1365,13 +1456,6 @@
                         "type": "string"
                     },
                     {
-                        "name": "order_id",
-                        "in": "formData",
-                        "description": "Stop order ID.",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
                         "name": "symbol",
                         "in": "formData",
                         "description": "Contract type.",
@@ -1383,24 +1467,21 @@
                         "in": "formData",
                         "description": "Order quantity.",
                         "required": false,
-                        "type": "number",
-                        "format": "int64"
+                        "type": "string"
                     },
                     {
                         "name": "p_r_price",
                         "in": "formData",
                         "description": "Order price.",
                         "required": false,
-                        "type": "number",
-                        "format": "double"
+                        "type": "string"
                     },
                     {
                         "name": "p_r_trigger_price",
                         "in": "formData",
                         "description": "Trigger price.",
                         "required": false,
-                        "type": "number",
-                        "format": "double"
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -2437,6 +2518,7 @@
                     {
                         "name": "symbol",
                         "in": "query",
+                        "required": false,
                         "type": "string"
                     }],
                 "responses": {
@@ -2696,7 +2778,6 @@
                 }
             }
         },
-
         "/private/linear/tpsl/switch-mode": {
             "post": {
                 "tags": [
@@ -2732,8 +2813,6 @@
                 }
             }
         },
-
-
         "/private/linear/trade/closed-pnl/list": {
             "get": {
                 "tags": [
@@ -3115,6 +3194,103 @@
             },
             "type": "object"
         },
+        "LCPInfo": {
+            "description": "Query LCP info.",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "$ref": "#/definitions/LCPInfoBase"
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "LCPInfoBase": {
+            "description": "Query LCP info.",
+            "properties": {
+                "date": {
+                    "type": "string"
+                },
+                "self_ratio": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "platform_ratio": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "score": {
+                    "format": "int32",
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "Announcement": {
+            "description": "Get Bybit OpenAPI announcements in the last 30 days in reverse order.",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AnnouncementInfo"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "AnnouncementInfo": {
+            "description": "Get Bybit OpenAPI announcements in the last 30 days in reverse order.",
+            "properties": {
+                "id": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "link": {
+                    "type": "string"
+                },
+                "summary": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                }
+
+            },
+            "type": "object"
+        },
         "APIKeyBase": {
             "description": "Get bybit server time.",
             "properties": {
@@ -3177,6 +3353,8 @@
             },
             "type": "object"
         },
+
+
         "Leverage": {
             "description": "Get user leverage.",
             "properties": {
@@ -3809,6 +3987,69 @@
             },
             "type": "object"
         },
+        "V2OrderRes": {
+            "description": "order list response",
+            "properties": {
+
+                "user_id": {
+                    "type": "number",
+                    "format": "int32"
+                },
+                "order_status": {
+                    "type": "string"
+                },
+                "symbol": {
+                    "type": "string"
+                },
+                "side": {
+                    "type": "string"
+                },
+                "order_type": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "string"
+                },
+                "qty": {
+                    "type": "string"
+                },
+                "time_in_force": {
+                    "type": "string"
+                },
+                "order_link_id": {
+                    "type": "string"
+                },
+                "order_id": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "leaves_qty": {
+                    "type": "string"
+                },
+                "leaves_value": {
+                    "type": "string"
+                },
+                "cum_exec_qty": {
+                    "type": "string"
+                },
+                "cum_exec_value": {
+                    "type": "string"
+                },
+                "cum_exec_fee": {
+                    "type": "string"
+                },
+                "reject_reason": {
+                    "type": "string"
+                }
+
+            },
+            "type": "object"
+        },
         "OrderIdRes": {
             "description": "Order Id response",
             "properties": {
@@ -3818,7 +4059,7 @@
             },
             "type": "object"
         },
-        "OrderListBase": {
+        "V2OrderListBase": {
             "description": "Get order list response",
             "properties": {
                 "ret_code": {
@@ -3836,7 +4077,7 @@
                 },
                 "result": {
                     "items": {
-                        "$ref": "#/definitions/OrderListData"
+                        "$ref": "#/definitions/V2OrderListData"
                     }
                 },
                 "time_now": {
@@ -3845,18 +4086,22 @@
             },
             "type": "object"
         },
-        "OrderListData": {
+        "V2OrderListData": {
             "description": "Get order list response",
             "properties": {
                 "data": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/OrderRes"
+                        "$ref": "#/definitions/V2OrderRes"
                     }
+                },
+                "cursor": {
+                    "type": "string"
                 }
             },
             "type": "object"
         },
+
         "OrderCancelBase": {
             "description": "cancel order response",
             "properties": {
@@ -3983,7 +4228,15 @@
                     "type": "string"
                 },
                 "result": {
-                    "type": "string"
+                    "items": {
+                        "description": "Replace active order",
+                        "properties": {
+                            "stop_order_id": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
                 },
                 "time_now": {
                     "type": "string"
@@ -4099,7 +4352,7 @@
             },
             "type": "object"
         },
-        "ConditionalBase": {
+        "V2ConditionalBase": {
             "description": "Place new conditional order response",
             "properties": {
                 "ret_code": {
@@ -4117,7 +4370,7 @@
                 },
                 "result": {
                     "items": {
-                        "$ref": "#/definitions/ConditionalRes"
+                        "$ref": "#/definitions/V2ConditionalRes"
                     }
                 },
                 "time_now": {
@@ -4126,6 +4379,40 @@
             },
             "type": "object"
         },
+        "V2CancelOrderBase": {
+            "description": "Place new conditional order response",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "items": {
+                        "description": "Cancel Stop Order",
+                        "properties": {
+                            "stop_order_id": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+
         "ConditionalRes": {
             "description": "Place new conditional order response",
             "properties": {
@@ -4171,6 +4458,118 @@
                     "format": "double"
                 },
                 "order_link_id": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "V2ConditionalRes": {
+            "description": "Place new conditional order response",
+            "properties": {
+
+                "user_id": {
+                    "type": "number",
+                    "format": "int32"
+                },
+                "symbol": {
+                    "type": "string"
+                },
+                "side": {
+                    "type": "string"
+                },
+                "order_type": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "string"
+                },
+                "qty": {
+                    "type": "string"
+                },
+                "time_in_force": {
+                    "type": "string"
+                },
+                "trigger_by": {
+                    "type": "string"
+                },
+                "base_price": {
+                    "type": "string"
+                },
+                "remark": {
+                    "type": "string"
+                },
+                 "reject_reason": {
+                    "type": "string"
+                },
+                "stop_px": {
+                    "type": "string"
+                },
+                "stop_order_id": {
+                    "type": "string"
+                },
+                "order_link_id": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+
+        "V2ConditionalListRes": {
+            "description": "conditional order list response",
+            "properties": {
+                "user_id": {
+                    "type": "number",
+                    "format": "int32"
+                },
+                "stop_order_status": {
+                    "type": "string"
+                },
+                "symbol": {
+                    "type": "string"
+                },
+                "side": {
+                    "type": "string"
+                },
+                "order_type": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "string"
+                },
+                "qty": {
+                    "type": "string"
+                },
+                "time_in_force": {
+                    "type": "string"
+                },
+                "stop_order_type": {
+                    "type": "string"
+                },
+                "trigger_by": {
+                    "type": "string"
+                },
+                "base_price": {
+                    "type": "string"
+                },
+                "order_link_id": {
+                    "type": "string"
+                },
+                "stop_px": {
+                    "type": "string"
+                },
+                "stop_order_id": {
                     "type": "string"
                 },
                 "created_at": {
@@ -4301,14 +4700,44 @@
             },
             "type": "object"
         },
+        "StopOrderOrdersResBase": {
+            "description": "Get conditional order list",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "items": {
+                        "$ref": "#/definitions/ConditionalRes"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
         "ConditionalOrdersRes": {
             "description": "Get order list response",
             "properties": {
                 "data": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/ConditionalRes"
+                        "$ref": "#/definitions/V2ConditionalListRes"
                     }
+                },
+                "cursor": {
+                    "type": "string"
                 }
             },
             "type": "object"
@@ -4330,7 +4759,15 @@
                     "type": "string"
                 },
                 "result": {
-                    "type": "string"
+                    "items": {
+                        "description": "Replace conditional order",
+                        "properties": {
+                            "stop_order_id": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
                 },
                 "time_now": {
                     "type": "string"
@@ -5017,6 +5454,68 @@
             },
             "type": "object"
         },
+
+        "ExchangeOrderListBase": {
+            "description": "Asset Exchange Records",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ExchangeOrderList"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+
+        "ExchangeOrderList": {
+            "description": "Asset Exchange Records",
+            "properties": {
+                "from_coin": {
+                    "type": "string"
+                },
+                 "to_coin": {
+                    "type": "string"
+                },
+                "from_amount": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "to_amount": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "exchange_rate": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "from_fee": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "created_at": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+
         "WithdrawResBase": {
             "description": "Get account withdraw records response",
             "properties": {

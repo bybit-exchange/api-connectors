@@ -28,7 +28,7 @@
 - (instancetype) init {
     self = [super init];
     if (self) {
-        _host = @"https://api-testnet.bybit.com";
+        _host = @"https://api.bybit.com";
         _username = @"";
         _password = @"";
         _accessToken= @"";
@@ -36,7 +36,7 @@
         _mutableApiKey = [NSMutableDictionary dictionary];
         _mutableApiKeyPrefix = [NSMutableDictionary dictionary];
         _mutableDefaultHeaders = [NSMutableDictionary dictionary];
-        _mutableDefaultHeaders[@"User-Agent"] = @"SDKs objc";
+        
         _logger = [SWGLogger sharedLogger];
     }
     return self;

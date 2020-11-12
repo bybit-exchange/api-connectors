@@ -1,17 +1,17 @@
 # BybitApi.FundingApi
 
-All URIs are relative to *https://api-testnet.bybit.com*
+All URIs are relative to *https://api.bybit.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**fundingGetRate**](FundingApi.md#fundingGetRate) | **GET** /open-api/funding/prev-funding | Funding settlement occurs every 8 hours at 00:00 UTC, 08:00 UTC and 16:00 UTC. The current interval&#39;s fund fee settlement is based on the previous interval&#39;s fund rate. For example, at 16:00, the settlement is based on the fund rate generated at 8:00. The fund rate generated at 16:00 will be used at 0:00 on the next day.
+[**fundingMyLastFee**](FundingApi.md#fundingMyLastFee) | **GET** /open-api/funding/prev-funding | Funding settlement occurs every 8 hours at 00:00 UTC, 08:00 UTC and 16:00 UTC. The current interval&#39;s fund fee settlement is based on the previous interval&#39;s fund rate. For example, at 16:00, the settlement is based on the fund rate generated at 8:00. The fund rate generated at 16:00 will be used at 0:00 on the next day.
 [**fundingPredicted**](FundingApi.md#fundingPredicted) | **GET** /open-api/funding/predicted-funding | Get predicted funding rate and funding fee.
-[**fundingPredictedRate**](FundingApi.md#fundingPredictedRate) | **GET** /open-api/funding/prev-funding-rate | Get predicted funding rate and funding fee.
+[**fundingPrevRate**](FundingApi.md#fundingPrevRate) | **GET** /open-api/funding/prev-funding-rate | Get predicted funding rate and funding fee.
 
 
-<a name="fundingGetRate"></a>
-# **fundingGetRate**
-> Object fundingGetRate(symbol)
+<a name="fundingMyLastFee"></a>
+# **fundingMyLastFee**
+> Object fundingMyLastFee(symbol)
 
 Funding settlement occurs every 8 hours at 00:00 UTC, 08:00 UTC and 16:00 UTC. The current interval&#39;s fund fee settlement is based on the previous interval&#39;s fund rate. For example, at 16:00, the settlement is based on the fund rate generated at 8:00. The fund rate generated at 16:00 will be used at 0:00 on the next day.
 
@@ -50,7 +50,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.fundingGetRate(symbol, callback);
+apiInstance.fundingMyLastFee(symbol, callback);
 ```
 
 ### Parameters
@@ -135,9 +135,9 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
-<a name="fundingPredictedRate"></a>
-# **fundingPredictedRate**
-> Object fundingPredictedRate(symbol)
+<a name="fundingPrevRate"></a>
+# **fundingPrevRate**
+> Object fundingPrevRate(symbol)
 
 Get predicted funding rate and funding fee.
 
@@ -176,7 +176,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.fundingPredictedRate(symbol, callback);
+apiInstance.fundingPrevRate(symbol, callback);
 ```
 
 ### Parameters

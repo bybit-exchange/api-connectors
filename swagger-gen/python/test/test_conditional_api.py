@@ -18,6 +18,7 @@ import unittest
 import swagger_client
 from swagger_client.api.conditional_api import ConditionalApi  # noqa: E501
 from swagger_client.rest import ApiException
+
 from swagger_client.BybitApiClient import BybitApiClient
 
 class TestConditionalApi(unittest.TestCase):
@@ -35,6 +36,9 @@ class TestConditionalApi(unittest.TestCase):
 
         Cancel conditional order.  # noqa: E501
         """
+        k={"symbol":"BTCUSD","order_link_id":"asd1231"}
+        data = self.api.conditional_cancel(**k)
+        print(data)
         pass
 
     def test_conditional_cancel_all(self):
@@ -49,6 +53,10 @@ class TestConditionalApi(unittest.TestCase):
 
         Get my conditional order list.  # noqa: E501
         """
+        k = {"symbol": "BTCUSD"}
+        data = self.api.conditional_get_orders(**k)
+        print(data)
+
         pass
 
     def test_conditional_new(self):
@@ -56,6 +64,11 @@ class TestConditionalApi(unittest.TestCase):
 
         Place a new conditional order.  # noqa: E501
         """
+        k={"side":"Buy","symbol":"BTCUSD","order_type":"Market",
+           "qty":"1","price":"11006","base_price":"11006","stop_px":"11009",
+           "time_in_force":"ImmediateOrCancel"}
+        data = self.api.conditional_new(**k)
+        print(data)
         pass
 
     def test_conditional_query(self):
@@ -63,10 +76,6 @@ class TestConditionalApi(unittest.TestCase):
 
         Query real-time stop order information.  # noqa: E501
         """
-        k = {"symbol": "BTCUSD", "stop_order_id": "a7c3a90c-d880-4459-814e-2618ffb10f97"}
-
-        data = self.api.conditional_query(**k)
-        print(data)
         pass
 
     def test_conditional_replace(self):
@@ -74,6 +83,9 @@ class TestConditionalApi(unittest.TestCase):
 
         Replace conditional order. Only incomplete orders can be modified.   # noqa: E501
         """
+        k = {"order_link_id": "123213132", "symbol": "BTCUSD"}
+        data = self.api.conditional_replace(**k)
+        print(data)
         pass
 
 

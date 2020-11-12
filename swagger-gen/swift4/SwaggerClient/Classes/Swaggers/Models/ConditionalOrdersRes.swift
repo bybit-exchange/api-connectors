@@ -12,10 +12,12 @@ import Foundation
 
 public struct ConditionalOrdersRes: Codable {
 
-    public var data: [ConditionalRes]?
+    public var data: [V2ConditionalListRes]?
+    public var cursor: String?
 
-    public init(data: [ConditionalRes]?) {
+    public init(data: [V2ConditionalListRes]?, cursor: String?) {
         self.data = data
+        self.cursor = cursor
     }
 
 

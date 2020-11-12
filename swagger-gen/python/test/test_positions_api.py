@@ -64,13 +64,6 @@ class TestPositionsApi(unittest.TestCase):
         """
         pass
 
-    def test_positions_user_leverage(self):
-        """Test case for positions_user_leverage
-
-        Get user leverage setting.  # noqa: E501
-        """
-        pass
-
 
 if __name__ == '__main__':
     unittest.main()

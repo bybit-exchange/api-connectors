@@ -11,7 +11,7 @@
              :header-params {}
              :query-params  {}
              :form-params   {"symbol" symbol "margin" margin }
-             :content-types ["application/json" "application/x-www-form-urlencoded"]
+             :content-types ["application/x-www-form-urlencoded"]
              :accepts       ["application/json"]
              :auth-names    ["apiKey" "apiSignature" "timestamp"]}))
 
@@ -20,26 +20,29 @@
   [symbol margin ]
   (:data (positions-change-margin-with-http-info symbol margin)))
 
+(defn positions-close-pnl-records-with-http-info
+  "Get user's closed profit and loss records"
+  ([symbol ] (positions-close-pnl-records-with-http-info symbol nil))
+  ([symbol {:keys [start-time end-time exec-type page limit ]}]
+   (check-required-params symbol)
+   (call-api "/v2/private/trade/closed-pnl/list" :get
+             {:path-params   {}
+              :header-params {}
+              :query-params  {"symbol" symbol "start_time" start-time "end_time" end-time "exec_type" exec-type "page" page "limit" limit }
+              :form-params   {}
+              :content-types ["application/json" "application/x-www-form-urlencoded"]
+              :accepts       ["application/json"]
+              :auth-names    ["apiKey" "apiSignature" "timestamp"]})))
+
+(defn positions-close-pnl-records
+  "Get user's closed profit and loss records"
+  ([symbol ] (positions-close-pnl-records symbol nil))
+  ([symbol optional-params]
+   (:data (positions-close-pnl-records-with-http-info symbol optional-params))))
+
 (defn positions-my-position-with-http-info
   "Get my position list."
-  []
-  (call-api "/position/list" :get
-            {:path-params   {}
-             :header-params {}
-             :query-params  {}
-             :form-params   {}
-             :content-types ["application/json" "application/x-www-form-urlencoded"]
-             :accepts       ["application/json"]
-             :auth-names    ["apiKey" "apiSignature" "timestamp"]}))
-
-(defn positions-my-position
-  "Get my position list."
-  []
-  (:data (positions-my-position-with-http-info)))
-
-(defn positions-my-position-v2-with-http-info
-  "Get my position list."
-  ([] (positions-my-position-v2-with-http-info nil))
+  ([] (positions-my-position-with-http-info nil))
   ([{:keys [symbol ]}]
    (call-api "/v2/private/position/list" :get
              {:path-params   {}
@@ -50,11 +53,11 @@
               :accepts       ["application/json"]
               :auth-names    ["apiKey" "apiSignature" "timestamp"]})))
 
-(defn positions-my-position-v2
+(defn positions-my-position
   "Get my position list."
-  ([] (positions-my-position-v2 nil))
+  ([] (positions-my-position nil))
   ([optional-params]
-   (:data (positions-my-position-v2-with-http-info optional-params))))
+   (:data (positions-my-position-with-http-info optional-params))))
 
 (defn positions-save-leverage-with-http-info
   "Change user leverage."
@@ -65,7 +68,7 @@
              :header-params {}
              :query-params  {}
              :form-params   {"symbol" symbol "leverage" leverage }
-             :content-types ["application/json" "application/x-www-form-urlencoded"]
+             :content-types ["application/x-www-form-urlencoded"]
              :accepts       ["application/json"]
              :auth-names    ["apiKey" "apiSignature" "timestamp"]}))
 
@@ -77,14 +80,14 @@
 (defn positions-trading-stop-with-http-info
   "Set Trading-Stop Condition."
   ([symbol ] (positions-trading-stop-with-http-info symbol nil))
-  ([symbol {:keys [take-profit stop-loss trailing-stop ]}]
+  ([symbol {:keys [take-profit stop-loss trailing-stop new-trailing-active ]}]
    (check-required-params symbol)
    (call-api "/open-api/position/trading-stop" :post
              {:path-params   {}
               :header-params {}
               :query-params  {}
-              :form-params   {"symbol" symbol "take_profit" take-profit "stop_loss" stop-loss "trailing_stop" trailing-stop }
-              :content-types ["application/json" "application/x-www-form-urlencoded"]
+              :form-params   {"symbol" symbol "take_profit" take-profit "stop_loss" stop-loss "trailing_stop" trailing-stop "new_trailing_active" new-trailing-active }
+              :content-types ["application/x-www-form-urlencoded"]
               :accepts       ["application/json"]
               :auth-names    ["apiKey" "apiSignature" "timestamp"]})))
 
@@ -93,21 +96,4 @@
   ([symbol ] (positions-trading-stop symbol nil))
   ([symbol optional-params]
    (:data (positions-trading-stop-with-http-info symbol optional-params))))
-
-(defn positions-user-leverage-with-http-info
-  "Get user leverage setting."
-  []
-  (call-api "/user/leverage" :get
-            {:path-params   {}
-             :header-params {}
-             :query-params  {}
-             :form-params   {}
-             :content-types ["application/json" "application/x-www-form-urlencoded"]
-             :accepts       ["application/json"]
-             :auth-names    ["apiKey" "apiSignature" "timestamp"]}))
-
-(defn positions-user-leverage
-  "Get user leverage setting."
-  []
-  (:data (positions-user-leverage-with-http-info)))
 

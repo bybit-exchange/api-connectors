@@ -3,6 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**Array&lt;ConditionalRes&gt;**](ConditionalRes.md) |  | [optional] 
+**data** | [**Array&lt;V2ConditionalListRes&gt;**](V2ConditionalListRes.md) |  | [optional] 
+**cursor** | **String** |  | [optional] 
 
 
