@@ -1,6 +1,6 @@
 # Swagger\Client\APIkeyApi
 
-All URIs are relative to *https://api-testnet.bybit.com*
+All URIs are relative to *https://api.bybit.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

@@ -20,6 +20,10 @@ Name | Type | Description | Notes
 **time_in_force** | **string** |  | [optional] 
 **updated_time** | **string** |  | [optional] 
 **user_id** | **int** |  | [optional] 
+**take_profit** | **double** |  | [optional] 
+**stop_loss** | **double** |  | [optional] 
+**tp_trigger_by** | **string** |  | [optional] 
+**sl_trigger_by** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
