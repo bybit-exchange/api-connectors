@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
 
     s.summary          = "Bybit API"
     s.description      = <<-DESC
-                         ## REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]  
+                         ## REST API for the Bybit Exchange. Base URI: [https://api.bybit.com]  
                          DESC
 
     s.platform     = :ios, '7.0'

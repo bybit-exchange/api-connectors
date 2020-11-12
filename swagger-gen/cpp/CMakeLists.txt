@@ -1,6 +1,6 @@
 #
 # Bybit API
-# ## REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]  
+# ## REST API for the Bybit Exchange. Base URI: [https://api.bybit.com]  
 #
 # OpenAPI spec version: 1.0.0
 #

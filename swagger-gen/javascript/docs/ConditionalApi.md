@@ -1,19 +1,20 @@
 # BybitApi.ConditionalApi
 
-All URIs are relative to *https://api-testnet.bybit.com*
+All URIs are relative to *https://api.bybit.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**conditionalCancel**](ConditionalApi.md#conditionalCancel) | **POST** /open-api/stop-order/cancel | Cancel conditional order.
+[**conditionalCancel**](ConditionalApi.md#conditionalCancel) | **POST** /v2/private/stop-order/cancel | Cancel conditional order.
 [**conditionalCancelAll**](ConditionalApi.md#conditionalCancelAll) | **POST** /v2/private/stop-order/cancelAll | Cancel conditional order.
-[**conditionalGetOrders**](ConditionalApi.md#conditionalGetOrders) | **GET** /open-api/stop-order/list | Get my conditional order list.
-[**conditionalNew**](ConditionalApi.md#conditionalNew) | **POST** /open-api/stop-order/create | Place a new conditional order.
-[**conditionalReplace**](ConditionalApi.md#conditionalReplace) | **POST** /open-api/stop-order/replace | Replace conditional order. Only incomplete orders can be modified. 
+[**conditionalGetOrders**](ConditionalApi.md#conditionalGetOrders) | **GET** /v2/private/stop-order/list | Get my conditional order list.
+[**conditionalNew**](ConditionalApi.md#conditionalNew) | **POST** /v2/private/stop-order/create | Place a new conditional order.
+[**conditionalQuery**](ConditionalApi.md#conditionalQuery) | **GET** /v2/private/stop-order | Query real-time stop order information.
+[**conditionalReplace**](ConditionalApi.md#conditionalReplace) | **POST** /v2/private/stop-order/replace | Replace conditional order. Only incomplete orders can be modified. 
 
 
 <a name="conditionalCancel"></a>
 # **conditionalCancel**
-> Object conditionalCancel(stopOrderId)
+> Object conditionalCancel(symbol, opts)
 
 Cancel conditional order.
 
@@ -42,8 +43,12 @@ timestamp.apiKey = 'YOUR API KEY';
 
 var apiInstance = new BybitApi.ConditionalApi();
 
-var stopOrderId = "stopOrderId_example"; // String | Order ID of conditional order.
+var symbol = "symbol_example"; // String | Contract type.
 
+var opts = { 
+  'stopOrderId': "stopOrderId_example", // String | Order ID of conditional order.
+  'orderLinkId': "orderLinkId_example" // String | Agency customized order ID.
+};
 
 var callback = function(error, data, response) {
   if (error) {
@@ -52,14 +57,16 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.conditionalCancel(stopOrderId, callback);
+apiInstance.conditionalCancel(symbol, opts, callback);
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **stopOrderId** | **String**| Order ID of conditional order. | 
+ **symbol** | **String**| Contract type. | 
+ **stopOrderId** | **String**| Order ID of conditional order. | [optional] 
+ **orderLinkId** | **String**| Agency customized order ID. | [optional] 
 
 ### Return type
 
@@ -71,7 +78,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 <a name="conditionalCancelAll"></a>
@@ -134,12 +141,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 <a name="conditionalGetOrders"></a>
 # **conditionalGetOrders**
-> Object conditionalGetOrders(opts)
+> Object conditionalGetOrders(symbol, opts)
 
 Get my conditional order list.
 
@@ -168,13 +175,13 @@ timestamp.apiKey = 'YOUR API KEY';
 
 var apiInstance = new BybitApi.ConditionalApi();
 
+var symbol = "symbol_example"; // String | Contract type
+
 var opts = { 
-  'stopOrderId': "stopOrderId_example", // String | Order ID of conditional order.
-  'orderLinkId': "orderLinkId_example", // String | Agency customized order ID.
-  'symbol': "symbol_example", // String | Contract type. Default BTCUSD.
-  'order': "order_example", // String | Sort orders by creation date
-  'page': 8.14, // Number | Page. Default getting first page data
-  'limit': 8.14 // Number | Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page.
+  'stopOrderStatus': "stopOrderStatus_example", // String | Stop order status.
+  'limit': 8.14, // Number | Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page.
+  'direction': "direction_example", // String | Search direction. prev: prev page, next: next page. Defaults to next
+  'cursor': "cursor_example" // String | Page turning mark，Use return cursor,Sign use origin data, in request please urlencode
 };
 
 var callback = function(error, data, response) {
@@ -184,19 +191,18 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.conditionalGetOrders(opts, callback);
+apiInstance.conditionalGetOrders(symbol, opts, callback);
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **stopOrderId** | **String**| Order ID of conditional order. | [optional] 
- **orderLinkId** | **String**| Agency customized order ID. | [optional] 
- **symbol** | **String**| Contract type. Default BTCUSD. | [optional] 
- **order** | **String**| Sort orders by creation date | [optional] 
- **page** | **Number**| Page. Default getting first page data | [optional] 
+ **symbol** | **String**| Contract type | 
+ **stopOrderStatus** | **String**| Stop order status. | [optional] 
  **limit** | **Number**| Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. | [optional] 
+ **direction** | **String**| Search direction. prev: prev page, next: next page. Defaults to next | [optional] 
+ **cursor** | **String**| Page turning mark，Use return cursor,Sign use origin data, in request please urlencode | [optional] 
 
 ### Return type
 
@@ -248,16 +254,16 @@ var symbol = "symbol_example"; // String | Contract type.
 
 var orderType = "orderType_example"; // String | Conditional order type.
 
-var qty = 8.14; // Number | Order quantity.
+var qty = "qty_example"; // String | Order quantity.
 
-var basePrice = 1.2; // Number | Send current market price. It will be used to compare with the value of 'stop_px', to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order..
+var basePrice = "basePrice_example"; // String | Send current market price. It will be used to compare with the value of 'stop_px', to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order..
 
-var stopPx = 1.2; // Number | Trigger price.
+var stopPx = "stopPx_example"; // String | Trigger price.
 
 var timeInForce = "timeInForce_example"; // String | Time in force.
 
 var opts = { 
-  'price': 1.2, // Number | Execution price for conditional order
+  'price': "price_example", // String | Execution price for conditional order
   'triggerBy': "triggerBy_example", // String | Trigger price type. Default LastPrice.
   'closeOnTrigger': true, // Boolean | close on trigger.
   'orderLinkId': "orderLinkId_example" // String | Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique..
@@ -280,14 +286,82 @@ Name | Type | Description  | Notes
  **side** | **String**| Side. | 
  **symbol** | **String**| Contract type. | 
  **orderType** | **String**| Conditional order type. | 
- **qty** | **Number**| Order quantity. | 
- **basePrice** | **Number**| Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order.. | 
- **stopPx** | **Number**| Trigger price. | 
+ **qty** | **String**| Order quantity. | 
+ **basePrice** | **String**| Send current market price. It will be used to compare with the value of &#39;stop_px&#39;, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order.. | 
+ **stopPx** | **String**| Trigger price. | 
  **timeInForce** | **String**| Time in force. | 
- **price** | **Number**| Execution price for conditional order | [optional] 
+ **price** | **String**| Execution price for conditional order | [optional] 
  **triggerBy** | **String**| Trigger price type. Default LastPrice. | [optional] 
  **closeOnTrigger** | **Boolean**| close on trigger. | [optional] 
  **orderLinkId** | **String**| Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. | [optional] 
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+<a name="conditionalQuery"></a>
+# **conditionalQuery**
+> Object conditionalQuery(opts)
+
+Query real-time stop order information.
+
+### Example
+```javascript
+var BybitApi = require('bybit_api');
+var defaultClient = BybitApi.ApiClient.instance;
+
+// Configure API key authorization: apiKey
+var apiKey = defaultClient.authentications['apiKey'];
+apiKey.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiKey.apiKeyPrefix = 'Token';
+
+// Configure API key authorization: apiSignature
+var apiSignature = defaultClient.authentications['apiSignature'];
+apiSignature.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiSignature.apiKeyPrefix = 'Token';
+
+// Configure API key authorization: timestamp
+var timestamp = defaultClient.authentications['timestamp'];
+timestamp.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//timestamp.apiKeyPrefix = 'Token';
+
+var apiInstance = new BybitApi.ConditionalApi();
+
+var opts = { 
+  'stopOrderId': "stopOrderId_example", // String | Order ID of conditional order.
+  'orderLinkId': "orderLinkId_example", // String | Agency customized order ID.
+  'symbol': "symbol_example" // String | Contract type.
+};
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.conditionalQuery(opts, callback);
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **stopOrderId** | **String**| Order ID of conditional order. | [optional] 
+ **orderLinkId** | **String**| Agency customized order ID. | [optional] 
+ **symbol** | **String**| Contract type. | [optional] 
 
 ### Return type
 
@@ -337,10 +411,10 @@ var symbol = "symbol_example"; // String | Contract type.
 
 var opts = { 
   'stopOrderId': "stopOrderId_example", // String | Stop order ID.
-  'orderId': "orderId_example", // String | Stop order ID.
-  'pRQty': 8.14, // Number | Order quantity.
-  'pRPrice': 1.2, // Number | Order price.
-  'pRTriggerPrice': 1.2 // Number | Trigger price.
+  'orderLinkId': "orderLinkId_example", // String | Order Link ID.
+  'pRQty': "pRQty_example", // String | Order quantity.
+  'pRPrice': "pRPrice_example", // String | Order price.
+  'pRTriggerPrice': "pRTriggerPrice_example" // String | Trigger price.
 };
 
 var callback = function(error, data, response) {
@@ -359,10 +433,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **String**| Contract type. | 
  **stopOrderId** | **String**| Stop order ID. | [optional] 
- **orderId** | **String**| Stop order ID. | [optional] 
- **pRQty** | **Number**| Order quantity. | [optional] 
- **pRPrice** | **Number**| Order price. | [optional] 
- **pRTriggerPrice** | **Number**| Trigger price. | [optional] 
+ **orderLinkId** | **String**| Order Link ID. | [optional] 
+ **pRQty** | **String**| Order quantity. | [optional] 
+ **pRPrice** | **String**| Order price. | [optional] 
+ **pRTriggerPrice** | **String**| Trigger price. | [optional] 
 
 ### Return type
 
@@ -374,6 +448,6 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 

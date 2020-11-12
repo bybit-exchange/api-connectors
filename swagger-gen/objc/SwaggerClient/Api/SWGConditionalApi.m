@@ -51,24 +51,30 @@ NSInteger kSWGConditionalApiMissingParamErrorCode = 234513;
 ///
 /// Cancel conditional order.
 /// 
-///  @param stopOrderId Order ID of conditional order. 
+///  @param symbol Contract type. 
+///
+///  @param stopOrderId Order ID of conditional order. (optional)
+///
+///  @param orderLinkId Agency customized order ID. (optional)
 ///
 ///  @returns NSObject*
 ///
--(NSURLSessionTask*) conditionalCancelWithStopOrderId: (NSString*) stopOrderId
+-(NSURLSessionTask*) conditionalCancelWithSymbol: (NSString*) symbol
+    stopOrderId: (NSString*) stopOrderId
+    orderLinkId: (NSString*) orderLinkId
     completionHandler: (void (^)(NSObject* output, NSError* error)) handler {
-    // verify the required parameter 'stopOrderId' is set
-    if (stopOrderId == nil) {
-        NSParameterAssert(stopOrderId);
+    // verify the required parameter 'symbol' is set
+    if (symbol == nil) {
+        NSParameterAssert(symbol);
         if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"stopOrderId"] };
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"symbol"] };
             NSError* error = [NSError errorWithDomain:kSWGConditionalApiErrorDomain code:kSWGConditionalApiMissingParamErrorCode userInfo:userInfo];
             handler(nil, error);
         }
         return nil;
     }
 
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/open-api/stop-order/cancel"];
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/v2/private/stop-order/cancel"];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -85,7 +91,7 @@ NSInteger kSWGConditionalApiMissingParamErrorCode = 234513;
     NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
 
     // request content type
-    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/x-www-form-urlencoded"]];
 
     // Authentication setting
     NSArray *authSettings = @[@"apiKey", @"apiSignature", @"timestamp"];
@@ -95,6 +101,12 @@ NSInteger kSWGConditionalApiMissingParamErrorCode = 234513;
     NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
     if (stopOrderId) {
         formParams[@"stop_order_id"] = stopOrderId;
+    }
+    if (orderLinkId) {
+        formParams[@"order_link_id"] = orderLinkId;
+    }
+    if (symbol) {
+        formParams[@"symbol"] = symbol;
     }
 
     return [self.apiClient requestWithPath: resourcePath
@@ -153,7 +165,7 @@ NSInteger kSWGConditionalApiMissingParamErrorCode = 234513;
     NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
 
     // request content type
-    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/x-www-form-urlencoded"]];
 
     // Authentication setting
     NSArray *authSettings = @[@"apiKey", @"apiSignature", @"timestamp"];
@@ -187,49 +199,54 @@ NSInteger kSWGConditionalApiMissingParamErrorCode = 234513;
 ///
 /// Get my conditional order list.
 /// 
-///  @param stopOrderId Order ID of conditional order. (optional)
+///  @param symbol Contract type 
 ///
-///  @param orderLinkId Agency customized order ID. (optional)
-///
-///  @param symbol Contract type. Default BTCUSD. (optional)
-///
-///  @param order Sort orders by creation date (optional)
-///
-///  @param page Page. Default getting first page data (optional)
+///  @param stopOrderStatus Stop order status. (optional)
 ///
 ///  @param limit Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. (optional)
 ///
+///  @param direction Search direction. prev: prev page, next: next page. Defaults to next (optional)
+///
+///  @param cursor Page turning mark，Use return cursor,Sign use origin data, in request please urlencode (optional)
+///
 ///  @returns NSObject*
 ///
--(NSURLSessionTask*) conditionalGetOrdersWithStopOrderId: (NSString*) stopOrderId
-    orderLinkId: (NSString*) orderLinkId
-    symbol: (NSString*) symbol
-    order: (NSString*) order
-    page: (NSNumber*) page
+-(NSURLSessionTask*) conditionalGetOrdersWithSymbol: (NSString*) symbol
+    stopOrderStatus: (NSString*) stopOrderStatus
     limit: (NSNumber*) limit
+    direction: (NSString*) direction
+    cursor: (NSString*) cursor
     completionHandler: (void (^)(NSObject* output, NSError* error)) handler {
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/open-api/stop-order/list"];
+    // verify the required parameter 'symbol' is set
+    if (symbol == nil) {
+        NSParameterAssert(symbol);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"symbol"] };
+            NSError* error = [NSError errorWithDomain:kSWGConditionalApiErrorDomain code:kSWGConditionalApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/v2/private/stop-order/list"];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    if (stopOrderId != nil) {
-        queryParams[@"stop_order_id"] = stopOrderId;
-    }
-    if (orderLinkId != nil) {
-        queryParams[@"order_link_id"] = orderLinkId;
-    }
     if (symbol != nil) {
         queryParams[@"symbol"] = symbol;
     }
-    if (order != nil) {
-        queryParams[@"order"] = order;
-    }
-    if (page != nil) {
-        queryParams[@"page"] = page;
+    if (stopOrderStatus != nil) {
+        queryParams[@"stop_order_status"] = stopOrderStatus;
     }
     if (limit != nil) {
         queryParams[@"limit"] = limit;
+    }
+    if (direction != nil) {
+        queryParams[@"direction"] = direction;
+    }
+    if (cursor != nil) {
+        queryParams[@"cursor"] = cursor;
     }
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
@@ -301,11 +318,11 @@ NSInteger kSWGConditionalApiMissingParamErrorCode = 234513;
 -(NSURLSessionTask*) conditionalNewWithSide: (NSString*) side
     symbol: (NSString*) symbol
     orderType: (NSString*) orderType
-    qty: (NSNumber*) qty
-    basePrice: (NSNumber*) basePrice
-    stopPx: (NSNumber*) stopPx
+    qty: (NSString*) qty
+    basePrice: (NSString*) basePrice
+    stopPx: (NSString*) stopPx
     timeInForce: (NSString*) timeInForce
-    price: (NSNumber*) price
+    price: (NSString*) price
     triggerBy: (NSString*) triggerBy
     closeOnTrigger: (NSNumber*) closeOnTrigger
     orderLinkId: (NSString*) orderLinkId
@@ -387,7 +404,7 @@ NSInteger kSWGConditionalApiMissingParamErrorCode = 234513;
         return nil;
     }
 
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/open-api/stop-order/create"];
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/v2/private/stop-order/create"];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -404,7 +421,7 @@ NSInteger kSWGConditionalApiMissingParamErrorCode = 234513;
     NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
 
     // request content type
-    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/x-www-form-urlencoded"]];
 
     // Authentication setting
     NSArray *authSettings = @[@"apiKey", @"apiSignature", @"timestamp"];
@@ -466,45 +483,34 @@ NSInteger kSWGConditionalApiMissingParamErrorCode = 234513;
 }
 
 ///
-/// Replace conditional order. Only incomplete orders can be modified. 
+/// Query real-time stop order information.
 /// 
-///  @param symbol Contract type. 
+///  @param stopOrderId Order ID of conditional order. (optional)
 ///
-///  @param stopOrderId Stop order ID. (optional)
+///  @param orderLinkId Agency customized order ID. (optional)
 ///
-///  @param orderId Stop order ID. (optional)
-///
-///  @param pRQty Order quantity. (optional)
-///
-///  @param pRPrice Order price. (optional)
-///
-///  @param pRTriggerPrice Trigger price. (optional)
+///  @param symbol Contract type. (optional)
 ///
 ///  @returns NSObject*
 ///
--(NSURLSessionTask*) conditionalReplaceWithSymbol: (NSString*) symbol
-    stopOrderId: (NSString*) stopOrderId
-    orderId: (NSString*) orderId
-    pRQty: (NSNumber*) pRQty
-    pRPrice: (NSNumber*) pRPrice
-    pRTriggerPrice: (NSNumber*) pRTriggerPrice
+-(NSURLSessionTask*) conditionalQueryWithStopOrderId: (NSString*) stopOrderId
+    orderLinkId: (NSString*) orderLinkId
+    symbol: (NSString*) symbol
     completionHandler: (void (^)(NSObject* output, NSError* error)) handler {
-    // verify the required parameter 'symbol' is set
-    if (symbol == nil) {
-        NSParameterAssert(symbol);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"symbol"] };
-            NSError* error = [NSError errorWithDomain:kSWGConditionalApiErrorDomain code:kSWGConditionalApiMissingParamErrorCode userInfo:userInfo];
-            handler(nil, error);
-        }
-        return nil;
-    }
-
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/open-api/stop-order/replace"];
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/v2/private/stop-order"];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    if (stopOrderId != nil) {
+        queryParams[@"stop_order_id"] = stopOrderId;
+    }
+    if (orderLinkId != nil) {
+        queryParams[@"order_link_id"] = orderLinkId;
+    }
+    if (symbol != nil) {
+        queryParams[@"symbol"] = symbol;
+    }
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
     // HTTP header `Accept`
@@ -525,11 +531,91 @@ NSInteger kSWGConditionalApiMissingParamErrorCode = 234513;
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
     NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"GET"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: @"NSObject*"
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler((NSObject*)data, error);
+                                }
+                            }];
+}
+
+///
+/// Replace conditional order. Only incomplete orders can be modified. 
+/// 
+///  @param symbol Contract type. 
+///
+///  @param stopOrderId Stop order ID. (optional)
+///
+///  @param orderLinkId Order Link ID. (optional)
+///
+///  @param pRQty Order quantity. (optional)
+///
+///  @param pRPrice Order price. (optional)
+///
+///  @param pRTriggerPrice Trigger price. (optional)
+///
+///  @returns NSObject*
+///
+-(NSURLSessionTask*) conditionalReplaceWithSymbol: (NSString*) symbol
+    stopOrderId: (NSString*) stopOrderId
+    orderLinkId: (NSString*) orderLinkId
+    pRQty: (NSString*) pRQty
+    pRPrice: (NSString*) pRPrice
+    pRTriggerPrice: (NSString*) pRTriggerPrice
+    completionHandler: (void (^)(NSObject* output, NSError* error)) handler {
+    // verify the required parameter 'symbol' is set
+    if (symbol == nil) {
+        NSParameterAssert(symbol);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"symbol"] };
+            NSError* error = [NSError errorWithDomain:kSWGConditionalApiErrorDomain code:kSWGConditionalApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/v2/private/stop-order/replace"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/x-www-form-urlencoded"]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"apiKey", @"apiSignature", @"timestamp"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
     if (stopOrderId) {
         formParams[@"stop_order_id"] = stopOrderId;
     }
-    if (orderId) {
-        formParams[@"order_id"] = orderId;
+    if (orderLinkId) {
+        formParams[@"order_link_id"] = orderLinkId;
     }
     if (symbol) {
         formParams[@"symbol"] = symbol;

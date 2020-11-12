@@ -55,7 +55,7 @@ NSInteger kSWGFundingApiMissingParamErrorCode = 234513;
 ///
 ///  @returns NSObject*
 ///
--(NSURLSessionTask*) fundingGetRateWithSymbol: (NSString*) symbol
+-(NSURLSessionTask*) fundingMyLastFeeWithSymbol: (NSString*) symbol
     completionHandler: (void (^)(NSObject* output, NSError* error)) handler {
     // verify the required parameter 'symbol' is set
     if (symbol == nil) {
@@ -191,7 +191,7 @@ NSInteger kSWGFundingApiMissingParamErrorCode = 234513;
 ///
 ///  @returns NSObject*
 ///
--(NSURLSessionTask*) fundingPredictedRateWithSymbol: (NSString*) symbol
+-(NSURLSessionTask*) fundingPrevRateWithSymbol: (NSString*) symbol
     completionHandler: (void (^)(NSObject* output, NSError* error)) handler {
     // verify the required parameter 'symbol' is set
     if (symbol == nil) {
