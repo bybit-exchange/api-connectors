@@ -14,8 +14,8 @@ console.log(getSignature(params, secret));
 
 function getSignature(parameters, secret) {
 	var orderedParams = "";
-	Object.keys(params).sort().forEach(function(key) {
-	  orderedParams += key + "=" + params[key] + "&";
+	Object.keys(parameters).sort().forEach(function(key) {
+	  orderedParams += key + "=" + parameters[key] + "&";
 	});
 	orderedParams = orderedParams.substring(0, orderedParams.length - 1);
 

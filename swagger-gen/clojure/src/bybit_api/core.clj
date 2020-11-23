@@ -14,7 +14,7 @@
 
 (def default-api-context
   "Default API context."
-  {:base-url        "https://api-testnet.bybit.com"
+  {:base-url        "https://api.bybit.com"
    :date-format     "yyyy-MM-dd"
    :datetime-format "yyyy-MM-dd'T'HH:mm:ss.SSSXXX"
    :debug           false

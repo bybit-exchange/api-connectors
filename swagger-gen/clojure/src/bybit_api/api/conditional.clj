@@ -4,21 +4,23 @@
 
 (defn conditional-cancel-with-http-info
   "Cancel conditional order."
-  [stop-order-id ]
-  (check-required-params stop-order-id)
-  (call-api "/open-api/stop-order/cancel" :post
-            {:path-params   {}
-             :header-params {}
-             :query-params  {}
-             :form-params   {"stop_order_id" stop-order-id }
-             :content-types ["application/json" "application/x-www-form-urlencoded"]
-             :accepts       ["application/json"]
-             :auth-names    ["apiKey" "apiSignature" "timestamp"]}))
+  ([symbol ] (conditional-cancel-with-http-info symbol nil))
+  ([symbol {:keys [stop-order-id order-link-id ]}]
+   (check-required-params symbol)
+   (call-api "/v2/private/stop-order/cancel" :post
+             {:path-params   {}
+              :header-params {}
+              :query-params  {}
+              :form-params   {"stop_order_id" stop-order-id "order_link_id" order-link-id "symbol" symbol }
+              :content-types ["application/x-www-form-urlencoded"]
+              :accepts       ["application/json"]
+              :auth-names    ["apiKey" "apiSignature" "timestamp"]})))
 
 (defn conditional-cancel
   "Cancel conditional order."
-  [stop-order-id ]
-  (:data (conditional-cancel-with-http-info stop-order-id)))
+  ([symbol ] (conditional-cancel symbol nil))
+  ([symbol optional-params]
+   (:data (conditional-cancel-with-http-info symbol optional-params))))
 
 (defn conditional-cancel-all-with-http-info
   "Cancel conditional order."
@@ -29,7 +31,7 @@
              :header-params {}
              :query-params  {}
              :form-params   {"symbol" symbol }
-             :content-types ["application/json" "application/x-www-form-urlencoded"]
+             :content-types ["application/x-www-form-urlencoded"]
              :accepts       ["application/json"]
              :auth-names    ["apiKey" "apiSignature" "timestamp"]}))
 
@@ -40,12 +42,13 @@
 
 (defn conditional-get-orders-with-http-info
   "Get my conditional order list."
-  ([] (conditional-get-orders-with-http-info nil))
-  ([{:keys [stop-order-id order-link-id symbol order page limit ]}]
-   (call-api "/open-api/stop-order/list" :get
+  ([symbol ] (conditional-get-orders-with-http-info symbol nil))
+  ([symbol {:keys [stop-order-status limit direction cursor ]}]
+   (check-required-params symbol)
+   (call-api "/v2/private/stop-order/list" :get
              {:path-params   {}
               :header-params {}
-              :query-params  {"stop_order_id" stop-order-id "order_link_id" order-link-id "symbol" symbol "order" order "page" page "limit" limit }
+              :query-params  {"symbol" symbol "stop_order_status" stop-order-status "limit" limit "direction" direction "cursor" cursor }
               :form-params   {}
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json"]
@@ -53,21 +56,21 @@
 
 (defn conditional-get-orders
   "Get my conditional order list."
-  ([] (conditional-get-orders nil))
-  ([optional-params]
-   (:data (conditional-get-orders-with-http-info optional-params))))
+  ([symbol ] (conditional-get-orders symbol nil))
+  ([symbol optional-params]
+   (:data (conditional-get-orders-with-http-info symbol optional-params))))
 
 (defn conditional-new-with-http-info
   "Place a new conditional order."
   ([side symbol order-type qty base-price stop-px time-in-force ] (conditional-new-with-http-info side symbol order-type qty base-price stop-px time-in-force nil))
   ([side symbol order-type qty base-price stop-px time-in-force {:keys [price trigger-by close-on-trigger order-link-id ]}]
    (check-required-params side symbol order-type qty base-price stop-px time-in-force)
-   (call-api "/open-api/stop-order/create" :post
+   (call-api "/v2/private/stop-order/create" :post
              {:path-params   {}
               :header-params {}
               :query-params  {}
               :form-params   {"side" side "symbol" symbol "order_type" order-type "qty" qty "price" price "base_price" base-price "stop_px" stop-px "time_in_force" time-in-force "trigger_by" trigger-by "close_on_trigger" close-on-trigger "order_link_id" order-link-id }
-              :content-types ["application/json" "application/x-www-form-urlencoded"]
+              :content-types ["application/x-www-form-urlencoded"]
               :accepts       ["application/json"]
               :auth-names    ["apiKey" "apiSignature" "timestamp"]})))
 
@@ -77,23 +80,42 @@
   ([side symbol order-type qty base-price stop-px time-in-force optional-params]
    (:data (conditional-new-with-http-info side symbol order-type qty base-price stop-px time-in-force optional-params))))
 
+(defn conditional-query-with-http-info
+  "Query real-time stop order information."
+  ([] (conditional-query-with-http-info nil))
+  ([{:keys [stop-order-id order-link-id symbol ]}]
+   (call-api "/v2/private/stop-order" :get
+             {:path-params   {}
+              :header-params {}
+              :query-params  {"stop_order_id" stop-order-id "order_link_id" order-link-id "symbol" symbol }
+              :form-params   {}
+              :content-types ["application/json" "application/x-www-form-urlencoded"]
+              :accepts       ["application/json"]
+              :auth-names    ["apiKey" "apiSignature" "timestamp"]})))
+
+(defn conditional-query
+  "Query real-time stop order information."
+  ([] (conditional-query nil))
+  ([optional-params]
+   (:data (conditional-query-with-http-info optional-params))))
+
 (defn conditional-replace-with-http-info
   "Replace conditional order. Only incomplete orders can be modified."
-  ([order-id symbol ] (conditional-replace-with-http-info order-id symbol nil))
-  ([order-id symbol {:keys [p-r-qty p-r-price p-r-trigger-price ]}]
-   (check-required-params order-id symbol)
-   (call-api "/open-api/stop-order/replace" :post
+  ([symbol ] (conditional-replace-with-http-info symbol nil))
+  ([symbol {:keys [stop-order-id order-link-id p-r-qty p-r-price p-r-trigger-price ]}]
+   (check-required-params symbol)
+   (call-api "/v2/private/stop-order/replace" :post
              {:path-params   {}
               :header-params {}
               :query-params  {}
-              :form-params   {"order_id" order-id "symbol" symbol "p_r_qty" p-r-qty "p_r_price" p-r-price "p_r_trigger_price" p-r-trigger-price }
-              :content-types ["application/json" "application/x-www-form-urlencoded"]
+              :form-params   {"stop_order_id" stop-order-id "order_link_id" order-link-id "symbol" symbol "p_r_qty" p-r-qty "p_r_price" p-r-price "p_r_trigger_price" p-r-trigger-price }
+              :content-types ["application/x-www-form-urlencoded"]
               :accepts       ["application/json"]
               :auth-names    ["apiKey" "apiSignature" "timestamp"]})))
 
 (defn conditional-replace
   "Replace conditional order. Only incomplete orders can be modified."
-  ([order-id symbol ] (conditional-replace order-id symbol nil))
-  ([order-id symbol optional-params]
-   (:data (conditional-replace-with-http-info order-id symbol optional-params))))
+  ([symbol ] (conditional-replace symbol nil))
+  ([symbol optional-params]
+   (:data (conditional-replace-with-http-info symbol optional-params))))
 

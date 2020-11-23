@@ -17,8 +17,8 @@ open class FundingAPI {
      - parameter symbol: (query) Contract type. 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func fundingGetRate(symbol: String, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
-        fundingGetRateWithRequestBuilder(symbol: symbol).execute { (response, error) -> Void in
+    open class func fundingMyLastFee(symbol: String, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
+        fundingMyLastFeeWithRequestBuilder(symbol: symbol).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -42,7 +42,7 @@ open class FundingAPI {
 
      - returns: RequestBuilder<Any> 
      */
-    open class func fundingGetRateWithRequestBuilder(symbol: String) -> RequestBuilder<Any> {
+    open class func fundingMyLastFeeWithRequestBuilder(symbol: String) -> RequestBuilder<Any> {
         let path = "/open-api/funding/prev-funding"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
@@ -109,8 +109,8 @@ open class FundingAPI {
      - parameter symbol: (query) Contract type. 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func fundingPredictedRate(symbol: String, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
-        fundingPredictedRateWithRequestBuilder(symbol: symbol).execute { (response, error) -> Void in
+    open class func fundingPrevRate(symbol: String, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
+        fundingPrevRateWithRequestBuilder(symbol: symbol).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -134,7 +134,7 @@ open class FundingAPI {
 
      - returns: RequestBuilder<Any> 
      */
-    open class func fundingPredictedRateWithRequestBuilder(symbol: String) -> RequestBuilder<Any> {
+    open class func fundingPrevRateWithRequestBuilder(symbol: String) -> RequestBuilder<Any> {
         let path = "/open-api/funding/prev-funding-rate"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil

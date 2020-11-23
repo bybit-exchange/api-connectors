@@ -16,10 +16,10 @@ public struct ReplaceOrderBase: Codable {
     public var retMsg: String?
     public var extCode: String?
     public var extInfo: String?
-    public var result: String?
+    public var result: Any?
     public var timeNow: String?
 
-    public init(retCode: Double?, retMsg: String?, extCode: String?, extInfo: String?, result: String?, timeNow: String?) {
+    public init(retCode: Double?, retMsg: String?, extCode: String?, extInfo: String?, result: Any?, timeNow: String?) {
         self.retCode = retCode
         self.retMsg = retMsg
         self.extCode = extCode

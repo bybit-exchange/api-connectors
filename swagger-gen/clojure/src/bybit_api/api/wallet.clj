@@ -2,6 +2,25 @@
   (:require [bybit-api.core :refer [call-api check-required-params with-collection-format]])
   (:import (java.io File)))
 
+(defn wallet-exchange-order-with-http-info
+  "Asset Exchange Records"
+  ([] (wallet-exchange-order-with-http-info nil))
+  ([{:keys [limit from direction ]}]
+   (call-api "/v2/private/exchange-order/list" :get
+             {:path-params   {}
+              :header-params {}
+              :query-params  {"limit" limit "from" from "direction" direction }
+              :form-params   {}
+              :content-types ["application/x-www-form-urlencoded"]
+              :accepts       ["application/json"]
+              :auth-names    ["apiKey" "apiSignature" "timestamp"]})))
+
+(defn wallet-exchange-order
+  "Asset Exchange Records"
+  ([] (wallet-exchange-order nil))
+  ([optional-params]
+   (:data (wallet-exchange-order-with-http-info optional-params))))
+
 (defn wallet-get-balance-with-http-info
   "get wallet balance info"
   ([] (wallet-get-balance-with-http-info nil))
@@ -66,7 +85,7 @@
              :header-params {}
              :query-params  {}
              :form-params   {"symbol" symbol "risk_id" risk-id }
-             :content-types ["application/json" "application/x-www-form-urlencoded"]
+             :content-types ["application/x-www-form-urlencoded"]
              :accepts       ["application/json"]
              :auth-names    ["apiKey" "apiSignature" "timestamp"]}))
 

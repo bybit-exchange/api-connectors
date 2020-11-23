@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **retMsg** | **String** |  |  [optional]
 **extCode** | **String** |  |  [optional]
 **extInfo** | **String** |  |  [optional]
-**result** | **String** |  |  [optional]
+**result** | **Object** |  |  [optional]
 **timeNow** | **String** |  |  [optional]
 
 

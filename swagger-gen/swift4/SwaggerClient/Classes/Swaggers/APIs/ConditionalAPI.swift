@@ -14,11 +14,13 @@ open class ConditionalAPI {
     /**
      Cancel conditional order.
      
-     - parameter stopOrderId: (form) Order ID of conditional order. 
+     - parameter symbol: (form) Contract type. 
+     - parameter stopOrderId: (form) Order ID of conditional order. (optional)
+     - parameter orderLinkId: (form) Agency customized order ID. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func conditionalCancel(stopOrderId: String, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
-        conditionalCancelWithRequestBuilder(stopOrderId: stopOrderId).execute { (response, error) -> Void in
+    open class func conditionalCancel(symbol: String, stopOrderId: String? = nil, orderLinkId: String? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
+        conditionalCancelWithRequestBuilder(symbol: symbol, stopOrderId: stopOrderId, orderLinkId: orderLinkId).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -26,7 +28,7 @@ open class ConditionalAPI {
 
     /**
      Cancel conditional order.
-     - POST /open-api/stop-order/cancel
+     - POST /v2/private/stop-order/cancel
      - API Key:
        - type: apiKey api_key (QUERY)
        - name: apiKey
@@ -38,15 +40,19 @@ open class ConditionalAPI {
        - name: timestamp
      - examples: [{contentType=application/json, example=""}]
      
-     - parameter stopOrderId: (form) Order ID of conditional order. 
+     - parameter symbol: (form) Contract type. 
+     - parameter stopOrderId: (form) Order ID of conditional order. (optional)
+     - parameter orderLinkId: (form) Agency customized order ID. (optional)
 
      - returns: RequestBuilder<Any> 
      */
-    open class func conditionalCancelWithRequestBuilder(stopOrderId: String) -> RequestBuilder<Any> {
-        let path = "/open-api/stop-order/cancel"
+    open class func conditionalCancelWithRequestBuilder(symbol: String, stopOrderId: String? = nil, orderLinkId: String? = nil) -> RequestBuilder<Any> {
+        let path = "/v2/private/stop-order/cancel"
         let URLString = SwaggerClientAPI.basePath + path
         let formParams: [String:Any?] = [
-            "stop_order_id": stopOrderId
+            "stop_order_id": stopOrderId,
+            "order_link_id": orderLinkId,
+            "symbol": symbol
         ]
 
         let nonNullParameters = APIHelper.rejectNil(formParams)
@@ -114,16 +120,15 @@ open class ConditionalAPI {
     /**
      Get my conditional order list.
      
-     - parameter stopOrderId: (query) Order ID of conditional order. (optional)
-     - parameter orderLinkId: (query) Agency customized order ID. (optional)
-     - parameter symbol: (query) Contract type. Default BTCUSD. (optional)
-     - parameter order: (query) Sort orders by creation date (optional)
-     - parameter page: (query) Page. Default getting first page data (optional)
+     - parameter symbol: (query) Contract type 
+     - parameter stopOrderStatus: (query) Stop order status. (optional)
      - parameter limit: (query) Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. (optional)
+     - parameter direction: (query) Search direction. prev: prev page, next: next page. Defaults to next (optional)
+     - parameter cursor: (query) Page turning mark，Use return cursor,Sign use origin data, in request please urlencode (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func conditionalGetOrders(stopOrderId: String? = nil, orderLinkId: String? = nil, symbol: String? = nil, order: String? = nil, page: Double? = nil, limit: Double? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
-        conditionalGetOrdersWithRequestBuilder(stopOrderId: stopOrderId, orderLinkId: orderLinkId, symbol: symbol, order: order, page: page, limit: limit).execute { (response, error) -> Void in
+    open class func conditionalGetOrders(symbol: String, stopOrderStatus: String? = nil, limit: Double? = nil, direction: String? = nil, cursor: String? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
+        conditionalGetOrdersWithRequestBuilder(symbol: symbol, stopOrderStatus: stopOrderStatus, limit: limit, direction: direction, cursor: cursor).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -131,7 +136,7 @@ open class ConditionalAPI {
 
     /**
      Get my conditional order list.
-     - GET /open-api/stop-order/list
+     - GET /v2/private/stop-order/list
      - API Key:
        - type: apiKey api_key (QUERY)
        - name: apiKey
@@ -143,28 +148,26 @@ open class ConditionalAPI {
        - name: timestamp
      - examples: [{contentType=application/json, example=""}]
      
-     - parameter stopOrderId: (query) Order ID of conditional order. (optional)
-     - parameter orderLinkId: (query) Agency customized order ID. (optional)
-     - parameter symbol: (query) Contract type. Default BTCUSD. (optional)
-     - parameter order: (query) Sort orders by creation date (optional)
-     - parameter page: (query) Page. Default getting first page data (optional)
+     - parameter symbol: (query) Contract type 
+     - parameter stopOrderStatus: (query) Stop order status. (optional)
      - parameter limit: (query) Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. (optional)
+     - parameter direction: (query) Search direction. prev: prev page, next: next page. Defaults to next (optional)
+     - parameter cursor: (query) Page turning mark，Use return cursor,Sign use origin data, in request please urlencode (optional)
 
      - returns: RequestBuilder<Any> 
      */
-    open class func conditionalGetOrdersWithRequestBuilder(stopOrderId: String? = nil, orderLinkId: String? = nil, symbol: String? = nil, order: String? = nil, page: Double? = nil, limit: Double? = nil) -> RequestBuilder<Any> {
-        let path = "/open-api/stop-order/list"
+    open class func conditionalGetOrdersWithRequestBuilder(symbol: String, stopOrderStatus: String? = nil, limit: Double? = nil, direction: String? = nil, cursor: String? = nil) -> RequestBuilder<Any> {
+        let path = "/v2/private/stop-order/list"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "stop_order_id": stopOrderId, 
-            "order_link_id": orderLinkId, 
             "symbol": symbol, 
-            "order": order, 
-            "page": page, 
-            "limit": limit
+            "stop_order_status": stopOrderStatus, 
+            "limit": limit, 
+            "direction": direction, 
+            "cursor": cursor
         ])
 
         let requestBuilder: RequestBuilder<Any>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
@@ -188,7 +191,7 @@ open class ConditionalAPI {
      - parameter orderLinkId: (form) Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func conditionalNew(side: String, symbol: String, orderType: String, qty: Double, basePrice: Double, stopPx: Double, timeInForce: String, price: Double? = nil, triggerBy: String? = nil, closeOnTrigger: Bool? = nil, orderLinkId: String? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
+    open class func conditionalNew(side: String, symbol: String, orderType: String, qty: String, basePrice: String, stopPx: String, timeInForce: String, price: String? = nil, triggerBy: String? = nil, closeOnTrigger: Bool? = nil, orderLinkId: String? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
         conditionalNewWithRequestBuilder(side: side, symbol: symbol, orderType: orderType, qty: qty, basePrice: basePrice, stopPx: stopPx, timeInForce: timeInForce, price: price, triggerBy: triggerBy, closeOnTrigger: closeOnTrigger, orderLinkId: orderLinkId).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -197,7 +200,7 @@ open class ConditionalAPI {
 
     /**
      Place a new conditional order.
-     - POST /open-api/stop-order/create
+     - POST /v2/private/stop-order/create
      - API Key:
        - type: apiKey api_key (QUERY)
        - name: apiKey
@@ -223,8 +226,8 @@ open class ConditionalAPI {
 
      - returns: RequestBuilder<Any> 
      */
-    open class func conditionalNewWithRequestBuilder(side: String, symbol: String, orderType: String, qty: Double, basePrice: Double, stopPx: Double, timeInForce: String, price: Double? = nil, triggerBy: String? = nil, closeOnTrigger: Bool? = nil, orderLinkId: String? = nil) -> RequestBuilder<Any> {
-        let path = "/open-api/stop-order/create"
+    open class func conditionalNewWithRequestBuilder(side: String, symbol: String, orderType: String, qty: String, basePrice: String, stopPx: String, timeInForce: String, price: String? = nil, triggerBy: String? = nil, closeOnTrigger: Bool? = nil, orderLinkId: String? = nil) -> RequestBuilder<Any> {
+        let path = "/v2/private/stop-order/create"
         let URLString = SwaggerClientAPI.basePath + path
         let formParams: [String:Any?] = [
             "side": side,
@@ -253,25 +256,23 @@ open class ConditionalAPI {
     }
 
     /**
-     Replace conditional order. Only incomplete orders can be modified. 
+     Query real-time stop order information.
      
-     - parameter orderId: (form) Order ID. 
-     - parameter symbol: (form) Contract type. 
-     - parameter pRQty: (form) Order quantity. (optional)
-     - parameter pRPrice: (form) Order price. (optional)
-     - parameter pRTriggerPrice: (form) Trigger price. (optional)
+     - parameter stopOrderId: (query) Order ID of conditional order. (optional)
+     - parameter orderLinkId: (query) Agency customized order ID. (optional)
+     - parameter symbol: (query) Contract type. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func conditionalReplace(orderId: String, symbol: String, pRQty: Double? = nil, pRPrice: Double? = nil, pRTriggerPrice: Double? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
-        conditionalReplaceWithRequestBuilder(orderId: orderId, symbol: symbol, pRQty: pRQty, pRPrice: pRPrice, pRTriggerPrice: pRTriggerPrice).execute { (response, error) -> Void in
+    open class func conditionalQuery(stopOrderId: String? = nil, orderLinkId: String? = nil, symbol: String? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
+        conditionalQueryWithRequestBuilder(stopOrderId: stopOrderId, orderLinkId: orderLinkId, symbol: symbol).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
 
 
     /**
-     Replace conditional order. Only incomplete orders can be modified. 
-     - POST /open-api/stop-order/replace
+     Query real-time stop order information.
+     - GET /v2/private/stop-order
      - API Key:
        - type: apiKey api_key (QUERY)
        - name: apiKey
@@ -283,19 +284,76 @@ open class ConditionalAPI {
        - name: timestamp
      - examples: [{contentType=application/json, example=""}]
      
-     - parameter orderId: (form) Order ID. 
+     - parameter stopOrderId: (query) Order ID of conditional order. (optional)
+     - parameter orderLinkId: (query) Agency customized order ID. (optional)
+     - parameter symbol: (query) Contract type. (optional)
+
+     - returns: RequestBuilder<Any> 
+     */
+    open class func conditionalQueryWithRequestBuilder(stopOrderId: String? = nil, orderLinkId: String? = nil, symbol: String? = nil) -> RequestBuilder<Any> {
+        let path = "/v2/private/stop-order"
+        let URLString = SwaggerClientAPI.basePath + path
+        let parameters: [String:Any]? = nil
+        
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "stop_order_id": stopOrderId, 
+            "order_link_id": orderLinkId, 
+            "symbol": symbol
+        ])
+
+        let requestBuilder: RequestBuilder<Any>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+    }
+
+    /**
+     Replace conditional order. Only incomplete orders can be modified. 
+     
      - parameter symbol: (form) Contract type. 
+     - parameter stopOrderId: (form) Stop order ID. (optional)
+     - parameter orderLinkId: (form) Order Link ID. (optional)
+     - parameter pRQty: (form) Order quantity. (optional)
+     - parameter pRPrice: (form) Order price. (optional)
+     - parameter pRTriggerPrice: (form) Trigger price. (optional)
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func conditionalReplace(symbol: String, stopOrderId: String? = nil, orderLinkId: String? = nil, pRQty: String? = nil, pRPrice: String? = nil, pRTriggerPrice: String? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
+        conditionalReplaceWithRequestBuilder(symbol: symbol, stopOrderId: stopOrderId, orderLinkId: orderLinkId, pRQty: pRQty, pRPrice: pRPrice, pRTriggerPrice: pRTriggerPrice).execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Replace conditional order. Only incomplete orders can be modified. 
+     - POST /v2/private/stop-order/replace
+     - API Key:
+       - type: apiKey api_key (QUERY)
+       - name: apiKey
+     - API Key:
+       - type: apiKey sign (QUERY)
+       - name: apiSignature
+     - API Key:
+       - type: apiKey timestamp (QUERY)
+       - name: timestamp
+     - examples: [{contentType=application/json, example=""}]
+     
+     - parameter symbol: (form) Contract type. 
+     - parameter stopOrderId: (form) Stop order ID. (optional)
+     - parameter orderLinkId: (form) Order Link ID. (optional)
      - parameter pRQty: (form) Order quantity. (optional)
      - parameter pRPrice: (form) Order price. (optional)
      - parameter pRTriggerPrice: (form) Trigger price. (optional)
 
      - returns: RequestBuilder<Any> 
      */
-    open class func conditionalReplaceWithRequestBuilder(orderId: String, symbol: String, pRQty: Double? = nil, pRPrice: Double? = nil, pRTriggerPrice: Double? = nil) -> RequestBuilder<Any> {
-        let path = "/open-api/stop-order/replace"
+    open class func conditionalReplaceWithRequestBuilder(symbol: String, stopOrderId: String? = nil, orderLinkId: String? = nil, pRQty: String? = nil, pRPrice: String? = nil, pRTriggerPrice: String? = nil) -> RequestBuilder<Any> {
+        let path = "/v2/private/stop-order/replace"
         let URLString = SwaggerClientAPI.basePath + path
         let formParams: [String:Any?] = [
-            "order_id": orderId,
+            "stop_order_id": stopOrderId,
+            "order_link_id": orderLinkId,
             "symbol": symbol,
             "p_r_qty": pRQty,
             "p_r_price": pRPrice,

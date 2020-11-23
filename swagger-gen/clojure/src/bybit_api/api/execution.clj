@@ -21,3 +21,23 @@
   ([optional-params]
    (:data (execution-get-trades-with-http-info optional-params))))
 
+(defn positions-close-pnl-records-with-http-info
+  "Get user's closed profit and loss records"
+  ([symbol ] (positions-close-pnl-records-with-http-info symbol nil))
+  ([symbol {:keys [start-time end-time exec-type page limit ]}]
+   (check-required-params symbol)
+   (call-api "/v2/private/trade/closed-pnl/list" :get
+             {:path-params   {}
+              :header-params {}
+              :query-params  {"symbol" symbol "start_time" start-time "end_time" end-time "exec_type" exec-type "page" page "limit" limit }
+              :form-params   {}
+              :content-types ["application/json" "application/x-www-form-urlencoded"]
+              :accepts       ["application/json"]
+              :auth-names    ["apiKey" "apiSignature" "timestamp"]})))
+
+(defn positions-close-pnl-records
+  "Get user's closed profit and loss records"
+  ([symbol ] (positions-close-pnl-records symbol nil))
+  ([symbol optional-params]
+   (:data (positions-close-pnl-records-with-http-info symbol optional-params))))
+

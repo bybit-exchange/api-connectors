@@ -12,6 +12,58 @@ import Alamofire
 
 open class WalletAPI {
     /**
+     Asset Exchange Records
+     
+     - parameter limit: (query) Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page (optional)
+     - parameter from: (query) Start ID. By default, returns the latest IDs (optional)
+     - parameter direction: (query) Search direction. Prev: searches in ascending order from start ID, Next: searches in descending order from start ID. Defaults to Next (optional)
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func walletExchangeOrder(limit: Double? = nil, from: Double? = nil, direction: String? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
+        walletExchangeOrderWithRequestBuilder(limit: limit, from: from, direction: direction).execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Asset Exchange Records
+     - GET /v2/private/exchange-order/list
+     - API Key:
+       - type: apiKey api_key (QUERY)
+       - name: apiKey
+     - API Key:
+       - type: apiKey sign (QUERY)
+       - name: apiSignature
+     - API Key:
+       - type: apiKey timestamp (QUERY)
+       - name: timestamp
+     - examples: [{contentType=application/json, example=""}]
+     
+     - parameter limit: (query) Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page (optional)
+     - parameter from: (query) Start ID. By default, returns the latest IDs (optional)
+     - parameter direction: (query) Search direction. Prev: searches in ascending order from start ID, Next: searches in descending order from start ID. Defaults to Next (optional)
+
+     - returns: RequestBuilder<Any> 
+     */
+    open class func walletExchangeOrderWithRequestBuilder(limit: Double? = nil, from: Double? = nil, direction: String? = nil) -> RequestBuilder<Any> {
+        let path = "/v2/private/exchange-order/list"
+        let URLString = SwaggerClientAPI.basePath + path
+        let parameters: [String:Any]? = nil
+        
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "limit": limit, 
+            "from": from, 
+            "direction": direction
+        ])
+
+        let requestBuilder: RequestBuilder<Any>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+    }
+
+    /**
      get wallet balance info
      
      - parameter coin: (query) Coin.enum {BTC,EOS,XRP,ETH,USDT} (optional)

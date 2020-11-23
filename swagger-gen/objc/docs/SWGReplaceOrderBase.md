@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **retMsg** | **NSString*** |  | [optional] 
 **extCode** | **NSString*** |  | [optional] 
 **extInfo** | **NSString*** |  | [optional] 
-**result** | **NSString*** |  | [optional] 
+**result** | **NSObject*** |  | [optional] 
 **timeNow** | **NSString*** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

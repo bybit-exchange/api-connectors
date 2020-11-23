@@ -2,9 +2,9 @@
 <!--
 Bybit API
 
-## REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]  
+## REST API for the Bybit Exchange. Base URI: [https://api.bybit.com]  
 
-OpenAPI spec version: 1.0.0
+OpenAPI spec version: 0.2.10
 Contact: support@bybit.com
 -->
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -81,7 +81,7 @@ Contact: support@bybit.com
   <Import Project="$(MsBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
       <ProjectReference Include="..\IO.Swagger\IO.Swagger.csproj">
-          <Project>{804D6104-6A67-47A7-8740-1F0D599507FD}</Project>
+          <Project>{2FC808BF-158C-4579-AA6C-70D3FBF78CF0}</Project>
           <Name>IO.Swagger</Name>
       </ProjectReference>
   </ItemGroup>

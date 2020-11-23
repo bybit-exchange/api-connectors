@@ -1,15 +1,14 @@
 # IO.Swagger.Api.PositionsApi
 
-All URIs are relative to *https://api-testnet.bybit.com*
+All URIs are relative to *https://api.bybit.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**PositionsChangeMargin**](PositionsApi.md#positionschangemargin) | **POST** /position/change-position-margin | Update margin.
-[**PositionsMyPosition**](PositionsApi.md#positionsmyposition) | **GET** /position/list | Get my position list.
-[**PositionsMyPositionV2**](PositionsApi.md#positionsmypositionv2) | **GET** /v2/private/position/list | Get my position list.
+[**PositionsClosePnlRecords**](PositionsApi.md#positionsclosepnlrecords) | **GET** /v2/private/trade/closed-pnl/list | Get user&#39;s closed profit and loss records
+[**PositionsMyPosition**](PositionsApi.md#positionsmyposition) | **GET** /v2/private/position/list | Get my position list.
 [**PositionsSaveLeverage**](PositionsApi.md#positionssaveleverage) | **POST** /user/leverage/save | Change user leverage.
 [**PositionsTradingStop**](PositionsApi.md#positionstradingstop) | **POST** /open-api/position/trading-stop | Set Trading-Stop Condition.
-[**PositionsUserLeverage**](PositionsApi.md#positionsuserleverage) | **GET** /user/leverage | Get user leverage setting.
 
 
 <a name="positionschangemargin"></a>
@@ -81,6 +80,88 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="positionsclosepnlrecords"></a>
+# **PositionsClosePnlRecords**
+> Object PositionsClosePnlRecords (string symbol, int? startTime = null, int? endTime = null, string execType = null, int? page = null, int? limit = null)
+
+Get user's closed profit and loss records
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class PositionsClosePnlRecordsExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api_key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api_key", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("sign", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("sign", "Bearer");
+            // Configure API key authorization: timestamp
+            Configuration.Default.AddApiKey("timestamp", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("timestamp", "Bearer");
+
+            var apiInstance = new PositionsApi();
+            var symbol = symbol_example;  // string | Contract type
+            var startTime = 56;  // int? | Start timestamp point for result, in second (optional) 
+            var endTime = 56;  // int? | End timestamp point for result, in second (optional) 
+            var execType = execType_example;  // string | Execution type (optional) 
+            var page = 56;  // int? | Page. By default, gets first page of data. Maximum of 50 pages (optional) 
+            var limit = 56;  // int? | Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. (optional) 
+
+            try
+            {
+                // Get user's closed profit and loss records
+                Object result = apiInstance.PositionsClosePnlRecords(symbol, startTime, endTime, execType, page, limit);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling PositionsApi.PositionsClosePnlRecords: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string**| Contract type | 
+ **startTime** | **int?**| Start timestamp point for result, in second | [optional] 
+ **endTime** | **int?**| End timestamp point for result, in second | [optional] 
+ **execType** | **string**| Execution type | [optional] 
+ **page** | **int?**| Page. By default, gets first page of data. Maximum of 50 pages | [optional] 
+ **limit** | **int?**| Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. | [optional] 
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
+
+### HTTP request headers
+
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
@@ -88,7 +169,7 @@ Name | Type | Description  | Notes
 
 <a name="positionsmyposition"></a>
 # **PositionsMyPosition**
-> Object PositionsMyPosition ()
+> Object PositionsMyPosition (string symbol = null)
 
 Get my position list.
 
@@ -120,85 +201,17 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("timestamp", "Bearer");
 
             var apiInstance = new PositionsApi();
-
-            try
-            {
-                // Get my position list.
-                Object result = apiInstance.PositionsMyPosition();
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling PositionsApi.PositionsMyPosition: " + e.Message );
-            }
-        }
-    }
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-**Object**
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a name="positionsmypositionv2"></a>
-# **PositionsMyPositionV2**
-> Object PositionsMyPositionV2 (string symbol = null)
-
-Get my position list.
-
-### Example
-```csharp
-using System;
-using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
-
-namespace Example
-{
-    public class PositionsMyPositionV2Example
-    {
-        public void main()
-        {
-            // Configure API key authorization: apiKey
-            Configuration.Default.AddApiKey("api_key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api_key", "Bearer");
-            // Configure API key authorization: apiSignature
-            Configuration.Default.AddApiKey("sign", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("sign", "Bearer");
-            // Configure API key authorization: timestamp
-            Configuration.Default.AddApiKey("timestamp", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("timestamp", "Bearer");
-
-            var apiInstance = new PositionsApi();
             var symbol = symbol_example;  // string | Contract type which you want update its margin (optional) 
 
             try
             {
                 // Get my position list.
-                Object result = apiInstance.PositionsMyPositionV2(symbol);
+                Object result = apiInstance.PositionsMyPosition(symbol);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling PositionsApi.PositionsMyPositionV2: " + e.Message );
+                Debug.Print("Exception when calling PositionsApi.PositionsMyPosition: " + e.Message );
             }
         }
     }
@@ -295,14 +308,14 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="positionstradingstop"></a>
 # **PositionsTradingStop**
-> Object PositionsTradingStop (string symbol, string takeProfit = null, string stopLoss = null, string trailingStop = null)
+> Object PositionsTradingStop (string symbol, string takeProfit = null, string stopLoss = null, string trailingStop = null, string newTrailingActive = null)
 
 Set Trading-Stop Condition.
 
@@ -338,11 +351,12 @@ namespace Example
             var takeProfit = takeProfit_example;  // string | Not less than 0, 0 means cancel TP (optional) 
             var stopLoss = stopLoss_example;  // string | Not less than 0, 0 means cancel SL (optional) 
             var trailingStop = trailingStop_example;  // string | Not less than 0, 0 means cancel TS (optional) 
+            var newTrailingActive = newTrailingActive_example;  // string | Trailing stop trigger price. Trailing stops are triggered only when the price reaches the specified price. Trailing stops are triggered immediately by default. (optional) 
 
             try
             {
                 // Set Trading-Stop Condition.
-                Object result = apiInstance.PositionsTradingStop(symbol, takeProfit, stopLoss, trailingStop);
+                Object result = apiInstance.PositionsTradingStop(symbol, takeProfit, stopLoss, trailingStop, newTrailingActive);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -362,6 +376,7 @@ Name | Type | Description  | Notes
  **takeProfit** | **string**| Not less than 0, 0 means cancel TP | [optional] 
  **stopLoss** | **string**| Not less than 0, 0 means cancel SL | [optional] 
  **trailingStop** | **string**| Not less than 0, 0 means cancel TS | [optional] 
+ **newTrailingActive** | **string**| Trailing stop trigger price. Trailing stops are triggered only when the price reaches the specified price. Trailing stops are triggered immediately by default. | [optional] 
 
 ### Return type
 
@@ -373,75 +388,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a name="positionsuserleverage"></a>
-# **PositionsUserLeverage**
-> Object PositionsUserLeverage ()
-
-Get user leverage setting.
-
-### Example
-```csharp
-using System;
-using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
-
-namespace Example
-{
-    public class PositionsUserLeverageExample
-    {
-        public void main()
-        {
-            // Configure API key authorization: apiKey
-            Configuration.Default.AddApiKey("api_key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api_key", "Bearer");
-            // Configure API key authorization: apiSignature
-            Configuration.Default.AddApiKey("sign", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("sign", "Bearer");
-            // Configure API key authorization: timestamp
-            Configuration.Default.AddApiKey("timestamp", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("timestamp", "Bearer");
-
-            var apiInstance = new PositionsApi();
-
-            try
-            {
-                // Get user leverage setting.
-                Object result = apiInstance.PositionsUserLeverage();
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling PositionsApi.PositionsUserLeverage: " + e.Message );
-            }
-        }
-    }
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-**Object**
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

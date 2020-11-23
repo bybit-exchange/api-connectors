@@ -49,6 +49,75 @@ NSInteger kSWGWalletApiMissingParamErrorCode = 234513;
 #pragma mark - Api Methods
 
 ///
+/// Asset Exchange Records
+/// 
+///  @param limit Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page (optional)
+///
+///  @param from Start ID. By default, returns the latest IDs (optional)
+///
+///  @param direction Search direction. Prev: searches in ascending order from start ID, Next: searches in descending order from start ID. Defaults to Next (optional)
+///
+///  @returns NSObject*
+///
+-(NSURLSessionTask*) walletExchangeOrderWithLimit: (NSNumber*) limit
+    from: (NSNumber*) from
+    direction: (NSString*) direction
+    completionHandler: (void (^)(NSObject* output, NSError* error)) handler {
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/v2/private/exchange-order/list"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    if (limit != nil) {
+        queryParams[@"limit"] = limit;
+    }
+    if (from != nil) {
+        queryParams[@"from"] = from;
+    }
+    if (direction != nil) {
+        queryParams[@"direction"] = direction;
+    }
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/x-www-form-urlencoded"]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"apiKey", @"apiSignature", @"timestamp"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"GET"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: @"NSObject*"
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler((NSObject*)data, error);
+                                }
+                            }];
+}
+
+///
 /// get wallet balance info
 /// 
 ///  @param coin Coin.enum {BTC,EOS,XRP,ETH,USDT} (optional)
@@ -295,7 +364,7 @@ NSInteger kSWGWalletApiMissingParamErrorCode = 234513;
     NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
 
     // request content type
-    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/x-www-form-urlencoded"]];
 
     // Authentication setting
     NSArray *authSettings = @[@"apiKey", @"apiSignature", @"timestamp"];

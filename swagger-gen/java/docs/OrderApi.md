@@ -1,22 +1,20 @@
 # OrderApi
 
-All URIs are relative to *https://api-testnet.bybit.com*
+All URIs are relative to *https://api.bybit.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**orderCancel**](OrderApi.md#orderCancel) | **POST** /open-api/order/cancel | Get my active order list.
+[**orderCancel**](OrderApi.md#orderCancel) | **POST** /v2/private/order/cancel | Get my active order list.
 [**orderCancelAll**](OrderApi.md#orderCancelAll) | **POST** /v2/private/order/cancelAll | Get my active order list.
-[**orderCancelV2**](OrderApi.md#orderCancelV2) | **POST** /v2/private/order/cancel | Get my active order list.
-[**orderGetOrders**](OrderApi.md#orderGetOrders) | **GET** /open-api/order/list | Get my active order list.
-[**orderNew**](OrderApi.md#orderNew) | **POST** /open-api/order/create | Place active order
-[**orderNewV2**](OrderApi.md#orderNewV2) | **POST** /v2/private/order/create | Place active order
+[**orderGetOrders**](OrderApi.md#orderGetOrders) | **GET** /v2/private/order/list | Get my active order list.
+[**orderNew**](OrderApi.md#orderNew) | **POST** /v2/private/order/create | Place active order
 [**orderQuery**](OrderApi.md#orderQuery) | **GET** /v2/private/order | Get my active order list.
-[**orderReplace**](OrderApi.md#orderReplace) | **POST** /open-api/order/replace | Replace active order. Only incomplete orders can be modified. 
+[**orderReplace**](OrderApi.md#orderReplace) | **POST** /v2/private/order/replace | Replace active order. Only incomplete orders can be modified. 
 
 
 <a name="orderCancel"></a>
 # **orderCancel**
-> Object orderCancel(orderId, symbol)
+> Object orderCancel(symbol, orderId, orderLinkId)
 
 Get my active order list.
 
@@ -50,10 +48,11 @@ timestamp.setApiKey("YOUR API KEY");
 //timestamp.setApiKeyPrefix("Token");
 
 OrderApi apiInstance = new OrderApi();
-String orderId = "orderId_example"; // String | Order ID
 String symbol = "symbol_example"; // String | Contract type.
+String orderId = "orderId_example"; // String | Order ID
+String orderLinkId = "orderLinkId_example"; // String | Order link id.
 try {
-    Object result = apiInstance.orderCancel(orderId, symbol);
+    Object result = apiInstance.orderCancel(symbol, orderId, orderLinkId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling OrderApi#orderCancel");
@@ -65,8 +64,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **orderId** | **String**| Order ID |
- **symbol** | **String**| Contract type. | [optional]
+ **symbol** | **String**| Contract type. |
+ **orderId** | **String**| Order ID | [optional]
+ **orderLinkId** | **String**| Order link id. | [optional]
 
 ### Return type
 
@@ -78,7 +78,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 <a name="orderCancelAll"></a>
@@ -143,81 +143,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
-
-<a name="orderCancelV2"></a>
-# **orderCancelV2**
-> Object orderCancelV2(orderId, symbol, orderLinkId)
-
-Get my active order list.
-
-### Example
-```java
-// Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.OrderApi;
-
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-// Configure API key authorization: apiKey
-ApiKeyAuth apiKey = (ApiKeyAuth) defaultClient.getAuthentication("apiKey");
-apiKey.setApiKey("YOUR API KEY");
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiKey.setApiKeyPrefix("Token");
-
-// Configure API key authorization: apiSignature
-ApiKeyAuth apiSignature = (ApiKeyAuth) defaultClient.getAuthentication("apiSignature");
-apiSignature.setApiKey("YOUR API KEY");
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiSignature.setApiKeyPrefix("Token");
-
-// Configure API key authorization: timestamp
-ApiKeyAuth timestamp = (ApiKeyAuth) defaultClient.getAuthentication("timestamp");
-timestamp.setApiKey("YOUR API KEY");
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//timestamp.setApiKeyPrefix("Token");
-
-OrderApi apiInstance = new OrderApi();
-String orderId = "orderId_example"; // String | Order ID
-String symbol = "symbol_example"; // String | Contract type.
-String orderLinkId = "orderLinkId_example"; // String | Order link id.
-try {
-    Object result = apiInstance.orderCancelV2(orderId, symbol, orderLinkId);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling OrderApi#orderCancelV2");
-    e.printStackTrace();
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **orderId** | **String**| Order ID | [optional]
- **symbol** | **String**| Contract type. | [optional]
- **orderLinkId** | **String**| Order link id. | [optional]
-
-### Return type
-
-**Object**
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 <a name="orderGetOrders"></a>
 # **orderGetOrders**
-> Object orderGetOrders(orderId, orderLinkId, symbol, order, page, limit, orderStatus)
+> Object orderGetOrders(symbol, limit, orderStatus, direction, cursor)
 
 Get my active order list.
 
@@ -251,15 +182,13 @@ timestamp.setApiKey("YOUR API KEY");
 //timestamp.setApiKeyPrefix("Token");
 
 OrderApi apiInstance = new OrderApi();
-String orderId = "orderId_example"; // String | Order ID
-String orderLinkId = "orderLinkId_example"; // String | Customized order ID.
 String symbol = "symbol_example"; // String | Contract type. Default BTCUSD
-String order = "order_example"; // String | Sort orders by creation date
-BigDecimal page = new BigDecimal(); // BigDecimal | Page. Default getting first page data
 BigDecimal limit = new BigDecimal(); // BigDecimal | TLimit for data size per page, max size is 50. Default as showing 20 pieces of data per page
 String orderStatus = "orderStatus_example"; // String | Query your orders for all statuses if 'order_status' is empty. If you want to query orders with specific statuses , you can pass the order_status split by
+String direction = "direction_example"; // String | Search direction. prev: prev page, next: next page. Defaults to next
+String cursor = "cursor_example"; // String | Page turning mark，Use return cursor,Sign use origin data, in request please urlencode
 try {
-    Object result = apiInstance.orderGetOrders(orderId, orderLinkId, symbol, order, page, limit, orderStatus);
+    Object result = apiInstance.orderGetOrders(symbol, limit, orderStatus, direction, cursor);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling OrderApi#orderGetOrders");
@@ -271,13 +200,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **orderId** | **String**| Order ID | [optional]
- **orderLinkId** | **String**| Customized order ID. | [optional]
- **symbol** | **String**| Contract type. Default BTCUSD | [optional]
- **order** | **String**| Sort orders by creation date | [optional]
- **page** | **BigDecimal**| Page. Default getting first page data | [optional]
+ **symbol** | **String**| Contract type. Default BTCUSD |
  **limit** | **BigDecimal**| TLimit for data size per page, max size is 50. Default as showing 20 pieces of data per page | [optional]
  **orderStatus** | **String**| Query your orders for all statuses if &#39;order_status&#39; is empty. If you want to query orders with specific statuses , you can pass the order_status split by | [optional]
+ **direction** | **String**| Search direction. prev: prev page, next: next page. Defaults to next | [optional]
+ **cursor** | **String**| Page turning mark，Use return cursor,Sign use origin data, in request please urlencode | [optional]
 
 ### Return type
 
@@ -374,94 +301,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
-
-<a name="orderNewV2"></a>
-# **orderNewV2**
-> Object orderNewV2(side, symbol, orderType, qty, timeInForce, price, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId, trailingStop)
-
-Place active order
-
-### Example
-```java
-// Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.OrderApi;
-
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-// Configure API key authorization: apiKey
-ApiKeyAuth apiKey = (ApiKeyAuth) defaultClient.getAuthentication("apiKey");
-apiKey.setApiKey("YOUR API KEY");
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiKey.setApiKeyPrefix("Token");
-
-// Configure API key authorization: apiSignature
-ApiKeyAuth apiSignature = (ApiKeyAuth) defaultClient.getAuthentication("apiSignature");
-apiSignature.setApiKey("YOUR API KEY");
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiSignature.setApiKeyPrefix("Token");
-
-// Configure API key authorization: timestamp
-ApiKeyAuth timestamp = (ApiKeyAuth) defaultClient.getAuthentication("timestamp");
-timestamp.setApiKey("YOUR API KEY");
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//timestamp.setApiKeyPrefix("Token");
-
-OrderApi apiInstance = new OrderApi();
-String side = "side_example"; // String | Side
-String symbol = "symbol_example"; // String | Contract type.
-String orderType = "orderType_example"; // String | Active order type
-BigDecimal qty = new BigDecimal(); // BigDecimal | 
-String timeInForce = "timeInForce_example"; // String | Time in force
-Double price = 3.4D; // Double | Order price.
-Double takeProfit = 3.4D; // Double | take profit price
-Double stopLoss = 3.4D; // Double | stop loss price
-Boolean reduceOnly = true; // Boolean | reduce only
-Boolean closeOnTrigger = true; // Boolean | close on trigger
-String orderLinkId = "orderLinkId_example"; // String | TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.
-String trailingStop = "trailingStop_example"; // String | Trailing stop.
-try {
-    Object result = apiInstance.orderNewV2(side, symbol, orderType, qty, timeInForce, price, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId, trailingStop);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling OrderApi#orderNewV2");
-    e.printStackTrace();
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **side** | **String**| Side |
- **symbol** | **String**| Contract type. |
- **orderType** | **String**| Active order type |
- **qty** | **BigDecimal**|  |
- **timeInForce** | **String**| Time in force |
- **price** | **Double**| Order price. | [optional]
- **takeProfit** | **Double**| take profit price | [optional]
- **stopLoss** | **Double**| stop loss price | [optional]
- **reduceOnly** | **Boolean**| reduce only | [optional]
- **closeOnTrigger** | **Boolean**| close on trigger | [optional]
- **orderLinkId** | **String**| TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. | [optional]
- **trailingStop** | **String**| Trailing stop. | [optional]
-
-### Return type
-
-**Object**
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 <a name="orderQuery"></a>
@@ -533,7 +373,7 @@ Name | Type | Description  | Notes
 
 <a name="orderReplace"></a>
 # **orderReplace**
-> Object orderReplace(orderId, symbol, pRQty, pRPrice)
+> Object orderReplace(symbol, orderId, orderLinkId, pRQty, pRPrice)
 
 Replace active order. Only incomplete orders can be modified. 
 
@@ -567,12 +407,13 @@ timestamp.setApiKey("YOUR API KEY");
 //timestamp.setApiKeyPrefix("Token");
 
 OrderApi apiInstance = new OrderApi();
-String orderId = "orderId_example"; // String | Order ID.
 String symbol = "symbol_example"; // String | Contract type.
-BigDecimal pRQty = new BigDecimal(); // BigDecimal | Order quantity.
-Double pRPrice = 3.4D; // Double | Order price.
+String orderId = "orderId_example"; // String | Order ID.
+String orderLinkId = "orderLinkId_example"; // String | Order Link ID.
+String pRQty = "pRQty_example"; // String | Order quantity.
+String pRPrice = "pRPrice_example"; // String | Order price.
 try {
-    Object result = apiInstance.orderReplace(orderId, symbol, pRQty, pRPrice);
+    Object result = apiInstance.orderReplace(symbol, orderId, orderLinkId, pRQty, pRPrice);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling OrderApi#orderReplace");
@@ -584,10 +425,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **orderId** | **String**| Order ID. |
  **symbol** | **String**| Contract type. |
- **pRQty** | **BigDecimal**| Order quantity. | [optional]
- **pRPrice** | **Double**| Order price. | [optional]
+ **orderId** | **String**| Order ID. | [optional]
+ **orderLinkId** | **String**| Order Link ID. | [optional]
+ **pRQty** | **String**| Order quantity. | [optional]
+ **pRPrice** | **String**| Order price. | [optional]
 
 ### Return type
 
@@ -599,6 +441,6 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 

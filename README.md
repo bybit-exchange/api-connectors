@@ -12,7 +12,7 @@ Libraries for connecting to the Bybit API. https://bybit-exchange.github.io/docs
 
 #### HTTP
 
-* [Python](/official-http/python)  **NEED UPDATE TO V0.2.2**
+* [Python](/official-http/python)
 * [Cpp](/official-http/cpp)
 
 #### Websockets
