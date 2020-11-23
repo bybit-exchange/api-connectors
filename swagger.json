@@ -1712,20 +1712,22 @@
                 ],
                 "summary": "Get the orderbook.",
                 "operationId": "Market.orderbook",
-                "parameters": [{
-                    "name": "symbol",
-                    "in": "query",
-                    "description": "Contract type.",
-                    "required": true,
-                    "type": "string"
-                },{
-                    "name": "depth",
-                    "in": "query",
-                    "description": "Orderbook depth.",
-                    "required": true,
-                    "type": "number",
-                    "format": "int64"
-                }],
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "depth",
+                        "in": "query",
+                        "description": "Orderbook depth.",
+                        "required": true,
+                        "type": "number",
+                        "format": "int64"
+                    }],
                 "responses": {
                     "200": {
                         "description": "Request was successful",
