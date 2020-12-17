@@ -1,3 +1,5 @@
+import ssl
+
 import websocket
 import threading
 import traceback
@@ -20,7 +22,9 @@ class BybitWebsocket:
 
     #User can ues MAX_DATA_CAPACITY to control memory usage.
     MAX_DATA_CAPACITY = 200
+    # funding, account, leverage
     PRIVATE_TOPIC = ['position', 'execution', 'order', 'stop_order', 'wallet']
+    USD_SYMBOLS = ['BTCUSD', 'ETHUSD', 'EOSUSD', 'XRPUSD']
     USDT_SYMBOLS = ['BTCUSDT']
     WS_OPS = ['auth', 'subscribe']
     def __init__(self, wsURL, api_key, api_secret):
@@ -60,7 +64,8 @@ class BybitWebsocket:
                                          on_error=self.__on_error,
                                          keep_running=True)
 
-        self.wst = threading.Thread(target=lambda: self.ws.run_forever())
+        self.wst = threading.Thread(target=lambda: self.ws.run_forever(http_proxy_host='127.0.0.1', http_proxy_port=1087,
+sslopt={"cert_reqs": ssl.CERT_NONE}))
         self.wst.daemon = True
         self.wst.start()
         self.logger.debug("Started thread")
@@ -70,7 +75,7 @@ class BybitWebsocket:
         while not self.ws.sock or not self.ws.sock.connected and retry_times:
             sleep(1)
             retry_times -= 1
-        if retry_times == 0 and not self.ws.sock.connected: 
+        if retry_times == 0 and not self.ws.sock.connected:
             self.logger.error("Couldn't connect to WebSocket! Exiting.")
             self.exit()
             raise websocket.WebSocketTimeoutException('Error！Couldn not connect to WebSocket!.')
@@ -107,7 +112,7 @@ class BybitWebsocket:
                 self.data["pong"].append("PING success")
 
         if 'topic' in message:
-            self.data[message["topic"]].append(message["data"])
+            self.data[message["topic"]].append(message)
             if len(self.data[message["topic"]]) > BybitWebsocket.MAX_DATA_CAPACITY:
                 self.data[message["topic"]] = self.data[message["topic"]][BybitWebsocket.MAX_DATA_CAPACITY//2:]
 
@@ -218,4 +223,4 @@ class BybitWebsocket:
                 return []
             # while len(self.data[topic]) == 0 :
             #     sleep(0.1)
-            return self.data[topic].pop()
+            return self.data[topic].pop(0)
