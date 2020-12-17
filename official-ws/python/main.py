@@ -33,7 +33,7 @@ if __name__ == "__main__":
     # ws.subscribe_insurance() # only support inverse perpetual
     # ws.subscribe_wallet() # only support USDT perpetual
     while(1):
-        logger.info(ws.get_data("orderBookL2_25.BTCUSD"))
+        logger.info(ws.get_orderbook("BTCUSD"))
         # logger.info(ws.get_data('candle.1.BTCUSD'))
         # logger.info(ws.get_data("instrument_info.100ms.BTCUSD"))
         # logger.info(ws.get_data("trade.BTCUSD"))

@@ -203,14 +203,21 @@ sslopt={"cert_reqs": ssl.CERT_NONE}))
         if 'wallet' not in self.data:
             self.data['wallet'] = []
 
+    def get_kline(self, symbol, interval) :
+        if is_inverse(symbol) :
+            topic_name = 'klineV2.' + interval + '.' + symbol
+        else:
+            topic_name = 'candle.' +  interval + '.' + symbol
+        if topic_name in self.data and len(self.data[topic_name]) > 0:
+            return self.data[topic_name].pop(0)
+        else:
+            return []
+
+    def get_orderbook(self, symbol):
+        return self.get_data("orderBookL2_25." + symbol)
+
     def get_data(self, topic):
         if topic not in self.data:
-            topic_splits = topic.split('.')
-            # adaptor for different kline topic names
-            if topic_splits[len(topic_splits) - 1] not in BybitWebsocket.USDT_SYMBOLS and topic_splits[0] == "candle":
-                topic = topic.replace('candle', 'klineV2')
-                ret = self.data[topic].pop() if topic in self.data and len(self.data[topic]) > 0 else []
-                return ret
             self.logger.info(" The topic %s is not subscribed." % topic)
             return []
         if topic.split('.')[0] in BybitWebsocket.PRIVATE_TOPIC and not self.auth and 'request' in self.data \
@@ -219,8 +226,12 @@ sslopt={"cert_reqs": ssl.CERT_NONE}))
             return []
         else:
             if len(self.data[topic]) == 0:
-                # self.logger.info(" The topic %s is empty." % topic)
                 return []
-            # while len(self.data[topic]) == 0 :
-            #     sleep(0.1)
+
             return self.data[topic].pop(0)
+
+    def is_inverse(symbol):
+       if symbol[-1] != 'T':
+           return True
+       else:
+           return False
