@@ -35,6 +35,10 @@ client = bybit.bybit(test=True, api_key="", api_secret="")
 # #
 # # #Get Active Order
 # print(client.Order.Order_getOrders().result())
+
+# #Get Active Order(real-time)
+# print(client.Order.Order_query(symbol="BTCUSD", order_id="360557b6-4513-4f14-973c-9541981ac589").result())
+# print(client.Order.Order_query(symbol="BTCUSD").result())
 # #
 # # #Cancel Active Order
 # print(client.Order.Order_cancel(symbol="BTCUSD", order_id="b441f0e6-a105-46fb-af81-4beb01bdeed8").result())
@@ -44,9 +48,10 @@ client = bybit.bybit(test=True, api_key="", api_secret="")
 # #
 # #Get Conditional Order(real-time)
 #print(client.Conditional.Conditional_query(symbol="BTCUSD", stop_order_id="9d1d5f0e-148a-465d-9cf3-76c4b639d902").result())
+# print(client.Conditional.Conditional_query(symbol="BTCUSD").result())
 
 # # #Get Conditional Order
-#print(client.Conditional.Conditional_getOrders(stop_order_status="Untriggered").result())
+# print(client.Conditional.Conditional_getOrders(stop_order_status="Untriggered").result())
 
 
 # # #Replace conditional order
@@ -69,6 +74,9 @@ client = bybit.bybit(test=True, api_key="", api_secret="")
 # # #Get wallet fund records
 # print(client.Wallet.Wallet_getRecords().result())
 
+# print(client.Wallet.Wallet_withdraw().result())
+# print(client.Wallet.Wallet_getRiskLimit().result())
+# print(client.APIkey_APIkey.info())
 # # #Get wallet balance
 # print(client.Wallet.Wallet_getBalance(coin="BTC").result())
 
