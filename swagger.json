@@ -922,20 +922,20 @@
                 "tags": [
                     "Order"
                 ],
-                "summary": "Get my active order list.",
+                "summary": "Paginate through my orders, optionally filtering by type.",
                 "operationId": "Order.getOrders",
                 "parameters": [
                     {
                         "name": "symbol",
                         "in": "query",
-                        "description": "Contract type. Default BTCUSD",
+                        "description": "Contract type",
                         "required": true,
                         "type": "string"
                     },
                     {
                         "name": "limit",
                         "in": "query",
-                        "description": "TLimit for data size per page, max size is 50. Default as showing 20 pieces of data per page",
+                        "description": "Maximal count of objects returned in each response's data array; defaults to 20; maximum 50.",
                         "required": false,
                         "type": "number",
                         "format": "int32"
@@ -943,21 +943,21 @@
                     {
                         "name": "order_status",
                         "in": "query",
-                        "description": "Query your orders for all statuses if 'order_status' is empty. If you want to query orders with specific statuses , you can pass the order_status split by",
+                        "description": "Filter orders by a given status; if not provided, no filtering is performed.",
                         "required": false,
                         "type": "string"
                     },
                     {
                         "name": "direction",
                         "in": "query",
-                        "description": "Search direction. prev: prev page, next: next page. Defaults to next",
+                        "description": "Pagination direction; defaults to next; can also be 'prev'.",
                         "required": false,
                         "type": "string"
                     },
                     {
                         "name": "cursor",
                         "in": "query",
-                        "description": "Page turning mark，Use return cursor,Sign use origin data, in request please urlencode",
+                        "description": "When a recent V2OrderListData object has a 'cursor' value, it can be provided here, along with the same request parameters that resulted in that cursor value, to request another page of data.",
                         "required": false,
                         "type": "string"
                     }
@@ -1279,21 +1279,21 @@
                     {
                         "name": "limit",
                         "in": "query",
-                        "description": "Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page.",
+                        "description": "Maximal count of objects returned in each response's data array; defaults to 20; maximum 50.",
                         "required": false,
                         "type": "number",
                         "format": "int32"
                     },{
                         "name": "direction",
                         "in": "query",
-                        "description": "Search direction. prev: prev page, next: next page. Defaults to next",
+                        "description": "Pagination direction; defaults to next; can also be 'prev'.",
                         "required": false,
                         "type": "string"
                     },
                     {
                         "name": "cursor",
                         "in": "query",
-                        "description": "Page turning mark，Use return cursor,Sign use origin data, in request please urlencode",
+                        "description": "When a recent ConditionalOrdersRes object has a 'cursor' value, it can be provided here, along with the same request parameters that resulted in that cursor value, to request another page of data.",
                         "required": false,
                         "type": "string"
                     }
@@ -4087,7 +4087,7 @@
             "type": "object"
         },
         "V2OrderListData": {
-            "description": "Get order list response",
+            "description": "list of orders, and cursor for more",
             "properties": {
                 "data": {
                     "type": "array",
@@ -4728,7 +4728,7 @@
             "type": "object"
         },
         "ConditionalOrdersRes": {
-            "description": "Get order list response",
+            "description": "list of conditional orders, and cursor for more",
             "properties": {
                 "data": {
                     "type": "array",
