@@ -1,23 +1,22 @@
 # SWGOrderApi
 
-All URIs are relative to *https://api-testnet.bybit.com*
+All URIs are relative to *https://api.bybit.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**orderCancel**](SWGOrderApi.md#ordercancel) | **POST** /open-api/order/cancel | Get my active order list.
+[**orderCancel**](SWGOrderApi.md#ordercancel) | **POST** /v2/private/order/cancel | Get my active order list.
 [**orderCancelAll**](SWGOrderApi.md#ordercancelall) | **POST** /v2/private/order/cancelAll | Get my active order list.
-[**orderCancelV2**](SWGOrderApi.md#ordercancelv2) | **POST** /v2/private/order/cancel | Get my active order list.
-[**orderGetOrders**](SWGOrderApi.md#ordergetorders) | **GET** /open-api/order/list | Get my active order list.
-[**orderNew**](SWGOrderApi.md#ordernew) | **POST** /open-api/order/create | Place active order
-[**orderNewV2**](SWGOrderApi.md#ordernewv2) | **POST** /v2/private/order/create | Place active order
+[**orderGetOrders**](SWGOrderApi.md#ordergetorders) | **GET** /v2/private/order/list | Get my active order list.
+[**orderNew**](SWGOrderApi.md#ordernew) | **POST** /v2/private/order/create | Place active order
 [**orderQuery**](SWGOrderApi.md#orderquery) | **GET** /v2/private/order | Get my active order list.
-[**orderReplace**](SWGOrderApi.md#orderreplace) | **POST** /open-api/order/replace | Replace active order. Only incomplete orders can be modified. 
+[**orderReplace**](SWGOrderApi.md#orderreplace) | **POST** /v2/private/order/replace | Replace active order. Only incomplete orders can be modified. 
 
 
 # **orderCancel**
 ```objc
--(NSURLSessionTask*) orderCancelWithOrderId: (NSString*) orderId
-    symbol: (NSString*) symbol
+-(NSURLSessionTask*) orderCancelWithSymbol: (NSString*) symbol
+    orderId: (NSString*) orderId
+    orderLinkId: (NSString*) orderLinkId
         completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
 ```
 
@@ -43,14 +42,16 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"timestamp"];
 
 
-NSString* orderId = @"orderId_example"; // Order ID
-NSString* symbol = @"symbol_example"; // Contract type. (optional)
+NSString* symbol = @"symbol_example"; // Contract type.
+NSString* orderId = @"orderId_example"; // Order ID (optional)
+NSString* orderLinkId = @"orderLinkId_example"; // Order link id. (optional)
 
 SWGOrderApi*apiInstance = [[SWGOrderApi alloc] init];
 
 // Get my active order list.
-[apiInstance orderCancelWithOrderId:orderId
-              symbol:symbol
+[apiInstance orderCancelWithSymbol:symbol
+              orderId:orderId
+              orderLinkId:orderLinkId
           completionHandler: ^(NSObject* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
@@ -65,8 +66,9 @@ SWGOrderApi*apiInstance = [[SWGOrderApi alloc] init];
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **orderId** | **NSString***| Order ID | 
- **symbol** | **NSString***| Contract type. | [optional] 
+ **symbol** | **NSString***| Contract type. | 
+ **orderId** | **NSString***| Order ID | [optional] 
+ **orderLinkId** | **NSString***| Order link id. | [optional] 
 
 ### Return type
 
@@ -78,7 +80,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -143,93 +145,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **orderCancelV2**
-```objc
--(NSURLSessionTask*) orderCancelV2WithOrderId: (NSString*) orderId
-    symbol: (NSString*) symbol
-    orderLinkId: (NSString*) orderLinkId
-        completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
-```
-
-Get my active order list.
-
-### Example 
-```objc
-SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
-
-// Configure API key authorization: (authentication scheme: apiKey)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api_key"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api_key"];
-
-// Configure API key authorization: (authentication scheme: apiSignature)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"sign"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"sign"];
-
-// Configure API key authorization: (authentication scheme: timestamp)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"timestamp"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"timestamp"];
-
-
-NSString* orderId = @"orderId_example"; // Order ID (optional)
-NSString* symbol = @"symbol_example"; // Contract type. (optional)
-NSString* orderLinkId = @"orderLinkId_example"; // Order link id. (optional)
-
-SWGOrderApi*apiInstance = [[SWGOrderApi alloc] init];
-
-// Get my active order list.
-[apiInstance orderCancelV2WithOrderId:orderId
-              symbol:symbol
-              orderLinkId:orderLinkId
-          completionHandler: ^(NSObject* output, NSError* error) {
-                        if (output) {
-                            NSLog(@"%@", output);
-                        }
-                        if (error) {
-                            NSLog(@"Error calling SWGOrderApi->orderCancelV2: %@", error);
-                        }
-                    }];
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **orderId** | **NSString***| Order ID | [optional] 
- **symbol** | **NSString***| Contract type. | [optional] 
- **orderLinkId** | **NSString***| Order link id. | [optional] 
-
-### Return type
-
-**NSObject***
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **orderGetOrders**
 ```objc
--(NSURLSessionTask*) orderGetOrdersWithOrderId: (NSString*) orderId
-    orderLinkId: (NSString*) orderLinkId
-    symbol: (NSString*) symbol
-    order: (NSString*) order
-    page: (NSNumber*) page
+-(NSURLSessionTask*) orderGetOrdersWithSymbol: (NSString*) symbol
     limit: (NSNumber*) limit
     orderStatus: (NSString*) orderStatus
+    direction: (NSString*) direction
+    cursor: (NSString*) cursor
         completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
 ```
 
@@ -255,24 +182,20 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"timestamp"];
 
 
-NSString* orderId = @"orderId_example"; // Order ID (optional)
-NSString* orderLinkId = @"orderLinkId_example"; // Customized order ID. (optional)
-NSString* symbol = @"symbol_example"; // Contract type. Default BTCUSD (optional)
-NSString* order = @"order_example"; // Sort orders by creation date (optional)
-NSNumber* page = @8.14; // Page. Default getting first page data (optional)
+NSString* symbol = @"symbol_example"; // Contract type. Default BTCUSD
 NSNumber* limit = @8.14; // TLimit for data size per page, max size is 50. Default as showing 20 pieces of data per page (optional)
 NSString* orderStatus = @"orderStatus_example"; // Query your orders for all statuses if 'order_status' is empty. If you want to query orders with specific statuses , you can pass the order_status split by (optional)
+NSString* direction = @"direction_example"; // Search direction. prev: prev page, next: next page. Defaults to next (optional)
+NSString* cursor = @"cursor_example"; // Page turning mark，Use return cursor,Sign use origin data, in request please urlencode (optional)
 
 SWGOrderApi*apiInstance = [[SWGOrderApi alloc] init];
 
 // Get my active order list.
-[apiInstance orderGetOrdersWithOrderId:orderId
-              orderLinkId:orderLinkId
-              symbol:symbol
-              order:order
-              page:page
+[apiInstance orderGetOrdersWithSymbol:symbol
               limit:limit
               orderStatus:orderStatus
+              direction:direction
+              cursor:cursor
           completionHandler: ^(NSObject* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
@@ -287,13 +210,11 @@ SWGOrderApi*apiInstance = [[SWGOrderApi alloc] init];
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **orderId** | **NSString***| Order ID | [optional] 
- **orderLinkId** | **NSString***| Customized order ID. | [optional] 
- **symbol** | **NSString***| Contract type. Default BTCUSD | [optional] 
- **order** | **NSString***| Sort orders by creation date | [optional] 
- **page** | **NSNumber***| Page. Default getting first page data | [optional] 
+ **symbol** | **NSString***| Contract type. Default BTCUSD | 
  **limit** | **NSNumber***| TLimit for data size per page, max size is 50. Default as showing 20 pieces of data per page | [optional] 
  **orderStatus** | **NSString***| Query your orders for all statuses if &#39;order_status&#39; is empty. If you want to query orders with specific statuses , you can pass the order_status split by | [optional] 
+ **direction** | **NSString***| Search direction. prev: prev page, next: next page. Defaults to next | [optional] 
+ **cursor** | **NSString***| Page turning mark，Use return cursor,Sign use origin data, in request please urlencode | [optional] 
 
 ### Return type
 
@@ -410,116 +331,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **orderNewV2**
-```objc
--(NSURLSessionTask*) orderNewV2WithSide: (NSString*) side
-    symbol: (NSString*) symbol
-    orderType: (NSString*) orderType
-    qty: (NSNumber*) qty
-    timeInForce: (NSString*) timeInForce
-    price: (NSNumber*) price
-    takeProfit: (NSNumber*) takeProfit
-    stopLoss: (NSNumber*) stopLoss
-    reduceOnly: (NSNumber*) reduceOnly
-    closeOnTrigger: (NSNumber*) closeOnTrigger
-    orderLinkId: (NSString*) orderLinkId
-    trailingStop: (NSString*) trailingStop
-        completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
-```
-
-Place active order
-
-### Example 
-```objc
-SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
-
-// Configure API key authorization: (authentication scheme: apiKey)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api_key"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api_key"];
-
-// Configure API key authorization: (authentication scheme: apiSignature)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"sign"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"sign"];
-
-// Configure API key authorization: (authentication scheme: timestamp)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"timestamp"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"timestamp"];
-
-
-NSString* side = @"side_example"; // Side
-NSString* symbol = @"symbol_example"; // Contract type.
-NSString* orderType = @"orderType_example"; // Active order type
-NSNumber* qty = @8.14; // 
-NSString* timeInForce = @"timeInForce_example"; // Time in force
-NSNumber* price = @1.2; // Order price. (optional)
-NSNumber* takeProfit = @1.2; // take profit price (optional)
-NSNumber* stopLoss = @1.2; // stop loss price (optional)
-NSNumber* reduceOnly = @true; // reduce only (optional)
-NSNumber* closeOnTrigger = @true; // close on trigger (optional)
-NSString* orderLinkId = @"orderLinkId_example"; // TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. (optional)
-NSString* trailingStop = @"trailingStop_example"; // Trailing stop. (optional)
-
-SWGOrderApi*apiInstance = [[SWGOrderApi alloc] init];
-
-// Place active order
-[apiInstance orderNewV2WithSide:side
-              symbol:symbol
-              orderType:orderType
-              qty:qty
-              timeInForce:timeInForce
-              price:price
-              takeProfit:takeProfit
-              stopLoss:stopLoss
-              reduceOnly:reduceOnly
-              closeOnTrigger:closeOnTrigger
-              orderLinkId:orderLinkId
-              trailingStop:trailingStop
-          completionHandler: ^(NSObject* output, NSError* error) {
-                        if (output) {
-                            NSLog(@"%@", output);
-                        }
-                        if (error) {
-                            NSLog(@"Error calling SWGOrderApi->orderNewV2: %@", error);
-                        }
-                    }];
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **side** | **NSString***| Side | 
- **symbol** | **NSString***| Contract type. | 
- **orderType** | **NSString***| Active order type | 
- **qty** | **NSNumber***|  | 
- **timeInForce** | **NSString***| Time in force | 
- **price** | **NSNumber***| Order price. | [optional] 
- **takeProfit** | **NSNumber***| take profit price | [optional] 
- **stopLoss** | **NSNumber***| stop loss price | [optional] 
- **reduceOnly** | **NSNumber***| reduce only | [optional] 
- **closeOnTrigger** | **NSNumber***| close on trigger | [optional] 
- **orderLinkId** | **NSString***| TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. | [optional] 
- **trailingStop** | **NSString***| Trailing stop. | [optional] 
-
-### Return type
-
-**NSObject***
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -595,10 +407,11 @@ Name | Type | Description  | Notes
 
 # **orderReplace**
 ```objc
--(NSURLSessionTask*) orderReplaceWithOrderId: (NSString*) orderId
-    symbol: (NSString*) symbol
-    pRQty: (NSNumber*) pRQty
-    pRPrice: (NSNumber*) pRPrice
+-(NSURLSessionTask*) orderReplaceWithSymbol: (NSString*) symbol
+    orderId: (NSString*) orderId
+    orderLinkId: (NSString*) orderLinkId
+    pRQty: (NSString*) pRQty
+    pRPrice: (NSString*) pRPrice
         completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
 ```
 
@@ -624,16 +437,18 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"timestamp"];
 
 
-NSString* orderId = @"orderId_example"; // Order ID.
 NSString* symbol = @"symbol_example"; // Contract type.
-NSNumber* pRQty = @8.14; // Order quantity. (optional)
-NSNumber* pRPrice = @1.2; // Order price. (optional)
+NSString* orderId = @"orderId_example"; // Order ID. (optional)
+NSString* orderLinkId = @"orderLinkId_example"; // Order Link ID. (optional)
+NSString* pRQty = @"pRQty_example"; // Order quantity. (optional)
+NSString* pRPrice = @"pRPrice_example"; // Order price. (optional)
 
 SWGOrderApi*apiInstance = [[SWGOrderApi alloc] init];
 
 // Replace active order. Only incomplete orders can be modified. 
-[apiInstance orderReplaceWithOrderId:orderId
-              symbol:symbol
+[apiInstance orderReplaceWithSymbol:symbol
+              orderId:orderId
+              orderLinkId:orderLinkId
               pRQty:pRQty
               pRPrice:pRPrice
           completionHandler: ^(NSObject* output, NSError* error) {
@@ -650,10 +465,11 @@ SWGOrderApi*apiInstance = [[SWGOrderApi alloc] init];
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **orderId** | **NSString***| Order ID. | 
  **symbol** | **NSString***| Contract type. | 
- **pRQty** | **NSNumber***| Order quantity. | [optional] 
- **pRPrice** | **NSNumber***| Order price. | [optional] 
+ **orderId** | **NSString***| Order ID. | [optional] 
+ **orderLinkId** | **NSString***| Order Link ID. | [optional] 
+ **pRQty** | **NSString***| Order quantity. | [optional] 
+ **pRPrice** | **NSString***| Order price. | [optional] 
 
 ### Return type
 
@@ -665,7 +481,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

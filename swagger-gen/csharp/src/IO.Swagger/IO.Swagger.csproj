@@ -2,9 +2,9 @@
 <!--
 Bybit API
 
-## REST API for the Bybit Exchange. Base URI: [https://api-testnet.bybit.com]  
+## REST API for the Bybit Exchange. Base URI: [https://api.bybit.com]  
 
-OpenAPI spec version: 1.0.0
+OpenAPI spec version: 0.2.10
 Contact: support@bybit.com
 -->
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -12,7 +12,7 @@ Contact: support@bybit.com
     
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{29241922-EFB5-495F-B0C6-7B71BB92792B}</ProjectGuid>
+    <ProjectGuid>{2FC808BF-158C-4579-AA6C-70D3FBF78CF0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>IO.Swagger</RootNamespace>

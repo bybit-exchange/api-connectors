@@ -1,15 +1,61 @@
 # WalletApi
 
-All URIs are relative to *https://api-testnet.bybit.com*
+All URIs are relative to *https://api.bybit.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**walletExchangeOrder**](WalletApi.md#walletExchangeOrder) | **GET** /v2/private/exchange-order/list | Asset Exchange Records
 [**walletGetBalance**](WalletApi.md#walletGetBalance) | **GET** /v2/private/wallet/balance | get wallet balance info
 [**walletGetRecords**](WalletApi.md#walletGetRecords) | **GET** /open-api/wallet/fund/records | Get wallet fund records
 [**walletGetRiskLimit**](WalletApi.md#walletGetRiskLimit) | **GET** /open-api/wallet/risk-limit/list | Get risk limit.
 [**walletSetRiskLimit**](WalletApi.md#walletSetRiskLimit) | **POST** /open-api/wallet/risk-limit | Set risk limit
 [**walletWithdraw**](WalletApi.md#walletWithdraw) | **GET** /open-api/wallet/withdraw/list | Get wallet fund records
 
+
+<a name="walletExchangeOrder"></a>
+# **walletExchangeOrder**
+> Object walletExchangeOrder(limit, from, direction)
+
+Asset Exchange Records
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.api.WalletApi;
+
+WalletApi apiInstance = new WalletApi();
+BigDecimal limit = new BigDecimal(); // BigDecimal | Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page
+BigDecimal from = new BigDecimal(); // BigDecimal | Start ID. By default, returns the latest IDs
+String direction = "direction_example"; // String | Search direction. Prev: searches in ascending order from start ID, Next: searches in descending order from start ID. Defaults to Next
+try {
+    Object result = apiInstance.walletExchangeOrder(limit, from, direction);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling WalletApi#walletExchangeOrder");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **limit** | **BigDecimal**| Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page | [optional]
+ **from** | **BigDecimal**| Start ID. By default, returns the latest IDs | [optional]
+ **direction** | **String**| Search direction. Prev: searches in ascending order from start ID, Next: searches in descending order from start ID. Defaults to Next | [optional]
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
 
 <a name="walletGetBalance"></a>
 # **walletGetBalance**
@@ -180,7 +226,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 <a name="walletWithdraw"></a>

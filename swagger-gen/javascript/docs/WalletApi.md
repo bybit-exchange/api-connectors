@@ -1,15 +1,84 @@
 # BybitApi.WalletApi
 
-All URIs are relative to *https://api-testnet.bybit.com*
+All URIs are relative to *https://api.bybit.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**walletExchangeOrder**](WalletApi.md#walletExchangeOrder) | **GET** /v2/private/exchange-order/list | Asset Exchange Records
 [**walletGetBalance**](WalletApi.md#walletGetBalance) | **GET** /v2/private/wallet/balance | get wallet balance info
 [**walletGetRecords**](WalletApi.md#walletGetRecords) | **GET** /open-api/wallet/fund/records | Get wallet fund records
 [**walletGetRiskLimit**](WalletApi.md#walletGetRiskLimit) | **GET** /open-api/wallet/risk-limit/list | Get risk limit.
 [**walletSetRiskLimit**](WalletApi.md#walletSetRiskLimit) | **POST** /open-api/wallet/risk-limit | Set risk limit
 [**walletWithdraw**](WalletApi.md#walletWithdraw) | **GET** /open-api/wallet/withdraw/list | Get wallet fund records
 
+
+<a name="walletExchangeOrder"></a>
+# **walletExchangeOrder**
+> Object walletExchangeOrder(opts)
+
+Asset Exchange Records
+
+### Example
+```javascript
+var BybitApi = require('bybit_api');
+var defaultClient = BybitApi.ApiClient.instance;
+
+// Configure API key authorization: apiKey
+var apiKey = defaultClient.authentications['apiKey'];
+apiKey.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiKey.apiKeyPrefix = 'Token';
+
+// Configure API key authorization: apiSignature
+var apiSignature = defaultClient.authentications['apiSignature'];
+apiSignature.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiSignature.apiKeyPrefix = 'Token';
+
+// Configure API key authorization: timestamp
+var timestamp = defaultClient.authentications['timestamp'];
+timestamp.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//timestamp.apiKeyPrefix = 'Token';
+
+var apiInstance = new BybitApi.WalletApi();
+
+var opts = { 
+  'limit': 8.14, // Number | Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page
+  'from': 8.14, // Number | Start ID. By default, returns the latest IDs
+  'direction': "direction_example" // String | Search direction. Prev: searches in ascending order from start ID, Next: searches in descending order from start ID. Defaults to Next
+};
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.walletExchangeOrder(opts, callback);
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **limit** | **Number**| Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page | [optional] 
+ **from** | **Number**| Start ID. By default, returns the latest IDs | [optional] 
+ **direction** | **String**| Search direction. Prev: searches in ascending order from start ID, Next: searches in descending order from start ID. Defaults to Next | [optional] 
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
 
 <a name="walletGetBalance"></a>
 # **walletGetBalance**
@@ -269,7 +338,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 <a name="walletWithdraw"></a>

@@ -1,15 +1,89 @@
 # SWGWalletApi
 
-All URIs are relative to *https://api-testnet.bybit.com*
+All URIs are relative to *https://api.bybit.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**walletExchangeOrder**](SWGWalletApi.md#walletexchangeorder) | **GET** /v2/private/exchange-order/list | Asset Exchange Records
 [**walletGetBalance**](SWGWalletApi.md#walletgetbalance) | **GET** /v2/private/wallet/balance | get wallet balance info
 [**walletGetRecords**](SWGWalletApi.md#walletgetrecords) | **GET** /open-api/wallet/fund/records | Get wallet fund records
 [**walletGetRiskLimit**](SWGWalletApi.md#walletgetrisklimit) | **GET** /open-api/wallet/risk-limit/list | Get risk limit.
 [**walletSetRiskLimit**](SWGWalletApi.md#walletsetrisklimit) | **POST** /open-api/wallet/risk-limit | Set risk limit
 [**walletWithdraw**](SWGWalletApi.md#walletwithdraw) | **GET** /open-api/wallet/withdraw/list | Get wallet fund records
 
+
+# **walletExchangeOrder**
+```objc
+-(NSURLSessionTask*) walletExchangeOrderWithLimit: (NSNumber*) limit
+    from: (NSNumber*) from
+    direction: (NSString*) direction
+        completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+```
+
+Asset Exchange Records
+
+### Example 
+```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: apiKey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api_key"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api_key"];
+
+// Configure API key authorization: (authentication scheme: apiSignature)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"sign"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"sign"];
+
+// Configure API key authorization: (authentication scheme: timestamp)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"timestamp"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"timestamp"];
+
+
+NSNumber* limit = @8.14; // Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page (optional)
+NSNumber* from = @8.14; // Start ID. By default, returns the latest IDs (optional)
+NSString* direction = @"direction_example"; // Search direction. Prev: searches in ascending order from start ID, Next: searches in descending order from start ID. Defaults to Next (optional)
+
+SWGWalletApi*apiInstance = [[SWGWalletApi alloc] init];
+
+// Asset Exchange Records
+[apiInstance walletExchangeOrderWithLimit:limit
+              from:from
+              direction:direction
+          completionHandler: ^(NSObject* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling SWGWalletApi->walletExchangeOrder: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **limit** | **NSNumber***| Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page | [optional] 
+ **from** | **NSNumber***| Start ID. By default, returns the latest IDs | [optional] 
+ **direction** | **NSString***| Search direction. Prev: searches in ascending order from start ID, Next: searches in descending order from start ID. Defaults to Next | [optional] 
+
+### Return type
+
+**NSObject***
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **walletGetBalance**
 ```objc
@@ -286,7 +360,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
