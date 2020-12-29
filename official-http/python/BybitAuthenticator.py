@@ -20,9 +20,7 @@ class APIKeyAuthenticator(Authenticator):
 
     # Forces this to apply to all requests.
     def matches(self, url):
-        if "swagger.json" in url:
-            return False
-        return True
+        return 'swagger.json' not in url
 
     def apply(self, r):
         #add user-agent
@@ -37,10 +35,12 @@ class APIKeyAuthenticator(Authenticator):
 
     def generate_signature(self, req):
         """Generate a request signature."""
-        _dict = req.params
-        if (type(req.data).__name__=='dict'):
-            for k, v in req.data.items():
-                _dict[k] = v
-        _val = '&'.join([str(k)+"="+str(v) for k, v in sorted(_dict.items()) if (k != 'sign') and (v is not None)])
+        params = req.params
+        data = req.data
+   
+        if isinstance(data, dict):
+            params.update(data)
+
+        _val = '&'.join([str(k)+"="+str(v) for k, v in sorted(params.items()) if (k != 'sign') and (v is not None)])
         return str(hmac.new(bytes(self.api_secret, "utf-8"), bytes(_val, "utf-8"), digestmod="sha256").hexdigest())
 
