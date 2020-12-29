@@ -1,10 +1,19 @@
 import bybit
 client = bybit.bybit(test=True, api_key="", api_secret="")
 
+# Get API announcements
+print(client.Common.Common_announcements().result()[0])
 # Get server time
 print(client.Common.Common_get().result()[0])
 # Get Symbol lists
 print(client.Symbol.Symbol_get().result()[0]["result"][0])
+# Get market's open interest
+print(client.Market.Market_openInterest(symbol="BTCUSDT", limit=2, period="5min").result())
+# Get market's long-short ratio
+print(client.Market.Market_accountRatio(symbol="BTCUSDT", limit=2, period="5min").result())
+# Get latest big deals
+print(client.Market.Market_bigDeal(symbol="BTCUSDT", limit=2).result())
+
 # Set Levereage
 print(client.Positions.Positions_userLeverage().result())
 # Change account user leverage
@@ -13,9 +22,9 @@ print(client.Positions.Positions_saveLeverage(symbol="BTCUSD", leverage="14").re
 print(client.Positions.Positions_myPosition(symbol="BTCUSD").result())
 # Place an Active Order
 print(client.Order.Order_new(side="Buy",symbol="BTCUSD",order_type="Limit",qty=1,price=8300,time_in_force="GoodTillCancel").result())
-# Get Active Order
+# Get Active Orders
 print(client.Order.Order_getOrders().result())
-# Query Active Order
+# Query Active Orders
 print(client.Order.Order_query(symbol="BTCUSD", order_id="").result())
 # Replace Active Order
 print(client.Order.Order_replace(symbol="BTCUSD", order_id=""))
@@ -25,8 +34,10 @@ print(client.Order.Order_cancel(symbol="BTCUSD", order_id="69bd5b88-fa2e-4c33-a4
 print(client.Order.Order_cancelAll(symbol="BTCUSD").result())
 # Place Conditional Order
 print(client.Conditional.Conditional_new(order_type="Limit",side="Buy",symbol="BTCUSD",qty=1,price=8100,base_price=8300,stop_px=8150,time_in_force="GoodTillCancel", order_link_id="cus_order_id_1").result())
-# Get Conditional Order
+# Get Conditional Orders
 print(client.Conditional.Conditional_getOrders(stop_order_status="Untriggered").result())
+# Query Conditional Orders
+print(client.Conditional.Conditional_query(symbol="BTCUSD").result())
 # Cancel Conditional Order
 print(client.Conditional.Conditional_cancel(symbol="BTCUSD", order_link_id="cus_order_id_1").result())
 # Replace Conditional Order
@@ -49,7 +60,7 @@ print(client.Funding.Funding_predicted(symbol="BTCUSD").result())
 # Get the trade records of a order
 print(client.Execution.Execution_getTrades(order_id="24d6c1b1-e2aa-4ef0-8d73-55b751710a0c").result())
 # Get closed PNLs
-print(client.Execution.Execution_closed_pnl(symbol="BTCUSD").result())
+print(client.Positions.Positions_closePnlRecords(symbol="BTCUSD").result())
 # Get Orderbook
 print(client.Market.Market_orderbook(symbol="BTCUSD").result())
 # Latest information for symbol
@@ -74,9 +85,9 @@ print(client.Wallet.Wallet_withdraw().result())
 print(client.LinearOrder.LinearOrder_new(side="Sell",symbol="BTCUSDT",order_type="Limit",qty=0.22,price=10000,time_in_force="GoodTillCancel",reduce_only=False, close_on_trigger=False).result())
 # Cancel a Linear Active Order
 print(client.LinearOrder.LinearOrder_cancel(symbol="BTCUSDT", order_id="87d8a4ed-dc9d-41c9-8dac-6e3c51356645").result())
-# Get Linear Active Order
+# Get Linear Active Orders
 print(client.LinearOrder.LinearOrder_getOrders(symbol="BTCUSDT").result())
-# Query a Linear Active Order
+# Query Linear Active Orders
 print(client.LinearOrder.LinearOrder_query(symbol="BTCUSDT", order_id="87d8a4ed-dc9d-41c9-8dac-6e3c51356645").result())
 # Cancel All Linear Active Orders
 print(client.LinearOrder.LinearOrder_cancelAll(symbol="BTCUSDT").result())
@@ -90,7 +101,7 @@ print(client.LinearConditional.LinearConditional_cancel(symbol="BTCUSDT", stop_o
 print(client.LinearConditional.LinearConditional_cancelAll(symbol="BTCUSDT").result())
 # Get Linear Conditional Orders
 print(client.LinearConditional.LinearConditional_getOrders(symbol="BTCUSDT").result())
-# Query a Linear Conditional Order
+# Query Linear Conditional Orders
 print(client.LinearConditional.LinearConditional_query(symbol="BTCUSDT",stop_order_id="eed0915f-d2e5-4e7d-9908-1c73d792c659").result())
 # Replace a Linear Conditional Order
 print(client.LinearConditional.LinearConditional_replace(symbol="BTCUSDT", stop_order_id="").result())
