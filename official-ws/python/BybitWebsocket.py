@@ -230,6 +230,39 @@ class BybitWebsocket:
 
             return self.data[topic].pop(0)
 
+    def get_stoporder_data(self):
+        return self.get_data("stop_order")
+
+    def get_order_data(self):
+        return self.get_data('order')
+
+    def get_execution_data(self):
+        return self.get_data('execution')
+
+    def get_position_data(self):
+        return self.get_data('position')
+
+    def get_wallet_data(self):
+        return self.get_data('wallet')
+
+    def get_trade_data(self, symbol):
+        return self.get_data('trade' + '.' + symbol)
+
+    def get_instrument_info_data(self, interval, symbol):
+        return self.get_data("instrument_info" + "." + interval + "." + symbol)
+
+    def get_insurance_BTC_data(self):
+        return self.get_data("insurance.BTC")
+
+    def get_insurance_ETH_data(self):
+        return self.get_data("insurance.ETH")
+
+    def get_insurance_EOS_data(self):
+        return self.get_data("insurance.EOS")
+
+    def get_insurance_XRP_data(self):
+        return self.get_data("insurance.XRP")
+
     @staticmethod
     def is_inverse(symbol):
         if symbol[-1] != 'T':
