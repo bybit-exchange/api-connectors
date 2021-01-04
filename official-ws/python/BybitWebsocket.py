@@ -11,6 +11,7 @@ import math
 import time
 import hmac
 
+
 # This is a simple adapters for connecting to Bybit's websocket API.
 # You could use methods whose names begin with “subscribe”, and get result by "get_data" method.
 # All the provided websocket APIs are implemented, includes public and private topic.
@@ -19,14 +20,13 @@ import hmac
 
 
 class BybitWebsocket:
-
-    #User can ues MAX_DATA_CAPACITY to control memory usage.
+    # User can ues MAX_DATA_CAPACITY to control memory usage.
     MAX_DATA_CAPACITY = 200
     # funding, account, leverage
     PRIVATE_TOPIC = ['position', 'execution', 'order', 'stop_order', 'wallet']
     USD_SYMBOLS = ['BTCUSD', 'ETHUSD', 'EOSUSD', 'XRPUSD']
-    USDT_SYMBOLS = ['BTCUSDT']
     WS_OPS = ['auth', 'subscribe']
+
     def __init__(self, wsURL, api_key, api_secret):
         '''Initialize'''
         self.logger = logging.getLogger(__name__)
@@ -64,8 +64,7 @@ class BybitWebsocket:
                                          on_error=self.__on_error,
                                          keep_running=True)
 
-        self.wst = threading.Thread(target=lambda: self.ws.run_forever(http_proxy_host='127.0.0.1', http_proxy_port=1087,
-sslopt={"cert_reqs": ssl.CERT_NONE}))
+        self.wst = threading.Thread(target=lambda: self.ws.run_forever())
         self.wst.daemon = True
         self.wst.start()
         self.logger.debug("Started thread")
@@ -90,7 +89,7 @@ sslopt={"cert_reqs": ssl.CERT_NONE}))
 
     def __do_auth(self):
 
-        expires = str(int(round(time.time())+1))+"000"
+        expires = str(int(round(time.time()) + 1)) + "000"
         signature = self.generate_signature(expires)
 
         auth = {}
@@ -114,7 +113,7 @@ sslopt={"cert_reqs": ssl.CERT_NONE}))
         if 'topic' in message:
             self.data[message["topic"]].append(message)
             if len(self.data[message["topic"]]) > BybitWebsocket.MAX_DATA_CAPACITY:
-                self.data[message["topic"]] = self.data[message["topic"]][BybitWebsocket.MAX_DATA_CAPACITY//2:]
+                self.data[message["topic"]] = self.data[message["topic"]][BybitWebsocket.MAX_DATA_CAPACITY // 2:]
 
     def __on_error(self, error):
         '''Called on fatal websocket errors. We exit on these.'''
@@ -135,19 +134,20 @@ sslopt={"cert_reqs": ssl.CERT_NONE}))
         if 'pong' not in self.data:
             self.data['pong'] = []
 
-    def subscribe_kline(self, symbol:str, interval:str):
+    def subscribe_kline(self, symbol: str, interval: str):
         param = {}
         param['op'] = 'subscribe'
-        if symbol in BybitWebsocket.USDT_SYMBOLS:
-            topic_name = 'candle.' + interval + '.' + symbol
-        else:
+        if self.is_inverse(symbol):
             topic_name = 'klineV2.' + interval + '.' + symbol
+        else:
+            topic_name = 'candle.' + interval + '.' + symbol
+
         param['args'] = [topic_name]
         self.ws.send(json.dumps(param))
         if topic_name not in self.data:
             self.data[topic_name] = []
 
-    def subscribe_trade(self, symbol:str):
+    def subscribe_trade(self, symbol: str):
         topic_name = 'trade.' + symbol
         param = {'op': 'subscribe', 'args': [topic_name]}
         self.ws.send(json.dumps(param))
@@ -203,11 +203,11 @@ sslopt={"cert_reqs": ssl.CERT_NONE}))
         if 'wallet' not in self.data:
             self.data['wallet'] = []
 
-    def get_kline(self, symbol, interval) :
-        if is_inverse(symbol) :
+    def get_kline(self, symbol, interval):
+        if self.is_inverse(symbol):
             topic_name = 'klineV2.' + interval + '.' + symbol
         else:
-            topic_name = 'candle.' +  interval + '.' + symbol
+            topic_name = 'candle.' + interval + '.' + symbol
         if topic_name in self.data and len(self.data[topic_name]) > 0:
             return self.data[topic_name].pop(0)
         else:
@@ -230,8 +230,9 @@ sslopt={"cert_reqs": ssl.CERT_NONE}))
 
             return self.data[topic].pop(0)
 
+    @staticmethod
     def is_inverse(symbol):
-       if symbol[-1] != 'T':
-           return True
-       else:
-           return False
+        if symbol[-1] != 'T':
+            return True
+        else:
+            return False
