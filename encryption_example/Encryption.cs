@@ -35,8 +35,9 @@ public class Test
 	public static void Main()
 	{
 		string secret = "t7T0YlFnYXk0Fx3JswQsDrViLg1Gh3DUU5Mr";
-		string paramstr = "api_key=B2Rou0PLPpGqcU0Vu2&leverage=100&symbol=BTCUSD&timestamp=1542434791000";
-		Console.WriteLine(CreateSignature(secret, paramstr));// 670e3e4aa32b243f2dedf1dafcec2fd17a440e71b05681550416507de591d908
+		// Note bool should be lowercase while generating sign string
+		string paramstr = "api_key=B2Rou0PLPpGqcU0Vu2&side=Buy&symbol=BTCUSD&qty=100&price=3001.5&time_in_force=GoodTillCancel&order_type=Limit&reduce_only=true&timestamp=1542434791000";
+		Console.WriteLine(CreateSignature(secret, paramstr));// 52a6a6fc4da6d395baa8daccd21eb903eb47c19c03112cc2c80b005f2d181aef
 	}
 
 }
