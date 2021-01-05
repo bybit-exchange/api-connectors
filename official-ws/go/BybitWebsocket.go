@@ -1,4 +1,4 @@
-package bybitwebsocket
+package main
 
 import (
 	"crypto/hmac"
@@ -6,7 +6,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"reflect"
 	"time"
+	"unsafe"
 
 	"github.com/gorilla/websocket"
 )
@@ -75,7 +77,13 @@ func main() {
 			fmt.Println("Read Server Message Error!")
 			return
 		}
-		fmt.Println("the message is ", string(msg))
+		response := BytesToString(msg)
+		fmt.Println("the message is ", response)
 	}
+}
 
+func BytesToString(b []byte) string {
+	bh := (*reflect.SliceHeader)(unsafe.Pointer(&b))
+	sh := reflect.StringHeader{bh.Data, bh.Len}
+	return *(*string)(unsafe.Pointer(&sh))
 }

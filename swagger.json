@@ -957,7 +957,7 @@
                     {
                         "name": "cursor",
                         "in": "query",
-                        "description": "Page turning mark，Use return cursor,Sign use origin data, in request please urlencode",
+                        "description": "cursor is a unique identifier for a specific record, which acts as a pointer to the next record we want to start querying from to get the next page of results",
                         "required": false,
                         "type": "string"
                     }
@@ -1135,6 +1135,13 @@
                         "name": "symbol",
                         "in": "query",
                         "description": "Contract type. Default BTCUSD",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "order_link_id",
+                        "in": "query",
+                        "description": "Agency customized order ID",
                         "required": false,
                         "type": "string"
                     }
@@ -1599,8 +1606,8 @@
                     {
                         "name": "symbol",
                         "in": "query",
-                        "description": "Contract type. If order_id not provided, symbol is required.",
-                        "required": false,
+                        "description": "Contract type.",
+                        "required": true,
                         "type": "string"
                     },
                     {
