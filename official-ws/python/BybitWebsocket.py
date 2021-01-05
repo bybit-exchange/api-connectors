@@ -162,13 +162,18 @@ class BybitWebsocket:
             self.data['insurance.EOS'] = []
             self.data['insurance.ETH'] = []
 
-    def subscribe_orderBookL2(self, symbol):
+    def subscribe_orderBookL2(self, symbol, level=None):
         param = {}
         param['op'] = 'subscribe'
-        param['args'] = ['orderBookL2_25.' + symbol]
+        if level is None:
+            topic = 'orderBookL2_25.' + symbol
+        else:
+            topic = 'orderBook_{level}.100ms.{symbol}'.format(level=level, symbol=symbol)
+        print(topic)
+        param['args'] = [topic]
         self.ws.send(json.dumps(param))
-        if 'orderBookL2_25.' + symbol not in self.data:
-            self.data['orderBookL2_25.' + symbol] = []
+        if topic not in self.data:
+            self.data[topic] = []
 
     def subscribe_instrument_info(self, symbol):
         param = {}
@@ -213,8 +218,34 @@ class BybitWebsocket:
         else:
             return []
 
-    def get_orderbook(self, symbol):
-        return self.get_data("orderBookL2_25." + symbol)
+    def get_orderBookL2(self, symbol, level=None):
+        if level is None:
+            return self.get_data("orderBookL2_25." + symbol)
+        else:
+            return self.get_data("orderBook_200.100ms." + symbol)
+    def get_stop_order(self):
+        return self.get_data("stop_order")
+
+    def get_order(self):
+        return self.get_data('order')
+
+    def get_execution(self):
+        return self.get_data('execution')
+
+    def get_position(self):
+        return self.get_data('position')
+
+    def get_wallet(self):
+        return self.get_data('wallet')
+
+    def get_trade(self, symbol):
+        return self.get_data('trade' + '.' + symbol)
+
+    def get_instrument_info(self, symbol):
+        return self.get_data("instrument_info.100ms." + symbol)
+
+    def get_insurance(self, coin):
+        return self.get_data("insurance." + coin)
 
     def get_data(self, topic):
         if topic not in self.data:
@@ -229,39 +260,6 @@ class BybitWebsocket:
                 return []
 
             return self.data[topic].pop(0)
-
-    def get_stoporder_data(self):
-        return self.get_data("stop_order")
-
-    def get_order_data(self):
-        return self.get_data('order')
-
-    def get_execution_data(self):
-        return self.get_data('execution')
-
-    def get_position_data(self):
-        return self.get_data('position')
-
-    def get_wallet_data(self):
-        return self.get_data('wallet')
-
-    def get_trade_data(self, symbol):
-        return self.get_data('trade' + '.' + symbol)
-
-    def get_instrument_info_data(self, interval, symbol):
-        return self.get_data("instrument_info" + "." + interval + "." + symbol)
-
-    def get_insurance_BTC_data(self):
-        return self.get_data("insurance.BTC")
-
-    def get_insurance_ETH_data(self):
-        return self.get_data("insurance.ETH")
-
-    def get_insurance_EOS_data(self):
-        return self.get_data("insurance.EOS")
-
-    def get_insurance_XRP_data(self):
-        return self.get_data("insurance.XRP")
 
     @staticmethod
     def is_inverse(symbol):
