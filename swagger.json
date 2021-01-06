@@ -7,7 +7,7 @@
         "contact": {
             "email": "support@bybit.com"
         },
-        "version": "0.2.10"
+        "version": "0.2.11"
     },
     "host": "api.bybit.com",
     "basePath": "/",
@@ -3174,6 +3174,51 @@
                     }
                 }
             }
+        },
+        "/private/linear/position/set-risk": {
+            "post": {
+                "tags": [
+                    "LinearWallet"
+                ],
+                "summary": "This will set risk limit",
+                "operationId": "LinearWallet.setRiskLimit",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "formData",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "side",
+                        "in": "formData",
+                        "type": "string"
+                    },
+                    {
+                        "name": "risk_id",
+                        "in": "formData",
+                        "description": "Risk ID. Can be found with the Get risk limit list endpoint.",
+                        "required": true,
+                        "type": "number",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/LinearSetRiskLimit"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
         }
     },
     "definitions": {
@@ -4511,7 +4556,7 @@
                 "remark": {
                     "type": "string"
                 },
-                 "reject_reason": {
+                "reject_reason": {
                     "type": "string"
                 },
                 "stop_px": {
@@ -5497,7 +5542,7 @@
                 "from_coin": {
                     "type": "string"
                 },
-                 "to_coin": {
+                "to_coin": {
                     "type": "string"
                 },
                 "from_amount": {
@@ -7509,6 +7554,36 @@
                     "type": "string"
                 }
             }
+        },
+        "LinearSetRiskLimit": {
+            "description": "Set risk limit.",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "type": "object",
+                    "properties": {
+                        "risk_id": {
+                            "type": "number"
+                        }
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
         }
     },
     "tags": [
