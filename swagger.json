@@ -5,7 +5,7 @@
         "termsOfService": "https://www.bybit.com/app/login",
         "description": "## REST API for the Bybit Exchange.\nBase URI: [https://api.bybit.com]\n\n",
         "contact": {
-            "email": "support@bybit.com"
+            "email": "IT@bybit.com"
         },
         "version": "0.2.10"
     },
