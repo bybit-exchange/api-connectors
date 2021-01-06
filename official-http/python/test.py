@@ -4,7 +4,7 @@ client = bybit.bybit(test=True, api_key="", api_secret="")
 # Get API announcements
 print(client.Common.Common_announcements().result()[0])
 # Get server time
-print(client.Common.Common_get().result()[0])
+print(client.Common.Common_getTime().result()[0])
 # Get Symbol lists
 print(client.Symbol.Symbol_get().result()[0]["result"][0])
 # Get market's open interest
@@ -14,7 +14,7 @@ print(client.Market.Market_accountRatio(symbol="BTCUSDT", limit=2, period="5min"
 # Get latest big deals
 print(client.Market.Market_bigDeal(symbol="BTCUSDT", limit=2).result())
 
-# Set Levereage
+# Get leverage
 print(client.Positions.Positions_userLeverage().result())
 # Change account user leverage
 print(client.Positions.Positions_saveLeverage(symbol="BTCUSD", leverage="14").result())
@@ -66,7 +66,7 @@ print(client.Market.Market_orderbook(symbol="BTCUSD").result())
 # Latest information for symbol
 print(client.Market.Market_symbolInfo().result())
 # Get Market Trading Records
-print(client.Market.Market_trading_records(symbol="BTCUSD").result())
+print(client.Market.Market_tradingRecords(symbol="BTCUSD").result())
 # Query Kline
 print(client.Kline.Kline_get(symbol="BTCUSD", interval="m", **{'from':1}).result())
 # Get Risk Limit

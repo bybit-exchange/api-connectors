@@ -34,7 +34,7 @@ You can call **public** endpoints like this:
 ### Get server time
 
 ```
->>> client.Common.Common_get().result()[0]
+>>> client.Common.Common_getTime().result()[0]
 {'ret_code': 0, 'ret_msg': 'OK', 'ext_code': '', 'ext_info': '', 'result': {}, 'time_now': '1570798047.589798'}
 ```
 ### Get Symbol lists
