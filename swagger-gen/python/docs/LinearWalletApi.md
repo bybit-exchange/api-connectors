@@ -4,12 +4,12 @@ All URIs are relative to *https://api.bybit.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**linear_wallet_get_risk_limit**](LinearWalletApi.md#linear_wallet_get_risk_limit) | **GET** /public/linear/risk-limit | Get risk limit.
-[**linear_wallet_set_risk_limit**](LinearWalletApi.md#linear_wallet_set_risk_limit) | **POST** /private/linear/position/set-risk | This will set risk limit
+[**linear_positions_get_risk_limit**](LinearWalletApi.md#linear_positions_get_risk_limit) | **GET** /public/linear/risk-limit | Get risk limit.
+[**linear_positions_set_risk_limit**](LinearWalletApi.md#linear_positions_set_risk_limit) | **POST** /private/linear/position/set-risk | This will set risk limit
 
 
-# **linear_wallet_get_risk_limit**
-> object linear_wallet_get_risk_limit()
+# **linear_positions_get_risk_limit**
+> object linear_positions_get_risk_limit()
 
 Get risk limit.
 
@@ -44,10 +44,10 @@ api_instance = swagger_client.LinearWalletApi(swagger_client.ApiClient(configura
 
 try:
     # Get risk limit.
-    api_response = api_instance.linear_wallet_get_risk_limit()
+    api_response = api_instance.linear_positions_get_risk_limit()
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling LinearWalletApi->linear_wallet_get_risk_limit: %s\n" % e)
+    print("Exception when calling LinearWalletApi->linear_positions_get_risk_limit: %s\n" % e)
 ```
 
 ### Parameters
@@ -68,8 +68,8 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **linear_wallet_set_risk_limit**
-> object linear_wallet_set_risk_limit(symbol, risk_id, side=side)
+# **linear_positions_set_risk_limit**
+> object linear_positions_set_risk_limit(symbol, risk_id, side=side)
 
 This will set risk limit
 
@@ -105,10 +105,10 @@ side = 'side_example' # str |  (optional)
 
 try:
     # This will set risk limit
-    api_response = api_instance.linear_wallet_set_risk_limit(symbol, risk_id, side=side)
+    api_response = api_instance.linear_positions_set_risk_limit(symbol, risk_id, side=side)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling LinearWalletApi->linear_wallet_set_risk_limit: %s\n" % e)
+    print("Exception when calling LinearWalletApi->linear_positions_set_risk_limit: %s\n" % e)
 ```
 
 ### Parameters

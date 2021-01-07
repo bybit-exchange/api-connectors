@@ -129,8 +129,8 @@ Class | Method | HTTP request | Description
 *LinearPositionsApi* | [**linear_positions_switch_isolated**](docs/LinearPositionsApi.md#linear_positions_switch_isolated) | **POST** /private/linear/position/switch-isolated | Switch isolated
 *LinearPositionsApi* | [**linear_positions_switch_mode**](docs/LinearPositionsApi.md#linear_positions_switch_mode) | **POST** /private/linear/tpsl/switch-mode | Switch Mode
 *LinearPositionsApi* | [**linear_positions_trading_stop**](docs/LinearPositionsApi.md#linear_positions_trading_stop) | **POST** /private/linear/position/trading-stop | Set tradingStop
-*LinearWalletApi* | [**linear_wallet_get_risk_limit**](docs/LinearWalletApi.md#linear_wallet_get_risk_limit) | **GET** /public/linear/risk-limit | Get risk limit.
-*LinearWalletApi* | [**linear_wallet_set_risk_limit**](docs/LinearWalletApi.md#linear_wallet_set_risk_limit) | **POST** /private/linear/position/set-risk | This will set risk limit
+*LinearWalletApi* | [**linear_positions_get_risk_limit**](docs/LinearWalletApi.md#linear_positions_get_risk_limit) | **GET** /public/linear/risk-limit | Get risk limit.
+*LinearWalletApi* | [**linear_positions_set_risk_limit**](docs/LinearWalletApi.md#linear_positions_set_risk_limit) | **POST** /private/linear/position/set-risk | This will set risk limit
 *MarketApi* | [**market_account_ratio**](docs/MarketApi.md#market_account_ratio) | **GET** /v2/public/account-ratio | Query Account Long Short Ratio
 *MarketApi* | [**market_big_deal**](docs/MarketApi.md#market_big_deal) | **GET** /v2/public/big-deal | Query Big Deal
 *MarketApi* | [**market_liq_records**](docs/MarketApi.md#market_liq_records) | **GET** /v2/public/liq-records | Query liq records.

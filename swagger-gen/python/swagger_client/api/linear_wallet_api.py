@@ -33,13 +33,13 @@ class LinearWalletApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def linear_wallet_get_risk_limit(self, **kwargs):  # noqa: E501
+    def linear_positions_get_risk_limit(self, **kwargs):  # noqa: E501
         """Get risk limit.  # noqa: E501
 
         This will get risk limit.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.linear_wallet_get_risk_limit(async_req=True)
+        >>> thread = api.linear_positions_get_risk_limit(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
@@ -49,18 +49,18 @@ class LinearWalletApi(object):
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.linear_wallet_get_risk_limit_with_http_info(**kwargs)  # noqa: E501
+            return self.linear_positions_get_risk_limit_with_http_info(**kwargs)  # noqa: E501
         else:
-            (data) = self.linear_wallet_get_risk_limit_with_http_info(**kwargs)  # noqa: E501
+            (data) = self.linear_positions_get_risk_limit_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def linear_wallet_get_risk_limit_with_http_info(self, **kwargs):  # noqa: E501
+    def linear_positions_get_risk_limit_with_http_info(self, **kwargs):  # noqa: E501
         """Get risk limit.  # noqa: E501
 
         This will get risk limit.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.linear_wallet_get_risk_limit_with_http_info(async_req=True)
+        >>> thread = api.linear_positions_get_risk_limit_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
@@ -80,7 +80,7 @@ class LinearWalletApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method linear_wallet_get_risk_limit" % key
+                    " to method linear_positions_get_risk_limit" % key
                 )
             params[key] = val
         del params['kwargs']
@@ -124,12 +124,12 @@ class LinearWalletApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def linear_wallet_set_risk_limit(self, symbol, risk_id, **kwargs):  # noqa: E501
+    def linear_positions_set_risk_limit(self, symbol, risk_id, **kwargs):  # noqa: E501
         """This will set risk limit  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.linear_wallet_set_risk_limit(symbol, risk_id, async_req=True)
+        >>> thread = api.linear_positions_set_risk_limit(symbol, risk_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
@@ -142,17 +142,17 @@ class LinearWalletApi(object):
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.linear_wallet_set_risk_limit_with_http_info(symbol, risk_id, **kwargs)  # noqa: E501
+            return self.linear_positions_set_risk_limit_with_http_info(symbol, risk_id, **kwargs)  # noqa: E501
         else:
-            (data) = self.linear_wallet_set_risk_limit_with_http_info(symbol, risk_id, **kwargs)  # noqa: E501
+            (data) = self.linear_positions_set_risk_limit_with_http_info(symbol, risk_id, **kwargs)  # noqa: E501
             return data
 
-    def linear_wallet_set_risk_limit_with_http_info(self, symbol, risk_id, **kwargs):  # noqa: E501
+    def linear_positions_set_risk_limit_with_http_info(self, symbol, risk_id, **kwargs):  # noqa: E501
         """This will set risk limit  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.linear_wallet_set_risk_limit_with_http_info(symbol, risk_id, async_req=True)
+        >>> thread = api.linear_positions_set_risk_limit_with_http_info(symbol, risk_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
@@ -175,18 +175,18 @@ class LinearWalletApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method linear_wallet_set_risk_limit" % key
+                    " to method linear_positions_set_risk_limit" % key
                 )
             params[key] = val
         del params['kwargs']
         # verify the required parameter 'symbol' is set
         if ('symbol' not in params or
                 params['symbol'] is None):
-            raise ValueError("Missing the required parameter `symbol` when calling `linear_wallet_set_risk_limit`")  # noqa: E501
+            raise ValueError("Missing the required parameter `symbol` when calling `linear_positions_set_risk_limit`")  # noqa: E501
         # verify the required parameter 'risk_id' is set
         if ('risk_id' not in params or
                 params['risk_id'] is None):
-            raise ValueError("Missing the required parameter `risk_id` when calling `linear_wallet_set_risk_limit`")  # noqa: E501
+            raise ValueError("Missing the required parameter `risk_id` when calling `linear_positions_set_risk_limit`")  # noqa: E501
 
         collection_formats = {}
 

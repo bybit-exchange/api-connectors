@@ -3162,7 +3162,7 @@
                 ],
                 "description": "This will get risk limit.",
                 "summary": "Get risk limit.",
-                "operationId": "LinearWallet.getRiskLimit",
+                "operationId": "LinearPositions.getRiskLimit",
                 "responses": {
                     "200": {
                         "description": "Request was successful",
@@ -3181,7 +3181,7 @@
                     "LinearWallet"
                 ],
                 "summary": "This will set risk limit",
-                "operationId": "LinearWallet.setRiskLimit",
+                "operationId": "LinearPositions.setRiskLimit",
                 "consumes": [
                     "application/x-www-form-urlencoded"
                 ],
