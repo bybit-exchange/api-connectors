@@ -3158,7 +3158,7 @@
         "/public/linear/risk-limit": {
             "get": {
                 "tags": [
-                    "LinearWallet"
+                    "LinearPositions"
                 ],
                 "description": "This will get risk limit.",
                 "summary": "Get risk limit.",
@@ -3178,7 +3178,7 @@
         "/private/linear/position/set-risk": {
             "post": {
                 "tags": [
-                    "LinearWallet"
+                    "LinearPositions"
                 ],
                 "summary": "This will set risk limit",
                 "operationId": "LinearPositions.setRiskLimit",

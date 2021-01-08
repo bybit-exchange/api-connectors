@@ -6,9 +6,11 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**linear_positions_change_margin**](LinearPositionsApi.md#linear_positions_change_margin) | **POST** /private/linear/position/add-margin | Add/Reduce Margin
 [**linear_positions_close_pnl_records**](LinearPositionsApi.md#linear_positions_close_pnl_records) | **GET** /private/linear/trade/closed-pnl/list | Get user&#39;s closed profit and loss records.
+[**linear_positions_get_risk_limit**](LinearPositionsApi.md#linear_positions_get_risk_limit) | **GET** /public/linear/risk-limit | Get risk limit.
 [**linear_positions_my_position**](LinearPositionsApi.md#linear_positions_my_position) | **GET** /private/linear/position/list | Get my position list.
 [**linear_positions_save_leverage**](LinearPositionsApi.md#linear_positions_save_leverage) | **POST** /private/linear/position/set-leverage | Set leverage
 [**linear_positions_set_auto_add_margin**](LinearPositionsApi.md#linear_positions_set_auto_add_margin) | **POST** /private/linear/position/set-auto-add-margin | Set auto add margin
+[**linear_positions_set_risk_limit**](LinearPositionsApi.md#linear_positions_set_risk_limit) | **POST** /private/linear/position/set-risk | This will set risk limit
 [**linear_positions_switch_isolated**](LinearPositionsApi.md#linear_positions_switch_isolated) | **POST** /private/linear/position/switch-isolated | Switch isolated
 [**linear_positions_switch_mode**](LinearPositionsApi.md#linear_positions_switch_mode) | **POST** /private/linear/tpsl/switch-mode | Switch Mode
 [**linear_positions_trading_stop**](LinearPositionsApi.md#linear_positions_trading_stop) | **POST** /private/linear/position/trading-stop | Set tradingStop
@@ -140,6 +142,66 @@ Name | Type | Description  | Notes
  **exec_type** | **str**|  | [optional] 
  **page** | **int**|  | [optional] 
  **limit** | **int**|  | [optional] 
+
+### Return type
+
+**object**
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **linear_positions_get_risk_limit**
+> object linear_positions_get_risk_limit()
+
+Get risk limit.
+
+This will get risk limit.
+
+### Example
+```python
+from __future__ import print_function
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api_key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api_key'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['sign'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['sign'] = 'Bearer'
+# Configure API key authorization: timestamp
+configuration = swagger_client.Configuration()
+configuration.api_key['timestamp'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['timestamp'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = swagger_client.LinearPositionsApi(swagger_client.ApiClient(configuration))
+
+try:
+    # Get risk limit.
+    api_response = api_instance.linear_positions_get_risk_limit()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling LinearPositionsApi->linear_positions_get_risk_limit: %s\n" % e)
+```
+
+### Parameters
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -340,6 +402,72 @@ Name | Type | Description  | Notes
  **symbol** | **str**|  | [optional] 
  **side** | **str**|  | [optional] 
  **auto_add_margin** | **bool**|  | [optional] 
+
+### Return type
+
+**object**
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature), [timestamp](../README.md#timestamp)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **linear_positions_set_risk_limit**
+> object linear_positions_set_risk_limit(symbol, risk_id, side=side)
+
+This will set risk limit
+
+### Example
+```python
+from __future__ import print_function
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api_key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api_key'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['sign'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['sign'] = 'Bearer'
+# Configure API key authorization: timestamp
+configuration = swagger_client.Configuration()
+configuration.api_key['timestamp'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['timestamp'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = swagger_client.LinearPositionsApi(swagger_client.ApiClient(configuration))
+symbol = 'symbol_example' # str | Contract type.
+risk_id = 8.14 # float | Risk ID. Can be found with the Get risk limit list endpoint.
+side = 'side_example' # str |  (optional)
+
+try:
+    # This will set risk limit
+    api_response = api_instance.linear_positions_set_risk_limit(symbol, risk_id, side=side)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling LinearPositionsApi->linear_positions_set_risk_limit: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **str**| Contract type. | 
+ **risk_id** | **float**| Risk ID. Can be found with the Get risk limit list endpoint. | 
+ **side** | **str**|  | [optional] 
 
 ### Return type
 
