@@ -1,3 +1,5 @@
+import ssl
+
 import websocket
 import threading
 import traceback
@@ -9,6 +11,7 @@ import math
 import time
 import hmac
 
+
 # This is a simple adapters for connecting to Bybit's websocket API.
 # You could use methods whose names begin with “subscribe”, and get result by "get_data" method.
 # All the provided websocket APIs are implemented, includes public and private topic.
@@ -17,12 +20,13 @@ import hmac
 
 
 class BybitWebsocket:
-
-    #User can ues MAX_DATA_CAPACITY to control memory usage.
+    # User can ues MAX_DATA_CAPACITY to control memory usage.
     MAX_DATA_CAPACITY = 200
+    # funding, account, leverage
     PRIVATE_TOPIC = ['position', 'execution', 'order', 'stop_order', 'wallet']
-    USDT_SYMBOLS = ['BTCUSDT']
+    USD_SYMBOLS = ['BTCUSD', 'ETHUSD', 'EOSUSD', 'XRPUSD']
     WS_OPS = ['auth', 'subscribe']
+
     def __init__(self, wsURL, api_key, api_secret):
         '''Initialize'''
         self.logger = logging.getLogger(__name__)
@@ -70,7 +74,7 @@ class BybitWebsocket:
         while not self.ws.sock or not self.ws.sock.connected and retry_times:
             sleep(1)
             retry_times -= 1
-        if retry_times == 0 and not self.ws.sock.connected: 
+        if retry_times == 0 and not self.ws.sock.connected:
             self.logger.error("Couldn't connect to WebSocket! Exiting.")
             self.exit()
             raise websocket.WebSocketTimeoutException('Error！Couldn not connect to WebSocket!.')
@@ -85,7 +89,7 @@ class BybitWebsocket:
 
     def __do_auth(self):
 
-        expires = str(int(round(time.time())+1))+"000"
+        expires = str(int(round(time.time()) + 1)) + "000"
         signature = self.generate_signature(expires)
 
         auth = {}
@@ -107,9 +111,9 @@ class BybitWebsocket:
                 self.data["pong"].append("PING success")
 
         if 'topic' in message:
-            self.data[message["topic"]].append(message["data"])
+            self.data[message["topic"]].append(message)
             if len(self.data[message["topic"]]) > BybitWebsocket.MAX_DATA_CAPACITY:
-                self.data[message["topic"]] = self.data[message["topic"]][BybitWebsocket.MAX_DATA_CAPACITY//2:]
+                self.data[message["topic"]] = self.data[message["topic"]][BybitWebsocket.MAX_DATA_CAPACITY // 2:]
 
     def __on_error(self, error):
         '''Called on fatal websocket errors. We exit on these.'''
@@ -130,19 +134,20 @@ class BybitWebsocket:
         if 'pong' not in self.data:
             self.data['pong'] = []
 
-    def subscribe_kline(self, symbol:str, interval:str):
+    def subscribe_kline(self, symbol: str, interval: str):
         param = {}
         param['op'] = 'subscribe'
-        if symbol in BybitWebsocket.USDT_SYMBOLS:
-            topic_name = 'candle.' + interval + '.' + symbol
-        else:
+        if self.is_inverse(symbol):
             topic_name = 'klineV2.' + interval + '.' + symbol
+        else:
+            topic_name = 'candle.' + interval + '.' + symbol
+
         param['args'] = [topic_name]
         self.ws.send(json.dumps(param))
         if topic_name not in self.data:
             self.data[topic_name] = []
 
-    def subscribe_trade(self, symbol:str):
+    def subscribe_trade(self, symbol: str):
         topic_name = 'trade.' + symbol
         param = {'op': 'subscribe', 'args': [topic_name]}
         self.ws.send(json.dumps(param))
@@ -157,13 +162,18 @@ class BybitWebsocket:
             self.data['insurance.EOS'] = []
             self.data['insurance.ETH'] = []
 
-    def subscribe_orderBookL2(self, symbol):
+    def subscribe_orderBookL2(self, symbol, level=None):
         param = {}
         param['op'] = 'subscribe'
-        param['args'] = ['orderBookL2_25.' + symbol]
+        if level is None:
+            topic = 'orderBookL2_25.' + symbol
+        else:
+            topic = 'orderBook_{level}.100ms.{symbol}'.format(level=level, symbol=symbol)
+        print(topic)
+        param['args'] = [topic]
         self.ws.send(json.dumps(param))
-        if 'orderBookL2_25.' + symbol not in self.data:
-            self.data['orderBookL2_25.' + symbol] = []
+        if topic not in self.data:
+            self.data[topic] = []
 
     def subscribe_instrument_info(self, symbol):
         param = {}
@@ -198,14 +208,47 @@ class BybitWebsocket:
         if 'wallet' not in self.data:
             self.data['wallet'] = []
 
+    def get_kline(self, symbol, interval):
+        if self.is_inverse(symbol):
+            topic_name = 'klineV2.' + interval + '.' + symbol
+        else:
+            topic_name = 'candle.' + interval + '.' + symbol
+        if topic_name in self.data and len(self.data[topic_name]) > 0:
+            return self.data[topic_name].pop(0)
+        else:
+            return []
+
+    def get_orderBookL2(self, symbol, level=None):
+        if level is None:
+            return self.get_data("orderBookL2_25." + symbol)
+        else:
+            return self.get_data("orderBook_200.100ms." + symbol)
+    def get_stop_order(self):
+        return self.get_data("stop_order")
+
+    def get_order(self):
+        return self.get_data('order')
+
+    def get_execution(self):
+        return self.get_data('execution')
+
+    def get_position(self):
+        return self.get_data('position')
+
+    def get_wallet(self):
+        return self.get_data('wallet')
+
+    def get_trade(self, symbol):
+        return self.get_data('trade' + '.' + symbol)
+
+    def get_instrument_info(self, symbol):
+        return self.get_data("instrument_info.100ms." + symbol)
+
+    def get_insurance(self, coin):
+        return self.get_data("insurance." + coin)
+
     def get_data(self, topic):
         if topic not in self.data:
-            topic_splits = topic.split('.')
-            # adaptor for different kline topic names
-            if topic_splits[len(topic_splits) - 1] not in BybitWebsocket.USDT_SYMBOLS and topic_splits[0] == "candle":
-                topic = topic.replace('candle', 'klineV2')
-                ret = self.data[topic].pop() if topic in self.data and len(self.data[topic]) > 0 else []
-                return ret
             self.logger.info(" The topic %s is not subscribed." % topic)
             return []
         if topic.split('.')[0] in BybitWebsocket.PRIVATE_TOPIC and not self.auth and 'request' in self.data \
@@ -214,8 +257,13 @@ class BybitWebsocket:
             return []
         else:
             if len(self.data[topic]) == 0:
-                # self.logger.info(" The topic %s is empty." % topic)
                 return []
-            # while len(self.data[topic]) == 0 :
-            #     sleep(0.1)
-            return self.data[topic].pop()
+
+            return self.data[topic].pop(0)
+
+    @staticmethod
+    def is_inverse(symbol):
+        if symbol[-1] != 'T':
+            return True
+        else:
+            return False

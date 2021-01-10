@@ -1,22 +1,50 @@
+import hashlib
 import hmac
-
-
-def get_signature(secret: str, req_params: dict):
-    """
-    :param secret    : str, your api-secret
-    :param req_params: dict, your request params
-    :return: signature
-    """
-    _val = '&'.join([str(k)+"="+str(v) for k, v in sorted(req_params.items()) if (k != 'sign') and (v is not None)])
-    # print(_val)
-    return str(hmac.new(bytes(secret, "utf-8"), bytes(_val, "utf-8"), digestmod="sha256").hexdigest())
-
-
-if __name__ == "__main__":
-    secret = "t7T0YlFnYXk0Fx3JswQsDrViLg1Gh3DUU5Mr"
-    params = {}
-    params['api_key'] = "B2Rou0PLPpGqcU0Vu2"
-    params['leverage'] = 100
-    params['symbol'] = "BTCUSD"
-    params['timestamp'] = "1542434791000"
-    print(get_signature(secret, params))
+import json
+import requests
+import urllib3
+def create(apiKey,secretKey,side,order_type,qty,price):
+    params = {
+        "side": side,
+        "symbol": "BTCUSD",
+        "order_type": order_type,
+        "qty": qty,
+        "price": price,
+        "time_in_force": "GoodTillCancel",
+        "api_key": apiKey,
+        "timestamp": "1542782900000",
+        "recv_window": "93800000000",
+        "reduce_only":False,
+    }
+    sign = ''
+    for key in sorted(params.keys()):
+        v = params[key]
+        if isinstance(params[key], bool):
+            if params[key]:
+                v = 'true'
+            else :
+                v = 'false'
+        sign += key + '=' + v + '&'
+    sign = sign[:-1]
+    print(sign)
+    hash = hmac.new(secretKey, sign.encode("utf-8"), hashlib.sha256)
+    signature = hash.hexdigest()
+    sign_real = {
+        "sign": signature
+    }
+    url = 'https://api.bybit.com/v2/private/order/create'
+    headers = {"Content-Type": "application/json"}
+    body = dict(params,**sign_real)
+    urllib3.disable_warnings()
+    s = requests.session()
+    s.keep_alive = False
+    for x in range(1):
+        response = requests.post(url, data=json.dumps(body), headers=headers,verify=False)
+        print(response)
+        print(response.text)
+def main():
+    apiKey = ""
+    secret = b""
+    create(apiKey, secret,'Buy','Limit','100','8700')
+if __name__ == '__main__':
+    main()

@@ -9,7 +9,7 @@ You can get more information in [the documentation of Restful-API](https://githu
 
 # Endpoints
 
-[All Endpoints](./Endpoints.md)
+All endpoints are listed in [test.py](test.py)
 
 ## Installation
 
@@ -34,7 +34,7 @@ You can call **public** endpoints like this:
 ### Get server time
 
 ```
->>> client.Common.Common_get().result()[0]
+>>> client.Common.Common_getTime().result()[0]
 {'ret_code': 0, 'ret_msg': 'OK', 'ext_code': '', 'ext_info': '', 'result': {}, 'time_now': '1570798047.589798'}
 ```
 ### Get Symbol lists
@@ -62,7 +62,3 @@ print(client.Order.Order_new(side="Buy",symbol="BTCUSD",order_type="Limit",qty=1
 ```
 print(client.Funding.Funding_getRate(symbol="BTCUSD").result())
 ```
-
-## Full example
-
-See a full example detailing all the endpoints in [test.py](/official-http/python/test.py).
