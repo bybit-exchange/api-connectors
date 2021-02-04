@@ -43,13 +43,6 @@ class TestLinearPositionsApi(unittest.TestCase):
         """
         pass
 
-    def test_linear_positions_get_risk_limit(self):
-        """Test case for linear_positions_get_risk_limit
-
-        Get risk limit.  # noqa: E501
-        """
-        pass
-
     def test_linear_positions_my_position(self):
         """Test case for linear_positions_my_position
 
@@ -68,13 +61,6 @@ class TestLinearPositionsApi(unittest.TestCase):
         """Test case for linear_positions_set_auto_add_margin
 
         Set auto add margin  # noqa: E501
-        """
-        pass
-
-    def test_linear_positions_set_risk_limit(self):
-        """Test case for linear_positions_set_risk_limit
-
-        This will set risk limit  # noqa: E501
         """
         pass
 

@@ -3158,11 +3158,11 @@
         "/public/linear/risk-limit": {
             "get": {
                 "tags": [
-                    "LinearPositions"
+                    "LinearWallet"
                 ],
                 "description": "This will get risk limit.",
                 "summary": "Get risk limit.",
-                "operationId": "LinearPositions.getRiskLimit",
+                "operationId": "LinearWallet.getRiskLimit",
                 "responses": {
                     "200": {
                         "description": "Request was successful",
@@ -3178,10 +3178,10 @@
         "/private/linear/position/set-risk": {
             "post": {
                 "tags": [
-                    "LinearPositions"
+                    "LinearWallet"
                 ],
                 "summary": "This will set risk limit",
-                "operationId": "LinearPositions.setRiskLimit",
+                "operationId": "LinearWallet.setRiskLimit",
                 "consumes": [
                     "application/x-www-form-urlencoded"
                 ],
@@ -4556,7 +4556,7 @@
                 "remark": {
                     "type": "string"
                 },
-                "reject_reason": {
+                 "reject_reason": {
                     "type": "string"
                 },
                 "stop_px": {
@@ -5542,7 +5542,7 @@
                 "from_coin": {
                     "type": "string"
                 },
-                "to_coin": {
+                 "to_coin": {
                     "type": "string"
                 },
                 "from_amount": {
