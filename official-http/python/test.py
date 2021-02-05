@@ -134,6 +134,9 @@ print(client.LinearKline.LinearKline_markPrice(symbol="BTCUSDT", interval="m", l
 # Get Linear Risk Limit
 print(client.LinearWallet.LinearWallet_getRiskLimit(symbol="BTCUSDT").result())
 
-
 # Get API Key Info
 print(client.APIkey.APIkey_info().result())
+# Get Positions RiskLimit
+print(client.LinearPositions.LinearPositions_getRiskLimit(symbol="BTCUSDT").result())
+# Set Positions RiskLimit
+print(client.LinearPositions.LinearPositions_setRiskLimit(symbol="BTCUSDT", side="Buy",risk_id=1).result())

@@ -175,7 +175,7 @@ symbol = 'symbol_example' # str | Contract type. Default BTCUSD
 limit = 8.14 # float | TLimit for data size per page, max size is 50. Default as showing 20 pieces of data per page (optional)
 order_status = 'order_status_example' # str | Query your orders for all statuses if 'order_status' is empty. If you want to query orders with specific statuses , you can pass the order_status split by (optional)
 direction = 'direction_example' # str | Search direction. prev: prev page, next: next page. Defaults to next (optional)
-cursor = 'cursor_example' # str | Page turning mark，Use return cursor,Sign use origin data, in request please urlencode (optional)
+cursor = 'cursor_example' # str | cursor is a unique identifier for a specific record, which acts as a pointer to the next record we want to start querying from to get the next page of results (optional)
 
 try:
     # Get my active order list.
@@ -193,7 +193,7 @@ Name | Type | Description  | Notes
  **limit** | **float**| TLimit for data size per page, max size is 50. Default as showing 20 pieces of data per page | [optional] 
  **order_status** | **str**| Query your orders for all statuses if &#39;order_status&#39; is empty. If you want to query orders with specific statuses , you can pass the order_status split by | [optional] 
  **direction** | **str**| Search direction. prev: prev page, next: next page. Defaults to next | [optional] 
- **cursor** | **str**| Page turning mark，Use return cursor,Sign use origin data, in request please urlencode | [optional] 
+ **cursor** | **str**| cursor is a unique identifier for a specific record, which acts as a pointer to the next record we want to start querying from to get the next page of results | [optional] 
 
 ### Return type
 
@@ -293,7 +293,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **order_query**
-> object order_query(order_id=order_id, symbol=symbol)
+> object order_query(order_id=order_id, symbol=symbol, order_link_id=order_link_id)
 
 Get my active order list.
 
@@ -325,10 +325,11 @@ configuration.api_key['timestamp'] = 'YOUR_API_KEY'
 api_instance = swagger_client.OrderApi(swagger_client.ApiClient(configuration))
 order_id = 'order_id_example' # str | Order ID (optional)
 symbol = 'symbol_example' # str | Contract type. Default BTCUSD (optional)
+order_link_id = 'order_link_id_example' # str | Agency customized order ID (optional)
 
 try:
     # Get my active order list.
-    api_response = api_instance.order_query(order_id=order_id, symbol=symbol)
+    api_response = api_instance.order_query(order_id=order_id, symbol=symbol, order_link_id=order_link_id)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling OrderApi->order_query: %s\n" % e)
@@ -340,6 +341,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **order_id** | **str**| Order ID | [optional] 
  **symbol** | **str**| Contract type. Default BTCUSD | [optional] 
+ **order_link_id** | **str**| Agency customized order ID | [optional] 
 
 ### Return type
 

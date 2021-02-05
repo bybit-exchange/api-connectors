@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **execution_get_trades**
-> object execution_get_trades(order_id=order_id, symbol=symbol, start_time=start_time, page=page, limit=limit)
+> object execution_get_trades(symbol, order_id=order_id, start_time=start_time, page=page, limit=limit)
 
 Get user’s trade records.
 
@@ -39,15 +39,15 @@ configuration.api_key['timestamp'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = swagger_client.ExecutionApi(swagger_client.ApiClient(configuration))
+symbol = 'symbol_example' # str | Contract type.
 order_id = 'order_id_example' # str | OrderID. If not provided, will return user’s trading records. (optional)
-symbol = 'symbol_example' # str | Contract type. If order_id not provided, symbol is required. (optional)
 start_time = 'start_time_example' # str | Start timestamp point for result. (optional)
 page = 'page_example' # str | Page. Default getting first page data. (optional)
 limit = 'limit_example' # str | Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. (optional)
 
 try:
     # Get user’s trade records.
-    api_response = api_instance.execution_get_trades(order_id=order_id, symbol=symbol, start_time=start_time, page=page, limit=limit)
+    api_response = api_instance.execution_get_trades(symbol, order_id=order_id, start_time=start_time, page=page, limit=limit)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExecutionApi->execution_get_trades: %s\n" % e)
@@ -57,8 +57,8 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **symbol** | **str**| Contract type. | 
  **order_id** | **str**| OrderID. If not provided, will return user’s trading records. | [optional] 
- **symbol** | **str**| Contract type. If order_id not provided, symbol is required. | [optional] 
  **start_time** | **str**| Start timestamp point for result. | [optional] 
  **page** | **str**| Page. Default getting first page data. | [optional] 
  **limit** | **str**| Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. | [optional] 
