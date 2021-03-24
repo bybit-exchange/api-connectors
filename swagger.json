@@ -7,7 +7,7 @@
         "contact": {
             "email": "IT@bybit.com"
         },
-        "version": "0.2.11"
+        "version": "0.2.12"
     },
     "host": "api.bybit.com",
     "basePath": "/",
@@ -60,28 +60,27 @@
                 ]
             }
         },
-        "/v2/private/account/lcp": {
+        "/v2/public/orderBook/L2": {
             "get": {
                 "tags": [
-                    "Common"
+                    "Market"
                 ],
-                "summary": "Query LCP info.",
-                "operationId": "Common.getLcp",
+                "summary": "Get the orderbook.",
+                "operationId": "Market.orderbook",
                 "parameters": [
                     {
                         "name": "symbol",
                         "in": "query",
-                        "description": "Contract type",
+                        "description": "Contract type.",
                         "required": true,
                         "type": "string"
-                    }
-                ],
+                    }],
                 "responses": {
                     "200": {
                         "description": "Request was successful",
                         "schema": {
                             "items": {
-                                "$ref": "#/definitions/LCPInfo"
+                                "$ref": "#/definitions/OrderBookBase"
                             }
                         }
                     }
@@ -91,26 +90,133 @@
                 ]
             }
         },
-        "/open-api/api-key": {
+        "/v2/public/tickers": {
             "get": {
                 "tags": [
-                    "APIkey"
+                    "Market"
                 ],
-                "summary": "Get account api-key information.",
-                "operationId": "APIkey.info",
+                "summary": "Get the latest information for symbol.",
+                "operationId": "Market.symbolInfo",
                 "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type.",
+                        "required": false,
+                        "type": "string"
+                    }],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/SymbolInfoBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": [
+                ]
+            }
+        },
+        "/v2/public/trading-records": {
+            "get": {
+                "tags": [
+                    "Market"
+                ],
+                "summary": "Get recent trades",
+                "operationId": "Market.tradingRecords",
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "from",
+                        "in": "query",
+                        "description": "From ID. Default: return latest data",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Number of results. Default 500; max 1000",
+                        "required": false,
+                        "type": "integer"
+                    }
                 ],
                 "responses": {
                     "200": {
                         "description": "Request was successful",
                         "schema": {
                             "items": {
-                                "$ref": "#/definitions/APIKeyBase"
+                                "$ref": "#/definitions/TradingRecords"
                             }
                         }
                     }
                 },
-                "deprecated": false
+                "deprecated": false,
+                "security": [
+                ]
+            }
+        },
+        "/v2/public/kline/list": {
+            "get": {
+                "tags": [
+                    "Kline"
+                ],
+                "summary": "Query historical kline.",
+                "operationId": "Kline.get",
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "interval",
+                        "in": "query",
+                        "description": "Kline interval.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "from",
+                        "in": "query",
+                        "description": "from timestamp.",
+                        "required": true,
+                        "type": "number",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Contract type.",
+                        "required": false,
+                        "type": "number",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/KlineBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": [
+                ]
             }
         },
         "/v2/public/symbols": {
@@ -250,6 +356,112 @@
                 ]
             }
         },
+        "/v2/public/index-price-kline": {
+            "get": {
+                "tags": [
+                    "Kline"
+                ],
+                "summary": "Query index price kline.",
+                "operationId": "Kline.indexPrice",
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "interval",
+                        "in": "query",
+                        "description": "Data refresh interval",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "from",
+                        "in": "query",
+                        "description": "From timestamp in seconds",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit for data size, max size is 1000. Default size is 500",
+                        "required": false,
+                        "type": "integer"
+                    }
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/IndexPriceKlineBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": [
+                ]
+            }
+        },
+        "/v2/public/premium-index-kline": {
+            "get": {
+                "tags": [
+                    "Kline"
+                ],
+                "summary": "Query premium index price kline.",
+                "operationId": "Kline.premiumIndexPrice",
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "interval",
+                        "in": "query",
+                        "description": "Data refresh interval",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "from",
+                        "in": "query",
+                        "description": "From timestamp in seconds",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit for data size, max size is 1000. Default size is 500",
+                        "required": false,
+                        "type": "integer"
+                    }
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/PremiumIndexPriceKlineBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": [
+                ]
+            }
+        },
         "/v2/public/open-interest": {
             "get": {
                 "tags": [
@@ -378,6 +590,699 @@
                 ]
             }
         },
+        "/v2/private/order/create": {
+            "post": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Place active order",
+                "operationId": "Order.new",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "side",
+                        "in": "formData",
+                        "description": "Side",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "symbol",
+                        "in": "formData",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "order_type",
+                        "in": "formData",
+                        "description": "Active order type",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "qty",
+                        "in": "formData",
+                        "description": "",
+                        "required": true,
+                        "type": "number",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "price",
+                        "in": "formData",
+                        "description": "Order price.",
+                        "required": false,
+                        "type": "number",
+                        "format": "double"
+                    },
+                    {
+                        "name": "time_in_force",
+                        "in": "formData",
+                        "description": "Time in force",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "take_profit",
+                        "in": "formData",
+                        "description": "take profit price",
+                        "required": false,
+                        "type": "number",
+                        "format": "double"
+                    },
+                    {
+                        "name": "stop_loss",
+                        "in": "formData",
+                        "description": "stop loss price",
+                        "required": false,
+                        "type": "number",
+                        "format": "double"
+                    },
+                    {
+                        "name": "reduce_only",
+                        "in": "formData",
+                        "description": "reduce only",
+                        "required": false,
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "close_on_trigger",
+                        "in": "formData",
+                        "description": "close on trigger",
+                        "required": false,
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "order_link_id",
+                        "in": "formData",
+                        "description": "TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/OrderResBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/v2/private/order/list": {
+            "get": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Get my active order list.",
+                "operationId": "Order.getOrders",
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type. Default BTCUSD",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "TLimit for data size per page, max size is 50. Default as showing 20 pieces of data per page",
+                        "required": false,
+                        "type": "number",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "order_status",
+                        "in": "query",
+                        "description": "Query your orders for all statuses if 'order_status' is empty. If you want to query orders with specific statuses , you can pass the order_status split by",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "direction",
+                        "in": "query",
+                        "description": "Search direction. prev: prev page, next: next page. Defaults to next",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "cursor",
+                        "in": "query",
+                        "description": "cursor is a unique identifier for a specific record, which acts as a pointer to the next record we want to start querying from to get the next page of results",
+                        "required": false,
+                        "type": "string"
+                    }
+
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/V2OrderListBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/v2/private/order/cancel": {
+            "post": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Get my active order list.",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "operationId": "Order.cancel",
+                "parameters": [
+                    {
+                        "name": "order_id",
+                        "in": "formData",
+                        "description": "Order ID",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "symbol",
+                        "in": "formData",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "order_link_id",
+                        "in": "formData",
+                        "description": "Order link id.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/OrderCancelBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/v2/private/order/cancelAll": {
+            "post": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Get my active order list.",
+                "operationId": "Order.cancelAll",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "formData",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    }],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/OrderCancelAllBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/v2/private/order/replace": {
+            "post": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Replace active order. Only incomplete orders can be modified. ",
+                "operationId": "Order.replace",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "order_id",
+                        "in": "formData",
+                        "description": "Order ID.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "order_link_id",
+                        "in": "formData",
+                        "description": "Order Link ID.",
+                        "required": false,
+                        "type": "string"
+                    },
+
+                    {
+                        "name": "symbol",
+                        "in": "formData",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "p_r_qty",
+                        "in": "formData",
+                        "description": "Order quantity.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "p_r_price",
+                        "in": "formData",
+                        "description": "Order price.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/ReplaceOrderBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/v2/private/order": {
+            "get": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Get my active order list.",
+                "operationId": "Order.query",
+                "parameters": [
+                    {
+                        "name": "order_id",
+                        "in": "query",
+                        "description": "Order ID",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type. Default BTCUSD",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "order_link_id",
+                        "in": "query",
+                        "description": "Agency customized order ID",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/QueryOrderBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/v2/private/stop-order/create": {
+            "post": {
+                "tags": [
+                    "Conditional"
+                ],
+                "summary": "Place a new conditional order.",
+                "operationId": "Conditional.new",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "side",
+                        "in": "formData",
+                        "description": "Side.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "symbol",
+                        "in": "formData",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "order_type",
+                        "in": "formData",
+                        "description": "Conditional order type.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "qty",
+                        "in": "formData",
+                        "description": "Order quantity.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "price",
+                        "in": "formData",
+                        "description": "Execution price for conditional order",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "base_price",
+                        "in": "formData",
+                        "description": "Send current market price. It will be used to compare with the value of 'stop_px', to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order..",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "stop_px",
+                        "in": "formData",
+                        "description": "Trigger price.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "time_in_force",
+                        "in": "formData",
+                        "description": "Time in force.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "trigger_by",
+                        "in": "formData",
+                        "description": "Trigger price type. Default LastPrice.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "close_on_trigger",
+                        "in": "formData",
+                        "description": "close on trigger.",
+                        "required": false,
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "order_link_id",
+                        "in": "formData",
+                        "description": "Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique..",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/V2ConditionalBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/v2/private/stop-order/list": {
+            "get": {
+                "tags": [
+                    "Conditional"
+                ],
+                "summary": "Get my conditional order list.",
+                "operationId": "Conditional.getOrders",
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "stop_order_status",
+                        "in": "query",
+                        "description": "Stop order status.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page.",
+                        "required": false,
+                        "type": "number",
+                        "format": "int32"
+                    },{
+                        "name": "direction",
+                        "in": "query",
+                        "description": "Search direction. prev: prev page, next: next page. Defaults to next",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "cursor",
+                        "in": "query",
+                        "description": "Page turning mark，Use return cursor,Sign use origin data, in request please urlencode",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/ConditionalOrdersResBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/v2/private/stop-order/cancel": {
+            "post": {
+                "tags": [
+                    "Conditional"
+                ],
+                "summary": "Cancel conditional order.",
+                "operationId": "Conditional.cancel",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "stop_order_id",
+                        "in": "formData",
+                        "description": "Order ID of conditional order.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "order_link_id",
+                        "in": "formData",
+                        "description": "Agency customized order ID.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "symbol",
+                        "in": "formData",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    }],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/V2CancelOrderBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/v2/private/stop-order/cancelAll": {
+            "post": {
+                "tags": [
+                    "Conditional"
+                ],
+                "summary": "Cancel conditional order.",
+                "operationId": "Conditional.cancelAll",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "formData",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    }],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/ConditionalCancelAllBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/v2/private/stop-order/replace": {
+            "post": {
+                "tags": [
+                    "Conditional"
+                ],
+                "summary": "Replace conditional order. Only incomplete orders can be modified. ",
+                "operationId": "Conditional.replace",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "stop_order_id",
+                        "in": "formData",
+                        "description": "Stop order ID.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "order_link_id",
+                        "in": "formData",
+                        "description": "Order Link ID.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "symbol",
+                        "in": "formData",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "p_r_qty",
+                        "in": "formData",
+                        "description": "Order quantity.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "p_r_price",
+                        "in": "formData",
+                        "description": "Order price.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "p_r_trigger_price",
+                        "in": "formData",
+                        "description": "Trigger price.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/ReplaceConditionalBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/v2/private/stop-order": {
+            "get": {
+                "tags": [
+                    "Conditional"
+                ],
+                "summary": "Query real-time stop order information.",
+                "operationId": "Conditional.query",
+                "parameters": [
+                    {
+                        "name": "stop_order_id",
+                        "in": "query",
+                        "description": "Order ID of conditional order.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "order_link_id",
+                        "in": "query",
+                        "description": "Agency customized order ID.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/StopOrderOrdersResBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+
         "/user/leverage/save": {
             "post": {
                 "tags": [
@@ -811,699 +1716,6 @@
                 "deprecated": false
             }
         },
-        "/v2/private/order/create": {
-            "post": {
-                "tags": [
-                    "Order"
-                ],
-                "summary": "Place active order",
-                "operationId": "Order.new",
-                "consumes": [
-                    "application/x-www-form-urlencoded"
-                ],
-                "parameters": [
-                    {
-                        "name": "side",
-                        "in": "formData",
-                        "description": "Side",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "symbol",
-                        "in": "formData",
-                        "description": "Contract type.",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "order_type",
-                        "in": "formData",
-                        "description": "Active order type",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "qty",
-                        "in": "formData",
-                        "description": "",
-                        "required": true,
-                        "type": "number",
-                        "format": "int32"
-                    },
-                    {
-                        "name": "price",
-                        "in": "formData",
-                        "description": "Order price.",
-                        "required": false,
-                        "type": "number",
-                        "format": "double"
-                    },
-                    {
-                        "name": "time_in_force",
-                        "in": "formData",
-                        "description": "Time in force",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "take_profit",
-                        "in": "formData",
-                        "description": "take profit price",
-                        "required": false,
-                        "type": "number",
-                        "format": "double"
-                    },
-                    {
-                        "name": "stop_loss",
-                        "in": "formData",
-                        "description": "stop loss price",
-                        "required": false,
-                        "type": "number",
-                        "format": "double"
-                    },
-                    {
-                        "name": "reduce_only",
-                        "in": "formData",
-                        "description": "reduce only",
-                        "required": false,
-                        "type": "boolean"
-                    },
-                    {
-                        "name": "close_on_trigger",
-                        "in": "formData",
-                        "description": "close on trigger",
-                        "required": false,
-                        "type": "boolean"
-                    },
-                    {
-                        "name": "order_link_id",
-                        "in": "formData",
-                        "description": "TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.",
-                        "required": false,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Request was successful",
-                        "schema": {
-                            "items": {
-                                "$ref": "#/definitions/OrderResBase"
-                            }
-                        }
-                    }
-                },
-                "deprecated": false
-            }
-        },
-        "/v2/private/order/list": {
-            "get": {
-                "tags": [
-                    "Order"
-                ],
-                "summary": "Get my active order list.",
-                "operationId": "Order.getOrders",
-                "parameters": [
-                    {
-                        "name": "symbol",
-                        "in": "query",
-                        "description": "Contract type. Default BTCUSD",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "limit",
-                        "in": "query",
-                        "description": "TLimit for data size per page, max size is 50. Default as showing 20 pieces of data per page",
-                        "required": false,
-                        "type": "number",
-                        "format": "int32"
-                    },
-                    {
-                        "name": "order_status",
-                        "in": "query",
-                        "description": "Query your orders for all statuses if 'order_status' is empty. If you want to query orders with specific statuses , you can pass the order_status split by",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "direction",
-                        "in": "query",
-                        "description": "Search direction. prev: prev page, next: next page. Defaults to next",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "cursor",
-                        "in": "query",
-                        "description": "cursor is a unique identifier for a specific record, which acts as a pointer to the next record we want to start querying from to get the next page of results",
-                        "required": false,
-                        "type": "string"
-                    }
-
-
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Request was successful",
-                        "schema": {
-                            "items": {
-                                "$ref": "#/definitions/V2OrderListBase"
-                            }
-                        }
-                    }
-                },
-                "deprecated": false
-            }
-        },
-
-        "/v2/private/order/cancel": {
-            "post": {
-                "tags": [
-                    "Order"
-                ],
-                "summary": "Get my active order list.",
-                "consumes": [
-                    "application/x-www-form-urlencoded"
-                ],
-                "operationId": "Order.cancel",
-                "parameters": [
-                    {
-                        "name": "order_id",
-                        "in": "formData",
-                        "description": "Order ID",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "symbol",
-                        "in": "formData",
-                        "description": "Contract type.",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "order_link_id",
-                        "in": "formData",
-                        "description": "Order link id.",
-                        "required": false,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Request was successful",
-                        "schema": {
-                            "items": {
-                                "$ref": "#/definitions/OrderCancelBase"
-                            }
-                        }
-                    }
-                },
-                "deprecated": false
-            }
-        },
-        "/v2/private/order/cancelAll": {
-            "post": {
-                "tags": [
-                    "Order"
-                ],
-                "summary": "Get my active order list.",
-                "operationId": "Order.cancelAll",
-                "consumes": [
-                    "application/x-www-form-urlencoded"
-                ],
-                "parameters": [
-                    {
-                        "name": "symbol",
-                        "in": "formData",
-                        "description": "Contract type.",
-                        "required": true,
-                        "type": "string"
-                    }],
-                "responses": {
-                    "200": {
-                        "description": "Request was successful",
-                        "schema": {
-                            "items": {
-                                "$ref": "#/definitions/OrderCancelAllBase"
-                            }
-                        }
-                    }
-                },
-                "deprecated": false
-            }
-        },
-        "/v2/private/order/replace": {
-            "post": {
-                "tags": [
-                    "Order"
-                ],
-                "summary": "Replace active order. Only incomplete orders can be modified. ",
-                "operationId": "Order.replace",
-                "consumes": [
-                    "application/x-www-form-urlencoded"
-                ],
-                "parameters": [
-                    {
-                        "name": "order_id",
-                        "in": "formData",
-                        "description": "Order ID.",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "order_link_id",
-                        "in": "formData",
-                        "description": "Order Link ID.",
-                        "required": false,
-                        "type": "string"
-                    },
-
-                    {
-                        "name": "symbol",
-                        "in": "formData",
-                        "description": "Contract type.",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "p_r_qty",
-                        "in": "formData",
-                        "description": "Order quantity.",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "p_r_price",
-                        "in": "formData",
-                        "description": "Order price.",
-                        "required": false,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Request was successful",
-                        "schema": {
-                            "items": {
-                                "$ref": "#/definitions/ReplaceOrderBase"
-                            }
-                        }
-                    }
-                },
-                "deprecated": false
-            }
-        },
-        "/v2/private/order": {
-            "get": {
-                "tags": [
-                    "Order"
-                ],
-                "summary": "Get my active order list.",
-                "operationId": "Order.query",
-                "parameters": [
-                    {
-                        "name": "order_id",
-                        "in": "query",
-                        "description": "Order ID",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "symbol",
-                        "in": "query",
-                        "description": "Contract type. Default BTCUSD",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "order_link_id",
-                        "in": "query",
-                        "description": "Agency customized order ID",
-                        "required": false,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Request was successful",
-                        "schema": {
-                            "items": {
-                                "$ref": "#/definitions/QueryOrderBase"
-                            }
-                        }
-                    }
-                },
-                "deprecated": false
-            }
-        },
-        "/v2/private/stop-order/create": {
-            "post": {
-                "tags": [
-                    "Conditional"
-                ],
-                "summary": "Place a new conditional order.",
-                "operationId": "Conditional.new",
-                "consumes": [
-                    "application/x-www-form-urlencoded"
-                ],
-                "parameters": [
-                    {
-                        "name": "side",
-                        "in": "formData",
-                        "description": "Side.",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "symbol",
-                        "in": "formData",
-                        "description": "Contract type.",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "order_type",
-                        "in": "formData",
-                        "description": "Conditional order type.",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "qty",
-                        "in": "formData",
-                        "description": "Order quantity.",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "price",
-                        "in": "formData",
-                        "description": "Execution price for conditional order",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "base_price",
-                        "in": "formData",
-                        "description": "Send current market price. It will be used to compare with the value of 'stop_px', to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order..",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "stop_px",
-                        "in": "formData",
-                        "description": "Trigger price.",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "time_in_force",
-                        "in": "formData",
-                        "description": "Time in force.",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "trigger_by",
-                        "in": "formData",
-                        "description": "Trigger price type. Default LastPrice.",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "close_on_trigger",
-                        "in": "formData",
-                        "description": "close on trigger.",
-                        "required": false,
-                        "type": "boolean"
-                    },
-                    {
-                        "name": "order_link_id",
-                        "in": "formData",
-                        "description": "Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique..",
-                        "required": false,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Request was successful",
-                        "schema": {
-                            "items": {
-                                "$ref": "#/definitions/V2ConditionalBase"
-                            }
-                        }
-                    }
-                },
-                "deprecated": false
-            }
-        },
-        "/v2/private/stop-order/list": {
-            "get": {
-                "tags": [
-                    "Conditional"
-                ],
-                "summary": "Get my conditional order list.",
-                "operationId": "Conditional.getOrders",
-                "parameters": [
-                    {
-                        "name": "symbol",
-                        "in": "query",
-                        "description": "Contract type",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "stop_order_status",
-                        "in": "query",
-                        "description": "Stop order status.",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "limit",
-                        "in": "query",
-                        "description": "Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page.",
-                        "required": false,
-                        "type": "number",
-                        "format": "int32"
-                    },{
-                        "name": "direction",
-                        "in": "query",
-                        "description": "Search direction. prev: prev page, next: next page. Defaults to next",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "cursor",
-                        "in": "query",
-                        "description": "Page turning mark，Use return cursor,Sign use origin data, in request please urlencode",
-                        "required": false,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Request was successful",
-                        "schema": {
-                            "items": {
-                                "$ref": "#/definitions/ConditionalOrdersResBase"
-                            }
-                        }
-                    }
-                },
-                "deprecated": false
-            }
-        },
-        "/v2/private/stop-order": {
-            "get": {
-                "tags": [
-                    "Conditional"
-                ],
-                "summary": "Query real-time stop order information.",
-                "operationId": "Conditional.query",
-                "parameters": [
-                    {
-                        "name": "stop_order_id",
-                        "in": "query",
-                        "description": "Order ID of conditional order.",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "order_link_id",
-                        "in": "query",
-                        "description": "Agency customized order ID.",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "symbol",
-                        "in": "query",
-                        "description": "Contract type.",
-                        "required": false,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Request was successful",
-                        "schema": {
-                            "items": {
-                                "$ref": "#/definitions/StopOrderOrdersResBase"
-                            }
-                        }
-                    }
-                },
-                "deprecated": false
-            }
-        },
-        "/v2/private/stop-order/cancel": {
-            "post": {
-                "tags": [
-                    "Conditional"
-                ],
-                "summary": "Cancel conditional order.",
-                "operationId": "Conditional.cancel",
-                "consumes": [
-                    "application/x-www-form-urlencoded"
-                ],
-                "parameters": [
-                    {
-                        "name": "stop_order_id",
-                        "in": "formData",
-                        "description": "Order ID of conditional order.",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "order_link_id",
-                        "in": "formData",
-                        "description": "Agency customized order ID.",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "symbol",
-                        "in": "formData",
-                        "description": "Contract type.",
-                        "required": true,
-                        "type": "string"
-                    }],
-                "responses": {
-                    "200": {
-                        "description": "Request was successful",
-                        "schema": {
-                            "items": {
-                                "$ref": "#/definitions/V2CancelOrderBase"
-                            }
-                        }
-                    }
-                },
-                "deprecated": false
-            }
-        },
-        "/v2/private/stop-order/cancelAll": {
-            "post": {
-                "tags": [
-                    "Conditional"
-                ],
-                "summary": "Cancel conditional order.",
-                "operationId": "Conditional.cancelAll",
-                "consumes": [
-                    "application/x-www-form-urlencoded"
-                ],
-                "parameters": [
-                    {
-                        "name": "symbol",
-                        "in": "formData",
-                        "description": "Contract type.",
-                        "required": true,
-                        "type": "string"
-                    }],
-                "responses": {
-                    "200": {
-                        "description": "Request was successful",
-                        "schema": {
-                            "items": {
-                                "$ref": "#/definitions/ConditionalCancelAllBase"
-                            }
-                        }
-                    }
-                },
-                "deprecated": false
-            }
-        },
-        "/v2/private/stop-order/replace": {
-            "post": {
-                "tags": [
-                    "Conditional"
-                ],
-                "summary": "Replace conditional order. Only incomplete orders can be modified. ",
-                "operationId": "Conditional.replace",
-                "consumes": [
-                    "application/x-www-form-urlencoded"
-                ],
-                "parameters": [
-                    {
-                        "name": "stop_order_id",
-                        "in": "formData",
-                        "description": "Stop order ID.",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "order_link_id",
-                        "in": "formData",
-                        "description": "Order Link ID.",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "symbol",
-                        "in": "formData",
-                        "description": "Contract type.",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "p_r_qty",
-                        "in": "formData",
-                        "description": "Order quantity.",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "p_r_price",
-                        "in": "formData",
-                        "description": "Order price.",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "p_r_trigger_price",
-                        "in": "formData",
-                        "description": "Trigger price.",
-                        "required": false,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Request was successful",
-                        "schema": {
-                            "items": {
-                                "$ref": "#/definitions/ReplaceConditionalBase"
-                            }
-                        }
-                    }
-                },
-                "deprecated": false
-            }
-        },
         "/open-api/funding/prev-funding-rate": {
             "get": {
                 "tags": [
@@ -1712,27 +1924,28 @@
                 "deprecated": false
             }
         },
-        "/v2/public/orderBook/L2": {
+       "/v2/private/account/lcp": {
             "get": {
                 "tags": [
-                    "Market"
+                    "Common"
                 ],
-                "summary": "Get the orderbook.",
-                "operationId": "Market.orderbook",
+                "summary": "Query LCP info.",
+                "operationId": "Common.getLcp",
                 "parameters": [
                     {
                         "name": "symbol",
                         "in": "query",
-                        "description": "Contract type.",
+                        "description": "Contract type",
                         "required": true,
                         "type": "string"
-                    }],
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Request was successful",
                         "schema": {
                             "items": {
-                                "$ref": "#/definitions/OrderBookBase"
+                                "$ref": "#/definitions/LCPInfo"
                             }
                         }
                     }
@@ -1742,133 +1955,26 @@
                 ]
             }
         },
-        "/v2/public/tickers": {
+        "/open-api/api-key": {
             "get": {
                 "tags": [
-                    "Market"
+                    "APIkey"
                 ],
-                "summary": "Get the latest information for symbol.",
-                "operationId": "Market.symbolInfo",
+                "summary": "Get account api-key information.",
+                "operationId": "APIkey.info",
                 "parameters": [
-                    {
-                        "name": "symbol",
-                        "in": "query",
-                        "description": "Contract type.",
-                        "required": false,
-                        "type": "string"
-                    }],
-                "responses": {
-                    "200": {
-                        "description": "Request was successful",
-                        "schema": {
-                            "items": {
-                                "$ref": "#/definitions/SymbolInfoBase"
-                            }
-                        }
-                    }
-                },
-                "deprecated": false,
-                "security": [
-                ]
-            }
-        },
-        "/v2/public/trading-records": {
-            "get": {
-                "tags": [
-                    "Market"
-                ],
-                "summary": "Get recent trades",
-                "operationId": "Market.tradingRecords",
-                "parameters": [
-                    {
-                        "name": "symbol",
-                        "in": "query",
-                        "description": "Contract type.",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "from",
-                        "in": "query",
-                        "description": "From ID. Default: return latest data",
-                        "required": false,
-                        "type": "integer"
-                    },
-                    {
-                        "name": "limit",
-                        "in": "query",
-                        "description": "Number of results. Default 500; max 1000",
-                        "required": false,
-                        "type": "integer"
-                    }
                 ],
                 "responses": {
                     "200": {
                         "description": "Request was successful",
                         "schema": {
                             "items": {
-                                "$ref": "#/definitions/TradingRecords"
+                                "$ref": "#/definitions/APIKeyBase"
                             }
                         }
                     }
                 },
-                "deprecated": false,
-                "security": [
-                ]
-            }
-        },
-        "/v2/public/kline/list": {
-            "get": {
-                "tags": [
-                    "Kline"
-                ],
-                "summary": "Query historical kline.",
-                "operationId": "Kline.get",
-                "parameters": [
-                    {
-                        "name": "symbol",
-                        "in": "query",
-                        "description": "Contract type.",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "interval",
-                        "in": "query",
-                        "description": "Kline interval.",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "from",
-                        "in": "query",
-                        "description": "from timestamp.",
-                        "required": true,
-                        "type": "number",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "limit",
-                        "in": "query",
-                        "description": "Contract type.",
-                        "required": false,
-                        "type": "number",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Request was successful",
-                        "schema": {
-                            "items": {
-                                "$ref": "#/definitions/KlineBase"
-                            }
-                        }
-                    }
-                },
-                "deprecated": false,
-                "security": [
-                ]
+                "deprecated": false
             }
         },
         "/private/linear/order/create": {
@@ -3119,6 +3225,110 @@
                 }
             }
         },
+        "/public/linear/index-price-kline": {
+            "get": {
+                "tags": [
+                    "LinearKline"
+                ],
+                "description": "This will get index price kline",
+                "summary": "Get kline",
+                "operationId": "LinearKline.indexPrice",
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "interval",
+                        "in": "query",
+                        "description": "Kline interval.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "from",
+                        "in": "query",
+                        "description": "from timestamp.",
+                        "required": true,
+                        "type": "number",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Contract type.",
+                        "required": false,
+                        "type": "number",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/IndexPriceKlineBase"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/public/linear/premium-index-kline": {
+            "get": {
+                "tags": [
+                    "LinearKline"
+                ],
+                "description": "This will get premium index price kline",
+                "summary": "Get kline",
+                "operationId": "LinearKline.premiumIndexPrice",
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "interval",
+                        "in": "query",
+                        "description": "Kline interval.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "from",
+                        "in": "query",
+                        "description": "from timestamp.",
+                        "required": true,
+                        "type": "number",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Contract type.",
+                        "required": false,
+                        "type": "number",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/PremiumIndexPriceKlineBase"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/public/linear/recent-trading-records": {
             "get": {
                 "tags": [
@@ -3163,6 +3373,18 @@
                 "description": "This will get risk limit.",
                 "summary": "Get risk limit.",
                 "operationId": "LinearWallet.getRiskLimit",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "formData",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Request was successful",
@@ -3213,6 +3435,1101 @@
                         "schema": {
                             "items": {
                                 "$ref": "#/definitions/LinearSetRiskLimit"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/futures/private/order/create": {
+            "post": {
+                "tags": [
+                    "FuturesOrder"
+                ],
+                "summary": "Place active order",
+                "operationId": "FuturesOrder.new",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "side",
+                        "in": "formData",
+                        "description": "Side",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "symbol",
+                        "in": "formData",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "order_type",
+                        "in": "formData",
+                        "description": "Active order type",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "qty",
+                        "in": "formData",
+                        "description": "",
+                        "required": true,
+                        "type": "number",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "price",
+                        "in": "formData",
+                        "description": "Order price.",
+                        "required": false,
+                        "type": "number",
+                        "format": "double"
+                    },
+                    {
+                        "name": "time_in_force",
+                        "in": "formData",
+                        "description": "Time in force",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "take_profit",
+                        "in": "formData",
+                        "description": "take profit price",
+                        "required": false,
+                        "type": "number",
+                        "format": "double"
+                    },
+                    {
+                        "name": "stop_loss",
+                        "in": "formData",
+                        "description": "stop loss price",
+                        "required": false,
+                        "type": "number",
+                        "format": "double"
+                    },
+                    {
+                        "name": "reduce_only",
+                        "in": "formData",
+                        "description": "reduce only",
+                        "required": false,
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "close_on_trigger",
+                        "in": "formData",
+                        "description": "close on trigger",
+                        "required": false,
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "order_link_id",
+                        "in": "formData",
+                        "description": "TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/OrderResBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/futures/private/order/list": {
+            "get": {
+                "tags": [
+                    "FuturesOrder"
+                ],
+                "summary": "Get my active order list.",
+                "operationId": "FuturesOrder.getOrders",
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type. Default BTCUSD",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "TLimit for data size per page, max size is 50. Default as showing 20 pieces of data per page",
+                        "required": false,
+                        "type": "number",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "order_status",
+                        "in": "query",
+                        "description": "Query your orders for all statuses if 'order_status' is empty. If you want to query orders with specific statuses , you can pass the order_status split by",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "direction",
+                        "in": "query",
+                        "description": "Search direction. prev: prev page, next: next page. Defaults to next",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "cursor",
+                        "in": "query",
+                        "description": "cursor is a unique identifier for a specific record, which acts as a pointer to the next record we want to start querying from to get the next page of results",
+                        "required": false,
+                        "type": "string"
+                    }
+
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/V2OrderListBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/futures/private/order/cancel": {
+            "post": {
+                "tags": [
+                    "FuturesOrder"
+                ],
+                "summary": "Get my active order list.",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "operationId": "FuturesOrder.cancel",
+                "parameters": [
+                    {
+                        "name": "order_id",
+                        "in": "formData",
+                        "description": "Order ID",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "symbol",
+                        "in": "formData",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "order_link_id",
+                        "in": "formData",
+                        "description": "Order link id.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/OrderCancelBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/futures/private/order/cancelAll": {
+            "post": {
+                "tags": [
+                    "FuturesOrder"
+                ],
+                "summary": "Get my active order list.",
+                "operationId": "FuturesOrder.cancelAll",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "formData",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    }],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/OrderCancelAllBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/futures/private/order/replace": {
+            "post": {
+                "tags": [
+                    "FuturesOrder"
+                ],
+                "summary": "Replace active order. Only incomplete orders can be modified. ",
+                "operationId": "FuturesOrder.replace",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "order_id",
+                        "in": "formData",
+                        "description": "Order ID.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "order_link_id",
+                        "in": "formData",
+                        "description": "Order Link ID.",
+                        "required": false,
+                        "type": "string"
+                    },
+
+                    {
+                        "name": "symbol",
+                        "in": "formData",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "p_r_qty",
+                        "in": "formData",
+                        "description": "Order quantity.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "p_r_price",
+                        "in": "formData",
+                        "description": "Order price.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/ReplaceOrderBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/futures/private/order": {
+            "get": {
+                "tags": [
+                    "FuturesOrder"
+                ],
+                "summary": "Get my active order list.",
+                "operationId": "FuturesOrder.query",
+                "parameters": [
+                    {
+                        "name": "order_id",
+                        "in": "query",
+                        "description": "Order ID",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type. Default BTCUSD",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "order_link_id",
+                        "in": "query",
+                        "description": "Agency customized order ID",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/QueryOrderBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/futures/private/stop-order/create": {
+            "post": {
+                "tags": [
+                    "FuturesConditional"
+                ],
+                "summary": "Place a new conditional order.",
+                "operationId": "FuturesConditional.new",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "side",
+                        "in": "formData",
+                        "description": "Side.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "symbol",
+                        "in": "formData",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "order_type",
+                        "in": "formData",
+                        "description": "Conditional order type.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "qty",
+                        "in": "formData",
+                        "description": "Order quantity.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "price",
+                        "in": "formData",
+                        "description": "Execution price for conditional order",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "base_price",
+                        "in": "formData",
+                        "description": "Send current market price. It will be used to compare with the value of 'stop_px', to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order..",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "stop_px",
+                        "in": "formData",
+                        "description": "Trigger price.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "time_in_force",
+                        "in": "formData",
+                        "description": "Time in force.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "trigger_by",
+                        "in": "formData",
+                        "description": "Trigger price type. Default LastPrice.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "close_on_trigger",
+                        "in": "formData",
+                        "description": "close on trigger.",
+                        "required": false,
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "order_link_id",
+                        "in": "formData",
+                        "description": "Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique..",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/V2ConditionalBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/futures/private/stop-order/list": {
+            "get": {
+                "tags": [
+                    "FuturesConditional"
+                ],
+                "summary": "Get my conditional order list.",
+                "operationId": "FuturesConditional.getOrders",
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "stop_order_status",
+                        "in": "query",
+                        "description": "Stop order status.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page.",
+                        "required": false,
+                        "type": "number",
+                        "format": "int32"
+                    },{
+                        "name": "direction",
+                        "in": "query",
+                        "description": "Search direction. prev: prev page, next: next page. Defaults to next",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "cursor",
+                        "in": "query",
+                        "description": "Page turning mark，Use return cursor,Sign use origin data, in request please urlencode",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/ConditionalOrdersResBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/futures/private/stop-order/cancel": {
+            "post": {
+                "tags": [
+                    "FuturesConditional"
+                ],
+                "summary": "Cancel conditional order.",
+                "operationId": "FuturesConditional.cancel",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "stop_order_id",
+                        "in": "formData",
+                        "description": "Order ID of conditional order.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "order_link_id",
+                        "in": "formData",
+                        "description": "Agency customized order ID.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "symbol",
+                        "in": "formData",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    }],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/V2CancelOrderBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/futures/private/stop-order/cancelAll": {
+            "post": {
+                "tags": [
+                    "FuturesConditional"
+                ],
+                "summary": "Cancel conditional order.",
+                "operationId": "FuturesConditional.cancelAll",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "formData",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    }],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/ConditionalCancelAllBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/futures/private/stop-order/replace": {
+            "post": {
+                "tags": [
+                    "FuturesConditional"
+                ],
+                "summary": "Replace conditional order. Only incomplete orders can be modified. ",
+                "operationId": "FuturesConditional.replace",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "stop_order_id",
+                        "in": "formData",
+                        "description": "Stop order ID.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "order_link_id",
+                        "in": "formData",
+                        "description": "Order Link ID.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "symbol",
+                        "in": "formData",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "p_r_qty",
+                        "in": "formData",
+                        "description": "Order quantity.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "p_r_price",
+                        "in": "formData",
+                        "description": "Order price.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "p_r_trigger_price",
+                        "in": "formData",
+                        "description": "Trigger price.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/ReplaceConditionalBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/futures/private/stop-order": {
+            "get": {
+                "tags": [
+                    "FuturesConditional"
+                ],
+                "summary": "Query real-time stop order information.",
+                "operationId": "FuturesConditional.query",
+                "parameters": [
+                    {
+                        "name": "stop_order_id",
+                        "in": "query",
+                        "description": "Order ID of conditional order.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "order_link_id",
+                        "in": "query",
+                        "description": "Agency customized order ID.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/StopOrderOrdersResBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/futures/private/position/list": {
+            "get": {
+                "tags": [
+                    "FuturesPositions"
+                ],
+                "summary": "Get my position list.",
+                "operationId": "FuturesPositions.myPosition",
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type which you want update its margin",
+                        "required": false,
+                        "type": "string"
+                    }],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/Position"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/futures/private/position/change-position-margin": {
+            "post": {
+                "tags": [
+                    "FuturesPositions"
+                ],
+                "summary": "Update margin.",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "operationId": "FuturesPositions.changeMargin",
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "formData",
+                        "description": "Contract type which you want update its margin",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "margin",
+                        "in": "formData",
+                        "description": "New margin you want set",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/ServerTime"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/futures/private/position/trading-stop": {
+            "post": {
+                "tags": [
+                    "FuturesPositions"
+                ],
+                "summary": "Set Trading-Stop Condition.",
+                "operationId": "FuturesPositions.tradingStop",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "formData",
+                        "description": "Contract type",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "take_profit",
+                        "in": "formData",
+                        "description": "Not less than 0, 0 means cancel TP",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "stop_loss",
+                        "in": "formData",
+                        "description": "Not less than 0, 0 means cancel SL",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "trailing_stop",
+                        "in": "formData",
+                        "description": "Not less than 0, 0 means cancel TS",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "new_trailing_active",
+                        "in": "formData",
+                        "description": "Trailing stop trigger price. Trailing stops are triggered only when the price reaches the specified price. Trailing stops are triggered immediately by default.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/TradingStopBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/futures/private/position/leverage/save": {
+            "post": {
+                "tags": [
+                    "FuturesPositions"
+                ],
+                "summary": "Change user leverage.",
+                "operationId": "FuturesPositions.saveLeverage",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "formData",
+                        "description": "A symbol which you want change its leverage",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "position_idx",
+                        "in": "formData",
+                        "description": "Position idx, used to identify positions in different position modes",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "buy_leverage",
+                        "in": "formData",
+                        "description": "New buy leverage you want set",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "sell_leverage",
+                        "in": "formData",
+                        "description": "New sell leverage you want set",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/ServerTime"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/futures/private/position/switch-mode": {
+            "post": {
+                "tags": [
+                    "FuturesPositions"
+                ],
+                "summary": "Switch position mode.",
+                "operationId": "FuturesPositions.switchPositionMode",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "formData",
+                        "description": "A symbol which you want change its leverage",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "mode",
+                        "in": "formData",
+                        "description": "Position Mode. 0: One-Way Mode; 3: Hedge Mode",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/ServerTime"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/futures/private/position/switch-isolated": {
+            "post": {
+                "tags": [
+                    "FuturesPositions"
+                ],
+                "summary": "Switch position isolated.",
+                "operationId": "FuturesPositions.switchIsolated",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "formData",
+                        "description": "A symbol which you want change its leverage",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "position_idx",
+                        "in": "formData",
+                        "description": "Position idx, used to identify positions in different position modes",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_isolated",
+                        "in": "formData",
+                        "description": "Position margin mode",
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "buy_leverage",
+                        "in": "formData",
+                        "description": "New buy leverage you want set",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "sell_leverage",
+                        "in": "formData",
+                        "description": "New sell leverage you want set",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/ServerTime"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/futures/private/execution/list": {
+            "get": {
+                "tags": [
+                    "FuturesExecution"
+                ],
+                "summary": "Get user’s trade records.",
+                "operationId": "FuturesExecution.getTrades",
+                "parameters": [
+                    {
+                        "name": "order_id",
+                        "in": "query",
+                        "description": "OrderID. If not provided, will return user’s trading records.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "start_time",
+                        "in": "query",
+                        "description": "Start timestamp point for result.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page. Default getting first page data.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/TradeRecordsBase"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/futures/private/trade/closed-pnl/list": {
+            "get": {
+                "tags": [
+                    "FuturesExecution",
+                    "FuturesPositions"
+                ],
+                "summary": "Get user's closed profit and loss records",
+                "operationId": "FuturesPositions.closePnlRecords",
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Contract type",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "start_time",
+                        "in": "query",
+                        "description": "Start timestamp point for result, in second",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "end_time",
+                        "in": "query",
+                        "description": "End timestamp point for result, in second",
+                        "required": false,
+                        "type": "integer"
+                    },
+
+                    {
+                        "name": "exec_type",
+                        "in": "query",
+                        "description": "Execution type",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page. By default, gets first page of data. Maximum of 50 pages",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page.",
+                        "required": false,
+                        "type": "integer"
+                    }
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request was successful",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/ClosedPnlBase"
                             }
                         }
                     }
@@ -3762,6 +5079,114 @@
                 },
                 "close":{
                     "type": "integer"
+                }
+            }
+        },
+        "IndexPriceKlineBase": {
+            "description": "Get mark price kline information.",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/IndexPriceKlineInfo"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "IndexPriceKlineInfo": {
+            "type": "object",
+            "properties": {
+                "symbol": {
+                    "type": "string"
+                },
+                "period":{
+                    "type": "string"
+                },
+                "open_time":{
+                    "type": "integer"
+                },
+                "open":{
+                    "type": "string"
+                },
+                "high":{
+                    "type": "string"
+                },
+                "low":{
+                    "type": "string"
+                },
+                "close":{
+                    "type": "string"
+                }
+            }
+        },
+        "PremiumIndexPriceKlineBase": {
+            "description": "Get mark price kline information.",
+            "properties": {
+                "ret_code": {
+                    "format": "int32",
+                    "type": "number"
+                },
+                "ret_msg": {
+                    "type": "string"
+                },
+                "ext_code": {
+                    "type": "string"
+                },
+                "ext_info": {
+                    "type": "string"
+                },
+                "result": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/PremiumIndexPriceKlineInfo"
+                    }
+                },
+                "time_now": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "PremiumIndexPriceKlineInfo": {
+            "type": "object",
+            "properties": {
+                "symbol": {
+                    "type": "string"
+                },
+                "period":{
+                    "type": "string"
+                },
+                "open_time":{
+                    "type": "integer"
+                },
+                "open":{
+                    "type": "string"
+                },
+                "high":{
+                    "type": "string"
+                },
+                "low":{
+                    "type": "string"
+                },
+                "close":{
+                    "type": "string"
                 }
             }
         },
@@ -7670,4 +9095,3 @@
             ]
         }]
 }
-

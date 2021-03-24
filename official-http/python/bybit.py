@@ -8,7 +8,6 @@ from bravado.swagger_model import load_file
 
 import json
 
-
 TESTNET = 'https://api-testnet.bybit.com'
 MAINNET = 'https://api.bybit.com'
 
@@ -25,8 +24,8 @@ def bybit(test=True, config=None, api_key=None, api_secret=None):
         'also_return_response': True,
         'host': host
     } if not config else config
-    
-    spec_uri = urljoin(host, "/doc/swagger/v_0_2_10.txt")
+
+    spec_uri = urljoin(host, "/doc/swagger/v_0_2_12.txt")
 
     if api_key and api_secret:
         request_client = RequestsClient()
