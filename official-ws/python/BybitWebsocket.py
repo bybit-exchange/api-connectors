@@ -25,7 +25,7 @@ class BybitWebsocket:
     # funding, account, leverage
     PRIVATE_TOPIC = ['position', 'execution', 'order', 'stop_order', 'wallet']
     USD_SYMBOLS = ['BTCUSD', 'ETHUSD', 'EOSUSD', 'XRPUSD']
-    WS_OPS = ['auth', 'subscribe']
+    WS_OPS = ['auth', 'subscribe', 'unsubscribe']
 
     def __init__(self, wsURL, api_key, api_secret):
         '''Initialize'''
@@ -64,7 +64,8 @@ class BybitWebsocket:
                                          on_error=self.__on_error,
                                          keep_running=True)
 
-        self.wst = threading.Thread(target=lambda: self.ws.run_forever())
+        self.wst = threading.Thread(target=lambda: self.ws.run_forever(http_proxy_host='127.0.0.1', http_proxy_port=1087,
+        sslopt={"cert_reqs": ssl.CERT_NONE}))
         self.wst.daemon = True
         self.wst.start()
         self.logger.debug("Started thread")
@@ -165,6 +166,19 @@ class BybitWebsocket:
     def subscribe_orderBookL2(self, symbol, level=None):
         param = {}
         param['op'] = 'subscribe'
+        if level is None:
+            topic = 'orderBookL2_25.' + symbol
+        else:
+            topic = 'orderBook_{level}.100ms.{symbol}'.format(level=level, symbol=symbol)
+        print(topic)
+        param['args'] = [topic]
+        self.ws.send(json.dumps(param))
+        if topic not in self.data:
+            self.data[topic] = []
+
+    def unsubscribe_orderBookL2(self, symbol, level=None):
+        param = {}
+        param['op'] = 'unsubscribe'
         if level is None:
             topic = 'orderBookL2_25.' + symbol
         else:

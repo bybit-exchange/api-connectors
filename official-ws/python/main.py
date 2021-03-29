@@ -19,13 +19,13 @@ if __name__ == "__main__":
     logger = setup_logger()
 
     # inverse perpetual
-    # ws = BybitWebsocket(wsURL="wss://stream.bytick.com/realtime",
-    #                      api_key="", api_secret=""
-    #                     )
+    ws = BybitWebsocket(wsURL="wss://stream.bytick.com/realtime",
+                         api_key="", api_secret=""
+                        )
 
-    # ws.subscribe_orderBookL2("BTCUSD")
+    ws.subscribe_orderBookL2("BTCUSD")
     # ws.subscribe_orderBookL2("BTCUSD", 200)# only support 200
-    # ws.subscribe_kline("BTCUSD", '1')
+    ws.subscribe_kline("BTCUSD", '1')
     # ws.subscribe_instrument_info('BTCUSD')
     # ws.subscribe_trade("BTCUSD")
     # ws.subscribe_insurance() # only support inverse perpetual
@@ -33,10 +33,10 @@ if __name__ == "__main__":
     # ws.subscribe_stop_order()
     # ws.subscribe_execution()
     # ws.subscribe_position()
-    # while(1):
-        # logger.info(ws.get_orderBookL2("BTCUSD"))
+    while(1):
+        logger.info(ws.get_orderBookL2("BTCUSD"))
         # logger.info(ws.get_orderBookL2("BTCUSD", 200))
-        # logger.info(ws.get_kline('BTCUSD', '1'))
+        logger.info(ws.get_kline('BTCUSD', '1'))
         # logger.info(ws.get_instrument_info("BTCUSD"))
         # logger.info(ws.get_trade("BTCUSD"))
         # logger.info(ws.get_insurance("BTC"))
@@ -46,6 +46,8 @@ if __name__ == "__main__":
         # logger.info(ws.get_execution())
         # logger.info(ws.get_position())
         # sleep(1)
+
+        ws.unsubscribe_orderBookL2("BTCUSD")
 
 
     # usdt perpetual
