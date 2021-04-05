@@ -89,7 +89,7 @@ class BybitWebsocket:
 
     def __do_auth(self):
 
-        expires = str(int(round(time.time()) + 1)) + "000"
+        expires = str(int(round(time.time()) + 1)) + "1000"
         signature = self.generate_signature(expires)
 
         auth = {}
