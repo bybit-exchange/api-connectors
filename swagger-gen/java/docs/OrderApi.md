@@ -186,7 +186,7 @@ String symbol = "symbol_example"; // String | Contract type. Default BTCUSD
 BigDecimal limit = new BigDecimal(); // BigDecimal | TLimit for data size per page, max size is 50. Default as showing 20 pieces of data per page
 String orderStatus = "orderStatus_example"; // String | Query your orders for all statuses if 'order_status' is empty. If you want to query orders with specific statuses , you can pass the order_status split by
 String direction = "direction_example"; // String | Search direction. prev: prev page, next: next page. Defaults to next
-String cursor = "cursor_example"; // String | Page turning mark，Use return cursor,Sign use origin data, in request please urlencode
+String cursor = "cursor_example"; // String | cursor is a unique identifier for a specific record, which acts as a pointer to the next record we want to start querying from to get the next page of results
 try {
     Object result = apiInstance.orderGetOrders(symbol, limit, orderStatus, direction, cursor);
     System.out.println(result);
@@ -204,7 +204,7 @@ Name | Type | Description  | Notes
  **limit** | **BigDecimal**| TLimit for data size per page, max size is 50. Default as showing 20 pieces of data per page | [optional]
  **orderStatus** | **String**| Query your orders for all statuses if &#39;order_status&#39; is empty. If you want to query orders with specific statuses , you can pass the order_status split by | [optional]
  **direction** | **String**| Search direction. prev: prev page, next: next page. Defaults to next | [optional]
- **cursor** | **String**| Page turning mark，Use return cursor,Sign use origin data, in request please urlencode | [optional]
+ **cursor** | **String**| cursor is a unique identifier for a specific record, which acts as a pointer to the next record we want to start querying from to get the next page of results | [optional]
 
 ### Return type
 
@@ -306,7 +306,7 @@ Name | Type | Description  | Notes
 
 <a name="orderQuery"></a>
 # **orderQuery**
-> Object orderQuery(orderId, symbol)
+> Object orderQuery(orderId, symbol, orderLinkId)
 
 Get my active order list.
 
@@ -342,8 +342,9 @@ timestamp.setApiKey("YOUR API KEY");
 OrderApi apiInstance = new OrderApi();
 String orderId = "orderId_example"; // String | Order ID
 String symbol = "symbol_example"; // String | Contract type. Default BTCUSD
+String orderLinkId = "orderLinkId_example"; // String | Agency customized order ID
 try {
-    Object result = apiInstance.orderQuery(orderId, symbol);
+    Object result = apiInstance.orderQuery(orderId, symbol, orderLinkId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling OrderApi#orderQuery");
@@ -357,6 +358,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **orderId** | **String**| Order ID | [optional]
  **symbol** | **String**| Contract type. Default BTCUSD | [optional]
+ **orderLinkId** | **String**| Agency customized order ID | [optional]
 
 ### Return type
 

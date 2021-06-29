@@ -5,7 +5,9 @@ All URIs are relative to *https://api.bybit.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**klineGet**](KlineApi.md#klineGet) | **GET** /v2/public/kline/list | Query historical kline.
+[**klineIndexPrice**](KlineApi.md#klineIndexPrice) | **GET** /v2/public/index-price-kline | Query index price kline.
 [**klineMarkPrice**](KlineApi.md#klineMarkPrice) | **GET** /v2/public/mark-price-kline | Query mark price kline.
+[**klinePremiumIndexPrice**](KlineApi.md#klinePremiumIndexPrice) | **GET** /v2/public/premium-index-kline | Query premium index price kline.
 
 
 <a name="klineGet"></a>
@@ -57,6 +59,55 @@ No authorization required
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
+<a name="klineIndexPrice"></a>
+# **klineIndexPrice**
+> Object klineIndexPrice(symbol, interval, from, limit)
+
+Query index price kline.
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.ApiException;
+//import io.swagger.client.api.KlineApi;
+
+
+KlineApi apiInstance = new KlineApi();
+String symbol = "symbol_example"; // String | Contract type.
+String interval = "interval_example"; // String | Data refresh interval
+Integer from = 56; // Integer | From timestamp in seconds
+Integer limit = 56; // Integer | Limit for data size, max size is 1000. Default size is 500
+try {
+    Object result = apiInstance.klineIndexPrice(symbol, interval, from, limit);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling KlineApi#klineIndexPrice");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **String**| Contract type. |
+ **interval** | **String**| Data refresh interval |
+ **from** | **Integer**| From timestamp in seconds |
+ **limit** | **Integer**| Limit for data size, max size is 1000. Default size is 500 | [optional]
+
+### Return type
+
+**Object**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
 <a name="klineMarkPrice"></a>
 # **klineMarkPrice**
 > Object klineMarkPrice(symbol, interval, from, limit)
@@ -80,6 +131,55 @@ try {
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling KlineApi#klineMarkPrice");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **String**| Contract type. |
+ **interval** | **String**| Data refresh interval |
+ **from** | **Integer**| From timestamp in seconds |
+ **limit** | **Integer**| Limit for data size, max size is 1000. Default size is 500 | [optional]
+
+### Return type
+
+**Object**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+<a name="klinePremiumIndexPrice"></a>
+# **klinePremiumIndexPrice**
+> Object klinePremiumIndexPrice(symbol, interval, from, limit)
+
+Query premium index price kline.
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.ApiException;
+//import io.swagger.client.api.KlineApi;
+
+
+KlineApi apiInstance = new KlineApi();
+String symbol = "symbol_example"; // String | Contract type.
+String interval = "interval_example"; // String | Data refresh interval
+Integer from = 56; // Integer | From timestamp in seconds
+Integer limit = 56; // Integer | Limit for data size, max size is 1000. Default size is 500
+try {
+    Object result = apiInstance.klinePremiumIndexPrice(symbol, interval, from, limit);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling KlineApi#klinePremiumIndexPrice");
     e.printStackTrace();
 }
 ```

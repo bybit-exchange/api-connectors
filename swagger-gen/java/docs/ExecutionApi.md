@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 <a name="executionGetTrades"></a>
 # **executionGetTrades**
-> Object executionGetTrades(orderId, symbol, startTime, page, limit)
+> Object executionGetTrades(symbol, orderId, startTime, page, limit)
 
 Get user’s trade records.
 
@@ -44,13 +44,13 @@ timestamp.setApiKey("YOUR API KEY");
 //timestamp.setApiKeyPrefix("Token");
 
 ExecutionApi apiInstance = new ExecutionApi();
+String symbol = "symbol_example"; // String | Contract type.
 String orderId = "orderId_example"; // String | OrderID. If not provided, will return user’s trading records.
-String symbol = "symbol_example"; // String | Contract type. If order_id not provided, symbol is required.
 String startTime = "startTime_example"; // String | Start timestamp point for result.
 String page = "page_example"; // String | Page. Default getting first page data.
 String limit = "limit_example"; // String | Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page.
 try {
-    Object result = apiInstance.executionGetTrades(orderId, symbol, startTime, page, limit);
+    Object result = apiInstance.executionGetTrades(symbol, orderId, startTime, page, limit);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ExecutionApi#executionGetTrades");
@@ -62,8 +62,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **symbol** | **String**| Contract type. |
  **orderId** | **String**| OrderID. If not provided, will return user’s trading records. | [optional]
- **symbol** | **String**| Contract type. If order_id not provided, symbol is required. | [optional]
  **startTime** | **String**| Start timestamp point for result. | [optional]
  **page** | **String**| Page. Default getting first page data. | [optional]
  **limit** | **String**| Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page. | [optional]
