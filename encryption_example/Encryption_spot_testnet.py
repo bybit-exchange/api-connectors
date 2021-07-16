@@ -7,7 +7,7 @@ import time
 def create(apiKey,secretKey,side,order_type,qty,price):
     params = {
         "side": side,
-        "symbol": "ETHUSDT",
+        "symbol": "BTCUSDT",
         "type": order_type,
         "qty": qty,
         "price": price,
@@ -31,21 +31,25 @@ def create(apiKey,secretKey,side,order_type,qty,price):
     sign_real = {
         "sign": signature
     }
-    url = 'https://api-testnet.bybit.com/spot/v1/order?'+sign+'&sign='+signature
+    query_string=sign+'&sign='+signature
+    url = 'https://api-testnet.bybit.com/spot/v1/order?'
     #headers = {"Content-Type": "application/json"}
-    headers = {"Content-Type": "application/x-www-form-urlencoded"}
+    #headers = {"Content-Type": "application/x-www-form-urlencoded"}
     body = dict(params,**sign_real)
     urllib3.disable_warnings()
     s = requests.session()
     s.keep_alive = False
     for x in range(1):
         #response = requests.post(url, data=json.dumps(body), headers=headers,verify=False)
-        response = requests.post(url, headers=headers,verify=False)
-        print(response)
+        #response = requests.post(url, data=query_string, headers=headers,verify=False)
+        response = requests.post(url+query_string, verify=False)
+        #response = requests.post(url+query_string, headers=headers,verify=False)
+        #response = requests.post(url, headers=headers,verify=False)
+        #print(response)
         print(response.text)
 def main():
     apiKey = "U7OUiyDdJPVeU7fcxn"
     secret = b"6o2s1eOnkViVLfyg3zii1k0kf56j5aBNkLRn"
-    create(apiKey, secret,'Sell','Limit','0.001','3000')
+    create(apiKey, secret,'Buy','Limit','0.001','10000')
 if __name__ == '__main__':
     main()
