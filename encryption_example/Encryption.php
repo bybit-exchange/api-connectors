@@ -8,10 +8,33 @@ function get_signed_params($public_key, $secret_key, $params) {
     return http_build_query($params) . "&sign=$signature";
 }
 
-$params = ['symbol' => 'BTCUSD', 'timestamp' => time() * 1000];
+$params = [
+	'symbol' => 'BTCUSDT', 
+	'side' => 'Buy', 
+	'order_type' => 'Limit', 
+	'qty' => '0.01', 
+	'price' => '5000', 
+	'time_in_force' => 'GoodTillCancel',
+	'reduce_only' => false,
+	'close_on_trigger' => false,
+	'timestamp' => time() * 1000
+];
 
-$url = 'https://api.bybit.com/v2/private/execution/list';
+$url = 'https://api.bybit.com/private/linear/order/create';
 
-$public_key = 'B2Rou0PLPpGqcU0Vu2';
-$secret_key = 't7T0YlFnYXk0Fx3JswQsDrViLg1Gh3DUU5Mr';
-echo file_get_contents($url . "?" . get_signed_params($public_key, $secret_key, $params));
+$public_key = 'B5wR9e7VG0O1IEfmv3';
+$secret_key = 'TZuDrdyjNxgbjFIaMOp3DmJFwVAajHF7rv4x';
+$qs=get_signed_params($public_key, $secret_key, $params);
+$curl_url=$url."?".$qs;
+$curl=curl_init($curl_url);
+echo $curl_url;
+curl_setopt($curl, CURLOPT_URL, $curl_url);
+#curl_setopt($curl, CURLOPT_POSTFIELDS, $qs);
+curl_setopt($curl, CURLOPT_POST, true);
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
+curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+curl_setopt($curl, CURLOPT_PROXY,"127.0.0.1:1087");
+#$response=curl_exec($curl);
+echo $response;
