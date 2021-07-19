@@ -33,19 +33,14 @@ def create(apiKey,secretKey,side,order_type,qty,price):
     }
     query_string=sign+'&sign='+signature
     url = 'https://api-testnet.bybit.com/spot/v1/order?'
-    #headers = {"Content-Type": "application/json"}
-    #headers = {"Content-Type": "application/x-www-form-urlencoded"}
+    headers = {"Content-Type": "application/x-www-form-urlencoded"} # If you put the parameter query string into request body, you must specify this one
     body = dict(params,**sign_real)
     urllib3.disable_warnings()
     s = requests.session()
     s.keep_alive = False
     for x in range(1):
-        #response = requests.post(url, data=json.dumps(body), headers=headers,verify=False)
-        #response = requests.post(url, data=query_string, headers=headers,verify=False)
+        #response = requests.post(url, data=query_string, headers=headers,verify=False) # You must specify "Content-Type" to "application/x-www-form-urlencoded" if you put query string into request body
         response = requests.post(url+query_string, verify=False)
-        #response = requests.post(url+query_string, headers=headers,verify=False)
-        #response = requests.post(url, headers=headers,verify=False)
-        #print(response)
         print(response.text)
 def main():
     apiKey = "U7OUiyDdJPVeU7fcxn"
