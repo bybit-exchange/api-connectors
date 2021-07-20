@@ -22,8 +22,8 @@ $params = [
 
 $url = 'https://api.bybit.com/private/linear/order/create';
 
-$public_key = 'B5wR9e7VG0O1IEfmv3';
-$secret_key = 'TZuDrdyjNxgbjFIaMOp3DmJFwVAajHF7rv4x';
+$public_key = 'Un4rOHOZ2VpQhheMJ';
+$secret_key = 'SbmtjCvFNFXx8Km5DY1hx6WxIWus5B6Iheh';
 $qs=get_signed_params($public_key, $secret_key, $params);
 $curl_url=$url."?".$qs;
 $curl=curl_init($curl_url);
@@ -35,6 +35,6 @@ curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
 curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
 curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
-curl_setopt($curl, CURLOPT_PROXY,"127.0.0.1:1087");
-#$response=curl_exec($curl);
+#curl_setopt($curl, CURLOPT_PROXY,"127.0.0.1:1087");
+$response=curl_exec($curl);
 echo $response;
