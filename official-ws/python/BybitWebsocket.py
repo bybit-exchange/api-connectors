@@ -100,7 +100,7 @@ class BybitWebsocket:
 
         self.ws.send(args)
 
-    def __on_message(self, message):
+    def __on_message(self, stream_client,  message):
         '''Handler for parsing WS messages.'''
         message = json.loads(message)
         if 'success' in message and message["success"]:
@@ -121,9 +121,9 @@ class BybitWebsocket:
             self.logger.error("Error : %s" % error)
             raise websocket.WebSocketException(error)
 
-    def __on_open(self):
+    def __on_open(self, ws_app):
         '''Called when the WS opens.'''
-        self.logger.debug("Websocket Opened.")
+        self.logger.debug(f"Websocket {ws_app.url} Opened.")
 
     def __on_close(self):
         '''Called on websocket close.'''
