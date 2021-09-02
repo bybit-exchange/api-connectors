@@ -8,6 +8,8 @@ from urllib.parse import quote_plus
 
 
 def create(api_key, secret_key, side, order_type, qty, price):
+    """Numerous examples for creating a request"""
+    #'''
     params = {  # futures create order params
         "side": side,
         "symbol": "BTCUSD",
@@ -19,6 +21,7 @@ def create(api_key, secret_key, side, order_type, qty, price):
         "timestamp": round(time.time() * 1000),
         "recv_window": 10000,
     }
+    #'''
     '''
     params = {  # spot create order params
         "side": side,
@@ -31,7 +34,7 @@ def create(api_key, secret_key, side, order_type, qty, price):
         "timestamp": round(time.time() * 1000),
         "recv_window": 10000,
     }
-    '''
+    #'''
     '''
     params = {  # /v2/private/order/list example demonstrating correct encoding
         "symbol": "BTCUSD",
@@ -40,7 +43,15 @@ def create(api_key, secret_key, side, order_type, qty, price):
         "timestamp": round(time.time() * 1000),
         "recv_window": 10000,
     }
+    #'''
     '''
+    params = {  # spot query order params
+        "orderId": 971348300175355648,
+        "api_key": api_key,
+        "timestamp": round(time.time() * 1000),
+        "recv_window": 10000,
+    }
+    #'''
     # Create the param str
     param_str = ""
     for key in sorted(params.keys()):
@@ -55,7 +66,8 @@ def create(api_key, secret_key, side, order_type, qty, price):
     print(param_str)
 
     # Generate the signature
-    hash = hmac.new(secret_key, param_str.encode("utf-8"), hashlib.sha256)
+    hash = hmac.new(bytes(secret_key, "utf-8"), param_str.encode("utf-8"),
+                    hashlib.sha256)
     signature = hash.hexdigest()
     sign_real = {
         "sign": signature
@@ -88,10 +100,8 @@ def create(api_key, secret_key, side, order_type, qty, price):
     for x in range(1):
         if "spot" in url:
             # Send a request to the spot API
-            response = requests.request(method, url, data=full_param_str,
-                                        headers=headers, verify=True)
-            #response = requests.post(f"{url}?{full_param_str}",
-            #                         headers=headers, verify=False)
+            response = requests.request(method, f"{url}?{full_param_str}",
+                                        headers=headers, verify=False)
         else:
             # Send a request to the futures API
             if method == "POST":
@@ -105,8 +115,8 @@ def create(api_key, secret_key, side, order_type, qty, price):
 
 
 def main():
-    api_key = ""
-    secret_key = b""
+    api_key = "vvO4vBTwmm36bb4L7t"
+    secret_key = "P8ctndKad4TdO6yvpuoji6na9szTjl2mI1Al"
     create(api_key, secret_key, "Buy", "Limit", 1, 8700)
 
 
