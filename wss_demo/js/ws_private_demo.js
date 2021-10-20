@@ -1,14 +1,10 @@
 var url = require('url');
 var WebSocket = require('ws');
-var HttpsProxyAgent = require('https-proxy-agent');
-var proxy = 'http://127.0.0.1:1087';
 var crypto = require('crypto');
 var endpoint = "wss://stream-testnet.bybit.com/realtime"
 var parsed = url.parse(endpoint);
 console.log('attempting to connect to WebSocket %j', endpoint);
-var options = url.parse(proxy);
-var agent = new HttpsProxyAgent(options);
-var client = new WebSocket(endpoint, { agent: agent });
+var client = new WebSocket(endpoint);
 const apiKey="U7OUiyDdJPVeU7fcxn";
 const apiSecret="6o2s1eOnkViVLfyg3zii1k0kf56j5aBNkLRn";
 client.on('open', function () {
