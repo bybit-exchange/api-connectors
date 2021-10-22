@@ -42,7 +42,7 @@ ws.subscribe_insurance()
 
 # get responses forever
 while(1):
-    logger.info(ws.get_data("orderBookL2_25.BTCUSD"))
+    logger.info(ws.get_data("orderBookL2_200.100ms.BTCUSD"))
     logger.info(ws.get_data('kline.BTCUSD.1m'))
     logger.info(ws.get_data('order'))
     logger.info(ws.get_data("execution"))

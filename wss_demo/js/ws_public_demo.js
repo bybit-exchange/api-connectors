@@ -9,7 +9,7 @@ client.on('open', function () {
 	console.log('WebSocket Client Connected');
 	setInterval(()=>{client.ping()}, 30000);
 	client.ping();
-	client.send(JSON.stringify({"op": "subscribe", "args": ["orderBookL2_25.BTCUSD"]}));
+	client.send(JSON.stringify({"op": "subscribe", "args": ["orderBookL2_200.100ms.BTCUSD"]}));
 });
 
 client.on('message', function (data) {

@@ -51,7 +51,7 @@ func main() {
 	//subscribe orderBookL2_25
 	param = make(map[string]interface{})
 	param["op"] = "subscribe"
-	args = []string{"orderBookL2_25.BTCUSD"}
+	args = []string{"orderBookL2_200.100ms.BTCUSD"}
 	param["args"] = args
 	req, _ = json.Marshal(param)
 	if err := ws.WriteMessage(websocket.TextMessage, []byte(req)); err != nil {

@@ -166,7 +166,7 @@ class BybitWebsocket:
         param = {}
         param['op'] = 'subscribe'
         if level is None:
-            topic = 'orderBookL2_25.' + symbol
+            topic = 'orderBookL2_200.100ms.' + symbol
         else:
             topic = 'orderBook_{level}.100ms.{symbol}'.format(level=level, symbol=symbol)
         print(topic)
@@ -220,7 +220,7 @@ class BybitWebsocket:
 
     def get_orderBookL2(self, symbol, level=None):
         if level is None:
-            return self.get_data("orderBookL2_25." + symbol)
+            return self.get_data("orderBookL2_200.100ms." + symbol)
         else:
             return self.get_data("orderBook_200.100ms." + symbol)
     def get_stop_order(self):
