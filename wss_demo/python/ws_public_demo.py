@@ -11,7 +11,7 @@ logging.basicConfig(filename='logfile_wrapper.log', level=logging.DEBUG,
 #now = datetime.now() #dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
 #print("date and time =", dt_string)
 prev_send_time = int(time.time() * 1000)
-topic = "orderBookL2_200.100ms.BTCUSD"
+topic = "orderBook_200.100ms.BTCUSD"
 
 trade_results = {}
 size = {}
