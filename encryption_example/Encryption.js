@@ -10,15 +10,45 @@ var params = {
 	"api_key" : apiKey,
 };
 
-console.log(getSignature(params, secret));
+var signature = getSignature(params, secret);
+
+console.log("signature of params: ");
+console.log(signature);
+console.log();
+
+console.log("ordered params - querystring: ");
+console.log(getQueryStringSigned(params, secret));
+console.log();
+
+console.log("ordered params - serialized to JSON for POST: ");
+console.log(getPostDataSigned(params, secret));
+console.log();
+
+function getQueryStringSigned(parameters, secret) {
+	const sign = getSignature(parameters, secret);
+	const qs = getOrderedParams(params, secret) + "&sign=" + signature
+	return qs;
+}
+
+function getPostDataSigned(parameters, secret) {
+	const sign = getSignature(parameters, secret);
+
+	parameters.sign = sign;
+
+	return parameters;
+}
 
 function getSignature(parameters, secret) {
-	var orderedParams = "";
+	let orderedParams = getOrderedParams(parameters);
+	return crypto.createHmac('sha256', secret).update(orderedParams).digest('hex');
+}
+
+function getOrderedParams(parameters) {
+	let orderedParams = "";
 	Object.keys(parameters).sort().forEach(function(key) {
 	  orderedParams += key + "=" + parameters[key] + "&";
 	});
 	orderedParams = orderedParams.substring(0, orderedParams.length - 1);
 
-	return crypto.createHmac('sha256', secret).update(orderedParams).digest('hex');
+	return orderedParams;
 }
-
