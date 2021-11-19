@@ -24,7 +24,7 @@ class BybitWebsocket:
     MAX_DATA_CAPACITY = 200
     # funding, account, leverage
     PRIVATE_TOPIC = ['position', 'execution', 'order', 'stop_order', 'wallet']
-    USD_SYMBOLS = ['BTCUSD', 'ETHUSD', 'EOSUSD', 'XRPUSD']
+    USD_SYMBOLS = ['BTCUSD', 'ETHUSD', 'EOSUSD', 'XRPUSD', 'DOTUSD']
     WS_OPS = ['auth', 'subscribe']
 
     def __init__(self, wsURL, api_key, api_secret):
@@ -161,6 +161,7 @@ class BybitWebsocket:
             self.data['insurance.XRP'] = []
             self.data['insurance.EOS'] = []
             self.data['insurance.ETH'] = []
+            self.data['insurance.DOT'] = []
 
     def subscribe_orderBookL2(self, symbol, level=None):
         param = {}
