@@ -1,3 +1,5 @@
+# NOTICE: the api-connectors in this repository are out-of-date. For recommendations of alternatives, please come to our [API Telegram group](https://t.me/BybitAPI).
+
 # api-connectors
 Libraries for connecting to the Bybit API. https://bybit-exchange.github.io/docs/inverse
 
