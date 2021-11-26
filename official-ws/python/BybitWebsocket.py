@@ -100,7 +100,7 @@ class BybitWebsocket:
 
         self.ws.send(args)
 
-    def __on_message(self, message):
+    def __on_message(self, ws, message):
         '''Handler for parsing WS messages.'''
         message = json.loads(message)
         if 'success' in message and message["success"]:
@@ -115,19 +115,19 @@ class BybitWebsocket:
             if len(self.data[message["topic"]]) > BybitWebsocket.MAX_DATA_CAPACITY:
                 self.data[message["topic"]] = self.data[message["topic"]][BybitWebsocket.MAX_DATA_CAPACITY // 2:]
 
-    def __on_error(self, error):
+    def __on_error(self, ws, error):
         '''Called on fatal websocket errors. We exit on these.'''
         if not self.exited:
             self.logger.error("Error : %s" % error)
             raise websocket.WebSocketException(error)
 
-    def __on_open(self):
+    def __on_open(self, ws):
         '''Called when the WS opens.'''
         self.logger.debug("Websocket Opened.")
 
-    def __on_close(self):
+    def __on_close(self, ws, status_code, reason):
         '''Called on websocket close.'''
-        self.logger.info('Websocket Closed')
+        self.logger.info('Websocket Closed with code %s.', status_code)
 
     def ping(self):
         self.ws.send('{"op":"ping"}')
