@@ -10,6 +10,7 @@ import urllib
 import math
 import time
 import hmac
+from collections import defaultdict
 
 
 # This is a simple adapters for connecting to Bybit's websocket API.
@@ -24,7 +25,7 @@ class BybitWebsocket:
     MAX_DATA_CAPACITY = 200
     # funding, account, leverage
     PRIVATE_TOPIC = ['position', 'execution', 'order', 'stop_order', 'wallet']
-    USD_SYMBOLS = ['BTCUSD', 'ETHUSD', 'EOSUSD', 'XRPUSD']
+    USD_SYMBOLS = ['BTCUSD', 'ETHUSD', 'EOSUSD', 'XRPUSD', "DOTUSD"]
     WS_OPS = ['auth', 'subscribe']
 
     def __init__(self, wsURL, api_key, api_secret):
@@ -40,7 +41,7 @@ class BybitWebsocket:
         self.api_key = api_key
         self.api_secret = api_secret
 
-        self.data = {}
+        self.data = defaultdict(list)
         self.exited = False
         self.auth = False
         # We can subscribe right in the connection querystring, so let's build that.
@@ -100,7 +101,7 @@ class BybitWebsocket:
 
         self.ws.send(args)
 
-    def __on_message(self, message):
+    def __on_message(self, ws: websocket.WebSocketApp, message):
         '''Handler for parsing WS messages.'''
         message = json.loads(message)
         if 'success' in message and message["success"]:
@@ -115,17 +116,20 @@ class BybitWebsocket:
             if len(self.data[message["topic"]]) > BybitWebsocket.MAX_DATA_CAPACITY:
                 self.data[message["topic"]] = self.data[message["topic"]][BybitWebsocket.MAX_DATA_CAPACITY // 2:]
 
-    def __on_error(self, error):
+    def __on_error(self, ws: websocket.WebSocketApp, error):
         '''Called on fatal websocket errors. We exit on these.'''
         if not self.exited:
             self.logger.error("Error : %s" % error)
             raise websocket.WebSocketException(error)
 
-    def __on_open(self):
+    def __on_open(self, ws: websocket.WebSocketApp):
         '''Called when the WS opens.'''
         self.logger.debug("Websocket Opened.")
 
-    def __on_close(self):
+    def __on_close(self,
+            ws: websocket.WebSocketApp,
+            status_code: int = 0,
+            close_msg: str = ""):
         '''Called on websocket close.'''
         self.logger.info('Websocket Closed')
 
@@ -161,6 +165,7 @@ class BybitWebsocket:
             self.data['insurance.XRP'] = []
             self.data['insurance.EOS'] = []
             self.data['insurance.ETH'] = []
+            self.data['insurance.DOT'] = []
 
     def subscribe_orderBookL2(self, symbol, level=None):
         param = {}
