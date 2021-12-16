@@ -1,4 +1,5 @@
-const crypto = require('crypto');
+const qs = require('qs')
+const cryptojs = require('crypto-js')
 
 var apiKey = "";
 var secret = "";
@@ -12,13 +13,8 @@ var params = {
 
 console.log(getSignature(params, secret));
 
-function getSignature(parameters, secret) {
-	var orderedParams = "";
-	Object.keys(parameters).sort().forEach(function(key) {
-	  orderedParams += key + "=" + parameters[key] + "&";
-	});
-	orderedParams = orderedParams.substring(0, orderedParams.length - 1);
-
-	return crypto.createHmac('sha256', secret).update(orderedParams).digest('hex');
+function getSignature(params, secret) {
+  const payload = qs.stringify(params, { sort: (a, b) => a.localeCompare(b) })
+  return cryptojs.HmacSHA256(payload, secret).toString(cryptojs.enc.Hex)
 }
 
